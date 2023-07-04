@@ -14,7 +14,7 @@ struct CommunityListView: View {
         NavigationView {
             List(communities, id: \.community.id) { community in
                 NavigationLink {
-                    PostsListView()
+                    PostsListView(community: community.community)
                 } label: {
                     CommunityRow(community: community.community, counts: community.counts)
                 }
