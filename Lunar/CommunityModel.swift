@@ -8,20 +8,20 @@
 import Foundation
 
 // MARK: - Welcome
-struct Welcome: Codable {
-    let communities: [CommunityElement]
+struct CommunityModel: Codable {
+    let communities: [CommunitiesArray]
 }
 
 // MARK: - CommunityElement
-struct CommunityElement: Codable {
-    let community: CommunityCommunity
-    let subscribed: Subscribed
+struct CommunitiesArray: Codable {
+    let community: CommunityObject
+    let subscribed: SubscribedObject
     let blocked: Bool
-    let counts: Counts
+    let counts: CountsObject
 }
 
 // MARK: - CommunityCommunity
-struct CommunityCommunity: Codable {
+struct CommunityObject: Codable {
     let id: Int
     let name, title: String
     let removed: Bool
@@ -45,7 +45,7 @@ struct CommunityCommunity: Codable {
 }
 
 // MARK: - Counts
-struct Counts: Codable {
+struct CountsObject: Codable {
     let id, communityID, subscribers, posts: Int
     let comments: Int
     let published: String
@@ -64,6 +64,6 @@ struct Counts: Codable {
     }
 }
 
-enum Subscribed: String, Codable {
+enum SubscribedObject: String, Codable {
     case notSubscribed = "NotSubscribed"
 }
