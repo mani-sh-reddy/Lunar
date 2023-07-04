@@ -1,1 +1,109 @@
-{"communities":[{"community":{"id":38,"name":"asklemmy","title":"asklemmy","description":"A loosely moderated place to ask open ended questions\n\nIf your post is:\n\n1. Open ended \n2. Not offensive: at this point, we do not have the bandwidth to moderate overtly political discussions\n3. **Not regarding Lemmy support**: [context](https://lemmy.ml/post/1223478), find help in [!lemmy_support@lemmy.ml](https://lemmy.ml/c/lemmy_support) \n4. Not ad nauseam inducing: please make sure it is a question that would be new to most members\n5. [An actual topic of discussion](https://lemmy.ml/post/1239589)\n\nit’s welcome here!\n\n~Icon~ ~by~ ~@Double_A@discuss.tchncs.de~","removed":false,"published":"2019-04-25T04:58:33.886275","updated":"2023-07-02T15:58:10.357185","deleted":false,"nsfw":false,"actor_id":"https://lemmy.ml/c/asklemmy","local":false,"icon":"https://lemmy.ml/pictrs/image/d3d059e3-fa3d-45af-ac93-ac894beba378.png","banner":"https://lemmy.ml/pictrs/image/36d2d6b4-9133-43eb-a980-5aa44939b904.png","hidden":false,"posting_restricted_to_mods":false,"instance_id":3},"subscribed":"NotSubscribed","blocked":false,"counts":{"id":36,"community_id":38,"subscribers":8312,"posts":1197,"comments":34650,"published":"2019-04-25T04:58:33.886275","users_active_day":644,"users_active_week":3471,"users_active_month":10638,"users_active_half_year":10723,"hot_rank":0}},{"community":{"id":5,"name":"lemmyworld","title":"Lemmy.world","description":"This Community is intended for **posts about the Lemmy.world server** by the admins. \n\nFor support with issues at Lemmy.world, go to [the Lemmy.world Support community](https://lemmy.world/c/support).\n\nFor general discussions, go to the [General Discussions](https://lemmy.world/c/general) community.\n\n## Support e-mail\nAny support requests are best sent to info@lemmy.world e-mail.\n\n## Donations\nIf you would like to make a donation to support the cost of running this platform, please do so at the mastodon. world donation URLs:\n\n- https://opencollective.com/mastodonworld\n- https://patreon.com/mastodonworld\n","removed":false,"published":"2023-06-01T11:51:52.722151","updated":"2023-07-03T11:48:44.746123","deleted":false,"nsfw":false,"actor_id":"https://lemmy.world/c/lemmyworld","local":true,"icon":"https://lemmy.world/pictrs/image/dd8f2fc9-3aec-4ba9-8eea-6e9cd2373ce9.jpeg","banner":"https://lemmy.world/pictrs/image/8b92fbed-97de-4720-aa5a-2e614d34116e.png","hidden":false,"posting_restricted_to_mods":true,"instance_id":1},"subscribed":"NotSubscribed","blocked":false,"counts":{"id":4,"community_id":5,"subscribers":20185,"posts":689,"comments":27021,"published":"2023-06-01T11:51:52.722151","users_active_day":29,"users_active_week":1100,"users_active_month":8508,"users_active_half_year":8508,"hot_rank":0}},{"community":{"id":13,"name":"memes","title":"Memes","description":"#### Rules:\n\n\n01. Be civil and nice.\n02. Try not to excessively repost, as a rule of thumb, wait at least 2 months to do it if you *have* to.","removed":false,"published":"2019-04-25T16:54:42.997194","updated":"2022-01-12T13:43:29.936386","deleted":false,"nsfw":false,"actor_id":"https://lemmy.ml/c/memes","local":false,"icon":"https://lemmy.ml/pictrs/image/CJ7moKL2SV.png","hidden":false,"posting_restricted_to_mods":false,"instance_id":3},"subscribed":"NotSubscribed","blocked":false,"counts":{"id":12,"community_id":13,"subscribers":8491,"posts":2407,"comments":21005,"published":"2019-04-25T16:54:42.997194","users_active_day":556,"users_active_week":3177,"users_active_month":7813,"users_active_half_year":7878,"hot_rank":0}},{"community":{"id":4230,"name":"nostupidquestions","title":"No Stupid Questions","description":"No such thing. Ask away!\n-\n!nostupidquestions is a community space dedicated to being helpful and answering each others' questions on various topics. \n\nThe rules for posting and commenting, besides [the rules defined here for lemmy.world](https://mastodon.world/about), are as follows:\n\nRules\n-\n\n**1**-All posts must be legitimate questions, and all post titles must include a question. Questions that are joke or trolling questions, memes, song lyrics as title, etc. are not allowed here. See Rule 6 for all exceptions.\n\n**2**-Your question subject cannot be illegal or NSFW material. You will be warned first, banned second.\n\n**3**-Do not seek mental, medical and professional help here. Breaking this rule will not get you or your post removed, but it will put you at risk, and possibly in danger. \n\n**4**-No self promotion or upvote-farming of any kind.\n\n**5**-Questions which, instead of being of an innocuous nature, are specifically intended (based on reports and in the opinion of our crack moderation team) to bait users into ideological wars on charged political topics will be removed and the authors warned - or banned - depending on severity.\n\n**Rule 6**-Provided it is about the community itself, you may post non-question posts using the [META] tag on your post title.\n\nOn fridays, you are allowed to post meme and troll questions, on the condition that it's in text format only, and conforms with our other rules. These posts MUST include the [NSQ Friday] tag in their title.\n\nIf you post a serious question on friday and are looking **only** for legitimate answers, then please include the [Serious] tag on your post. Irrelevant replies will then be removed by moderators. \n\n**7**-If you vocally harass or discriminate against any individual member, you will be removed.\n\nLikewise, if you are a member, sympathiser or a resemblant of a movement that is known to largely hate, mock, discriminate against, and/or want to take lives of a group of people, and you were provably vocal about your hate, then you you will be banned on sight. The first paragraph of this rule does not protect you. \n\n\"Provable\" means able to provide proof to the moderation, and, if necessary, to the community.\n\n**8**-All comments should try to stay relevant to their parent content. \n\n**9**-Reposts from other platforms are not allowed. \n\n**10**-You're not allowed to be an AI(unless you're ours). If you're an AI and you think you should be able to participate here, then you're wrong. No AI on NSQ. If you're a moderator by the name of MrsPkeaton, then you migh- [REDACTED]\n\nPartnered Communities: \n-\n\n[You Should Know](/c/youshouldknow@lemmy.world)\n\n[Mildly Infuriating](/c/mildlyinfuriating@lemmy.world)\n\n[Lemmy Review](/c/lemmyreview@lemmy.world)\n\n[Lemmy Be Wholesome](/c/lemmybewholesome@lemmy.world)\n\n [Ask Lemmy](/c/asklemmy@lemmy.world)\n\n[Jokes](/c/jokes@lemmy.world)\n\n[Comedy Heaven](/c/comedyheaven@lemmy.world)\n\n[Now Lemmy Explain](/c/nowlemmyexplain@lemmy.world)\n\n[Mental Health](/c/mentalhealth@lemmy.world)\n\nTo partner with our community and be  included here, you are free to message the moderators or comment on our pinned post. \n\nCommunity Moderation\n-\nFor inquiry on becoming a moderator of this community, you may comment on the pinned post of the time, or simply shoot a message to the current moderators.  \n\nMatrix Chat Room\n-\nTo find & join our chat room, log into fluffychat.im and put #nostupidquestions:matrix.org on the search bar. \n\nCredits\n-\nOur breathtaking icon was bestowed upon us by @[Cevilia!](https://lemmy.world/u/Cevilia@lemmy.blahaj.zone)\n\nThe greatest banner of all time: by @[TheOneWithTheHair!](https://lemmy.world/u/TheOneWithTheHair)","removed":false,"published":"2023-06-12T06:19:37.143007","updated":"2023-07-02T14:22:53.860042","deleted":false,"nsfw":false,"actor_id":"https://lemmy.world/c/nostupidquestions","local":true,"icon":"https://lemmy.world/pictrs/image/0943eca5-c4c2-4d65-acc2-7e220598f99e.png","banner":"https://lemmy.world/pictrs/image/c86413e9-2543-442c-aaae-763669739c2d.webp","hidden":false,"posting_restricted_to_mods":false,"instance_id":1},"subscribed":"NotSubscribed","blocked":false,"counts":{"id":2362,"community_id":4230,"subscribers":18346,"posts":523,"comments":16164,"published":"2023-06-12T06:19:37.143007","users_active_day":1468,"users_active_week":3729,"users_active_month":6730,"users_active_half_year":6730,"hot_rank":0}},{"community":{"id":9166,"name":"RedditMigration","title":"RedditMigration","description":"Tracking the lastest news and numbers about the #RedditMigration to open, Fediverse-based alternatives, including #Kbin and #Lemmy To see latest reeddit blackout info, see here: https://reddark.untone.uk/","removed":false,"published":"2023-06-11T16:49:31","updated":"2023-07-04T03:21:44","deleted":false,"nsfw":false,"actor_id":"https://kbin.social/m/RedditMigration","local":false,"icon":"https://media.kbin.social/18/45/1845eef07ed4f2e4d008c1c4035cdd40c812cd8d3b4aa7dd1c13f9f82e5722df.png","hidden":false,"posting_restricted_to_mods":false,"instance_id":257},"subscribed":"NotSubscribed","blocked":false,"counts":{"id":4774,"community_id":9166,"subscribers":3403,"posts":764,"comments":17754,"published":"2023-06-11T16:49:31","users_active_day":190,"users_active_week":2218,"users_active_month":5529,"users_active_half_year":5529,"hot_rank":0}},{"community":{"id":22,"name":"technology","title":"Technology","description":"Rumors, happenings, and innovations in the technology sphere. If it's technological news, it probably belongs here.\n\nSubcommunities on Beehaw:\n- [Free and Open Source Software](https://beehaw.org/c/foss)\n- [Programming](https://beehaw.org/c/programming)\n- [Operating Systems](https://beehaw.org/c/operating_systems)\n\n\n---\n\nThis community's icon was made by Aaron Schneider, under the [CC-BY-NC-SA 4.0 license](https://creativecommons.org/licenses/by-nc-sa/4.0/).","removed":false,"published":"2022-01-28T13:11:37.712220","updated":"2023-06-15T16:57:12.295243","deleted":false,"nsfw":false,"actor_id":"https://beehaw.org/c/technology","local":false,"icon":"https://beehaw.org/pictrs/image/c0e83ceb-b7e5-41b4-9b76-bfd152dd8d00.png","hidden":false,"posting_restricted_to_mods":false,"instance_id":232},"subscribed":"NotSubscribed","blocked":false,"counts":{"id":20,"community_id":22,"subscribers":8441,"posts":1002,"comments":14747,"published":"2022-01-28T13:11:37.712220","users_active_day":4,"users_active_week":239,"users_active_month":5257,"users_active_half_year":5305,"hot_rank":0}},{"community":{"id":2025,"name":"piracy","title":"Piracy: ꜱᴀɪʟ ᴛʜᴇ ʜɪɢʜ ꜱᴇᴀꜱ","description":"##### ⚓ A community devoted to in-depth debate on topics concerning digital piracy, ethical problems, and legal advancements.\n\n𝗣𝗜𝗥𝗔𝗖𝗬 𝗜𝗦 𝗘𝗧𝗛𝗜𝗖𝗔𝗟!\n\n---\n\n### Rules • [Full Version](https://rentry.co/piracy-rules)\n**1**. Posts must be related to the discussion of digital piracy\n\n**2.** Don't request invites, trade, sell, or self-promote\n\n**3.** Don't request [or link](https://lemmy.dbzer0.com/post/18438) to specific pirated titles\n\n**4.** Don't be repetitious, spam, harass others, or submit low-quality posts\n\n---\n\n![Image](https://take-me-to.space/VgXFZB2.png)\n\n---\n\n### Loot, Pillage, & Plunder\n- [📜 Megathread](https://rentry.co/megathread)\n- [🪶 FAQ](https://rentry.co/piracy-faq)\n- [🪶 ISP Complaints](https://rentry.co/piracy-isp-complaints)\n- [🪶 Rules](https://rentry.co/piracy-rules)\n\n---\n\n💰 Please [help cover server costs](https://ko-fi.com/db0).\n\n---","removed":false,"published":"2023-06-09T20:41:24.690780","updated":"2023-07-02T14:25:50.326543","deleted":false,"nsfw":false,"actor_id":"https://lemmy.dbzer0.com/c/piracy","local":false,"icon":"https://lemmy.dbzer0.com/pictrs/image/c462ff8a-1aff-4846-9aa6-7185c8461c45.png","banner":"https://lemmy.dbzer0.com/pictrs/image/27a0119f-2498-42df-ac2e-1e44528a6e3b.png","hidden":false,"posting_restricted_to_mods":false,"instance_id":723},"subscribed":"NotSubscribed","blocked":false,"counts":{"id":1103,"community_id":2025,"subscribers":9177,"posts":594,"comments":12053,"published":"2023-06-09T20:41:24.690780","users_active_day":472,"users_active_week":2594,"users_active_month":4815,"users_active_half_year":4815,"hot_rank":0}},{"community":{"id":3235,"name":"196","title":"196","description":"Be sure to follow the rule before you head out. \n\nRule: You must post before you leave.","removed":false,"published":"2023-06-11T15:16:24.408540","updated":"2023-06-30T02:31:55.661064","deleted":false,"nsfw":false,"actor_id":"https://lemmy.blahaj.zone/c/196","local":false,"icon":"https://lemmy.blahaj.zone/pictrs/image/fwrQkf9edg.png","banner":"https://lemmy.blahaj.zone/pictrs/image/zD2rqIgqTY.png","hidden":false,"posting_restricted_to_mods":false,"instance_id":234},"subscribed":"NotSubscribed","blocked":false,"counts":{"id":1811,"community_id":3235,"subscribers":2194,"posts":3316,"comments":12372,"published":"2023-06-11T15:16:24.408540","users_active_day":678,"users_active_week":2437,"users_active_month":4538,"users_active_half_year":4538,"hot_rank":0}},{"community":{"id":28,"name":"gaming","title":"Gaming","description":"From video gaming to card games and stuff in between, if it's gaming you can probably discuss it here!\n\nSee also Gaming's sister community [Tabletop Gaming](https://beehaw.org/c/tabletop).\n\n---\n\nThis community's icon was made by Aaron Schneider, under the [CC-BY-NC-SA 4.0 license](https://creativecommons.org/licenses/by-nc-sa/4.0/).","removed":false,"published":"2022-01-28T13:31:12.294106","updated":"2023-06-30T01:19:49.293916","deleted":false,"nsfw":false,"actor_id":"https://beehaw.org/c/gaming","local":false,"icon":"https://beehaw.org/pictrs/image/fed50129-04e7-4dbc-8f54-4ba5bae58370.png","hidden":false,"posting_restricted_to_mods":false,"instance_id":232},"subscribed":"NotSubscribed","blocked":false,"counts":{"id":26,"community_id":28,"subscribers":7815,"posts":992,"comments":11827,"published":"2022-01-28T13:31:12.294106","users_active_day":8,"users_active_week":258,"users_active_month":4307,"users_active_half_year":4363,"hot_rank":0}},{"community":{"id":2478,"name":"technology","title":"Technology","description":"Its a new technology community. Bring the content. ALL the content!\n\nRules:\n1. Follow the [Lemmy code of conduct.](https://join-lemmy.org/docs/code_of_conduct.html) \n2. Mostly tech related content.\n3. Be most [excellent to each another!](https://www.youtube.com/watch?v=rph_1DODXDU)\n\nMod apps are open for anyone who wants to scour the internet for cool articles to post.","removed":false,"published":"2023-06-11T02:16:17.173483","updated":"2023-06-30T00:47:31.918771","deleted":false,"nsfw":false,"actor_id":"https://lemmy.world/c/technology","local":true,"icon":"https://lemmy.world/pictrs/image/854635e3-c6e1-4158-b5a9-7bee9299eb0b.png","hidden":false,"posting_restricted_to_mods":false,"instance_id":1},"subscribed":"NotSubscribed","blocked":false,"counts":{"id":1338,"community_id":2478,"subscribers":16810,"posts":418,"comments":7391,"published":"2023-06-11T02:16:17.173483","users_active_day":1048,"users_active_week":3317,"users_active_month":3964,"users_active_half_year":3964,"hot_rank":0}}]}
+{
+    "communities": [
+      {
+        "community": {
+          "id": 38,
+          "name": "Lorem ipsum name",
+          "title": "Lorem ipsum title",
+          "description": "Lorem ipsum description",
+          "removed": false,
+          "published": "2019-04-25T04:58:33.886275",
+          "updated": "2023-07-02T15:58:10.357185",
+          "deleted": false,
+          "nsfw": false,
+          "actor_id": "https://lemmy.world/c/lemmyworld",
+          "local": false,
+          "icon": "https://plchldr.co/i/500x500",
+          "banner": "https://plchldr.co/i/1600x900",
+          "hidden": false,
+          "posting_restricted_to_mods": false,
+          "instance_id": 3
+        },
+        "subscribed": "NotSubscribed",
+        "blocked": false,
+        "counts": {
+          "id": 36,
+          "community_id": 38,
+          "subscribers": 8312,
+          "posts": 1197,
+          "comments": 34650,
+          "published": "2019-04-25T04:58:33.886275",
+          "users_active_day": 644,
+          "users_active_week": 3471,
+          "users_active_month": 10638,
+          "users_active_half_year": 10723,
+          "hot_rank": 0
+        }
+      },
+      {
+        "community": {
+          "id": 5,
+          "name": "dolor sit amet name",
+          "title": "dolor sit amet title",
+          "description": "dolor sit amet description",
+          "removed": false,
+          "published": "2023-06-01T11:51:52.722151",
+          "updated": "2023-07-03T11:48:44.746123",
+          "deleted": false,
+          "nsfw": false,
+          "actor_id": "https://lemmy.world/c/lemmyworld",
+          "local": true,
+          "icon": "https://plchldr.co/i/500x500",
+          "banner": "https://plchldr.co/i/1600x900",
+          "hidden": false,
+          "posting_restricted_to_mods": true,
+          "instance_id": 1
+        },
+        "subscribed": "NotSubscribed",
+        "blocked": false,
+        "counts": {
+          "id": 4,
+          "community_id": 5,
+          "subscribers": 20185,
+          "posts": 689,
+          "comments": 27021,
+          "published": "2023-06-01T11:51:52.722151",
+          "users_active_day": 29,
+          "users_active_week": 1100,
+          "users_active_month": 8508,
+          "users_active_half_year": 8508,
+          "hot_rank": 0
+        }
+      },
+      {
+        "community": {
+          "id": 13,
+          "name": "consectetur adipiscing elit name",
+          "title": "consectetur adipiscing elit title",
+          "description": "consectetur adipiscing elit description",
+          "removed": false,
+          "published": "2019-04-25T16:54:42.997194",
+          "updated": "2022-01-12T13:43:29.936386",
+          "deleted": false,
+          "nsfw": false,
+          "actor_id": "https://lemmy.world/c/lemmyworld",
+          "local": false,
+          "icon": "https://plchldr.co/i/500x500",
+          "hidden": false,
+          "posting_restricted_to_mods": false,
+          "instance_id": 3
+        },
+        "subscribed": "NotSubscribed",
+        "blocked": false,
+        "counts": {
+          "id": 12,
+          "community_id": 13,
+          "subscribers": 8491,
+          "posts": 2407,
+          "comments": 21005,
+          "published": "2019-04-25T16:54:42.997194",
+          "users_active_day": 556,
+          "users_active_week": 3177,
+          "users_active_month": 7813,
+          "users_active_half_year": 7878,
+          "hot_rank": 0
+        }
+      }
+    ]
+  }
+  
