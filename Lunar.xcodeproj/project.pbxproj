@@ -10,7 +10,6 @@
 		3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F09FF2A54399F009DF8AB /* LunarApp.swift */; };
 		3C4F0A042A54399F009DF8AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0A032A54399F009DF8AB /* Assets.xcassets */; };
 		3C4F0A072A54399F009DF8AB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0A062A54399F009DF8AB /* Preview Assets.xcassets */; };
-		3C4F0A092A54399F009DF8AB /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F0A082A54399F009DF8AB /* Item.swift */; };
 		3CA92E392A543BF000688DEB /* CommunityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92E362A543BF000688DEB /* CommunityListView.swift */; };
 		3CA92E3A2A543BF000688DEB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92E372A543BF000688DEB /* ContentView.swift */; };
 		3CA92E3B2A543BF000688DEB /* CommunityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92E382A543BF000688DEB /* CommunityModel.swift */; };
@@ -19,6 +18,10 @@
 		3CA92E452A54A2B300688DEB /* LemmyLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CA92E442A54A2B300688DEB /* LemmyLogo.png */; };
 		3CA92E472A54ACAB00688DEB /* PostsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92E462A54ACAB00688DEB /* PostsListView.swift */; };
 		3CA92E492A54BD1F00688DEB /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92E482A54BD1F00688DEB /* DataFetcher.swift */; };
+		3CB8D2642A55E88200EE615A /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2632A55E88200EE615A /* Item.swift */; };
+		3CB8D2662A55EFF900EE615A /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */; };
+		3CB8D2682A55F45900EE615A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2672A55F45900EE615A /* HomeView.swift */; };
+		3CB8D26A2A561E0700EE615A /* FeedTypeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2692A561E0700EE615A /* FeedTypeRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,7 +29,6 @@
 		3C4F09FF2A54399F009DF8AB /* LunarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarApp.swift; sourceTree = "<group>"; };
 		3C4F0A032A54399F009DF8AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C4F0A062A54399F009DF8AB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		3C4F0A082A54399F009DF8AB /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		3CA92E362A543BF000688DEB /* CommunityListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityListView.swift; sourceTree = "<group>"; };
 		3CA92E372A543BF000688DEB /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3CA92E382A543BF000688DEB /* CommunityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityModel.swift; sourceTree = "<group>"; };
@@ -35,6 +37,10 @@
 		3CA92E442A54A2B300688DEB /* LemmyLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LemmyLogo.png; sourceTree = "<group>"; };
 		3CA92E462A54ACAB00688DEB /* PostsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsListView.swift; sourceTree = "<group>"; };
 		3CA92E482A54BD1F00688DEB /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
+		3CB8D2632A55E88200EE615A /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Item.swift; path = ../Item.swift; sourceTree = "<group>"; };
+		3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
+		3CB8D2672A55F45900EE615A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		3CB8D2692A561E0700EE615A /* FeedTypeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTypeRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,18 +73,21 @@
 		3C4F09FE2A54399F009DF8AB /* Lunar */ = {
 			isa = PBXGroup;
 			children = (
+				3CB8D2632A55E88200EE615A /* Item.swift */,
 				3CA92E442A54A2B300688DEB /* LemmyLogo.png */,
 				3CA92E402A54962B00688DEB /* lemmy-world-active-communities-placeholder.json */,
 				3CA92E362A543BF000688DEB /* CommunityListView.swift */,
+				3CB8D2672A55F45900EE615A /* HomeView.swift */,
 				3CA92E422A549A7F00688DEB /* CommunityRowView.swift */,
 				3CA92E382A543BF000688DEB /* CommunityModel.swift */,
 				3CA92E372A543BF000688DEB /* ContentView.swift */,
 				3CA92E462A54ACAB00688DEB /* PostsListView.swift */,
 				3C4F09FF2A54399F009DF8AB /* LunarApp.swift */,
 				3C4F0A032A54399F009DF8AB /* Assets.xcassets */,
-				3C4F0A082A54399F009DF8AB /* Item.swift */,
 				3C4F0A052A54399F009DF8AB /* Preview Content */,
 				3CA92E482A54BD1F00688DEB /* DataFetcher.swift */,
+				3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */,
+				3CB8D2692A561E0700EE615A /* FeedTypeRowView.swift */,
 			);
 			path = Lunar;
 			sourceTree = "<group>";
@@ -164,12 +173,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CA92E472A54ACAB00688DEB /* PostsListView.swift in Sources */,
-				3C4F0A092A54399F009DF8AB /* Item.swift in Sources */,
+				3CB8D2642A55E88200EE615A /* Item.swift in Sources */,
 				3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */,
+				3CB8D2682A55F45900EE615A /* HomeView.swift in Sources */,
+				3CB8D26A2A561E0700EE615A /* FeedTypeRowView.swift in Sources */,
 				3CA92E3B2A543BF000688DEB /* CommunityModel.swift in Sources */,
 				3CA92E3A2A543BF000688DEB /* ContentView.swift in Sources */,
 				3CA92E392A543BF000688DEB /* CommunityListView.swift in Sources */,
 				3CA92E432A549A7F00688DEB /* CommunityRowView.swift in Sources */,
+				3CB8D2662A55EFF900EE615A /* PlaceholderView.swift in Sources */,
 				3CA92E492A54BD1F00688DEB /* DataFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

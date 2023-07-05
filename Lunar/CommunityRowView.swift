@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CommunityRow: View {
+struct CommunityRowView: View {
     var community: CommunityObject
     var counts: CountsObject
     
@@ -17,23 +17,21 @@ struct CommunityRow: View {
             AsyncImage(url: URL(string: community.icon ?? "file:./LemmyLogo.png")) { image in
                 image
                     .resizable()
-                    .frame(width: 40, height: 40)
+                    .frame(width: 30, height: 30)
                     .clipShape(Circle())
             } placeholder: {
                 Image("LemmyLogo", bundle: Bundle(identifier:"io.github.mani-sh-reddy.Lunar"))
                     .resizable()
-                    .frame(width: 40, height: 40)
+                    .frame(width: 30, height: 30)
                     .clipShape(Circle())
             }
             
-            Spacer().frame(width: 10)
-            VStack(alignment: .leading, content: {
+            Spacer().frame(width: 15)
                 Text(community.title)
-                Text("Subscribers: \(counts.subscribers)")
+                Spacer()
+                Text("\(counts.subscribers)")
                     .font(.footnote)
                     .opacity(0.7)
-            })
-            Spacer()
             
         }
     }
