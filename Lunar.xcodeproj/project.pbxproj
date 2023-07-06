@@ -10,15 +10,13 @@
 		3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F09FF2A54399F009DF8AB /* LunarApp.swift */; };
 		3C4F0A042A54399F009DF8AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0A032A54399F009DF8AB /* Assets.xcassets */; };
 		3C4F0A072A54399F009DF8AB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0A062A54399F009DF8AB /* Preview Assets.xcassets */; };
+		3C81FCE92A57410A006A1BC1 /* LoadTrendingCommunities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C81FCE82A57410A006A1BC1 /* LoadTrendingCommunities.swift */; };
 		3CA92E392A543BF000688DEB /* CommunityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92E362A543BF000688DEB /* CommunityListView.swift */; };
 		3CA92E3A2A543BF000688DEB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92E372A543BF000688DEB /* ContentView.swift */; };
 		3CA92E3B2A543BF000688DEB /* CommunityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92E382A543BF000688DEB /* CommunityModel.swift */; };
 		3CA92E412A54962B00688DEB /* lemmy-world-active-communities-placeholder.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CA92E402A54962B00688DEB /* lemmy-world-active-communities-placeholder.json */; };
 		3CA92E432A549A7F00688DEB /* CommunityRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92E422A549A7F00688DEB /* CommunityRowView.swift */; };
-		3CA92E452A54A2B300688DEB /* LemmyLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CA92E442A54A2B300688DEB /* LemmyLogo.png */; };
 		3CA92E472A54ACAB00688DEB /* PostsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92E462A54ACAB00688DEB /* PostsListView.swift */; };
-		3CA92E492A54BD1F00688DEB /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92E482A54BD1F00688DEB /* DataFetcher.swift */; };
-		3CB8D2642A55E88200EE615A /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2632A55E88200EE615A /* Item.swift */; };
 		3CB8D2662A55EFF900EE615A /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */; };
 		3CB8D2682A55F45900EE615A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2672A55F45900EE615A /* HomeView.swift */; };
 		3CB8D26A2A561E0700EE615A /* FeedTypeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2692A561E0700EE615A /* FeedTypeRowView.swift */; };
@@ -29,15 +27,13 @@
 		3C4F09FF2A54399F009DF8AB /* LunarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarApp.swift; sourceTree = "<group>"; };
 		3C4F0A032A54399F009DF8AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C4F0A062A54399F009DF8AB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3C81FCE82A57410A006A1BC1 /* LoadTrendingCommunities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadTrendingCommunities.swift; sourceTree = "<group>"; };
 		3CA92E362A543BF000688DEB /* CommunityListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityListView.swift; sourceTree = "<group>"; };
 		3CA92E372A543BF000688DEB /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3CA92E382A543BF000688DEB /* CommunityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityModel.swift; sourceTree = "<group>"; };
 		3CA92E402A54962B00688DEB /* lemmy-world-active-communities-placeholder.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "lemmy-world-active-communities-placeholder.json"; sourceTree = "<group>"; };
 		3CA92E422A549A7F00688DEB /* CommunityRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityRowView.swift; sourceTree = "<group>"; };
-		3CA92E442A54A2B300688DEB /* LemmyLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LemmyLogo.png; sourceTree = "<group>"; };
 		3CA92E462A54ACAB00688DEB /* PostsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsListView.swift; sourceTree = "<group>"; };
-		3CA92E482A54BD1F00688DEB /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
-		3CB8D2632A55E88200EE615A /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Item.swift; path = ../Item.swift; sourceTree = "<group>"; };
 		3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		3CB8D2672A55F45900EE615A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		3CB8D2692A561E0700EE615A /* FeedTypeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTypeRowView.swift; sourceTree = "<group>"; };
@@ -73,19 +69,17 @@
 		3C4F09FE2A54399F009DF8AB /* Lunar */ = {
 			isa = PBXGroup;
 			children = (
-				3CB8D2632A55E88200EE615A /* Item.swift */,
-				3CA92E442A54A2B300688DEB /* LemmyLogo.png */,
 				3CA92E402A54962B00688DEB /* lemmy-world-active-communities-placeholder.json */,
 				3CA92E362A543BF000688DEB /* CommunityListView.swift */,
 				3CB8D2672A55F45900EE615A /* HomeView.swift */,
+				3CA5C4062A5743EB00BF8F1B /* Loaders */,
 				3CA92E422A549A7F00688DEB /* CommunityRowView.swift */,
-				3CA92E382A543BF000688DEB /* CommunityModel.swift */,
+				3CA5C4082A57443200BF8F1B /* DataModels */,
 				3CA92E372A543BF000688DEB /* ContentView.swift */,
 				3CA92E462A54ACAB00688DEB /* PostsListView.swift */,
 				3C4F09FF2A54399F009DF8AB /* LunarApp.swift */,
 				3C4F0A032A54399F009DF8AB /* Assets.xcassets */,
 				3C4F0A052A54399F009DF8AB /* Preview Content */,
-				3CA92E482A54BD1F00688DEB /* DataFetcher.swift */,
 				3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */,
 				3CB8D2692A561E0700EE615A /* FeedTypeRowView.swift */,
 			);
@@ -98,6 +92,22 @@
 				3C4F0A062A54399F009DF8AB /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3CA5C4062A5743EB00BF8F1B /* Loaders */ = {
+			isa = PBXGroup;
+			children = (
+				3C81FCE82A57410A006A1BC1 /* LoadTrendingCommunities.swift */,
+			);
+			path = Loaders;
+			sourceTree = "<group>";
+		};
+		3CA5C4082A57443200BF8F1B /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
+				3CA92E382A543BF000688DEB /* CommunityModel.swift */,
+			);
+			path = DataModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -116,6 +126,8 @@
 			dependencies = (
 			);
 			name = Lunar;
+			packageProductDependencies = (
+			);
 			productName = Lunar;
 			productReference = 3C4F09FC2A54399F009DF8AB /* Lunar.app */;
 			productType = "com.apple.product-type.application";
@@ -144,6 +156,8 @@
 				Base,
 			);
 			mainGroup = 3C4F09F32A54399F009DF8AB;
+			packageReferences = (
+			);
 			productRefGroup = 3C4F09FD2A54399F009DF8AB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -161,7 +175,6 @@
 				3C4F0A072A54399F009DF8AB /* Preview Assets.xcassets in Resources */,
 				3C4F0A042A54399F009DF8AB /* Assets.xcassets in Resources */,
 				3CA92E412A54962B00688DEB /* lemmy-world-active-communities-placeholder.json in Resources */,
-				3CA92E452A54A2B300688DEB /* LemmyLogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,8 +185,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C81FCE92A57410A006A1BC1 /* LoadTrendingCommunities.swift in Sources */,
 				3CA92E472A54ACAB00688DEB /* PostsListView.swift in Sources */,
-				3CB8D2642A55E88200EE615A /* Item.swift in Sources */,
 				3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */,
 				3CB8D2682A55F45900EE615A /* HomeView.swift in Sources */,
 				3CB8D26A2A561E0700EE615A /* FeedTypeRowView.swift in Sources */,
@@ -182,7 +195,6 @@
 				3CA92E392A543BF000688DEB /* CommunityListView.swift in Sources */,
 				3CA92E432A549A7F00688DEB /* CommunityRowView.swift in Sources */,
 				3CB8D2662A55EFF900EE615A /* PlaceholderView.swift in Sources */,
-				3CA92E492A54BD1F00688DEB /* DataFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,21 +331,27 @@
 				DEVELOPMENT_TEAM = QR8TDZJV2W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.Lunar";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -348,21 +366,27 @@
 				DEVELOPMENT_TEAM = QR8TDZJV2W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.Lunar";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

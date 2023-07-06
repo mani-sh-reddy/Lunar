@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var communities: [CommunitiesArray] = []
+    @ObservedObject var trendingCommunities = LoadTrendingCommunities()
     
     var body: some View {
         NavigationView {
@@ -19,10 +19,8 @@ struct HomeView: View {
                     FeedTypeRowView(feedType: "All", icon: "globe.americas", iconColor: Color.cyan)
                 }
                 Section(header: Text("Trending")) {
-                    ForEach(communities, id: \.community.id) { community in
-                        NavigationLink(destination: PostsListView(community: community.community)) {
-                            CommunityRowView(community: community.community, counts: community.counts)
-                        }
+                    ForEach(trendingCommunities.communities , id: \.community.id) { communities in
+                        Text(communities.community.title)
                     }
                 }
                 Section(header: Text("Subscribed")) {
@@ -33,42 +31,10 @@ struct HomeView: View {
             .navigationTitle("Communities")
             .navigationBarTitleDisplayMode(.inline)
         }
-        .onAppear {
-            fetchData()
-        }
-    }
-    
-    func fetchData() {
-        guard let url = URL(string: "https://lemmy.world/api/v3/community/list?sort=Hot&limit=50") else {
-            return
-        }
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if let error = error {
-                print("Error fetching data: \(error.localizedDescription)")
-                return
-            }
-            
-            if let response = response as? HTTPURLResponse {
-                print("Response status code: \(response.statusCode)")
-            }
-            
-            guard let data = data else {
-                print("Data is nil")
-                return
-            }
-            
-            do {
-                let result = try JSONDecoder().decode(CommunityModel.self, from: data)
-                DispatchQueue.main.async {
-                    communities = result.communities
-                }
-            } catch {
-                print("Error decoding JSON: \(error.localizedDescription)")
-            }
-        }.resume()
     }
 }
+
+
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {

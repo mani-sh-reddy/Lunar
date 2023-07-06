@@ -33,7 +33,7 @@ struct CommunityObject: Codable {
     let description, updated: String?
     let icon: String?
     let banner: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case id, name, title, removed, published, deleted, nsfw
         case actorID = "actor_id"
@@ -51,7 +51,7 @@ struct CountsObject: Codable {
     let published: String
     let usersActiveDay, usersActiveWeek, usersActiveMonth, usersActiveHalfYear: Int
     let hotRank: Int
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case communityID = "community_id"

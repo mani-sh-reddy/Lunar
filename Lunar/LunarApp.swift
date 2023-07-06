@@ -10,11 +10,10 @@ import SwiftData
 
 @main
 struct LunarApp: App {
-
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: Item.self)
     }
 }
