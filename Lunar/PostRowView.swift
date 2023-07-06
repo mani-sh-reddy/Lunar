@@ -49,9 +49,9 @@ struct PostRowView: View {
             }
             .font(.system(size: 13))
             .opacity(0.6)
-            Spacer().frame(height: 15)
             HStack{
                 AsyncImage(url: URL(string: post.post.thumbnailURL ?? "")) { image in
+                    Spacer().frame(height: 10)
                     image
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -60,15 +60,16 @@ struct PostRowView: View {
                     
                 } placeholder: {
                     Image("LemmyLogo", bundle: Bundle(identifier:"io.github.mani-sh-reddy.Lunar"))
-                        .hidden()
+                        .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                         .frame(height: 0)
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .frame(alignment: .center)
-//                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                        .hidden()
+                    //                        .resizable()
+                    //                        .aspectRatio(contentMode: .fit)
+                    //                        .frame(alignment: .center)
+                    //                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                 }
             }
-            Spacer().frame(height: 15)
+            Spacer().frame(height: 10)
             HStack {
                 AsyncImage(url: URL(string: post.community.icon ?? "file:./LemmyLogo.png")) { image in
                     image
@@ -105,12 +106,11 @@ struct PostRowView: View {
             
             
             //            Text(String(calculateRelativeTime(isoDate: post.post.published)))
-            //            Text(post.post.url ?? "")
-            
             
             
         })
-        .padding(.vertical)
+        .padding([.vertical], 5)
+        
     }
 }
 

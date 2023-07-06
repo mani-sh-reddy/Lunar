@@ -16,10 +16,18 @@ struct PostsListView: View {
         List {
             ForEach(allPosts.posts, id: \.post.id) { post in
                 NavigationLink {
+                    Link(String(post.post.url ?? "Link"), destination: URL(string: post.post.url ?? "") ??  URL(string: "lemmy.world")!)
                     PlaceholderView()
-                } label: {    
-                    PostRowView(post: post)
+                } label: {
+                    
+                    VStack {
+                        PostRowView(post: post)
+                        
+                    }
+                    
                 }
+                
+                
             }
         }.navigationTitle(feedType)
             .listStyle(.plain)
