@@ -26,7 +26,8 @@ struct CommunityObject: Codable {
     let name, title: String
     let removed: Bool
     let published: String
-    let deleted, nsfw: Bool
+    let deleted: Bool
+    let nsfw: Bool = false
     let actorID: String
     let local, hidden, postingRestrictedToMods: Bool
     let instanceID: Int

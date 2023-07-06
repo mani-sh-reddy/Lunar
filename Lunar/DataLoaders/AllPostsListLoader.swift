@@ -8,18 +8,16 @@
 import Foundation
 
 
-class LoadTrendingCommunities: ObservableObject {
-    @Published var communities: [CommunitiesArray] = []
+class AllPostsListLoader: ObservableObject {
+    @Published var posts: [PostElement] = []
     
     init() {
-        let url = URL(string: "https://lemmy.world/api/v3/community/list?sort=Hot&limit=2")!
+        let url = URL(string: "https://lemmy.world/api/v3/post/list?type_=All&sort=Hot&limit=50")!
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let data = data {
-                if let decodedResponse = try? JSONDecoder().decode(CommunityModel.self, from: data) {
-                    
+                if let decodedResponse = try? JSONDecoder().decode(PostsModel.self, from: data) {
                     DispatchQueue.main.async {
-                        
-                        self.communities = decodedResponse.communities
+                        self.posts = decodedResponse.posts
                     }
                     return
                 }

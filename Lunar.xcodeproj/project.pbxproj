@@ -10,13 +10,16 @@
 		3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F09FF2A54399F009DF8AB /* LunarApp.swift */; };
 		3C4F0A042A54399F009DF8AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0A032A54399F009DF8AB /* Assets.xcassets */; };
 		3C4F0A072A54399F009DF8AB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0A062A54399F009DF8AB /* Preview Assets.xcassets */; };
-		3C81FCE92A57410A006A1BC1 /* LoadTrendingCommunities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C81FCE82A57410A006A1BC1 /* LoadTrendingCommunities.swift */; };
-		3CA92E392A543BF000688DEB /* CommunityListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92E362A543BF000688DEB /* CommunityListView.swift */; };
+		3C81FCE92A57410A006A1BC1 /* TrendingCommunitiesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C81FCE82A57410A006A1BC1 /* TrendingCommunitiesLoader.swift */; };
+		3CA5C40A2A574FF500BF8F1B /* PostsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */; };
+		3CA5C40C2A5750AE00BF8F1B /* AllPostsListLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C40B2A5750AE00BF8F1B /* AllPostsListLoader.swift */; };
+		3CA5C40E2A57525500BF8F1B /* PostsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C40D2A57525500BF8F1B /* PostsListView.swift */; };
+		3CA5C4102A5753AC00BF8F1B /* PostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */; };
 		3CA92E3A2A543BF000688DEB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92E372A543BF000688DEB /* ContentView.swift */; };
 		3CA92E3B2A543BF000688DEB /* CommunityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92E382A543BF000688DEB /* CommunityModel.swift */; };
 		3CA92E412A54962B00688DEB /* lemmy-world-active-communities-placeholder.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CA92E402A54962B00688DEB /* lemmy-world-active-communities-placeholder.json */; };
 		3CA92E432A549A7F00688DEB /* CommunityRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92E422A549A7F00688DEB /* CommunityRowView.swift */; };
-		3CA92E472A54ACAB00688DEB /* PostsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92E462A54ACAB00688DEB /* PostsListView.swift */; };
+		3CA92E472A54ACAB00688DEB /* CommunityInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92E462A54ACAB00688DEB /* CommunityInfoView.swift */; };
 		3CB8D2662A55EFF900EE615A /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */; };
 		3CB8D2682A55F45900EE615A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2672A55F45900EE615A /* HomeView.swift */; };
 		3CB8D26A2A561E0700EE615A /* FeedTypeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2692A561E0700EE615A /* FeedTypeRowView.swift */; };
@@ -27,13 +30,16 @@
 		3C4F09FF2A54399F009DF8AB /* LunarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarApp.swift; sourceTree = "<group>"; };
 		3C4F0A032A54399F009DF8AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C4F0A062A54399F009DF8AB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		3C81FCE82A57410A006A1BC1 /* LoadTrendingCommunities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadTrendingCommunities.swift; sourceTree = "<group>"; };
-		3CA92E362A543BF000688DEB /* CommunityListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityListView.swift; sourceTree = "<group>"; };
+		3C81FCE82A57410A006A1BC1 /* TrendingCommunitiesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCommunitiesLoader.swift; sourceTree = "<group>"; };
+		3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsListModel.swift; sourceTree = "<group>"; };
+		3CA5C40B2A5750AE00BF8F1B /* AllPostsListLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllPostsListLoader.swift; sourceTree = "<group>"; };
+		3CA5C40D2A57525500BF8F1B /* PostsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsListView.swift; sourceTree = "<group>"; };
+		3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostRowView.swift; sourceTree = "<group>"; };
 		3CA92E372A543BF000688DEB /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3CA92E382A543BF000688DEB /* CommunityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityModel.swift; sourceTree = "<group>"; };
 		3CA92E402A54962B00688DEB /* lemmy-world-active-communities-placeholder.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "lemmy-world-active-communities-placeholder.json"; sourceTree = "<group>"; };
 		3CA92E422A549A7F00688DEB /* CommunityRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityRowView.swift; sourceTree = "<group>"; };
-		3CA92E462A54ACAB00688DEB /* PostsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsListView.swift; sourceTree = "<group>"; };
+		3CA92E462A54ACAB00688DEB /* CommunityInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityInfoView.swift; sourceTree = "<group>"; };
 		3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		3CB8D2672A55F45900EE615A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		3CB8D2692A561E0700EE615A /* FeedTypeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTypeRowView.swift; sourceTree = "<group>"; };
@@ -69,19 +75,20 @@
 		3C4F09FE2A54399F009DF8AB /* Lunar */ = {
 			isa = PBXGroup;
 			children = (
-				3CA92E402A54962B00688DEB /* lemmy-world-active-communities-placeholder.json */,
-				3CA92E362A543BF000688DEB /* CommunityListView.swift */,
-				3CB8D2672A55F45900EE615A /* HomeView.swift */,
-				3CA5C4062A5743EB00BF8F1B /* Loaders */,
-				3CA92E422A549A7F00688DEB /* CommunityRowView.swift */,
-				3CA5C4082A57443200BF8F1B /* DataModels */,
-				3CA92E372A543BF000688DEB /* ContentView.swift */,
-				3CA92E462A54ACAB00688DEB /* PostsListView.swift */,
-				3C4F09FF2A54399F009DF8AB /* LunarApp.swift */,
-				3C4F0A032A54399F009DF8AB /* Assets.xcassets */,
 				3C4F0A052A54399F009DF8AB /* Preview Content */,
+				3C4F0A032A54399F009DF8AB /* Assets.xcassets */,
+				3CA92E402A54962B00688DEB /* lemmy-world-active-communities-placeholder.json */,
+				3CB8D2672A55F45900EE615A /* HomeView.swift */,
+				3CA5C40D2A57525500BF8F1B /* PostsListView.swift */,
+				3CA92E422A549A7F00688DEB /* CommunityRowView.swift */,
+				3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */,
+				3CA92E372A543BF000688DEB /* ContentView.swift */,
+				3CA92E462A54ACAB00688DEB /* CommunityInfoView.swift */,
+				3C4F09FF2A54399F009DF8AB /* LunarApp.swift */,
 				3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */,
 				3CB8D2692A561E0700EE615A /* FeedTypeRowView.swift */,
+				3CA5C4062A5743EB00BF8F1B /* DataLoaders */,
+				3CA5C4082A57443200BF8F1B /* DataModels */,
 			);
 			path = Lunar;
 			sourceTree = "<group>";
@@ -94,18 +101,20 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		3CA5C4062A5743EB00BF8F1B /* Loaders */ = {
+		3CA5C4062A5743EB00BF8F1B /* DataLoaders */ = {
 			isa = PBXGroup;
 			children = (
-				3C81FCE82A57410A006A1BC1 /* LoadTrendingCommunities.swift */,
+				3C81FCE82A57410A006A1BC1 /* TrendingCommunitiesLoader.swift */,
+				3CA5C40B2A5750AE00BF8F1B /* AllPostsListLoader.swift */,
 			);
-			path = Loaders;
+			path = DataLoaders;
 			sourceTree = "<group>";
 		};
 		3CA5C4082A57443200BF8F1B /* DataModels */ = {
 			isa = PBXGroup;
 			children = (
 				3CA92E382A543BF000688DEB /* CommunityModel.swift */,
+				3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -185,14 +194,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C81FCE92A57410A006A1BC1 /* LoadTrendingCommunities.swift in Sources */,
-				3CA92E472A54ACAB00688DEB /* PostsListView.swift in Sources */,
+				3C81FCE92A57410A006A1BC1 /* TrendingCommunitiesLoader.swift in Sources */,
+				3CA5C4102A5753AC00BF8F1B /* PostRowView.swift in Sources */,
+				3CA5C40A2A574FF500BF8F1B /* PostsListModel.swift in Sources */,
+				3CA5C40E2A57525500BF8F1B /* PostsListView.swift in Sources */,
+				3CA92E472A54ACAB00688DEB /* CommunityInfoView.swift in Sources */,
 				3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */,
 				3CB8D2682A55F45900EE615A /* HomeView.swift in Sources */,
+				3CA5C40C2A5750AE00BF8F1B /* AllPostsListLoader.swift in Sources */,
 				3CB8D26A2A561E0700EE615A /* FeedTypeRowView.swift in Sources */,
 				3CA92E3B2A543BF000688DEB /* CommunityModel.swift in Sources */,
 				3CA92E3A2A543BF000688DEB /* ContentView.swift in Sources */,
-				3CA92E392A543BF000688DEB /* CommunityListView.swift in Sources */,
 				3CA92E432A549A7F00688DEB /* CommunityRowView.swift in Sources */,
 				3CB8D2662A55EFF900EE615A /* PlaceholderView.swift in Sources */,
 			);
