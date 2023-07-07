@@ -26,12 +26,12 @@ struct CommunityRowView: View {
             Spacer().frame(width: 15)
             Text(community.community.title)
             Spacer()
-            Group {
-                Text("\(community.counts.subscribers)")
-                Image(systemName: "person.2")
-            }
-            .font(.footnote)
-            .opacity(0.7)
+            //            Group {
+            //                Text("\(community.counts.subscribers)")
+            //                Image(systemName: "person.2")
+            //            }
+            //            .font(.footnote)
+            //            .opacity(0.7)
             Spacer().frame(width: 5)
         }
     }

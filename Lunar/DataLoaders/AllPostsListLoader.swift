@@ -14,7 +14,7 @@ class AllPostsListLoader: ObservableObject {
     @Published var thumbnailURLsStrings: [String] = []
     
     init() {
-        let url = URL(string: "https://lemmy.world/api/v3/post/list?type_=All&sort=Hot&limit=50")!
+        let url = URL(string: "https://lemmy.world/api/v3/post/list?type_=All&sort=Active&limit=50")!
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let data = data {
                 if let decodedResponse = try? JSONDecoder().decode(PostsModel.self, from: data) {

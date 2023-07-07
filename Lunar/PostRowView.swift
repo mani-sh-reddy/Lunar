@@ -13,6 +13,22 @@ struct PostRowView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            HStack (spacing: 4, content: {
+                KFImage(URL(string: post.community.icon ?? ""))
+                    .placeholder { Image(systemName: "books.vertical.circle.fill")
+                            .font(.title)
+                            .symbolRenderingMode(.hierarchical)
+                            .foregroundColor(.gray)
+                    }
+                    .resizable()
+                    .frame(width: 20, height: 20)
+                    .clipShape(Circle())
+                Text("\(String(post.community.name))")
+                    .font(.subheadline)
+                    .padding(.horizontal, 3)
+            }).font(.subheadline)
+                .padding(.vertical, 3)
+            
             Text(post.post.name)
                 .font(.headline)
             
@@ -32,8 +48,8 @@ struct PostRowView: View {
             } else {
                 EmptyView() // No view when no valid image URL is available
             }
+            
         }
-//        .padding([.vertical], 5)
     }
 }
 
@@ -45,23 +61,33 @@ struct PostRowFooterView: View {
             HStack (spacing: 4, content: {
                 Text("by")
                 Text("\(String(post.creator.name).uppercased())")
-                Text("in")
-                Text("\(String(post.community.name))").fontWeight(.semibold)
+                //                    Text("in")
+                //                    Text("\(String(post.community.name))").fontWeight(.semibold)
+                //                        .fixedSize()
             })
-            Spacer(minLength: 20)
+            Spacer()
             HStack (spacing: 2, content: {
-                Image(systemName: "arrow.up")
-                    .symbolRenderingMode(.hierarchical)
-                    .foregroundColor(.green)
-                Text(String(post.counts.upvotes))
-                    .foregroundColor(.green)
+                HStack(spacing: 2) {
+                    Image(systemName: "arrow.up")
+                        .symbolRenderingMode(.hierarchical)
+                        .foregroundColor(.green)
+                        .font(.subheadline)
+                    Text(String(post.counts.upvotes))
+                        .foregroundColor(.green)
+                }
+                
+                
                 Divider().hidden()
                 Divider().hidden()
-                Image(systemName: "arrow.down")
-                    .symbolRenderingMode(.hierarchical)
-                    .foregroundColor(.red)
-                Text(String(post.counts.downvotes))
-                    .foregroundColor(.red)
+                
+                HStack(spacing: 2) {
+                    Image(systemName: "arrow.down")
+                        .symbolRenderingMode(.hierarchical)
+                        .foregroundColor(.red)
+                    Text(String(post.counts.downvotes))
+                        .foregroundColor(.red)
+                }
+                
                 Divider().hidden()
                 Divider().hidden()
                 Image(systemName: "bubble.left")
@@ -69,7 +95,7 @@ struct PostRowFooterView: View {
                     .foregroundColor(.gray)
                 Text(String(post.counts.comments))
                     .foregroundColor(.gray)
-            })
+            }).fixedSize()
         }
         .lineLimit(1)
     }
@@ -82,6 +108,7 @@ extension String {
             "media1.giphy.com",
             "media.giphy.com",
             "files.catbox.moe",
+            "i.postimg.cc",
         ]
         for url in validURLs {
             if self.contains(url) {

@@ -24,7 +24,6 @@
 		3CB8D2662A55EFF900EE615A /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */; };
 		3CB8D2682A55F45900EE615A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2672A55F45900EE615A /* HomeView.swift */; };
 		3CB8D26A2A561E0700EE615A /* FeedTypeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2692A561E0700EE615A /* FeedTypeRowView.swift */; };
-		3CE82DBA2A57F82700FF6C93 /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE82DB92A57F82700FF6C93 /* CachedAsyncImage.swift */; };
 		3CEF196B2A580672006736EF /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEF196A2A580672006736EF /* Kingfisher */; };
 		3CEF196D2A581C7C006736EF /* TrendingCommunitiesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF196C2A581C7C006736EF /* TrendingCommunitiesListView.swift */; };
 		3CEF196F2A582787006736EF /* LunarLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CEF196E2A582786006736EF /* LunarLogo.png */; };
@@ -49,7 +48,6 @@
 		3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		3CB8D2672A55F45900EE615A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		3CB8D2692A561E0700EE615A /* FeedTypeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTypeRowView.swift; sourceTree = "<group>"; };
-		3CE82DB92A57F82700FF6C93 /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
 		3CEF196C2A581C7C006736EF /* TrendingCommunitiesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCommunitiesListView.swift; sourceTree = "<group>"; };
 		3CEF196E2A582786006736EF /* LunarLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LunarLogo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,7 +68,6 @@
 			isa = PBXGroup;
 			children = (
 				3C5C77F02A5863980008B81B /* ExamplePost.swift */,
-				3CE82DB92A57F82700FF6C93 /* CachedAsyncImage.swift */,
 				3C4F09FE2A54399F009DF8AB /* Lunar */,
 				3C4F09FD2A54399F009DF8AB /* Products */,
 			);
@@ -224,7 +221,6 @@
 				3CA92E3B2A543BF000688DEB /* CommunityModel.swift in Sources */,
 				3CA92E3A2A543BF000688DEB /* ContentView.swift in Sources */,
 				3CA92E432A549A7F00688DEB /* CommunityRowView.swift in Sources */,
-				3CE82DBA2A57F82700FF6C93 /* CachedAsyncImage.swift in Sources */,
 				3C5C77F12A5863980008B81B /* ExamplePost.swift in Sources */,
 				3CB8D2662A55EFF900EE615A /* PlaceholderView.swift in Sources */,
 			);
