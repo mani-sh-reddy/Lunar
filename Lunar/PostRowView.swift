@@ -6,117 +6,177 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct PostRowView: View {
-    //    var post: PostPost
-    //    var creator: Creator
-    //    var community: Community
-    //    var counts: Counts
     var post: PostElement
     
-    //    func calculateRelativeTime(isoDate: String) -> String {
-    //        let formatter = RelativeDateTimeFormatter()
-    //        formatter.unitsStyle = .full
-    //
-    //        let dateFormatter = DateFormatter()
-    //        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
-    //        if let date = dateFormatter.date(from: isoDate) {
-    //            let userCalendar = Calendar.current // Use the user's current calendar
-    //            formatter.calendar = userCalendar
-    //            return formatter.localizedString(for: date, relativeTo: Date())
-    //        }
-    //
-    //        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-    //        if let date = dateFormatter.date(from: isoDate) {
-    //            let userCalendar = Calendar.current // Use the user's current calendar
-    //            formatter.calendar = userCalendar
-    //            return formatter.localizedString(for: date, relativeTo: Date())
-    //        }
-    //
-    //        return "Invalid date format"
-    //    }
-    
-    
     var body: some View {
-        VStack(alignment: .leading, content: {
-            Text(post.post.name).font(.headline)
-            Spacer().frame(height: 5)
-            HStack {
-                Text("\(post.creator.name)").textCase(/*@START_MENU_TOKEN@*/.uppercase/*@END_MENU_TOKEN@*/)
-                
-                Spacer()
-                Text(String(post.post.published).prefix(10))
+        VStack(alignment: .leading) {
+            Text(post.post.name)
+                .font(.headline)
+            
+            if let thumbnailURL = post.post.thumbnailURL {
+                KFImage(URL(string: thumbnailURL))
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(alignment: .center)
+                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+            } else if let url = post.post.url,
+                      url.isValidExternalImageURL() {
+                KFImage(URL(string: url))
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(alignment: .center)
+                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+            } else {
+                EmptyView() // No view when no valid image URL is available
             }
-            .font(.system(size: 13))
-            .opacity(0.6)
-            HStack{
-                AsyncImage(url: URL(string: post.post.thumbnailURL ?? "")) { image in
-                    Spacer().frame(height: 10)
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(alignment: .center)
-                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                    
-                } placeholder: {
-                    Image("LemmyLogo", bundle: Bundle(identifier:"io.github.mani-sh-reddy.Lunar"))
-                        .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                        .frame(height: 0)
-                        .hidden()
-                    //                        .resizable()
-                    //                        .aspectRatio(contentMode: .fit)
-                    //                        .frame(alignment: .center)
-                    //                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                }
-            }
-            Spacer().frame(height: 10)
-            HStack {
-                AsyncImage(url: URL(string: post.community.icon ?? "file:./LemmyLogo.png")) { image in
-                    image
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                        .clipShape(Circle()).background()
-                } placeholder: {
-                    Image("LemmyLogo", bundle: Bundle(identifier:"io.github.mani-sh-reddy.Lunar"))
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                        .clipShape(Circle()).background()
-                }
-                
-                HStack {
-                    Text(post.community.title)
-                        .opacity(0.6)
-                    Spacer()
-                    Image(systemName: "arrow.up")
-                        .symbolRenderingMode(.hierarchical)
-                        .foregroundColor(.green)
-                    Text(String(post.counts.upvotes))
-                        .foregroundColor(.green)
-                    Spacer().frame(width: 25)
-                    Image(systemName: "bubble.left")
-                        .symbolRenderingMode(.hierarchical)
-                        .foregroundColor(.indigo)
-                    Text(String(post.counts.comments))
-                        .foregroundColor(.indigo)
-                }
-                .font(.system(size: 15))
-                
-                
-            }
-            
-            
-            //            Text(String(calculateRelativeTime(isoDate: post.post.published)))
-            
-            
-        })
-        .padding([.vertical], 5)
-        
+        }
+//        .padding([.vertical], 5)
     }
 }
 
-//struct PostRowView_Previews: PreviewProvider {
-//    var posts: PostElement
-//    static var previews: some View {
-//        PostRowView()
-//    }
-//}
+struct PostRowFooterView: View {
+    var post: PostElement
+    
+    var body: some View {
+        HStack{
+            HStack (spacing: 4, content: {
+                Text("by")
+                Text("\(String(post.creator.name).uppercased())")
+                Text("in")
+                Text("\(String(post.community.name))").fontWeight(.semibold)
+            })
+            Spacer(minLength: 20)
+            HStack (spacing: 2, content: {
+                Image(systemName: "arrow.up")
+                    .symbolRenderingMode(.hierarchical)
+                    .foregroundColor(.green)
+                Text(String(post.counts.upvotes))
+                    .foregroundColor(.green)
+                Divider().hidden()
+                Divider().hidden()
+                Image(systemName: "arrow.down")
+                    .symbolRenderingMode(.hierarchical)
+                    .foregroundColor(.red)
+                Text(String(post.counts.downvotes))
+                    .foregroundColor(.red)
+                Divider().hidden()
+                Divider().hidden()
+                Image(systemName: "bubble.left")
+                    .symbolRenderingMode(.hierarchical)
+                    .foregroundColor(.gray)
+                Text(String(post.counts.comments))
+                    .foregroundColor(.gray)
+            })
+        }
+        .lineLimit(1)
+    }
+}
+
+extension String {
+    func isValidExternalImageURL() -> Bool {
+        let validURLs = [
+            "i.imgur.com",
+            "media1.giphy.com",
+            "media.giphy.com",
+            "files.catbox.moe",
+        ]
+        for url in validURLs {
+            if self.contains(url) {
+                return true
+            }
+        }
+        return false
+    }
+}
+
+
+struct PostRowView_Previews: PreviewProvider {
+    static var previews: some View {
+        let post =
+        PostElement(
+            post: PostObject(
+                id: 1,
+                name: "Example Post",
+                url: "https://example.com",
+                creatorID: 1,
+                communityID: 1,
+                removed: false,
+                locked: false,
+                published: "2023-07-06T12:34:56Z",
+                deleted: false,
+                thumbnailURL: "https://placehold.co/600x400",
+                apID: "exampleID",
+                local: true,
+                languageID: 1,
+                featuredCommunity: false,
+                featuredLocal: false,
+                body: "This is an example post",
+                updated: nil,
+                embedTitle: nil,
+                embedDescription: nil,
+                embedVideoURL: nil
+            ),
+            creator: Creator(
+                id: 1,
+                name: "JohnDoe",
+                displayName: "John Doe",
+                avatar: nil,
+                banned: false,
+                published: "2023-07-06T12:34:56Z",
+                actorID: "johnDoeActorID",
+                bio: "I'm a user",
+                local: true,
+                banner: nil,
+                deleted: false,
+                admin: false,
+                botAccount: false,
+                instanceID: 1,
+                updated: nil,
+                matrixUserID: nil
+            ),
+            community: Community(
+                id: 1,
+                name: "ExampleCommunity",
+                title: "Example Community",
+                description: "This is an example community",
+                removed: false,
+                published: "2023-07-06T12:34:56Z",
+                updated: nil,
+                deleted: false,
+                actorID: "exampleCommunityActorID",
+                local: true,
+                icon: nil,
+                hidden: false,
+                postingRestrictedToMods: false,
+                instanceID: 1,
+                banner: nil
+            ),
+            creatorBannedFromCommunity: false,
+            counts: Counts(
+                id: 1,
+                postID: 1,
+                comments: 5,
+                score: 10,
+                upvotes: 15,
+                downvotes: 5,
+                published: "2023-07-06T12:34:56Z",
+                newestCommentTimeNecro: "2023-07-06T12:34:56Z",
+                newestCommentTime: "2023-07-06T12:34:56Z",
+                featuredCommunity: false,
+                featuredLocal: false,
+                hotRank: 1,
+                hotRankActive: 1
+            ),
+            subscribed: .notSubscribed,
+            saved: false,
+            read: false,
+            creatorBlocked: false,
+            unreadComments: 3
+        )
+        
+        PostRowView(post: post)
+    }
+}

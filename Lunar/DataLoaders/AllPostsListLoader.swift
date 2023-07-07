@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import Kingfisher
 
 
 class AllPostsListLoader: ObservableObject {
     @Published var posts: [PostElement] = []
+    @Published var thumbnailURLsStrings: [String] = []
     
     init() {
         let url = URL(string: "https://lemmy.world/api/v3/post/list?type_=All&sort=Hot&limit=50")!
@@ -18,6 +20,7 @@ class AllPostsListLoader: ObservableObject {
                 if let decodedResponse = try? JSONDecoder().decode(PostsModel.self, from: data) {
                     DispatchQueue.main.async {
                         self.posts = decodedResponse.posts
+                        self.thumbnailURLsStrings = decodedResponse.thumbnailURLs
                     }
                     return
                 }

@@ -9,11 +9,14 @@ import Foundation
 
 // MARK: - Welcome
 struct CommunityModel: Codable {
-    let communities: [CommunitiesArray]
+    let communities: [CommunitiesElement]
+    var iconURLs: [String] {
+        return communities.compactMap { $0.community.icon }
+        }
 }
 
 // MARK: - CommunityElement
-struct CommunitiesArray: Codable {
+struct CommunitiesElement: Codable {
     let community: CommunityObject
     let subscribed: SubscribedObject
     let blocked: Bool

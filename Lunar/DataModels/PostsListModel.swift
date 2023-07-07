@@ -10,11 +10,14 @@ import Foundation
 // MARK: - Welcome
 struct PostsModel: Codable {
     let posts: [PostElement]
+    var thumbnailURLs: [String] {
+            return posts.compactMap { $0.post.thumbnailURL }
+        }
 }
 
 // MARK: - PostElement
 struct PostElement: Codable {
-    let post: PostPost
+    let post: PostObject
     let creator: Creator
     let community: Community
     let creatorBannedFromCommunity: Bool
@@ -22,6 +25,8 @@ struct PostElement: Codable {
     let subscribed: Subscribed
     let saved, read, creatorBlocked: Bool
     let unreadComments: Int
+    
+    
 
     enum CodingKeys: String, CodingKey {
         case post, creator, community
@@ -110,7 +115,7 @@ struct Creator: Codable {
 }
 
 // MARK: - PostPost
-struct PostPost: Codable {
+struct PostObject: Codable {
     let id: Int
     let name: String
     let url: String?

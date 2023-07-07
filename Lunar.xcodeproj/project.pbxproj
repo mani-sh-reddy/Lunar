@@ -10,6 +10,7 @@
 		3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F09FF2A54399F009DF8AB /* LunarApp.swift */; };
 		3C4F0A042A54399F009DF8AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0A032A54399F009DF8AB /* Assets.xcassets */; };
 		3C4F0A072A54399F009DF8AB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0A062A54399F009DF8AB /* Preview Assets.xcassets */; };
+		3C5C77F12A5863980008B81B /* ExamplePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5C77F02A5863980008B81B /* ExamplePost.swift */; };
 		3C81FCE92A57410A006A1BC1 /* TrendingCommunitiesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C81FCE82A57410A006A1BC1 /* TrendingCommunitiesLoader.swift */; };
 		3CA5C40A2A574FF500BF8F1B /* PostsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */; };
 		3CA5C40C2A5750AE00BF8F1B /* AllPostsListLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C40B2A5750AE00BF8F1B /* AllPostsListLoader.swift */; };
@@ -23,6 +24,10 @@
 		3CB8D2662A55EFF900EE615A /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */; };
 		3CB8D2682A55F45900EE615A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2672A55F45900EE615A /* HomeView.swift */; };
 		3CB8D26A2A561E0700EE615A /* FeedTypeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2692A561E0700EE615A /* FeedTypeRowView.swift */; };
+		3CE82DBA2A57F82700FF6C93 /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE82DB92A57F82700FF6C93 /* CachedAsyncImage.swift */; };
+		3CEF196B2A580672006736EF /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEF196A2A580672006736EF /* Kingfisher */; };
+		3CEF196D2A581C7C006736EF /* TrendingCommunitiesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF196C2A581C7C006736EF /* TrendingCommunitiesListView.swift */; };
+		3CEF196F2A582787006736EF /* LunarLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CEF196E2A582786006736EF /* LunarLogo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +35,7 @@
 		3C4F09FF2A54399F009DF8AB /* LunarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarApp.swift; sourceTree = "<group>"; };
 		3C4F0A032A54399F009DF8AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C4F0A062A54399F009DF8AB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3C5C77F02A5863980008B81B /* ExamplePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplePost.swift; sourceTree = "<group>"; };
 		3C81FCE82A57410A006A1BC1 /* TrendingCommunitiesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCommunitiesLoader.swift; sourceTree = "<group>"; };
 		3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsListModel.swift; sourceTree = "<group>"; };
 		3CA5C40B2A5750AE00BF8F1B /* AllPostsListLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllPostsListLoader.swift; sourceTree = "<group>"; };
@@ -43,6 +49,9 @@
 		3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		3CB8D2672A55F45900EE615A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		3CB8D2692A561E0700EE615A /* FeedTypeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTypeRowView.swift; sourceTree = "<group>"; };
+		3CE82DB92A57F82700FF6C93 /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
+		3CEF196C2A581C7C006736EF /* TrendingCommunitiesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCommunitiesListView.swift; sourceTree = "<group>"; };
+		3CEF196E2A582786006736EF /* LunarLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LunarLogo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CEF196B2A580672006736EF /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +69,8 @@
 		3C4F09F32A54399F009DF8AB = {
 			isa = PBXGroup;
 			children = (
+				3C5C77F02A5863980008B81B /* ExamplePost.swift */,
+				3CE82DB92A57F82700FF6C93 /* CachedAsyncImage.swift */,
 				3C4F09FE2A54399F009DF8AB /* Lunar */,
 				3C4F09FD2A54399F009DF8AB /* Products */,
 			);
@@ -75,16 +87,18 @@
 		3C4F09FE2A54399F009DF8AB /* Lunar */ = {
 			isa = PBXGroup;
 			children = (
+				3CEF196E2A582786006736EF /* LunarLogo.png */,
 				3C4F0A052A54399F009DF8AB /* Preview Content */,
 				3C4F0A032A54399F009DF8AB /* Assets.xcassets */,
 				3CA92E402A54962B00688DEB /* lemmy-world-active-communities-placeholder.json */,
+				3CA92E462A54ACAB00688DEB /* CommunityInfoView.swift */,
+				3CA92E422A549A7F00688DEB /* CommunityRowView.swift */,
 				3CB8D2672A55F45900EE615A /* HomeView.swift */,
 				3CA5C40D2A57525500BF8F1B /* PostsListView.swift */,
-				3CA92E422A549A7F00688DEB /* CommunityRowView.swift */,
 				3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */,
 				3CA92E372A543BF000688DEB /* ContentView.swift */,
-				3CA92E462A54ACAB00688DEB /* CommunityInfoView.swift */,
 				3C4F09FF2A54399F009DF8AB /* LunarApp.swift */,
+				3CEF196C2A581C7C006736EF /* TrendingCommunitiesListView.swift */,
 				3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */,
 				3CB8D2692A561E0700EE615A /* FeedTypeRowView.swift */,
 				3CA5C4062A5743EB00BF8F1B /* DataLoaders */,
@@ -136,6 +150,7 @@
 			);
 			name = Lunar;
 			packageProductDependencies = (
+				3CEF196A2A580672006736EF /* Kingfisher */,
 			);
 			productName = Lunar;
 			productReference = 3C4F09FC2A54399F009DF8AB /* Lunar.app */;
@@ -166,6 +181,7 @@
 			);
 			mainGroup = 3C4F09F32A54399F009DF8AB;
 			packageReferences = (
+				3CEF19692A580672006736EF /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 3C4F09FD2A54399F009DF8AB /* Products */;
 			projectDirPath = "";
@@ -184,6 +200,7 @@
 				3C4F0A072A54399F009DF8AB /* Preview Assets.xcassets in Resources */,
 				3C4F0A042A54399F009DF8AB /* Assets.xcassets in Resources */,
 				3CA92E412A54962B00688DEB /* lemmy-world-active-communities-placeholder.json in Resources */,
+				3CEF196F2A582787006736EF /* LunarLogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +215,7 @@
 				3CA5C4102A5753AC00BF8F1B /* PostRowView.swift in Sources */,
 				3CA5C40A2A574FF500BF8F1B /* PostsListModel.swift in Sources */,
 				3CA5C40E2A57525500BF8F1B /* PostsListView.swift in Sources */,
+				3CEF196D2A581C7C006736EF /* TrendingCommunitiesListView.swift in Sources */,
 				3CA92E472A54ACAB00688DEB /* CommunityInfoView.swift in Sources */,
 				3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */,
 				3CB8D2682A55F45900EE615A /* HomeView.swift in Sources */,
@@ -206,6 +224,8 @@
 				3CA92E3B2A543BF000688DEB /* CommunityModel.swift in Sources */,
 				3CA92E3A2A543BF000688DEB /* ContentView.swift in Sources */,
 				3CA92E432A549A7F00688DEB /* CommunityRowView.swift in Sources */,
+				3CE82DBA2A57F82700FF6C93 /* CachedAsyncImage.swift in Sources */,
+				3C5C77F12A5863980008B81B /* ExamplePost.swift in Sources */,
 				3CB8D2662A55EFF900EE615A /* PlaceholderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,6 +444,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3CEF19692A580672006736EF /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 7.8.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3CEF196A2A580672006736EF /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3CEF19692A580672006736EF /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3C4F09F42A54399F009DF8AB /* Project object */;
 }

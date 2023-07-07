@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct CommunityInfoView: View {
     var community: CommunityObject
@@ -13,47 +14,25 @@ struct CommunityInfoView: View {
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
-                
                 VStack {
-                    AsyncImage(url: URL(string: community.icon ?? "file:./LemmyLogo.png")) { image in
-                        image
-                            .resizable()
-                            .clipped()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: geometry.size.width * 0.9, height: geometry.size.width * 0.9, alignment: .center)
-                            .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-                            .padding(geometry.size.width * 0.05)
-                    } placeholder: {
-                        Image("LemmyLogo", bundle: Bundle(identifier:"io.github.mani-sh-reddy.Lunar"))
-                            .resizable()
-                            .clipped()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: geometry.size.width * 0.9, height: geometry.size.width * 0.9, alignment: .center)
-                            .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-                            .padding(geometry.size.width * 0.05)
-                    }
-                    
+                    KFImage(URL(string: community.icon ?? ""))
+                        .placeholder { Image("LunarLogo") }
+                        .resizable()
+                        .frame(width: geometry.size.width * 0.7,height: geometry.size.width * 0.7,alignment: .center)
+                        .clipShape(RoundedRectangle(cornerRadius: 30,style: .continuous))
+                        .padding()
+                        .aspectRatio(contentMode: .fit)
                     HStack {
                         Text(community.description ?? "No Description")
                             .multilineTextAlignment(.leading)
-                            .padding(.all, 16)
+                            .padding(.horizontal, 30)
+                            .padding(.vertical, 10)
                         Spacer()
                     }
-                    
-                    
                 }
                 .frame(alignment: .top)
                 .navigationTitle(community.title)
-                
             }
-            
         }
     }
-    
 }
-
-//struct PostsListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PostsListView()
-//    }
-//}
