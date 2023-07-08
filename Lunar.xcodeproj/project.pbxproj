@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3C4B7DD82A58A741003C8192 /* CommentsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4B7DD72A58A741003C8192 /* CommentsListModel.swift */; };
 		3C4B7DDB2A58AD23003C8192 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 3C4B7DDA2A58AD23003C8192 /* Alamofire */; };
-		3C4B7DDD2A58D131003C8192 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4B7DDC2A58D131003C8192 /* CommentModel.swift */; };
 		3C4B7DDF2A597824003C8192 /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4B7DDE2A597824003C8192 /* Fetcher.swift */; };
 		3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F09FF2A54399F009DF8AB /* LunarApp.swift */; };
 		3C4F0A042A54399F009DF8AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0A032A54399F009DF8AB /* Assets.xcassets */; };
@@ -37,7 +36,6 @@
 
 /* Begin PBXFileReference section */
 		3C4B7DD72A58A741003C8192 /* CommentsListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsListModel.swift; sourceTree = "<group>"; };
-		3C4B7DDC2A58D131003C8192 /* CommentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
 		3C4B7DDE2A597824003C8192 /* Fetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetcher.swift; sourceTree = "<group>"; };
 		3C4F09FC2A54399F009DF8AB /* Lunar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lunar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4F09FF2A54399F009DF8AB /* LunarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarApp.swift; sourceTree = "<group>"; };
@@ -141,7 +139,6 @@
 			children = (
 				3CA92E382A543BF000688DEB /* CommunityModel.swift */,
 				3C4B7DD72A58A741003C8192 /* CommentsListModel.swift */,
-				3C4B7DDC2A58D131003C8192 /* CommentModel.swift */,
 				3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */,
 			);
 			path = DataModels;
@@ -237,7 +234,6 @@
 				3CA92E472A54ACAB00688DEB /* CommunityInfoView.swift in Sources */,
 				3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */,
 				3CB8D2682A55F45900EE615A /* HomeView.swift in Sources */,
-				3C4B7DDD2A58D131003C8192 /* CommentModel.swift in Sources */,
 				3CA5C40C2A5750AE00BF8F1B /* AllPostsListLoader.swift in Sources */,
 				3CB8D26A2A561E0700EE615A /* FeedTypeRowView.swift in Sources */,
 				3C4B7DDF2A597824003C8192 /* Fetcher.swift in Sources */,

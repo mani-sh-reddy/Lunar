@@ -10,13 +10,13 @@ import Foundation
 import SwiftUI
 
 struct CommentsListView: View {
-    @StateObject private var fetcher = Fetcher()
+    @StateObject private var fetcher = Fetcher<CommentsListModel>()
     @State var postId: Int
     @State var commentsListModel = CommentsListModel(comments: [])
 
     var body: some View {
         ScrollView {
-            ForEach(fetcher.commentDecoded, id: \.comment.id) { comment in
+            ForEach(fetcher.result?.comments ?? [], id: \.comment.id) { comment in
                 VStack(alignment: .leading) {
                     Text(comment.comment.content)
                     Text("")
@@ -24,7 +24,7 @@ struct CommentsListView: View {
             }
             .onAppear {
                 let urlString = "https://lemmy.world/api/v3/comment/list?type_=All&sort=Top&limit=10&post_id=\(postId)"
-                fetcher.fetchComments(urlString: urlString, commentsListModel: commentsListModel, responseType: CommentsListModel.self)
+                fetcher.fetchResponse(urlString: urlString)
             }
         }.padding()
     }
