@@ -13,7 +13,7 @@ class Fetcher<ResultType: Decodable>: ObservableObject {
     @Published var result: ResultType?
 
     func fetchResponse(urlString: String) {
-        print("HIT fetchResponse")
+//        print("HIT fetchResponse for URL: \(urlString)")
         let cacher = ResponseCacher(behavior: .cache)
         AF.request(urlString) { urlRequest in
             urlRequest.cachePolicy = .returnCacheDataElseLoad

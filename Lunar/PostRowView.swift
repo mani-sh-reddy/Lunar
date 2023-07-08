@@ -14,6 +14,7 @@ struct PostRowView: View {
     var body: some View {
         VStack(alignment: .leading) {
             InPostCommunityHeaderView(community: self.post.community)
+                .padding(.bottom, 3)
 
             Text(self.post.post.name)
                 .font(.headline)
@@ -32,7 +33,7 @@ struct PostRowView: View {
                 InPostMetadataView(bodyText: String(self.post.counts.downvotes), iconName: "arrow.down.square.fill", iconColor: Color.red)
                 InPostMetadataView(bodyText: String(self.post.counts.comments), iconName: "text.bubble.fill", iconColor: Color.gray)
             }
-            .padding(.vertical, 5)
+            .padding(.vertical, 3)
         }
     }
 }
@@ -74,6 +75,7 @@ struct InPostThumbnailView: View {
             .aspectRatio(contentMode: .fit)
             .frame(alignment: .center)
             .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
+            .padding(.bottom, 3)
     }
 }
 

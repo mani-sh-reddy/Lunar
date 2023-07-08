@@ -11,8 +11,8 @@ import SwiftUI
 
 struct CommentsListView: View {
     @StateObject private var fetcher = Fetcher<CommentsListModel>()
-    @State var postId: Int
     @State var commentsListModel = CommentsListModel(comments: [])
+    @State var postId: Int
 
     var body: some View {
         ScrollView {
