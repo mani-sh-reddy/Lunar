@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
-    
     var body: some View {
         NavigationView {
-            
             List {
                 Section(header: Text("Feed")) {
                     NavigationLink {
@@ -24,7 +22,6 @@ struct HomeView: View {
                     } label: {
                         FeedTypeRowView(feedType: "All", icon: "building.2.crop.circle.fill", iconColor: Color.cyan)
                     }
-                    
                 }
                 Section(header: Text("Trending")) {
                     TrendingCommunitiesListView()
@@ -39,8 +36,6 @@ struct HomeView: View {
         }
     }
 }
-
-
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {

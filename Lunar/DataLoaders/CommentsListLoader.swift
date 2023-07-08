@@ -5,12 +5,12 @@
 ////  Created by Mani on 06/07/2023.
 ////
 //
-//import Foundation
+// import Foundation
 //
 //
-//class CommentsListLoader: ObservableObject {
+// class CommentsListLoader: ObservableObject {
 //    @Published var commentsList: [CommentElement] = []
-//    
+//
 //    func fetchComments(forPostId postId: Int) {
 //        let postIdString = String(postId)
 //        let url = URL(string: "https://lemmy.world/api/v3/comment/list?type_=All&sort=Top&limit=50&post_id=\(postIdString)")!
@@ -30,4 +30,4 @@
 //            }
 //        }.resume()
 //    }
-//}
+// }
