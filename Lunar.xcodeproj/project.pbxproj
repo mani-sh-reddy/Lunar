@@ -14,7 +14,6 @@
 		3C4F0A042A54399F009DF8AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0A032A54399F009DF8AB /* Assets.xcassets */; };
 		3C4F0A072A54399F009DF8AB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0A062A54399F009DF8AB /* Preview Assets.xcassets */; };
 		3C5C77F12A5863980008B81B /* ExamplePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5C77F02A5863980008B81B /* ExamplePost.swift */; };
-		3C81FCE92A57410A006A1BC1 /* TrendingCommunitiesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C81FCE82A57410A006A1BC1 /* TrendingCommunitiesLoader.swift */; };
 		3CA5C40A2A574FF500BF8F1B /* PostsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */; };
 		3CA5C40C2A5750AE00BF8F1B /* AllPostsListLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C40B2A5750AE00BF8F1B /* AllPostsListLoader.swift */; };
 		3CA5C40E2A57525500BF8F1B /* PostsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C40D2A57525500BF8F1B /* PostsListView.swift */; };
@@ -28,9 +27,7 @@
 		3CB8D2682A55F45900EE615A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2672A55F45900EE615A /* HomeView.swift */; };
 		3CB8D26A2A561E0700EE615A /* FeedTypeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2692A561E0700EE615A /* FeedTypeRowView.swift */; };
 		3CBCCDF62A589F2C00307AC1 /* CommentsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBCCDF52A589F2C00307AC1 /* CommentsListView.swift */; };
-		3CBCCDF82A58A00900307AC1 /* CommentsListLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBCCDF72A58A00900307AC1 /* CommentsListLoader.swift */; };
 		3CEF196B2A580672006736EF /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEF196A2A580672006736EF /* Kingfisher */; };
-		3CEF196D2A581C7C006736EF /* TrendingCommunitiesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF196C2A581C7C006736EF /* TrendingCommunitiesListView.swift */; };
 		3CEF196F2A582787006736EF /* LunarLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CEF196E2A582786006736EF /* LunarLogo.png */; };
 /* End PBXBuildFile section */
 
@@ -42,7 +39,6 @@
 		3C4F0A032A54399F009DF8AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C4F0A062A54399F009DF8AB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3C5C77F02A5863980008B81B /* ExamplePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplePost.swift; sourceTree = "<group>"; };
-		3C81FCE82A57410A006A1BC1 /* TrendingCommunitiesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCommunitiesLoader.swift; sourceTree = "<group>"; };
 		3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsListModel.swift; sourceTree = "<group>"; };
 		3CA5C40B2A5750AE00BF8F1B /* AllPostsListLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllPostsListLoader.swift; sourceTree = "<group>"; };
 		3CA5C40D2A57525500BF8F1B /* PostsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsListView.swift; sourceTree = "<group>"; };
@@ -56,8 +52,6 @@
 		3CB8D2672A55F45900EE615A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		3CB8D2692A561E0700EE615A /* FeedTypeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTypeRowView.swift; sourceTree = "<group>"; };
 		3CBCCDF52A589F2C00307AC1 /* CommentsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsListView.swift; sourceTree = "<group>"; };
-		3CBCCDF72A58A00900307AC1 /* CommentsListLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsListLoader.swift; sourceTree = "<group>"; };
-		3CEF196C2A581C7C006736EF /* TrendingCommunitiesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCommunitiesListView.swift; sourceTree = "<group>"; };
 		3CEF196E2A582786006736EF /* LunarLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LunarLogo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,7 +100,6 @@
 				3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */,
 				3CA92E372A543BF000688DEB /* ContentView.swift */,
 				3C4F09FF2A54399F009DF8AB /* LunarApp.swift */,
-				3CEF196C2A581C7C006736EF /* TrendingCommunitiesListView.swift */,
 				3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */,
 				3CB8D2692A561E0700EE615A /* FeedTypeRowView.swift */,
 				3CA5C4062A5743EB00BF8F1B /* DataLoaders */,
@@ -127,8 +120,6 @@
 			isa = PBXGroup;
 			children = (
 				3C4B7DDE2A597824003C8192 /* Fetcher.swift */,
-				3C81FCE82A57410A006A1BC1 /* TrendingCommunitiesLoader.swift */,
-				3CBCCDF72A58A00900307AC1 /* CommentsListLoader.swift */,
 				3CA5C40B2A5750AE00BF8F1B /* AllPostsListLoader.swift */,
 			);
 			path = DataLoaders;
@@ -224,13 +215,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C81FCE92A57410A006A1BC1 /* TrendingCommunitiesLoader.swift in Sources */,
 				3C4B7DD82A58A741003C8192 /* CommentsListModel.swift in Sources */,
-				3CBCCDF82A58A00900307AC1 /* CommentsListLoader.swift in Sources */,
 				3CA5C4102A5753AC00BF8F1B /* PostRowView.swift in Sources */,
 				3CA5C40A2A574FF500BF8F1B /* PostsListModel.swift in Sources */,
 				3CA5C40E2A57525500BF8F1B /* PostsListView.swift in Sources */,
-				3CEF196D2A581C7C006736EF /* TrendingCommunitiesListView.swift in Sources */,
 				3CA92E472A54ACAB00688DEB /* CommunityInfoView.swift in Sources */,
 				3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */,
 				3CB8D2682A55F45900EE615A /* HomeView.swift in Sources */,
