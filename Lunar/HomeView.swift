@@ -17,19 +17,19 @@ struct HomeView: View {
         NavigationView {
             List {
                 Section(header: Text("Feed")) {
-                    NavigationLink { PostsListView(feedType: "Local", feedSort: "Active")
+                    NavigationLink { PostsListView(viewTitle: "Local", feedType: "Local", feedSort: "Active")
                     } label: {
                         FeedTypeRowView(feedType: "Local", icon: "house.circle.fill", iconColor: Color.green)
                     }
-                    NavigationLink { PostsListView(feedType: "All", feedSort: "Active")
+                    NavigationLink { PostsListView(viewTitle: "All", feedType: "All", feedSort: "Active")
                     } label: {
                         FeedTypeRowView(feedType: "All", icon: "building.2.crop.circle.fill", iconColor: Color.cyan)
                     }
-                    NavigationLink { PostsListView(feedType: "All", feedSort: "TopWeek")
+                    NavigationLink { PostsListView(viewTitle: "Top", feedType: "All", feedSort: "TopWeek")
                     } label: {
                         FeedTypeRowView(feedType: "Top", icon: "chart.line.uptrend.xyaxis.circle.fill", iconColor: Color.pink)
                     }
-                    NavigationLink { PostsListView(feedType: "All", feedSort: "New")
+                    NavigationLink { PostsListView(viewTitle: "New", feedType: "All", feedSort: "New")
                     } label: {
                         FeedTypeRowView(feedType: "New", icon: "star.circle.fill", iconColor: Color.yellow)
                     }
@@ -37,7 +37,7 @@ struct HomeView: View {
                 Section(header: Text("Trending")) {
                     ForEach(trendingCommunitiesFetcher.result?.communities ?? [], id: \.community.id) { communities in
                         NavigationLink {
-                            CommunityInfoView(community: communities.community)
+                            PostsListView(viewTitle: communities.community.name, feedSort: "Active", communityId: communities.community.id)
                         } label: {
                             CommunityRowView(community: communities)
                         }
@@ -63,7 +63,7 @@ struct HomeView: View {
         }
         prefetcher.start()
 
-        let urlString = "https://lemmy.world/api/v3/community/list?sort=Hot&limit=5"
+        let urlString = "https://lemmy.world/api/v3/community/list?sort=Hot&limit=50"
         trendingCommunitiesFetcher.fetchResponse(urlString: urlString)
     }
 }
