@@ -15,7 +15,7 @@ struct PostsListView: View {
     var body: some View {
         List {
             ForEach(allPosts.posts, id: \.post.id) { post in
-                Section(footer: PostRowFooterView(post: post)) {
+                Section {
                     NavigationLink {
                         Link(String(post.post.url ?? "Link"), destination: URL(string: post.post.url ?? "") ?? URL(string: "lemmy.world")!)
                         CommentsListView(postId: post.post.id)
