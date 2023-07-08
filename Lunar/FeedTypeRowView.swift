@@ -11,9 +11,9 @@ struct FeedTypeRowView: View {
     var feedType: String
     var icon: String
     var iconColor: Color
-    
+
     var body: some View {
-        HStack{
+        HStack {
             Image(systemName: icon)
                 .resizable()
                 .scaledToFit()
@@ -25,4 +25,3 @@ struct FeedTypeRowView: View {
         }
     }
 }
-

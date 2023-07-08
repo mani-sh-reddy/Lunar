@@ -11,10 +11,10 @@ struct MockPost {
     static let mockPost = PostsModel(posts: [
         PostElement(
             post: PostObject(
-                id: 2222222,
+                id: 2_222_222,
                 name: "This is an example title used while creating the post row view in xcode",
                 url: "https://lemmy.world/pictrs/image/7ae620b7-203e-43f3-b43f-030ad3beb629.png",
-                creatorID: 316097,
+                creatorID: 316_097,
                 communityID: 22036,
                 removed: false,
                 locked: false,
@@ -33,7 +33,7 @@ struct MockPost {
                 embedVideoURL: nil
             ),
             creator: Creator(
-                id: 316097,
+                id: 316_097,
                 name: "eco",
                 displayName: nil,
                 avatar: nil,
@@ -69,8 +69,8 @@ struct MockPost {
             ),
             creatorBannedFromCommunity: false,
             counts: Counts(
-                id: 254871,
-                postID: 2222222,
+                id: 254_871,
+                postID: 2_222_222,
                 comments: 189,
                 score: 2180,
                 upvotes: 2188,
@@ -91,10 +91,10 @@ struct MockPost {
         ),
         PostElement(
             post: PostObject(
-                id: 1111111,
+                id: 1_111_111,
                 name: "This is an example title used while creating the post row view in xcode",
                 url: "https://lemmy.world/pictrs/image/7ae620b7-203e-43f3-b43f-030ad3beb629.png",
-                creatorID: 316097,
+                creatorID: 316_097,
                 communityID: 22036,
                 removed: false,
                 locked: false,
@@ -113,7 +113,7 @@ struct MockPost {
                 embedVideoURL: nil
             ),
             creator: Creator(
-                id: 316097,
+                id: 316_097,
                 name: "eco",
                 displayName: nil,
                 avatar: nil,
@@ -149,8 +149,8 @@ struct MockPost {
             ),
             creatorBannedFromCommunity: false,
             counts: Counts(
-                id: 254871,
-                postID: 1111111,
+                id: 254_871,
+                postID: 1_111_111,
                 comments: 189,
                 score: 2180,
                 upvotes: 2188,

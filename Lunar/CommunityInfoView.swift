@@ -5,12 +5,12 @@
 //  Created by Mani on 04/07/2023.
 //
 
-import SwiftUI
 import Kingfisher
+import SwiftUI
 
 struct CommunityInfoView: View {
     var community: CommunityObject
-    
+
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
@@ -18,8 +18,8 @@ struct CommunityInfoView: View {
                     KFImage(URL(string: community.icon ?? ""))
                         .placeholder { Image("LunarLogo") }
                         .resizable()
-                        .frame(width: geometry.size.width * 0.7,height: geometry.size.width * 0.7,alignment: .center)
-                        .clipShape(RoundedRectangle(cornerRadius: 30,style: .continuous))
+                        .frame(width: geometry.size.width * 0.7, height: geometry.size.width * 0.7, alignment: .center)
+                        .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                         .padding()
                         .aspectRatio(contentMode: .fit)
                     HStack {

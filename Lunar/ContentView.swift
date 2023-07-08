@@ -32,7 +32,7 @@ struct ContentView: View {
                     Label("Settings", systemImage: "gearshape.fill")
                 }
         }
-        }
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {

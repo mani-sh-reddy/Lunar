@@ -8,14 +8,17 @@
 import Foundation
 
 // MARK: - Welcome
+
 struct PostsModel: Codable {
     let posts: [PostElement]
+
     var thumbnailURLs: [String] {
-            return posts.compactMap { $0.post.thumbnailURL }
-        }
+        posts.compactMap(\.post.thumbnailURL)
+    }
 }
 
 // MARK: - PostElement
+
 struct PostElement: Codable {
     let post: PostObject
     let creator: Creator
@@ -25,8 +28,6 @@ struct PostElement: Codable {
     let subscribed: Subscribed
     let saved, read, creatorBlocked: Bool
     let unreadComments: Int
-    
-    
 
     enum CodingKeys: String, CodingKey {
         case post, creator, community
@@ -38,6 +39,7 @@ struct PostElement: Codable {
 }
 
 // MARK: - Community
+
 struct Community: Codable {
     let id: Int
     let name, title: String
@@ -46,7 +48,7 @@ struct Community: Codable {
     let published: String
     let updated: String?
     let deleted: Bool
-    let nsfw:Bool = false
+    let nsfw: Bool = false
     let actorID: String
     let local: Bool
     let icon: String?
@@ -65,6 +67,7 @@ struct Community: Codable {
 }
 
 // MARK: - Counts
+
 struct Counts: Codable {
     let id, postID, comments, score: Int
     let upvotes, downvotes: Int
@@ -86,6 +89,7 @@ struct Counts: Codable {
 }
 
 // MARK: - Creator
+
 struct Creator: Codable {
     let id: Int
     let name: String
@@ -115,6 +119,7 @@ struct Creator: Codable {
 }
 
 // MARK: - PostPost
+
 struct PostObject: Codable {
     let id: Int
     let name: String
@@ -123,7 +128,7 @@ struct PostObject: Codable {
     let removed, locked: Bool
     let published: String
     let deleted: Bool
-    let nsfw:Bool = false
+    let nsfw: Bool = false
     let thumbnailURL: String?
     let apID: String
     let local: Bool

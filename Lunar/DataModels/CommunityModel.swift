@@ -8,14 +8,16 @@
 import Foundation
 
 // MARK: - Welcome
+
 struct CommunityModel: Codable {
     let communities: [CommunitiesElement]
     var iconURLs: [String] {
-        return communities.compactMap { $0.community.icon }
-        }
+        communities.compactMap(\.community.icon)
+    }
 }
 
 // MARK: - CommunityElement
+
 struct CommunitiesElement: Codable {
     let community: CommunityObject
     let subscribed: SubscribedObject
@@ -24,6 +26,7 @@ struct CommunitiesElement: Codable {
 }
 
 // MARK: - CommunityCommunity
+
 struct CommunityObject: Codable {
     let id: Int
     let name, title: String
@@ -37,7 +40,7 @@ struct CommunityObject: Codable {
     let description, updated: String?
     let icon: String?
     let banner: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case id, name, title, removed, published, deleted, nsfw
         case actorID = "actor_id"
@@ -49,13 +52,14 @@ struct CommunityObject: Codable {
 }
 
 // MARK: - Counts
+
 struct CountsObject: Codable {
     let id, communityID, subscribers, posts: Int
     let comments: Int
     let published: String
     let usersActiveDay, usersActiveWeek, usersActiveMonth, usersActiveHalfYear: Int
     let hotRank: Int
-    
+
     enum CodingKeys: String, CodingKey {
         case id
         case communityID = "community_id"

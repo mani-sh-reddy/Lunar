@@ -5,11 +5,12 @@
 //  Created by Mani on 03/07/2023.
 //
 
-import Foundation
 import Alamofire
+import Foundation
 import SwiftUI
 
 // MARK: - Welcome
+
 struct CommentsListModel: Codable {
     let comments: [CommentElement]
 }
@@ -24,6 +25,7 @@ struct CommentsListModel: Codable {
 //   }
 
 // MARK: - CommentElement
+
 struct CommentElement: Codable {
     let comment: CommentsListObject
     let creator: CommentsListCreator
@@ -52,6 +54,7 @@ struct CommentElement: Codable {
 //   }
 
 // MARK: - CommentComment
+
 struct CommentsListObject: Codable {
     let id, creatorID, postID: Int
     let content: String
@@ -85,6 +88,7 @@ struct CommentsListObject: Codable {
 //   }
 
 // MARK: - Community
+
 struct CommentsListCommunity: Codable {
     let id: Int
     let name: String
@@ -110,21 +114,21 @@ struct CommentsListCommunity: Codable {
     }
 }
 
-//enum Name: String, Codable {
+// enum Name: String, Codable {
 //    case showerthoughts = "showerthoughts"
-//}
+// }
 //
-//enum CommunityPublished: String, Codable {
+// enum CommunityPublished: String, Codable {
 //    case the20230611T153435679943 = "2023-06-11T15:34:35.679943"
-//}
+// }
 //
-//enum Title: String, Codable {
+// enum Title: String, Codable {
 //    case showerthoughts = "Showerthoughts"
-//}
+// }
 //
-//enum CommunityUpdated: String, Codable {
+// enum CommunityUpdated: String, Codable {
 //    case the20230703T203245007798 = "2023-07-03T20:32:45.007798"
-//}
+// }
 
 //
 // To parse values from Alamofire responses:
@@ -136,6 +140,7 @@ struct CommentsListCommunity: Codable {
 //   }
 
 // MARK: - Counts
+
 struct CommentsListCounts: Codable {
     let id, commentID, score, upvotes: Int
     let downvotes: Int
@@ -161,6 +166,7 @@ struct CommentsListCounts: Codable {
 //   }
 
 // MARK: - Creator
+
 struct CommentsListCreator: Codable {
     let id: Int
     let name: String
@@ -195,6 +201,7 @@ struct CommentsListCreator: Codable {
 //   }
 
 // MARK: - Post
+
 struct CommentsListPost: Codable {
     let id: Int
     let name, body: String?
@@ -221,14 +228,14 @@ struct CommentsListPost: Codable {
     }
 }
 
-//enum PostPublished: String, Codable {
+// enum PostPublished: String, Codable {
 //    case the20230707T074748136824 = "2023-07-07T07:47:48.136824"
 //    case
-//}
+// }
 //
-//enum PostUpdated: String, Codable {
+// enum PostUpdated: String, Codable {
 //    case the20230707T074852186606 = "2023-07-07T07:48:52.186606"
-//}
+// }
 
 enum CommentSubscribed: String, Codable {
     case notSubscribed = "NotSubscribed"
@@ -236,18 +243,18 @@ enum CommentSubscribed: String, Codable {
 
 //// MARK: - Helper functions for creating encoders and decoders
 //
-//func newJSONDecoder() -> JSONDecoder {
+// func newJSONDecoder() -> JSONDecoder {
 //    let decoder = JSONDecoder()
 //    if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
 //        decoder.dateDecodingStrategy = .iso8601
 //    }
 //    return decoder
-//}
+// }
 //
-//func newJSONEncoder() -> JSONEncoder {
+// func newJSONEncoder() -> JSONEncoder {
 //    let encoder = JSONEncoder()
 //    if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
 //        encoder.dateEncodingStrategy = .iso8601
 //    }
 //    return encoder
-//}
+// }
