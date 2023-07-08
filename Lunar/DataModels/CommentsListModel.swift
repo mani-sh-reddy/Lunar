@@ -90,15 +90,15 @@ struct CommentsListCommunity: Codable {
     let name: String
     let title: String
     let description: String?
-    let removed: Bool
+    let removed: Bool?
     let published: String
-    let updated: String
+    let updated: String?
     let deleted, nsfw: Bool
     let actorID: String
-    let local: Bool
+    let local: Bool?
     let icon: String?
     let banner: String?
-    let hidden, postingRestrictedToMods: Bool
+    let hidden, postingRestrictedToMods: Bool?
     let instanceID: Int
 
     enum CodingKeys: String, CodingKey {
