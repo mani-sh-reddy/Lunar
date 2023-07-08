@@ -13,10 +13,10 @@ struct PostRowView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            InPostCommunityHeaderView(community: self.post.community)
+            InPostCommunityHeaderView(community: post.community)
                 .padding(.bottom, 3)
 
-            Text(self.post.post.name)
+            Text(post.post.name)
                 .font(.headline)
 
             if let thumbnailURL = post.post.thumbnailURL { InPostThumbnailView(thumbnailURL: thumbnailURL)
@@ -26,12 +26,24 @@ struct PostRowView: View {
                 EmptyView()
             }
 
-            HStack(spacing: 3) {
-                InPostMetadataView(bodyText: self.post.creator.name, iconName: "person.crop.square.fill", iconColor: Color.gray)
+            HStack(spacing: 2) {
+                KFImage(URL(string: post.creator.avatar ?? ""))
+                    .placeholder { Image(systemName: "person.crop.square.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 15, height: 15)
+                        .symbolRenderingMode(.hierarchical)
+                        .foregroundColor(.gray)
+                    }
+                    .resizable()
+                    .frame(width: 15, height: 15)
+                    .clipShape(RoundedRectangle(cornerRadius: 2, style: .continuous))
+                    .scaledToFit()
+                InPostMetadataView(bodyText: post.creator.name, iconName: "", iconColor: Color.gray)
                 Spacer(minLength: 20)
-                InPostMetadataView(bodyText: String(self.post.counts.upvotes), iconName: "arrow.up.square.fill", iconColor: Color.green)
-                InPostMetadataView(bodyText: String(self.post.counts.downvotes), iconName: "arrow.down.square.fill", iconColor: Color.red)
-                InPostMetadataView(bodyText: String(self.post.counts.comments), iconName: "text.bubble.fill", iconColor: Color.gray)
+                InPostMetadataView(bodyText: String(post.counts.upvotes), iconName: "arrow.up.square.fill", iconColor: Color.green)
+                InPostMetadataView(bodyText: String(post.counts.downvotes), iconName: "arrow.down.square.fill", iconColor: Color.red)
+                InPostMetadataView(bodyText: String(post.counts.comments), iconName: "text.bubble.fill", iconColor: Color.gray)
             }
             .padding(.vertical, 3)
         }
@@ -42,7 +54,7 @@ struct InPostCommunityHeaderView: View {
     var community: Community
     var body: some View {
         HStack(spacing: 0, content: {
-            KFImage(URL(string: self.community.icon ?? ""))
+            KFImage(URL(string: community.icon ?? ""))
                 .placeholder { Image(systemName: "books.vertical.circle.fill")
                     .resizable()
                     .scaledToFit()
@@ -56,9 +68,9 @@ struct InPostCommunityHeaderView: View {
                 .scaledToFit()
 
             HStack(alignment: .lastTextBaseline, spacing: 2) {
-                Text(String(self.community.name))
+                Text(String(community.name))
                     .padding(.leading, 7)
-                Text(String("@\(URLParser.extractDomain(from: self.community.actorID))"))
+                Text(String("@\(URLParser.extractDomain(from: community.actorID))"))
                     .foregroundStyle(.gray)
             }
             .font(.subheadline)
@@ -70,7 +82,7 @@ struct InPostCommunityHeaderView: View {
 struct InPostThumbnailView: View {
     var thumbnailURL: String
     var body: some View {
-        KFImage(URL(string: self.thumbnailURL))
+        KFImage(URL(string: thumbnailURL))
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(alignment: .center)
@@ -85,11 +97,11 @@ struct InPostMetadataView: View {
     var iconColor: Color
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 2) {
-            Image(systemName: self.iconName)
+            Image(systemName: iconName)
                 .symbolRenderingMode(.hierarchical)
-                .foregroundColor(self.iconColor)
-            Text(String(self.bodyText))
-                .foregroundColor(self.iconColor)
+                .foregroundColor(iconColor)
+            Text(String(bodyText))
+                .foregroundColor(iconColor)
                 .textCase(/*@START_MENU_TOKEN@*/ .uppercase/*@END_MENU_TOKEN@*/)
         }
 //        .font(.callout)
@@ -109,7 +121,7 @@ extension String {
             "i.postimg.cc",
         ]
         for url in validURLs {
-            if self.contains(url) {
+            if contains(url) {
                 return true
             }
         }
@@ -140,10 +152,10 @@ struct PostRowView_Previews: PreviewProvider {
         let post =
             PostElement(
                 post: PostObject(
-                    id: 1161347,
+                    id: 1_161_347,
                     name: "This is an example title used while creating the post row view in xcode",
                     url: "https://lemmy.world/pictrs/image/7ae620b7-203e-43f3-b43f-030ad3beb629.png",
-                    creatorID: 316097,
+                    creatorID: 316_097,
                     communityID: 22036,
                     removed: false,
                     locked: false,
@@ -162,10 +174,10 @@ struct PostRowView_Previews: PreviewProvider {
                     embedVideoURL: nil
                 ),
                 creator: Creator(
-                    id: 316097,
+                    id: 316_097,
                     name: "eco",
                     displayName: nil,
-                    avatar: nil,
+                    avatar: "https://lemmy.eco.br/pictrs/image/0fd624b1-4ba6-485a-b683-d308c93888f4.jpeg?format=webp",
                     banned: false,
                     published: "2023-06-21T17:02:57.364033Z",
                     actorID: "https://lemmy.world/u/eco",
@@ -198,8 +210,8 @@ struct PostRowView_Previews: PreviewProvider {
                 ),
                 creatorBannedFromCommunity: false,
                 counts: Counts(
-                    id: 254871,
-                    postID: 1161347,
+                    id: 254_871,
+                    postID: 1_161_347,
                     comments: 189,
                     score: 2180,
                     upvotes: 2188,

@@ -29,8 +29,8 @@ class Fetcher<ResultType: Decodable>: ObservableObject {
                 self.result = result
 
                 if let postsModel = result as? PostsModel {
-                    let thumbnailURLs = postsModel.thumbnailURLs.compactMap { URL(string: $0) }
-                    let prefetcher = ImagePrefetcher(urls: thumbnailURLs) { _, _, completedResources in
+                    let cachableImageURLs = postsModel.thumbnailURLs.compactMap { URL(string: $0) } + postsModel.avatarURLs.compactMap { URL(string: $0) }
+                    let prefetcher = ImagePrefetcher(urls: cachableImageURLs) { _, _, completedResources in
                         print("These resources are prefetched: \(completedResources)")
                     }
                     prefetcher.start()

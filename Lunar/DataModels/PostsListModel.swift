@@ -15,6 +15,9 @@ struct PostsModel: Codable {
     var thumbnailURLs: [String] {
         posts.compactMap(\.post.thumbnailURL)
     }
+    var avatarURLs: [String] {
+        posts.compactMap(\.creator.avatar)
+    }
 }
 
 // MARK: - PostElement
