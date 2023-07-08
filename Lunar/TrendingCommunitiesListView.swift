@@ -24,9 +24,9 @@ struct TrendingCommunitiesListView: View {
                 let iconURLs = trendingCommunities.iconURLsStrings.compactMap { URL(string: $0) }
                 let prefetcher = ImagePrefetcher(urls: iconURLs) {
                     skippedResources, failedResources, completedResources in
-                    print("These resources are prefetched: \(completedResources)")
-                    print("skipped: \(skippedResources)")
-                    print("failed: \(failedResources)")
+//                    print("These resources are prefetched: \(completedResources)")
+//                    print("skipped: \(skippedResources)")
+//                    print("failed: \(failedResources)")
                 }
                 prefetcher.start()
                 
