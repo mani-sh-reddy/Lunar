@@ -14,6 +14,9 @@
 		3C4F0A042A54399F009DF8AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0A032A54399F009DF8AB /* Assets.xcassets */; };
 		3C4F0A072A54399F009DF8AB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0A062A54399F009DF8AB /* Preview Assets.xcassets */; };
 		3C5C77F12A5863980008B81B /* ExamplePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5C77F02A5863980008B81B /* ExamplePost.swift */; };
+		3CA3CBC32A5B026800D0D645 /* PostsListFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3CBC22A5B026800D0D645 /* PostsListFetcher.swift */; };
+		3CA3CBC62A5B1A0700D0D645 /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 3CA3CBC52A5B1A0700D0D645 /* Nuke */; };
+		3CA3CBC82A5B1A0700D0D645 /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3CA3CBC72A5B1A0700D0D645 /* NukeUI */; };
 		3CA5C40A2A574FF500BF8F1B /* PostsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */; };
 		3CA5C40E2A57525500BF8F1B /* PostsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C40D2A57525500BF8F1B /* PostsListView.swift */; };
 		3CA5C4102A5753AC00BF8F1B /* PostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */; };
@@ -39,6 +42,7 @@
 		3C4F0A032A54399F009DF8AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C4F0A062A54399F009DF8AB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3C5C77F02A5863980008B81B /* ExamplePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplePost.swift; sourceTree = "<group>"; };
+		3CA3CBC22A5B026800D0D645 /* PostsListFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsListFetcher.swift; sourceTree = "<group>"; };
 		3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsListModel.swift; sourceTree = "<group>"; };
 		3CA5C40D2A57525500BF8F1B /* PostsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsListView.swift; sourceTree = "<group>"; };
 		3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostRowView.swift; sourceTree = "<group>"; };
@@ -60,8 +64,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CA3CBC62A5B1A0700D0D645 /* Nuke in Frameworks */,
 				3CEF196B2A580672006736EF /* Kingfisher in Frameworks */,
 				3C4B7DDB2A58AD23003C8192 /* Alamofire in Frameworks */,
+				3CA3CBC82A5B1A0700D0D645 /* NukeUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,12 +96,12 @@
 			children = (
 				3CEF196E2A582786006736EF /* LunarLogo.png */,
 				3C4F0A052A54399F009DF8AB /* Preview Content */,
-				3C4F0A032A54399F009DF8AB /* Assets.xcassets */,
 				3CA92E402A54962B00688DEB /* lemmy-world-active-communities-placeholder.json */,
-				3CA92E462A54ACAB00688DEB /* CommunityInfoView.swift */,
-				3CA92E422A549A7F00688DEB /* CommunityRowView.swift */,
+				3C4F0A032A54399F009DF8AB /* Assets.xcassets */,
 				3CB8D2672A55F45900EE615A /* HomeView.swift */,
 				3CA5C40D2A57525500BF8F1B /* PostsListView.swift */,
+				3CA92E462A54ACAB00688DEB /* CommunityInfoView.swift */,
+				3CA92E422A549A7F00688DEB /* CommunityRowView.swift */,
 				3CBCCDF52A589F2C00307AC1 /* CommentsListView.swift */,
 				3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */,
 				3CA92E372A543BF000688DEB /* ContentView.swift */,
@@ -121,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				3C4B7DDE2A597824003C8192 /* Fetcher.swift */,
+				3CA3CBC22A5B026800D0D645 /* PostsListFetcher.swift */,
 			);
 			path = DataLoaders;
 			sourceTree = "<group>";
@@ -162,6 +169,8 @@
 			packageProductDependencies = (
 				3CEF196A2A580672006736EF /* Kingfisher */,
 				3C4B7DDA2A58AD23003C8192 /* Alamofire */,
+				3CA3CBC52A5B1A0700D0D645 /* Nuke */,
+				3CA3CBC72A5B1A0700D0D645 /* NukeUI */,
 			);
 			productName = Lunar;
 			productReference = 3C4F09FC2A54399F009DF8AB /* Lunar.app */;
@@ -194,6 +203,7 @@
 			packageReferences = (
 				3CEF19692A580672006736EF /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				3CA3CBC42A5B1A0700D0D645 /* XCRemoteSwiftPackageReference "Nuke" */,
 			);
 			productRefGroup = 3C4F09FD2A54399F009DF8AB /* Products */;
 			projectDirPath = "";
@@ -231,6 +241,7 @@
 				3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */,
 				3CB8D2682A55F45900EE615A /* HomeView.swift in Sources */,
 				3CB8D26A2A561E0700EE615A /* FeedTypeRowView.swift in Sources */,
+				3CA3CBC32A5B026800D0D645 /* PostsListFetcher.swift in Sources */,
 				3C4B7DDF2A597824003C8192 /* Fetcher.swift in Sources */,
 				3CEA54462A59E6FB009E4FB3 /* MockPost.swift in Sources */,
 				3CA92E3B2A543BF000688DEB /* CommunityModel.swift in Sources */,
@@ -466,6 +477,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		3CA3CBC42A5B1A0700D0D645 /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.1.2;
+			};
+		};
 		3CEF19692A580672006736EF /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -481,6 +500,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		3CA3CBC52A5B1A0700D0D645 /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3CA3CBC42A5B1A0700D0D645 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+		3CA3CBC72A5B1A0700D0D645 /* NukeUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3CA3CBC42A5B1A0700D0D645 /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeUI;
 		};
 		3CEF196A2A580672006736EF /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
