@@ -27,19 +27,7 @@ struct PostRowView: View {
             }
 
             HStack(spacing: 2) {
-                KFImage(URL(string: post.creator.avatar ?? ""))
-                    .placeholder { Image(systemName: "person.crop.square.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 15, height: 15)
-                        .symbolRenderingMode(.hierarchical)
-                        .foregroundColor(.gray)
-                    }
-                    .resizable()
-                    .frame(width: 15, height: 15)
-                    .clipShape(RoundedRectangle(cornerRadius: 2, style: .continuous))
-                    .scaledToFit()
-                InPostMetadataView(bodyText: post.creator.name, iconName: "", iconColor: Color.gray)
+                InPostUserView(bodyText: post.creator.name, iconName: "person.crop.square.fill", userAvatar: post.creator.avatar)
                 Spacer(minLength: 20)
                 InPostMetadataView(bodyText: String(post.counts.upvotes), iconName: "arrow.up.square.fill", iconColor: Color.green)
                 InPostMetadataView(bodyText: String(post.counts.downvotes), iconName: "arrow.down.square.fill", iconColor: Color.red)
@@ -88,6 +76,35 @@ struct InPostThumbnailView: View {
             .frame(alignment: .center)
             .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
             .padding(.bottom, 3)
+    }
+}
+
+struct InPostUserView: View {
+    var bodyText: String
+    var iconName: String
+    var userAvatar: String?
+    var body: some View {
+        HStack(alignment: .firstTextBaseline, spacing: 2) {
+            KFImage(URL(string: userAvatar ?? ""))
+                .placeholder { Image(systemName: "person.crop.square.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 15, height: 15)
+                    .symbolRenderingMode(.hierarchical)
+                    .foregroundColor(.gray)
+                }
+                .resizable()
+                .frame(width: 15, height: 15)
+                .clipShape(RoundedRectangle(cornerRadius: 2, style: .continuous))
+                .scaledToFit()
+            Text(String(bodyText))
+                .foregroundColor(.gray)
+                .textCase(/*@START_MENU_TOKEN@*/ .uppercase/*@END_MENU_TOKEN@*/)
+        }
+//        .font(.callout)
+        .font(.subheadline)
+        .padding(.horizontal, 2)
+        .lineLimit(1)
     }
 }
 
