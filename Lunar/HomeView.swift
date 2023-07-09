@@ -57,7 +57,7 @@ struct HomeView: View {
     }
 
     func fetchTrendingCommunities() {
-        let urlString = "https://lemmy.world/api/v3/community/list?sort=New&limit=5"
+        let urlString = "https://lemmy.world/api/v3/community/list?sort=New&limit=50"
         trendingCommunitiesFetcher.fetchResponse(urlString: urlString)
     }
 }

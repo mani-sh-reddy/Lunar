@@ -24,7 +24,7 @@ struct PostsListView: View {
                 //                        CommentsListView(postId: post.post.id)
                 //                    } label: {
 
-                NavigationLink(destination: CommentsListView(postId: post.post.id)) {
+                NavigationLink(destination: CommentsListView(postId: post.post.id, postTitle: post.post.name)) {
                     PostRowView(post: post)
                 }
                 .accentColor(Color.primary)
