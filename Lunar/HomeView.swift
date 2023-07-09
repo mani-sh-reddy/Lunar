@@ -57,13 +57,7 @@ struct HomeView: View {
     }
 
     func fetchTrendingCommunities() {
-        let iconURLs = communityModel.iconURLs.compactMap { URL(string: $0) }
-        let prefetcher = ImagePrefetcher(urls: iconURLs) {
-            _, _, _ in
-        }
-        prefetcher.start()
-
-        let urlString = "https://lemmy.world/api/v3/community/list?sort=Hot&limit=50"
+        let urlString = "https://lemmy.world/api/v3/community/list?sort=New&limit=5"
         trendingCommunitiesFetcher.fetchResponse(urlString: urlString)
     }
 }
