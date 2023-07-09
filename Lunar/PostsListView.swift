@@ -18,30 +18,29 @@ struct PostsListView: View {
 
     var body: some View {
         ScrollView {
-                ForEach(postsListFetcher.posts, id: \.post.id) { post in
-                    //                    NavigationLink {
-                    //                        Link(String(post.post.url ?? "Link"), destination: URL(string: post.post.url ?? "") ?? URL(string: "lemmy.world")!)
-                    //                        CommentsListView(postId: post.post.id)
-                    //                    } label: {
-                                
-                    
-                    NavigationLink(destination: CommentsListView(postId: post.post.id)) {
-                        PostRowView(post: post)
-                    }
-                    .accentColor(Color.black)
-                    
-                    VStack(spacing: 0) {
-                        Divider()
-                        Rectangle()
-                            .fill(Color.gray).opacity(0.2)
-                            .frame(height: 25)
-                            .edgesIgnoringSafeArea(.horizontal)
-                        Divider()
-                    }
-                    .padding(.horizontal, -100)
+            ForEach(postsListFetcher.posts, id: \.post.id) { post in
+                //                    NavigationLink {
+                //                        Link(String(post.post.url ?? "Link"), destination: URL(string: post.post.url ?? "") ?? URL(string: "lemmy.world")!)
+                //                        CommentsListView(postId: post.post.id)
+                //                    } label: {
+
+                NavigationLink(destination: CommentsListView(postId: post.post.id)) {
+                    PostRowView(post: post)
                 }
-                .padding(.vertical, 20)
-                .padding(.horizontal, 10)
+                .accentColor(Color.primary)
+
+                VStack(spacing: 0) {
+                    Divider()
+                    Rectangle()
+                        .fill(Color.gray).opacity(0.2)
+                        .frame(height: 25)
+                        .edgesIgnoringSafeArea(.horizontal)
+                    Divider()
+                }
+                .padding(.horizontal, -100)
+            }
+            .padding(.vertical, 20)
+            .padding(.horizontal, 10)
         }
         .overlay(Group {
             if !postsListFetcher.isLoaded {
@@ -61,11 +60,10 @@ struct PostsListView: View {
     }
 }
 
-
 struct PostsListView_Previews: PreviewProvider {
     static var previews: some View {
 //        let mockPost = MockPost.mockPost
 
-        PostsListView(postsListFetcher: PostsListFetcher() , viewTitle: "MOCKDATA", feedType: "All", feedSort: "Active")
+        PostsListView(postsListFetcher: PostsListFetcher(), viewTitle: "MOCKDATA", feedType: "All", feedSort: "Active")
     }
 }
