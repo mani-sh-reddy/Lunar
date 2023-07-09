@@ -14,10 +14,11 @@ struct PostRowView: View {
     var body: some View {
         VStack(alignment: .leading) {
             InPostCommunityHeaderView(community: post.community)
-                .padding(.bottom, 3)
+                .padding(.vertical, 3)
 
             Text(post.post.name)
                 .font(.headline)
+                .multilineTextAlignment(.leading)
 
             if let thumbnailURL = post.post.thumbnailURL { InPostThumbnailView(thumbnailURL: thumbnailURL)
             } else if let url = post.post.url, url.isValidExternalImageURL() {
