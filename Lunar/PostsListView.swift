@@ -1,5 +1,5 @@
 //
-//  HomeView.swift
+//  PostsListView.swift
 //  Lunar
 //
 //  Created by Mani on 05/07/2023.
@@ -9,16 +9,26 @@ import Kingfisher
 import SwiftUI
 
 struct PostsListView: View {
-    @StateObject var postsListFetcher = PostsListFetcher()
-    @State var viewTitle: String
-    var feedType: String = ""
-    var feedSort: String
+    @StateObject var posts = PostsListFetcher()
+    var props: [String: String]?
     var communityId: Int = 0
-    @State var isModal: Bool = false
+    var communityHeading: String = "Feed"
+    @State private var hasAppearedOnce = false
 
     var body: some View {
         ScrollView {
-            ForEach(postsListFetcher.posts, id: \.post.id) { post in
+            ForEach(posts.posts, id: \.post.id) { post in
+
+                VStack(spacing: 0) {
+                    Divider().background(Color.gray)
+                    Rectangle()
+                        .fill(Color.gray).opacity(0.2)
+                        .frame(height: 15)
+                        .edgesIgnoringSafeArea(.horizontal)
+                    Divider().background(Color.gray)
+                }.opacity(0.5)
+                    .padding(.horizontal, -100)
+
                 //                    NavigationLink {
                 //                        Link(String(post.post.url ?? "Link"), destination: URL(string: post.post.url ?? "") ?? URL(string: "lemmy.world")!)
                 //                        CommentsListView(postId: post.post.id)
@@ -28,42 +38,57 @@ struct PostsListView: View {
                     PostRowView(post: post)
                 }
                 .accentColor(Color.primary)
-
-                VStack(spacing: 0) {
-                    Divider()
-                    Rectangle()
-                        .fill(Color.gray).opacity(0.2)
-                        .frame(height: 25)
-                        .edgesIgnoringSafeArea(.horizontal)
-                    Divider()
-                }
-                .padding(.horizontal, -100)
             }
             .padding(.vertical, 20)
             .padding(.horizontal, 10)
         }
         .overlay(Group {
-            if !postsListFetcher.isLoaded {
+            if !posts.isLoaded {
                 ProgressView("Fetching")
                     .frame(width: 100)
             }
         })
-        .task {
-            let baseURL = "https://lemmy.world/api/v3/post/list?sort=\(feedSort)&limit=50&"
-            let nonSpecificUrlPrefix = "type_=\(feedType)"
+        .refreshable {
+            let baseURL = "https://lemmy.world/api/v3/post/list?sort=\(props?["sort"] ?? "Active")&limit=50&"
+            let nonSpecificUrlPrefix = "type_=\(props?["type"] ?? "Local")"
             let communitySpecificUrlPrefix = "community_id=\(communityId)"
+            var prefixURL = ""
+            print(communityId)
+            if communityId == 0 {
+                prefixURL = nonSpecificUrlPrefix
+            } else {
+                prefixURL = communitySpecificUrlPrefix
+            }
 
-            let endpoint = "\(baseURL)\(communityId == 0 ? nonSpecificUrlPrefix : communitySpecificUrlPrefix)"
-            postsListFetcher.fetch(endpoint: endpoint)
+            let endpoint = "\(baseURL)\(prefixURL)"
+            posts.fetch(endpoint: endpoint)
         }
-        .navigationTitle(viewTitle)
+        .onAppear {
+            guard !hasAppearedOnce else { return }
+            hasAppearedOnce = true
+            let baseURL = "https://lemmy.world/api/v3/post/list?sort=\(props?["sort"] ?? "Active")&limit=50&"
+            let nonSpecificUrlPrefix = "type_=\(props?["type"] ?? "Local")"
+            let communitySpecificUrlPrefix = "community_id=\(communityId)"
+            var prefixURL = ""
+            print(communityId)
+            if communityId == 0 {
+                prefixURL = nonSpecificUrlPrefix
+            } else {
+                prefixURL = communitySpecificUrlPrefix
+            }
+
+            let endpoint = "\(baseURL)\(prefixURL)"
+            posts.fetch(endpoint: endpoint)
+        }
+        .navigationTitle(props?["title"] ?? communityHeading)
     }
 }
 
 struct PostsListView_Previews: PreviewProvider {
+    static var props: [String: String] = props
     static var previews: some View {
 //        let mockPost = MockPost.mockPost
 
-        PostsListView(postsListFetcher: PostsListFetcher(), viewTitle: "MOCKDATA", feedType: "All", feedSort: "Active")
+        PostsListView(props: props)
     }
 }

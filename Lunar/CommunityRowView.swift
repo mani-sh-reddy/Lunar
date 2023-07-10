@@ -13,19 +13,36 @@ struct CommunityRowView: View {
 
     var body: some View {
         HStack {
+            let processor = DownsamplingImageProcessor(size: CGSize(width: 60, height: 60))
             KFImage(URL(string: community.community.icon ?? ""))
+                .setProcessor(processor)
                 .placeholder { Image(systemName: "books.vertical.circle.fill")
-                    .font(.title)
+                        .resizable()
+                        .frame(width: 30, height: 30)
                     .symbolRenderingMode(.hierarchical)
                     .foregroundColor(.gray)
                 }
                 .resizable()
                 .frame(width: 30, height: 30)
                 .clipShape(Circle())
-            Spacer().frame(width: 15)
             Text(community.community.title)
-            Spacer()
-            Spacer().frame(width: 5)
+                .padding(.horizontal, 10)
         }
+
+//        HStack {
+//            KFImage(URL(string: community.community.icon ?? ""))
+//                .placeholder { Image(systemName: "books.vertical.circle.fill")
+//                    .font(.title)
+//                    .symbolRenderingMode(.hierarchical)
+//                    .foregroundColor(.gray)
+//                }
+//                .resizable()
+//                .frame(width: 30, height: 30)
+//                .clipShape(Circle())
+//            Spacer().frame(width: 15)
+//            Text(community.community.title)
+//            Spacer()
+//            Spacer().frame(width: 5)
+//        }
     }
 }

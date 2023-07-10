@@ -7,12 +7,12 @@
 
 import Alamofire
 import Foundation
-import Kingfisher
 import SwiftUI
+import Kingfisher
 
-class PostsListFetcher: ObservableObject {
-    @Published var posts: [PostElement] = []
-    @Published var imageURLs: [String] = []
+class CommunitiesListFetcher: ObservableObject {
+    @Published var communities: [CommunitiesElement] = []
+    @State var iconURLs: [String] = []
     @Published var isLoaded: Bool = false
 
     func fetch(endpoint: String) {
@@ -20,40 +20,43 @@ class PostsListFetcher: ObservableObject {
             return
         }
         AF.request(url)
-//        WILL BE USEFUL FOR IMAGES
-//            .downloadProgress { progress in
-//                // Update your progress indicator here
-//                let loadingProgress = progress.fractionCompleted * 100
-//                print("Download progress: \(loadingProgress)%")
-//                DispatchQueue.main.async {
-//                    if loadingProgress >= 100 {
-//
-//                    }
-//                }
-//            }
-            .responseDecodable(of: PostsModel.self) { [weak self] response in
-//            debugPrint("Response: \(response)")
+            .responseDecodable(of: CommunityModel.self) { [weak self] response in
                 switch response.result {
                 case let .success(result):
-
-                    let imageURLStrings = result.avatarURLs + result.thumbnailURLs
+                    
+                    let imageURLStrings = result.iconURLs
 
                     let imageURLs = imageURLStrings.compactMap { URL(string: $0) }
 
                     let prefetcher = ImagePrefetcher(urls: imageURLs) {
                         skippedResources, failedResources, completedResources in
+                        print("---------------------")
                         print("COMPLETED: \(completedResources.count)")
                         print("FAILED: \(failedResources.count)")
                         print("SKIPPED: \(skippedResources.count)")
                     }
                     prefetcher.start()
-
-                    self?.posts = result.posts
+                    self?.communities = result.communities
                     self?.isLoaded = true
+                    
 
                 case let .failure(error):
                     print("ERROR: \(error): \(error.errorDescription ?? "")")
                 }
             }
     }
+
+//    func downloadImages(imageUrlsList: [String]) {
+//        let urls = imageUrlsList.compactMap { URL(string: $0) }
+//
+//        let destination = DownloadRequest.suggestedDownloadDestination(for: .cachesDirectory)
+//        for imageURL in urls {
+//            AF.download(imageURL, to: destination)
+//                .downloadProgress { progress in
+//                    print("Download Progress: \(progress.isFinished)")
+//                }
+//                .responseURL { _ in
+//                }
+//        }
+//    }
 }

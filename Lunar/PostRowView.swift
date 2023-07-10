@@ -1,5 +1,5 @@
 //
-//  CommunityRowView.swift
+//  PostRowView.swift
 //  Lunar
 //
 //  Created by Mani on 04/07/2023.
@@ -13,9 +13,6 @@ struct PostRowView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            InPostCommunityHeaderView(community: post.community)
-                .padding(.vertical, 3)
-
             Text(post.post.name)
                 .font(.headline)
                 .multilineTextAlignment(.leading)
@@ -27,14 +24,21 @@ struct PostRowView: View {
                 EmptyView()
             }
 
-            HStack(spacing: 2) {
-                InPostUserView(bodyText: post.creator.name, iconName: "person.crop.square.fill", userAvatar: post.creator.avatar)
-                Spacer(minLength: 20)
-                InPostMetadataView(bodyText: String(post.counts.upvotes), iconName: "arrow.up.square.fill", iconColor: Color.green)
-                InPostMetadataView(bodyText: String(post.counts.downvotes), iconName: "arrow.down.square.fill", iconColor: Color.red)
-                InPostMetadataView(bodyText: String(post.counts.comments), iconName: "text.bubble.fill", iconColor: Color.gray)
+            VStack(alignment: .leading) {
+                
+                InPostCommunityHeaderView(community: post.community)
             }
-            .padding(.vertical, 3)
+            .padding(.vertical, 1)
+
+            HStack(spacing: 6) {
+                InPostUserView(bodyText: post.creator.name, iconName: "person.crop", userAvatar: post.creator.avatar)
+                Spacer(minLength: 20)
+                InPostMetadataView(bodyText: String(post.counts.upvotes), iconName: "arrow.up", iconColor: Color.green)
+                InPostMetadataView(bodyText: String(post.counts.downvotes), iconName: "arrow.down", iconColor: Color.red)
+                InPostMetadataView(bodyText: String(post.counts.comments), iconName: "text.bubble", iconColor: Color.gray)
+            }
+        }.task {
+            //perform task
         }
     }
 }
@@ -43,25 +47,24 @@ struct InPostCommunityHeaderView: View {
     var community: Community
     var body: some View {
         HStack(spacing: 0, content: {
-            KFImage(URL(string: community.icon ?? ""))
-                .placeholder { Image(systemName: "books.vertical.circle.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 20, height: 20)
-                    .symbolRenderingMode(.hierarchical)
-                    .foregroundColor(.gray)
-                }
-                .resizable()
-                .frame(width: 20, height: 20)
-                .clipShape(Circle())
-                .scaledToFit()
+//            KFImage(URL(string: community.icon ?? ""))
+//                .placeholder { Image(systemName: "books.vertical.circle.fill")
+//                    .resizable()
+//                    .scaledToFit()
+//                    .frame(width: 20, height: 20)
+//                    .symbolRenderingMode(.hierarchical)
+//                    .foregroundColor(.gray)
+//                }
+//                .resizable()
+//                .frame(width: 20, height: 20)
+//                .clipShape(Circle())
+//                .scaledToFit()
 
-            HStack(alignment: .lastTextBaseline, spacing: 2) {
+            HStack(alignment: .lastTextBaseline, spacing: 1) {
                 Text(String(community.name))
-                    .padding(.leading, 7)
                 Text(String("@\(URLParser.extractDomain(from: community.actorID))"))
-                    .foregroundStyle(.gray)
-            }
+                    .foregroundStyle(.gray).opacity(0.8)
+            }.lineLimit(1)
             .font(.subheadline)
 
         })
@@ -69,14 +72,23 @@ struct InPostCommunityHeaderView: View {
 }
 
 struct InPostThumbnailView: View {
+    let processor = DownsamplingImageProcessor(size: CGSize(width: 500, height: 500))
+    |> RoundCornerImageProcessor(cornerRadius: 5)
+    
     var thumbnailURL: String
     var body: some View {
         KFImage(URL(string: thumbnailURL))
+            .setProcessor(processor)
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(alignment: .center)
-            .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
             .padding(.bottom, 3)
+//            .overlay(Group {
+//                if !posts.isLoaded {
+//                    ProgressView("Fetching")
+//                        .frame(width: 100)
+//                }
+//            })
     }
 }
 
@@ -85,26 +97,27 @@ struct InPostUserView: View {
     var iconName: String
     var userAvatar: String?
     var body: some View {
-        HStack(alignment: .firstTextBaseline, spacing: 2) {
-            KFImage(URL(string: userAvatar ?? ""))
-                .placeholder { Image(systemName: "person.crop.square.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 15, height: 15)
-                    .symbolRenderingMode(.hierarchical)
-                    .foregroundColor(.gray)
-                }
-                .resizable()
-                .frame(width: 15, height: 15)
-                .clipShape(RoundedRectangle(cornerRadius: 2, style: .continuous))
-                .scaledToFit()
+        HStack(alignment: .center, spacing: 2) {
+//            KFImage(URL(string: userAvatar ?? ""))
+//                .placeholder { Image(systemName: "person.circle.fill")
+//                    .resizable()
+//                    .scaledToFit()
+//                    .frame(width: 20, height: 20)
+//                    .symbolRenderingMode(.hierarchical)
+//                    .foregroundColor(.gray)
+//                }
+//                .resizable()
+//                .frame(width: 20, height: 20)
+//                .clipShape(Circle())
+//                .scaledToFit()
+
             Text(String(bodyText))
                 .foregroundColor(.gray)
                 .textCase(/*@START_MENU_TOKEN@*/ .uppercase/*@END_MENU_TOKEN@*/)
         }
 //        .font(.callout)
         .font(.subheadline)
-        .padding(.horizontal, 2)
+        .padding(.trailing, 2)
         .lineLimit(1)
     }
 }
@@ -114,7 +127,7 @@ struct InPostMetadataView: View {
     var iconName: String
     var iconColor: Color
     var body: some View {
-        HStack(alignment: .firstTextBaseline, spacing: 2) {
+        HStack(alignment: .firstTextBaseline, spacing: 1) {
             Image(systemName: iconName)
                 .symbolRenderingMode(.hierarchical)
                 .foregroundColor(iconColor)
@@ -195,7 +208,7 @@ struct PostRowView_Previews: PreviewProvider {
                     id: 316_097,
                     name: "eco",
                     displayName: nil,
-                    avatar: "https://lemmy.eco.br/pictrs/image/0fd624b1-4ba6-485a-b683-d308c93888f4.jpeg?format=webp",
+                    avatar: "",
                     banned: false,
                     published: "2023-06-21T17:02:57.364033Z",
                     actorID: "https://lemmy.world/u/eco",

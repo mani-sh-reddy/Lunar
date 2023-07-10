@@ -7,6 +7,7 @@
 
 import Kingfisher
 import SwiftUI
+import Alamofire
 
 struct CommunityInfoView: View {
     var community: CommunityObject
@@ -15,7 +16,11 @@ struct CommunityInfoView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack {
+                    
+                    let processor = DownsamplingImageProcessor(size: CGSize(width: 50, height: 50))
+                    
                     KFImage(URL(string: community.icon ?? ""))
+                        .setProcessor(processor)
                         .placeholder { Image("LunarLogo") }
                         .resizable()
                         .frame(width: geometry.size.width * 0.7, height: geometry.size.width * 0.7, alignment: .center)

@@ -8,20 +8,30 @@
 import SwiftUI
 
 struct FeedTypeRowView: View {
-    var feedType: String
-    var icon: String
-    var iconColor: Color
+    var props: [String: String]
+
+    // temporary workaround to get color of type Color from color of type String
+    var color: Color {
+        if props["iconColor"] == "green" { return Color.green }
+        else if props["iconColor"] == "cyan" { return Color.cyan }
+        else if props["iconColor"] == "pink" { return Color.pink }
+        else if props["iconColor"] == "yellow" { return Color.yellow }
+        else if props["iconColor"] == "red" { return Color.red }
+        else {
+            return Color.gray
+        }
+    }
 
     var body: some View {
         HStack {
-            Image(systemName: icon)
+            Image(systemName: props["icon"] ?? "newspaper.circle.fill")
                 .resizable()
-                .scaledToFit()
                 .frame(width: 30, height: 30)
                 .symbolRenderingMode(.hierarchical)
-                .foregroundColor(iconColor)
-            Spacer().frame(width: 15)
-            Text(feedType)
+                .foregroundStyle(color)
+                
+            Text(props["title"] ?? "Feed")
+                .padding(.horizontal, 10)
         }
     }
 }
