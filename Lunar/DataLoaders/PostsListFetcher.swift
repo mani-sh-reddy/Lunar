@@ -4,56 +4,79 @@
 //
 //  Created by Mani on 09/07/2023.
 //
-
 import Alamofire
+import Combine
 import Foundation
-import Kingfisher
-import SwiftUI
 
 class PostsListFetcher: ObservableObject {
-    @Published var posts: [PostElement] = []
-    @Published var imageURLs: [String] = []
-    @Published var isLoaded: Bool = false
+    @Published var items = [PostElement]()
+    @Published var isLoadingPage = false
 
-    func fetch(endpoint: String) {
-        guard let url = URL(string: endpoint) else {
+    private var currentPage = 1
+    private var canLoadMorePages = true
+
+    private var communityID: Int = 0
+    private var prop: [String: String] = [:]
+
+    init(communityID: Int, prop: [String: String]) {
+        self.communityID = communityID
+        self.prop = prop
+        loadMoreContent()
+    }
+
+    func loadMoreContentIfNeeded(currentItem item: PostElement?) {
+        guard let item = item else {
+            loadMoreContent()
             return
         }
-        AF.request(url)
-//        WILL BE USEFUL FOR IMAGES
-//            .downloadProgress { progress in
-//                // Update your progress indicator here
-//                let loadingProgress = progress.fractionCompleted * 100
-//                print("Download progress: \(loadingProgress)%")
-//                DispatchQueue.main.async {
-//                    if loadingProgress >= 100 {
-//
-//                    }
-//                }
-//            }
-            .responseDecodable(of: PostsModel.self) { [weak self] response in
-//            debugPrint("Response: \(response)")
-                switch response.result {
-                case let .success(result):
+        let thresholdIndex = items.index(items.endIndex, offsetBy: -3)
+        if items.firstIndex(where: { $0.post.id == item.post.id }) == thresholdIndex {
+            loadMoreContent()
+        }
+    }
 
-                    let imageURLStrings = result.avatarURLs + result.thumbnailURLs
+    private func loadMoreContent() {
+        guard !isLoadingPage && canLoadMorePages else {
+            return
+        }
 
-                    let imageURLs = imageURLStrings.compactMap { URL(string: $0) }
+        isLoadingPage = true
 
-                    let prefetcher = ImagePrefetcher(urls: imageURLs) {
-                        skippedResources, failedResources, completedResources in
-                        print("COMPLETED: \(completedResources.count)")
-                        print("FAILED: \(failedResources.count)")
-                        print("SKIPPED: \(skippedResources.count)")
-                    }
-                    prefetcher.start()
-
-                    self?.posts = result.posts
-                    self?.isLoaded = true
-
-                case let .failure(error):
-                    print("ERROR: \(error): \(error.errorDescription ?? "")")
-                }
+        let url = URL(string: buildEndpoint())!
+        URLSession.shared.dataTaskPublisher(for: url)
+            .map(\.data)
+            .decode(type: PostsModel.self, decoder: JSONDecoder())
+            .receive(on: DispatchQueue.main)
+            .handleEvents(receiveOutput: { _ in
+                self.isLoadingPage = false
+                self.currentPage += 1
+            })
+            .map { response in
+                self.items + response.posts
             }
+            .catch { _ in Just(self.items) }
+            .assign(to: &$items)
+    }
+
+    private func buildEndpoint() -> String {
+        let sortParameter = prop["sort"] ?? "Active"
+        let typeParameter = prop["type"] ?? "All"
+
+        let baseURL = "https://lemmy.world/api/v3/post/list"
+        let sortQuery = "sort=\(sortParameter)"
+        let limitQuery = "limit=5"
+        let pageQuery = "page=\(currentPage)"
+
+        var prefixQuery = ""
+
+        if communityID == 0 {
+            prefixQuery = "type_=\(typeParameter)"
+        } else {
+            prefixQuery = "community_id=\(communityID)"
+        }
+
+        let endpoint = "\(baseURL)?\(sortQuery)&\(limitQuery)&\(pageQuery)&\(prefixQuery)"
+        print("ENDPOINT: \(endpoint)")
+        return endpoint
     }
 }

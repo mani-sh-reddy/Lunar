@@ -25,14 +25,12 @@ struct HomeView: View {
                                 Text("Loading Trending Communities").opacity(0.5).padding(.horizontal, 3)
                             }
                         }
-
                     } else {
                         Section(header: Text("Trending")) {
                             ForEach(communities.communities, id: \.community.id) { community in
                                 NavigationLink(
                                     destination: {
-                                        //                                CommunityInfoView(community: community.community)
-                                        PostsListView(communityId: community.community.id, communityHeading: community.community.name)
+                                        PostsListView(items: PostsListFetcher(communityID: community.community.id, prop: [:]), prop: [:], communityID: community.community.id, communityHeading: community.community.title)
                                     }, label: {
                                         CommunityRowView(community: community)
                                     })
@@ -46,12 +44,6 @@ struct HomeView: View {
                 let endpoint = "https://lemmy.world/api/v3/community/list?sort=New&limit=50"
                 communities.fetch(endpoint: endpoint)
             }
-//            .overlay(Group {
-//                if !communities.isLoaded {
-//                    ProgressView("Fetching")
-//                        .frame(width: 100)
-//                }
-//            })
             .onAppear {
                 guard !hasAppearedOnce else { return }
                 hasAppearedOnce = true
@@ -75,37 +67,28 @@ struct groupedCommunitiesSection: View {
         ["title": "Top", "type": "All", "sort": "TopWeek", "icon": "chart.line.uptrend.xyaxis.circle.fill", "iconColor": "pink"],
         ["title": "New", "type": "All", "sort": "New", "icon": "star.circle.fill", "iconColor": "yellow"],
     ]
+    let communityID = 0
 
     var body: some View {
         Section(header: Text("Feed")) {
-            ForEach(props, id: \.self) { feed in
+            ForEach(props, id: \.self) { prop in
                 NavigationLink(
                     destination: {
-                        PostsListView(props: feed)
+                        PostsListView(items: PostsListFetcher(communityID: communityID, prop: prop), prop: prop, communityID: communityID)
                     }, label: {
-                        FeedTypeRowView(props: feed)
+                        FeedTypeRowView(props: prop)
                     })
             }
         }
     }
 }
 
-// struct trendingCommunitiesSection: View {
-//    var communities: [CommunitiesElement]
-//
-//    var body: some View {
-//
-//    }
-// }
-
 struct subscribedCommunitiesSection: View {
-    let notSubscribedProps = ["title": "Login to view subscriptions", "icon": "exclamationmark.circle.fill", "iconColor": "red"]
-
     var body: some View {
         Section(header: Text("Subscribed")) {
-            FeedTypeRowView(props: notSubscribedProps)
+            Text("Login to view subscriptions")
+                .foregroundColor(.blue)
+//                .padding()
         }
-
-        .navigationTitle("Communities")
     }
 }

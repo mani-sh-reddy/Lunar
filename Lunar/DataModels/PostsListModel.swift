@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: - Welcome
 
@@ -23,6 +24,8 @@ struct PostsModel: Codable {
 // MARK: - PostElement
 
 struct PostElement: Codable {
+    
+    var image: UIImage?
     let post: PostObject
     let creator: Creator
     let community: Community
