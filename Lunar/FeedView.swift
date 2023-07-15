@@ -48,7 +48,7 @@ struct GeneralCommunitiesView: View {
             ForEach(props, id: \.self) { prop in
                 NavigationLink(
                     destination: {
-                        PostsListView(postFetcher: PostFetcher(communityID: communityID, prop: prop), prop: prop, communityID: communityID)
+                        PostsListView(postFetcher: PostFetcher(communityID: communityID, prop: prop), prop: prop, communityID: communityID, title: prop["title"] ?? "")
                     }, label: {
                         FeedTypeRowView(props: prop)
                     }
@@ -82,9 +82,10 @@ struct TrendingCommunitiesView: View {
     var body: some View {
         Section(header: Text("Trending")) {
             ForEach(singleCommunityFetcher.communities, id: \.community.id) { community in
-                NavigationLink(destination:
-                    PostsListView(postFetcher: PostFetcher(communityID: community.community.id, prop: [:]), prop: [:], communityID: community.community.id, communityHeading: community.community.title)
-                ) {
+               
+                NavigationLink {
+                    PostsListView(postFetcher: PostFetcher(communityID: community.community.id, prop: [:]), prop: [:], communityID: community.community.id, title: community.community.title)
+                } label: {
                     CommunityRowView(community: community)
                 }
                 .accentColor(Color.primary)
@@ -94,7 +95,7 @@ struct TrendingCommunitiesView: View {
             }
 
             NavigationLink(destination:
-                            MoreCommunitiesView(communityFetcher: communityFetcher).animation(.interactiveSpring, value: 10)
+                            MoreCommunitiesView(communityFetcher: communityFetcher, title: "New Communities").animation(.interactiveSpring, value: 10)
             ) {
                 HStack {
                     Image(systemName: "ellipsis.circle.fill")

@@ -12,11 +12,13 @@ struct PostsListView: View {
     @StateObject var postFetcher: PostFetcher
     var prop: [String: String]?
     @State var communityID: Int
-    var communityHeading: String = "Feed"
+    var title:String
 
     var body: some View {
         ScrollViewReader { _ in
+            
             List {
+                
                 ForEach(postFetcher.posts, id: \.post.id) { post in
                     ZStack {
                         PostRowView(post: post)

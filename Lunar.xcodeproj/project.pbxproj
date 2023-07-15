@@ -13,7 +13,6 @@
 		3C4F0A042A54399F009DF8AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0A032A54399F009DF8AB /* Assets.xcassets */; };
 		3C4F0A072A54399F009DF8AB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0A062A54399F009DF8AB /* Preview Assets.xcassets */; };
 		3C522F3B2A63241900129CAC /* SingleCommunityFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C522F3A2A63241900129CAC /* SingleCommunityFetcher.swift */; };
-		3C522F3D2A632B4800129CAC /* PullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C522F3C2A632B4800129CAC /* PullToRefresh.swift */; };
 		3C5C77F12A5863980008B81B /* ExamplePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5C77F02A5863980008B81B /* ExamplePost.swift */; };
 		3C6588592A6169EB00A46DA3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6588582A6169EB00A46DA3 /* SettingsView.swift */; };
 		3C65885D2A6189AF00A46DA3 /* CommentFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C65885C2A6189AF00A46DA3 /* CommentFetcher.swift */; };
@@ -44,7 +43,6 @@
 		3C4F0A032A54399F009DF8AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C4F0A062A54399F009DF8AB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3C522F3A2A63241900129CAC /* SingleCommunityFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleCommunityFetcher.swift; sourceTree = "<group>"; };
-		3C522F3C2A632B4800129CAC /* PullToRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefresh.swift; sourceTree = "<group>"; };
 		3C5C77F02A5863980008B81B /* ExamplePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplePost.swift; sourceTree = "<group>"; };
 		3C6588582A6169EB00A46DA3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3C65885C2A6189AF00A46DA3 /* CommentFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentFetcher.swift; sourceTree = "<group>"; };
@@ -108,7 +106,6 @@
 				3CB8D2672A55F45900EE615A /* FeedView.swift */,
 				3C65885E2A621C6100A46DA3 /* MoreCommunitiesView.swift */,
 				3CA5C40D2A57525500BF8F1B /* PostsListView.swift */,
-				3C522F3C2A632B4800129CAC /* PullToRefresh.swift */,
 				3CA92E422A549A7F00688DEB /* CommunityRowView.swift */,
 				3CBCCDF52A589F2C00307AC1 /* CommentsView.swift */,
 				3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */,
@@ -243,7 +240,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C4B7DD82A58A741003C8192 /* CommentModel.swift in Sources */,
-				3C522F3D2A632B4800129CAC /* PullToRefresh.swift in Sources */,
 				3CA5C4102A5753AC00BF8F1B /* PostRowView.swift in Sources */,
 				3CA5C40A2A574FF500BF8F1B /* PostsListModel.swift in Sources */,
 				3CA5C40E2A57525500BF8F1B /* PostsListView.swift in Sources */,

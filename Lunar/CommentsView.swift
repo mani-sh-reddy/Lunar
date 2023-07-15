@@ -18,7 +18,7 @@ struct CommentsView: View {
         ScrollViewReader { _ in
             VStack {
                 List {
-                    Text(postTitle).font(.title2).bold()
+                    Text(postTitle).font(.title).bold()
 
                     if thumbnailURL == "" {
                         EmptyView()
