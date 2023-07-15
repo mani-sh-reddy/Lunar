@@ -37,11 +37,14 @@ struct CommentsView: View {
                         ProgressView()
                     }
                 }
+                .refreshable {
+                    await commentFetcher.refreshContent()
+                }
                 .listStyle(.plain)
             }
             .navigationBarTitle("", displayMode: .inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) { Image(systemName: "globe.americas.fill") }
+                ToolbarItem(placement: .navigationBarTrailing) { Image(systemName: "chart.line.uptrend.xyaxis") }
             }
         }
     }

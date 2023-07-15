@@ -10,7 +10,7 @@ import Foundation
 import Kingfisher
 import SwiftUI
 
-class CommunityFetcher: ObservableObject {
+@MainActor class CommunityFetcher: ObservableObject {
     @Published var communities = [CommunityElement]()
     @Published var isLoading = false
 
@@ -23,6 +23,18 @@ class CommunityFetcher: ObservableObject {
         self.sortParameter = sortParameter
         self.limitParameter = limitParameter
         loadMoreContent()
+    }
+
+    func refreshContent() async {
+        do {
+            try await Task.sleep(nanoseconds: 2_000_000_000)
+            communities = []
+            currentPage = 1
+            loadMoreContent()
+
+        } catch {
+            // TODO: do some error handling
+        }
     }
 
     func loadMoreContentIfNeeded(currentItem community: CommunityElement?) {

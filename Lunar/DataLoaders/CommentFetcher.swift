@@ -10,7 +10,7 @@ import Combine
 import Foundation
 import Kingfisher
 
-class CommentFetcher: ObservableObject {
+@MainActor class CommentFetcher: ObservableObject {
     @Published var comments = [CommentElement]()
     @Published var isLoading = false
 
@@ -20,6 +20,18 @@ class CommentFetcher: ObservableObject {
     init(postID: Int) {
         self.postID = postID
         loadMoreContent()
+    }
+    
+    func refreshContent() async {
+      do {
+          try await Task.sleep(nanoseconds: 2_000_000_000)
+          self.comments = []
+          self.currentPage = 1
+          loadMoreContent()
+          
+      } catch {
+        // TODO: do some error handling
+      }
     }
 
     func loadMoreContentIfNeeded(currentItem comment: CommentElement?) {

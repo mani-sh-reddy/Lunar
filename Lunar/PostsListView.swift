@@ -12,13 +12,12 @@ struct PostsListView: View {
     @StateObject var postFetcher: PostFetcher
     var prop: [String: String]?
     @State var communityID: Int
-    var title:String
+    var title: String
 
     var body: some View {
         ScrollViewReader { _ in
-            
+
             List {
-                
                 ForEach(postFetcher.posts, id: \.post.id) { post in
                     ZStack {
                         PostRowView(post: post)
@@ -36,13 +35,12 @@ struct PostsListView: View {
                 if postFetcher.isLoading {
                     ProgressView()
                 }
-
             }
-//            .refreshable {
-//                await postFetcher.refreshContent()
-//            }
+            .refreshable {
+                await postFetcher.refreshContent()
+            }
             .listStyle(.plain)
-            .navigationTitle(prop?["title"] ?? communityHeading)
+            .navigationBarTitle(title, displayMode: .inline)
         }
     }
 }
@@ -50,6 +48,6 @@ struct PostsListView: View {
 struct PostsListView_Previews: PreviewProvider {
     static var previews: some View {
         let postFetcher = PostFetcher(communityID: 0, prop: [:])
-        PostsListView(postFetcher: postFetcher, prop: [:], communityID: 0)
+        PostsListView(postFetcher: postFetcher, prop: [:], communityID: 0, title: "All")
     }
 }

@@ -10,7 +10,7 @@ import Combine
 import Foundation
 import Kingfisher
 
-class PostFetcher: ObservableObject {
+@MainActor class PostFetcher: ObservableObject {
     @Published var posts = [PostElement]()
     @Published var isLoading = false
 
@@ -26,9 +26,15 @@ class PostFetcher: ObservableObject {
     }
 
     func refreshContent() async {
-        posts = []
-        currentPage = 1
-        loadMoreContent()
+        do {
+            try await Task.sleep(nanoseconds: 2_000_000_000)
+            posts = []
+            currentPage = 1
+            loadMoreContent()
+
+        } catch {
+            // TODO: do some error handling
+        }
     }
 
     func loadMoreContentIfNeeded(currentItem item: PostElement?) {

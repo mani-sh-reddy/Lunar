@@ -82,7 +82,7 @@ struct TrendingCommunitiesView: View {
     var body: some View {
         Section(header: Text("Trending")) {
             ForEach(singleCommunityFetcher.communities, id: \.community.id) { community in
-               
+
                 NavigationLink {
                     PostsListView(postFetcher: PostFetcher(communityID: community.community.id, prop: [:]), prop: [:], communityID: community.community.id, title: community.community.title)
                 } label: {
@@ -95,16 +95,16 @@ struct TrendingCommunitiesView: View {
             }
 
             NavigationLink(destination:
-                            MoreCommunitiesView(communityFetcher: communityFetcher, title: "New Communities").animation(.interactiveSpring, value: 10)
+                MoreCommunitiesView(communityFetcher: communityFetcher, title: "Explore Communities").animation(.interactiveSpring, value: 10)
             ) {
                 HStack {
-                    Image(systemName: "ellipsis.circle.fill")
+                    Image(systemName: "sailboat.circle.fill")
                         .resizable()
                         .frame(width: 30, height: 30)
                         .symbolRenderingMode(.hierarchical)
                         .foregroundColor(.blue)
 
-                    Text("View More")
+                    Text("Explore Communities")
                         .padding(.horizontal, 10)
                         .foregroundColor(.blue)
                 }
