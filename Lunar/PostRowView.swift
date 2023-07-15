@@ -25,7 +25,6 @@ struct PostRowView: View {
             }
 
             VStack(alignment: .leading) {
-                
                 InPostCommunityHeaderView(community: post.community)
             }
             .padding(.vertical, 1)
@@ -38,7 +37,7 @@ struct PostRowView: View {
                 InPostMetadataView(bodyText: String(post.counts.comments), iconName: "text.bubble", iconColor: Color.gray)
             }
         }.task {
-            //perform task
+            // perform task
         }
     }
 }
@@ -65,30 +64,40 @@ struct InPostCommunityHeaderView: View {
                 Text(String("@\(URLParser.extractDomain(from: community.actorID))"))
                     .foregroundStyle(.gray).opacity(0.8)
             }.lineLimit(1)
-            .font(.subheadline)
+                .font(.subheadline)
 
         })
     }
 }
 
 struct InPostThumbnailView: View {
-    let processor = DownsamplingImageProcessor(size: CGSize(width: 500, height: 500))
-    |> RoundCornerImageProcessor(cornerRadius: 5)
+    @State private var isLoading = true
     
+    let processor = DownsamplingImageProcessor(size: CGSize(width: 1000, height: 1000))
+//    |> RoundCornerImageProcessor(cornerRadius: 10)
+
     var thumbnailURL: String
     var body: some View {
         KFImage(URL(string: thumbnailURL))
+            .onProgress { receivedSize, totalSize in
+                            // Track the progress here and perform actions if needed
+                            // For example, you can update a progress value or show/hide a loading indicator
+                            if receivedSize < totalSize {
+                                isLoading = true
+                            } else {
+                                isLoading = false
+                            }
+                        }
+            .retry(maxCount: 3, interval: .seconds(5))
+            .cacheOriginalImage()
             .setProcessor(processor)
             .resizable()
+            .startLoadingBeforeViewAppear().cancelOnDisappear(true).fade(duration: 0.1)
+            .progressViewStyle(.circular)
             .aspectRatio(contentMode: .fit)
             .frame(alignment: .center)
+            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
             .padding(.bottom, 3)
-//            .overlay(Group {
-//                if !posts.isLoaded {
-//                    ProgressView("Fetching")
-//                        .frame(width: 100)
-//                }
-//            })
     }
 }
 
@@ -183,10 +192,10 @@ struct PostRowView_Previews: PreviewProvider {
         let post =
             PostElement(
                 post: PostObject(
-                    id: 1_161_347,
+                    id: 1161347,
                     name: "This is an example title used while creating the post row view in xcode",
                     url: "https://lemmy.world/pictrs/image/7ae620b7-203e-43f3-b43f-030ad3beb629.png",
-                    creatorID: 316_097,
+                    creatorID: 316097,
                     communityID: 22036,
                     removed: false,
                     locked: false,
@@ -205,7 +214,7 @@ struct PostRowView_Previews: PreviewProvider {
                     embedVideoURL: nil
                 ),
                 creator: Creator(
-                    id: 316_097,
+                    id: 316097,
                     name: "eco",
                     displayName: nil,
                     avatar: "",
@@ -241,8 +250,8 @@ struct PostRowView_Previews: PreviewProvider {
                 ),
                 creatorBannedFromCommunity: false,
                 counts: Counts(
-                    id: 254_871,
-                    postID: 1_161_347,
+                    id: 254871,
+                    postID: 1161347,
                     comments: 189,
                     score: 2180,
                     upvotes: 2188,

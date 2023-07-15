@@ -9,40 +9,35 @@ import Kingfisher
 import SwiftUI
 
 struct PostsListView: View {
-    @StateObject var items: PostsListFetcher
+    @StateObject var postFetcher: PostFetcher
     var prop: [String: String]?
     @State var communityID: Int
     var communityHeading: String = "Feed"
-    @State private var hasAppearedOnce = false
 
     var body: some View {
-        ScrollViewReader { value in
+        ScrollViewReader { _ in
             List {
-                ForEach(items.items, id: \.post.id) { post in
-
-                    // MARK: - navigationview hide arrow workaround
-
+                /// workaround to fix non unique post IDs
+                ForEach(Array(postFetcher.posts.enumerated()), id: \.element.post.id) { index, post in
                     ZStack {
                         PostRowView(post: post)
-                        NavigationLink(destination: CommentsListView(postId: post.post.id, postTitle: post.post.name)) {
+                        NavigationLink(destination:
+                                        CommentsView(commentFetcher: CommentFetcher(postID: post.post.id), postID: post.post.id, postTitle: post.post.name, thumbnailURL: post.post.thumbnailURL ?? "")
+                        ) {
                             EmptyView()
                         }.opacity(0)
                     }
-
-                    // MARK: -
-
-//                    NavigationLink(destination: CommentsListView(postId: post.post.id, postTitle: post.post.name)) {
-//                        PostRowView(post: post)
-//                    }
-                    .onAppear {
-                        items.loadMoreContentIfNeeded(currentItem: post)
+                    .onAppear{
+                        postFetcher.loadMoreContentIfNeeded(currentItem: post)
                     }
                     .accentColor(Color.primary)
                 }
-
-                if items.isLoadingPage {
+                if postFetcher.isLoading {
                     ProgressView()
                 }
+                    
+            }.refreshable{
+                postFetcher.refreshContent()
             }
             .listStyle(.plain)
             .navigationTitle(prop?["title"] ?? communityHeading)
@@ -52,7 +47,7 @@ struct PostsListView: View {
 
 struct PostsListView_Previews: PreviewProvider {
     static var previews: some View {
-        let items = PostsListFetcher(communityID: 0, prop: [:])
-        PostsListView(items: items, prop: [:], communityID: 0)
+        let postFetcher = PostFetcher(communityID: 0, prop: [:])
+        PostsListView(postFetcher: postFetcher, prop: [:], communityID: 0)
     }
 }

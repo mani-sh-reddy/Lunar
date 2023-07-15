@@ -4,16 +4,17 @@
 //
 //  Created by Mani on 09/07/2023.
 //
+
 import Alamofire
 import Combine
 import Foundation
+import Kingfisher
 
-class PostsListFetcher: ObservableObject {
-    @Published var items = [PostElement]()
-    @Published var isLoadingPage = false
+class PostFetcher: ObservableObject {
+    @Published var posts = [PostElement]()
+    @Published var isLoading = false
 
     private var currentPage = 1
-    private var canLoadMorePages = true
 
     private var communityID: Int = 0
     private var prop: [String: String] = [:]
@@ -23,39 +24,53 @@ class PostsListFetcher: ObservableObject {
         self.prop = prop
         loadMoreContent()
     }
+    
+    func refreshContent(){
+        self.posts = []
+        self.currentPage = 1
+        loadMoreContent()
+    }
 
     func loadMoreContentIfNeeded(currentItem item: PostElement?) {
         guard let item = item else {
             loadMoreContent()
             return
         }
-        let thresholdIndex = items.index(items.endIndex, offsetBy: -3)
-        if items.firstIndex(where: { $0.post.id == item.post.id }) == thresholdIndex {
+        let thresholdIndex = posts.index(posts.endIndex, offsetBy: -3)
+        if posts.firstIndex(where: { $0.post.id == item.post.id }) == thresholdIndex {
             loadMoreContent()
         }
     }
 
     private func loadMoreContent() {
-        guard !isLoadingPage && canLoadMorePages else {
-            return
-        }
+        guard !isLoading else { return }
 
-        isLoadingPage = true
+        isLoading = true
 
         let url = URL(string: buildEndpoint())!
-        URLSession.shared.dataTaskPublisher(for: url)
-            .map(\.data)
-            .decode(type: PostsModel.self, decoder: JSONDecoder())
-            .receive(on: DispatchQueue.main)
-            .handleEvents(receiveOutput: { _ in
-                self.isLoadingPage = false
+        let cacher = ResponseCacher(behavior: .cache)
+
+        AF.request(url) { urlRequest in
+            urlRequest.cachePolicy = .returnCacheDataElseLoad
+        }
+        .cacheResponse(using: cacher)
+        .validate(statusCode: 200 ..< 300)
+        .responseDecodable(of: PostsModel.self) { response in
+            switch response.result {
+            case let .success(result):
+                self.posts += result.posts
+                self.isLoading = false
                 self.currentPage += 1
-            })
-            .map { response in
-                self.items + response.posts
+
+                let cachableImageURLs = result.thumbnailURLs.compactMap { URL(string: $0) }
+                    + result.avatarURLs.compactMap { URL(string: $0) }
+                let prefetcher = ImagePrefetcher(urls: cachableImageURLs) { _, _, _ in }
+                prefetcher.start()
+
+            case let .failure(error):
+                print("ERROR: \(error): \(error.errorDescription ?? "")")
             }
-            .catch { _ in Just(self.items) }
-            .assign(to: &$items)
+        }
     }
 
     private func buildEndpoint() -> String {

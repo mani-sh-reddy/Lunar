@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var lemmyInstance: String = "lemmy.world"
+    @State private var tabSelection = 0
+    
     var body: some View {
-        TabView {
-            HomeView()
+        TabView (selection: $tabSelection){
+            FeedView(lemmyInstance: $lemmyInstance)
                 .badge(0)
                 .tabItem {
                     Label("Feed", systemImage: "list.bullet.rectangle")
@@ -27,7 +30,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
                 }
-            PlaceholderView()
+            SettingsView(lemmyInstance: $lemmyInstance)
                 .tabItem {
                     Label("Settings", systemImage: "gearshape.fill")
                 }

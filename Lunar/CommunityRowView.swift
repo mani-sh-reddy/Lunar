@@ -9,7 +9,7 @@ import Kingfisher
 import SwiftUI
 
 struct CommunityRowView: View {
-    var community: CommunitiesElement
+    var community: CommunityElement
 
     var body: some View {
         HStack {

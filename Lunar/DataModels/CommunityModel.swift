@@ -10,7 +10,7 @@ import Foundation
 // MARK: - Welcome
 
 struct CommunityModel: Codable {
-    let communities: [CommunitiesElement]
+    let communities: [CommunityElement]
     var iconURLs: [String] {
         communities.compactMap(\.community.icon)
     }
@@ -18,7 +18,7 @@ struct CommunityModel: Codable {
 
 // MARK: - CommunityElement
 
-struct CommunitiesElement: Codable {
+struct CommunityElement: Codable {
     let community: CommunityObject
     let subscribed: SubscribedObject
     let blocked: Bool

@@ -11,7 +11,7 @@ import SwiftUI
 
 // MARK: - Welcome
 
-struct CommentsListModel: Codable {
+struct CommentModel: Codable {
     let comments: [CommentElement]
 }
 
