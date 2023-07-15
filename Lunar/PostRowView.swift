@@ -17,17 +17,17 @@ struct PostRowView: View {
                 .font(.headline)
                 .multilineTextAlignment(.leading)
 
+            VStack(alignment: .leading) {
+                InPostCommunityHeaderView(community: post.community)
+            }
+            .padding(.vertical, 1)
+
             if let thumbnailURL = post.post.thumbnailURL { InPostThumbnailView(thumbnailURL: thumbnailURL)
             } else if let url = post.post.url, url.isValidExternalImageURL() {
                 InPostThumbnailView(thumbnailURL: url)
             } else {
                 EmptyView()
             }
-
-            VStack(alignment: .leading) {
-                InPostCommunityHeaderView(community: post.community)
-            }
-            .padding(.vertical, 1)
 
             HStack(spacing: 6) {
                 InPostUserView(bodyText: post.creator.name, iconName: "person.crop", userAvatar: post.creator.avatar)
@@ -36,8 +36,6 @@ struct PostRowView: View {
                 InPostMetadataView(bodyText: String(post.counts.downvotes), iconName: "arrow.down", iconColor: Color.red)
                 InPostMetadataView(bodyText: String(post.counts.comments), iconName: "text.bubble", iconColor: Color.gray)
             }
-        }.task {
-            // perform task
         }
     }
 }
@@ -72,7 +70,7 @@ struct InPostCommunityHeaderView: View {
 
 struct InPostThumbnailView: View {
     @State private var isLoading = true
-    
+
     let processor = DownsamplingImageProcessor(size: CGSize(width: 1000, height: 1000))
 //    |> RoundCornerImageProcessor(cornerRadius: 10)
 
@@ -80,14 +78,14 @@ struct InPostThumbnailView: View {
     var body: some View {
         KFImage(URL(string: thumbnailURL))
             .onProgress { receivedSize, totalSize in
-                            // Track the progress here and perform actions if needed
-                            // For example, you can update a progress value or show/hide a loading indicator
-                            if receivedSize < totalSize {
-                                isLoading = true
-                            } else {
-                                isLoading = false
-                            }
-                        }
+                // Track the progress here and perform actions if needed
+                // For example, you can update a progress value or show/hide a loading indicator
+                if receivedSize < totalSize {
+                    isLoading = true
+                } else {
+                    isLoading = false
+                }
+            }
             .retry(maxCount: 3, interval: .seconds(5))
             .cacheOriginalImage()
             .setProcessor(processor)

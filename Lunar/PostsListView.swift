@@ -17,17 +17,16 @@ struct PostsListView: View {
     var body: some View {
         ScrollViewReader { _ in
             List {
-                /// workaround to fix non unique post IDs
-                ForEach(Array(postFetcher.posts.enumerated()), id: \.element.post.id) { index, post in
+                ForEach(postFetcher.posts, id: \.post.id) { post in
                     ZStack {
                         PostRowView(post: post)
                         NavigationLink(destination:
-                                        CommentsView(commentFetcher: CommentFetcher(postID: post.post.id), postID: post.post.id, postTitle: post.post.name, thumbnailURL: post.post.thumbnailURL ?? "")
+                            CommentsView(commentFetcher: CommentFetcher(postID: post.post.id), postID: post.post.id, postTitle: post.post.name, thumbnailURL: post.post.thumbnailURL ?? "")
                         ) {
-                            EmptyView()
+                            EmptyView().frame(height: 0)
                         }.opacity(0)
                     }
-                    .onAppear{
+                    .onAppear {
                         postFetcher.loadMoreContentIfNeeded(currentItem: post)
                     }
                     .accentColor(Color.primary)
@@ -35,10 +34,11 @@ struct PostsListView: View {
                 if postFetcher.isLoading {
                     ProgressView()
                 }
-                    
-            }.refreshable{
-                postFetcher.refreshContent()
+
             }
+//            .refreshable {
+//                await postFetcher.refreshContent()
+//            }
             .listStyle(.plain)
             .navigationTitle(prop?["title"] ?? communityHeading)
         }

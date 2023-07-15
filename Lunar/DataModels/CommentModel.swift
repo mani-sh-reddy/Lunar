@@ -15,15 +15,6 @@ struct CommentModel: Codable {
     let comments: [CommentElement]
 }
 
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseCommentElement { response in
-//     if let commentElement = response.result.value {
-//       ...
-//     }
-//   }
-
 // MARK: - CommentElement
 
 struct CommentElement: Codable {
@@ -43,15 +34,6 @@ struct CommentElement: Codable {
         case creatorBlocked = "creator_blocked"
     }
 }
-
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseCommentComment { response in
-//     if let commentComment = response.result.value {
-//       ...
-//     }
-//   }
 
 // MARK: - CommentComment
 
@@ -77,15 +59,6 @@ struct CommentsListObject: Codable {
         case languageID = "language_id"
     }
 }
-
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseCommunity { response in
-//     if let community = response.result.value {
-//       ...
-//     }
-//   }
 
 // MARK: - Community
 
@@ -156,15 +129,6 @@ struct CommentsListCounts: Codable {
     }
 }
 
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseCreator { response in
-//     if let creator = response.result.value {
-//       ...
-//     }
-//   }
-
 // MARK: - Creator
 
 struct CommentsListCreator: Codable {
@@ -190,15 +154,6 @@ struct CommentsListCreator: Codable {
         case avatar, banner, bio
     }
 }
-
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responsePost { response in
-//     if let post = response.result.value {
-//       ...
-//     }
-//   }
 
 // MARK: - Post
 

@@ -19,13 +19,10 @@ struct MoreCommunitiesView: View {
                     CommunityRowView(community: community)
                 }
                 .onAppear {
-                    communityFetcher.loadMoreContentIfNeeded(currentItem: community, loadInfinitely: true)
-
+                    communityFetcher.loadMoreContentIfNeeded(currentItem: community)
                 }
-                
-              
             }
-            
+
             .accentColor(Color.primary)
             if communityFetcher.isLoading {
                 ProgressView()
@@ -36,7 +33,7 @@ struct MoreCommunitiesView: View {
 
 struct MoreCommunitiesView_Previews: PreviewProvider {
     static var previews: some View {
-        let communityFetcher = CommunityFetcher(loadInfinitely: true, sortParameter: "New", limitParameter: "50")
+        let communityFetcher = CommunityFetcher(sortParameter: "New", limitParameter: "5")
         MoreCommunitiesView(communityFetcher: communityFetcher)
     }
 }

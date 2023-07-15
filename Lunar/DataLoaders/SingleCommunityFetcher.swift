@@ -1,5 +1,5 @@
 //
-//  CommunityFetcher.swift
+//  SingleCommunityFetcher.swift
 //  Lunar
 //
 //  Created by Mani on 09/07/2023.
@@ -10,33 +10,21 @@ import Foundation
 import Kingfisher
 import SwiftUI
 
-class CommunityFetcher: ObservableObject {
+class SingleCommunityFetcher: ObservableObject {
     @Published var communities = [CommunityElement]()
     @Published var isLoading = false
 
     private var currentPage = 1
     private var sortParameter: String
     private var limitParameter: String
-//    private var postID: Int = 0
 
     init(sortParameter: String, limitParameter: String) {
         self.sortParameter = sortParameter
         self.limitParameter = limitParameter
-        loadMoreContent()
+        loadContent()
     }
 
-    func loadMoreContentIfNeeded(currentItem community: CommunityElement?) {
-        guard let community = community else {
-            loadMoreContent()
-            return
-        }
-        let thresholdIndex = communities.index(communities.endIndex, offsetBy: -3)
-        if communities.firstIndex(where: { $0.community.id == community.community.id }) == thresholdIndex {
-            loadMoreContent()
-        }
-    }
-
-    private func loadMoreContent() {
+    private func loadContent() {
         guard !isLoading else { return }
 
         isLoading = true
@@ -52,7 +40,7 @@ class CommunityFetcher: ObservableObject {
         .responseDecodable(of: CommunityModel.self) { response in
             switch response.result {
             case let .success(result):
-                self.communities += result.communities
+                self.communities = result.communities
                 self.isLoading = false
                 self.currentPage += 1
 

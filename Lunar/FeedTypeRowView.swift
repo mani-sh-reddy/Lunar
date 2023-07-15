@@ -29,7 +29,7 @@ struct FeedTypeRowView: View {
                 .frame(width: 30, height: 30)
                 .symbolRenderingMode(.hierarchical)
                 .foregroundStyle(color)
-                
+
             Text(props["title"] ?? "Feed")
                 .padding(.horizontal, 10)
         }

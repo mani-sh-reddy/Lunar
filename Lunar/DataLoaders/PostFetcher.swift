@@ -1,5 +1,5 @@
 //
-//  PostsListFetcher.swift
+//  PostFetcher.swift
 //  Lunar
 //
 //  Created by Mani on 09/07/2023.
@@ -24,10 +24,10 @@ class PostFetcher: ObservableObject {
         self.prop = prop
         loadMoreContent()
     }
-    
-    func refreshContent(){
-        self.posts = []
-        self.currentPage = 1
+
+    func refreshContent() async {
+        posts = []
+        currentPage = 1
         loadMoreContent()
     }
 
