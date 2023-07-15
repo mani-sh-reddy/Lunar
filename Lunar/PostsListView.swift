@@ -22,7 +22,7 @@ struct PostsListView: View {
                     ZStack {
                         PostRowView(post: post)
                         NavigationLink(destination:
-                            CommentsView(commentFetcher: CommentFetcher(postID: post.post.id), postID: post.post.id, postTitle: post.post.name, thumbnailURL: post.post.thumbnailURL ?? "")
+                                        CommentsView(commentFetcher: CommentFetcher(postID: post.post.id), postID: post.post.id, postTitle: post.post.name, thumbnailURL: post.post.thumbnailURL ?? "", postBody: post.post.body ?? "")
                         ) {
                             EmptyView().frame(height: 0)
                         }.opacity(0)
