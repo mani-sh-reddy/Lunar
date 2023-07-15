@@ -20,13 +20,13 @@ struct CommentsView: View {
             VStack {
                 List {
                     Text(postTitle).font(.title).bold()
-
+                        .listRowSeparator(.hidden)
                     if thumbnailURL == "" {
                         EmptyView()
                     } else {
                         InPostThumbnailView(thumbnailURL: thumbnailURL)
+                            .listRowSeparator(.hidden)
                     }
-
                     if postBody == "" {
                         EmptyView()
                     } else {
