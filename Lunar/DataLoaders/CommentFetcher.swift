@@ -39,7 +39,7 @@ import Kingfisher
         let cacher = ResponseCacher(behavior: .cache)
 
         AF.request(url) { urlRequest in
-            urlRequest.cachePolicy = .returnCacheDataElseLoad
+            urlRequest.cachePolicy = .reloadRevalidatingCacheData
         }
         .cacheResponse(using: cacher)
         .validate(statusCode: 200 ..< 300)
