@@ -63,11 +63,11 @@ struct CommentsView: View {
 
 struct CommentsView_Previews: PreviewProvider {
     static var previews: some View {
-        let commentFetcher = CommentFetcher(postID: 1442451)
+        let commentFetcher = CommentFetcher(postID: 1_442_451)
 
         CommentsView(
             commentFetcher: commentFetcher,
-            postID: 1442451,
+            postID: 1_442_451,
             postTitle: "Lemmy.world active users is tapering off while other servers are gaining serious traction.",
             thumbnailURL: "https://www.wallpapers13.com/wp-content/uploads/2015/12/Nature-Lake-Bled.-Desktop-background-image-1680x1050.jpg",
             postBody: """

@@ -33,8 +33,8 @@ struct SettingsView: View {
                 .cornerRadius(50)
             }
             TextField(
-                    "instance",
-                    text: $lemmyInstance
+                "instance",
+                text: $lemmyInstance
             ).textFieldStyle(.roundedBorder)
         }
     }

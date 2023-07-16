@@ -190,10 +190,10 @@ struct PostRowView_Previews: PreviewProvider {
         let post =
             PostElement(
                 post: PostObject(
-                    id: 1161347,
+                    id: 1_161_347,
                     name: "This is an example title used while creating the post row view in xcode",
                     url: "https://lemmy.world/pictrs/image/7ae620b7-203e-43f3-b43f-030ad3beb629.png",
-                    creatorID: 316097,
+                    creatorID: 316_097,
                     communityID: 22036,
                     removed: false,
                     locked: false,
@@ -212,7 +212,7 @@ struct PostRowView_Previews: PreviewProvider {
                     embedVideoURL: nil
                 ),
                 creator: Creator(
-                    id: 316097,
+                    id: 316_097,
                     name: "eco",
                     displayName: nil,
                     avatar: "",
@@ -248,8 +248,8 @@ struct PostRowView_Previews: PreviewProvider {
                 ),
                 creatorBannedFromCommunity: false,
                 counts: Counts(
-                    id: 254871,
-                    postID: 1161347,
+                    id: 254_871,
+                    postID: 1_161_347,
                     comments: 189,
                     score: 2180,
                     upvotes: 2188,

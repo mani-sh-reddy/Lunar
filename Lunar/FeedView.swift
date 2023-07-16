@@ -97,8 +97,9 @@ struct TrendingCommunitiesView: View {
             NavigationLink(destination:
                 MoreCommunitiesView(
                     communityFetcher: CommunityFetcher(sortParameter: "New", limitParameter: "50"),
-                    title: "Explore Communities")
-                    .animation(.interactiveSpring, value: 10)
+                    title: "Explore Communities"
+                )
+                .animation(.interactiveSpring, value: 10)
             ) {
                 HStack {
                     Image(systemName: "sailboat.circle.fill")

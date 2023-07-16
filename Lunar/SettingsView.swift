@@ -35,9 +35,9 @@ struct SettingsView: View {
     func calculateCache() {
         ImageCache.default.calculateDiskStorageSize { result in
             switch result {
-            case .success(let size):
-                self.cacheSize = "\(Double(size) / 1024 / 1024) MB"
-            case .failure(let error):
+            case let .success(size):
+                cacheSize = "\(Double(size) / 1024 / 1024) MB"
+            case let .failure(error):
                 print(error)
             }
         }

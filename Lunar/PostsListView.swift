@@ -13,22 +13,20 @@ struct PostsListView: View {
     var prop: [String: String]?
     @State var communityID: Int
     var title: String
-    
 
     var body: some View {
         ScrollViewReader { _ in
-
             List {
                 ForEach(postFetcher.posts, id: \.post.id) { post in
                     ZStack {
                         PostRowView(post: post)
                         NavigationLink(destination:
-                                        CommentsView(commentFetcher: CommentFetcher(postID: post.post.id), postID: post.post.id, postTitle: post.post.name, thumbnailURL: post.post.thumbnailURL ?? "", postBody: post.post.body ?? "")
+                            CommentsView(commentFetcher: CommentFetcher(postID: post.post.id), postID: post.post.id, postTitle: post.post.name, thumbnailURL: post.post.thumbnailURL ?? "", postBody: post.post.body ?? "")
                         ) {
                             EmptyView().frame(height: 0)
                         }.opacity(0)
                     }
-                    .task {
+                    .onAppear {
                         postFetcher.loadMoreContentIfNeeded(currentItem: post)
                     }
                     .accentColor(Color.primary)

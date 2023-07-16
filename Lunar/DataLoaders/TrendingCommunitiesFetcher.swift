@@ -44,6 +44,8 @@ import SwiftUI
         let url = URL(string: buildEndpoint())!
         let cacher = ResponseCacher(behavior: .cache)
 
+        print("ENDPOINT: \(url)")
+
         AF.request(url) { urlRequest in
             urlRequest.cachePolicy = .returnCacheDataElseLoad
         }
@@ -75,7 +77,6 @@ import SwiftUI
         let pageQuery = "page=\(currentPage)"
 
         let endpoint = "\(baseURL)?\(sortQuery)&\(typeQuery)&\(limitQuery)&\(pageQuery)"
-        print("ENDPOINT: \(endpoint)")
         return endpoint
     }
 }

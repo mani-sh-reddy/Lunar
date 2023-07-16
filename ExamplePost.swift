@@ -1,8 +1,8 @@
 let post = PostObject(
-    id: 1138980,
+    id: 1_138_980,
     name: "The Internet is a wild place",
     url: "https://lemmy.world/pictrs/image/855afd36-47d0-4365-a364-0bfa691af59b.jpeg",
-    creatorID: 654617,
+    creatorID: 654_617,
     communityID: 13,
     removed: false,
     locked: false,
@@ -22,7 +22,7 @@ let post = PostObject(
 )
 
 let creator = Creator(
-    id: 654617, name: "Scarronline", displayName: "", avatar: "", banned: false, published: "2023-07-02T18:40:49.380602", actorID: "https://lemmy.world/u/Scarronline", bio: "", local: true, banner: "", deleted: false, admin: false, botAccount: false, instanceID: 1, updated: "", matrixUserID: ""
+    id: 654_617, name: "Scarronline", displayName: "", avatar: "", banned: false, published: "2023-07-02T18:40:49.380602", actorID: "https://lemmy.world/u/Scarronline", bio: "", local: true, banner: "", deleted: false, admin: false, botAccount: false, instanceID: 1, updated: "", matrixUserID: ""
 )
 
 let community = Community(
@@ -30,8 +30,8 @@ let community = Community(
 )
 
 let counts = Counts(
-    id: 249734,
-    postID: 1138329,
+    id: 249_734,
+    postID: 1_138_329,
     comments: 9,
     score: 106,
     upvotes: 106,
