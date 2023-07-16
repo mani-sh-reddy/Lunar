@@ -39,7 +39,7 @@ struct CommentsView: View {
 
                     ForEach(commentFetcher.comments, id: \.comment.id) { comment in
                         Text(String(comment.comment.content))
-                            .onAppear {
+                            .task {
                                 commentFetcher.loadMoreContentIfNeeded(currentItem: comment)
                             }
                             .accentColor(Color.primary)

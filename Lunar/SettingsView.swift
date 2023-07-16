@@ -21,7 +21,7 @@ struct SettingsView: View {
             Button("clear cache") {
                 clearCache()
             }
-        }.onAppear {
+        }.task {
             calculateCache()
         }
     }

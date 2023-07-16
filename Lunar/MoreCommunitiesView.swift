@@ -21,7 +21,7 @@ struct MoreCommunitiesView: View {
                     ) {
                         CommunityRowView(community: community)
                     }
-                    .onAppear {
+                    .task {
                         communityFetcher.loadMoreContentIfNeeded(currentItem: community)
                     }
                 }

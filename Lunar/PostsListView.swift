@@ -26,7 +26,7 @@ struct PostsListView: View {
                             EmptyView().frame(height: 0)
                         }.opacity(0)
                     }
-                    .onAppear {
+                    .task {
                         postFetcher.loadMoreContentIfNeeded(currentItem: post)
                     }
                     .accentColor(Color.primary)
