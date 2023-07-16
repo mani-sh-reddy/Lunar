@@ -35,9 +35,11 @@ import Kingfisher
         guard !isLoading else { return }
 
         isLoading = true
+        currentPage = 1
 
         let url = URL(string: buildEndpoint())!
         let cacher = ResponseCacher(behavior: .cache)
+
         print("ENDPOINT: \(url)")
 
         AF.request(url) { urlRequest in
@@ -67,7 +69,6 @@ import Kingfisher
                 print("new posts @published object: \(self.posts.count)")
 
                 self.isLoading = false
-//                self.currentPage += 1
 
                 let cachableImageURLs = result.thumbnailURLs.compactMap { URL(string: $0) }
                     + result.avatarURLs.compactMap { URL(string: $0) }
@@ -81,7 +82,7 @@ import Kingfisher
     }
 
     func loadMoreContentIfNeeded(currentItem item: PostElement?) {
-        guard let item = item else {
+        guard let item else {
             loadMoreContent()
             return
         }
@@ -99,6 +100,8 @@ import Kingfisher
         let url = URL(string: buildEndpoint())!
         let cacher = ResponseCacher(behavior: .cache)
 
+        print("ENDPOINT: \(url)")
+
         AF.request(url) { urlRequest in
             urlRequest.cachePolicy = .returnCacheDataElseLoad
         }
@@ -107,7 +110,6 @@ import Kingfisher
         .responseDecodable(of: PostsModel.self) { response in
             switch response.result {
             case let .success(result):
-                print("ENDPOINT: \(url)")
                 let newPosts = result.posts
 
                 // Filter out existing posts from new posts

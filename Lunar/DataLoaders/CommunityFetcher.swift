@@ -26,15 +26,17 @@ import SwiftUI
     }
 
     func refreshContent() async {
-        do{
+        do {
             try await Task.sleep(nanoseconds: 1_000_000_000)
-        } catch{
+        } catch {
             //
         }
-        
+
         guard !isLoading else { return }
 
         isLoading = true
+
+        currentPage = 1
 
         let url = URL(string: buildEndpoint())!
         let cacher = ResponseCacher(behavior: .cache)
@@ -48,21 +50,21 @@ import SwiftUI
             switch response.result {
             case let .success(result):
                 print("current communities @published object: \(self.communities.count)")
-               
+
                 let newCommunities = result.communities
-                
+
                 print("newCommunities: \(newCommunities.count)")
 
                 // Filter out existing posts from new posts
                 let filteredNewCommunities = newCommunities.filter { newCommunity in
                     !self.communities.contains { $0.community.id == newCommunity.community.id }
                 }
-                
+
                 print("filteredNewCommunities: \(filteredNewCommunities.count)")
 
                 // Prepend filtered new posts to the front of the list
                 self.communities.insert(contentsOf: filteredNewCommunities, at: 0)
-                
+
                 print("new communities @published object: \(self.communities.count)")
 
                 self.isLoading = false
@@ -78,7 +80,7 @@ import SwiftUI
     }
 
     func loadMoreContentIfNeeded(currentItem community: CommunityElement?) {
-        guard let community = community else {
+        guard let community else {
             loadMoreContent()
             return
         }
@@ -96,6 +98,8 @@ import SwiftUI
         let url = URL(string: buildEndpoint())!
         let cacher = ResponseCacher(behavior: .cache)
 
+        print("ENDPOINT: \(url)")
+
         AF.request(url) { urlRequest in
             urlRequest.cachePolicy = .returnCacheDataElseLoad
         }
@@ -104,8 +108,7 @@ import SwiftUI
         .responseDecodable(of: CommunityModel.self) { response in
             switch response.result {
             case let .success(result):
-                
-                
+
                 let newCommunities = result.communities
 
                 // Filter out existing posts from new posts
@@ -114,8 +117,7 @@ import SwiftUI
                 }
 
                 self.communities += filteredNewCommunities
-                
-                
+
                 self.isLoading = false
                 self.currentPage += 1
 
@@ -138,7 +140,6 @@ import SwiftUI
         let pageQuery = "page=\(currentPage)"
 
         let endpoint = "\(baseURL)?\(sortQuery)&\(typeQuery)&\(limitQuery)&\(pageQuery)"
-        print("ENDPOINT: \(endpoint)")
         return endpoint
     }
 }

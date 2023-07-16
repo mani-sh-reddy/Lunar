@@ -33,6 +33,8 @@ import Kingfisher
 
         isLoading = true
 
+        currentPage = 1
+
         let url = URL(string: buildEndpoint())!
         let cacher = ResponseCacher(behavior: .cache)
 
@@ -76,7 +78,7 @@ import Kingfisher
     }
 
     func loadMoreContentIfNeeded(currentItem comment: CommentElement?) {
-        guard let comment = comment else {
+        guard let comment else {
             loadMoreContent()
             return
         }
@@ -93,6 +95,8 @@ import Kingfisher
 
         let url = URL(string: buildEndpoint())!
         let cacher = ResponseCacher(behavior: .cache)
+
+        print("ENDPOINT: \(url)")
 
         AF.request(url) { urlRequest in
             urlRequest.cachePolicy = .returnCacheDataElseLoad
@@ -136,7 +140,6 @@ import Kingfisher
         let postIDQuery = "post_id=\(postID)"
 
         let endpoint = "\(baseURL)?\(sortQuery)&\(limitQuery)&\(pageQuery)&\(maxDepthQuery)&\(postIDQuery)"
-        print("ENDPOINT: \(endpoint)")
         return endpoint
     }
 }
