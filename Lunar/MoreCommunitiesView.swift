@@ -44,7 +44,7 @@ struct MoreCommunitiesView: View {
 
 struct MoreCommunitiesView_Previews: PreviewProvider {
     static var previews: some View {
-        let communityFetcher = CommunityFetcher(sortParameter: "New", limitParameter: "5")
+        let communityFetcher = CommunityFetcher(sortParameter: "New", limitParameter: "50")
         MoreCommunitiesView(communityFetcher: communityFetcher, title: "Explore Communities")
     }
 }

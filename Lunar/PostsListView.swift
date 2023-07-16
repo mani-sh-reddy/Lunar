@@ -13,6 +13,7 @@ struct PostsListView: View {
     var prop: [String: String]?
     @State var communityID: Int
     var title: String
+    
 
     var body: some View {
         ScrollViewReader { _ in
@@ -27,7 +28,7 @@ struct PostsListView: View {
                             EmptyView().frame(height: 0)
                         }.opacity(0)
                     }
-                    .onAppear {
+                    .task {
                         postFetcher.loadMoreContentIfNeeded(currentItem: post)
                     }
                     .accentColor(Color.primary)

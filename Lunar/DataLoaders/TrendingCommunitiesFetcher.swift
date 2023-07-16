@@ -1,5 +1,5 @@
 //
-//  SingleCommunityFetcher.swift
+//  TrendingCommunitiesFetcher.swift
 //  Lunar
 //
 //  Created by Mani on 09/07/2023.
@@ -10,7 +10,7 @@ import Foundation
 import Kingfisher
 import SwiftUI
 
-@MainActor class SingleCommunityFetcher: ObservableObject {
+@MainActor class TrendingCommunitiesFetcher: ObservableObject {
     @Published var communities = [CommunityElement]()
     @Published var isLoading = false
 
@@ -24,17 +24,17 @@ import SwiftUI
         loadContent()
     }
 
-    func refreshContent() async {
-        do {
-            try await Task.sleep(nanoseconds: 2_000_000_000)
-            communities = []
-            currentPage = 1
-            loadContent()
-
-        } catch {
-            // TODO: do some error handling
-        }
-    }
+//    func refreshContent() async {
+//        do {
+//            try await Task.sleep(nanoseconds: 2_000_000_000)
+//            communities = []
+//            currentPage = 1
+//            loadContent()
+//
+//        } catch {
+//            // TODO: do some error handling
+//        }
+//    }
 
     private func loadContent() {
         guard !isLoading else { return }

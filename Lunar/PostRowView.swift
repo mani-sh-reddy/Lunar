@@ -71,26 +71,26 @@ struct InPostCommunityHeaderView: View {
 struct InPostThumbnailView: View {
     @State private var isLoading = true
 
-    let processor = DownsamplingImageProcessor(size: CGSize(width: 1000, height: 1000))
+    let processor = DownsamplingImageProcessor(size: CGSize(width: 1300, height: 1300))
 //    |> RoundCornerImageProcessor(cornerRadius: 10)
 
     var thumbnailURL: String
     var body: some View {
         KFImage(URL(string: thumbnailURL))
             .onProgress { receivedSize, totalSize in
-                // Track the progress here and perform actions if needed
-                // For example, you can update a progress value or show/hide a loading indicator
                 if receivedSize < totalSize {
                     isLoading = true
                 } else {
                     isLoading = false
                 }
             }
-            .retry(maxCount: 3, interval: .seconds(5))
-            .cacheOriginalImage()
+//            .retry(maxCount: 1, interval: .seconds(5))
+//            .cacheOriginalImage()
             .setProcessor(processor)
             .resizable()
-            .startLoadingBeforeViewAppear().cancelOnDisappear(true).fade(duration: 0.1)
+//            .startLoadingBeforeViewAppear()
+            .cancelOnDisappear(true)
+            .fade(duration: 0.2)
             .progressViewStyle(.circular)
             .aspectRatio(contentMode: .fit)
             .frame(alignment: .center)

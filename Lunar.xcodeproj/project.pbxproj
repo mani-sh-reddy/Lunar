@@ -12,7 +12,7 @@
 		3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F09FF2A54399F009DF8AB /* LunarApp.swift */; };
 		3C4F0A042A54399F009DF8AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0A032A54399F009DF8AB /* Assets.xcassets */; };
 		3C4F0A072A54399F009DF8AB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0A062A54399F009DF8AB /* Preview Assets.xcassets */; };
-		3C522F3B2A63241900129CAC /* SingleCommunityFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C522F3A2A63241900129CAC /* SingleCommunityFetcher.swift */; };
+		3C522F3B2A63241900129CAC /* TrendingCommunitiesFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C522F3A2A63241900129CAC /* TrendingCommunitiesFetcher.swift */; };
 		3C5C77F12A5863980008B81B /* ExamplePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5C77F02A5863980008B81B /* ExamplePost.swift */; };
 		3C6588592A6169EB00A46DA3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6588582A6169EB00A46DA3 /* SettingsView.swift */; };
 		3C65885D2A6189AF00A46DA3 /* CommentFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C65885C2A6189AF00A46DA3 /* CommentFetcher.swift */; };
@@ -42,7 +42,7 @@
 		3C4F09FF2A54399F009DF8AB /* LunarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarApp.swift; sourceTree = "<group>"; };
 		3C4F0A032A54399F009DF8AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C4F0A062A54399F009DF8AB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		3C522F3A2A63241900129CAC /* SingleCommunityFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleCommunityFetcher.swift; sourceTree = "<group>"; };
+		3C522F3A2A63241900129CAC /* TrendingCommunitiesFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingCommunitiesFetcher.swift; sourceTree = "<group>"; };
 		3C5C77F02A5863980008B81B /* ExamplePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplePost.swift; sourceTree = "<group>"; };
 		3C6588582A6169EB00A46DA3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3C65885C2A6189AF00A46DA3 /* CommentFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentFetcher.swift; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 				3CA3CBC22A5B026800D0D645 /* PostFetcher.swift */,
 				3C65885C2A6189AF00A46DA3 /* CommentFetcher.swift */,
 				3CB408B32A5C558B00B7C983 /* CommunityFetcher.swift */,
-				3C522F3A2A63241900129CAC /* SingleCommunityFetcher.swift */,
+				3C522F3A2A63241900129CAC /* TrendingCommunitiesFetcher.swift */,
 			);
 			path = DataLoaders;
 			sourceTree = "<group>";
@@ -248,7 +248,7 @@
 				3CB8D26A2A561E0700EE615A /* FeedTypeRowView.swift in Sources */,
 				3CA3CBC32A5B026800D0D645 /* PostFetcher.swift in Sources */,
 				3CEA54462A59E6FB009E4FB3 /* MockPost.swift in Sources */,
-				3C522F3B2A63241900129CAC /* SingleCommunityFetcher.swift in Sources */,
+				3C522F3B2A63241900129CAC /* TrendingCommunitiesFetcher.swift in Sources */,
 				3CA92E3B2A543BF000688DEB /* CommunityModel.swift in Sources */,
 				3CA92E3A2A543BF000688DEB /* ContentView.swift in Sources */,
 				3CB408B42A5C558B00B7C983 /* CommunityFetcher.swift in Sources */,

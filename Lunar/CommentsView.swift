@@ -65,12 +65,18 @@ struct CommentsView_Previews: PreviewProvider {
     static var previews: some View {
         let commentFetcher = CommentFetcher(postID: 1442451)
 
-        CommentsView(commentFetcher: commentFetcher, postID: 1442451, postTitle: "Lemmy.world active users is tapering off while other servers are gaining serious traction.", thumbnailURL: "https://www.wallpapers13.com/wp-content/uploads/2015/12/Nature-Lake-Bled.-Desktop-background-image-1680x1050.jpg", postBody: """
-                             I noticed my feed on Lemmy was pretty dry today, even for Lemmy. Took me a while to realize lemmy.ml has been going up and down all morning, and isn’t federating new posts.
+        CommentsView(
+            commentFetcher: commentFetcher,
+            postID: 1442451,
+            postTitle: "Lemmy.world active users is tapering off while other servers are gaining serious traction.",
+            thumbnailURL: "https://www.wallpapers13.com/wp-content/uploads/2015/12/Nature-Lake-Bled.-Desktop-background-image-1680x1050.jpg",
+            postBody: """
+            I noticed my feed on Lemmy was pretty dry today, even for Lemmy. Took me a while to realize lemmy.ml has been going up and down all morning, and isn’t federating new posts.
 
-                             But, since this is all still federated, I can still create and read posts on other instances while I wait. Even this one! Any other service would just be unavailable completely right now.
+            But, since this is all still federated, I can still create and read posts on other instances while I wait. Even this one! Any other service would just be unavailable completely right now.
 
-                             I do miss the larger communities on lemmy.ml - asklemmy, memes, and I really wanted to watch the reddit fallout on /c/reddit. Maybe I’ll look around for some good replacements for those. Open to suggestions!
-        """)
+            I do miss the larger communities on lemmy.ml - asklemmy, memes, and I really wanted to watch the reddit fallout on /c/reddit. Maybe I’ll look around for some good replacements for those. Open to suggestions!
+            """
+        )
     }
 }

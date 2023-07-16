@@ -17,7 +17,7 @@ struct FeedView: View {
             List {
                 GeneralCommunitiesView()
                 TrendingCommunitiesView(
-                    singleCommunityFetcher: SingleCommunityFetcher(sortParameter: "New", limitParameter: "5"), communityFetcher: CommunityFetcher(sortParameter: "New", limitParameter: "5")
+                    trendingCommunitiesFetcher: TrendingCommunitiesFetcher(sortParameter: "Hot", limitParameter: "5")
                 )
                 SubscribedCommunitiesView()
             }
@@ -76,12 +76,12 @@ struct SubscribedCommunitiesView: View {
 }
 
 struct TrendingCommunitiesView: View {
-    @StateObject var singleCommunityFetcher: SingleCommunityFetcher
-    @StateObject var communityFetcher: CommunityFetcher
+    @StateObject var trendingCommunitiesFetcher: TrendingCommunitiesFetcher
+//    @StateObject var communityFetcher: CommunityFetcher
 
     var body: some View {
         Section(header: Text("Trending")) {
-            ForEach(singleCommunityFetcher.communities, id: \.community.id) { community in
+            ForEach(trendingCommunitiesFetcher.communities, id: \.community.id) { community in
 
                 NavigationLink {
                     PostsListView(postFetcher: PostFetcher(communityID: community.community.id, prop: [:]), prop: [:], communityID: community.community.id, title: community.community.title)
@@ -90,12 +90,15 @@ struct TrendingCommunitiesView: View {
                 }
                 .accentColor(Color.primary)
             }
-            if singleCommunityFetcher.isLoading {
+            if trendingCommunitiesFetcher.isLoading {
                 ProgressView()
             }
 
             NavigationLink(destination:
-                MoreCommunitiesView(communityFetcher: communityFetcher, title: "Explore Communities").animation(.interactiveSpring, value: 10)
+                MoreCommunitiesView(
+                    communityFetcher: CommunityFetcher(sortParameter: "New", limitParameter: "50"),
+                    title: "Explore Communities")
+                    .animation(.interactiveSpring, value: 10)
             ) {
                 HStack {
                     Image(systemName: "sailboat.circle.fill")

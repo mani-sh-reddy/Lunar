@@ -27,13 +27,56 @@ import Kingfisher
 
     func refreshContent() async {
         do {
-            try await Task.sleep(nanoseconds: 2_000_000_000)
-            posts = []
-            currentPage = 1
-            loadMoreContent()
-
+            try await Task.sleep(nanoseconds: 1_000_000_000)
         } catch {
-            // TODO: do some error handling
+            //
+        }
+
+        guard !isLoading else { return }
+
+        isLoading = true
+
+        let url = URL(string: buildEndpoint())!
+        let cacher = ResponseCacher(behavior: .cache)
+        print("ENDPOINT: \(url)")
+
+        AF.request(url) { urlRequest in
+            urlRequest.cachePolicy = .returnCacheDataElseLoad
+        }
+        .cacheResponse(using: cacher)
+        .validate(statusCode: 200 ..< 300)
+        .responseDecodable(of: PostsModel.self) { response in
+            switch response.result {
+            case let .success(result):
+                print("current posts @published object: \(self.posts.count)")
+
+                let newPosts = result.posts
+
+                print("newPosts: \(newPosts.count)")
+
+                // Filter out existing posts from new posts
+                let filteredNewPosts = newPosts.filter { newPost in
+                    !self.posts.contains { $0.post.id == newPost.post.id }
+                }
+
+                print("filteredNewPosts: \(filteredNewPosts.count)")
+
+                // Prepend filtered new posts to the front of the list
+                self.posts.insert(contentsOf: filteredNewPosts, at: 0)
+
+                print("new posts @published object: \(self.posts.count)")
+
+                self.isLoading = false
+//                self.currentPage += 1
+
+                let cachableImageURLs = result.thumbnailURLs.compactMap { URL(string: $0) }
+                    + result.avatarURLs.compactMap { URL(string: $0) }
+                let prefetcher = ImagePrefetcher(urls: cachableImageURLs) { _, _, _ in }
+                prefetcher.start()
+
+            case let .failure(error):
+                print("ERROR: \(error): \(error.errorDescription ?? "")")
+            }
         }
     }
 
@@ -42,7 +85,7 @@ import Kingfisher
             loadMoreContent()
             return
         }
-        let thresholdIndex = posts.index(posts.endIndex, offsetBy: -3)
+        let thresholdIndex = posts.index(posts.endIndex, offsetBy: -5)
         if posts.firstIndex(where: { $0.post.id == item.post.id }) == thresholdIndex {
             loadMoreContent()
         }
@@ -64,14 +107,22 @@ import Kingfisher
         .responseDecodable(of: PostsModel.self) { response in
             switch response.result {
             case let .success(result):
-                self.posts += result.posts
+                print("ENDPOINT: \(url)")
+                let newPosts = result.posts
+
+                // Filter out existing posts from new posts
+                let filteredNewPosts = newPosts.filter { newPost in
+                    !self.posts.contains { $0.post.id == newPost.post.id }
+                }
+
+                self.posts += filteredNewPosts
                 self.isLoading = false
                 self.currentPage += 1
 
-                let cachableImageURLs = result.thumbnailURLs.compactMap { URL(string: $0) }
-                    + result.avatarURLs.compactMap { URL(string: $0) }
-                let prefetcher = ImagePrefetcher(urls: cachableImageURLs) { _, _, _ in }
-                prefetcher.start()
+//                let cachableImageURLs = result.thumbnailURLs.compactMap { URL(string: $0) }
+//                    + result.avatarURLs.compactMap { URL(string: $0) }
+//                let prefetcher = ImagePrefetcher(urls: cachableImageURLs) { _, _, _ in }
+//                prefetcher.start()
 
             case let .failure(error):
                 print("ERROR: \(error): \(error.errorDescription ?? "")")
@@ -85,7 +136,7 @@ import Kingfisher
 
         let baseURL = "https://lemmy.world/api/v3/post/list"
         let sortQuery = "sort=\(sortParameter)"
-        let limitQuery = "limit=5"
+        let limitQuery = "limit=10"
         let pageQuery = "page=\(currentPage)"
 
         var prefixQuery = ""
@@ -97,7 +148,6 @@ import Kingfisher
         }
 
         let endpoint = "\(baseURL)?\(sortQuery)&\(limitQuery)&\(pageQuery)&\(prefixQuery)"
-        print("ENDPOINT: \(endpoint)")
         return endpoint
     }
 }

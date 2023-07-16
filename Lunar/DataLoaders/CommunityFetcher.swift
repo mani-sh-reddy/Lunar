@@ -26,14 +26,54 @@ import SwiftUI
     }
 
     func refreshContent() async {
-        do {
-            try await Task.sleep(nanoseconds: 2_000_000_000)
-            communities = []
-            currentPage = 1
-            loadMoreContent()
+        do{
+            try await Task.sleep(nanoseconds: 1_000_000_000)
+        } catch{
+            //
+        }
+        
+        guard !isLoading else { return }
 
-        } catch {
-            // TODO: do some error handling
+        isLoading = true
+
+        let url = URL(string: buildEndpoint())!
+        let cacher = ResponseCacher(behavior: .cache)
+
+        AF.request(url) { urlRequest in
+            urlRequest.cachePolicy = .returnCacheDataElseLoad
+        }
+        .cacheResponse(using: cacher)
+        .validate(statusCode: 200 ..< 300)
+        .responseDecodable(of: CommunityModel.self) { response in
+            switch response.result {
+            case let .success(result):
+                print("current communities @published object: \(self.communities.count)")
+               
+                let newCommunities = result.communities
+                
+                print("newCommunities: \(newCommunities.count)")
+
+                // Filter out existing posts from new posts
+                let filteredNewCommunities = newCommunities.filter { newCommunity in
+                    !self.communities.contains { $0.community.id == newCommunity.community.id }
+                }
+                
+                print("filteredNewCommunities: \(filteredNewCommunities.count)")
+
+                // Prepend filtered new posts to the front of the list
+                self.communities.insert(contentsOf: filteredNewCommunities, at: 0)
+                
+                print("new communities @published object: \(self.communities.count)")
+
+                self.isLoading = false
+
+                let cachableImageURLs = result.iconURLs.compactMap { URL(string: $0) }
+                let prefetcher = ImagePrefetcher(urls: cachableImageURLs) { _, _, _ in }
+                prefetcher.start()
+
+            case let .failure(error):
+                print("ERROR: \(error): \(error.errorDescription ?? "")")
+            }
         }
     }
 
@@ -42,7 +82,7 @@ import SwiftUI
             loadMoreContent()
             return
         }
-        let thresholdIndex = communities.index(communities.endIndex, offsetBy: -3)
+        let thresholdIndex = communities.index(communities.endIndex, offsetBy: -20)
         if communities.firstIndex(where: { $0.community.id == community.community.id }) == thresholdIndex {
             loadMoreContent()
         }
@@ -64,7 +104,18 @@ import SwiftUI
         .responseDecodable(of: CommunityModel.self) { response in
             switch response.result {
             case let .success(result):
-                self.communities += result.communities
+                
+                
+                let newCommunities = result.communities
+
+                // Filter out existing posts from new posts
+                let filteredNewCommunities = newCommunities.filter { newCommunities in
+                    !self.communities.contains { $0.community.id == newCommunities.community.id }
+                }
+
+                self.communities += filteredNewCommunities
+                
+                
                 self.isLoading = false
                 self.currentPage += 1
 
