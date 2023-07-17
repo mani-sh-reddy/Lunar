@@ -11,6 +11,7 @@ import SwiftUI
 
 struct FeedView: View {
     @Binding var lemmyInstance: String
+    @StateObject var networkMonitor = NetworkMonitor()
 
     var body: some View {
         NavigationView {
@@ -22,6 +23,15 @@ struct FeedView: View {
                 SubscribedCommunitiesView()
             }
             .navigationTitle(lemmyInstance)
+        }.onAppear {
+            networkMonitor.checkConnection()
+        }
+        .overlay(alignment: .bottom) {
+            if networkMonitor.connected {
+                EmptyView()
+            } else {
+                NoInternetConnectionView()
+            }
         }
     }
 }
