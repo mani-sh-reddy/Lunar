@@ -36,6 +36,20 @@ struct PostRowView: View {
                 InPostMetadataView(bodyText: String(post.counts.comments), iconName: "text.bubble", iconColor: .gray)
             }
         }
+
+        .swipeActions(edge: .leading, allowsFullSwipe: false) {
+            Button {
+                print("upvote")
+            } label: {
+                Image(systemName: "arrow.up.circle")
+            }.tint(.green)
+            Button {
+                print("downvote")
+            } label: {
+                Image(systemName: "arrow.down.circle")
+            }.tint(.red)
+        }
+
         .contextMenu {
             Menu("This is a menu") {
                 Button {
@@ -44,15 +58,15 @@ struct PostRowView: View {
                     Text("Do something")
                 }
             }
-            
+
             Button {
                 print("Something")
             } label: {
                 Text("Something")
             }
-            
+
             Divider()
-            
+
             Button(role: .destructive) {
                 print("Delete")
             } label: {
@@ -79,7 +93,6 @@ struct InPostCommunityHeaderView: View {
         }
     }
 }
-
 
 struct InPostThumbnailView: View {
     @State private var isLoading = true
@@ -215,7 +228,6 @@ struct ImageViewWithPlaceholder: View {
         }
     }
 }
-
 
 struct PostRowView_Previews: PreviewProvider {
     static var previews: some View {

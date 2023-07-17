@@ -24,7 +24,15 @@ struct PostsListView: View {
                             CommentsView(commentFetcher: CommentFetcher(postID: post.post.id), postID: post.post.id, postTitle: post.post.name, thumbnailURL: post.post.thumbnailURL ?? "", postBody: post.post.body ?? "")
                         ) {
                             EmptyView().frame(height: 0)
-                        }.opacity(0)
+                        }
+                        .opacity(0)
+                        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                            Button {
+                                print("goto")
+                            } label: {
+                                Image(systemName: "chevron.forward.circle.fill")
+                            }.tint(.blue)
+                        }
                     }
                     .task {
                         postFetcher.loadMoreContentIfNeeded(currentItem: post)

@@ -28,7 +28,19 @@ struct CommunityRowView: View {
             Text(community.community.title)
                 .padding(.horizontal, 10)
         }
-        
+        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+            Button {
+                print("go")
+            } label: {
+                Label("go", systemImage: "chevron.forward.circle.fill")
+            }.tint(.blue)
+            Button {
+                print("Hide")
+            } label: {
+                Label("Hide", systemImage: "eye.slash.circle.fill")
+            }.tint(.orange)
+        }
+
         .contextMenu {
             Menu("This is a menu") {
                 Button {
@@ -37,21 +49,20 @@ struct CommunityRowView: View {
                     Text("Do something")
                 }
             }
-            
+
             Button {
                 print("Something")
             } label: {
                 Text("Something")
             }
-            
+
             Divider()
-            
+
             Button(role: .destructive) {
                 print("Delete")
             } label: {
                 Label("Delete", systemImage: "trash")
             }
         }
-        
     }
 }
