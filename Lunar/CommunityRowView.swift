@@ -28,5 +28,30 @@ struct CommunityRowView: View {
             Text(community.community.title)
                 .padding(.horizontal, 10)
         }
+        
+        .contextMenu {
+            Menu("This is a menu") {
+                Button {
+                    print("This is a menu")
+                } label: {
+                    Text("Do something")
+                }
+            }
+            
+            Button {
+                print("Something")
+            } label: {
+                Text("Something")
+            }
+            
+            Divider()
+            
+            Button(role: .destructive) {
+                print("Delete")
+            } label: {
+                Label("Delete", systemImage: "trash")
+            }
+        }
+        
     }
 }
