@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MockPost {
+struct MockData {
     static let mockPost = PostsModel(posts: [
         PostElement(
             post: PostObject(
@@ -170,4 +170,84 @@ struct MockPost {
             unreadComments: 189
         ),
     ])
+    static let post = PostElement(
+        post: PostObject(
+            id: 1_161_347,
+            name: "This is an example title used while creating the post row view in xcode",
+            url: "https://lemmy.world/pictrs/image/7ae620b7-203e-43f3-b43f-030ad3beb629.png",
+            creatorID: 316_097,
+            communityID: 22036,
+            removed: false,
+            locked: false,
+            published: "2023-07-07T23:47:15.923519Z",
+            deleted: false,
+            thumbnailURL: "https://i.imgur.com/F3LORSG.jpeg",
+            apID: "https://lemmy.world/post/1161347",
+            local: true,
+            languageID: 37,
+            featuredCommunity: false,
+            featuredLocal: false,
+            body: "[@ljdawson](https://lemmy.world/u/ljdawson) shared on Discord",
+            updated: "2023-07-07T23:49:45.584798Z",
+            embedTitle: nil,
+            embedDescription: nil,
+            embedVideoURL: nil
+        ),
+        creator: Creator(
+            id: 316_097,
+            name: "eco",
+            displayName: nil,
+            avatar: "",
+            banned: false,
+            published: "2023-06-21T17:02:57.364033Z",
+            actorID: "https://lemmy.world/u/eco",
+            bio: nil,
+            local: true,
+            banner: nil,
+            deleted: false,
+            admin: false,
+            botAccount: false,
+            instanceID: 1,
+            updated: nil,
+            matrixUserID: nil
+        ),
+        community: Community(
+            id: 22036,
+            name: "syncforlemmy",
+            title: "Sync for Lemmy",
+            description: "ðŸ‘€",
+            removed: false,
+            published: "2023-06-20T10:21:37.000528Z",
+            updated: nil,
+            deleted: false,
+            actorID: "https://lemmy.world/c/syncforlemmy",
+            local: true,
+            icon: nil,
+            hidden: false,
+            postingRestrictedToMods: false,
+            instanceID: 1,
+            banner: nil
+        ),
+        creatorBannedFromCommunity: false,
+        counts: Counts(
+            id: 254_871,
+            postID: 1_161_347,
+            comments: 189,
+            score: 2180,
+            upvotes: 2188,
+            downvotes: 8,
+            published: "2023-07-07T23:47:15.923519Z",
+            newestCommentTimeNecro: "2023-07-08T14:53:06.765630Z",
+            newestCommentTime: "2023-07-08T14:53:06.765630Z",
+            featuredCommunity: false,
+            featuredLocal: false,
+            hotRank: 204,
+            hotRankActive: 8999
+        ),
+        subscribed: .notSubscribed,
+        saved: false,
+        read: false,
+        creatorBlocked: false,
+        unreadComments: 189
+    )
 }

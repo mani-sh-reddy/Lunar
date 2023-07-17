@@ -1,12 +1,10 @@
 //
-//  HomeView.swift
+//  FeedView.swift
 //  Lunar
 //
 //  Created by Mani on 05/07/2023.
 //
 
-import Foundation
-import Kingfisher
 import SwiftUI
 
 struct FeedView: View {
@@ -16,14 +14,19 @@ struct FeedView: View {
     var body: some View {
         NavigationView {
             List {
-                GeneralCommunitiesView()
-                TrendingCommunitiesView(
-                    trendingCommunitiesFetcher: TrendingCommunitiesFetcher(sortParameter: "Hot", limitParameter: "5")
-                )
-                SubscribedCommunitiesView()
+                Section(header: Text("Feed")) {
+                    GeneralCommunitiesView()
+                }
+                Section(header: Text("Trending")) {
+                    TrendingCommunitiesView(trendingCommunitiesFetcher: TrendingCommunitiesFetcher(sortParameter: "Hot", limitParameter: "5"))
+                }
+                Section(header: Text("Subscribed")) {
+                    SubscribedCommunitiesView()
+                }
             }
             .navigationTitle(lemmyInstance)
-        }.onAppear {
+        }
+        .onAppear {
             networkMonitor.checkConnection()
         }
         .overlay(alignment: .bottom) {
@@ -36,7 +39,7 @@ struct FeedView: View {
     }
 }
 
-struct HomeView_Previews: PreviewProvider {
+struct FeedView_Previews: PreviewProvider {
     @State static var lemmyInstance: String = "lemmy.world"
 
     static var previews: some View {
@@ -54,15 +57,9 @@ struct GeneralCommunitiesView: View {
     let communityID = 0
 
     var body: some View {
-        Section(header: Text("Feed")) {
-            ForEach(props, id: \.self) { prop in
-                NavigationLink(
-                    destination: {
-                        PostsListView(postFetcher: PostFetcher(communityID: communityID, prop: prop), prop: prop, communityID: communityID, title: prop["title"] ?? "")
-                    }, label: {
-                        FeedTypeRowView(props: prop)
-                    }
-                )
+        ForEach(props, id: \.self) { prop in
+            NavigationLink(destination: PostsListView(postFetcher: PostFetcher(communityID: communityID, prop: prop), prop: prop, communityID: communityID, title: prop["title"] ?? "")) {
+                FeedTypeRowView(props: prop)
             }
         }
     }
@@ -76,7 +73,7 @@ struct SubscribedCommunitiesView: View {
                     .resizable()
                     .frame(width: 30, height: 30)
                     .symbolRenderingMode(.monochrome)
-                    .foregroundColor(.blue).opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
+                    .foregroundColor(.blue)
                 Text("Login to view subscriptions")
                     .foregroundColor(.blue)
                     .padding(.horizontal, 10)
@@ -87,41 +84,36 @@ struct SubscribedCommunitiesView: View {
 
 struct TrendingCommunitiesView: View {
     @StateObject var trendingCommunitiesFetcher: TrendingCommunitiesFetcher
-//    @StateObject var communityFetcher: CommunityFetcher
 
     var body: some View {
-        Section(header: Text("Trending")) {
-            ForEach(trendingCommunitiesFetcher.communities, id: \.community.id) { community in
-
-                NavigationLink {
-                    PostsListView(postFetcher: PostFetcher(communityID: community.community.id, prop: [:]), prop: [:], communityID: community.community.id, title: community.community.title)
-                } label: {
-                    CommunityRowView(community: community)
-                }
-                .accentColor(Color.primary)
+        ForEach(trendingCommunitiesFetcher.communities, id: \.community.id) { community in
+            NavigationLink(destination: PostsListView(postFetcher: PostFetcher(communityID: community.community.id, prop: [:]), prop: [:], communityID: community.community.id, title: community.community.title)) {
+                CommunityRowView(community: community)
             }
-            if trendingCommunitiesFetcher.isLoading {
-                ProgressView()
-            }
+        }
+        if trendingCommunitiesFetcher.isLoading {
+            ProgressView()
+        }
+        MoreCommunitiesLinkView()
+    }
+}
 
-            NavigationLink(destination:
-                MoreCommunitiesView(
-                    communityFetcher: CommunityFetcher(sortParameter: "New", limitParameter: "50"),
-                    title: "Explore Communities"
-                )
+struct MoreCommunitiesLinkView: View {
+    var body: some View {
+        NavigationLink(
+            destination: MoreCommunitiesView(communityFetcher: CommunityFetcher(sortParameter: "New", limitParameter: "50"), title: "Explore Communities")
                 .animation(.interactiveSpring, value: 10)
-            ) {
-                HStack {
-                    Image(systemName: "sailboat.circle.fill")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .symbolRenderingMode(.hierarchical)
-                        .foregroundColor(.blue)
+        ) {
+            HStack {
+                Image(systemName: "sailboat.circle.fill")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .symbolRenderingMode(.hierarchical)
+                    .foregroundColor(.blue)
 
-                    Text("Explore Communities")
-                        .padding(.horizontal, 10)
-                        .foregroundColor(.blue)
-                }
+                Text("Explore Communities")
+                    .padding(.horizontal, 10)
+                    .foregroundColor(.blue)
             }
         }
     }
