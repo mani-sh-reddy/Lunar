@@ -114,9 +114,26 @@ import Kingfisher
                     !self.comments.contains { $0.comment.id == newComments.comment.id }
                 }
 
-                self.comments += filteredNewComments
+                // Update the current list of comments
+                if !filteredNewComments.isEmpty {
+                    DispatchQueue.global().async {
+                        // Sort filtered comments based on "path" value
+                        let sortedFilteredComments = filteredNewComments.sorted { $0.comment.path < $1.comment.path }
 
-                self.isLoading = false
+                        // Process each new comment and insert it at the correct position
+                        for newComment in sortedFilteredComments {
+                            self.sortedInsert(newComment)
+                        }
+
+                        DispatchQueue.main.async {
+                            self.isLoading = false
+                        }
+                    }
+                } else {
+                    // No new comments, just set isLoading to false
+                    self.isLoading = false
+                }
+
                 self.currentPage += 1
 
             case let .failure(error):
@@ -130,7 +147,7 @@ import Kingfisher
 
         // TODO: -
         let sortParameter = "Top"
-        let commentMaxDepth = "1"
+        let commentMaxDepth = "5"
 
         let baseURL = "https://lemmy.world/api/v3/comment/list"
         let sortQuery = "sort=\(sortParameter)"
@@ -141,5 +158,23 @@ import Kingfisher
 
         let endpoint = "\(baseURL)?\(sortQuery)&\(limitQuery)&\(pageQuery)&\(maxDepthQuery)&\(postIDQuery)"
         return endpoint
+    }
+
+    // Function to insert a new comment in a sorted manner based on path and ID
+    private func sortedInsert(_ newComment: CommentElement) {
+        Task {
+            await MainActor.run {
+                var index = comments.endIndex
+                for (currentIndex, existingComment) in comments.enumerated() {
+                    if newComment.comment.path < existingComment.comment.path ||
+                        (newComment.comment.path == existingComment.comment.path && newComment.comment.id < existingComment.comment.id)
+                    {
+                        index = currentIndex
+                        break
+                    }
+                }
+                comments.insert(newComment, at: index)
+            }
+        }
     }
 }
