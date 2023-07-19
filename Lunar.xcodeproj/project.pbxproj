@@ -96,7 +96,6 @@
 			isa = PBXGroup;
 			children = (
 				3CEF196E2A582786006736EF /* LunarLogo.png */,
-				3CA92E402A54962B00688DEB /* lemmy-world-active-communities-placeholder.json */,
 				3C4F0A032A54399F009DF8AB /* Assets.xcassets */,
 				3CB8D2672A55F45900EE615A /* FeedView.swift */,
 				3C65885E2A621C6100A46DA3 /* MoreCommunitiesView.swift */,
@@ -142,6 +141,7 @@
 		3CEA54442A59E633009E4FB3 /* MockData */ = {
 			isa = PBXGroup;
 			children = (
+				3CA92E402A54962B00688DEB /* lemmy-world-active-communities-placeholder.json */,
 				3CEA54452A59E6FB009E4FB3 /* MockData.swift */,
 			);
 			path = MockData;

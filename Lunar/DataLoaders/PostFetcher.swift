@@ -133,6 +133,9 @@ import Kingfisher
     }
 
     private func buildEndpoint() -> String {
+        
+        /// https://lemmy.world/api/v3/post/list?sort=Active&limit=5&page=1&type_=All
+        
         let sortParameter = prop["sort"] ?? "Active"
         let typeParameter = prop["type"] ?? "All"
 
