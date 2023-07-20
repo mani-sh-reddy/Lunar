@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Welcome
+// MARK: - CommunityModel
 
 struct CommunityModel: Codable {
     let communities: [CommunityElement]
@@ -25,7 +25,7 @@ struct CommunityElement: Codable {
     let counts: CountsObject
 }
 
-// MARK: - CommunityCommunity
+// MARK: - CommunityObject
 
 struct CommunityObject: Codable {
     let id: Int
@@ -51,7 +51,7 @@ struct CommunityObject: Codable {
     }
 }
 
-// MARK: - Counts
+// MARK: - CountsObject
 
 struct CountsObject: Codable {
     let id, communityID, subscribers, posts: Int

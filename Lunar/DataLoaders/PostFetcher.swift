@@ -28,9 +28,7 @@ import Kingfisher
     func refreshContent() async {
         do {
             try await Task.sleep(nanoseconds: 1_000_000_000)
-        } catch {
-            //
-        }
+        } catch {}
 
         guard !isLoading else { return }
 
@@ -112,7 +110,6 @@ import Kingfisher
             case let .success(result):
                 let newPosts = result.posts
 
-                // Filter out existing posts from new posts
                 let filteredNewPosts = newPosts.filter { newPost in
                     !self.posts.contains { $0.post.id == newPost.post.id }
                 }
@@ -120,11 +117,6 @@ import Kingfisher
                 self.posts += filteredNewPosts
                 self.isLoading = false
                 self.currentPage += 1
-
-//                let cachableImageURLs = result.thumbnailURLs.compactMap { URL(string: $0) }
-//                    + result.avatarURLs.compactMap { URL(string: $0) }
-//                let prefetcher = ImagePrefetcher(urls: cachableImageURLs) { _, _, _ in }
-//                prefetcher.start()
 
             case let .failure(error):
                 print("ERROR: \(error): \(error.errorDescription ?? "")")

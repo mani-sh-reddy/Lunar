@@ -17,7 +17,6 @@ import SwiftUI
     private var currentPage = 1
     private var sortParameter: String
     private var limitParameter: String
-//    private var postID: Int = 0
 
     init(sortParameter: String, limitParameter: String) {
         self.sortParameter = sortParameter
@@ -28,9 +27,7 @@ import SwiftUI
     func refreshContent() async {
         do {
             try await Task.sleep(nanoseconds: 1_000_000_000)
-        } catch {
-            //
-        }
+        } catch {}
 
         guard !isLoading else { return }
 
@@ -55,14 +52,12 @@ import SwiftUI
 
                 print("newCommunities: \(newCommunities.count)")
 
-                // Filter out existing posts from new posts
                 let filteredNewCommunities = newCommunities.filter { newCommunity in
                     !self.communities.contains { $0.community.id == newCommunity.community.id }
                 }
 
                 print("filteredNewCommunities: \(filteredNewCommunities.count)")
 
-                // Prepend filtered new posts to the front of the list
                 self.communities.insert(contentsOf: filteredNewCommunities, at: 0)
 
                 print("new communities @published object: \(self.communities.count)")
@@ -111,7 +106,6 @@ import SwiftUI
 
                 let newCommunities = result.communities
 
-                // Filter out existing posts from new posts
                 let filteredNewCommunities = newCommunities.filter { newCommunities in
                     !self.communities.contains { $0.community.id == newCommunities.community.id }
                 }
@@ -130,7 +124,6 @@ import SwiftUI
     private func buildEndpoint() -> String {
         /// https://lemmy.world/api/v3/community/list?type_=All&sort=New&page=1&limit=5
 
-        // TODO: -
         let typeParameter = "All"
 
         let baseURL = "https://lemmy.world/api/v3/community/list"

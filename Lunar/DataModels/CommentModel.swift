@@ -9,7 +9,7 @@ import Alamofire
 import Foundation
 import SwiftUI
 
-// MARK: - Welcome
+// MARK: - CommentModel
 
 struct CommentModel: Codable {
     let comments: [CommentElement]
@@ -35,7 +35,7 @@ struct CommentElement: Codable {
     }
 }
 
-// MARK: - CommentComment
+// MARK: - CommentsListObject
 
 struct CommentsListObject: Codable {
     let id, creatorID, postID: Int
@@ -60,7 +60,7 @@ struct CommentsListObject: Codable {
     }
 }
 
-// MARK: - Community
+// MARK: - CommentsListCommunity
 
 struct CommentsListCommunity: Codable {
     let id: Int
@@ -87,32 +87,7 @@ struct CommentsListCommunity: Codable {
     }
 }
 
-// enum Name: String, Codable {
-//    case showerthoughts = "showerthoughts"
-// }
-//
-// enum CommunityPublished: String, Codable {
-//    case the20230611T153435679943 = "2023-06-11T15:34:35.679943"
-// }
-//
-// enum Title: String, Codable {
-//    case showerthoughts = "Showerthoughts"
-// }
-//
-// enum CommunityUpdated: String, Codable {
-//    case the20230703T203245007798 = "2023-07-03T20:32:45.007798"
-// }
-
-//
-// To parse values from Alamofire responses:
-//
-//   Alamofire.request(url).responseCounts { response in
-//     if let counts = response.result.value {
-//       ...
-//     }
-//   }
-
-// MARK: - Counts
+// MARK: - CommentsListCounts
 
 struct CommentsListCounts: Codable {
     let id, commentID, score, upvotes: Int
@@ -129,7 +104,7 @@ struct CommentsListCounts: Codable {
     }
 }
 
-// MARK: - Creator
+// MARK: - CommentsListCreator
 
 struct CommentsListCreator: Codable {
     let id: Int
@@ -155,7 +130,7 @@ struct CommentsListCreator: Codable {
     }
 }
 
-// MARK: - Post
+// MARK: - CommentsListPost
 
 struct CommentsListPost: Codable {
     let id: Int
@@ -183,33 +158,6 @@ struct CommentsListPost: Codable {
     }
 }
 
-// enum PostPublished: String, Codable {
-//    case the20230707T074748136824 = "2023-07-07T07:47:48.136824"
-//    case
-// }
-//
-// enum PostUpdated: String, Codable {
-//    case the20230707T074852186606 = "2023-07-07T07:48:52.186606"
-// }
-
 enum CommentSubscribed: String, Codable {
     case notSubscribed = "NotSubscribed"
 }
-
-//// MARK: - Helper functions for creating encoders and decoders
-//
-// func newJSONDecoder() -> JSONDecoder {
-//    let decoder = JSONDecoder()
-//    if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
-//        decoder.dateDecodingStrategy = .iso8601
-//    }
-//    return decoder
-// }
-//
-// func newJSONEncoder() -> JSONEncoder {
-//    let encoder = JSONEncoder()
-//    if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
-//        encoder.dateEncodingStrategy = .iso8601
-//    }
-//    return encoder
-// }

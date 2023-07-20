@@ -26,13 +26,6 @@ struct PostsListView: View {
                             EmptyView().frame(height: 0)
                         }
                         .opacity(0)
-                        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                            Button {
-                                print("goto")
-                            } label: {
-                                Image(systemName: "chevron.forward.circle.fill")
-                            }.tint(.blue)
-                        }
                     }
                     .task {
                         postFetcher.loadMoreContentIfNeeded(currentItem: post)

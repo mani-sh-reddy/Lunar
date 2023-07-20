@@ -33,6 +33,18 @@
 		3CEA54462A59E6FB009E4FB3 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEA54452A59E6FB009E4FB3 /* MockData.swift */; };
 		3CEF196B2A580672006736EF /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEF196A2A580672006736EF /* Kingfisher */; };
 		3CEF196F2A582787006736EF /* LunarLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CEF196E2A582786006736EF /* LunarLogo.png */; };
+		3CEF4CC22A69B38B002B83C0 /* SubscribedCommunitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CC12A69B38B002B83C0 /* SubscribedCommunitiesView.swift */; };
+		3CEF4CC42A69B39B002B83C0 /* TrendingCommunitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CC32A69B39B002B83C0 /* TrendingCommunitiesView.swift */; };
+		3CEF4CC62A69B3AD002B83C0 /* MoreCommunitiesLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CC52A69B3AD002B83C0 /* MoreCommunitiesLinkView.swift */; };
+		3CEF4CC82A69B3C3002B83C0 /* GeneralCommunitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CC72A69B3C3002B83C0 /* GeneralCommunitiesView.swift */; };
+		3CEF4CCA2A69B6FA002B83C0 /* InPostCommunityHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CC92A69B6FA002B83C0 /* InPostCommunityHeaderView.swift */; };
+		3CEF4CCC2A69B70C002B83C0 /* InPostThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CCB2A69B70C002B83C0 /* InPostThumbnailView.swift */; };
+		3CEF4CCE2A69B71C002B83C0 /* InPostUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CCD2A69B71C002B83C0 /* InPostUserView.swift */; };
+		3CEF4CD02A69B738002B83C0 /* InPostMetadataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CCF2A69B738002B83C0 /* InPostMetadataView.swift */; };
+		3CEF4CD32A69B770002B83C0 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CD22A69B770002B83C0 /* StringExtension.swift */; };
+		3CEF4CD52A69B798002B83C0 /* URLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CD42A69B798002B83C0 /* URLParser.swift */; };
+		3CEF4CD72A69B7A8002B83C0 /* ImageViewWithPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CD62A69B7A8002B83C0 /* ImageViewWithPlaceholder.swift */; };
+		3CEF4CD92A69B80A002B83C0 /* CommentIndentGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CD82A69B80A002B83C0 /* CommentIndentGuideView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +73,18 @@
 		3CCAA8C02A65358C007CCEC2 /* NetworkMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		3CEA54452A59E6FB009E4FB3 /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		3CEF196E2A582786006736EF /* LunarLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LunarLogo.png; sourceTree = "<group>"; };
+		3CEF4CC12A69B38B002B83C0 /* SubscribedCommunitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedCommunitiesView.swift; sourceTree = "<group>"; };
+		3CEF4CC32A69B39B002B83C0 /* TrendingCommunitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCommunitiesView.swift; sourceTree = "<group>"; };
+		3CEF4CC52A69B3AD002B83C0 /* MoreCommunitiesLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreCommunitiesLinkView.swift; sourceTree = "<group>"; };
+		3CEF4CC72A69B3C3002B83C0 /* GeneralCommunitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralCommunitiesView.swift; sourceTree = "<group>"; };
+		3CEF4CC92A69B6FA002B83C0 /* InPostCommunityHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InPostCommunityHeaderView.swift; sourceTree = "<group>"; };
+		3CEF4CCB2A69B70C002B83C0 /* InPostThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InPostThumbnailView.swift; sourceTree = "<group>"; };
+		3CEF4CCD2A69B71C002B83C0 /* InPostUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InPostUserView.swift; sourceTree = "<group>"; };
+		3CEF4CCF2A69B738002B83C0 /* InPostMetadataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InPostMetadataView.swift; sourceTree = "<group>"; };
+		3CEF4CD22A69B770002B83C0 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		3CEF4CD42A69B798002B83C0 /* URLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParser.swift; sourceTree = "<group>"; };
+		3CEF4CD62A69B7A8002B83C0 /* ImageViewWithPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewWithPlaceholder.swift; sourceTree = "<group>"; };
+		3CEF4CD82A69B80A002B83C0 /* CommentIndentGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentIndentGuideView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,17 +122,29 @@
 				3CEF196E2A582786006736EF /* LunarLogo.png */,
 				3C4F0A032A54399F009DF8AB /* Assets.xcassets */,
 				3CB8D2672A55F45900EE615A /* FeedView.swift */,
+				3CEF4CC72A69B3C3002B83C0 /* GeneralCommunitiesView.swift */,
+				3CEF4CC52A69B3AD002B83C0 /* MoreCommunitiesLinkView.swift */,
+				3CEF4CC32A69B39B002B83C0 /* TrendingCommunitiesView.swift */,
+				3CEF4CC12A69B38B002B83C0 /* SubscribedCommunitiesView.swift */,
 				3C65885E2A621C6100A46DA3 /* MoreCommunitiesView.swift */,
 				3CA5C40D2A57525500BF8F1B /* PostsListView.swift */,
 				3CA92E422A549A7F00688DEB /* CommunityRowView.swift */,
 				3CBCCDF52A589F2C00307AC1 /* CommentsView.swift */,
+				3CEF4CD82A69B80A002B83C0 /* CommentIndentGuideView.swift */,
 				3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */,
+				3CEF4CD62A69B7A8002B83C0 /* ImageViewWithPlaceholder.swift */,
+				3CEF4CD42A69B798002B83C0 /* URLParser.swift */,
+				3CEF4CCF2A69B738002B83C0 /* InPostMetadataView.swift */,
+				3CEF4CCD2A69B71C002B83C0 /* InPostUserView.swift */,
+				3CEF4CCB2A69B70C002B83C0 /* InPostThumbnailView.swift */,
+				3CEF4CC92A69B6FA002B83C0 /* InPostCommunityHeaderView.swift */,
 				3CA92E372A543BF000688DEB /* ContentView.swift */,
 				3CCAA8BE2A65309E007CCEC2 /* NoInternetConnectionView.swift */,
 				3C4F09FF2A54399F009DF8AB /* LunarApp.swift */,
 				3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */,
 				3CB8D2692A561E0700EE615A /* FeedTypeRowView.swift */,
 				3C6588582A6169EB00A46DA3 /* SettingsView.swift */,
+				3CEF4CD12A69B75B002B83C0 /* Extensions */,
 				3CA5C4062A5743EB00BF8F1B /* DataLoaders */,
 				3CA5C4082A57443200BF8F1B /* DataModels */,
 				3CEA54442A59E633009E4FB3 /* MockData */,
@@ -145,6 +181,14 @@
 				3CEA54452A59E6FB009E4FB3 /* MockData.swift */,
 			);
 			path = MockData;
+			sourceTree = "<group>";
+		};
+		3CEF4CD12A69B75B002B83C0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3CEF4CD22A69B770002B83C0 /* StringExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,21 +271,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C4B7DD82A58A741003C8192 /* CommentModel.swift in Sources */,
+				3CEF4CC62A69B3AD002B83C0 /* MoreCommunitiesLinkView.swift in Sources */,
+				3CEF4CD32A69B770002B83C0 /* StringExtension.swift in Sources */,
+				3CEF4CD02A69B738002B83C0 /* InPostMetadataView.swift in Sources */,
+				3CEF4CCE2A69B71C002B83C0 /* InPostUserView.swift in Sources */,
 				3CCAA8C12A65358C007CCEC2 /* NetworkMonitor.swift in Sources */,
 				3CA5C4102A5753AC00BF8F1B /* PostRowView.swift in Sources */,
+				3CEF4CCA2A69B6FA002B83C0 /* InPostCommunityHeaderView.swift in Sources */,
 				3CA5C40A2A574FF500BF8F1B /* PostsListModel.swift in Sources */,
+				3CEF4CD92A69B80A002B83C0 /* CommentIndentGuideView.swift in Sources */,
 				3CCAA8BF2A65309E007CCEC2 /* NoInternetConnectionView.swift in Sources */,
 				3CA5C40E2A57525500BF8F1B /* PostsListView.swift in Sources */,
+				3CEF4CCC2A69B70C002B83C0 /* InPostThumbnailView.swift in Sources */,
+				3CEF4CC22A69B38B002B83C0 /* SubscribedCommunitiesView.swift in Sources */,
 				3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */,
 				3CB8D2682A55F45900EE615A /* FeedView.swift in Sources */,
 				3CB8D26A2A561E0700EE615A /* FeedTypeRowView.swift in Sources */,
 				3CA3CBC32A5B026800D0D645 /* PostFetcher.swift in Sources */,
 				3CEA54462A59E6FB009E4FB3 /* MockData.swift in Sources */,
+				3CEF4CC82A69B3C3002B83C0 /* GeneralCommunitiesView.swift in Sources */,
 				3C522F3B2A63241900129CAC /* TrendingCommunitiesFetcher.swift in Sources */,
+				3CEF4CD52A69B798002B83C0 /* URLParser.swift in Sources */,
 				3CA92E3B2A543BF000688DEB /* CommunityModel.swift in Sources */,
+				3CEF4CD72A69B7A8002B83C0 /* ImageViewWithPlaceholder.swift in Sources */,
 				3CA92E3A2A543BF000688DEB /* ContentView.swift in Sources */,
 				3CB408B42A5C558B00B7C983 /* CommunityFetcher.swift in Sources */,
 				3CA92E432A549A7F00688DEB /* CommunityRowView.swift in Sources */,
+				3CEF4CC42A69B39B002B83C0 /* TrendingCommunitiesView.swift in Sources */,
 				3CBCCDF62A589F2C00307AC1 /* CommentsView.swift in Sources */,
 				3C65885F2A621C6100A46DA3 /* MoreCommunitiesView.swift in Sources */,
 				3CB8D2662A55EFF900EE615A /* PlaceholderView.swift in Sources */,

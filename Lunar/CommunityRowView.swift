@@ -11,6 +11,8 @@ import SwiftUI
 struct CommunityRowView: View {
     var community: CommunityElement
 
+    @State var showingPlaceholderAlert = false
+
     var body: some View {
         HStack {
             let processor = DownsamplingImageProcessor(size: CGSize(width: 60, height: 60))
@@ -30,39 +32,42 @@ struct CommunityRowView: View {
         }
         .swipeActions(edge: .trailing, allowsFullSwipe: true) {
             Button {
-                print("go")
+                showingPlaceholderAlert = true
             } label: {
                 Label("go", systemImage: "chevron.forward.circle.fill")
             }.tint(.blue)
             Button {
-                print("Hide")
+                showingPlaceholderAlert = true
             } label: {
                 Label("Hide", systemImage: "eye.slash.circle.fill")
             }.tint(.orange)
         }
 
         .contextMenu {
-            Menu("This is a menu") {
+            Menu("Menu") {
                 Button {
-                    print("This is a menu")
+                    showingPlaceholderAlert = true
                 } label: {
-                    Text("Do something")
+                    Text("Coming Soon")
                 }
             }
 
             Button {
-                print("Something")
+                showingPlaceholderAlert = true
             } label: {
-                Text("Something")
+                Text("Coming Soon")
             }
 
             Divider()
 
             Button(role: .destructive) {
-                print("Delete")
+                showingPlaceholderAlert = true
             } label: {
                 Label("Delete", systemImage: "trash")
             }
+        }
+        .alert("Coming soon", isPresented: $showingPlaceholderAlert) {
+            Button("OK", role: .cancel) {}
         }
     }
 }

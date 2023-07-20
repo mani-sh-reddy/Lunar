@@ -24,18 +24,6 @@ import SwiftUI
         loadContent()
     }
 
-//    func refreshContent() async {
-//        do {
-//            try await Task.sleep(nanoseconds: 2_000_000_000)
-//            communities = []
-//            currentPage = 1
-//            loadContent()
-//
-//        } catch {
-//            // TODO: do some error handling
-//        }
-//    }
-
     private func loadContent() {
         guard !isLoading else { return }
 

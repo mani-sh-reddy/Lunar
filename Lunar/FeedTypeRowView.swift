@@ -10,7 +10,6 @@ import SwiftUI
 struct FeedTypeRowView: View {
     var props: [String: String]
 
-    // temporary workaround to get color of type Color from color of type String
     var color: Color {
         if props["iconColor"] == "green" { return Color.green }
         else if props["iconColor"] == "cyan" { return Color.cyan }

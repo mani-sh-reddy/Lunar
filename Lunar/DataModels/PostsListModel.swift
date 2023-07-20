@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-// MARK: - Welcome
+// MARK: - PostsModel
 
 struct PostsModel: Codable {
     let posts: [PostElement]
@@ -124,7 +124,7 @@ struct Creator: Codable {
     }
 }
 
-// MARK: - PostPost
+// MARK: - PostObject
 
 struct PostObject: Codable {
     let id: Int

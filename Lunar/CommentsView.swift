@@ -69,24 +69,6 @@ struct CommentsView: View {
     }
 }
 
-struct CommentIndentGuideView: View {
-    var commentPath: String
-
-    var body: some View {
-        let commentIndentLevel = commentPath.split(separator: ".").count - 1
-        let commentIndentRange = 0 ..< commentIndentLevel
-
-        ForEach(commentIndentRange, id: \.self) { _ in
-            Capsule()
-                .fill(Color.red)
-                .frame(width: 3)
-        }
-        .padding(.vertical, 10)
-        .padding(.top, 5)
-        .frame(alignment: .top)
-    }
-}
-
 struct CommentsView_Previews: PreviewProvider {
     static var previews: some View {
         let commentFetcher = CommentFetcher(postID: 1_442_451)

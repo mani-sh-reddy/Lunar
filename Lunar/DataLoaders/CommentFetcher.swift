@@ -25,9 +25,7 @@ import Kingfisher
     func refreshContent() async {
         do {
             try await Task.sleep(nanoseconds: 1_000_000_000)
-        } catch {
-            //
-        }
+        } catch {}
 
         guard !isLoading else { return }
 
@@ -47,29 +45,17 @@ import Kingfisher
             switch response.result {
             case let .success(result):
                 print("current comments @published object: \(self.comments.count)")
-
                 let newComments = result.comments
-
                 print("newPosts: \(newComments.count)")
 
-                // Filter out existing posts from new posts
                 let filteredNewComments = newComments.filter { newComment in
                     !self.comments.contains { $0.comment.id == newComment.comment.id }
                 }
 
                 print("filteredNewPosts: \(filteredNewComments.count)")
-
-                // Prepend filtered new posts to the front of the list
                 self.comments.insert(contentsOf: filteredNewComments, at: 0)
-
                 print("new posts @published object: \(self.comments.count)")
-
                 self.isLoading = false
-
-//                let cachableImageURLs = result.thumbnailURLs.compactMap { URL(string: $0) }
-//                    + result.avatarURLs.compactMap { URL(string: $0) }
-//                let prefetcher = ImagePrefetcher(urls: cachableImageURLs) { _, _, _ in }
-//                prefetcher.start()
 
             case let .failure(error):
                 print("ERROR: \(error): \(error.errorDescription ?? "")")
@@ -109,18 +95,14 @@ import Kingfisher
 
                 let newComments = result.comments
 
-                // Filter out existing posts from new posts
                 let filteredNewComments = newComments.filter { newComments in
                     !self.comments.contains { $0.comment.id == newComments.comment.id }
                 }
 
-                // Update the current list of comments
                 if !filteredNewComments.isEmpty {
                     DispatchQueue.global().async {
-                        // Sort filtered comments based on "path" value
                         let sortedFilteredComments = filteredNewComments.sorted { $0.comment.path < $1.comment.path }
 
-                        // Process each new comment and insert it at the correct position
                         for newComment in sortedFilteredComments {
                             self.sortedInsert(newComment)
                         }
@@ -130,7 +112,6 @@ import Kingfisher
                         }
                     }
                 } else {
-                    // No new comments, just set isLoading to false
                     self.isLoading = false
                 }
 
@@ -145,13 +126,12 @@ import Kingfisher
     private func buildEndpoint() -> String {
         /// let urlString = "https://lemmy.world/api/v3/comment/list?type_=All&sort=Top&limit=50&post_id=\(postId)&max_depth=\(commentMaxDepth)"
 
-        // TODO: -
         let sortParameter = "Top"
-        let commentMaxDepth = "5"
+        let commentMaxDepth = "50"
 
         let baseURL = "https://lemmy.world/api/v3/comment/list"
         let sortQuery = "sort=\(sortParameter)"
-        let limitQuery = "limit=20"
+        let limitQuery = "limit=50"
         let pageQuery = "page=\(currentPage)"
         let maxDepthQuery = "max_depth=\(commentMaxDepth)"
         let postIDQuery = "post_id=\(postID)"
@@ -160,7 +140,6 @@ import Kingfisher
         return endpoint
     }
 
-    // Function to insert a new comment in a sorted manner based on path and ID
     private func sortedInsert(_ newComment: CommentElement) {
         Task {
             await MainActor.run {

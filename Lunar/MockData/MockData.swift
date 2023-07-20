@@ -1,5 +1,5 @@
 //
-//  MockPost.swift
+//  MockData.swift
 //  Lunar
 //
 //  Created by Mani on 05/07/2023.
