@@ -2,59 +2,44 @@
 //  ContentView.swift
 //  Lunar
 //
-//  Created by Mani on 04/07/2023.
+//  Created by Mani on 03/07/2023.
 //
 
 import SwiftUI
-import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-    
+    @State var lemmyInstance: String = "lemmy.world"
+    @State private var tabSelection = 0
+
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
+        TabView(selection: $tabSelection) {
+            FeedView(lemmyInstance: $lemmyInstance)
+                .badge(0)
+                .tabItem {
+                    Label("Feed", systemImage: "list.bullet.rectangle")
                 }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
+            PlaceholderView()
+                .tabItem {
+                    Label("Inbox", systemImage: "tray")
                 }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
+            PlaceholderView()
+                .tabItem {
+                    Label("Account", systemImage: "person")
                 }
-            }
-            Text("Select an item")
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
+            PlaceholderView()
+                .tabItem {
+                    Label("Search", systemImage: "magnifyingglass")
+                }
+            SettingsView(lemmyInstance: $lemmyInstance)
+                .tabItem {
+                    Label("Settings", systemImage: "gearshape.fill")
+                }
         }
     }
 }
 
-#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
 }

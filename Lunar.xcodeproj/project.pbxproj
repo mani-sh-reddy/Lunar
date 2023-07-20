@@ -7,20 +7,84 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C4B7DD82A58A741003C8192 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4B7DD72A58A741003C8192 /* CommentModel.swift */; };
+		3C4B7DDB2A58AD23003C8192 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 3C4B7DDA2A58AD23003C8192 /* Alamofire */; };
 		3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F09FF2A54399F009DF8AB /* LunarApp.swift */; };
-		3C4F0A022A54399F009DF8AB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F0A012A54399F009DF8AB /* ContentView.swift */; };
 		3C4F0A042A54399F009DF8AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0A032A54399F009DF8AB /* Assets.xcassets */; };
-		3C4F0A072A54399F009DF8AB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0A062A54399F009DF8AB /* Preview Assets.xcassets */; };
-		3C4F0A092A54399F009DF8AB /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F0A082A54399F009DF8AB /* Item.swift */; };
+		3C522F3B2A63241900129CAC /* TrendingCommunitiesFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C522F3A2A63241900129CAC /* TrendingCommunitiesFetcher.swift */; };
+		3C6588592A6169EB00A46DA3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6588582A6169EB00A46DA3 /* SettingsView.swift */; };
+		3C65885D2A6189AF00A46DA3 /* CommentFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C65885C2A6189AF00A46DA3 /* CommentFetcher.swift */; };
+		3C65885F2A621C6100A46DA3 /* MoreCommunitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C65885E2A621C6100A46DA3 /* MoreCommunitiesView.swift */; };
+		3CA3CBC32A5B026800D0D645 /* PostFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3CBC22A5B026800D0D645 /* PostFetcher.swift */; };
+		3CA5C40A2A574FF500BF8F1B /* PostsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */; };
+		3CA5C40E2A57525500BF8F1B /* PostsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C40D2A57525500BF8F1B /* PostsListView.swift */; };
+		3CA5C4102A5753AC00BF8F1B /* PostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */; };
+		3CA92E3A2A543BF000688DEB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92E372A543BF000688DEB /* ContentView.swift */; };
+		3CA92E3B2A543BF000688DEB /* CommunityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92E382A543BF000688DEB /* CommunityModel.swift */; };
+		3CA92E412A54962B00688DEB /* lemmy-world-active-communities-placeholder.json in Resources */ = {isa = PBXBuildFile; fileRef = 3CA92E402A54962B00688DEB /* lemmy-world-active-communities-placeholder.json */; };
+		3CA92E432A549A7F00688DEB /* CommunityRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92E422A549A7F00688DEB /* CommunityRowView.swift */; };
+		3CB408B42A5C558B00B7C983 /* CommunityFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB408B32A5C558B00B7C983 /* CommunityFetcher.swift */; };
+		3CB8D2662A55EFF900EE615A /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */; };
+		3CB8D2682A55F45900EE615A /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2672A55F45900EE615A /* FeedView.swift */; };
+		3CB8D26A2A561E0700EE615A /* FeedTypeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2692A561E0700EE615A /* FeedTypeRowView.swift */; };
+		3CBCCDF62A589F2C00307AC1 /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBCCDF52A589F2C00307AC1 /* CommentsView.swift */; };
+		3CCAA8BF2A65309E007CCEC2 /* NoInternetConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA8BE2A65309E007CCEC2 /* NoInternetConnectionView.swift */; };
+		3CCAA8C12A65358C007CCEC2 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA8C02A65358C007CCEC2 /* NetworkMonitor.swift */; };
+		3CEA54462A59E6FB009E4FB3 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEA54452A59E6FB009E4FB3 /* MockData.swift */; };
+		3CEF196B2A580672006736EF /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEF196A2A580672006736EF /* Kingfisher */; };
+		3CEF196F2A582787006736EF /* LunarLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CEF196E2A582786006736EF /* LunarLogo.png */; };
+		3CEF4CC22A69B38B002B83C0 /* SubscribedCommunitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CC12A69B38B002B83C0 /* SubscribedCommunitiesView.swift */; };
+		3CEF4CC42A69B39B002B83C0 /* TrendingCommunitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CC32A69B39B002B83C0 /* TrendingCommunitiesView.swift */; };
+		3CEF4CC62A69B3AD002B83C0 /* MoreCommunitiesLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CC52A69B3AD002B83C0 /* MoreCommunitiesLinkView.swift */; };
+		3CEF4CC82A69B3C3002B83C0 /* GeneralCommunitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CC72A69B3C3002B83C0 /* GeneralCommunitiesView.swift */; };
+		3CEF4CCA2A69B6FA002B83C0 /* InPostCommunityHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CC92A69B6FA002B83C0 /* InPostCommunityHeaderView.swift */; };
+		3CEF4CCC2A69B70C002B83C0 /* InPostThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CCB2A69B70C002B83C0 /* InPostThumbnailView.swift */; };
+		3CEF4CCE2A69B71C002B83C0 /* InPostUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CCD2A69B71C002B83C0 /* InPostUserView.swift */; };
+		3CEF4CD02A69B738002B83C0 /* InPostMetadataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CCF2A69B738002B83C0 /* InPostMetadataView.swift */; };
+		3CEF4CD32A69B770002B83C0 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CD22A69B770002B83C0 /* StringExtension.swift */; };
+		3CEF4CD52A69B798002B83C0 /* URLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CD42A69B798002B83C0 /* URLParser.swift */; };
+		3CEF4CD72A69B7A8002B83C0 /* ImageViewWithPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CD62A69B7A8002B83C0 /* ImageViewWithPlaceholder.swift */; };
+		3CEF4CD92A69B80A002B83C0 /* CommentIndentGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CD82A69B80A002B83C0 /* CommentIndentGuideView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3C4B7DD72A58A741003C8192 /* CommentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
 		3C4F09FC2A54399F009DF8AB /* Lunar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lunar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4F09FF2A54399F009DF8AB /* LunarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarApp.swift; sourceTree = "<group>"; };
-		3C4F0A012A54399F009DF8AB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3C4F0A032A54399F009DF8AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3C4F0A062A54399F009DF8AB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		3C4F0A082A54399F009DF8AB /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		3C522F3A2A63241900129CAC /* TrendingCommunitiesFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingCommunitiesFetcher.swift; sourceTree = "<group>"; };
+		3C6588582A6169EB00A46DA3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		3C65885C2A6189AF00A46DA3 /* CommentFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentFetcher.swift; sourceTree = "<group>"; };
+		3C65885E2A621C6100A46DA3 /* MoreCommunitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreCommunitiesView.swift; sourceTree = "<group>"; };
+		3CA3CBC22A5B026800D0D645 /* PostFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFetcher.swift; sourceTree = "<group>"; };
+		3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsListModel.swift; sourceTree = "<group>"; };
+		3CA5C40D2A57525500BF8F1B /* PostsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsListView.swift; sourceTree = "<group>"; };
+		3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostRowView.swift; sourceTree = "<group>"; };
+		3CA92E372A543BF000688DEB /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		3CA92E382A543BF000688DEB /* CommunityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityModel.swift; sourceTree = "<group>"; };
+		3CA92E402A54962B00688DEB /* lemmy-world-active-communities-placeholder.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "lemmy-world-active-communities-placeholder.json"; sourceTree = "<group>"; };
+		3CA92E422A549A7F00688DEB /* CommunityRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityRowView.swift; sourceTree = "<group>"; };
+		3CB408B32A5C558B00B7C983 /* CommunityFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityFetcher.swift; sourceTree = "<group>"; };
+		3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
+		3CB8D2672A55F45900EE615A /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		3CB8D2692A561E0700EE615A /* FeedTypeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTypeRowView.swift; sourceTree = "<group>"; };
+		3CBCCDF52A589F2C00307AC1 /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
+		3CCAA8BE2A65309E007CCEC2 /* NoInternetConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoInternetConnectionView.swift; sourceTree = "<group>"; };
+		3CCAA8C02A65358C007CCEC2 /* NetworkMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		3CEA54452A59E6FB009E4FB3 /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		3CEF196E2A582786006736EF /* LunarLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LunarLogo.png; sourceTree = "<group>"; };
+		3CEF4CC12A69B38B002B83C0 /* SubscribedCommunitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedCommunitiesView.swift; sourceTree = "<group>"; };
+		3CEF4CC32A69B39B002B83C0 /* TrendingCommunitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCommunitiesView.swift; sourceTree = "<group>"; };
+		3CEF4CC52A69B3AD002B83C0 /* MoreCommunitiesLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreCommunitiesLinkView.swift; sourceTree = "<group>"; };
+		3CEF4CC72A69B3C3002B83C0 /* GeneralCommunitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralCommunitiesView.swift; sourceTree = "<group>"; };
+		3CEF4CC92A69B6FA002B83C0 /* InPostCommunityHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InPostCommunityHeaderView.swift; sourceTree = "<group>"; };
+		3CEF4CCB2A69B70C002B83C0 /* InPostThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InPostThumbnailView.swift; sourceTree = "<group>"; };
+		3CEF4CCD2A69B71C002B83C0 /* InPostUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InPostUserView.swift; sourceTree = "<group>"; };
+		3CEF4CCF2A69B738002B83C0 /* InPostMetadataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InPostMetadataView.swift; sourceTree = "<group>"; };
+		3CEF4CD22A69B770002B83C0 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		3CEF4CD42A69B798002B83C0 /* URLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParser.swift; sourceTree = "<group>"; };
+		3CEF4CD62A69B7A8002B83C0 /* ImageViewWithPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewWithPlaceholder.swift; sourceTree = "<group>"; };
+		3CEF4CD82A69B80A002B83C0 /* CommentIndentGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentIndentGuideView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,6 +92,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3CEF196B2A580672006736EF /* Kingfisher in Frameworks */,
+				3C4B7DDB2A58AD23003C8192 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,21 +119,76 @@
 		3C4F09FE2A54399F009DF8AB /* Lunar */ = {
 			isa = PBXGroup;
 			children = (
-				3C4F09FF2A54399F009DF8AB /* LunarApp.swift */,
-				3C4F0A012A54399F009DF8AB /* ContentView.swift */,
+				3CEF196E2A582786006736EF /* LunarLogo.png */,
 				3C4F0A032A54399F009DF8AB /* Assets.xcassets */,
-				3C4F0A082A54399F009DF8AB /* Item.swift */,
-				3C4F0A052A54399F009DF8AB /* Preview Content */,
+				3CB8D2672A55F45900EE615A /* FeedView.swift */,
+				3CEF4CC72A69B3C3002B83C0 /* GeneralCommunitiesView.swift */,
+				3CEF4CC52A69B3AD002B83C0 /* MoreCommunitiesLinkView.swift */,
+				3CEF4CC32A69B39B002B83C0 /* TrendingCommunitiesView.swift */,
+				3CEF4CC12A69B38B002B83C0 /* SubscribedCommunitiesView.swift */,
+				3C65885E2A621C6100A46DA3 /* MoreCommunitiesView.swift */,
+				3CA5C40D2A57525500BF8F1B /* PostsListView.swift */,
+				3CA92E422A549A7F00688DEB /* CommunityRowView.swift */,
+				3CBCCDF52A589F2C00307AC1 /* CommentsView.swift */,
+				3CEF4CD82A69B80A002B83C0 /* CommentIndentGuideView.swift */,
+				3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */,
+				3CEF4CD62A69B7A8002B83C0 /* ImageViewWithPlaceholder.swift */,
+				3CEF4CD42A69B798002B83C0 /* URLParser.swift */,
+				3CEF4CCF2A69B738002B83C0 /* InPostMetadataView.swift */,
+				3CEF4CCD2A69B71C002B83C0 /* InPostUserView.swift */,
+				3CEF4CCB2A69B70C002B83C0 /* InPostThumbnailView.swift */,
+				3CEF4CC92A69B6FA002B83C0 /* InPostCommunityHeaderView.swift */,
+				3CA92E372A543BF000688DEB /* ContentView.swift */,
+				3CCAA8BE2A65309E007CCEC2 /* NoInternetConnectionView.swift */,
+				3C4F09FF2A54399F009DF8AB /* LunarApp.swift */,
+				3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */,
+				3CB8D2692A561E0700EE615A /* FeedTypeRowView.swift */,
+				3C6588582A6169EB00A46DA3 /* SettingsView.swift */,
+				3CEF4CD12A69B75B002B83C0 /* Extensions */,
+				3CA5C4062A5743EB00BF8F1B /* DataLoaders */,
+				3CA5C4082A57443200BF8F1B /* DataModels */,
+				3CEA54442A59E633009E4FB3 /* MockData */,
 			);
 			path = Lunar;
 			sourceTree = "<group>";
 		};
-		3C4F0A052A54399F009DF8AB /* Preview Content */ = {
+		3CA5C4062A5743EB00BF8F1B /* DataLoaders */ = {
 			isa = PBXGroup;
 			children = (
-				3C4F0A062A54399F009DF8AB /* Preview Assets.xcassets */,
+				3CA3CBC22A5B026800D0D645 /* PostFetcher.swift */,
+				3CCAA8C02A65358C007CCEC2 /* NetworkMonitor.swift */,
+				3C65885C2A6189AF00A46DA3 /* CommentFetcher.swift */,
+				3CB408B32A5C558B00B7C983 /* CommunityFetcher.swift */,
+				3C522F3A2A63241900129CAC /* TrendingCommunitiesFetcher.swift */,
 			);
-			path = "Preview Content";
+			path = DataLoaders;
+			sourceTree = "<group>";
+		};
+		3CA5C4082A57443200BF8F1B /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
+				3CA92E382A543BF000688DEB /* CommunityModel.swift */,
+				3C4B7DD72A58A741003C8192 /* CommentModel.swift */,
+				3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */,
+			);
+			path = DataModels;
+			sourceTree = "<group>";
+		};
+		3CEA54442A59E633009E4FB3 /* MockData */ = {
+			isa = PBXGroup;
+			children = (
+				3CA92E402A54962B00688DEB /* lemmy-world-active-communities-placeholder.json */,
+				3CEA54452A59E6FB009E4FB3 /* MockData.swift */,
+			);
+			path = MockData;
+			sourceTree = "<group>";
+		};
+		3CEF4CD12A69B75B002B83C0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3CEF4CD22A69B770002B83C0 /* StringExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -86,6 +207,10 @@
 			dependencies = (
 			);
 			name = Lunar;
+			packageProductDependencies = (
+				3CEF196A2A580672006736EF /* Kingfisher */,
+				3C4B7DDA2A58AD23003C8192 /* Alamofire */,
+			);
 			productName = Lunar;
 			productReference = 3C4F09FC2A54399F009DF8AB /* Lunar.app */;
 			productType = "com.apple.product-type.application";
@@ -114,6 +239,10 @@
 				Base,
 			);
 			mainGroup = 3C4F09F32A54399F009DF8AB;
+			packageReferences = (
+				3CEF19692A580672006736EF /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 3C4F09FD2A54399F009DF8AB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -128,8 +257,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C4F0A072A54399F009DF8AB /* Preview Assets.xcassets in Resources */,
 				3C4F0A042A54399F009DF8AB /* Assets.xcassets in Resources */,
+				3CA92E412A54962B00688DEB /* lemmy-world-active-communities-placeholder.json in Resources */,
+				3CEF196F2A582787006736EF /* LunarLogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,9 +270,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C4F0A022A54399F009DF8AB /* ContentView.swift in Sources */,
-				3C4F0A092A54399F009DF8AB /* Item.swift in Sources */,
+				3C4B7DD82A58A741003C8192 /* CommentModel.swift in Sources */,
+				3CEF4CC62A69B3AD002B83C0 /* MoreCommunitiesLinkView.swift in Sources */,
+				3CEF4CD32A69B770002B83C0 /* StringExtension.swift in Sources */,
+				3CEF4CD02A69B738002B83C0 /* InPostMetadataView.swift in Sources */,
+				3CEF4CCE2A69B71C002B83C0 /* InPostUserView.swift in Sources */,
+				3CCAA8C12A65358C007CCEC2 /* NetworkMonitor.swift in Sources */,
+				3CA5C4102A5753AC00BF8F1B /* PostRowView.swift in Sources */,
+				3CEF4CCA2A69B6FA002B83C0 /* InPostCommunityHeaderView.swift in Sources */,
+				3CA5C40A2A574FF500BF8F1B /* PostsListModel.swift in Sources */,
+				3CEF4CD92A69B80A002B83C0 /* CommentIndentGuideView.swift in Sources */,
+				3CCAA8BF2A65309E007CCEC2 /* NoInternetConnectionView.swift in Sources */,
+				3CA5C40E2A57525500BF8F1B /* PostsListView.swift in Sources */,
+				3CEF4CCC2A69B70C002B83C0 /* InPostThumbnailView.swift in Sources */,
+				3CEF4CC22A69B38B002B83C0 /* SubscribedCommunitiesView.swift in Sources */,
 				3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */,
+				3CB8D2682A55F45900EE615A /* FeedView.swift in Sources */,
+				3CB8D26A2A561E0700EE615A /* FeedTypeRowView.swift in Sources */,
+				3CA3CBC32A5B026800D0D645 /* PostFetcher.swift in Sources */,
+				3CEA54462A59E6FB009E4FB3 /* MockData.swift in Sources */,
+				3CEF4CC82A69B3C3002B83C0 /* GeneralCommunitiesView.swift in Sources */,
+				3C522F3B2A63241900129CAC /* TrendingCommunitiesFetcher.swift in Sources */,
+				3CEF4CD52A69B798002B83C0 /* URLParser.swift in Sources */,
+				3CA92E3B2A543BF000688DEB /* CommunityModel.swift in Sources */,
+				3CEF4CD72A69B7A8002B83C0 /* ImageViewWithPlaceholder.swift in Sources */,
+				3CA92E3A2A543BF000688DEB /* ContentView.swift in Sources */,
+				3CB408B42A5C558B00B7C983 /* CommunityFetcher.swift in Sources */,
+				3CA92E432A549A7F00688DEB /* CommunityRowView.swift in Sources */,
+				3CEF4CC42A69B39B002B83C0 /* TrendingCommunitiesView.swift in Sources */,
+				3CBCCDF62A589F2C00307AC1 /* CommentsView.swift in Sources */,
+				3C65885F2A621C6100A46DA3 /* MoreCommunitiesView.swift in Sources */,
+				3CB8D2662A55EFF900EE615A /* PlaceholderView.swift in Sources */,
+				3C6588592A6169EB00A46DA3 /* SettingsView.swift in Sources */,
+				3C65885D2A6189AF00A46DA3 /* CommentFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +361,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -258,7 +418,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -275,25 +435,31 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Lunar/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = QR8TDZJV2W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.Lunar";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -304,25 +470,31 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Lunar/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = QR8TDZJV2W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.Lunar";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -348,6 +520,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		3CEF19692A580672006736EF /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 7.8.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3C4B7DDA2A58AD23003C8192 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		3CEF196A2A580672006736EF /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3CEF19692A580672006736EF /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3C4F09F42A54399F009DF8AB /* Project object */;
 }

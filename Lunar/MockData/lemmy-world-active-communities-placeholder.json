@@ -1,0 +1,109 @@
+{
+    "communities": [
+      {
+        "community": {
+          "id": 38,
+          "name": "Lorem ipsum name",
+          "title": "Lorem ipsum title",
+          "description": "Lorem ipsum description",
+          "removed": false,
+          "published": "2019-04-25T04:58:33.886275",
+          "updated": "2023-07-02T15:58:10.357185",
+          "deleted": false,
+          "nsfw": false,
+          "actor_id": "https://lemmy.world/c/lemmyworld",
+          "local": false,
+          "icon": "https://plchldr.co/i/500x500",
+          "banner": "https://plchldr.co/i/1600x900",
+          "hidden": false,
+          "posting_restricted_to_mods": false,
+          "instance_id": 3
+        },
+        "subscribed": "NotSubscribed",
+        "blocked": false,
+        "counts": {
+          "id": 36,
+          "community_id": 38,
+          "subscribers": 8312,
+          "posts": 1197,
+          "comments": 34650,
+          "published": "2019-04-25T04:58:33.886275",
+          "users_active_day": 644,
+          "users_active_week": 3471,
+          "users_active_month": 10638,
+          "users_active_half_year": 10723,
+          "hot_rank": 0
+        }
+      },
+      {
+        "community": {
+          "id": 5,
+          "name": "dolor sit amet name",
+          "title": "dolor sit amet title",
+          "description": "dolor sit amet description",
+          "removed": false,
+          "published": "2023-06-01T11:51:52.722151",
+          "updated": "2023-07-03T11:48:44.746123",
+          "deleted": false,
+          "nsfw": false,
+          "actor_id": "https://lemmy.world/c/lemmyworld",
+          "local": true,
+          "icon": "https://plchldr.co/i/500x500",
+          "banner": "https://plchldr.co/i/1600x900",
+          "hidden": false,
+          "posting_restricted_to_mods": true,
+          "instance_id": 1
+        },
+        "subscribed": "NotSubscribed",
+        "blocked": false,
+        "counts": {
+          "id": 4,
+          "community_id": 5,
+          "subscribers": 20185,
+          "posts": 689,
+          "comments": 27021,
+          "published": "2023-06-01T11:51:52.722151",
+          "users_active_day": 29,
+          "users_active_week": 1100,
+          "users_active_month": 8508,
+          "users_active_half_year": 8508,
+          "hot_rank": 0
+        }
+      },
+      {
+        "community": {
+          "id": 13,
+          "name": "consectetur adipiscing elit name",
+          "title": "consectetur adipiscing elit title",
+          "description": "consectetur adipiscing elit description",
+          "removed": false,
+          "published": "2019-04-25T16:54:42.997194",
+          "updated": "2022-01-12T13:43:29.936386",
+          "deleted": false,
+          "nsfw": false,
+          "actor_id": "https://lemmy.world/c/lemmyworld",
+          "local": false,
+          "icon": "https://plchldr.co/i/500x500",
+          "hidden": false,
+          "posting_restricted_to_mods": false,
+          "instance_id": 3
+        },
+        "subscribed": "NotSubscribed",
+        "blocked": false,
+        "counts": {
+          "id": 12,
+          "community_id": 13,
+          "subscribers": 8491,
+          "posts": 2407,
+          "comments": 21005,
+          "published": "2019-04-25T16:54:42.997194",
+          "users_active_day": 556,
+          "users_active_week": 3177,
+          "users_active_month": 7813,
+          "users_active_half_year": 7878,
+          "hot_rank": 0
+        }
+      }
+    ]
+  }
+  
