@@ -17,8 +17,8 @@ struct CommentIndentGuideView: View {
 
         ForEach(commentIndentRange, id: \.self) { _ in
             Capsule()
-                .fill(Color.red)
-                .frame(width: 3)
+                .fill(Color(uiColor: .systemGray5))
+                .frame(width: 2)
         }
         .padding(.vertical, 10)
         .padding(.top, 5)

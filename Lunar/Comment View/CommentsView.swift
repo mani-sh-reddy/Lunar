@@ -36,14 +36,13 @@ struct CommentsView: View {
                         }
                         .padding(.bottom, 20)
                     }
-
                     ForEach(commentFetcher.comments, id: \.comment.id) { comment in
-                        HStack {
+                        HStack(spacing: 5) {
                             CommentIndentGuideView(commentPath: comment.comment.path)
                             VStack(alignment: .leading) {
-                                Text(String(comment.comment.path)).foregroundStyle(.gray)
+                                Text(String(comment.creator.name.uppercased())).fontWeight(.bold).foregroundStyle(.gray).font(.footnote).padding(.vertical, 2)
                                 Text(String(comment.comment.content))
-                            }.padding(.leading, 5)
+                            }.padding(.leading, 10)
                         }
                         .padding(.vertical, 5)
 

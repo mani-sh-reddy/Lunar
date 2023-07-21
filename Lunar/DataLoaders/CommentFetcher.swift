@@ -68,7 +68,7 @@ import Kingfisher
             loadMoreContent()
             return
         }
-        let thresholdIndex = comments.index(comments.endIndex, offsetBy: -3)
+        let thresholdIndex = comments.index(comments.endIndex, offsetBy: 0)
         if comments.firstIndex(where: { $0.comment.id == comment.comment.id }) == thresholdIndex {
             loadMoreContent()
         }
