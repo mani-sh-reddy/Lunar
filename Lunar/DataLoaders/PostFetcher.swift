@@ -84,7 +84,13 @@ import Kingfisher
             loadMoreContent()
             return
         }
-        let thresholdIndex = posts.index(posts.endIndex, offsetBy: -5)
+        /// preload early
+        var thresholdIndex = posts.index(posts.endIndex, offsetBy: -5)
+        if posts.firstIndex(where: { $0.post.id == item.post.id }) == thresholdIndex {
+            loadMoreContent()
+        }
+        /// preload when reached the bottom
+        thresholdIndex = posts.index(posts.endIndex, offsetBy: -1)
         if posts.firstIndex(where: { $0.post.id == item.post.id }) == thresholdIndex {
             loadMoreContent()
         }
