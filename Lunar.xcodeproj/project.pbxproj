@@ -121,29 +121,16 @@
 			children = (
 				3CEF196E2A582786006736EF /* LunarLogo.png */,
 				3C4F0A032A54399F009DF8AB /* Assets.xcassets */,
-				3CB8D2672A55F45900EE615A /* FeedView.swift */,
-				3CEF4CC72A69B3C3002B83C0 /* GeneralCommunitiesView.swift */,
-				3CEF4CC52A69B3AD002B83C0 /* MoreCommunitiesLinkView.swift */,
-				3CEF4CC32A69B39B002B83C0 /* TrendingCommunitiesView.swift */,
-				3CEF4CC12A69B38B002B83C0 /* SubscribedCommunitiesView.swift */,
-				3C65885E2A621C6100A46DA3 /* MoreCommunitiesView.swift */,
-				3CA5C40D2A57525500BF8F1B /* PostsListView.swift */,
-				3CA92E422A549A7F00688DEB /* CommunityRowView.swift */,
-				3CBCCDF52A589F2C00307AC1 /* CommentsView.swift */,
-				3CEF4CD82A69B80A002B83C0 /* CommentIndentGuideView.swift */,
-				3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */,
-				3CEF4CD62A69B7A8002B83C0 /* ImageViewWithPlaceholder.swift */,
-				3CEF4CD42A69B798002B83C0 /* URLParser.swift */,
-				3CEF4CCF2A69B738002B83C0 /* InPostMetadataView.swift */,
-				3CEF4CCD2A69B71C002B83C0 /* InPostUserView.swift */,
-				3CEF4CCB2A69B70C002B83C0 /* InPostThumbnailView.swift */,
-				3CEF4CC92A69B6FA002B83C0 /* InPostCommunityHeaderView.swift */,
-				3CA92E372A543BF000688DEB /* ContentView.swift */,
-				3CCAA8BE2A65309E007CCEC2 /* NoInternetConnectionView.swift */,
 				3C4F09FF2A54399F009DF8AB /* LunarApp.swift */,
-				3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */,
-				3CB8D2692A561E0700EE615A /* FeedTypeRowView.swift */,
+				3CA92E372A543BF000688DEB /* ContentView.swift */,
 				3C6588582A6169EB00A46DA3 /* SettingsView.swift */,
+				3CEF4CD62A69B7A8002B83C0 /* ImageViewWithPlaceholder.swift */,
+				3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */,
+				3CCAA8BE2A65309E007CCEC2 /* NoInternetConnectionView.swift */,
+				3CCAE1852A6ADE5F0040EE12 /* Feed Views */,
+				3CCAE1832A6ADDBA0040EE12 /* Post Views */,
+				3CCAE1822A6ADD9B0040EE12 /* Community Views */,
+				3CCAE1842A6ADDE20040EE12 /* Comment View */,
 				3CEF4CD12A69B75B002B83C0 /* Extensions */,
 				3CA5C4062A5743EB00BF8F1B /* DataLoaders */,
 				3CA5C4082A57443200BF8F1B /* DataModels */,
@@ -155,6 +142,7 @@
 		3CA5C4062A5743EB00BF8F1B /* DataLoaders */ = {
 			isa = PBXGroup;
 			children = (
+				3CEF4CD42A69B798002B83C0 /* URLParser.swift */,
 				3CA3CBC22A5B026800D0D645 /* PostFetcher.swift */,
 				3CCAA8C02A65358C007CCEC2 /* NetworkMonitor.swift */,
 				3C65885C2A6189AF00A46DA3 /* CommentFetcher.swift */,
@@ -172,6 +160,50 @@
 				3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */,
 			);
 			path = DataModels;
+			sourceTree = "<group>";
+		};
+		3CCAE1822A6ADD9B0040EE12 /* Community Views */ = {
+			isa = PBXGroup;
+			children = (
+				3CA92E422A549A7F00688DEB /* CommunityRowView.swift */,
+				3CEF4CC72A69B3C3002B83C0 /* GeneralCommunitiesView.swift */,
+				3CEF4CC52A69B3AD002B83C0 /* MoreCommunitiesLinkView.swift */,
+				3CEF4CC32A69B39B002B83C0 /* TrendingCommunitiesView.swift */,
+				3CEF4CC12A69B38B002B83C0 /* SubscribedCommunitiesView.swift */,
+				3C65885E2A621C6100A46DA3 /* MoreCommunitiesView.swift */,
+			);
+			path = "Community Views";
+			sourceTree = "<group>";
+		};
+		3CCAE1832A6ADDBA0040EE12 /* Post Views */ = {
+			isa = PBXGroup;
+			children = (
+				3CA5C40D2A57525500BF8F1B /* PostsListView.swift */,
+				3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */,
+				3CEF4CCF2A69B738002B83C0 /* InPostMetadataView.swift */,
+				3CEF4CCD2A69B71C002B83C0 /* InPostUserView.swift */,
+				3CEF4CCB2A69B70C002B83C0 /* InPostThumbnailView.swift */,
+				3CEF4CC92A69B6FA002B83C0 /* InPostCommunityHeaderView.swift */,
+			);
+			path = "Post Views";
+			sourceTree = "<group>";
+		};
+		3CCAE1842A6ADDE20040EE12 /* Comment View */ = {
+			isa = PBXGroup;
+			children = (
+				3CBCCDF52A589F2C00307AC1 /* CommentsView.swift */,
+				3CEF4CD82A69B80A002B83C0 /* CommentIndentGuideView.swift */,
+			);
+			path = "Comment View";
+			sourceTree = "<group>";
+		};
+		3CCAE1852A6ADE5F0040EE12 /* Feed Views */ = {
+			isa = PBXGroup;
+			children = (
+				3CB8D2692A561E0700EE615A /* FeedTypeRowView.swift */,
+				3CB8D2672A55F45900EE615A /* FeedView.swift */,
+			);
+			path = "Feed Views";
 			sourceTree = "<group>";
 		};
 		3CEA54442A59E633009E4FB3 /* MockData */ = {
@@ -439,6 +471,7 @@
 				DEVELOPMENT_TEAM = QR8TDZJV2W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Lunar;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -450,7 +483,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.1;
+				MARKETING_VERSION = 0.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.Lunar";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -474,6 +507,7 @@
 				DEVELOPMENT_TEAM = QR8TDZJV2W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Lunar;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -485,7 +519,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.1;
+				MARKETING_VERSION = 0.4.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.Lunar";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
