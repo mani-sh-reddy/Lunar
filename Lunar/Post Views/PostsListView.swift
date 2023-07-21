@@ -18,29 +18,31 @@ struct PostsListView: View {
         ScrollViewReader { _ in
             List {
                 ForEach(postFetcher.posts, id: \.post.id) { post in
-                    ZStack {
-                        PostRowView(post: post)
-                        NavigationLink(destination:
-                            CommentsView(commentFetcher: CommentFetcher(postID: post.post.id), postID: post.post.id, postTitle: post.post.name, thumbnailURL: post.post.thumbnailURL ?? "", postBody: post.post.body ?? "")
-                        ) {
-                            EmptyView().frame(height: 0)
+                    Section {
+                        ZStack {
+                            PostRowView(post: post)
+                            NavigationLink(destination:
+                                CommentsView(commentFetcher: CommentFetcher(postID: post.post.id), postID: post.post.id, postTitle: post.post.name, thumbnailURL: post.post.thumbnailURL ?? "", postBody: post.post.body ?? "")
+                            ) {
+                                EmptyView().frame(height: 0)
+                            }
+                            .opacity(0)
                         }
-                        .opacity(0)
+                        .task {
+                            postFetcher.loadMoreContentIfNeeded(currentItem: post)
+                        }
+                        .accentColor(Color.primary)
                     }
-                    .task {
-                        postFetcher.loadMoreContentIfNeeded(currentItem: post)
-                    }
-                    .accentColor(Color.primary)
                 }
                 if postFetcher.isLoading {
                     ProgressView()
                 }
-            }
-            .refreshable {
-                await postFetcher.refreshContent()
-            }
-            .listStyle(.plain)
-            .navigationBarTitle(title, displayMode: .inline)
+            }.listStyle(.grouped)
+                .refreshable {
+                    await postFetcher.refreshContent()
+                }
+
+                .navigationBarTitle(title)
         }
     }
 }
