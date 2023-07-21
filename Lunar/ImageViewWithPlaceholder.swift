@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import SwiftUI
 import Kingfisher
+import SwiftUI
 
 struct ImageViewWithPlaceholder: View {
     var imageURL: String?

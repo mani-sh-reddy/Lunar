@@ -32,7 +32,7 @@ struct MoreCommunitiesView: View {
                 ProgressView()
             }
         }.listStyle(.insetGrouped)
-            .navigationBarTitle(title, displayMode: .inline)
+            .navigationBarTitle(title)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) { Image(systemName: "sparkles") }
             }

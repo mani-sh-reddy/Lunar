@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import SwiftUI
 import Kingfisher
+import SwiftUI
 
 struct InPostThumbnailView: View {
     @State private var isLoading = true
