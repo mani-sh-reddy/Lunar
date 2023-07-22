@@ -19,7 +19,7 @@ struct MoreCommunitiesView: View {
                     NavigationLink(destination:
                         PostsListView(postFetcher: PostFetcher(communityID: community.community.id, prop: [:]), prop: [:], communityID: community.community.id, title: community.community.title)
                     ) {
-                        CommunityRowView(community: community)
+                        MoreCommunityRowView(community: community)
                     }
                     .task {
                         communityFetcher.loadMoreContentIfNeeded(currentItem: community)
