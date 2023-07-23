@@ -72,8 +72,10 @@ import SwiftUI
                     !self.comments.contains { $0.comment.id == newComment.comment.id }
                 }
 
-                self.comments.insert(contentsOf: filteredNewComments, at: 0)
-                self.isLoading = false
+                DispatchQueue.main.async {
+                    self.comments.insert(contentsOf: filteredNewComments, at: 0)
+                    self.isLoading = false
+                }
 
             case let .failure(error):
                 print("ERROR: \(error): \(error.errorDescription ?? "")")
@@ -116,16 +118,14 @@ import SwiftUI
                 }
 
                 if !filteredNewComments.isEmpty {
-                    DispatchQueue.global().async {
+                    DispatchQueue.main.async {
                         let sortedFilteredComments = filteredNewComments.sorted { $0.comment.path < $1.comment.path }
                         for newComment in sortedFilteredComments {
                             InsertSorter.sortComments(newComment, into: &self.comments)
                         }
-
-                        DispatchQueue.main.async {
-                            self.isLoading = false
-                        }
+                        self.isLoading = false
                     }
+
                 } else {
                     self.isLoading = false
                 }
