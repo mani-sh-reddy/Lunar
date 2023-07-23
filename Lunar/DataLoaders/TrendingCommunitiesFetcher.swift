@@ -15,12 +15,18 @@ import SwiftUI
     @Published var isLoading = false
 
     private var currentPage = 1
-    private var sortParameter: String
-    private var limitParameter: String
+    private var limitParameter: Int = 5
+    private var endpoint: URLComponents {
+        URLBuilder(
+            endpointPath: "/api/v3/community/list",
+            sortParameter: "Hot",
+            typeParameter: "All",
+            currentPage: currentPage,
+            limitParameter: limitParameter
+        ).buildURL()
+    }
 
-    init(sortParameter: String, limitParameter: String) {
-        self.sortParameter = sortParameter
-        self.limitParameter = limitParameter
+    init() {
         loadContent()
     }
 
@@ -29,12 +35,10 @@ import SwiftUI
 
         isLoading = true
 
-        let url = URL(string: buildEndpoint())!
         let cacher = ResponseCacher(behavior: .cache)
 
-        print("ENDPOINT: \(url)")
-
-        AF.request(url) { urlRequest in
+        AF.request(endpoint) { urlRequest in
+            print(urlRequest.url as Any)
             urlRequest.cachePolicy = .returnCacheDataElseLoad
         }
         .cacheResponse(using: cacher)
@@ -50,21 +54,5 @@ import SwiftUI
                 print("ERROR: \(error): \(error.errorDescription ?? "")")
             }
         }
-    }
-
-    private func buildEndpoint() -> String {
-        /// https://lemmy.world/api/v3/community/list?type_=All&sort=New&page=1&limit=5
-
-        // TODO: -
-        let typeParameter = "All"
-
-        let baseURL = "https://lemmy.world/api/v3/community/list"
-        let sortQuery = "sort=\(sortParameter)"
-        let typeQuery = "type=\(typeParameter)"
-        let limitQuery = "limit=\(limitParameter)"
-        let pageQuery = "page=\(currentPage)"
-
-        let endpoint = "\(baseURL)?\(sortQuery)&\(typeQuery)&\(limitQuery)&\(pageQuery)"
-        return endpoint
     }
 }

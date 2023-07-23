@@ -1,5 +1,5 @@
 //
-//  CommunityFetcher.swift
+//  CommunitiesFetcher.swift
 //  Lunar
 //
 //  Created by Mani on 09/07/2023.
@@ -10,16 +10,31 @@ import Foundation
 import Kingfisher
 import SwiftUI
 
-@MainActor class CommunityFetcher: ObservableObject {
+@MainActor class CommunitiesFetcher: ObservableObject {
     @Published var communities = [CommunityElement]()
     @Published var isLoading = false
 
     private var currentPage = 1
     private var sortParameter: String
-    private var limitParameter: String
+    private var typeParameter: String
+    private var limitParameter: Int = 30
+    private var endpoint: URLComponents {
+        URLBuilder(
+            endpointPath: "/api/v3/community/list",
+            sortParameter: sortParameter,
+            typeParameter: typeParameter,
+            currentPage: currentPage,
+            limitParameter: limitParameter
+        ).buildURL()
+    }
 
-    init(sortParameter: String, limitParameter: String) {
+    init(
+        sortParameter: String,
+        typeParameter: String,
+        limitParameter: Int
+    ) {
         self.sortParameter = sortParameter
+        self.typeParameter = typeParameter
         self.limitParameter = limitParameter
         loadMoreContent()
     }
@@ -35,10 +50,10 @@ import SwiftUI
 
         currentPage = 1
 
-        let url = URL(string: buildEndpoint())!
         let cacher = ResponseCacher(behavior: .cache)
 
-        AF.request(url) { urlRequest in
+        AF.request(endpoint) { urlRequest in
+            print(urlRequest.url as Any)
             urlRequest.cachePolicy = .reloadRevalidatingCacheData
         }
         .cacheResponse(using: cacher)
@@ -46,21 +61,12 @@ import SwiftUI
         .responseDecodable(of: CommunityModel.self) { response in
             switch response.result {
             case let .success(result):
-                print("current communities @published object: \(self.communities.count)")
-
                 let newCommunities = result.communities
-
-                print("newCommunities: \(newCommunities.count)")
-
                 let filteredNewCommunities = newCommunities.filter { newCommunity in
                     !self.communities.contains { $0.community.id == newCommunity.community.id }
                 }
 
-                print("filteredNewCommunities: \(filteredNewCommunities.count)")
-
                 self.communities.insert(contentsOf: filteredNewCommunities, at: 0)
-
-                print("new communities @published object: \(self.communities.count)")
 
                 self.isLoading = false
 
@@ -90,12 +96,10 @@ import SwiftUI
 
         isLoading = true
 
-        let url = URL(string: buildEndpoint())!
         let cacher = ResponseCacher(behavior: .cache)
 
-        print("ENDPOINT: \(url)")
-
-        AF.request(url) { urlRequest in
+        AF.request(endpoint) { urlRequest in
+            print(urlRequest.url as Any)
             urlRequest.cachePolicy = .returnCacheDataElseLoad
         }
         .cacheResponse(using: cacher)
@@ -119,20 +123,5 @@ import SwiftUI
                 print("ERROR: \(error): \(error.errorDescription ?? "")")
             }
         }
-    }
-
-    private func buildEndpoint() -> String {
-        /// https://lemmy.world/api/v3/community/list?type_=All&sort=New&page=1&limit=5
-
-        let typeParameter = "All"
-
-        let baseURL = "https://lemmy.world/api/v3/community/list"
-        let sortQuery = "sort=\(sortParameter)"
-        let typeQuery = "type=\(typeParameter)"
-        let limitQuery = "limit=\(limitParameter)"
-        let pageQuery = "page=\(currentPage)"
-
-        let endpoint = "\(baseURL)?\(sortQuery)&\(typeQuery)&\(limitQuery)&\(pageQuery)"
-        return endpoint
     }
 }

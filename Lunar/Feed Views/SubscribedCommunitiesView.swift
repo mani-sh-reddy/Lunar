@@ -1,5 +1,5 @@
 //
-//  SubscribedCommunitiesView.swift
+//  SubscribedCommunitiesSectionView.swift
 //  Lunar
 //
 //  Created by Mani on 20/07/2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SubscribedCommunitiesView: View {
+struct SubscribedCommunitiesSectionView: View {
     var body: some View {
         HStack {
             Image(systemName: "lock.circle.fill")

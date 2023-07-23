@@ -1,5 +1,5 @@
 //
-//  MoreCommunityRowView.swift
+//  MoreCommunitiesRowView.swift
 //  Lunar
 //
 //  Created by Mani on 22/07/2023.
@@ -8,7 +8,7 @@
 import Kingfisher
 import SwiftUI
 
-struct MoreCommunityRowView: View {
+struct MoreCommunitiesRowView: View {
     var community: CommunityElement
 
     @State var showingPlaceholderAlert = false

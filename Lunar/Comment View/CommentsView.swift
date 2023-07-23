@@ -9,11 +9,11 @@ import Kingfisher
 import SwiftUI
 
 struct CommentsView: View {
-    @StateObject var commentFetcher: CommentFetcher
+    @StateObject var commentsFetcher: CommentsFetcher
     @State var postID: Int
     var postTitle: String
-    var thumbnailURL: String
-    var postBody: String
+    var thumbnailURL: String? = nil
+    var postBody: String? = nil
 
     var body: some View {
         ScrollViewReader { _ in
@@ -21,42 +21,48 @@ struct CommentsView: View {
                 List {
                     Text(postTitle).font(.title).bold()
                         .listRowSeparator(.hidden)
-                    if thumbnailURL == "" {
-                        EmptyView()
-                    } else {
+
+                    if let thumbnailURL {
                         InPostThumbnailView(thumbnailURL: thumbnailURL)
                             .listRowSeparator(.hidden)
                     }
-                    if postBody == "" {
-                        EmptyView()
-                    } else {
+
+                    if let postBody {
                         ZStack {
-                            RoundedRectangle(cornerRadius: 10, style: .continuous).foregroundStyle(.regularMaterial)
-                            Text(postBody).padding(10).multilineTextAlignment(.leading)
+                            RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                .foregroundStyle(.regularMaterial)
+                            Text(postBody)
+                                .padding(10)
+                                .multilineTextAlignment(.leading)
                         }
                         .padding(.bottom, 20)
                     }
-                    ForEach(commentFetcher.comments, id: \.comment.id) { comment in
+
+                    ForEach(commentsFetcher.comments, id: \.comment.id) { comment in
                         HStack(spacing: 5) {
                             CommentIndentGuideView(commentPath: comment.comment.path)
                             VStack(alignment: .leading) {
-                                Text(String(comment.creator.name.uppercased())).fontWeight(.bold).foregroundStyle(.gray).font(.footnote).padding(.vertical, 2)
+                                Text(String(comment.creator.name.uppercased()))
+                                    .fontWeight(.bold)
+                                    .foregroundStyle(.gray)
+                                    .font(.footnote)
+                                    .padding(.vertical, 2)
                                 Text(String(comment.comment.content))
-                            }.padding(.leading, 10)
+                            }
+                            .padding(.leading, 10)
                         }
                         .padding(.vertical, 5)
-
                         .task {
-                            commentFetcher.loadMoreContentIfNeeded(currentItem: comment)
+                            commentsFetcher.loadMoreContentIfNeeded(currentItem: comment)
                         }
                         .accentColor(Color.primary)
                     }
-                    if commentFetcher.isLoading {
+                    if commentsFetcher.isLoading {
                         ProgressView()
                     }
                 }
                 .refreshable {
-                    await commentFetcher.refreshContent()
+                    await commentsFetcher.refreshContent()
                 }
                 .listStyle(.plain)
             }
@@ -70,10 +76,14 @@ struct CommentsView: View {
 
 struct CommentsView_Previews: PreviewProvider {
     static var previews: some View {
-        let commentFetcher = CommentFetcher(postID: 1_442_451)
+        let commentsFetcher = CommentsFetcher(
+            postID: 1_442_451,
+            sortParameter: "Top",
+            typeParameter: "All"
+        )
 
         CommentsView(
-            commentFetcher: commentFetcher,
+            commentsFetcher: commentsFetcher,
             postID: 1_442_451,
             postTitle: "Lemmy.world active users is tapering off while other servers are gaining serious traction.",
             thumbnailURL: "https://www.wallpapers13.com/wp-content/uploads/2015/12/Nature-Lake-Bled.-Desktop-background-image-1680x1050.jpg",

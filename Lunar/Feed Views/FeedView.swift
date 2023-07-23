@@ -8,23 +8,23 @@
 import SwiftUI
 
 struct FeedView: View {
-    @Binding var lemmyInstance: String
+    @AppStorage("instanceHostURL") var instanceHostURL = DefaultSettings.instanceURL
     @StateObject var networkMonitor = NetworkMonitor()
 
     var body: some View {
         NavigationView {
             List {
                 Section(header: Text("Feed")) {
-                    GeneralCommunitiesView()
+                    AggregatedCommunitiesSectionView()
                 }
                 Section(header: Text("Trending")) {
-                    TrendingCommunitiesView(trendingCommunitiesFetcher: TrendingCommunitiesFetcher(sortParameter: "Hot", limitParameter: "5"))
+                    TrendingCommunitiesSectionView(trendingCommunitiesFetcher: TrendingCommunitiesFetcher())
                 }
                 Section(header: Text("Subscribed")) {
-                    SubscribedCommunitiesView()
+                    SubscribedCommunitiesSectionView()
                 }
             }
-            .navigationTitle(lemmyInstance)
+            .navigationTitle(instanceHostURL)
         }
         .onAppear {
             networkMonitor.checkConnection()
@@ -40,9 +40,7 @@ struct FeedView: View {
 }
 
 struct FeedView_Previews: PreviewProvider {
-    @State static var lemmyInstance: String = "lemmy.world"
-
     static var previews: some View {
-        FeedView(lemmyInstance: $lemmyInstance)
+        FeedView()
     }
 }

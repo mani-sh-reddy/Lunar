@@ -1,5 +1,5 @@
 //
-//  MoreCommunitiesLinkView.swift
+//  MoreCommunitiesButtonView.swift
 //  Lunar
 //
 //  Created by Mani on 20/07/2023.
@@ -7,12 +7,20 @@
 
 import SwiftUI
 
-struct MoreCommunitiesLinkView: View {
+struct MoreCommunitiesButtonView: View {
     var body: some View {
-        NavigationLink(
-            destination: MoreCommunitiesView(communityFetcher: CommunityFetcher(sortParameter: "New", limitParameter: "50"), title: "Explore Communities")
-                .animation(.interactiveSpring, value: 10)
-        ) {
+        let communitiesFetcher = CommunitiesFetcher(
+            sortParameter: "New",
+            typeParameter: "All",
+            limitParameter: 50
+        )
+
+        let destination = MoreCommunitiesView(
+            communitiesFetcher: communitiesFetcher,
+            title: "Explore Communities"
+        )
+
+        NavigationLink(destination: destination) {
             HStack {
                 Image(systemName: "sailboat.circle.fill")
                     .resizable()

@@ -9,13 +9,14 @@ import Kingfisher
 import SwiftUI
 
 struct SettingsView: View {
-    @Binding var lemmyInstance: String
+//    @Binding var lemmyInstance: String
     @State var cacheSize: String = ""
+    @AppStorage("instanceHostURL") var instanceHostURL = DefaultSettings.instanceURL
 
     var body: some View {
         VStack(spacing: 30) {
-            Text(lemmyInstance)
-            TextField("Enter username...", text: $lemmyInstance)
+            Text(instanceHostURL)
+            TextField("Enter username...", text: $instanceHostURL)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             Text("Disk cache size: \(cacheSize)")
             Button("clear cache") {
@@ -44,8 +45,8 @@ struct SettingsView: View {
     }
 }
 
-struct ExampleView_Previews: PreviewProvider {
+struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(lemmyInstance: .constant("lemmy.world"), cacheSize: "")
+        SettingsView()
     }
 }

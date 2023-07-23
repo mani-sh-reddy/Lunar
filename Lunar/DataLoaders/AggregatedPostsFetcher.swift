@@ -1,27 +1,38 @@
 //
-//  PostFetcher.swift
+//  AggregatedPostsFetcher.swift
 //  Lunar
 //
-//  Created by Mani on 09/07/2023.
+//  Created by Mani on 23/07/2023.
 //
 
 import Alamofire
 import Combine
 import Foundation
 import Kingfisher
+import SwiftUI
 
-@MainActor class PostFetcher: ObservableObject {
+@MainActor class AggregatedPostsFetcher: ObservableObject {
     @Published var posts = [PostElement]()
     @Published var isLoading = false
 
     private var currentPage = 1
+    private var sortParameter: String
+    private var typeParameter: String
+    private var endpoint: URLComponents {
+        URLBuilder(
+            endpointPath: "/api/v3/post/list",
+            sortParameter: sortParameter,
+            typeParameter: typeParameter,
+            currentPage: currentPage
+        ).buildURL()
+    }
 
-    private var communityID: Int = 0
-    private var prop: [String: String] = [:]
-
-    init(communityID: Int, prop: [String: String]) {
-        self.communityID = communityID
-        self.prop = prop
+    init(
+        sortParameter: String,
+        typeParameter: String
+    ) {
+        self.sortParameter = sortParameter
+        self.typeParameter = typeParameter
         loadMoreContent()
     }
 
@@ -35,12 +46,10 @@ import Kingfisher
         isLoading = true
         currentPage = 1
 
-        let url = URL(string: buildEndpoint())!
         let cacher = ResponseCacher(behavior: .cache)
 
-        print("ENDPOINT: \(url)")
-
-        AF.request(url) { urlRequest in
+        AF.request(endpoint) { urlRequest in
+            print(urlRequest.url as Any)
             urlRequest.cachePolicy = .reloadRevalidatingCacheData
         }
         .cacheResponse(using: cacher)
@@ -101,12 +110,10 @@ import Kingfisher
 
         isLoading = true
 
-        let url = URL(string: buildEndpoint())!
         let cacher = ResponseCacher(behavior: .cache)
 
-        print("ENDPOINT: \(url)")
-
-        AF.request(url) { urlRequest in
+        AF.request(endpoint) { urlRequest in
+            print(urlRequest.url as Any)
             urlRequest.cachePolicy = .returnCacheDataElseLoad
         }
         .cacheResponse(using: cacher)
@@ -128,28 +135,5 @@ import Kingfisher
                 print("ERROR: \(error): \(error.errorDescription ?? "")")
             }
         }
-    }
-
-    private func buildEndpoint() -> String {
-        /// https://lemmy.world/api/v3/post/list?sort=Active&limit=5&page=1&type_=All
-
-        let sortParameter = prop["sort"] ?? "Active"
-        let typeParameter = prop["type"] ?? "All"
-
-        let baseURL = "https://lemmy.world/api/v3/post/list"
-        let sortQuery = "sort=\(sortParameter)"
-        let limitQuery = "limit=10"
-        let pageQuery = "page=\(currentPage)"
-
-        var prefixQuery = ""
-
-        if communityID == 0 {
-            prefixQuery = "type_=\(typeParameter)"
-        } else {
-            prefixQuery = "community_id=\(communityID)"
-        }
-
-        let endpoint = "\(baseURL)?\(sortQuery)&\(limitQuery)&\(pageQuery)&\(prefixQuery)"
-        return endpoint
     }
 }

@@ -1,5 +1,5 @@
 //
-//  CommentFetcher.swift
+//  CommentsFetcher.swift
 //  Lunar
 //
 //  Created by Mani on 09/07/2023.
@@ -9,16 +9,37 @@ import Alamofire
 import Combine
 import Foundation
 import Kingfisher
+import SwiftUI
 
-@MainActor class CommentFetcher: ObservableObject {
+@MainActor class CommentsFetcher: ObservableObject {
     @Published var comments = [CommentElement]()
     @Published var isLoading = false
 
     private var currentPage = 1
-    private var postID: Int = 0
+    private var postID: Int
+    private var sortParameter: String
+    private var typeParameter: String
+    private var limitParameter: Int = 50
+    private let maxDepth: Int = 50
+    private var endpoint: URLComponents {
+        URLBuilder(
+            endpointPath: "/api/v3/post/list",
+            sortParameter: sortParameter,
+            typeParameter: typeParameter,
+            currentPage: currentPage,
+            limitParameter: limitParameter,
+            postID: postID
+        ).buildURL()
+    }
 
-    init(postID: Int) {
+    init(
+        postID: Int,
+        sortParameter: String,
+        typeParameter: String
+    ) {
         self.postID = postID
+        self.sortParameter = sortParameter
+        self.typeParameter = typeParameter
         loadMoreContent()
     }
 
@@ -33,10 +54,10 @@ import Kingfisher
 
         currentPage = 1
 
-        let url = URL(string: buildEndpoint())!
         let cacher = ResponseCacher(behavior: .cache)
 
-        AF.request(url) { urlRequest in
+        AF.request(endpoint) { urlRequest in
+            print(urlRequest.url as Any)
             urlRequest.cachePolicy = .reloadRevalidatingCacheData
         }
         .cacheResponse(using: cacher)
@@ -79,12 +100,10 @@ import Kingfisher
 
         isLoading = true
 
-        let url = URL(string: buildEndpoint())!
         let cacher = ResponseCacher(behavior: .cache)
 
-        print("ENDPOINT: \(url)")
-
-        AF.request(url) { urlRequest in
+        AF.request(endpoint) { urlRequest in
+            print(urlRequest.url as Any)
             urlRequest.cachePolicy = .returnCacheDataElseLoad
         }
         .cacheResponse(using: cacher)
@@ -102,9 +121,8 @@ import Kingfisher
                 if !filteredNewComments.isEmpty {
                     DispatchQueue.global().async {
                         let sortedFilteredComments = filteredNewComments.sorted { $0.comment.path < $1.comment.path }
-
                         for newComment in sortedFilteredComments {
-                            self.sortedInsert(newComment)
+                            InsertSorter.sortComments(newComment, into: &self.comments)
                         }
 
                         DispatchQueue.main.async {
@@ -119,40 +137,6 @@ import Kingfisher
 
             case let .failure(error):
                 print("ERROR: \(error): \(error.errorDescription ?? "")")
-            }
-        }
-    }
-
-    private func buildEndpoint() -> String {
-        /// let urlString = "https://lemmy.world/api/v3/comment/list?type_=All&sort=Top&limit=50&post_id=\(postId)&max_depth=\(commentMaxDepth)"
-
-        let sortParameter = "Top"
-        let commentMaxDepth = "50"
-
-        let baseURL = "https://lemmy.world/api/v3/comment/list"
-        let sortQuery = "sort=\(sortParameter)"
-        let limitQuery = "limit=50"
-        let pageQuery = "page=\(currentPage)"
-        let maxDepthQuery = "max_depth=\(commentMaxDepth)"
-        let postIDQuery = "post_id=\(postID)"
-
-        let endpoint = "\(baseURL)?\(sortQuery)&\(limitQuery)&\(pageQuery)&\(maxDepthQuery)&\(postIDQuery)"
-        return endpoint
-    }
-
-    private func sortedInsert(_ newComment: CommentElement) {
-        Task {
-            await MainActor.run {
-                var index = comments.endIndex
-                for (currentIndex, existingComment) in comments.enumerated() {
-                    if newComment.comment.path < existingComment.comment.path ||
-                        (newComment.comment.path == existingComment.comment.path && newComment.comment.id < existingComment.comment.id)
-                    {
-                        index = currentIndex
-                        break
-                    }
-                }
-                comments.insert(newComment, at: index)
             }
         }
     }
