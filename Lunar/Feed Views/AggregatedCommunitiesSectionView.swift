@@ -7,14 +7,6 @@
 
 import SwiftUI
 
-struct AggregatedCommunityButton {
-    let title: String
-    let type: String
-    let sort: String
-    let icon: String
-    let iconColor: String
-}
-
 struct AggregatedCommunitiesSectionView: View {
     let aggregatedCommunityButtons: [[String: String]] = [
         [
@@ -46,24 +38,14 @@ struct AggregatedCommunitiesSectionView: View {
 
     var body: some View {
         ForEach(aggregatedCommunityButtons, id: \.self) { button in
-
-            if let title = button["title"],
-               let type = button["type"],
-               let sort = button["sort"]
-            {
-                let aggregatedPostsFetcher = AggregatedPostsFetcher(
-                    sortParameter: sort,
-                    typeParameter: type
-                )
-
-                let destination = AggregatedPostsListView(
-                    aggregatedPostsFetcher: aggregatedPostsFetcher,
-                    title: title
-                )
-
-                NavigationLink(destination: destination) {
-                    AggregatedCommunityRowView(button: button)
-                }
+            NavigationLink(destination: AggregatedPostsListView(
+                aggregatedPostsFetcher: AggregatedPostsFetcher(
+                    sortParameter: button["sort"]!,
+                    typeParameter: button["type"]!
+                ),
+                title: button["title"]!
+            )) {
+                AggregatedCommunityRowView(button: button)
             }
         }
     }

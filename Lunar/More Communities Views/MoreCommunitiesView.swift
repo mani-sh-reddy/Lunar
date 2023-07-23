@@ -17,20 +17,15 @@ struct MoreCommunitiesView: View {
             Section(header: Text(sectionHeader)) {
                 ForEach(communitiesFetcher.communities, id: \.community.id) { community in
 
-                    let communitySpecificPostsFetcher = CommunitySpecificPostsFetcher(
-                        communityID: community.community.id,
-                        // TODO: user changeable parameters
-                        sortParameter: "Active",
-                        typeParameter: "All"
-                    )
-
-                    let destination = CommunitySpecificPostsListView(
-                        communitySpecificPostsFetcher: communitySpecificPostsFetcher,
+                    NavigationLink(destination: CommunitySpecificPostsListView(
+                        communitySpecificPostsFetcher: CommunitySpecificPostsFetcher(
+                            communityID: community.community.id,
+                            sortParameter: "Active",
+                            typeParameter: "All"
+                        ),
                         communityID: community.community.id,
                         title: community.community.title
-                    )
-
-                    NavigationLink(destination: destination) {
+                    )) {
                         MoreCommunitiesRowView(community: community)
                     }
                     .task {

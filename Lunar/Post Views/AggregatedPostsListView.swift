@@ -10,32 +10,26 @@ import SwiftUI
 
 struct AggregatedPostsListView: View {
     @StateObject var aggregatedPostsFetcher: AggregatedPostsFetcher
-    var prop: [String: String]?
     var title: String
 
     var body: some View {
         ScrollViewReader { _ in
             List {
                 ForEach(aggregatedPostsFetcher.posts, id: \.post.id) { post in
-                    let commentsFetcher = CommentsFetcher(
-                        postID: post.post.id,
-                        // TODO: make these user changeable parameters
-                        sortParameter: "Top",
-                        typeParameter: "All"
-                    )
-
-                    let destination = CommentsView(
-                        commentsFetcher: commentsFetcher,
-                        postID: post.post.id,
-                        postTitle: post.post.name,
-                        thumbnailURL: post.post.thumbnailURL,
-                        postBody: post.post.body
-                    )
-
                     Section {
                         ZStack {
                             PostRowView(post: post)
-                            NavigationLink(destination: destination) {
+                            NavigationLink(destination: CommentsView(
+                                commentsFetcher: CommentsFetcher(
+                                    postID: post.post.id,
+                                    sortParameter: "Top",
+                                    typeParameter: "All"
+                                ),
+                                postID: post.post.id,
+                                postTitle: post.post.name,
+                                thumbnailURL: post.post.thumbnailURL,
+                                postBody: post.post.body
+                            )) {
                                 EmptyView()
                                     .frame(height: 0)
                             }

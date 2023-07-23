@@ -49,7 +49,7 @@ import SwiftUI
         let cacher = ResponseCacher(behavior: .cache)
 
         AF.request(endpoint) { urlRequest in
-            print(urlRequest.url as Any)
+            print("AggregatedPostsFetcher REF \(urlRequest.url as Any)")
             urlRequest.cachePolicy = .reloadRevalidatingCacheData
         }
         .cacheResponse(using: cacher)
@@ -57,23 +57,14 @@ import SwiftUI
         .responseDecodable(of: PostsModel.self) { response in
             switch response.result {
             case let .success(result):
-                print("current posts @published object: \(self.posts.count)")
 
                 let newPosts = result.posts
 
-                print("newPosts: \(newPosts.count)")
-
-                // Filter out existing posts from new posts
                 let filteredNewPosts = newPosts.filter { newPost in
                     !self.posts.contains { $0.post.id == newPost.post.id }
                 }
 
-                print("filteredNewPosts: \(filteredNewPosts.count)")
-
-                // Prepend filtered new posts to the front of the list
                 self.posts.insert(contentsOf: filteredNewPosts, at: 0)
-
-                print("new posts @published object: \(self.posts.count)")
 
                 self.isLoading = false
 
@@ -113,7 +104,7 @@ import SwiftUI
         let cacher = ResponseCacher(behavior: .cache)
 
         AF.request(endpoint) { urlRequest in
-            print(urlRequest.url as Any)
+            print("AggregatedPostsFetcher LOAD \(urlRequest.url as Any)")
             urlRequest.cachePolicy = .returnCacheDataElseLoad
         }
         .cacheResponse(using: cacher)

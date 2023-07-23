@@ -19,6 +19,7 @@ struct FeedView: View {
                 }
                 Section(header: Text("Trending")) {
                     TrendingCommunitiesSectionView(trendingCommunitiesFetcher: TrendingCommunitiesFetcher())
+                    MoreCommunitiesButtonView()
                 }
                 Section(header: Text("Subscribed")) {
                     SubscribedCommunitiesSectionView()

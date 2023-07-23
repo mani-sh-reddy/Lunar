@@ -23,12 +23,13 @@ import SwiftUI
     private let maxDepth: Int = 50
     private var endpoint: URLComponents {
         URLBuilder(
-            endpointPath: "/api/v3/post/list",
+            endpointPath: "/api/v3/comment/list",
             sortParameter: sortParameter,
             typeParameter: typeParameter,
             currentPage: currentPage,
             limitParameter: limitParameter,
-            postID: postID
+            postID: postID,
+            maxDepth: maxDepth
         ).buildURL()
     }
 
@@ -57,7 +58,7 @@ import SwiftUI
         let cacher = ResponseCacher(behavior: .cache)
 
         AF.request(endpoint) { urlRequest in
-            print(urlRequest.url as Any)
+            print("CommentsFetcher REF \(urlRequest.url as Any)")
             urlRequest.cachePolicy = .reloadRevalidatingCacheData
         }
         .cacheResponse(using: cacher)
@@ -65,17 +66,13 @@ import SwiftUI
         .responseDecodable(of: CommentModel.self) { response in
             switch response.result {
             case let .success(result):
-                print("current comments @published object: \(self.comments.count)")
                 let newComments = result.comments
-                print("newPosts: \(newComments.count)")
 
                 let filteredNewComments = newComments.filter { newComment in
                     !self.comments.contains { $0.comment.id == newComment.comment.id }
                 }
 
-                print("filteredNewPosts: \(filteredNewComments.count)")
                 self.comments.insert(contentsOf: filteredNewComments, at: 0)
-                print("new posts @published object: \(self.comments.count)")
                 self.isLoading = false
 
             case let .failure(error):
@@ -103,7 +100,7 @@ import SwiftUI
         let cacher = ResponseCacher(behavior: .cache)
 
         AF.request(endpoint) { urlRequest in
-            print(urlRequest.url as Any)
+            print("CommentsFetcher LOAD \(urlRequest.url as Any)")
             urlRequest.cachePolicy = .returnCacheDataElseLoad
         }
         .cacheResponse(using: cacher)

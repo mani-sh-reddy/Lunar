@@ -38,7 +38,7 @@ import SwiftUI
         let cacher = ResponseCacher(behavior: .cache)
 
         AF.request(endpoint) { urlRequest in
-            print(urlRequest.url as Any)
+            print("TrendingCommunitiesFetcher LOAD \(urlRequest.url as Any)")
             urlRequest.cachePolicy = .returnCacheDataElseLoad
         }
         .cacheResponse(using: cacher)
