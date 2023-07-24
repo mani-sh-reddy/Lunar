@@ -31,11 +31,27 @@ struct PostRowView: View {
             }
 
             HStack(spacing: 6) {
-                InPostUserView(text: post.creator.name, iconName: "person.crop", userAvatar: post.creator.avatar)
+                InPostUserView(
+                    text: post.creator.name,
+                    iconName: "person.crop",
+                    userAvatar: post.creator.avatar
+                )
                 Spacer(minLength: 20)
-                InPostMetadataView(bodyText: String(post.counts.upvotes), iconName: "arrow.up", iconColor: .green)
-                InPostMetadataView(bodyText: String(post.counts.downvotes), iconName: "arrow.down", iconColor: .red)
-                InPostMetadataView(bodyText: String(post.counts.comments), iconName: "text.bubble", iconColor: .gray)
+                InPostMetadataView(
+                    bodyText: String(post.counts.upvotes),
+                    iconName: "arrow.up.circle.fill",
+                    iconColor: .green
+                )
+                InPostMetadataView(
+                    bodyText: String(post.counts.downvotes),
+                    iconName: "arrow.down.circle.fill",
+                    iconColor: .red
+                )
+                InPostMetadataView(
+                    bodyText: String(post.counts.comments),
+                    iconName: "bubble.left.circle.fill",
+                    iconColor: .gray
+                )
             }
         }
 

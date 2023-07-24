@@ -34,7 +34,7 @@ struct MoreCommunitiesView: View {
                     }
                 }
             } header: {
-                Text("New Communities in \(instanceHostURL)").textCase(nil)
+                Text("Sorted by New")
             }
 
             .accentColor(Color.primary)

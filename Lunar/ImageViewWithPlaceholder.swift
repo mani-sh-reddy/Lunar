@@ -28,7 +28,7 @@ struct ImageViewWithPlaceholder: View {
                 }
                 .resizable()
                 .frame(width: 20, height: 20)
-                .clipShape(RoundedRectangle(cornerRadius: 3, style: .continuous))
+                .clipShape(Circle())
                 .scaledToFit()
                 .padding(.trailing, 5)
         } else {

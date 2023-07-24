@@ -16,9 +16,9 @@ struct SettingsInfoSectionView: View {
                 Label {
                     Text("Privacy Policy")
                 } icon: {
-                    Image(systemName: "lock.doc")
+                    Image(systemName: "eye.slash.fill")
                         .symbolRenderingMode(.hierarchical)
-                        .foregroundStyle(.red)
+                        .foregroundStyle(.pink)
                 }
             }
 
@@ -28,7 +28,7 @@ struct SettingsInfoSectionView: View {
                 Label {
                     Text("Contact")
                 } icon: {
-                    Image(systemName: "person.crop.circle")
+                    Image(systemName: "paperplane.fill")
                         .symbolRenderingMode(.hierarchical)
                         .foregroundStyle(.blue)
                 }
@@ -38,11 +38,11 @@ struct SettingsInfoSectionView: View {
                 PlaceholderView()
             } label: {
                 Label {
-                    Text("Github")
+                    Text("Lunar for Lemmy Github")
                 } icon: {
-                    Image(systemName: "link")
+                    Image(systemName: "ellipsis.curlybraces")
                         .symbolRenderingMode(.hierarchical)
-                        .foregroundStyle(.black)
+                        .foregroundStyle(.foreground)
                 }
             }
         } header: {
