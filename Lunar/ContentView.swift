@@ -8,12 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var tabSelection = 0
-
     var body: some View {
-        TabView(selection: $tabSelection) {
+        TabView {
             FeedView()
-                .badge(0)
                 .tabItem {
                     Label("Feed", systemImage: "list.bullet.rectangle")
                 }
