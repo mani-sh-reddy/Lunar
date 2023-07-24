@@ -17,7 +17,6 @@ struct SettingsAccountView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) { Image(systemName: "person.badge.plus")
                 .symbolRenderingMode(.hierarchical)
-//                    .foregroundStyle(.blue)
             }
         }
     }

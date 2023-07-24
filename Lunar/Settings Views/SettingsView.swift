@@ -41,15 +41,3 @@ struct SettingsView_Previews: PreviewProvider {
         SettingsView()
     }
 }
-
-//                VStack(spacing: 30) {
-//                    Text(instanceHostURL)
-//                    TextField("Enter username...", text: $instanceHostURL)
-//                        .textFieldStyle(RoundedBorderTextFieldStyle())
-//                    Text("Disk cache size: \(cacheSize)")
-//                    Button("clear cache") {
-//                        clearCache()
-//                    }
-//                }.task {
-//                    calculateCache()
-//                }
