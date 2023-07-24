@@ -47,7 +47,8 @@ struct CommunitySpecificPostsListView: View {
                     ProgressView()
                 }
             }
-            .navigationBarTitle(title)
+            .navigationTitle(title)
+            .navigationBarTitleDisplayMode(.inline)
             .listStyle(.grouped)
             .refreshable {
                 await communitySpecificPostsFetcher.refreshContent()

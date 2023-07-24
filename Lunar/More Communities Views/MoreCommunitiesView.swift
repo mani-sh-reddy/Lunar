@@ -9,12 +9,13 @@ import SwiftUI
 
 struct MoreCommunitiesView: View {
     @StateObject var communitiesFetcher: CommunitiesFetcher
+    @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
+
     var title: String
-    @State var sectionHeader: String = "Sorted by New"
 
     var body: some View {
         List {
-            Section(header: Text(sectionHeader)) {
+            Section {
                 ForEach(communitiesFetcher.communities, id: \.community.id) { community in
 
                     NavigationLink(destination: CommunitySpecificPostsListView(
@@ -32,6 +33,8 @@ struct MoreCommunitiesView: View {
                         communitiesFetcher.loadMoreContentIfNeeded(currentItem: community)
                     }
                 }
+            } header: {
+                Text("New Communities in \(instanceHostURL)").textCase(nil)
             }
 
             .accentColor(Color.primary)
@@ -39,7 +42,8 @@ struct MoreCommunitiesView: View {
                 ProgressView()
             }
         }.listStyle(.insetGrouped)
-            .navigationBarTitle(title)
+            .navigationTitle(title)
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) { Image(systemName: "sparkles") }
             }

@@ -29,9 +29,9 @@ struct SettingsView: View {
                 SettingsInfoSectionView()
 
                 SettingsClearCacheButtonView()
-
-            }.navigationTitle("Settings")
-                .navigationBarTitleDisplayMode(.inline)
+            }
+            .navigationTitle("Settings")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

@@ -66,7 +66,7 @@ struct CommentsView: View {
                 }
                 .listStyle(.plain)
             }
-            .navigationBarTitle("", displayMode: .inline)
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) { Image(systemName: "chart.line.uptrend.xyaxis") }
             }
