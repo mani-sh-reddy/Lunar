@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C113C392A6E71E100FDE5CE /* SettingsAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */; };
+		3C113C3B2A6E7E4800FDE5CE /* SettingsAccountNavLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C3A2A6E7E4800FDE5CE /* SettingsAccountNavLabel.swift */; };
+		3C113C3D2A6E8B0C00FDE5CE /* SettingsAppearanceSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C3C2A6E8B0C00FDE5CE /* SettingsAppearanceSectionView.swift */; };
+		3C113C3F2A6E8C9400FDE5CE /* SettingsGeneralSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C3E2A6E8C9400FDE5CE /* SettingsGeneralSectionView.swift */; };
+		3C113C412A6E8EEA00FDE5CE /* SettingsInfoSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C402A6E8EEA00FDE5CE /* SettingsInfoSectionView.swift */; };
+		3C113C432A6EA92600FDE5CE /* SettingsServerSelectionSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C422A6EA92600FDE5CE /* SettingsServerSelectionSectionView.swift */; };
 		3C15DFEE2A6D992A0038EFCD /* CommunitySpecificPostsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C15DFED2A6D992A0038EFCD /* CommunitySpecificPostsListView.swift */; };
 		3C4B7DD82A58A741003C8192 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4B7DD72A58A741003C8192 /* CommentModel.swift */; };
 		3C4B7DDB2A58AD23003C8192 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 3C4B7DDA2A58AD23003C8192 /* Alamofire */; };
@@ -40,7 +46,7 @@
 		3CCAA8BF2A65309E007CCEC2 /* NoInternetConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA8BE2A65309E007CCEC2 /* NoInternetConnectionView.swift */; };
 		3CCAA8C12A65358C007CCEC2 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA8C02A65358C007CCEC2 /* NetworkMonitor.swift */; };
 		3CDF229B2A6D4126009281F2 /* SettingsSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDF229A2A6D4126009281F2 /* SettingsSectionView.swift */; };
-		3CDF229D2A6D436B009281F2 /* DefaultSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDF229C2A6D436B009281F2 /* DefaultSettings.swift */; };
+		3CDF229D2A6D436B009281F2 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDF229C2A6D436B009281F2 /* Settings.swift */; };
 		3CEA54462A59E6FB009E4FB3 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEA54452A59E6FB009E4FB3 /* MockData.swift */; };
 		3CEF196B2A580672006736EF /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEF196A2A580672006736EF /* Kingfisher */; };
 		3CEF196F2A582787006736EF /* LunarLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 3CEF196E2A582786006736EF /* LunarLogo.png */; };
@@ -56,6 +62,8 @@
 		3CEF4CD52A69B798002B83C0 /* URLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CD42A69B798002B83C0 /* URLParser.swift */; };
 		3CEF4CD72A69B7A8002B83C0 /* ImageViewWithPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CD62A69B7A8002B83C0 /* ImageViewWithPlaceholder.swift */; };
 		3CEF4CD92A69B80A002B83C0 /* CommentIndentGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CD82A69B80A002B83C0 /* CommentIndentGuideView.swift */; };
+		3CF3F9C02A6EE0390051E725 /* SettingsClearCacheButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheButtonView.swift */; };
+		3CF3F9C22A6EE20C0051E725 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3F9C12A6EE20C0051E725 /* ViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +91,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAccountView.swift; sourceTree = "<group>"; };
+		3C113C3A2A6E7E4800FDE5CE /* SettingsAccountNavLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAccountNavLabel.swift; sourceTree = "<group>"; };
+		3C113C3C2A6E8B0C00FDE5CE /* SettingsAppearanceSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAppearanceSectionView.swift; sourceTree = "<group>"; };
+		3C113C3E2A6E8C9400FDE5CE /* SettingsGeneralSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsGeneralSectionView.swift; sourceTree = "<group>"; };
+		3C113C402A6E8EEA00FDE5CE /* SettingsInfoSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsInfoSectionView.swift; sourceTree = "<group>"; };
+		3C113C422A6EA92600FDE5CE /* SettingsServerSelectionSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsServerSelectionSectionView.swift; sourceTree = "<group>"; };
 		3C15DFED2A6D992A0038EFCD /* CommunitySpecificPostsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunitySpecificPostsListView.swift; sourceTree = "<group>"; };
 		3C4B7DD72A58A741003C8192 /* CommentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
 		3C4F09FC2A54399F009DF8AB /* Lunar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lunar.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,7 +130,7 @@
 		3CCAA8BE2A65309E007CCEC2 /* NoInternetConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoInternetConnectionView.swift; sourceTree = "<group>"; };
 		3CCAA8C02A65358C007CCEC2 /* NetworkMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		3CDF229A2A6D4126009281F2 /* SettingsSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSectionView.swift; sourceTree = "<group>"; };
-		3CDF229C2A6D436B009281F2 /* DefaultSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSettings.swift; sourceTree = "<group>"; };
+		3CDF229C2A6D436B009281F2 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		3CEA54452A59E6FB009E4FB3 /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		3CEF196E2A582786006736EF /* LunarLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LunarLogo.png; sourceTree = "<group>"; };
 		3CEF4CC12A69B38B002B83C0 /* SubscribedCommunitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedCommunitiesView.swift; sourceTree = "<group>"; };
@@ -131,6 +145,8 @@
 		3CEF4CD42A69B798002B83C0 /* URLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParser.swift; sourceTree = "<group>"; };
 		3CEF4CD62A69B7A8002B83C0 /* ImageViewWithPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewWithPlaceholder.swift; sourceTree = "<group>"; };
 		3CEF4CD82A69B80A002B83C0 /* CommentIndentGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentIndentGuideView.swift; sourceTree = "<group>"; };
+		3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsClearCacheButtonView.swift; sourceTree = "<group>"; };
+		3CF3F9C12A6EE20C0051E725 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,9 +169,9 @@
 				3CCAA8C02A65358C007CCEC2 /* NetworkMonitor.swift */,
 				3CC734A52A6D591A007523B5 /* URLComponentsExtension.swift */,
 				3CEF4CD22A69B770002B83C0 /* StringExtension.swift */,
-				3CDF229C2A6D436B009281F2 /* DefaultSettings.swift */,
 				3CEF4CD42A69B798002B83C0 /* URLParser.swift */,
 				3CC734A32A6D58C6007523B5 /* URLBuilder.swift */,
+				3CF3F9C12A6EE20C0051E725 /* ViewExtension.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -281,7 +297,15 @@
 		3CDF22992A6D3FEF009281F2 /* Settings Views */ = {
 			isa = PBXGroup;
 			children = (
+				3CDF229C2A6D436B009281F2 /* Settings.swift */,
 				3C6588582A6169EB00A46DA3 /* SettingsView.swift */,
+				3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheButtonView.swift */,
+				3C113C3C2A6E8B0C00FDE5CE /* SettingsAppearanceSectionView.swift */,
+				3C113C402A6E8EEA00FDE5CE /* SettingsInfoSectionView.swift */,
+				3C113C422A6EA92600FDE5CE /* SettingsServerSelectionSectionView.swift */,
+				3C113C3E2A6E8C9400FDE5CE /* SettingsGeneralSectionView.swift */,
+				3C113C3A2A6E7E4800FDE5CE /* SettingsAccountNavLabel.swift */,
+				3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */,
 				3CDF229A2A6D4126009281F2 /* SettingsSectionView.swift */,
 			);
 			path = "Settings Views";
@@ -410,9 +434,12 @@
 				3CEF4CD32A69B770002B83C0 /* StringExtension.swift in Sources */,
 				3CEF4CD02A69B738002B83C0 /* InPostMetadataView.swift in Sources */,
 				3CEF4CCE2A69B71C002B83C0 /* InPostUserView.swift in Sources */,
+				3C113C392A6E71E100FDE5CE /* SettingsAccountView.swift in Sources */,
+				3C113C3F2A6E8C9400FDE5CE /* SettingsGeneralSectionView.swift in Sources */,
 				3CCAA8C12A65358C007CCEC2 /* NetworkMonitor.swift in Sources */,
 				3CA5C4102A5753AC00BF8F1B /* PostRowView.swift in Sources */,
 				3CEF4CCA2A69B6FA002B83C0 /* InPostCommunityHeaderView.swift in Sources */,
+				3CF3F9C22A6EE20C0051E725 /* ViewExtension.swift in Sources */,
 				3CA5C40A2A574FF500BF8F1B /* PostsListModel.swift in Sources */,
 				3CC734A82A6D67B7007523B5 /* CommunitySpecificPostsFetcher.swift in Sources */,
 				3CC734A42A6D58C6007523B5 /* URLBuilder.swift in Sources */,
@@ -420,9 +447,12 @@
 				3CCAA8BF2A65309E007CCEC2 /* NoInternetConnectionView.swift in Sources */,
 				3CA5C40E2A57525500BF8F1B /* AggregatedPostsListView.swift in Sources */,
 				3CEF4CCC2A69B70C002B83C0 /* InPostThumbnailView.swift in Sources */,
+				3CF3F9C02A6EE0390051E725 /* SettingsClearCacheButtonView.swift in Sources */,
 				3CEF4CC22A69B38B002B83C0 /* SubscribedCommunitiesView.swift in Sources */,
-				3CDF229D2A6D436B009281F2 /* DefaultSettings.swift in Sources */,
+				3CDF229D2A6D436B009281F2 /* Settings.swift in Sources */,
+				3C113C412A6E8EEA00FDE5CE /* SettingsInfoSectionView.swift in Sources */,
 				3CB527382A6C28EC0095F351 /* MoreCommunitiesRowView.swift in Sources */,
+				3C113C3B2A6E7E4800FDE5CE /* SettingsAccountNavLabel.swift in Sources */,
 				3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */,
 				3CB8D2682A55F45900EE615A /* FeedView.swift in Sources */,
 				3CB8D26A2A561E0700EE615A /* AggregatedCommunityRowView.swift in Sources */,
@@ -436,8 +466,10 @@
 				3CEF4CD72A69B7A8002B83C0 /* ImageViewWithPlaceholder.swift in Sources */,
 				3CA92E3A2A543BF000688DEB /* ContentView.swift in Sources */,
 				3CB408B42A5C558B00B7C983 /* CommunitiesFetcher.swift in Sources */,
+				3C113C432A6EA92600FDE5CE /* SettingsServerSelectionSectionView.swift in Sources */,
 				3CA92E432A549A7F00688DEB /* CommunityRowView.swift in Sources */,
 				3CEF4CC42A69B39B002B83C0 /* TrendingCommunitiesSectionView.swift in Sources */,
+				3C113C3D2A6E8B0C00FDE5CE /* SettingsAppearanceSectionView.swift in Sources */,
 				3CBCCDF62A589F2C00307AC1 /* CommentsView.swift in Sources */,
 				3C65885F2A621C6100A46DA3 /* MoreCommunitiesView.swift in Sources */,
 				3CC734AA2A6D697C007523B5 /* InsertSorter.swift in Sources */,

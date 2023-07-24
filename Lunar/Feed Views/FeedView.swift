@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FeedView: View {
-    @AppStorage("instanceHostURL") var instanceHostURL = DefaultSettings.instanceURL
+    @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
     @StateObject var networkMonitor = NetworkMonitor()
 
     var body: some View {

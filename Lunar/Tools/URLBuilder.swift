@@ -20,7 +20,7 @@ import SwiftUI
 /// comment/list?type_=Local&sort=Top&max_depth=2&page=1&limit=10&post_id=2021423
 
 class URLBuilder {
-    @AppStorage("instanceHostURL") var instanceHostURL = DefaultSettings.instanceURL
+    @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
 
     private let endpointPath: String
     private let sortParameter: String

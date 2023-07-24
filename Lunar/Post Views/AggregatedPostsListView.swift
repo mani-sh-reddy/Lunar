@@ -10,6 +10,8 @@ import SwiftUI
 
 struct AggregatedPostsListView: View {
     @StateObject var aggregatedPostsFetcher: AggregatedPostsFetcher
+    @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
+
     var title: String
 
     var body: some View {
@@ -48,6 +50,11 @@ struct AggregatedPostsListView: View {
             .navigationBarTitle(title)
             .listStyle(.grouped)
             .refreshable {
+                await aggregatedPostsFetcher.refreshContent()
+            }
+        }
+        .onChange(of: instanceHostURL) { _ in
+            Task {
                 await aggregatedPostsFetcher.refreshContent()
             }
         }

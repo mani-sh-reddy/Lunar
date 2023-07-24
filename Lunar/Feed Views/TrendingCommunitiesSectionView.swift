@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TrendingCommunitiesSectionView: View {
     @StateObject var trendingCommunitiesFetcher: TrendingCommunitiesFetcher
+    @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
 
     var body: some View {
         ForEach(trendingCommunitiesFetcher.communities, id: \.community.id) { community in
@@ -28,5 +29,11 @@ struct TrendingCommunitiesSectionView: View {
         if trendingCommunitiesFetcher.isLoading {
             ProgressView()
         }
+        EmptyView()
+            .onChange(of: instanceHostURL) { _ in
+                Task {
+                    await trendingCommunitiesFetcher.refreshContent()
+                }
+            }
     }
 }

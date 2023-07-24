@@ -14,6 +14,8 @@ import SwiftUI
     @Published var communities = [CommunityElement]()
     @Published var isLoading = false
 
+    @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
+
     private var currentPage = 1
     private var limitParameter: Int = 5
     private var endpoint: URLComponents {
@@ -28,6 +30,31 @@ import SwiftUI
 
     init() {
         loadContent()
+    }
+
+    func refreshContent() async {
+        guard !isLoading else { return }
+
+        isLoading = true
+
+        let cacher = ResponseCacher(behavior: .cache)
+
+        AF.request(endpoint) { urlRequest in
+            print("TrendingCommunitiesFetcher REF \(urlRequest.url as Any)")
+            urlRequest.cachePolicy = .returnCacheDataElseLoad
+        }
+        .cacheResponse(using: cacher)
+        .validate(statusCode: 200 ..< 300)
+        .responseDecodable(of: CommunityModel.self) { response in
+            switch response.result {
+            case let .success(result):
+                self.communities = result.communities
+                self.isLoading = false
+
+            case let .failure(error):
+                print("ERROR: \(error): \(error.errorDescription ?? "")")
+            }
+        }
     }
 
     private func loadContent() {
@@ -48,7 +75,6 @@ import SwiftUI
             case let .success(result):
                 self.communities = result.communities
                 self.isLoading = false
-                self.currentPage += 1
 
             case let .failure(error):
                 print("ERROR: \(error): \(error.errorDescription ?? "")")

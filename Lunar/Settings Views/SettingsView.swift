@@ -9,38 +9,29 @@ import Kingfisher
 import SwiftUI
 
 struct SettingsView: View {
-//    @Binding var lemmyInstance: String
-    @State var cacheSize: String = ""
-    @AppStorage("instanceHostURL") var instanceHostURL = DefaultSettings.instanceURL
+    @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
+    @AppStorage("displayName") var displayName = Settings.displayName
+    @AppStorage("userName") var userName = Settings.userName
 
     var body: some View {
-        VStack(spacing: 30) {
-            Text(instanceHostURL)
-            TextField("Enter username...", text: $instanceHostURL)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            Text("Disk cache size: \(cacheSize)")
-            Button("clear cache") {
-                clearCache()
-            }
-        }.task {
-            calculateCache()
-        }
-    }
+        NavigationView {
+            List {
+                NavigationLink {
+                    SettingsAccountView()
+                } label: {
+                    SettingsAccountNavLabel()
+                }
 
-    func clearCache() {
-        let cache = ImageCache.default
-        cache.clearMemoryCache()
-        cache.clearDiskCache { print("Done") }
-    }
+                SettingsServerSelectionSectionView()
 
-    func calculateCache() {
-        ImageCache.default.calculateDiskStorageSize { result in
-            switch result {
-            case let .success(size):
-                cacheSize = "\(Double(size) / 1024 / 1024) MB"
-            case let .failure(error):
-                print(error)
-            }
+                SettingsGeneralSectionView()
+                SettingsAppearanceSectionView()
+                SettingsInfoSectionView()
+
+                SettingsClearCacheButtonView()
+
+            }.navigationTitle("Settings")
+                .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
@@ -50,3 +41,15 @@ struct SettingsView_Previews: PreviewProvider {
         SettingsView()
     }
 }
+
+//                VStack(spacing: 30) {
+//                    Text(instanceHostURL)
+//                    TextField("Enter username...", text: $instanceHostURL)
+//                        .textFieldStyle(RoundedBorderTextFieldStyle())
+//                    Text("Disk cache size: \(cacheSize)")
+//                    Button("clear cache") {
+//                        clearCache()
+//                    }
+//                }.task {
+//                    calculateCache()
+//                }
