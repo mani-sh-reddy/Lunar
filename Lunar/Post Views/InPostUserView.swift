@@ -25,7 +25,7 @@ struct InPostUserView: View {
         .padding(.trailing, 5)
         .lineLimit(1)
         .background {
-            Capsule().foregroundStyle(.regularMaterial)
+            Capsule().foregroundStyle(.ultraThinMaterial)
         }
 
 //        HStack(alignment: .center, spacing: 2) {

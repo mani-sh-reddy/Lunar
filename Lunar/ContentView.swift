@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
+
     var body: some View {
         TabView {
             FeedView()
                 .tabItem {
-                    Label("Feed", systemImage: "list.bullet.rectangle")
+                    Label("Feed", systemImage: "mail.stack")
                 }
             PlaceholderView()
                 .tabItem {

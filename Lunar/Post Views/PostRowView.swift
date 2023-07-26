@@ -13,6 +13,11 @@ struct PostRowView: View {
 
     @State var showingPlaceholderAlert = false
 
+    @State var upvoted: Bool = false
+    @State var downvoted: Bool = false
+
+    let haptics = UIImpactFeedbackGenerator(style: .rigid)
+
     var body: some View {
         VStack(alignment: .leading) {
             Text(post.post.name)
@@ -37,16 +42,29 @@ struct PostRowView: View {
                     userAvatar: post.creator.avatar
                 )
                 Spacer(minLength: 20)
+
                 InPostMetadataView(
                     bodyText: String(post.counts.upvotes),
                     iconName: "arrow.up.circle.fill",
-                    iconColor: .green
+                    iconColor: upvoted ? .green : .gray
                 )
+                .onTapGesture {
+                    downvoted = false
+                    upvoted.toggle()
+                    haptics.impactOccurred()
+                }
+
                 InPostMetadataView(
                     bodyText: String(post.counts.downvotes),
                     iconName: "arrow.down.circle.fill",
-                    iconColor: .red
+                    iconColor: downvoted ? .red : .gray
                 )
+                .onTapGesture {
+                    upvoted = false
+                    downvoted.toggle()
+                    haptics.impactOccurred()
+                }
+
                 InPostMetadataView(
                     bodyText: String(post.counts.comments),
                     iconName: "bubble.left.circle.fill",
