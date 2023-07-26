@@ -28,6 +28,8 @@ struct SettingsView: View {
                 SettingsAppearanceSectionView()
                 SettingsInfoSectionView()
 
+                SettingsHiddenOptionsView()
+
                 SettingsClearCacheButtonView()
             }
             .navigationTitle("Settings")
