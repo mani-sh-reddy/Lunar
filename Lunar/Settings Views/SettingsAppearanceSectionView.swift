@@ -11,7 +11,7 @@ struct SettingsAppearanceSectionView: View {
     var body: some View {
         Section {
             NavigationLink {
-                PlaceholderView()
+                SettingsAppIconView()
             } label: {
                 Label {
                     Text("App Icon")
