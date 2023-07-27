@@ -1,0 +1,22 @@
+{
+  "images" : [
+    {
+      "display-gamut" : "sRGB",
+      "filename" : "LunarForLemmyAppIcon1x.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "size" : "1024x1024"
+    },
+    {
+      "display-gamut" : "display-P3",
+      "filename" : "LunarForLemmyAppIcon1x 1.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "size" : "1024x1024"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
