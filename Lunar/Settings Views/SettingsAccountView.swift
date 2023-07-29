@@ -8,17 +8,175 @@
 import SwiftUI
 
 struct SettingsAccountView: View {
+    @AppStorage("selectedUser") var selectedUser = Settings.selectedUser
+    @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
+    @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
+
+    @State private var showingPopover: Bool = false
+    @State private var isPresentingConfirm: Bool = false
+    @State var logoutAllUsersButtonClicked: Bool = false
+    @State var logoutAllUsersButtonOpacity: Double = 1
+    @State var isLoadingDeleteButton: Bool = false
+    @State private var deleteConfirmationShown = false
+
+    let haptic = UINotificationFeedbackGenerator()
+
     var body: some View {
         List {
-            Text("Account Setting Placeholder 1")
-            Text("Account Setting Placeholder 2")
-            Text("Account Setting Placeholder 3")
-        }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) { Image(systemName: "person.badge.plus")
-                .symbolRenderingMode(.hierarchical)
+            Section {
+                Button(action: {
+                    withAnimation(.linear(duration: 10)) {
+                        showingPopover = true
+                    }
+                }, label: {
+                    Text("Add New Account")
+                })
             }
-        }
+
+            Section {
+                Button(role: .destructive, action: {
+                    deleteConfirmationShown = true
+                }) {
+                    Label {
+                        if isLoadingDeleteButton {
+                            ProgressView()
+                        } else {
+                            Text("Logout All Users")
+                                .foregroundStyle(.red)
+                                .opacity(loggedInUsersList.count == 0 ? 0.4 : 1)
+                        }
+
+                        Spacer()
+                        ZStack(alignment: .trailing) {
+                            if logoutAllUsersButtonClicked {
+                                Group {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .font(.title2).opacity(logoutAllUsersButtonOpacity)
+                                        .symbolRenderingMode(.hierarchical)
+                                        .foregroundStyle(.red)
+                                }.onAppear {
+                                    let animation = Animation.easeIn(duration: 2)
+                                    withAnimation(animation) {
+                                        logoutAllUsersButtonOpacity = 0.1
+                                    }
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                        logoutAllUsersButtonClicked = false
+                                        logoutAllUsersButtonOpacity = 1
+                                    }
+                                }
+                            }
+                        }
+                    } icon: {
+                        Image(systemName: "trash.fill")
+                            .foregroundStyle(.red)
+                            .symbolRenderingMode(.hierarchical)
+                            .opacity(loggedInUsersList.count == 0 ? 0.3 : 1)
+                    }
+                }.disabled(loggedInUsersList.count == 0)
+                    .confirmationDialog("Remove All Accounts?", isPresented: $deleteConfirmationShown) {
+                        Button(role: .destructive, action: {
+                            isPresentingConfirm = true
+                            if loggedInUsersList.count > 0 {
+                                isLoadingDeleteButton = true
+                                haptic.notificationOccurred(.success)
+                                logoutAllUsersButtonClicked = true
+
+                                for userAccount in loggedInUsersList {
+                                    KeychainHelper.standard.delete(service: "io.github.mani-sh-reddy.Lunar.app", account: userAccount)
+                                    loggedInUsersList.removeAll { $0 == userAccount }
+                                    selectedUser = loggedInUsersList.last ?? ""
+                                    print("DELETED & LOGGED OUT \(userAccount)")
+                                }
+
+                                isLoadingDeleteButton = false
+                                isPresentingConfirm = false
+                            }
+                        }) {
+                            Text("Logout All Users")
+                        }
+                    }
+//                Button(action: {
+//                    isPresentingConfirm = true
+//                    if loggedInUsersList.count > 0 {
+//                        isLoadingDeleteButton = true
+//                        haptic.notificationOccurred(.success)
+//                        logoutAllUsersButtonClicked = true
+//
+//                        for userAccount in loggedInUsersList {
+//                            KeychainHelper.standard.delete(service: "io.github.mani-sh-reddy.Lunar.app", account: userAccount)
+//                            loggedInUsersList.removeAll { $0 == userAccount }
+//                            print("DELETED & LOGGED OUT \(userAccount)")
+//                        }
+//
+//                        isLoadingDeleteButton = false
+//                    }
+//                }) {
+//                    Label {
+//                        if isLoadingDeleteButton {
+//                            ProgressView()
+//                        } else {
+//                            Text("Logout All Users")
+//                                .foregroundStyle(.red)
+//                                .opacity(loggedInUsersList.count == 0 ? 0.3 : 1)
+//                        }
+//
+//                        Spacer()
+//                        ZStack(alignment: .trailing) {
+//                            if logoutAllUsersButtonClicked {
+//                                Group {
+//                                    Image(systemName: "checkmark.circle.fill")
+//                                        .font(.title2).opacity(logoutAllUsersButtonOpacity)
+//                                        .symbolRenderingMode(.hierarchical)
+//                                        .foregroundStyle(.red)
+//                                }.onAppear {
+//                                    let animation = Animation.easeIn(duration: 2)
+//                                    withAnimation(animation) {
+//                                        logoutAllUsersButtonOpacity = 0.1
+//                                    }
+//                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//                                        logoutAllUsersButtonClicked = false
+//                                        logoutAllUsersButtonOpacity = 1
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    } icon: {
+//                        Image(systemName: "trash.fill")
+//                            .foregroundStyle(.red)
+//                            .symbolRenderingMode(.hierarchical)
+//                            .opacity(loggedInUsersList.count == 0 ? 0.3 : 1)
+//                    }
+//                }.disabled(loggedInUsersList.count == 0)
+            } footer: {
+                VStack(alignment: .leading) {
+                    Spacer()
+                    Text("showingPopover: \(String(showingPopover))")
+                        .booleanColor(bool: showingPopover)
+                    Text("isPresentingConfirm: \(String(isPresentingConfirm))")
+                        .booleanColor(bool: isPresentingConfirm)
+                    Text("logoutAllUsersButtonClicked: \(String(logoutAllUsersButtonClicked))")
+                        .booleanColor(bool: logoutAllUsersButtonClicked)
+                    Text("logoutAllUsersButtonOpacity: \(String(logoutAllUsersButtonOpacity))")
+                    Text("isLoadingDeleteButton: \(String(isLoadingDeleteButton))")
+                        .booleanColor(bool: isLoadingDeleteButton)
+                    Text("deleteConfirmationShown: \(String(deleteConfirmationShown))")
+                        .booleanColor(bool: deleteConfirmationShown)
+                    Text("Debug Properties").textCase(.uppercase)
+                    Text("@AppStorage selectedUser: \(selectedUser)")
+                    Text("@AppStorage loggedInUsersList: \(loggedInUsersList.rawValue)")
+                }.if(!debugModeEnabled) { _ in
+                    EmptyView()
+                }
+            }
+
+        }.navigationTitle("Accounts")
+            .sheet(isPresented: $showingPopover) {
+                LoginView(loginHelper: LoginHelper(
+                    usernameOrEmail: "",
+                    password: "",
+                    twoFactorToken: ""
+                ))
+            }
     }
 }
 
@@ -27,3 +185,59 @@ struct SettingsAccountView_Previews: PreviewProvider {
         SettingsAccountView()
     }
 }
+
+//        .toolbar {
+//            ToolbarItem(placement: .navigationBarTrailing) { Image(systemName: "person.badge.plus")
+//                .symbolRenderingMode(.hierarchical)
+//            }
+//        }
+
+// Button(action: {
+//    haptic.notificationOccurred(.success)
+//    clearCache()
+//    cacheClearButtonClicked = true
+// }
+// ) {
+//    Label {
+//        Text("Clear Cache")
+//            .foregroundStyle(.red)
+//        Spacer()
+//        ZStack(alignment: .trailing) {
+//            if !cacheClearButtonClicked {
+//                Text(cacheSize)
+//                    .foregroundStyle(.red)
+//            } else {
+//                Group {
+//                    Image(systemName: "checkmark.circle.fill")
+//                        .font(.title2).opacity(cacheClearButtonOpacity)
+//                        .symbolRenderingMode(.hierarchical)
+//                        .foregroundStyle(.red)
+//                }.onAppear {
+//                    let animation = Animation.easeIn(duration: 2)
+//                    withAnimation(animation) {
+//                        cacheClearButtonOpacity = 0.1
+//                    }
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//                        cacheClearButtonClicked = false
+//                        cacheClearButtonOpacity = 1
+//                    }
+//                }
+//            }
+//        }
+//
+//    } icon: {
+//        Image(systemName: "trash.fill")
+//            .foregroundStyle(.red)
+//            .symbolRenderingMode(.hierarchical)
+//    }
+// }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//

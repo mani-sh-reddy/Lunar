@@ -16,4 +16,20 @@ extension View {
             impact.impactOccurred()
         }
     }
+
+    /// Conditional Modifier
+    /// **Usage:**
+    /// ```
+    /// .if(!debugModeEnabled) {_ in
+    ///     EmptyView()
+    /// }
+    /// ```
+    @ViewBuilder
+    func `if`(_ conditional: Bool, content: (Self) -> some View) -> some View {
+        if conditional {
+            content(self)
+        } else {
+            self
+        }
+    }
 }
