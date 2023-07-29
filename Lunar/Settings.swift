@@ -18,7 +18,7 @@ enum Settings {
     // TODO: change after release
     static let debugModeEnabled: Bool = false
     static let appIconName: String = "AppIcon"
-    static let selectedUser: String = "dummyuser2"
+    static let selectedUser: String = ""
 
     /// requires extension to array
     /// useage: Text("loggedInUsersList: \(String(describing: loggedInUsersList))")

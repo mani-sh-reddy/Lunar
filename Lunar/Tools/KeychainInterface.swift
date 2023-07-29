@@ -77,19 +77,23 @@ final class KeychainHelper {
         SecItemDelete(query)
     }
 
-    func listAll(service: String) -> Data? {
+    func generateDebugString(service: String) -> String {
         let query = [
             kSecAttrService: service,
             kSecMatchLimit: kSecMatchLimitAll,
-            kSecReturnAttributes as String: true,
+            kSecReturnAttributes: true,
             kSecClass: kSecClassGenericPassword,
-            kSecReturnData: true,
+            kSecReturnData as String: true,
         ] as CFDictionary
 
         var result: AnyObject?
-        SecItemCopyMatching(query, &result)
+        let status = SecItemCopyMatching(query, &result)
 
-        return result as? Data
+        if status == errSecSuccess, let metadata = result as? Data {
+            return String(data: metadata, encoding: .utf8) ?? ""
+        } else {
+            return ""
+        }
     }
 }
 
@@ -108,22 +112,6 @@ extension KeychainHelper {
     func read<T>(service: String, account: String, type: T.Type) -> T? where T: Codable {
         // Read item data from keychain
         guard let data = read(service: service, account: account) else {
-            return nil
-        }
-
-        // Decode JSON data to object
-        do {
-            let item = try JSONDecoder().decode(type, from: data)
-            return item
-        } catch {
-            assertionFailure("Fail to decode item for keychain: \(error)")
-            return nil
-        }
-    }
-
-    func listAll<T>(service: String, type: T.Type) -> T? where T: Codable {
-        // Read items from keychain
-        guard let data = listAll(service: service) else {
             return nil
         }
 
