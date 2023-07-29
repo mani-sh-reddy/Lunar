@@ -77,6 +77,22 @@ final class KeychainHelper {
         SecItemDelete(query)
     }
 
+    func clearKeychain() {
+        // Create a dictionary to specify the items to delete (in this case, we delete all items)
+        let query: [CFString: Any] = [
+            kSecClass: kSecClassGenericPassword,
+        ]
+
+        // Delete the items
+        let status = SecItemDelete(query as CFDictionary)
+
+        if status == errSecSuccess {
+            print("Keychain cleared successfully.")
+        } else {
+            print("Error occurred while clearing the keychain: \(status)")
+        }
+    }
+
     func generateDebugString(service: String) -> String {
         let query = [
             kSecAttrService: service,
@@ -87,13 +103,10 @@ final class KeychainHelper {
         ] as CFDictionary
 
         var result: AnyObject?
-        let status = SecItemCopyMatching(query, &result)
+        SecItemCopyMatching(query, &result)
 
-        if status == errSecSuccess, let metadata = result as? Data {
-            return String(data: metadata, encoding: .utf8) ?? ""
-        } else {
-            return ""
-        }
+//        print("KEYCHAIN DEBUG RESULT \(String(describing: result))")
+        return result.debugDescription
     }
 }
 

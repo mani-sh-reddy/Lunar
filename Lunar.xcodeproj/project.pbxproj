@@ -30,6 +30,7 @@
 		3C4B7DDB2A58AD23003C8192 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 3C4B7DDA2A58AD23003C8192 /* Alamofire */; };
 		3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F09FF2A54399F009DF8AB /* LunarApp.swift */; };
 		3C522F3B2A63241900129CAC /* TrendingCommunitiesFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C522F3A2A63241900129CAC /* TrendingCommunitiesFetcher.swift */; };
+		3C5ECB1F2A75ABFE002BA561 /* EmailToUsernameConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB1E2A75ABFE002BA561 /* EmailToUsernameConverter.swift */; };
 		3C6299D12A751A5900BE2A9F /* TextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6299D02A751A5900BE2A9F /* TextExtension.swift */; };
 		3C62C2532A72DF10003BAC5B /* LunarShareScreenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C62C2522A72DF10003BAC5B /* LunarShareScreenshot.png */; };
 		3C62C2552A72F4BC003BAC5B /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C62C2542A72F4BC003BAC5B /* SplashScreenView.swift */; };
@@ -43,6 +44,7 @@
 		3C8709302A747065004999CE /* UserRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C87092F2A747065004999CE /* UserRowView.swift */; };
 		3C8709322A747B91004999CE /* SiteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8709312A747B91004999CE /* SiteModel.swift */; };
 		3C8709342A747C92004999CE /* SiteFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8709332A747C92004999CE /* SiteFetcher.swift */; };
+		3C8A850D2A7562980005711A /* LoggedInUserRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8A850C2A7562980005711A /* LoggedInUserRowView.swift */; };
 		3CA3CBC32A5B026800D0D645 /* AggregatedPostsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3CBC22A5B026800D0D645 /* AggregatedPostsFetcher.swift */; };
 		3CA5C40A2A574FF500BF8F1B /* PostsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */; };
 		3CA5C40E2A57525500BF8F1B /* AggregatedPostsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C40D2A57525500BF8F1B /* AggregatedPostsListView.swift */; };
@@ -145,6 +147,7 @@
 		3C4F09FF2A54399F009DF8AB /* LunarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarApp.swift; sourceTree = "<group>"; };
 		3C4F0A032A54399F009DF8AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C522F3A2A63241900129CAC /* TrendingCommunitiesFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingCommunitiesFetcher.swift; sourceTree = "<group>"; };
+		3C5ECB1E2A75ABFE002BA561 /* EmailToUsernameConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailToUsernameConverter.swift; sourceTree = "<group>"; };
 		3C6299D02A751A5900BE2A9F /* TextExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextExtension.swift; sourceTree = "<group>"; };
 		3C62C23E2A72AA4D003BAC5B /* Lunar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Lunar.entitlements; sourceTree = "<group>"; };
 		3C62C23F2A72AABD003BAC5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -160,6 +163,7 @@
 		3C87092F2A747065004999CE /* UserRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRowView.swift; sourceTree = "<group>"; };
 		3C8709312A747B91004999CE /* SiteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteModel.swift; sourceTree = "<group>"; };
 		3C8709332A747C92004999CE /* SiteFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiteFetcher.swift; sourceTree = "<group>"; };
+		3C8A850C2A7562980005711A /* LoggedInUserRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedInUserRowView.swift; sourceTree = "<group>"; };
 		3CA3CBC22A5B026800D0D645 /* AggregatedPostsFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregatedPostsFetcher.swift; sourceTree = "<group>"; };
 		3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsListModel.swift; sourceTree = "<group>"; };
 		3CA5C40D2A57525500BF8F1B /* AggregatedPostsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AggregatedPostsListView.swift; sourceTree = "<group>"; };
@@ -329,6 +333,7 @@
 				3C522F3A2A63241900129CAC /* TrendingCommunitiesFetcher.swift */,
 				3C8709332A747C92004999CE /* SiteFetcher.swift */,
 				3C1A3F5E2A73D64C00898FC6 /* LoginHelper.swift */,
+				3C5ECB1E2A75ABFE002BA561 /* EmailToUsernameConverter.swift */,
 			);
 			path = DataLoaders;
 			sourceTree = "<group>";
@@ -407,6 +412,7 @@
 				3C113C3A2A6E7E4800FDE5CE /* SettingsAccountNavLabel.swift */,
 				3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */,
 				3C87092F2A747065004999CE /* UserRowView.swift */,
+				3C8A850C2A7562980005711A /* LoggedInUserRowView.swift */,
 			);
 			path = "Settings Views";
 			sourceTree = "<group>";
@@ -579,6 +585,7 @@
 				3C1A3F5F2A73D64C00898FC6 /* LoginHelper.swift in Sources */,
 				3CCAA8C12A65358C007CCEC2 /* NetworkMonitor.swift in Sources */,
 				3CA5C4102A5753AC00BF8F1B /* PostRowView.swift in Sources */,
+				3C8A850D2A7562980005711A /* LoggedInUserRowView.swift in Sources */,
 				3CEF4CCA2A69B6FA002B83C0 /* InPostCommunityHeaderView.swift in Sources */,
 				3CF3F9C22A6EE20C0051E725 /* ViewExtension.swift in Sources */,
 				3CA5C40A2A574FF500BF8F1B /* PostsListModel.swift in Sources */,
@@ -600,6 +607,7 @@
 				3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */,
 				3CED897B2A71A5CF00BD9086 /* ImagePopoverView.swift in Sources */,
 				3CB8D2682A55F45900EE615A /* FeedView.swift in Sources */,
+				3C5ECB1F2A75ABFE002BA561 /* EmailToUsernameConverter.swift in Sources */,
 				3C62C2592A7309DC003BAC5B /* SettingsAppIconView.swift in Sources */,
 				3CB8D26A2A561E0700EE615A /* AggregatedCommunityRowView.swift in Sources */,
 				3C62C2552A72F4BC003BAC5B /* SplashScreenView.swift in Sources */,

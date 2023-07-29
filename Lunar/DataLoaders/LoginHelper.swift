@@ -56,8 +56,10 @@ class LoginHelper: ObservableObject {
                     let jwt = credentialsModel.jwt
                     KeychainHelper.standard.save(jwt, service: self.appBundleID, account: self.usernameOrEmail)
                     self.loggedInUsersList.append(self.usernameOrEmail)
+                    print("loggedInUsersList.last: \(String(describing: self.loggedInUsersList.last))")
                     self.selectedUser = self.loggedInUsersList.last ?? ""
                     self.logInSuccessful = true
+
                     /// Calling the completion handler after the login process is completed
                     completion()
 

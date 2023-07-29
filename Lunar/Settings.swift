@@ -23,4 +23,5 @@ enum Settings {
     /// requires extension to array
     /// useage: Text("loggedInUsersList: \(String(describing: loggedInUsersList))")
     static let loggedInUsersList: [String] = []
+    static let loggedInEmailsList: [String] = []
 }

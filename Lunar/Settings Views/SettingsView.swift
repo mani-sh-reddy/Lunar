@@ -17,6 +17,7 @@ struct SettingsView: View {
         NavigationView {
             List {
                 NavigationLink {
+//                    SettingsAccountView(siteFetcher: SiteFetcher())
                     SettingsAccountView()
                 } label: {
                     SettingsAccountNavLabel()

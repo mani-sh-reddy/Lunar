@@ -12,6 +12,8 @@ struct LoginView: View {
     @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
     @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
     @AppStorage("selectedUser") var selectedUser = Settings.selectedUser
+    @AppStorage("loggedInEmailsList") var loggedInEmailsList = Settings.loggedInEmailsList
+    @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
 
     @Environment(\.dismiss) var dismiss
 
@@ -19,6 +21,7 @@ struct LoginView: View {
 
     @State private var usernameOrEmail = ""
     @State private var password = ""
+
     @State private var twoFactorToken = ""
     @State private var isLoading: Bool = false
     @State private var requires2FA: Bool = false
@@ -26,6 +29,8 @@ struct LoginView: View {
     @State private var shakeLoginButton: Bool = false
     @State private var shake2FAField: Bool = false
     @State private var loggedIn: Bool = false
+    @State private var fetchedUsername: String = ""
+    @State private var siteFetchComplete = false
 
     let haptic = UINotificationFeedbackGenerator()
 
@@ -48,14 +53,33 @@ struct LoginView: View {
                     TextField("Username or Email", text: $usernameOrEmail)
                         .keyboardType(.emailAddress)
                         .textInputAutocapitalization(.never)
+                        .onChange(of: usernameOrEmail) { _ in
+                            if requires2FA {
+                                requires2FA = false
+                            }
+                        }
                 }
                 HStack {
                     Image(systemName: "key").frame(width: 10)
                         .padding(.trailing)
                     if !showPassword {
                         SecureField("Password", text: $password)
+                            .keyboardType(.asciiCapable)
+                            .textInputAutocapitalization(.never)
+                            .onChange(of: password) { _ in
+                                if requires2FA {
+                                    requires2FA = false
+                                }
+                            }
                     } else {
                         TextField("Password", text: $password)
+                            .keyboardType(.asciiCapable)
+                            .textInputAutocapitalization(.never)
+                            .onChange(of: password) { _ in
+                                if requires2FA {
+                                    requires2FA = false
+                                }
+                            }
                     }
 
                     Image(systemName: "\(showPassword ? "eye" : "eye.slash.fill")").foregroundStyle(showPassword ? Color.black : Color.gray)
@@ -78,7 +102,7 @@ struct LoginView: View {
 
             Section {
                 Button(action: {
-                    if validInput, !loggedInUsersList.contains(usernameOrEmail.lowercased()) {
+                    if validInput, !(loggedInUsersList.contains(usernameOrEmail.lowercased()) || loggedInEmailsList.contains(usernameOrEmail.lowercased())) {
                         loginHelper.usernameOrEmail = usernameOrEmail.lowercased()
                         loginHelper.password = password
                         isLoading = true
@@ -94,10 +118,23 @@ struct LoginView: View {
                                     }
                                 }
 
+                                if loginHelper.loginFailed {
+                                    haptic.notificationOccurred(.error)
+                                    print("USER LOGIN FAILED")
+                                    withAnimation(Animation.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.2)) {
+                                        shake2FAField.toggle()
+                                    }
+                                    isLoading = false
+                                }
+
                                 if loginHelper.logInSuccessful {
                                     haptic.notificationOccurred(.success)
                                     print("USER LOGIN SUCCESSFUL")
                                     loggedIn = true
+                                    print("selectedUser SOON AFTER USER LOGIN SUCCESSFUL: \(selectedUser)")
+
+                                    // MARK: - LOGIN SUCCESS
+
                                     dismiss()
                                 }
                                 isLoading = false
@@ -106,6 +143,7 @@ struct LoginView: View {
 
                         if valid2FA(twoFactorToken) {
                             loginHelper.twoFactorToken = twoFactorToken
+                            isLoading = true
                             loginHelper.login {
                                 print("LOGIN HELPER 2 ACTIVE")
                                 if requires2FA {
@@ -118,21 +156,38 @@ struct LoginView: View {
                                             shake2FAField.toggle()
                                         }
                                     }
+
                                     if loginHelper.loginFailed {
                                         haptic.notificationOccurred(.error)
                                         print("USER LOGIN FAILED")
                                         withAnimation(Animation.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.2)) {
-                                            shakeLoginButton.toggle()
+                                            shake2FAField.toggle()
                                         }
+                                        isLoading = false
                                     }
                                     if loginHelper.logInSuccessful {
                                         haptic.notificationOccurred(.success)
                                         print("USER LOGIN SUCCESSFUL")
+                                        print("selectedUser SOON AFTER USER LOGIN SUCCESSFUL: \(selectedUser)")
                                         loggedIn = true
+                                        isLoading = false
+
+                                        // MARK: - LOGIN SUCCESS w/2FA
+
                                         dismiss()
                                     }
                                 }
+                                isLoading = false
                             }
+                        }
+
+                        if !valid2FA(twoFactorToken), requires2FA {
+                            haptic.notificationOccurred(.error)
+                            print("WRONG 2FA FORMAT AFTER VISIBLE TO USER")
+                            withAnimation(Animation.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.2)) {
+                                shake2FAField.toggle()
+                            }
+                            isLoading = false
                         }
                     }
                 }
@@ -142,7 +197,10 @@ struct LoginView: View {
                         if isLoading {
                             ProgressView()
                         } else {
-                            if loggedInUsersList.contains(usernameOrEmail.lowercased()), !loggedIn {
+                            if loggedInUsersList.contains(usernameOrEmail.lowercased()) ||
+                                loggedInEmailsList.contains(usernameOrEmail.lowercased()),
+                                !loggedIn
+                            {
                                 Text("User already logged in").disabled(true)
                                     .foregroundStyle(.green.opacity(0.5))
                             } else if !validInput {
@@ -156,24 +214,38 @@ struct LoginView: View {
                     }
                 }
             } footer: {
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 5) {
                     Text("Debug Properties").textCase(.uppercase)
-                    Text("isLoading: \(String(isLoading))")
-                        .booleanColor(bool: isLoading)
-                    Text("requires2FA: \(String(requires2FA))")
-                        .booleanColor(bool: requires2FA)
-                    Text("showPassword: \(String(showPassword))")
-                        .booleanColor(bool: showPassword)
-                    Text("shakeLoginButton: \(String(shakeLoginButton))")
-                        .booleanColor(bool: shakeLoginButton)
-                    Text("shake2FAField: \(String(shake2FAField))")
-                        .booleanColor(bool: shake2FAField)
-                    Text("loggedIn: \(String(loggedIn))")
-                        .booleanColor(bool: loggedIn)
-                    Text("userAlreadyInUserList: \(String(loggedInUsersList.contains(usernameOrEmail.lowercased())))")
-                        .booleanColor(bool: loggedInUsersList.contains(usernameOrEmail.lowercased()))
-                    Text("@AppStorage selectedUser: \(selectedUser)")
-                    Text("@AppStorage loggedInUsersList: \(loggedInUsersList.rawValue)")
+
+                    Group {
+                        Text("isLoading: \(String(isLoading))")
+                            .booleanColor(bool: isLoading)
+                        Text("requires2FA: \(String(requires2FA))")
+                            .booleanColor(bool: requires2FA)
+
+                        Text("showPassword: \(String(showPassword))")
+                            .booleanColor(bool: showPassword)
+
+                        Text("shakeLoginButton: \(String(shakeLoginButton))")
+                            .booleanColor(bool: shakeLoginButton)
+
+                        Text("shake2FAField: \(String(shake2FAField))")
+                            .booleanColor(bool: shake2FAField)
+
+                        Text("loggedIn: \(String(loggedIn))")
+                            .booleanColor(bool: loggedIn)
+                    }
+                    Group {
+                        Text("userAlreadyInUserList: \(String(loggedInUsersList.contains(usernameOrEmail.lowercased())))")
+                            .booleanColor(bool: loggedInUsersList.contains(usernameOrEmail.lowercased()))
+
+                        Text("userAlreadyInEmailsList: \(String(loggedInEmailsList.contains(usernameOrEmail.lowercased())))")
+                            .booleanColor(bool: loggedInEmailsList.contains(usernameOrEmail.lowercased()))
+
+                        Text("@AppStorage selectedUser: \(selectedUser)")
+                        Text("@AppStorage loggedInUsersList: \(loggedInUsersList.rawValue)")
+                        Text("@AppStorage loggedInEmailsList: \(loggedInEmailsList.rawValue)")
+                    }
                 }.if(!debugModeEnabled) { _ in
                     EmptyView()
                 }
