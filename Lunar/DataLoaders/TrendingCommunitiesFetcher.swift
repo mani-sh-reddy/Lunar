@@ -52,7 +52,7 @@ import SwiftUI
                 self.isLoading = false
 
             case let .failure(error):
-                print("ERROR: \(error): \(error.errorDescription ?? "")")
+                print("TrendingCommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")")
             }
         }
     }
@@ -77,7 +77,7 @@ import SwiftUI
                 self.isLoading = false
 
             case let .failure(error):
-                print("ERROR: \(error): \(error.errorDescription ?? "")")
+                print("TrendingCommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")")
             }
         }
     }

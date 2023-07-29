@@ -74,7 +74,7 @@ struct SettingsClearCacheButtonView: View {
             case let .success(size):
                 cacheSize = "\(String(format: "%.0f", Double(size) / 1024 / 1024)) MB"
             case let .failure(error):
-                print(error)
+                print("calculateCache FUNCTION ERROR: \(error)")
             }
         }
     }

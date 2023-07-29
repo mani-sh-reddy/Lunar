@@ -75,7 +75,7 @@ import SwiftUI
                 prefetcher.start()
 
             case let .failure(error):
-                print("ERROR: \(error): \(error.errorDescription ?? "")")
+                print("CommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")")
             }
         }
     }
@@ -120,7 +120,7 @@ import SwiftUI
                 self.currentPage += 1
 
             case let .failure(error):
-                print("ERROR: \(error): \(error.errorDescription ?? "")")
+                print("CommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")")
             }
         }
     }

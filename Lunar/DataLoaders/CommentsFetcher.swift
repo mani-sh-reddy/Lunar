@@ -78,7 +78,7 @@ import SwiftUI
                 }
 
             case let .failure(error):
-                print("ERROR: \(error): \(error.errorDescription ?? "")")
+                print("CommentsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
             }
         }
     }
@@ -133,7 +133,7 @@ import SwiftUI
                 self.currentPage += 1
 
             case let .failure(error):
-                print("ERROR: \(error): \(error.errorDescription ?? "")")
+                print("CommentsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
             }
         }
     }

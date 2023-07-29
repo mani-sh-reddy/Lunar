@@ -132,7 +132,7 @@ extension MessagesViewController {
             // TODO: Change this URL to app store URL when published
             message.url = URL(string: "https://github.com/mani-sh-reddy/Lunar-Lemmy-iOS")
             conversation.insert(message, completionHandler: { error in
-                print(error ?? "")
+                print("IMESSAGE VIEW CONTROLLER ERROR: \(String(describing: error))")
             })
         }
     }

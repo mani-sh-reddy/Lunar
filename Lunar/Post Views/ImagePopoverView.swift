@@ -34,10 +34,10 @@ struct ImagePopoverView: View {
                         }
                     }
                     .onSuccess { image in
-                        print(image.image.size.width)
-                        print(image.image.size.height)
-                        print("proxy width: \(proxy.size.width)")
-                        print("proxy height: \(proxy.size.height)")
+                        /// print(image.image.size.width)
+                        /// print(image.image.size.height)
+                        /// print("proxy width: \(proxy.size.width)")
+                        /// print("proxy height: \(proxy.size.height)")
                         DispatchQueue.main.async {
                             imageSize = CGSize(width: image.image.size.width, height: image.image.size.height)
                         }

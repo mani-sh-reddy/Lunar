@@ -17,7 +17,7 @@ struct SettingsAccountNavLabel: View {
                 .symbolRenderingMode(.hierarchical)
                 .foregroundStyle(.blue)
             VStack(alignment: .leading, spacing: 3) {
-                Text(verbatim: "mani")
+                Text(verbatim: "<user>")
                     .fontWeight(.bold)
                     .font(.title)
                     .lineLimit(1)
