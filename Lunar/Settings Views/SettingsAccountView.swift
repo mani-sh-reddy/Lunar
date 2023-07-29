@@ -11,6 +11,7 @@ struct SettingsAccountView: View {
     @AppStorage("selectedUser") var selectedUser = Settings.selectedUser
     @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
     @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
+    @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
 
     @State private var showingPopover: Bool = false
     @State private var isPresentingConfirm: Bool = false
@@ -24,13 +25,25 @@ struct SettingsAccountView: View {
     var body: some View {
         List {
             Section {
+                Text("Users Section TBD")
+            }
+            Section {
                 Button(action: {
                     withAnimation(.linear(duration: 10)) {
                         showingPopover = true
                     }
-                }, label: {
-                    Text("Add New Account")
-                })
+                }
+                ) {
+                    Label {
+                        Text("Add User")
+                            .foregroundStyle(.blue)
+                    } icon: {
+                        Image(systemName: "plus.circle.fill")
+                            .font(.title2)
+                            .foregroundStyle(.blue)
+                            .symbolRenderingMode(.hierarchical)
+                    }
+                }
             }
 
             Section {
@@ -67,7 +80,8 @@ struct SettingsAccountView: View {
                             }
                         }
                     } icon: {
-                        Image(systemName: "trash.fill")
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.title2)
                             .foregroundStyle(.red)
                             .symbolRenderingMode(.hierarchical)
                             .opacity(loggedInUsersList.count == 0 ? 0.3 : 1)
