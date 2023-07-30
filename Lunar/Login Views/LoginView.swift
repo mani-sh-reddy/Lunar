@@ -22,7 +22,7 @@ struct LoginView: View {
     @State private var usernameOrEmail = ""
     @State private var password = ""
 
-    @State private var twoFactorToken = ""
+    @State private var twoFactor = ""
     @State private var isLoading: Bool = false
     @State private var requires2FA: Bool = false
     @State private var showPassword: Bool = false
@@ -33,16 +33,6 @@ struct LoginView: View {
     @State private var siteFetchComplete = false
 
     let haptic = UINotificationFeedbackGenerator()
-
-    var validInput: Bool {
-        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let usernameRegex = "[a-zA-Z0-9_]+"
-        let usernameMatched = NSPredicate(format: "SELF MATCHES %@", usernameRegex).evaluate(with: usernameOrEmail)
-        let emailMatched = NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: usernameOrEmail)
-        return usernameOrEmail.count >= 3 &&
-            10 ... 60 ~= password.count &&
-            (usernameMatched || emailMatched)
-    }
 
     var body: some View {
         List {
@@ -92,7 +82,7 @@ struct LoginView: View {
                         Image(systemName: "person").frame(width: 10)
                             .padding(.trailing)
                         ZStack {
-                            TextField("2FA Token", text: $twoFactorToken.max(6))
+                            TextField("2FA Token", text: $twoFactor.max(6))
                                 .keyboardType(.numberPad)
                                 .offset(x: shake2FAField ? 5 : 0)
                         }
@@ -102,14 +92,14 @@ struct LoginView: View {
 
             Section {
                 Button(action: {
-                    if validInput, !(loggedInUsersList.contains(usernameOrEmail.lowercased()) || loggedInEmailsList.contains(usernameOrEmail.lowercased())) {
+                    if validUserAndPass(), !(loggedInUsersList.contains(usernameOrEmail.lowercased()) || loggedInEmailsList.contains(usernameOrEmail.lowercased())) {
                         loginHelper.usernameOrEmail = usernameOrEmail.lowercased()
                         loginHelper.password = password
                         isLoading = true
                         print("LOGIN HELPER IS LOADING: \(isLoading)")
                         /// block will only run when completion handler
                         /// sigals a completes the function loginHelper.login
-                        if twoFactorToken == "" {
+                        if twoFactor == "" {
                             loginHelper.login {
                                 print("LOGIN HELPER 1 ACTIVE")
                                 if loginHelper.isMissing2FAToken {
@@ -141,15 +131,15 @@ struct LoginView: View {
                             }
                         }
 
-                        if valid2FA(twoFactorToken) {
-                            loginHelper.twoFactorToken = twoFactorToken
+                        if validTwoFactor() {
+                            loginHelper.twoFactor = twoFactor
                             isLoading = true
                             loginHelper.login {
                                 print("LOGIN HELPER 2 ACTIVE")
                                 if requires2FA {
-                                    print("2FA TOKEN USED\(twoFactorToken)")
+                                    print("2FA TOKEN USED\(twoFactor)")
 
-                                    if twoFactorToken == "" {
+                                    if twoFactor == "" {
                                         haptic.notificationOccurred(.error)
                                         print("MISSING 2FA AFTER SHOWN TO USER")
                                         withAnimation(Animation.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.2)) {
@@ -181,7 +171,7 @@ struct LoginView: View {
                             }
                         }
 
-                        if !valid2FA(twoFactorToken), requires2FA {
+                        if !validTwoFactor(), requires2FA {
                             haptic.notificationOccurred(.error)
                             print("WRONG 2FA FORMAT AFTER VISIBLE TO USER")
                             withAnimation(Animation.spring(response: 0.3, dampingFraction: 0.3, blendDuration: 0.2)) {
@@ -203,7 +193,7 @@ struct LoginView: View {
                             {
                                 Text("User already logged in").disabled(true)
                                     .foregroundStyle(.green.opacity(0.5))
-                            } else if !validInput {
+                            } else if !validUserAndPass() {
                                 Text("Login").disabled(true)
                                     .offset(x: shakeLoginButton ? 5 : 0)
                             } else {
@@ -214,56 +204,40 @@ struct LoginView: View {
                     }
                 }
             } footer: {
-                VStack(alignment: .leading, spacing: 5) {
-                    Text("Debug Properties").textCase(.uppercase)
-
-                    Group {
-                        Text("isLoading: \(String(isLoading))")
-                            .booleanColor(bool: isLoading)
-                        Text("requires2FA: \(String(requires2FA))")
-                            .booleanColor(bool: requires2FA)
-
-                        Text("showPassword: \(String(showPassword))")
-                            .booleanColor(bool: showPassword)
-
-                        Text("shakeLoginButton: \(String(shakeLoginButton))")
-                            .booleanColor(bool: shakeLoginButton)
-
-                        Text("shake2FAField: \(String(shake2FAField))")
-                            .booleanColor(bool: shake2FAField)
-
-                        Text("loggedIn: \(String(loggedIn))")
-                            .booleanColor(bool: loggedIn)
-                    }
-                    Group {
-                        Text("userAlreadyInUserList: \(String(loggedInUsersList.contains(usernameOrEmail.lowercased())))")
-                            .booleanColor(bool: loggedInUsersList.contains(usernameOrEmail.lowercased()))
-
-                        Text("userAlreadyInEmailsList: \(String(loggedInEmailsList.contains(usernameOrEmail.lowercased())))")
-                            .booleanColor(bool: loggedInEmailsList.contains(usernameOrEmail.lowercased()))
-
-                        Text("@AppStorage selectedUser: \(selectedUser)")
-                        Text("@AppStorage loggedInUsersList: \(loggedInUsersList.rawValue)")
-                        Text("@AppStorage loggedInEmailsList: \(loggedInEmailsList.rawValue)")
-                    }
-                }.if(!debugModeEnabled) { _ in
-                    EmptyView()
-                }
+                DebugLoginPagePropertiesView(
+                    isLoading: isLoading,
+                    requires2FA: requires2FA,
+                    showPassword: showPassword,
+                    shakeLoginButton: shakeLoginButton,
+                    shake2FAField: shake2FAField,
+                    loggedIn: loggedIn,
+                    usernameOrEmail: usernameOrEmail
+                )
             }
 
         }.listStyle(.insetGrouped)
     }
 
-    func valid2FA(_ input: String) -> Bool {
-        let regex = "^[0-9]{6}$"
-        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
-        return predicate.evaluate(with: input)
+    func validUserAndPass() -> Bool {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let usernameRegex = "[a-zA-Z0-9_]+"
+        let usernameMatched = NSPredicate(format: "SELF MATCHES %@", usernameRegex).evaluate(with: usernameOrEmail)
+        let emailMatched = NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: usernameOrEmail)
+        return usernameOrEmail.count >= 3 &&
+            10 ... 60 ~= password.count &&
+            (usernameMatched || emailMatched)
+    }
+
+    func validTwoFactor() -> Bool {
+        let twoFactorRegex = "^[0-9]{6}$"
+        let twoFactorMatched = NSPredicate(format: "SELF MATCHES %@", twoFactorRegex).evaluate(with: twoFactor)
+        return twoFactorMatched
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        let loginHelper = LoginHelper(usernameOrEmail: "", password: "", twoFactorToken: "")
+        let loginHelper = LoginHelper(usernameOrEmail: "", password: "", twoFactor: "")
         LoginView(loginHelper: loginHelper)
     }
 }

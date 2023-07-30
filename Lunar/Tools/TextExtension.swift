@@ -15,9 +15,4 @@ extension Text {
         }
         return foregroundColor(.red)
     }
-
-//    func captionTextStyle() -> some View {
-//        self.foregroundColor(.secondary)
-//            .font(.caption)
-//    }
 }

@@ -24,15 +24,15 @@ class LoginHelper: ObservableObject {
     @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
     @Published var usernameOrEmail: String
     @Published var password: String
-    @Published var twoFactorToken: String
+    @Published var twoFactor: String
     @Published var isMissing2FAToken: Bool = false
     @Published var loginFailed: Bool = false
     @Published var logInSuccessful: Bool = false
 
-    init(usernameOrEmail: String, password: String, twoFactorToken: String) {
+    init(usernameOrEmail: String, password: String, twoFactor: String) {
         self.usernameOrEmail = usernameOrEmail
         self.password = password
-        self.twoFactorToken = twoFactorToken
+        self.twoFactor = twoFactor
     }
 
     func login(completion: @escaping () -> Void) {
@@ -40,7 +40,7 @@ class LoginHelper: ObservableObject {
         let credentialsRequest = CredentialsRequestModel(
             username_or_email: usernameOrEmail,
             password: password,
-            totp_2fa_token: twoFactorToken == "" ? nil : twoFactorToken
+            totp_2fa_token: twoFactor == "" ? nil : twoFactor
         )
 
         let headers: HTTPHeaders = [

@@ -127,44 +127,14 @@ struct SettingsAccountView: View {
                     }
                 }
             } footer: {
-                VStack(alignment: .leading, spacing: 5) {
-                    Spacer()
-                    Text("Debug Properties").textCase(.uppercase)
-                    Group {
-                        Text("showingPopover: \(String(showingPopover))")
-                            .booleanColor(bool: showingPopover)
-                        Text("isPresentingConfirm: \(String(isPresentingConfirm))")
-                            .booleanColor(bool: isPresentingConfirm)
-                        Text("logoutAllUsersButtonClicked: \(String(logoutAllUsersButtonClicked))")
-                            .booleanColor(bool: logoutAllUsersButtonClicked)
-                        Text("logoutAllUsersButtonOpacity: \(String(logoutAllUsersButtonOpacity))")
-                        Text("isLoadingDeleteButton: \(String(isLoadingDeleteButton))")
-                            .booleanColor(bool: isLoadingDeleteButton)
-                        Text("deleteConfirmationShown: \(String(deleteConfirmationShown))")
-                            .booleanColor(bool: deleteConfirmationShown)
-                    }
-                    Group {
-                        Text("@AppStorage selectedUser: \(selectedUser)")
-                        Text("@AppStorage loggedInUsersList: \(loggedInUsersList.rawValue)")
-                        Text("@AppStorage loggedInEmailsList: \(loggedInEmailsList.rawValue)")
-                    }
-
-                    Group {
-                        ScrollView {
-                            Text("KEYCHAIN: \(keychainDebugString)").font(.caption2)
-                        }
-                    }
-
-                    /// ** For Keychain Debugging**
-//                    print(KeychainHelper.standard.generateDebugString(service: appBundleID).fastestEncoding.rawValue)
-                }.if(!debugModeEnabled) { _ in
-                    EmptyView()
-                }
-            }
-        }
-        .task {
-            if debugModeEnabled {
-                keychainDebugString = KeychainHelper.standard.generateDebugString(service: "io.github.mani-sh-reddy.Lunar.app")
+                DebugAccountsPropertiesView(
+                    showingPopover: showingPopover,
+                    isPresentingConfirm: isPresentingConfirm,
+                    logoutAllUsersButtonClicked: logoutAllUsersButtonClicked,
+                    logoutAllUsersButtonOpacity: logoutAllUsersButtonOpacity,
+                    isLoadingDeleteButton: isLoadingDeleteButton,
+                    deleteConfirmationShown: deleteConfirmationShown
+                )
             }
         }
 
@@ -227,7 +197,7 @@ struct SettingsAccountView: View {
             LoginView(loginHelper: LoginHelper(
                 usernameOrEmail: "",
                 password: "",
-                twoFactorToken: ""
+                twoFactor: ""
             ))
         }
     }
