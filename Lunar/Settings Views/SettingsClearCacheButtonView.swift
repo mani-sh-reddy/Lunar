@@ -36,7 +36,7 @@ struct SettingsClearCacheButtonView: View {
                             Image(systemName: "checkmark.circle.fill")
                                 .font(.title2).opacity(cacheClearButtonOpacity)
                                 .symbolRenderingMode(.hierarchical)
-                                .foregroundStyle(.red)
+                                .foregroundStyle(.green)
                         }.onAppear {
                             let animation = Animation.easeIn(duration: 2)
                             withAnimation(animation) {

@@ -12,24 +12,27 @@ struct UsernameFieldView: View {
     @Binding var usernameEmailInput: String
     @Binding var showingTwoFactorField: Bool
     @Binding var usernameEmailInvalid: Bool
-//    @Binding var requires2FA: Bool
+    @Binding var showingLoginButtonWarning: Bool
 
     var body: some View {
-        HStack {
-            Image(systemName: "person").frame(width: 10)
-                .padding(.trailing)
+        Label {
             TextField("Username or Email", text: $usernameEmailInput)
                 .keyboardType(.emailAddress)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
+                .textContentType(.emailAddress)
+        } icon: {
+            Image(systemName: "person")
+                .foregroundStyle(.black)
         }
         .onAppear {
             if let devUsername = ProcessInfo.processInfo.environment["LEMMY_TEST_ACC_2_USER"] {
                 usernameEmailInput = devUsername
             }
         }
-        .onChange(of: usernameEmailInput) { newValue in
+        .onDebouncedChange(of: $usernameEmailInput, debounceFor: 0.3) { newValue in
             showingTwoFactorField = false
+            showingLoginButtonWarning = false
             usernameEmailInvalid = !ValidationUtils.isValidUsername(input: newValue) && !ValidationUtils.isValidEmail(input: newValue)
         }
     }

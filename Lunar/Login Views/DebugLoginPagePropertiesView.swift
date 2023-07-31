@@ -18,8 +18,8 @@ struct DebugLoginPagePropertiesView: View {
     var isTryingLogin: Bool
     var loggedIn: Bool
     var showingTwoFactorField: Bool
-    var showTwoFactorFieldWarning: Bool
-    var showLoginButtonWarning: Bool
+    var showingTwoFactorWarning: Bool
+    var showingLoginButtonWarning: Bool
     var usernameEmailInvalid: Bool
     var passwordInvalid: Bool
     var twoFactorInvalid: Bool
@@ -34,8 +34,8 @@ struct DebugLoginPagePropertiesView: View {
                 Text("isTryingLogin: \(String(isTryingLogin))").booleanColor(bool: isTryingLogin)
                 Text("loggedIn: \(String(loggedIn))").booleanColor(bool: loggedIn)
                 Text("showingTwoFactorField: \(String(showingTwoFactorField))").booleanColor(bool: showingTwoFactorField)
-                Text("showTwoFactorFieldWarning: \(String(showTwoFactorFieldWarning))").booleanColor(bool: showTwoFactorFieldWarning)
-                Text("showLoginButtonWarning: \(String(showLoginButtonWarning))").booleanColor(bool: showLoginButtonWarning)
+                Text("showingTwoFactorWarning: \(String(showingTwoFactorWarning))").booleanColor(bool: showingTwoFactorWarning)
+                Text("toggleLoginButtonWarning: \(String(showingLoginButtonWarning))").booleanColor(bool: showingLoginButtonWarning)
                 Text("USERNAME_EMAIL VALID?: \(String(!usernameEmailInvalid))").booleanColor(bool: !usernameEmailInvalid)
                 Text("PASS VALID?: \(String(!passwordInvalid))").booleanColor(bool: !passwordInvalid)
                 Text("TWOFACTOR VALID?: \(String(!twoFactorInvalid))").booleanColor(bool: !twoFactorInvalid)

@@ -17,15 +17,28 @@ struct LoginButtonView: View {
     @Binding var twoFactor: String
     @Binding var loggedIn: Bool
     @Binding var showingTwoFactorField: Bool
-    @Binding var showTwoFactorFieldWarning: Bool
-    @Binding var showLoginButtonWarning: Bool
+    @Binding var showingTwoFactorWarning: Bool
     @Binding var usernameEmailInvalid: Bool
     @Binding var passwordInvalid: Bool
     @Binding var twoFactorInvalid: Bool
     @Binding var showingPopover: Bool
+    @Binding var showingLoginButtonWarning: Bool
 
-    /// Computed properties are re-evaluated every
-    /// time one of the properties they rely on is modified.
+    @State var loginButtonWarningOpacity: Double = 1
+
+    let notificationHaptics = UINotificationFeedbackGenerator()
+
+    /// Computed properties are re-evaluated every time one of the properties they rely on is modified.
+    /// show progress view instead of Login Button if trying login
+    /// **conditions that require the login button disabled:**
+    /// userEmailInput is invalid
+    /// password is invalid
+    /// and if 2FA is needed (when showingTwoFactorField is true)
+    /// if showingTwoFactorField = true, and twoFactor is invalid
+    /// if showingTwoFactorField = true, and twoFactor is empty
+    /// if isTryingLogin
+    /// email is already logged in
+    /// username is already logged in
     var loginButtonDisabled: Bool {
         if isTryingLogin { return true }
         if usernameEmailInvalid || passwordInvalid { return true }
@@ -43,59 +56,50 @@ struct LoginButtonView: View {
                 let usernameEmail = usernameEmailInput.lowercased()
                 if loginButtonDisabled { return }
 
+                notificationHaptics.prepare()
                 tryLogin(usernameEmail: usernameEmail, password: password, twoFactor: twoFactor)
-
             }) {
-                /// show progress view instead of Login Button if trying login
-                /// **conditions that require the login button disabled:**
-                /// userEmailInput is invalid
-                /// password is invalid
-                /// and if 2FA is needed (when showingTwoFactorField is true)
-                /// if showingTwoFactorField = true, and twoFactor is invalid
-                /// if showingTwoFactorField = true, and twoFactor is empty
-                /// if isTryingLogin
-                /// email is already logged in
-                /// username is already logged in
-                ZStack {
-                    ProgressView().opacity(isTryingLogin ? 1 : 0)
-                    Text("Login")
+                HStack {
+                    Group {
+                        Label {
+                            Text("Login")
+                        }
+                        icon: {
+                            Image(systemName: "arrow.turn.up.forward.iphone.fill").frame(width: 15)
+                                .symbolRenderingMode(.hierarchical)
+                        }
+                    }.disabled(loginButtonDisabled)
                         .foregroundStyle(loginButtonDisabled ? Color.gray : Color.blue)
-                        .disabled(loginButtonDisabled)
-                        .opacity(isTryingLogin ? 0 : 1)
+
+                    Spacer()
+
+                    ZStack {
+                        ProgressView()
+                            .opacity(isTryingLogin ? 1 : 0)
+                        if showingLoginButtonWarning {
+                            Group {
+                                Image(systemName: "lock.trianglebadge.exclamationmark.fill")
+                                    .font(.title2).opacity(loginButtonWarningOpacity)
+                                    .symbolRenderingMode(.hierarchical)
+                                    .foregroundStyle(.red)
+                                    .opacity(isTryingLogin ? 0 : 1)
+                            }
+
+                            .onAppear {
+                                let animation = Animation.easeIn(duration: 2)
+                                withAnimation(animation) {
+                                    loginButtonWarningOpacity = 0.1
+                                }
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    showingLoginButtonWarning = false
+                                    loginButtonWarningOpacity = 1
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
-    }
-
-    func isValidEmail(input: String) -> Bool {
-        guard input.count >= 3 else { return false }
-        let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let matched: Bool = NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: input)
-        let isValid = matched
-        return isValid
-    }
-
-    func isValidUsername(input: String) -> Bool {
-        guard input.count >= 3 else { return false }
-        let regex = "[a-zA-Z0-9_]+"
-        let matched = NSPredicate(format: "SELF MATCHES %@", regex).evaluate(with: input)
-        let isValid = matched
-        return isValid
-    }
-
-    func isValidPassword(input: String) -> Bool {
-        let isValid = 10 ... 60 ~= input.count
-        return isValid
-    }
-
-    func isValidTwoFactor(input: String) -> Bool {
-        guard input.count == 6 else { print("inside guard")
-            return false
-        }
-        let twoFactorRegex = "^[0-9]{6}$"
-        let twoFactorMatched = NSPredicate(format: "SELF MATCHES %@", twoFactorRegex).evaluate(with: input)
-        print(twoFactorMatched)
-        return twoFactorMatched
     }
 
     /// Sends the usernameEmail and password into the LoginHelper
@@ -110,10 +114,12 @@ struct LoginButtonView: View {
         ).login(completion: { isSuccessful, reply in
             isTryingLogin = false
             if isSuccessful {
+                notificationHaptics.notificationOccurred(.success)
                 print("LOGIN SUCCESSFUL")
                 loggedIn = true
                 showingPopover = false
             } else {
+                notificationHaptics.notificationOccurred(.error)
                 /// # Types of errors handled here:
                 /// incorrect_login
                 /// incorrect_totp token
@@ -122,19 +128,23 @@ struct LoginButtonView: View {
                 switch reply {
                 case "incorrect_login":
                     print("LOGIN FAILED - INCORRECT_CREDENTIALS")
-                    showLoginButtonWarning = true
+                    showingLoginButtonWarning = true
+
                 case "incorrect_totp token":
                     print("LOGIN FAILED - INCORRECT_TOTP")
-                    showTwoFactorFieldWarning = true
+                    showingTwoFactorWarning = true
                 case "missing_totp_token":
                     print("LOGIN FAILED - MISSING_TOTP")
-                    showingTwoFactorField = true
+                    withAnimation(.smooth) {
+                        showingTwoFactorWarning = true
+                        showingTwoFactorField = true
+                    }
                     /// initial 2fa validity check
                     /// will always be invalid
                     twoFactorInvalid = true
                 case "JSON_DECODE_ERROR":
                     print("LOGIN FAILED - JSON_DECODE_ERROR")
-                    showLoginButtonWarning = true
+                    showingLoginButtonWarning = true
                 default:
                     print("LOGIN FAILED - ERROR_UNKNOWN")
                 }

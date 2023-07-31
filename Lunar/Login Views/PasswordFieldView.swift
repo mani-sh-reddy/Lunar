@@ -12,39 +12,48 @@ struct PasswordFieldView: View {
     @Binding var password: String
     @Binding var showingTwoFactorField: Bool
     @Binding var passwordInvalid: Bool
+    @Binding var showingLoginButtonWarning: Bool
+
+    @State var uncoverPassword: Bool = false
 
     var body: some View {
         HStack {
-            Image(systemName: "key").frame(width: 10)
-                .padding(.trailing)
-//            if !showPassword {
-            if true {
-                SecureField("Password", text: $password)
-                    .keyboardType(.asciiCapable)
-                    .textInputAutocapitalization(.never)
-                    .autocorrectionDisabled()
-//                    .onChange(of: password) { _ in
-//                        if requires2FA {
-//                            requires2FA = false
-//                        }
-//                    }
-            } else {
-                TextField("Password", text: $password)
-                    .keyboardType(.asciiCapable)
-                    .textInputAutocapitalization(.never)
-                    .autocorrectionDisabled()
+            Label {
+                if uncoverPassword {
+                    TextField("Password", text: $password)
+                        .keyboardType(.asciiCapable)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                        .textContentType(.password)
+                } else {
+                    SecureField("Password", text: $password)
+                        .keyboardType(.asciiCapable)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                        .textContentType(.password)
+                }
+            } icon: {
+                Image(systemName: "key")
+                    .foregroundStyle(.black)
             }
-
-//            Image(systemName: "\(showPassword ? "eye" : "eye.slash.fill")").foregroundStyle(showPassword ? Color.black : Color.gray)
-//                .onTapGesture { showPassword.toggle() }
+            Button(action: {
+                uncoverPassword.toggle()
+            }, label: {
+                Image(systemName: uncoverPassword ? "eye.circle.fill" : "eye.slash.circle")
+                    .font(.title2)
+                    .symbolRenderingMode(.hierarchical)
+                    .foregroundStyle(.black)
+                    .padding(.leading, 10)
+            })
         }
         .onAppear {
             if let devPassword = ProcessInfo.processInfo.environment["LEMMY_TEST_ACC_PASS"] {
                 password = devPassword
             }
         }
-        .onChange(of: password) { newValue in
+        .onDebouncedChange(of: $password, debounceFor: 0.3) { newValue in
             showingTwoFactorField = false
+            showingLoginButtonWarning = false
             passwordInvalid = !ValidationUtils.isValidPassword(input: newValue)
         }
     }

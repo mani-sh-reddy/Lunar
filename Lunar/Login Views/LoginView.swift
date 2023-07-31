@@ -23,35 +23,40 @@ struct LoginView: View {
     @State private var twoFactor: String = ""
     @State private var loggedIn: Bool = false
     @State private var showingTwoFactorField: Bool = false
-    @State private var showTwoFactorFieldWarning: Bool = false
-    @State private var showLoginButtonWarning: Bool = false
+    @State private var showingTwoFactorWarning: Bool = false
+    @State private var showingLoginButtonWarning: Bool = false
     @State private var usernameEmailInvalid: Bool = true
     @State private var passwordInvalid: Bool = true
     @State private var twoFactorInvalid: Bool = false
 
     @Binding var showingPopover: Bool
 
-    let haptic = UINotificationFeedbackGenerator()
-
     var body: some View {
         List {
-            UsernameFieldView(
-                usernameEmailInput: $usernameEmailInput,
-                showingTwoFactorField: $showingTwoFactorField,
-                usernameEmailInvalid: $usernameEmailInvalid
-            )
-            PasswordFieldView(
-                password: $password,
-                showingTwoFactorField: $showingTwoFactorField,
-                passwordInvalid: $passwordInvalid
-            )
+            Section {
+                UsernameFieldView(
+                    usernameEmailInput: $usernameEmailInput,
+                    showingTwoFactorField: $showingTwoFactorField,
+                    usernameEmailInvalid: $usernameEmailInvalid,
+                    showingLoginButtonWarning: $showingLoginButtonWarning
+                )
+                PasswordFieldView(
+                    password: $password,
+                    showingTwoFactorField: $showingTwoFactorField,
+                    passwordInvalid: $passwordInvalid,
+                    showingLoginButtonWarning: $showingLoginButtonWarning
+                )
+            }
 
             if showingTwoFactorField {
-                TwoFactorFieldView(
-                    twoFactor: $twoFactor,
-                    showTwoFactorFieldWarning: $showTwoFactorFieldWarning,
-                    twoFactorInvalid: $twoFactorInvalid
-                )
+                Section {
+                    TwoFactorFieldView(
+                        twoFactor: $twoFactor,
+                        showingTwoFactorWarning: $showingTwoFactorWarning,
+                        twoFactorInvalid: $twoFactorInvalid
+//                        showingLoginButtonWarning: $showingLoginButtonWarning
+                    )
+                }
             }
 
             Section {
@@ -64,20 +69,20 @@ struct LoginView: View {
                     twoFactor: $twoFactor,
                     loggedIn: $loggedIn,
                     showingTwoFactorField: $showingTwoFactorField,
-                    showTwoFactorFieldWarning: $showTwoFactorFieldWarning,
-                    showLoginButtonWarning: $showLoginButtonWarning,
+                    showingTwoFactorWarning: $showingTwoFactorWarning,
                     usernameEmailInvalid: $usernameEmailInvalid,
                     passwordInvalid: $passwordInvalid,
                     twoFactorInvalid: $twoFactorInvalid,
-                    showingPopover: $showingPopover
+                    showingPopover: $showingPopover,
+                    showingLoginButtonWarning: $showingLoginButtonWarning
                 )
             }
             DebugLoginPagePropertiesView(
                 isTryingLogin: isTryingLogin,
                 loggedIn: loggedIn,
                 showingTwoFactorField: showingTwoFactorField,
-                showTwoFactorFieldWarning: showTwoFactorFieldWarning,
-                showLoginButtonWarning: showLoginButtonWarning,
+                showingTwoFactorWarning: showingTwoFactorWarning,
+                showingLoginButtonWarning: showingLoginButtonWarning,
                 usernameEmailInvalid: usernameEmailInvalid,
                 passwordInvalid: passwordInvalid,
                 twoFactorInvalid: twoFactorInvalid,
