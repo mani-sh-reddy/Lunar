@@ -24,7 +24,6 @@ struct DebugAccountsPropertiesView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
-            Spacer()
             Text("Debug Properties").textCase(.uppercase)
             Group {
                 Text("showingPopover: \(String(showingPopover))")
@@ -39,25 +38,19 @@ struct DebugAccountsPropertiesView: View {
                 Text("deleteConfirmationShown: \(String(deleteConfirmationShown))")
                     .booleanColor(bool: deleteConfirmationShown)
             }
+            Spacer()
             Group {
                 Text("@AppStorage selectedUser: \(selectedUser)")
                 Text("@AppStorage loggedInUsersList: \(loggedInUsersList.rawValue)")
                 Text("@AppStorage loggedInEmailsList: \(loggedInEmailsList.rawValue)")
             }
-
+            Spacer()
             Group {
-                ScrollView {
                     let keychainDebugString = KeychainHelper.standard.generateDebugString(service: "io.github.mani-sh-reddy.Lunar.app")
                     Text("KEYCHAIN: \(keychainDebugString)").font(.caption2)
-                }
             }
-
-            /// ** For Keychain Debugging**
-            /// ```
-            /// print(KeychainHelper.standard.generateDebugString(service: appBundleID).fastestEncoding.rawValue)
-            /// ```
-        }.if(!debugModeEnabled) { _ in
-            EmptyView()
         }
+        .font(.caption)
+        .if(!debugModeEnabled) { _ in EmptyView() }
     }
 }
