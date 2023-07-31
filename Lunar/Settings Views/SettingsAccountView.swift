@@ -14,7 +14,7 @@ struct SettingsAccountView: View {
     @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
     @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
 
-    @State private var showingPopover: Bool = false
+    @State var showingPopover: Bool = false
     @State private var isPresentingConfirm: Bool = false
     @State var logoutAllUsersButtonClicked: Bool = false
     @State var logoutAllUsersButtonOpacity: Double = 1
@@ -43,6 +43,7 @@ struct SettingsAccountView: View {
                 Button(action: {
                     withAnimation(.linear(duration: 1)) {
                         showingPopover = true
+                        // need to invalidate all inputs on first popover
                     }
                 }
                 ) {
@@ -137,75 +138,15 @@ struct SettingsAccountView: View {
                 )
             }
         }
-
-        // MARK: - Converting email-based login to username-based login
-
-        .onChange(of: loggedInUsersList) { newValue in
-            var updatedList: [String] = []
-
-            let dispatchGroup = DispatchGroup() // Create a dispatch group to track async tasks
-
-            for account in newValue {
-                if account.contains("@") {
-                    dispatchGroup.enter() // Enter the dispatch group before starting the conversion
-
-                    let emailToUsernameConverter = EmailToUsernameConverter(userEmail: account)
-                    emailToUsernameConverter.convertEmailToUsername { convertedUsername in
-                        if let username = convertedUsername {
-                            print("Converted username: \(username)")
-
-                            // MARK: - update keychain to use username as the account identifier
-
-                            // Step 1: Fetch the existing password using the email-based account
-                            let existingPassword = KeychainHelper.standard.read(service: appBundleID, account: account)
-
-                            // Step 2: Delete the existing Keychain entry with the email-based account
-                            KeychainHelper.standard.delete(service: appBundleID, account: account)
-
-                            // Step 3: Save a new Keychain entry using the username as the account
-                            KeychainHelper.standard.save(existingPassword, service: appBundleID, account: username)
-
-                            updatedList.append(username) // Append the converted username
-                            loggedInEmailsList.append(account)
-                        } else {
-                            print("Failed to convert email to username OR Not required.")
-                        }
-
-                        dispatchGroup.leave() // Leave the dispatch group after conversion is done
-                    }
-                } else {
-                    // If the account is already a username, add it directly to the updatedList
-                    updatedList.append(account)
-                }
-            }
-
-            // Wait for all conversions to finish before updating loggedInUsersList
-            isConvertingEmails = true
-            dispatchGroup.notify(queue: .main) {
-                isConvertingEmails = false
-                loggedInUsersList = updatedList
-                print("NEW loggedInUsersList: \(loggedInUsersList)")
-                print("OLD CONVERTED loggedInEmailsList: \(loggedInEmailsList)")
-            }
-            if debugModeEnabled {
-                keychainDebugString = KeychainHelper.standard.generateDebugString(service: "io.github.mani-sh-reddy.Lunar.app")
-            }
-        }
-
         .navigationTitle("Accounts")
         .sheet(isPresented: $showingPopover) {
-            LoginView(loginHelper: LoginHelper(
-                usernameOrEmail: "",
-                password: "",
-                twoFactor: ""
-            ))
+            LoginView(showingPopover: $showingPopover)
         }
     }
 }
 
 struct SettingsAccountView_Previews: PreviewProvider {
     static var previews: some View {
-//        SettingsAccountView(siteFetcher: SiteFetcher())
         SettingsAccountView()
     }
 }

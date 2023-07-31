@@ -30,9 +30,13 @@
 		3C4B7DDB2A58AD23003C8192 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 3C4B7DDA2A58AD23003C8192 /* Alamofire */; };
 		3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F09FF2A54399F009DF8AB /* LunarApp.swift */; };
 		3C522F3B2A63241900129CAC /* TrendingCommunitiesFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C522F3A2A63241900129CAC /* TrendingCommunitiesFetcher.swift */; };
-		3C5ECB1F2A75ABFE002BA561 /* EmailToUsernameConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB1E2A75ABFE002BA561 /* EmailToUsernameConverter.swift */; };
+		3C5ECB1F2A75ABFE002BA561 /* UsernameEmailFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB1E2A75ABFE002BA561 /* UsernameEmailFetcher.swift */; };
 		3C5ECB242A766D64002BA561 /* DebugLoginPagePropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB232A766D64002BA561 /* DebugLoginPagePropertiesView.swift */; };
 		3C5ECB262A766E31002BA561 /* DebugAccountsPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB252A766E31002BA561 /* DebugAccountsPropertiesView.swift */; };
+		3C5ECB282A767681002BA561 /* UserAndPassFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB272A767681002BA561 /* UserAndPassFieldsView.swift */; };
+		3C5ECB2A2A7676AD002BA561 /* UsernameFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB292A7676AD002BA561 /* UsernameFieldView.swift */; };
+		3C5ECB2C2A7676B5002BA561 /* PasswordFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB2B2A7676B5002BA561 /* PasswordFieldView.swift */; };
+		3C5ECB2E2A767957002BA561 /* TwoFactorFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB2D2A767957002BA561 /* TwoFactorFieldView.swift */; };
 		3C6299D12A751A5900BE2A9F /* TextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6299D02A751A5900BE2A9F /* TextExtension.swift */; };
 		3C62C2532A72DF10003BAC5B /* LunarShareScreenshot.png in Resources */ = {isa = PBXBuildFile; fileRef = 3C62C2522A72DF10003BAC5B /* LunarShareScreenshot.png */; };
 		3C62C2552A72F4BC003BAC5B /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C62C2542A72F4BC003BAC5B /* SplashScreenView.swift */; };
@@ -47,6 +51,9 @@
 		3C8709322A747B91004999CE /* SiteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8709312A747B91004999CE /* SiteModel.swift */; };
 		3C8709342A747C92004999CE /* SiteFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8709332A747C92004999CE /* SiteFetcher.swift */; };
 		3C8A850D2A7562980005711A /* LoggedInUserRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8A850C2A7562980005711A /* LoggedInUserRowView.swift */; };
+		3C96EA3E2A76FC1200753199 /* LoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96EA3D2A76FC1200753199 /* LoginButtonView.swift */; };
+		3C96EA402A77181C00753199 /* TextFieldLimiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96EA3F2A77181C00753199 /* TextFieldLimiter.swift */; };
+		3C96EA422A77225E00753199 /* ValidationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96EA412A77225E00753199 /* ValidationUtils.swift */; };
 		3CA3CBC32A5B026800D0D645 /* AggregatedPostsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3CBC22A5B026800D0D645 /* AggregatedPostsFetcher.swift */; };
 		3CA5C40A2A574FF500BF8F1B /* PostsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */; };
 		3CA5C40E2A57525500BF8F1B /* AggregatedPostsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C40D2A57525500BF8F1B /* AggregatedPostsListView.swift */; };
@@ -149,9 +156,13 @@
 		3C4F09FF2A54399F009DF8AB /* LunarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarApp.swift; sourceTree = "<group>"; };
 		3C4F0A032A54399F009DF8AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C522F3A2A63241900129CAC /* TrendingCommunitiesFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingCommunitiesFetcher.swift; sourceTree = "<group>"; };
-		3C5ECB1E2A75ABFE002BA561 /* EmailToUsernameConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailToUsernameConverter.swift; sourceTree = "<group>"; };
+		3C5ECB1E2A75ABFE002BA561 /* UsernameEmailFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameEmailFetcher.swift; sourceTree = "<group>"; };
 		3C5ECB232A766D64002BA561 /* DebugLoginPagePropertiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLoginPagePropertiesView.swift; sourceTree = "<group>"; };
 		3C5ECB252A766E31002BA561 /* DebugAccountsPropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugAccountsPropertiesView.swift; sourceTree = "<group>"; };
+		3C5ECB272A767681002BA561 /* UserAndPassFieldsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAndPassFieldsView.swift; sourceTree = "<group>"; };
+		3C5ECB292A7676AD002BA561 /* UsernameFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameFieldView.swift; sourceTree = "<group>"; };
+		3C5ECB2B2A7676B5002BA561 /* PasswordFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordFieldView.swift; sourceTree = "<group>"; };
+		3C5ECB2D2A767957002BA561 /* TwoFactorFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFactorFieldView.swift; sourceTree = "<group>"; };
 		3C6299D02A751A5900BE2A9F /* TextExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextExtension.swift; sourceTree = "<group>"; };
 		3C62C23E2A72AA4D003BAC5B /* Lunar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Lunar.entitlements; sourceTree = "<group>"; };
 		3C62C23F2A72AABD003BAC5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -168,6 +179,9 @@
 		3C8709312A747B91004999CE /* SiteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteModel.swift; sourceTree = "<group>"; };
 		3C8709332A747C92004999CE /* SiteFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiteFetcher.swift; sourceTree = "<group>"; };
 		3C8A850C2A7562980005711A /* LoggedInUserRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedInUserRowView.swift; sourceTree = "<group>"; };
+		3C96EA3D2A76FC1200753199 /* LoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonView.swift; sourceTree = "<group>"; };
+		3C96EA3F2A77181C00753199 /* TextFieldLimiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldLimiter.swift; sourceTree = "<group>"; };
+		3C96EA412A77225E00753199 /* ValidationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationUtils.swift; sourceTree = "<group>"; };
 		3CA3CBC22A5B026800D0D645 /* AggregatedPostsFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregatedPostsFetcher.swift; sourceTree = "<group>"; };
 		3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsListModel.swift; sourceTree = "<group>"; };
 		3CA5C40D2A57525500BF8F1B /* AggregatedPostsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AggregatedPostsListView.swift; sourceTree = "<group>"; };
@@ -275,6 +289,8 @@
 				3C87092B2A745CE2004999CE /* ArrayExtension.swift */,
 				3C87092D2A74647A004999CE /* BindingExtension.swift */,
 				3C6299D02A751A5900BE2A9F /* TextExtension.swift */,
+				3C96EA3F2A77181C00753199 /* TextFieldLimiter.swift */,
+				3C96EA412A77225E00753199 /* ValidationUtils.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -330,10 +346,15 @@
 		3C5ECB222A766D27002BA561 /* Login Views */ = {
 			isa = PBXGroup;
 			children = (
-				3C1A3F582A73B17E00898FC6 /* LoginView.swift */,
 				3C5ECB232A766D64002BA561 /* DebugLoginPagePropertiesView.swift */,
 				3C5ECB252A766E31002BA561 /* DebugAccountsPropertiesView.swift */,
 				3C1A3F5E2A73D64C00898FC6 /* LoginHelper.swift */,
+				3C1A3F582A73B17E00898FC6 /* LoginView.swift */,
+				3C96EA3D2A76FC1200753199 /* LoginButtonView.swift */,
+				3C5ECB272A767681002BA561 /* UserAndPassFieldsView.swift */,
+				3C5ECB2B2A7676B5002BA561 /* PasswordFieldView.swift */,
+				3C5ECB292A7676AD002BA561 /* UsernameFieldView.swift */,
+				3C5ECB2D2A767957002BA561 /* TwoFactorFieldView.swift */,
 			);
 			path = "Login Views";
 			sourceTree = "<group>";
@@ -347,7 +368,7 @@
 				3CB408B32A5C558B00B7C983 /* CommunitiesFetcher.swift */,
 				3C522F3A2A63241900129CAC /* TrendingCommunitiesFetcher.swift */,
 				3C8709332A747C92004999CE /* SiteFetcher.swift */,
-				3C5ECB1E2A75ABFE002BA561 /* EmailToUsernameConverter.swift */,
+				3C5ECB1E2A75ABFE002BA561 /* UsernameEmailFetcher.swift */,
 			);
 			path = DataLoaders;
 			sourceTree = "<group>";
@@ -592,6 +613,7 @@
 				3CEF4CC62A69B3AD002B83C0 /* MoreCommunitiesButtonView.swift in Sources */,
 				3CEF4CD32A69B770002B83C0 /* StringExtension.swift in Sources */,
 				3CEF4CD02A69B738002B83C0 /* InPostMetadataView.swift in Sources */,
+				3C5ECB2A2A7676AD002BA561 /* UsernameFieldView.swift in Sources */,
 				3C87092E2A74647A004999CE /* BindingExtension.swift in Sources */,
 				3CEF4CCE2A69B71C002B83C0 /* InPostUserView.swift in Sources */,
 				3C113C392A6E71E100FDE5CE /* SettingsAccountView.swift in Sources */,
@@ -603,6 +625,7 @@
 				3C8A850D2A7562980005711A /* LoggedInUserRowView.swift in Sources */,
 				3CEF4CCA2A69B6FA002B83C0 /* InPostCommunityHeaderView.swift in Sources */,
 				3CF3F9C22A6EE20C0051E725 /* ViewExtension.swift in Sources */,
+				3C5ECB2C2A7676B5002BA561 /* PasswordFieldView.swift in Sources */,
 				3CA5C40A2A574FF500BF8F1B /* PostsListModel.swift in Sources */,
 				3CC734A82A6D67B7007523B5 /* CommunitySpecificPostsFetcher.swift in Sources */,
 				3C87092C2A745CE2004999CE /* ArrayExtension.swift in Sources */,
@@ -614,6 +637,7 @@
 				3CEF4CCC2A69B70C002B83C0 /* InPostThumbnailView.swift in Sources */,
 				3CF3F9C02A6EE0390051E725 /* SettingsClearCacheButtonView.swift in Sources */,
 				3CED89792A71A54500BD9086 /* ImageModifier.swift in Sources */,
+				3C96EA3E2A76FC1200753199 /* LoginButtonView.swift in Sources */,
 				3CEF4CC22A69B38B002B83C0 /* SubscribedCommunitiesView.swift in Sources */,
 				3CDF229D2A6D436B009281F2 /* Settings.swift in Sources */,
 				3C113C412A6E8EEA00FDE5CE /* SettingsInfoSectionView.swift in Sources */,
@@ -622,11 +646,13 @@
 				3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */,
 				3CED897B2A71A5CF00BD9086 /* ImagePopoverView.swift in Sources */,
 				3CB8D2682A55F45900EE615A /* FeedView.swift in Sources */,
-				3C5ECB1F2A75ABFE002BA561 /* EmailToUsernameConverter.swift in Sources */,
+				3C5ECB1F2A75ABFE002BA561 /* UsernameEmailFetcher.swift in Sources */,
+				3C96EA402A77181C00753199 /* TextFieldLimiter.swift in Sources */,
 				3C62C2592A7309DC003BAC5B /* SettingsAppIconView.swift in Sources */,
 				3CB8D26A2A561E0700EE615A /* AggregatedCommunityRowView.swift in Sources */,
 				3C62C2552A72F4BC003BAC5B /* SplashScreenView.swift in Sources */,
 				3C6299D12A751A5900BE2A9F /* TextExtension.swift in Sources */,
+				3C5ECB282A767681002BA561 /* UserAndPassFieldsView.swift in Sources */,
 				3CA3CBC32A5B026800D0D645 /* AggregatedPostsFetcher.swift in Sources */,
 				3CED897D2A71DCFF00BD9086 /* SettingsHiddenOptionsView.swift in Sources */,
 				3C72E21B2A71735E00C794C6 /* InPostThumbnailImageView.swift in Sources */,
@@ -641,8 +667,10 @@
 				3CEF4CD72A69B7A8002B83C0 /* ImageViewWithPlaceholder.swift in Sources */,
 				3CA92E3A2A543BF000688DEB /* ContentView.swift in Sources */,
 				3CB408B42A5C558B00B7C983 /* CommunitiesFetcher.swift in Sources */,
+				3C96EA422A77225E00753199 /* ValidationUtils.swift in Sources */,
 				3C113C432A6EA92600FDE5CE /* SettingsServerSelectionSectionView.swift in Sources */,
 				3C8709322A747B91004999CE /* SiteModel.swift in Sources */,
+				3C5ECB2E2A767957002BA561 /* TwoFactorFieldView.swift in Sources */,
 				3CA92E432A549A7F00688DEB /* CommunityRowView.swift in Sources */,
 				3CEF4CC42A69B39B002B83C0 /* TrendingCommunitiesSectionView.swift in Sources */,
 				3C113C3D2A6E8B0C00FDE5CE /* SettingsAppearanceSectionView.swift in Sources */,

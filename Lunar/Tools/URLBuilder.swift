@@ -64,7 +64,7 @@ class URLBuilder {
     private let communityID: Int?
     private let postID: Int?
     private let maxDepth: Int?
-    private let authUser: String?
+    private let jwt: String?
 
     init(
         endpointPath: String,
@@ -75,7 +75,7 @@ class URLBuilder {
         communityID: Int? = nil,
         postID: Int? = nil,
         maxDepth: Int? = nil,
-        authUser: String? = nil
+        jwt: String? = nil
     ) {
         self.endpointPath = endpointPath
         self.sortParameter = sortParameter
@@ -85,7 +85,7 @@ class URLBuilder {
         self.communityID = communityID
         self.postID = postID
         self.maxDepth = maxDepth
-        self.authUser = authUser
+        self.jwt = jwt
     }
 
     func buildURL() -> URLComponents {
@@ -99,11 +99,7 @@ class URLBuilder {
         if let communityID { queryParams["community_id"] = String(communityID) }
         if let postID { queryParams["post_id"] = String(postID) }
         if let maxDepth { queryParams["max_depth"] = String(maxDepth) }
-        if let authUser {
-            let keychainObject = KeychainHelper.standard.read(service: appBundleID, account: authUser)
-            let accessToken = String(data: keychainObject ?? Data(), encoding: .utf8)?.replacingOccurrences(of: "\"", with: "")
-            queryParams["auth"] = accessToken
-        }
+        if let jwt { queryParams["auth"] = String(jwt) }
 
         endpoint.scheme = "https"
         endpoint.host = instanceHostURL

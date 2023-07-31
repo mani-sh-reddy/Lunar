@@ -15,43 +15,33 @@ struct DebugLoginPagePropertiesView: View {
     @AppStorage("loggedInEmailsList") var loggedInEmailsList = Settings.loggedInEmailsList
     @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
 
-    var isLoading: Bool
-    var requires2FA: Bool
-    var showPassword: Bool
-    var shakeLoginButton: Bool
-    var shake2FAField: Bool
+    var isTryingLogin: Bool
     var loggedIn: Bool
-    var usernameOrEmail: String
+    var showingTwoFactorField: Bool
+    var showTwoFactorFieldWarning: Bool
+    var showLoginButtonWarning: Bool
+    var usernameEmailInvalid: Bool
+    var passwordInvalid: Bool
+    var twoFactorInvalid: Bool
+    var showingPopover: Bool
 
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
-            Text("Debug Properties").textCase(.uppercase)
-
             Group {
-                Text("isLoading: \(String(isLoading))")
-                    .booleanColor(bool: isLoading)
-                Text("requires2FA: \(String(requires2FA))")
-                    .booleanColor(bool: requires2FA)
-
-                Text("showPassword: \(String(showPassword))")
-                    .booleanColor(bool: showPassword)
-
-                Text("shakeLoginButton: \(String(shakeLoginButton))")
-                    .booleanColor(bool: shakeLoginButton)
-
-                Text("shake2FAField: \(String(shake2FAField))")
-                    .booleanColor(bool: shake2FAField)
-
-                Text("loggedIn: \(String(loggedIn))")
-                    .booleanColor(bool: loggedIn)
+                Text("Debug Properties").textCase(.uppercase)
             }
             Group {
-                Text("userAlreadyInUserList: \(String(loggedInUsersList.contains(usernameOrEmail.lowercased())))")
-                    .booleanColor(bool: loggedInUsersList.contains(usernameOrEmail.lowercased()))
-
-                Text("userAlreadyInEmailsList: \(String(loggedInEmailsList.contains(usernameOrEmail.lowercased())))")
-                    .booleanColor(bool: loggedInEmailsList.contains(usernameOrEmail.lowercased()))
-
+                Text("isTryingLogin: \(String(isTryingLogin))").booleanColor(bool: isTryingLogin)
+                Text("loggedIn: \(String(loggedIn))").booleanColor(bool: loggedIn)
+                Text("showingTwoFactorField: \(String(showingTwoFactorField))").booleanColor(bool: showingTwoFactorField)
+                Text("showTwoFactorFieldWarning: \(String(showTwoFactorFieldWarning))").booleanColor(bool: showTwoFactorFieldWarning)
+                Text("showLoginButtonWarning: \(String(showLoginButtonWarning))").booleanColor(bool: showLoginButtonWarning)
+                Text("USERNAME_EMAIL VALID?: \(String(!usernameEmailInvalid))").booleanColor(bool: !usernameEmailInvalid)
+                Text("PASS VALID?: \(String(!passwordInvalid))").booleanColor(bool: !passwordInvalid)
+                Text("TWOFACTOR VALID?: \(String(!twoFactorInvalid))").booleanColor(bool: !twoFactorInvalid)
+                Text("showingPopover: \(String(showingPopover))").booleanColor(bool: showingPopover)
+            }
+            Group {
                 Text("@AppStorage selectedUser: \(selectedUser)")
                 Text("@AppStorage loggedInUsersList: \(loggedInUsersList.rawValue)")
                 Text("@AppStorage loggedInEmailsList: \(loggedInEmailsList.rawValue)")

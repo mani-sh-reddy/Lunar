@@ -10,7 +10,7 @@ import SwiftUI
 
 // MARK: - Login
 
-struct CredentialsModel: Codable {
+struct CredentialsResponseModel: Codable {
     let jwt: String
     let registrationCreated: Bool?
     let verifyEmailSent: Bool?
@@ -24,4 +24,9 @@ struct CredentialsRequestModel: Encodable {
 
 struct ErrorResponseModel: Codable {
     let error: String
+}
+
+struct UserInfoResponseModel: Codable {
+    let username: String
+    let email: String
 }
