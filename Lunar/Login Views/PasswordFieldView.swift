@@ -34,7 +34,7 @@ struct PasswordFieldView: View {
                 }
             } icon: {
                 Image(systemName: "key")
-                    .foregroundStyle(.black)
+                    .foregroundStyle(.foreground)
             }
             Button(action: {
                 uncoverPassword.toggle()
@@ -42,7 +42,7 @@ struct PasswordFieldView: View {
                 Image(systemName: uncoverPassword ? "eye.circle.fill" : "eye.slash.circle")
                     .font(.title2)
                     .symbolRenderingMode(.hierarchical)
-                    .foregroundStyle(.black)
+                    .foregroundStyle(.foreground)
                     .padding(.leading, 10)
             })
         }

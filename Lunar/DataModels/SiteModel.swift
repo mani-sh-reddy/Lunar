@@ -172,6 +172,7 @@ struct LocalUser: Codable {
 struct LocalUserViewPerson: Codable {
     let id: Int
     let name: String
+    let avatar: String?
     let banned: Bool
     let published: String
     let actorID: String
@@ -179,7 +180,7 @@ struct LocalUserViewPerson: Codable {
     let instanceID: Int
 
     enum CodingKeys: String, CodingKey {
-        case id, name, banned, published
+        case id, name, banned, published, avatar
         case actorID = "actor_id"
         case local, deleted, admin
         case botAccount = "bot_account"

@@ -11,7 +11,7 @@ import SwiftUI
 struct LoginView: View {
     @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
     @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-    @AppStorage("selectedUser") var selectedUser = Settings.selectedUser
+    @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
     @AppStorage("loggedInEmailsList") var loggedInEmailsList = Settings.loggedInEmailsList
     @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
 

@@ -23,7 +23,7 @@ struct UsernameFieldView: View {
                 .textContentType(.emailAddress)
         } icon: {
             Image(systemName: "person")
-                .foregroundStyle(.black)
+                .foregroundStyle(.foreground)
         }
         .onAppear {
             if let devUsername = ProcessInfo.processInfo.environment["LEMMY_TEST_ACC_2_USER"] {

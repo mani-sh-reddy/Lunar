@@ -18,10 +18,19 @@ enum Settings {
     // TODO: change after release
     static let debugModeEnabled: Bool = false
     static let appIconName: String = "AppIcon"
-    static let selectedUser: String = ""
+    static let selectedActorID: String = ""
 
     /// requires extension to array
     /// useage: Text("loggedInUsersList: \(String(describing: loggedInUsersList))")
     static let loggedInUsersList: [String] = []
     static let loggedInEmailsList: [String] = []
+
+    /// **USAGE**
+    /// @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
+    /// **to get**
+    /// initialise object
+    /// var loggedInAccount = LoggedInAccount()
+    /// loggedInAccount.actorID = "123"
+    /// self.loggedInAccounts.append(loggedInAccount)
+    static let loggedInAccounts: [LoggedInAccount] = []
 }

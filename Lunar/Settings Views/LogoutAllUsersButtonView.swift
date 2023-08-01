@@ -1,0 +1,102 @@
+//
+//  LogoutAllUsersButtonView.swift
+//  Lunar
+//
+//  Created by Mani on 31/07/2023.
+//
+
+import Foundation
+import SwiftUI
+
+struct LogoutAllUsersButtonView: View {
+    @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
+    @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
+    @AppStorage("loggedInEmailsList") var loggedInEmailsList = Settings.loggedInEmailsList
+    @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
+    @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
+    @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
+
+    @Binding var showingPopover: Bool
+    @Binding var isPresentingConfirm: Bool
+    @Binding var logoutAllUsersButtonClicked: Bool
+    @Binding var logoutAllUsersButtonOpacity: Double
+    @Binding var isLoadingDeleteButton: Bool
+    @Binding var deleteConfirmationShown: Bool
+    @Binding var isConvertingEmails: Bool
+    @Binding var keychainDebugString: String
+
+    let haptic = UINotificationFeedbackGenerator()
+
+    var body: some View {
+        Section {
+            Button(role: .destructive, action: {
+                deleteConfirmationShown = true
+            }) {
+                Label {
+                    if isLoadingDeleteButton {
+                        ProgressView()
+                    } else {
+                        Text("Logout All Users")
+                            .foregroundStyle(.red)
+                            .opacity(loggedInUsersList.count == 0 ? 0.4 : 1)
+                    }
+
+                    Spacer()
+                    ZStack(alignment: .trailing) {
+                        if logoutAllUsersButtonClicked {
+                            Group {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .font(.title2).opacity(logoutAllUsersButtonOpacity)
+                                    .symbolRenderingMode(.hierarchical)
+                                    .foregroundStyle(.green)
+                            }.onAppear {
+                                let animation = Animation.easeIn(duration: 2)
+                                withAnimation(animation) {
+                                    logoutAllUsersButtonOpacity = 0.1
+                                }
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    logoutAllUsersButtonClicked = false
+                                    logoutAllUsersButtonOpacity = 1
+                                }
+                            }
+                        }
+                    }
+                } icon: {
+                    Image(systemName: "xmark.circle.fill")
+                        .font(.title2)
+                        .foregroundStyle(.red)
+                        .symbolRenderingMode(.hierarchical)
+                        .opacity(loggedInUsersList.count == 0 ? 0.3 : 1)
+                }
+            }
+            .disabled(loggedInUsersList.count == 0)
+            .confirmationDialog("Remove All Accounts?", isPresented: $deleteConfirmationShown) {
+                Button(role: .destructive, action: {
+                    isPresentingConfirm = true
+                    loggedInAccounts.removeAll()
+                    selectedActorID = ""
+                    if loggedInUsersList.count > 0 {
+                        isLoadingDeleteButton = true
+                        haptic.notificationOccurred(.success)
+                        logoutAllUsersButtonClicked = true
+
+                        for userAccount in loggedInUsersList {
+                            KeychainHelper.standard.delete(service: "io.github.mani-sh-reddy.Lunar.app", account: userAccount)
+                            loggedInUsersList.removeAll { $0 == userAccount }
+                            print("LOGGED OUT AND DELETED FROM KEYCHAIN: \(userAccount)")
+                        }
+                        loggedInEmailsList.removeAll()
+                        print("REMOVED ALL from loggedInEmailsList")
+                        KeychainHelper.standard.clearKeychain()
+                        print("REMOVED ALL JWT from Keychain")
+
+                        isLoadingDeleteButton = false
+                        isPresentingConfirm = false
+                    }
+                }) {
+                    Text("Logout All Users")
+                }
+            }
+        }
+    }
+}

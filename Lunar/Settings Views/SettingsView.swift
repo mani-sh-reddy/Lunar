@@ -13,14 +13,18 @@ struct SettingsView: View {
     @AppStorage("displayName") var displayName = Settings.displayName
     @AppStorage("userName") var userName = Settings.userName
 
+    @State var selectedName = ""
+    @State var selectedEmail = ""
+    @State var selectedUserURL = ""
+
     var body: some View {
         NavigationView {
             List {
                 NavigationLink {
 //                    SettingsAccountView(siteFetcher: SiteFetcher())
-                    SettingsAccountView()
+                    SettingsAccountView(selectedName: $selectedName, selectedEmail: $selectedEmail, selectedUserURL: $selectedUserURL)
                 } label: {
-                    SettingsAccountNavLabel()
+                    SettingsSelectedUserLabel(selectedName: $selectedName, selectedEmail: $selectedEmail, selectedUserURL: $selectedUserURL)
                 }
 
                 SettingsServerSelectionSectionView()

@@ -19,7 +19,7 @@ import SwiftUI
 
 class LoginHelper: ObservableObject {
     @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
-    @AppStorage("selectedUser") var selectedUser = Settings.selectedUser
+    @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
     @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
     @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
     @AppStorage("loggedInEmailsList") var loggedInEmailsList = Settings.loggedInEmailsList
@@ -84,7 +84,7 @@ class LoginHelper: ObservableObject {
         print("login successful inside handleLoginSuccess()")
         let jwt = fetchedData.jwt
 
-        UsernameEmailFetcher(jwt: jwt).fetchUsernameAndEmail { username, email, _ in
+        SiteInfoFetcher(jwt: jwt).fetchSiteInfo { username, email, _ in
             if let validUsername = username {
                 self.loggedInUsersList.append(validUsername)
                 KeychainHelper.standard.save(jwt, service: self.appBundleID, account: validUsername)

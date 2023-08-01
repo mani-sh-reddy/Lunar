@@ -14,7 +14,7 @@
 		3C10A7752A72A6FC0040F1A9 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C10A7732A72A6FC0040F1A9 /* MainInterface.storyboard */; };
 		3C10A7772A72A6FC0040F1A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C10A7762A72A6FC0040F1A9 /* Assets.xcassets */; };
 		3C113C392A6E71E100FDE5CE /* SettingsAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */; };
-		3C113C3B2A6E7E4800FDE5CE /* SettingsAccountNavLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C3A2A6E7E4800FDE5CE /* SettingsAccountNavLabel.swift */; };
+		3C113C3B2A6E7E4800FDE5CE /* SettingsSelectedUserLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C3A2A6E7E4800FDE5CE /* SettingsSelectedUserLabel.swift */; };
 		3C113C3D2A6E8B0C00FDE5CE /* SettingsAppearanceSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C3C2A6E8B0C00FDE5CE /* SettingsAppearanceSectionView.swift */; };
 		3C113C3F2A6E8C9400FDE5CE /* SettingsGeneralSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C3E2A6E8C9400FDE5CE /* SettingsGeneralSectionView.swift */; };
 		3C113C412A6E8EEA00FDE5CE /* SettingsInfoSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C402A6E8EEA00FDE5CE /* SettingsInfoSectionView.swift */; };
@@ -30,7 +30,7 @@
 		3C4B7DDB2A58AD23003C8192 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 3C4B7DDA2A58AD23003C8192 /* Alamofire */; };
 		3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F09FF2A54399F009DF8AB /* LunarApp.swift */; };
 		3C522F3B2A63241900129CAC /* TrendingCommunitiesFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C522F3A2A63241900129CAC /* TrendingCommunitiesFetcher.swift */; };
-		3C5ECB1F2A75ABFE002BA561 /* UsernameEmailFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB1E2A75ABFE002BA561 /* UsernameEmailFetcher.swift */; };
+		3C5ECB1F2A75ABFE002BA561 /* SiteInfoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB1E2A75ABFE002BA561 /* SiteInfoFetcher.swift */; };
 		3C5ECB242A766D64002BA561 /* DebugLoginPagePropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB232A766D64002BA561 /* DebugLoginPagePropertiesView.swift */; };
 		3C5ECB262A766E31002BA561 /* DebugAccountsPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB252A766E31002BA561 /* DebugAccountsPropertiesView.swift */; };
 		3C5ECB282A767681002BA561 /* UserAndPassFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB272A767681002BA561 /* UserAndPassFieldsView.swift */; };
@@ -49,11 +49,14 @@
 		3C87092E2A74647A004999CE /* BindingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C87092D2A74647A004999CE /* BindingExtension.swift */; };
 		3C8709302A747065004999CE /* UserRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C87092F2A747065004999CE /* UserRowView.swift */; };
 		3C8709322A747B91004999CE /* SiteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8709312A747B91004999CE /* SiteModel.swift */; };
-		3C8709342A747C92004999CE /* SiteFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8709332A747C92004999CE /* SiteFetcher.swift */; };
 		3C8A850D2A7562980005711A /* LoggedInUserRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8A850C2A7562980005711A /* LoggedInUserRowView.swift */; };
 		3C96EA3E2A76FC1200753199 /* LoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96EA3D2A76FC1200753199 /* LoginButtonView.swift */; };
 		3C96EA402A77181C00753199 /* TextFieldLimiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96EA3F2A77181C00753199 /* TextFieldLimiter.swift */; };
 		3C96EA422A77225E00753199 /* ValidationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96EA412A77225E00753199 /* ValidationUtils.swift */; };
+		3C96EA4A2A78390F00753199 /* LogoutAllUsersButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96EA492A78390F00753199 /* LogoutAllUsersButtonView.swift */; };
+		3C96EA4E2A783FF100753199 /* LoggedInUsersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96EA4D2A783FF100753199 /* LoggedInUsersListView.swift */; };
+		3C96EA502A7843EC00753199 /* AddNewUserButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96EA4F2A7843EC00753199 /* AddNewUserButtonView.swift */; };
+		3C96EA552A7857D900753199 /* LoggedInUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96EA542A7857D900753199 /* LoggedInUserModel.swift */; };
 		3CA3CBC32A5B026800D0D645 /* AggregatedPostsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3CBC22A5B026800D0D645 /* AggregatedPostsFetcher.swift */; };
 		3CA5C40A2A574FF500BF8F1B /* PostsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */; };
 		3CA5C40E2A57525500BF8F1B /* AggregatedPostsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C40D2A57525500BF8F1B /* AggregatedPostsListView.swift */; };
@@ -140,7 +143,7 @@
 		3C10A7782A72A6FC0040F1A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C10A7802A72A8E90040F1A9 /* Lunar Stickers MessagesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lunar Stickers MessagesExtension.entitlements"; sourceTree = "<group>"; };
 		3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAccountView.swift; sourceTree = "<group>"; };
-		3C113C3A2A6E7E4800FDE5CE /* SettingsAccountNavLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAccountNavLabel.swift; sourceTree = "<group>"; };
+		3C113C3A2A6E7E4800FDE5CE /* SettingsSelectedUserLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSelectedUserLabel.swift; sourceTree = "<group>"; };
 		3C113C3C2A6E8B0C00FDE5CE /* SettingsAppearanceSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAppearanceSectionView.swift; sourceTree = "<group>"; };
 		3C113C3E2A6E8C9400FDE5CE /* SettingsGeneralSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsGeneralSectionView.swift; sourceTree = "<group>"; };
 		3C113C402A6E8EEA00FDE5CE /* SettingsInfoSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsInfoSectionView.swift; sourceTree = "<group>"; };
@@ -156,7 +159,7 @@
 		3C4F09FF2A54399F009DF8AB /* LunarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarApp.swift; sourceTree = "<group>"; };
 		3C4F0A032A54399F009DF8AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C522F3A2A63241900129CAC /* TrendingCommunitiesFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingCommunitiesFetcher.swift; sourceTree = "<group>"; };
-		3C5ECB1E2A75ABFE002BA561 /* UsernameEmailFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameEmailFetcher.swift; sourceTree = "<group>"; };
+		3C5ECB1E2A75ABFE002BA561 /* SiteInfoFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteInfoFetcher.swift; sourceTree = "<group>"; };
 		3C5ECB232A766D64002BA561 /* DebugLoginPagePropertiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLoginPagePropertiesView.swift; sourceTree = "<group>"; };
 		3C5ECB252A766E31002BA561 /* DebugAccountsPropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugAccountsPropertiesView.swift; sourceTree = "<group>"; };
 		3C5ECB272A767681002BA561 /* UserAndPassFieldsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAndPassFieldsView.swift; sourceTree = "<group>"; };
@@ -177,11 +180,14 @@
 		3C87092D2A74647A004999CE /* BindingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExtension.swift; sourceTree = "<group>"; };
 		3C87092F2A747065004999CE /* UserRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRowView.swift; sourceTree = "<group>"; };
 		3C8709312A747B91004999CE /* SiteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteModel.swift; sourceTree = "<group>"; };
-		3C8709332A747C92004999CE /* SiteFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiteFetcher.swift; sourceTree = "<group>"; };
 		3C8A850C2A7562980005711A /* LoggedInUserRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedInUserRowView.swift; sourceTree = "<group>"; };
 		3C96EA3D2A76FC1200753199 /* LoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonView.swift; sourceTree = "<group>"; };
 		3C96EA3F2A77181C00753199 /* TextFieldLimiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldLimiter.swift; sourceTree = "<group>"; };
 		3C96EA412A77225E00753199 /* ValidationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationUtils.swift; sourceTree = "<group>"; };
+		3C96EA492A78390F00753199 /* LogoutAllUsersButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutAllUsersButtonView.swift; sourceTree = "<group>"; };
+		3C96EA4D2A783FF100753199 /* LoggedInUsersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInUsersListView.swift; sourceTree = "<group>"; };
+		3C96EA4F2A7843EC00753199 /* AddNewUserButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewUserButtonView.swift; sourceTree = "<group>"; };
+		3C96EA542A7857D900753199 /* LoggedInUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInUserModel.swift; sourceTree = "<group>"; };
 		3CA3CBC22A5B026800D0D645 /* AggregatedPostsFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregatedPostsFetcher.swift; sourceTree = "<group>"; };
 		3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsListModel.swift; sourceTree = "<group>"; };
 		3CA5C40D2A57525500BF8F1B /* AggregatedPostsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AggregatedPostsListView.swift; sourceTree = "<group>"; };
@@ -367,8 +373,7 @@
 				3C65885C2A6189AF00A46DA3 /* CommentsFetcher.swift */,
 				3CB408B32A5C558B00B7C983 /* CommunitiesFetcher.swift */,
 				3C522F3A2A63241900129CAC /* TrendingCommunitiesFetcher.swift */,
-				3C8709332A747C92004999CE /* SiteFetcher.swift */,
-				3C5ECB1E2A75ABFE002BA561 /* UsernameEmailFetcher.swift */,
+				3C5ECB1E2A75ABFE002BA561 /* SiteInfoFetcher.swift */,
 			);
 			path = DataLoaders;
 			sourceTree = "<group>";
@@ -381,6 +386,7 @@
 				3C1A3F5C2A73BC9F00898FC6 /* CredentialsModel.swift */,
 				3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */,
 				3C8709312A747B91004999CE /* SiteModel.swift */,
+				3C96EA542A7857D900753199 /* LoggedInUserModel.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -444,8 +450,11 @@
 				3C113C402A6E8EEA00FDE5CE /* SettingsInfoSectionView.swift */,
 				3C113C422A6EA92600FDE5CE /* SettingsServerSelectionSectionView.swift */,
 				3C113C3E2A6E8C9400FDE5CE /* SettingsGeneralSectionView.swift */,
-				3C113C3A2A6E7E4800FDE5CE /* SettingsAccountNavLabel.swift */,
+				3C113C3A2A6E7E4800FDE5CE /* SettingsSelectedUserLabel.swift */,
 				3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */,
+				3C96EA4F2A7843EC00753199 /* AddNewUserButtonView.swift */,
+				3C96EA492A78390F00753199 /* LogoutAllUsersButtonView.swift */,
+				3C96EA4D2A783FF100753199 /* LoggedInUsersListView.swift */,
 				3C87092F2A747065004999CE /* UserRowView.swift */,
 				3C8A850C2A7562980005711A /* LoggedInUserRowView.swift */,
 			);
@@ -609,7 +618,6 @@
 			files = (
 				3C1A3F5D2A73BC9F00898FC6 /* CredentialsModel.swift in Sources */,
 				3C4B7DD82A58A741003C8192 /* CommentModel.swift in Sources */,
-				3C8709342A747C92004999CE /* SiteFetcher.swift in Sources */,
 				3CEF4CC62A69B3AD002B83C0 /* MoreCommunitiesButtonView.swift in Sources */,
 				3CEF4CD32A69B770002B83C0 /* StringExtension.swift in Sources */,
 				3CEF4CD02A69B738002B83C0 /* InPostMetadataView.swift in Sources */,
@@ -623,6 +631,7 @@
 				3C5ECB262A766E31002BA561 /* DebugAccountsPropertiesView.swift in Sources */,
 				3CA5C4102A5753AC00BF8F1B /* PostRowView.swift in Sources */,
 				3C8A850D2A7562980005711A /* LoggedInUserRowView.swift in Sources */,
+				3C96EA4E2A783FF100753199 /* LoggedInUsersListView.swift in Sources */,
 				3CEF4CCA2A69B6FA002B83C0 /* InPostCommunityHeaderView.swift in Sources */,
 				3CF3F9C22A6EE20C0051E725 /* ViewExtension.swift in Sources */,
 				3C5ECB2C2A7676B5002BA561 /* PasswordFieldView.swift in Sources */,
@@ -636,17 +645,19 @@
 				3CA5C40E2A57525500BF8F1B /* AggregatedPostsListView.swift in Sources */,
 				3CEF4CCC2A69B70C002B83C0 /* InPostThumbnailView.swift in Sources */,
 				3CF3F9C02A6EE0390051E725 /* SettingsClearCacheButtonView.swift in Sources */,
+				3C96EA502A7843EC00753199 /* AddNewUserButtonView.swift in Sources */,
 				3CED89792A71A54500BD9086 /* ImageModifier.swift in Sources */,
 				3C96EA3E2A76FC1200753199 /* LoginButtonView.swift in Sources */,
 				3CEF4CC22A69B38B002B83C0 /* SubscribedCommunitiesView.swift in Sources */,
 				3CDF229D2A6D436B009281F2 /* Settings.swift in Sources */,
 				3C113C412A6E8EEA00FDE5CE /* SettingsInfoSectionView.swift in Sources */,
 				3CB527382A6C28EC0095F351 /* MoreCommunitiesRowView.swift in Sources */,
-				3C113C3B2A6E7E4800FDE5CE /* SettingsAccountNavLabel.swift in Sources */,
+				3C113C3B2A6E7E4800FDE5CE /* SettingsSelectedUserLabel.swift in Sources */,
 				3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */,
+				3C96EA552A7857D900753199 /* LoggedInUserModel.swift in Sources */,
 				3CED897B2A71A5CF00BD9086 /* ImagePopoverView.swift in Sources */,
 				3CB8D2682A55F45900EE615A /* FeedView.swift in Sources */,
-				3C5ECB1F2A75ABFE002BA561 /* UsernameEmailFetcher.swift in Sources */,
+				3C5ECB1F2A75ABFE002BA561 /* SiteInfoFetcher.swift in Sources */,
 				3C96EA402A77181C00753199 /* TextFieldLimiter.swift in Sources */,
 				3C62C2592A7309DC003BAC5B /* SettingsAppIconView.swift in Sources */,
 				3CB8D26A2A561E0700EE615A /* AggregatedCommunityRowView.swift in Sources */,
@@ -655,6 +666,7 @@
 				3C5ECB282A767681002BA561 /* UserAndPassFieldsView.swift in Sources */,
 				3CA3CBC32A5B026800D0D645 /* AggregatedPostsFetcher.swift in Sources */,
 				3CED897D2A71DCFF00BD9086 /* SettingsHiddenOptionsView.swift in Sources */,
+				3C96EA4A2A78390F00753199 /* LogoutAllUsersButtonView.swift in Sources */,
 				3C72E21B2A71735E00C794C6 /* InPostThumbnailImageView.swift in Sources */,
 				3CEA54462A59E6FB009E4FB3 /* MockData.swift in Sources */,
 				3CEF4CC82A69B3C3002B83C0 /* AggregatedCommunitiesSectionView.swift in Sources */,

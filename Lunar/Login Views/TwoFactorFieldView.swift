@@ -25,7 +25,7 @@ struct TwoFactorFieldView: View {
                     .textContentType(.oneTimeCode)
             } icon: {
                 Image(systemName: "shield")
-                    .foregroundStyle(.black)
+                    .foregroundStyle(.foreground)
             }
             .onDebouncedChange(of: $twoFactor, debounceFor: 0.1) { newValue in
                 showingTwoFactorWarning = false
