@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SettingsAccountView: View {
-    @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
     @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
     @AppStorage("loggedInEmailsList") var loggedInEmailsList = Settings.loggedInEmailsList
     @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
@@ -23,28 +22,33 @@ struct SettingsAccountView: View {
     @State var isConvertingEmails: Bool = false
     @State var keychainDebugString: String = ""
 
-    @Binding var selectedName: String
-    @Binding var selectedEmail: String
-    @Binding var selectedUserURL: String
+    @Binding var selectedAccount: LoggedInAccount?
 
     let haptic = UINotificationFeedbackGenerator()
 
     var body: some View {
         List {
-            LoggedInUsersListView(selectedName: $selectedName, selectedEmail: $selectedEmail, selectedUserURL: $selectedUserURL)
+            Section {
+                LoggedInUsersListView(selectedAccount: $selectedAccount)
+            }
 
-            AddNewUserButtonView(showingPopover: $showingPopover)
+            Section {
+                AddNewUserButtonView(
+                    showingPopover: $showingPopover
+                )
 
-            LogoutAllUsersButtonView(
-                showingPopover: $showingPopover,
-                isPresentingConfirm: $isPresentingConfirm,
-                logoutAllUsersButtonClicked: $logoutAllUsersButtonClicked,
-                logoutAllUsersButtonOpacity: $logoutAllUsersButtonOpacity,
-                isLoadingDeleteButton: $isLoadingDeleteButton,
-                deleteConfirmationShown: $deleteConfirmationShown,
-                isConvertingEmails: $isConvertingEmails,
-                keychainDebugString: $keychainDebugString
-            )
+                LogoutAllUsersButtonView(
+                    showingPopover: $showingPopover,
+                    isPresentingConfirm: $isPresentingConfirm,
+                    logoutAllUsersButtonClicked: $logoutAllUsersButtonClicked,
+                    logoutAllUsersButtonOpacity: $logoutAllUsersButtonOpacity,
+                    isLoadingDeleteButton: $isLoadingDeleteButton,
+                    deleteConfirmationShown: $deleteConfirmationShown,
+                    isConvertingEmails: $isConvertingEmails,
+                    keychainDebugString: $keychainDebugString,
+                    selectedAccount: $selectedAccount
+                )
+            }
 
             DebugAccountsPropertiesView(
                 showingPopover: showingPopover,
@@ -57,13 +61,15 @@ struct SettingsAccountView: View {
         }
         .navigationTitle("Accounts")
         .sheet(isPresented: $showingPopover) {
-            LoginView(showingPopover: $showingPopover)
+            LoginView(
+                showingPopover: $showingPopover
+            )
         }
     }
 }
 
 struct SettingsAccountView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsAccountView(selectedName: .constant("mani"), selectedEmail: .constant("mani@lemmy.notarealemail"), selectedUserURL: .constant("lemmy.world/u/mani"))
+        SettingsAccountView(selectedAccount: .constant(LoggedInAccount(userID: "", name: "", email: "", avatarURL: "", actorID: "")))
     }
 }

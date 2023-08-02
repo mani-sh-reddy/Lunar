@@ -12,30 +12,29 @@ struct SettingsView: View {
     @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
     @AppStorage("displayName") var displayName = Settings.displayName
     @AppStorage("userName") var userName = Settings.userName
+    @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
 
-    @State var selectedName = ""
-    @State var selectedEmail = ""
-    @State var selectedUserURL = ""
+    @State var selectedAccount: LoggedInAccount?
 
     var body: some View {
         NavigationView {
             List {
+                DebugSettingsPropertiesView()
                 NavigationLink {
-//                    SettingsAccountView(siteFetcher: SiteFetcher())
-                    SettingsAccountView(selectedName: $selectedName, selectedEmail: $selectedEmail, selectedUserURL: $selectedUserURL)
+                    SettingsAccountView(selectedAccount: $selectedAccount)
                 } label: {
-                    SettingsSelectedUserLabel(selectedName: $selectedName, selectedEmail: $selectedEmail, selectedUserURL: $selectedUserURL)
+                    UserRowSettingsBannerView(selectedAccount: $selectedAccount)
                 }
-
                 SettingsServerSelectionSectionView()
-
                 SettingsGeneralSectionView()
                 SettingsAppearanceSectionView()
                 SettingsInfoSectionView()
-
                 SettingsHiddenOptionsView()
-
                 SettingsClearCacheButtonView()
+
+                if debugModeEnabled {
+                    AppResetButton()
+                }
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)

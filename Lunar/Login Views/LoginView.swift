@@ -77,6 +77,7 @@ struct LoginView: View {
                     showingLoginButtonWarning: $showingLoginButtonWarning
                 )
             }
+
             DebugLoginPagePropertiesView(
                 isTryingLogin: isTryingLogin,
                 loggedIn: loggedIn,

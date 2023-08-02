@@ -85,6 +85,7 @@ class LoginHelper: ObservableObject {
         let jwt = fetchedData.jwt
 
         SiteInfoFetcher(jwt: jwt).fetchSiteInfo { username, email, _ in
+
             if let validUsername = username {
                 self.loggedInUsersList.append(validUsername)
                 KeychainHelper.standard.save(jwt, service: self.appBundleID, account: validUsername)

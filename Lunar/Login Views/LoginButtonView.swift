@@ -60,16 +60,10 @@ struct LoginButtonView: View {
                 tryLogin(usernameEmail: usernameEmail, password: password, twoFactor: twoFactor)
             }) {
                 HStack {
-                    Group {
-                        Label {
-                            Text("Login")
-                        }
-                        icon: {
-                            Image(systemName: "arrow.turn.up.forward.iphone.fill").frame(width: 15)
-                                .symbolRenderingMode(.hierarchical)
-                        }
-                    }.disabled(loginButtonDisabled)
+                    Text("Login")
+                        .disabled(loginButtonDisabled)
                         .foregroundStyle(loginButtonDisabled ? Color.gray : Color.blue)
+                        .opacity(loginButtonDisabled ? 0.7 : 1)
 
                     Spacer()
 
@@ -107,48 +101,45 @@ struct LoginButtonView: View {
     func tryLogin(usernameEmail: String, password: String, twoFactor: String?) {
         isTryingLogin = true
 
-        LoginHelper(
-            usernameEmail: usernameEmail,
-            password: password,
-            twoFactor: twoFactor
-        ).login(completion: { isSuccessful, reply in
-            isTryingLogin = false
-            if isSuccessful {
-                notificationHaptics.notificationOccurred(.success)
-                print("LOGIN SUCCESSFUL")
-                loggedIn = true
-                showingPopover = false
-            } else {
-                notificationHaptics.notificationOccurred(.error)
-                /// # Types of errors handled here:
-                /// incorrect_login
-                /// incorrect_totp token
-                /// missing_totp_token
-                /// Json deserialize error
-                switch reply {
-                case "incorrect_login":
-                    print("LOGIN FAILED - INCORRECT_CREDENTIALS")
-                    showingLoginButtonWarning = true
+        LoginHelper(usernameEmail: usernameEmail, password: password, twoFactor: twoFactor)
+            .login(completion: { isSuccessful, reply in
+                isTryingLogin = false
+                if isSuccessful {
+                    notificationHaptics.notificationOccurred(.success)
+                    print("LOGIN SUCCESSFUL")
+                    loggedIn = true
+                    showingPopover = false
+                } else {
+                    notificationHaptics.notificationOccurred(.error)
+                    /// # Types of errors handled here:
+                    /// incorrect_login
+                    /// incorrect_totp token
+                    /// missing_totp_token
+                    /// Json deserialize error
+                    switch reply {
+                    case "incorrect_login":
+                        print("LOGIN FAILED - INCORRECT_CREDENTIALS")
+                        showingLoginButtonWarning = true
 
-                case "incorrect_totp token":
-                    print("LOGIN FAILED - INCORRECT_TOTP")
-                    showingTwoFactorWarning = true
-                case "missing_totp_token":
-                    print("LOGIN FAILED - MISSING_TOTP")
-                    withAnimation(.smooth) {
+                    case "incorrect_totp token":
+                        print("LOGIN FAILED - INCORRECT_TOTP")
                         showingTwoFactorWarning = true
-                        showingTwoFactorField = true
+                    case "missing_totp_token":
+                        print("LOGIN FAILED - MISSING_TOTP")
+                        withAnimation(.smooth) {
+                            showingTwoFactorWarning = true
+                            showingTwoFactorField = true
+                        }
+                        /// initial 2fa validity check
+                        /// will always be invalid
+                        twoFactorInvalid = true
+                    case "JSON_DECODE_ERROR":
+                        print("LOGIN FAILED - JSON_DECODE_ERROR")
+                        showingLoginButtonWarning = true
+                    default:
+                        print("LOGIN FAILED - ERROR_UNKNOWN")
                     }
-                    /// initial 2fa validity check
-                    /// will always be invalid
-                    twoFactorInvalid = true
-                case "JSON_DECODE_ERROR":
-                    print("LOGIN FAILED - JSON_DECODE_ERROR")
-                    showingLoginButtonWarning = true
-                default:
-                    print("LOGIN FAILED - ERROR_UNKNOWN")
                 }
-            }
-        })
+            })
     }
 }

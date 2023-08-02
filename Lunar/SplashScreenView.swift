@@ -28,7 +28,7 @@ struct SplashScreen: View {
                 .padding(50)
                 .shadow(color: .black, radius: 100, x: 20, y: 20)
                 .scaleEffect(logoScale)
-                .rotationEffect(logoRotationAngle)
+//                .rotationEffect(logoRotationAngle)
                 .opacity(logoOpacity)
         }
         .onAppear {
@@ -39,7 +39,7 @@ struct SplashScreen: View {
                 logoOpacity = 1.0
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                withAnimation(.snappy(duration: 1.0)) {
+                withAnimation(.easeOut(duration: 1)) {
                     showFeedView = true
                 }
             }

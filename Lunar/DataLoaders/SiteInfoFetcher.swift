@@ -16,6 +16,10 @@ class SiteInfoFetcher: ObservableObject {
     /// Adding info about the user to **@AppsStorage** loggedInAccounts
     var loggedInAccount = LoggedInAccount()
     @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
+    @AppStorage("selectedUserID") var selectedUserID = Settings.selectedUserID
+    @AppStorage("selectedName") var selectedName = Settings.selectedName
+    @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
+    @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
     @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
 
     init(jwt: String) {
@@ -35,13 +39,23 @@ class SiteInfoFetcher: ObservableObject {
                     let avatarURL = result.myUser.localUserView.person.avatar
                     let actorID = result.myUser.localUserView.person.actorID
 
+//                    let localUserView = result.myUser.localUserView
+//
+//                    /// creating a loggedinuser object that can be persisted
                     self.loggedInAccount.userID = String(userID)
                     self.loggedInAccount.name = username
                     self.loggedInAccount.email = email
                     self.loggedInAccount.avatarURL = avatarURL ?? ""
                     self.loggedInAccount.actorID = actorID
 
+                    /// adding to the list of already logged in accounts
                     self.loggedInAccounts.append(self.loggedInAccount)
+
+//                    Selecting and setting the latest logged in account as active
+                    self.selectedUserID = String(userID)
+                    self.selectedName = username
+                    self.selectedEmail = email
+                    self.selectedAvatarURL = avatarURL ?? ""
                     self.selectedActorID = actorID
 
                     let response = String(response.response?.statusCode ?? 0)
