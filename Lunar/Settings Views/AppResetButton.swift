@@ -12,8 +12,9 @@ struct AppResetButton: View {
     @State private var isLoading: Bool = false
     @State private var isClicked: Bool = false
     @State private var confirmationOpacity: Double = 0
+    @Binding var refreshView: Bool
 
-    private var notificationHaptics = UINotificationFeedbackGenerator()
+    var notificationHaptics = UINotificationFeedbackGenerator()
 
     var body: some View {
         Section {
@@ -60,22 +61,28 @@ struct AppResetButton: View {
             .listRowBackground(Color.red)
             .confirmationDialog("Clear user defaults and reset app", isPresented: $showConfirmation) {
                 Button(role: .destructive, action: {
-                    showConfirmation = true
-                    isLoading = true
-                    notificationHaptics.notificationOccurred(.success)
-                    isClicked = true
-
-                    if let bundleID = Bundle.main.bundleIdentifier {
-                        UserDefaults.standard.removePersistentDomain(forName: bundleID)
-                        UserDefaults.standard.synchronize()
-                    }
-
-                    isLoading = false
-                    showConfirmation = false
+                    resetButtonAction()
                 }) {
                     Text("Confirm Reset")
                 }
             }
         }
+    }
+
+    fileprivate func resetButtonAction() {
+        showConfirmation = true
+        isLoading = true
+        notificationHaptics.notificationOccurred(.success)
+        isClicked = true
+
+        if let bundleID = Bundle.main.bundleIdentifier {
+            UserDefaults.standard.removePersistentDomain(forName: bundleID)
+            UserDefaults.standard.synchronize()
+        }
+
+        refreshView.toggle()
+
+        isLoading = false
+        showConfirmation = false
     }
 }
