@@ -23,13 +23,22 @@ struct SettingsAccountView: View {
     @State var keychainDebugString: String = ""
 
     @Binding var selectedAccount: LoggedInAccount?
+    @State var isLoginFlowComplete: Bool = true
 
     let haptic = UINotificationFeedbackGenerator()
 
     var body: some View {
         List {
             Section {
-                LoggedInUsersListView(selectedAccount: $selectedAccount)
+                if isLoginFlowComplete {
+                    LoggedInUsersListView(selectedAccount: $selectedAccount)
+                } else {
+                    HStack {
+                        ProgressView()
+                            .padding(.trailing, 5)
+                        Text("Loading Users")
+                    }
+                }
             }
 
             Section {
@@ -62,7 +71,8 @@ struct SettingsAccountView: View {
         .navigationTitle("Accounts")
         .sheet(isPresented: $showingPopover) {
             LoginView(
-                showingPopover: $showingPopover
+                showingPopover: $showingPopover,
+                isLoginFlowComplete: $isLoginFlowComplete
             )
         }
     }

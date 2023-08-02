@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Nuke
+import NukeUI
 import SwiftUI
 
 struct UserRowSettingsBannerView: View {
@@ -19,12 +21,28 @@ struct UserRowSettingsBannerView: View {
 
     var body: some View {
         HStack {
-            Image(systemName: "person.crop.circle.fill")
-                .resizable()
-                .frame(width: 50, height: 50)
-                .padding(.trailing, 10)
-                .foregroundStyle(.blue)
-                .symbolRenderingMode(.hierarchical)
+            if !selectedAvatarURL.isEmpty {
+                LazyImage(url: URL(string: selectedAvatarURL)) { state in
+                    if let image = state.image {
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(alignment: .center)
+                            .frame(width: 50, height: 50)
+                            .clipShape(.circle)
+                            .padding(.trailing, 10)
+                    } else {
+                        ProgressView()
+                    }
+                }
+            } else {
+                Image(systemName: "person.crop.circle.fill")
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                    .padding(.trailing, 10)
+                    .foregroundStyle(.blue)
+                    .symbolRenderingMode(.hierarchical)
+            }
 
             if selectedActorID == "" {
                 Text("Sign In").font(.title2).bold()

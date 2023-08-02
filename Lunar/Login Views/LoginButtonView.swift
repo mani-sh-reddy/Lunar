@@ -23,6 +23,7 @@ struct LoginButtonView: View {
     @Binding var twoFactorInvalid: Bool
     @Binding var showingPopover: Bool
     @Binding var showingLoginButtonWarning: Bool
+    @Binding var isLoginFlowComplete: Bool
 
     @State var loginButtonWarningOpacity: Double = 1
 
@@ -56,8 +57,9 @@ struct LoginButtonView: View {
                 let usernameEmail = usernameEmailInput.lowercased()
                 if loginButtonDisabled { return }
 
-                notificationHaptics.prepare()
+                isLoginFlowComplete = false
                 tryLogin(usernameEmail: usernameEmail, password: password, twoFactor: twoFactor)
+                isLoginFlowComplete = true
             }) {
                 HStack {
                     Text("Login")
@@ -105,7 +107,6 @@ struct LoginButtonView: View {
             .login(completion: { isSuccessful, reply in
                 isTryingLogin = false
                 if isSuccessful {
-                    notificationHaptics.notificationOccurred(.success)
                     print("LOGIN SUCCESSFUL")
                     loggedIn = true
                     showingPopover = false

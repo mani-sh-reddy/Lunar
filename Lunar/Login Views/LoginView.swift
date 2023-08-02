@@ -30,6 +30,7 @@ struct LoginView: View {
     @State private var twoFactorInvalid: Bool = false
 
     @Binding var showingPopover: Bool
+    @Binding var isLoginFlowComplete: Bool
 
     var body: some View {
         List {
@@ -74,7 +75,8 @@ struct LoginView: View {
                     passwordInvalid: $passwordInvalid,
                     twoFactorInvalid: $twoFactorInvalid,
                     showingPopover: $showingPopover,
-                    showingLoginButtonWarning: $showingLoginButtonWarning
+                    showingLoginButtonWarning: $showingLoginButtonWarning,
+                    isLoginFlowComplete: $isLoginFlowComplete
                 )
             }
 
@@ -97,6 +99,6 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         /// need to set showing popover to a constant value
-        LoginView(showingPopover: .constant(false))
+        LoginView(showingPopover: .constant(false), isLoginFlowComplete: .constant(true))
     }
 }

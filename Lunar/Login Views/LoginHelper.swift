@@ -83,7 +83,6 @@ class LoginHelper: ObservableObject {
     func handleLoginSuccess(fetchedData: CredentialsResponseModel) {
         print("login successful inside handleLoginSuccess()")
         let jwt = fetchedData.jwt
-
         SiteInfoFetcher(jwt: jwt).fetchSiteInfo { username, email, _ in
 
             if let validUsername = username {
