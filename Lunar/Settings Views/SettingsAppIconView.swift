@@ -11,7 +11,7 @@ import SwiftUI
 struct SettingsAppIconView: View {
     @AppStorage("appIconName") var appIconName = Settings.appIconName
     /// prepended by "AppIcon"
-    let appIconSuffixes = ["Light", "Dark"]
+    let appIconSuffixes = ["Light", "Dark", "Night", "Indigo", "LemmY"]
 
     var body: some View {
         List {
@@ -26,13 +26,17 @@ struct SettingsAppIconView: View {
                         Image(asset: "AppIcon\(appIconSuffix)").resizable().frame(width: 50, height: 50).clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                         Text("\(appIconSuffix)").foregroundStyle(.foreground)
                         Spacer()
-                        Text("Active")
-                            .padding(.vertical, 3)
-                            .padding(.horizontal, 10)
-                            .background(.indigo)
-                            .foregroundStyle(.white)
-                            .clipShape(Capsule())
-                            .padding(.horizontal, 10)
+//                        Text("Active")
+//                            .padding(.vertical, 3)
+//                            .padding(.horizontal, 10)
+//                            .background(.indigo)
+//                            .foregroundStyle(.white)
+//                            .clipShape(Capsule())
+//                            .padding(.horizontal, 10)
+                        Image(systemName: "checkmark.circle.fill")
+                            .font(.title2)
+                            .symbolRenderingMode(.hierarchical)
+                            .foregroundStyle(.indigo)
                             .opacity(appIconName == "AppIcon\(appIconSuffix)" ? 1 : 0)
                     }.onAppear {
                         // Check if it's the first app launch, and if yes, set the initial app icon
