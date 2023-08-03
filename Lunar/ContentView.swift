@@ -8,15 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var lemmyInstance: String = "lemmy.world"
-    @State private var tabSelection = 0
+    let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
 
     var body: some View {
-        TabView(selection: $tabSelection) {
-            FeedView(lemmyInstance: $lemmyInstance)
-                .badge(0)
+        TabView {
+            FeedView()
                 .tabItem {
-                    Label("Feed", systemImage: "list.bullet.rectangle")
+                    Label("Feed", systemImage: "mail.stack")
                 }
             PlaceholderView()
                 .tabItem {
@@ -30,7 +28,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
                 }
-            SettingsView(lemmyInstance: $lemmyInstance)
+            SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gearshape.fill")
                 }
