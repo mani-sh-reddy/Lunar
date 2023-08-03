@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import SwiftUI
 import Kingfisher
+import SwiftUI
 
 struct ImageViewWithPlaceholder: View {
     var imageURL: String?
@@ -28,7 +28,7 @@ struct ImageViewWithPlaceholder: View {
                 }
                 .resizable()
                 .frame(width: 20, height: 20)
-                .clipShape(RoundedRectangle(cornerRadius: 3, style: .continuous))
+                .clipShape(Circle())
                 .scaledToFit()
                 .padding(.trailing, 5)
         } else {

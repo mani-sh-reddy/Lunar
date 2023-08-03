@@ -14,27 +14,33 @@ import SwiftUI
     @Published var communities = [CommunityElement]()
     @Published var isLoading = false
 
-    private var currentPage = 1
-    private var sortParameter: String
-    private var limitParameter: String
+    @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
 
-    init(sortParameter: String, limitParameter: String) {
-        self.sortParameter = sortParameter
-        self.limitParameter = limitParameter
+    private var currentPage = 1
+    private var limitParameter: Int = 5
+    private var endpoint: URLComponents {
+        URLBuilder(
+            endpointPath: "/api/v3/community/list",
+            sortParameter: "Hot",
+            typeParameter: "All",
+            currentPage: currentPage,
+            limitParameter: limitParameter
+        ).buildURL()
+    }
+
+    init() {
         loadContent()
     }
 
-    private func loadContent() {
+    func refreshContent() async {
         guard !isLoading else { return }
 
         isLoading = true
 
-        let url = URL(string: buildEndpoint())!
         let cacher = ResponseCacher(behavior: .cache)
 
-        print("ENDPOINT: \(url)")
-
-        AF.request(url) { urlRequest in
+        AF.request(endpoint) { urlRequest in
+            print("TrendingCommunitiesFetcher REF \(urlRequest.url as Any)")
             urlRequest.cachePolicy = .returnCacheDataElseLoad
         }
         .cacheResponse(using: cacher)
@@ -44,27 +50,35 @@ import SwiftUI
             case let .success(result):
                 self.communities = result.communities
                 self.isLoading = false
-                self.currentPage += 1
 
             case let .failure(error):
-                print("ERROR: \(error): \(error.errorDescription ?? "")")
+                print("TrendingCommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")")
             }
         }
     }
 
-    private func buildEndpoint() -> String {
-        /// https://lemmy.world/api/v3/community/list?type_=All&sort=New&page=1&limit=5
+    private func loadContent() {
+        guard !isLoading else { return }
 
-        // TODO: -
-        let typeParameter = "All"
+        isLoading = true
 
-        let baseURL = "https://lemmy.world/api/v3/community/list"
-        let sortQuery = "sort=\(sortParameter)"
-        let typeQuery = "type=\(typeParameter)"
-        let limitQuery = "limit=\(limitParameter)"
-        let pageQuery = "page=\(currentPage)"
+        let cacher = ResponseCacher(behavior: .cache)
 
-        let endpoint = "\(baseURL)?\(sortQuery)&\(typeQuery)&\(limitQuery)&\(pageQuery)"
-        return endpoint
+        AF.request(endpoint) { urlRequest in
+            print("TrendingCommunitiesFetcher LOAD \(urlRequest.url as Any)")
+            urlRequest.cachePolicy = .returnCacheDataElseLoad
+        }
+        .cacheResponse(using: cacher)
+        .validate(statusCode: 200 ..< 300)
+        .responseDecodable(of: CommunityModel.self) { response in
+            switch response.result {
+            case let .success(result):
+                self.communities = result.communities
+                self.isLoading = false
+
+            case let .failure(error):
+                print("TrendingCommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")")
+            }
+        }
     }
 }

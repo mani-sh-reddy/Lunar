@@ -1,19 +1,18 @@
 {
   "images" : [
     {
-      "filename" : "Section 1-2.png",
-      "idiom" : "universal",
-      "scale" : "1x"
+      "filename" : "LunarLight.png",
+      "idiom" : "universal"
     },
     {
-      "filename" : "Section 1-2 1.png",
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "filename" : "Section 1-2 2.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "LunarLight 1.png",
+      "idiom" : "universal"
     }
   ],
   "info" : {

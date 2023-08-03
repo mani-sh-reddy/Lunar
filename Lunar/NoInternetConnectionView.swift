@@ -29,7 +29,6 @@ struct NoInternetConnectionView: View {
             .background {
                 Capsule(style: .continuous)
                     .fill(Color(.red))
-                    .shadow(radius: 10)
             }
         }
         .padding()
