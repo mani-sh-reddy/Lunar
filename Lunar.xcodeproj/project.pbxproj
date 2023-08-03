@@ -48,7 +48,6 @@
 		3C6D29692A797D6E007AFD99 /* UserRowSettingsBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D29682A797D6E007AFD99 /* UserRowSettingsBannerView.swift */; };
 		3C6D296B2A7986AE007AFD99 /* AppResetButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D296A2A7986AE007AFD99 /* AppResetButton.swift */; };
 		3C72E21B2A71735E00C794C6 /* InPostThumbnailImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C72E21A2A71735E00C794C6 /* InPostThumbnailImageView.swift */; };
-		3C76104E2A7AFDBA008E96CA /* PrefetchDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C76104D2A7AFDBA008E96CA /* PrefetchDemoView.swift */; };
 		3C87092C2A745CE2004999CE /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C87092B2A745CE2004999CE /* ArrayExtension.swift */; };
 		3C87092E2A74647A004999CE /* BindingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C87092D2A74647A004999CE /* BindingExtension.swift */; };
 		3C8709302A747065004999CE /* UserRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C87092F2A747065004999CE /* UserRowView.swift */; };
@@ -185,7 +184,6 @@
 		3C6D29682A797D6E007AFD99 /* UserRowSettingsBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRowSettingsBannerView.swift; sourceTree = "<group>"; };
 		3C6D296A2A7986AE007AFD99 /* AppResetButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppResetButton.swift; sourceTree = "<group>"; };
 		3C72E21A2A71735E00C794C6 /* InPostThumbnailImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InPostThumbnailImageView.swift; sourceTree = "<group>"; };
-		3C76104D2A7AFDBA008E96CA /* PrefetchDemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefetchDemoView.swift; sourceTree = "<group>"; };
 		3C87092B2A745CE2004999CE /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		3C87092D2A74647A004999CE /* BindingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExtension.swift; sourceTree = "<group>"; };
 		3C87092F2A747065004999CE /* UserRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRowView.swift; sourceTree = "<group>"; };
@@ -432,7 +430,6 @@
 			isa = PBXGroup;
 			children = (
 				3CA5C40D2A57525500BF8F1B /* AggregatedPostsListView.swift */,
-				3C76104D2A7AFDBA008E96CA /* PrefetchDemoView.swift */,
 				3C15DFED2A6D992A0038EFCD /* CommunitySpecificPostsListView.swift */,
 				3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */,
 				3CEF4CCF2A69B738002B83C0 /* InPostMetadataView.swift */,
@@ -662,7 +659,6 @@
 				3CEF4CCA2A69B6FA002B83C0 /* InPostCommunityHeaderView.swift in Sources */,
 				3CF3F9C22A6EE20C0051E725 /* ViewExtension.swift in Sources */,
 				3C5ECB2C2A7676B5002BA561 /* PasswordFieldView.swift in Sources */,
-				3C76104E2A7AFDBA008E96CA /* PrefetchDemoView.swift in Sources */,
 				3CA5C40A2A574FF500BF8F1B /* PostsListModel.swift in Sources */,
 				3CC734A82A6D67B7007523B5 /* CommunitySpecificPostsFetcher.swift in Sources */,
 				3C87092C2A745CE2004999CE /* ArrayExtension.swift in Sources */,
