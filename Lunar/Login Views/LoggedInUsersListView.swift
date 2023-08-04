@@ -38,15 +38,17 @@ struct AccountSelectionItem: View {
     let account: LoggedInAccount
 
     var body: some View {
-        HStack {
-            Text(account.actorID)
-            Spacer()
-            Image(systemName: "chevron.left.circle.fill")
-                .font(.title2)
-                .symbolRenderingMode(.hierarchical)
-                .foregroundStyle(.indigo)
-                .opacity(account == selectedAccount ? 1 : 0)
-        }
+            HStack {
+                Text(account.actorID)
+                Spacer()
+                Image(systemName: "chevron.left.circle.fill")
+                    .font(.title2)
+                    .symbolRenderingMode(.hierarchical)
+                    .foregroundStyle(.indigo)
+                    .opacity(account == selectedAccount ? 1 : 0)
+            }
+            .contentShape(Rectangle())
+
         .onTapGesture {
             selectedAccount = account
 
