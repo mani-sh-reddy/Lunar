@@ -17,7 +17,7 @@ struct PhotoDetailView: UIViewRepresentable {
         let view = PDFView()
         view.sizeToFit()
         view.document = PDFDocument()
-        
+
         guard let page = PDFPage(image: image) else { return view }
         view.document?.insert(page, at: 0)
         view.autoScales = true
@@ -33,4 +33,3 @@ struct PhotoDetailView: UIViewRepresentable {
         // empty
     }
 }
-

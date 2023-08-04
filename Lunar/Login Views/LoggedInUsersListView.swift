@@ -37,19 +37,26 @@ struct AccountSelectionItem: View {
 
     let account: LoggedInAccount
 
+    let haptics = UIImpactFeedbackGenerator(style: .soft)
+
     var body: some View {
-            HStack {
-                Text(account.actorID)
-                Spacer()
-                Image(systemName: "chevron.left.circle.fill")
-                    .font(.title2)
-                    .symbolRenderingMode(.hierarchical)
-                    .foregroundStyle(.indigo)
-                    .opacity(account == selectedAccount ? 1 : 0)
+        HStack {
+            VStack(alignment: .leading, spacing: 3) {
+                Text(account.name).font(.title2).bold()
+                Text("@\(URLParser.extractDomain(from: account.actorID))")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
             }
-            .contentShape(Rectangle())
+            Spacer()
+            Image(systemName: account.actorID == selectedActorID ? "checkmark.circle.fill" : "circle")
+                .font(.title2)
+                .symbolRenderingMode(.hierarchical)
+                .foregroundStyle(.indigo)
+        }
+        .contentShape(Rectangle())
 
         .onTapGesture {
+            haptics.impactOccurred()
             selectedAccount = account
 
             selectedUserID = account.userID

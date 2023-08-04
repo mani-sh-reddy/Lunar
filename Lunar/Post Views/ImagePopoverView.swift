@@ -35,15 +35,14 @@ struct ImagePopoverView: View {
             Rectangle().foregroundStyle(.black)
                 .ignoresSafeArea()
             AsyncImage(url: URL(string: thumbnailURL)) { state in
-                        if let image = state.image {
-                            PhotoDetailView(image: image.asUIImage())
-                        } else {
-                            ProgressView()
-                        }
+                if let image = state.image {
+                    PhotoDetailView(image: image.asUIImage())
+                } else {
+                    ProgressView()
+                }
             }
             .edgesIgnoringSafeArea(.all)
         }
-        
     }
 }
 
