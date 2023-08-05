@@ -12,4 +12,3 @@ struct SearchUsersListAll: View {
         Text("Coming Soon")
     }
 }
-

@@ -11,10 +11,10 @@ struct MockData {
     static let mockPost = PostsModel(posts: [
         PostElement(
             post: PostObject(
-                id: 2222222,
+                id: 2_222_222,
                 name: "This is an example title used while creating the post row view in xcode",
                 url: "https://lemmy.world/pictrs/image/7ae620b7-203e-43f3-b43f-030ad3beb629.png",
-                creatorID: 316097,
+                creatorID: 316_097,
                 communityID: 22036,
                 removed: false,
                 locked: false,
@@ -33,7 +33,7 @@ struct MockData {
                 embedVideoURL: nil
             ),
             creator: Creator(
-                id: 316097,
+                id: 316_097,
                 name: "eco",
                 displayName: nil,
                 avatar: nil,
@@ -69,8 +69,8 @@ struct MockData {
             ),
             creatorBannedFromCommunity: false,
             counts: Counts(
-                id: 254871,
-                postID: 2222222,
+                id: 254_871,
+                postID: 2_222_222,
                 comments: 189,
                 score: 2180,
                 upvotes: 2188,
@@ -91,10 +91,10 @@ struct MockData {
         ),
         PostElement(
             post: PostObject(
-                id: 1111111,
+                id: 1_111_111,
                 name: "This is an example title used while creating the post row view in xcode",
                 url: "https://lemmy.world/pictrs/image/7ae620b7-203e-43f3-b43f-030ad3beb629.png",
-                creatorID: 316097,
+                creatorID: 316_097,
                 communityID: 22036,
                 removed: false,
                 locked: false,
@@ -113,7 +113,7 @@ struct MockData {
                 embedVideoURL: nil
             ),
             creator: Creator(
-                id: 316097,
+                id: 316_097,
                 name: "eco",
                 displayName: nil,
                 avatar: nil,
@@ -149,8 +149,8 @@ struct MockData {
             ),
             creatorBannedFromCommunity: false,
             counts: Counts(
-                id: 254871,
-                postID: 2014053,
+                id: 254_871,
+                postID: 2_014_053,
                 comments: 189,
                 score: 2180,
                 upvotes: 2188,
@@ -172,10 +172,10 @@ struct MockData {
     ])
     static let post = PostElement(
         post: PostObject(
-            id: 1161347,
+            id: 1_161_347,
             name: "This is an example title used while creating the post row view in xcode",
             url: "https://lemmy.world/pictrs/image/7ae620b7-203e-43f3-b43f-030ad3beb629.png",
-            creatorID: 316097,
+            creatorID: 316_097,
             communityID: 22036,
             removed: false,
             locked: false,
@@ -194,7 +194,7 @@ struct MockData {
             embedVideoURL: nil
         ),
         creator: Creator(
-            id: 316097,
+            id: 316_097,
             name: "eco",
             displayName: nil,
             avatar: "",
@@ -230,8 +230,8 @@ struct MockData {
         ),
         creatorBannedFromCommunity: false,
         counts: Counts(
-            id: 254871,
-            postID: 1161347,
+            id: 254_871,
+            postID: 1_161_347,
             comments: 189,
             score: 2180,
             upvotes: 2188,
@@ -252,6 +252,6 @@ struct MockData {
     )
     static let communityInfoView = SearchCommunityInfo(id: 9166, name: "RedditMigration", title: "RedditMigration", description: Optional("Tracking the lastest news and numbers about the #RedditMigration to open, Fediverse-based alternatives, including #Kbin and #Lemmy To see latest reeddit blackout info, see here: https://reddark.untone.uk/"), removed: false, published: "2023-06-11T16:49:31", updated: Optional("2023-08-04T20:35:31"), deleted: false, nsfw: false, actorID: "https://kbin.social/m/RedditMigration", local: false, icon: Optional("https://media.kbin.social/media/18/45/1845eef07ed4f2e4d008c1c4035cdd40c812cd8d3b4aa7dd1c13f9f82e5722df.png"), banner: nil, hidden: false, postingRestrictedToMods: false, instanceID: 257)
 
-    static let userInfoView = Creator(id: 125358, name: "DarkGamer", displayName: Optional("DarkGamer"), avatar: Optional("https://media.kbin.social/media/84/b3/84b39e92ca82a81627053e201b34e5bd7f3337100b9aa8c8b81aa03c3f309e1b.jpg"), banned: false, published: "2023-06-14T22:52:08", actorID: "https://kbin.social/u/DarkGamer", bio: Optional("A man of leisure living in the present, waiting for the future."), local: false, banner: Optional("https://media.kbin.social/media/0a/b8/0ab85953c2ae0ad635d8c234143e1a4801c3f280a2d9d992be1c2aff9e28f384.jpg"), deleted: false, admin: false, botAccount: false, instanceID: 257, updated: nil, matrixUserID: nil)
+    static let userInfoView = Creator(id: 125_358, name: "DarkGamer", displayName: Optional("DarkGamer"), avatar: Optional("https://media.kbin.social/media/84/b3/84b39e92ca82a81627053e201b34e5bd7f3337100b9aa8c8b81aa03c3f309e1b.jpg"), banned: false, published: "2023-06-14T22:52:08", actorID: "https://kbin.social/u/DarkGamer", bio: Optional("A man of leisure living in the present, waiting for the future."), local: false, banner: Optional("https://media.kbin.social/media/0a/b8/0ab85953c2ae0ad635d8c234143e1a4801c3f280a2d9d992be1c2aff9e28f384.jpg"), deleted: false, admin: false, botAccount: false, instanceID: 257, updated: nil, matrixUserID: nil)
     static let communityInfoView2 = SearchCommunityInfo(id: 1120, name: "gitlab", title: "GitLab is open source software to collaborate on code. ", description: Optional("GitLab is open source software to collaborate on code. Create projects and repositories, manage access and do code reviews.\n\n**Another great git community:**\n\n[GIT - Github, Gitea, Gitlabs. Everything git](https://lemmy.ml/c/everything_git)"), removed: false, published: "2021-04-19T15:16:16.444716", updated: Optional("2021-04-19T16:15:27.136726"), deleted: false, nsfw: false, actorID: "https://lemmy.ml/c/gitlab", local: false, icon: Optional("https://lemmy.ml/pictrs/image/MfBKj2QzF0.png"), banner: Optional("https://lemmy.ml/pictrs/image/LV8mLLqMbT.png"), hidden: false, postingRestrictedToMods: false, instanceID: 3)
 }

@@ -13,20 +13,20 @@ import SwiftUI
 
 @MainActor class SearchFetcher: ObservableObject {
     @Published var searchModel = [SearchModel]()
-    
+
     @Published var comments = [SearchCommentElement]()
     @Published var communities = [SearchCommunityElement]()
     @Published var posts = [SearchPostElement]()
     @Published var users = [SearchUserElement]()
-    
+
     @Published var isLoading = false
-    
+
     var searchQuery: String
-    
+
     ///  Clear the current search list when making a new search
     ///  Defaults to false but will be set by the view
     var clearListOnChange: Bool
-    
+
     private var currentPage = 1
     var typeParameter: String
     private var limitParameter: Int = 5
@@ -39,7 +39,7 @@ import SwiftUI
             searchQuery: searchQuery
         ).buildURL()
     }
-    
+
     init(
         searchQuery: String,
         typeParameter: String,
@@ -52,19 +52,19 @@ import SwiftUI
         self.clearListOnChange = clearListOnChange
         loadMoreContent()
     }
-    
-///    func refreshContent() async {
+
+    ///    func refreshContent() async {
 //        do {
 //            try await Task.sleep(nanoseconds: 1_000_000_000)
 //        } catch {}
-//        
+//
 //        guard !isLoading else { return }
-//        
+//
 //        isLoading = true
 //        currentPage = 1
-//        
+//
 //        let cacher = ResponseCacher(behavior: .cache)
-//        
+//
 //        AF.request(endpoint) { urlRequest in
 //            print("SearchFetcher REF \(urlRequest.url as Any)")
 //            urlRequest.cachePolicy = .returnCacheDataElseLoad
@@ -103,14 +103,14 @@ import SwiftUI
 //                default:
 //                    return
 //                }
-//                            
+//
 //                self.isLoading = false
 //            case let .failure(error):
 //                print("SearchFetcher ERROR: \(error): \(error.errorDescription ?? "")")
 //            }
 //        }
 //    }
-    
+
     func loadMoreCommentIfNeeded(currentItem comment: SearchCommentElement?) {
         guard let comment else {
             loadMoreContent()
@@ -121,7 +121,7 @@ import SwiftUI
             loadMoreContent()
         }
     }
-    
+
     func loadMoreCommunitiesIfNeeded(currentItem community: SearchCommunityElement?) {
         guard let community else {
             loadMoreContent()
@@ -132,7 +132,7 @@ import SwiftUI
             loadMoreContent()
         }
     }
-    
+
     func loadMorePostsIfNeeded(currentItem post: SearchPostElement?) {
         guard let post else {
             loadMoreContent()
@@ -143,7 +143,7 @@ import SwiftUI
             loadMoreContent()
         }
     }
-    
+
     func loadMoreUsersIfNeeded(currentItem user: SearchUserElement?) {
         guard let user else {
             loadMoreContent()
@@ -157,14 +157,14 @@ import SwiftUI
 
     func loadMoreContent() {
         guard !isLoading else { return }
-        
+
         if clearListOnChange {
             comments.removeAll()
             communities.removeAll()
             posts.removeAll()
             users.removeAll()
         }
-        
+
         print("SEARCH QUERY: \(searchQuery)")
         guard searchQuery != "" else {
             print("SEARCH QUERY EMPTY, RETURNING")

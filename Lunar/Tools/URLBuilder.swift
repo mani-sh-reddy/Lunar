@@ -85,8 +85,7 @@ class URLBuilder {
     }
 }
 
-
-//class APIEndpointBuilder {
+// class APIEndpointBuilder {
 //    @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
 //    @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
 //
@@ -117,4 +116,4 @@ class URLBuilder {
 //
 //        return endpoint
 //    }
-//}
+// }

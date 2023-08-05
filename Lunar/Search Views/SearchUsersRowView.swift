@@ -5,8 +5,8 @@
 //  Created by Mani on 05/08/2023.
 //
 
-import SwiftUI
 import Kingfisher
+import SwiftUI
 
 struct SearchUsersRowView: View {
     @State var showingPlaceholderAlert = false
@@ -19,7 +19,6 @@ struct SearchUsersRowView: View {
                 UserInfoView(person: person.person)
             } label: {
                 HStack {
-                
                     KFImage(URL(string: person.person.avatar ?? ""))
                         .setProcessor(processor)
                         .placeholder { Image(systemName: "person.circle.fill")
@@ -44,46 +43,45 @@ struct SearchUsersRowView: View {
                 }
             }
 
-           
-        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-            Button {
-                showingPlaceholderAlert = true
-            } label: {
-                Label("go", systemImage: "chevron.forward.circle.fill")
-            }.tint(.blue)
-            Button {
-                showingPlaceholderAlert = true
-            } label: {
-                Label("Hide", systemImage: "eye.slash.circle.fill")
-            }.tint(.orange)
-        }
+            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                Button {
+                    showingPlaceholderAlert = true
+                } label: {
+                    Label("go", systemImage: "chevron.forward.circle.fill")
+                }.tint(.blue)
+                Button {
+                    showingPlaceholderAlert = true
+                } label: {
+                    Label("Hide", systemImage: "eye.slash.circle.fill")
+                }.tint(.orange)
+            }
 
-        .contextMenu {
-            Menu("Menu") {
+            .contextMenu {
+                Menu("Menu") {
+                    Button {
+                        showingPlaceholderAlert = true
+                    } label: {
+                        Text("Coming Soon")
+                    }
+                }
+
                 Button {
                     showingPlaceholderAlert = true
                 } label: {
                     Text("Coming Soon")
                 }
-            }
 
-            Button {
-                showingPlaceholderAlert = true
-            } label: {
-                Text("Coming Soon")
-            }
+                Divider()
 
-            Divider()
-
-            Button(role: .destructive) {
-                showingPlaceholderAlert = true
-            } label: {
-                Label("Delete", systemImage: "trash")
+                Button(role: .destructive) {
+                    showingPlaceholderAlert = true
+                } label: {
+                    Label("Delete", systemImage: "trash")
+                }
             }
-        }
-        .alert("Coming soon", isPresented: $showingPlaceholderAlert) {
-            Button("OK", role: .cancel) {}
-        }
+            .alert("Coming soon", isPresented: $showingPlaceholderAlert) {
+                Button("OK", role: .cancel) {}
+            }
         }
     }
 }

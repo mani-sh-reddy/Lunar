@@ -11,11 +11,11 @@ import SwiftUI
 struct UserInfoView: View {
     var person: Creator
     var hasBanner: Bool {
-        return person.banner != "" && person.banner != nil
+        person.banner != "" && person.banner != nil
     }
 
     var hasAvatar: Bool {
-        return person.avatar != "" && person.avatar != nil
+        person.avatar != "" && person.avatar != nil
     }
 
     var body: some View {
@@ -29,7 +29,6 @@ struct UserInfoView: View {
                         .frame(width: .infinity)
                         .padding()
                 }
-                
             }
 
             VStack(alignment: .leading) {

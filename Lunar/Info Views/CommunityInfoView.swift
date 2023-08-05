@@ -11,12 +11,13 @@ import SwiftUI
 struct CommunityInfoView: View {
     var community: SearchCommunityInfo
     var hasBanner: Bool {
-        return community.banner != "" && community.banner != nil
+        community.banner != "" && community.banner != nil
     }
+
     var hasAvatar: Bool {
-        return community.icon != "" && community.icon != nil
+        community.icon != "" && community.icon != nil
     }
-    
+
     var body: some View {
         ScrollView {
             if hasBanner {
@@ -61,8 +62,9 @@ struct CommunityInfoView: View {
     }
 }
 
-struct CommunityInfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        CommunityInfoView(community: MockData.communityInfoView2)
-    }
-}
+//
+// struct CommunityInfoView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CommunityInfoView(community: MockData.communityInfoView2)
+//    }
+// }

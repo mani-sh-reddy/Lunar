@@ -25,9 +25,9 @@ struct ContentView: View {
                     Label("Account", systemImage: "person")
                 }
             SearchView()
-            .tabItem {
-                Label("Search", systemImage: "magnifyingglass")
-            }
+                .tabItem {
+                    Label("Search", systemImage: "magnifyingglass")
+                }
             SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gearshape.fill")

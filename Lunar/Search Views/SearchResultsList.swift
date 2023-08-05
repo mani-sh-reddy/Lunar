@@ -96,4 +96,3 @@ struct SearchResultsList: View {
         }
     }
 }
-
