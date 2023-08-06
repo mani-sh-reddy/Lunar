@@ -11,34 +11,40 @@ struct SearchView: View {
     @State var searchText: String = ""
     @State var selectedSearchType: String = "Users"
 
-    var searchTypes: [String] = ["Users", "Communities", "Posts"]
-
     var body: some View {
         NavigationView {
             List {
-                Picker("Favorite Color", selection: $selectedSearchType, content: {
-                    Text("Users").tag("Users")
-                    Text("Communities").tag("Communities")
-                    Text("Posts").tag("Posts")
-                })
-                .pickerStyle(.segmented)
-                .listRowBackground(Color.clear)
-
-                SearchResultsList(
-                    searchFetcher: SearchFetcher(
-                        searchQuery: "",
-                        typeParameter: selectedSearchType,
-                        limitParameter: 5,
-                        clearListOnChange: true
-                    ),
-                    searchText: $searchText,
-                    selectedSearchType: $selectedSearchType
-                )
+                Section {
+                    SearchResultsList(
+                        searchFetcher: SearchFetcher(
+                            searchQuery: "",
+                            typeParameter: selectedSearchType,
+                            limitParameter: 50,
+                            clearListOnChange: true
+                        ),
+                        searchText: $searchText,
+                        selectedSearchType: $selectedSearchType
+                    )
+                } header: {
+                    Picker("Search Type", selection: $selectedSearchType, content: {
+                        Text("Users").tag("Users")
+                        Text("Communities").tag("Communities")
+                        Text("Posts").tag("Posts")
+                    })
+                    .textCase(.none)
+                    .pickerStyle(.segmented)
+//                    .listRowBackground(Color.clear)
+                    .padding(.bottom, 10)
+                }
                 .navigationTitle("Search")
                 .navigationBarTitleDisplayMode(.inline)
             }
         }
-        .searchable(text: $searchText, placement: .toolbar, prompt: "Search \(selectedSearchType)")
+        .searchable(
+            text: $searchText,
+            placement: .navigationBarDrawer(displayMode: .always),
+            prompt: "Search \(selectedSearchType)"
+        )
         .keyboardType(.default)
         .autocorrectionDisabled()
         .textInputAutocapitalization(.never)

@@ -11,25 +11,29 @@ import SwiftUI
 struct SearchResultsList: View {
     @StateObject var searchFetcher: SearchFetcher
 
+    @State var isLoading: Bool = false
+
     @Binding var searchText: String
     @Binding var selectedSearchType: String
 
-    var selectedSearchTypeIcon: String {
+    let processor = DownsamplingImageProcessor(size: CGSize(width: 50, height: 50))
+
+    var selectedSearchTypeIcon: (String, Color) {
         switch selectedSearchType {
         case "Users":
-            return "person.fill"
+            return ("person.circle.fill", Color.blue)
         case "Communities":
-            return "person.3.sequence.fill"
+            return ("books.vertical.circle.fill", Color.teal)
         case "Posts":
-            return "photo.stack.fill"
+            return ("signpost.right.circle.fill", Color.purple)
         default:
-            return "magnifyingglass"
+            return ("magnifyingglass.circle.fill", Color.gray)
         }
     }
 
     var body: some View {
         Section {
-            if searchFetcher.isLoading {
+            if isLoading {
                 /// Needed to give ProgressView it's own identifier otherwise
                 /// the list row would show even after ProgressView is removed
                 ProgressView().id(UUID())
@@ -46,52 +50,57 @@ struct SearchResultsList: View {
                 default:
                     EmptyView()
                 }
-//                ForEach(searchFetcher.users, id: \.person.id) { person in
-//                    Text(person.person.name)
-//                }
             }
-            if searchFetcher.isLoading {
-                ProgressView()
-            } else {
-                NavigationLink(destination: {
-                    SearchUsersListAll()
-                }, label: {
-                    Group {
-                        if searchText != "" {
-                            Text("More \(selectedSearchType) with \"\(searchText)\"")
-                        } else {
-                            Text("Trending")
-                        }
+            NavigationLink(destination: {
+                SearchUsersListAll()
+            }, label: {
+                Label {
+                    if searchText != "" {
+                        Text("More \(selectedSearchType) with \"\(searchText)\"")
+                    } else {
+                        Text("Trending")
                     }
-                    .foregroundStyle(.blue)
-                })
-            }
-
-        } header: {
-            Label(
-                title: { Text(selectedSearchType) },
-                icon: {
-                    Image(systemName: selectedSearchTypeIcon)
+                } icon: {
+                    Image(systemName: selectedSearchTypeIcon.0)
+                        .resizable()
+                        .frame(width: 30, height: 30)
                         .symbolRenderingMode(.hierarchical)
-                }
-            ).padding(.bottom, 5)
+
+                }.foregroundStyle(selectedSearchTypeIcon.1)
+            })
         }
-        .onDebouncedChange(of: $searchText, debounceFor: 0) { _ in
-            withAnimation {
-                print(searchFetcher.isLoading)
+        .onDebouncedChange(of: $searchText, debounceFor: 0) { newValue in
+            if newValue == "" {
+                withAnimation {
+                    isLoading = false
+                }
+            } else {
+                withAnimation {
+                    isLoading = true
+                }
             }
         }
         .onDebouncedChange(of: $searchText, debounceFor: 1) { query in
             withAnimation {
                 searchFetcher.searchQuery = query
-                searchFetcher.loadMoreContent()
-                print(searchFetcher.isLoading)
+                searchFetcher.loadMoreContent { completed, _ in
+                    isLoading = !completed
+                }
             }
         }
-        .onDebouncedChange(of: $selectedSearchType, debounceFor: 0) { query in
+        .onDebouncedChange(of: $selectedSearchType, debounceFor: 0) { _ in
+            withAnimation {
+                if !$searchText.wrappedValue.isEmpty {
+                    isLoading = true
+                }
+            }
+        }
+        .onDebouncedChange(of: $selectedSearchType, debounceFor: 1) { query in
             withAnimation {
                 searchFetcher.typeParameter = query
-                searchFetcher.loadMoreContent()
+                searchFetcher.loadMoreContent { completed, _ in
+                    isLoading = !completed
+                }
             }
         }
     }

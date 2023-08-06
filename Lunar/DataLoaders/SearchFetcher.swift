@@ -29,7 +29,7 @@ import SwiftUI
 
     private var currentPage = 1
     var typeParameter: String
-    private var limitParameter: Int = 5
+    private var limitParameter: Int
     private var endpoint: URLComponents {
         URLBuilder(
             endpointPath: "/api/v3/search",
@@ -50,54 +50,54 @@ import SwiftUI
         self.typeParameter = typeParameter
         self.limitParameter = limitParameter
         self.clearListOnChange = clearListOnChange
-        loadMoreContent()
+        loadMoreContent { _, _ in }
     }
 
     func loadMoreCommentIfNeeded(currentItem comment: SearchCommentElement?) {
         guard let comment else {
-            loadMoreContent()
+            loadMoreContent { _, _ in }
             return
         }
         let thresholdIndex = comments.index(comments.endIndex, offsetBy: -1)
         if comments.firstIndex(where: { $0.comment.id == comment.comment.id }) == thresholdIndex {
-            loadMoreContent()
+            loadMoreContent { _, _ in }
         }
     }
 
     func loadMoreCommunitiesIfNeeded(currentItem community: SearchCommunityElement?) {
         guard let community else {
-            loadMoreContent()
+            loadMoreContent { _, _ in }
             return
         }
         let thresholdIndex = communities.index(communities.endIndex, offsetBy: -1)
         if communities.firstIndex(where: { $0.community.id == community.community.id }) == thresholdIndex {
-            loadMoreContent()
+            loadMoreContent { _, _ in }
         }
     }
 
     func loadMorePostsIfNeeded(currentItem post: SearchPostElement?) {
         guard let post else {
-            loadMoreContent()
+            loadMoreContent { _, _ in }
             return
         }
         let thresholdIndex = posts.index(posts.endIndex, offsetBy: -1)
         if posts.firstIndex(where: { $0.post.id == post.post.id }) == thresholdIndex {
-            loadMoreContent()
+            loadMoreContent { _, _ in }
         }
     }
 
     func loadMoreUsersIfNeeded(currentItem user: SearchUserElement?) {
         guard let user else {
-            loadMoreContent()
+            loadMoreContent { _, _ in }
             return
         }
         let thresholdIndex = users.index(users.endIndex, offsetBy: -1)
         if users.firstIndex(where: { $0.person.id == user.person.id }) == thresholdIndex {
-            loadMoreContent()
+            loadMoreContent { _, _ in }
         }
     }
 
-    func loadMoreContent() {
+    func loadMoreContent(completion: @escaping (Bool, Error?) -> Void) {
         guard !isLoading else { return }
 
         if clearListOnChange {
@@ -158,10 +158,12 @@ import SwiftUI
 
                 self.isLoading = false
                 self.currentPage += 1
+                completion(true, nil)
 
             case let .failure(error):
                 print("SearchFetcher ERROR: \(error): \(error.errorDescription ?? "")")
                 self.isLoading = false // Set isLoading to false on failure as well
+                completion(true, error)
             }
         }
     }

@@ -25,7 +25,7 @@ struct SearchCommunitiesRowView: View {
                             .resizable()
                             .frame(width: 30, height: 30)
                             .symbolRenderingMode(.hierarchical)
-                            .foregroundStyle(.green)
+                            .foregroundStyle(.teal)
                         }
                         .resizable()
                         .frame(width: 30, height: 30)
