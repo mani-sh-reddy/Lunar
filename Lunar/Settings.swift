@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 /// **USAGE**
 /// @AppStorage("userName") var userName = Settings.userName
@@ -13,11 +14,14 @@ import Foundation
 enum Settings {
     static let appBundleID: String = "io.github.mani-sh-reddy.Lunar.app"
     static let instanceHostURL: String = "lemmy.ml"
+    static let kbinHostURL: String = "kbin.social"
     static let displayName: String = "Mani"
     static let userName: String = "mani"
     // TODO: change after release
     static let debugModeEnabled: Bool = false
     static let appIconName: String = "AppIcon"
+
+    static let kbinActive: Bool = false
 
     /// requires extension to array
     /// useage: Text("loggedInUsersList: \(String(describing: loggedInUsersList))")

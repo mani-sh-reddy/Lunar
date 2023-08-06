@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct MockData {
+    static let kbinPostURL = "https://kbin.social/m/kbinMeta/t/86614/PSA-Upvote-is-not-an-upvote-like-you-are-used"
+    static let kbinPostURL2 = "/m/kbinMeta/t/86614/PSA-Upvote-is-not-an-upvote-like-you-are-used"
+    static let kbinPost = KbinPost(id: "entry-315569", title: "Posadist Star Trek is solid canon (hexbear.net)", user: "culpritus", timeAgo: "1 hour ago", upvotes: 48, downvotes: 1, previewImageUrl: "", commentsCount: 4, imageUrl: "https://media.kbin.social/media/52/33/52337e34b01f0aea5a6632c01f97ba90dc303bd0748281dfd89210e4e5330a0e.jpg", magazine: "memes", userObject: Optional(Lunar.KbinUser(username: "culpritus", avatarUrl: "", joined: "", reputationPoints: 0, browseUrl: "", followCount: 0)), instanceLink: Optional("hexbear.net"), postURL: "/m/memes@lemmy.ml/t/315569/Posadist-Star-Trek-is-solid-canon")
+    static let kbinPostBody1 = "Like the title says, if you want to upvote something on KBin, you should use the Boost link, not the upvote button (Why? Don't know...). The upvote button doesn't seem to do much, but Boost accomplishes what Reddit's upvote did. So if you're looking to encourage a post, use the Boost link."
     static let mockPost = PostsModel(posts: [
         PostElement(
             post: PostObject(

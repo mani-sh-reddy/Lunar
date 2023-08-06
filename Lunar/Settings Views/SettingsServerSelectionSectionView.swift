@@ -9,10 +9,11 @@ import SwiftUI
 
 struct SettingsServerSelectionSectionView: View {
     @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
+    @AppStorage("kbinActive") var kbinActive = Settings.kbinActive
 
     var body: some View {
         Section {
-            Picker(selection: $instanceHostURL, label: Text("Instance")) {
+            Picker(selection: $instanceHostURL, label: Text("Lemmy Instance")) {
                 Text("lemmy.world").tag("lemmy.world")
                 Text("lemmy.ml").tag("lemmy.ml")
                 Text("beehaw.org").tag("beehaw.org")
@@ -22,6 +23,7 @@ struct SettingsServerSelectionSectionView: View {
                 Text("sopuli.xyz").tag("sopuli.xyz")
             }
             .pickerStyle(.menu)
+            Toggle("Enable Kbin", isOn: $kbinActive).tint(.purple)
         }
     }
 }
