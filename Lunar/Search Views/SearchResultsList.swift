@@ -11,8 +11,12 @@ import SwiftUI
 struct SearchResultsList: View {
     @StateObject var searchFetcher: SearchFetcher
 
+    @State var isLoading: Bool = false
+
     @Binding var searchText: String
     @Binding var selectedSearchType: String
+
+    let processor = DownsamplingImageProcessor(size: CGSize(width: 50, height: 50))
 
     var selectedSearchTypeIcon: String {
         switch selectedSearchType {
@@ -29,7 +33,7 @@ struct SearchResultsList: View {
 
     var body: some View {
         Section {
-            if searchFetcher.isLoading {
+            if isLoading {
                 /// Needed to give ProgressView it's own identifier otherwise
                 /// the list row would show even after ProgressView is removed
                 ProgressView().id(UUID())
@@ -46,26 +50,19 @@ struct SearchResultsList: View {
                 default:
                     EmptyView()
                 }
-//                ForEach(searchFetcher.users, id: \.person.id) { person in
-//                    Text(person.person.name)
-//                }
             }
-            if searchFetcher.isLoading {
-                ProgressView()
-            } else {
-                NavigationLink(destination: {
-                    SearchUsersListAll()
-                }, label: {
-                    Group {
-                        if searchText != "" {
-                            Text("More \(selectedSearchType) with \"\(searchText)\"")
-                        } else {
-                            Text("Trending")
-                        }
+            NavigationLink(destination: {
+                SearchUsersListAll()
+            }, label: {
+                Group {
+                    if searchText != "" {
+                        Text("More \(selectedSearchType) with \"\(searchText)\"")
+                    } else {
+                        Text("Trending")
                     }
-                    .foregroundStyle(.blue)
-                })
-            }
+                }
+                .foregroundStyle(.blue)
+            })
 
         } header: {
             Label(
@@ -78,20 +75,30 @@ struct SearchResultsList: View {
         }
         .onDebouncedChange(of: $searchText, debounceFor: 0) { _ in
             withAnimation {
-                print(searchFetcher.isLoading)
+                isLoading = true
             }
         }
         .onDebouncedChange(of: $searchText, debounceFor: 1) { query in
             withAnimation {
                 searchFetcher.searchQuery = query
-                searchFetcher.loadMoreContent()
-                print(searchFetcher.isLoading)
+                searchFetcher.loadMoreContent { completed, _ in
+                    isLoading = !completed
+                }
             }
         }
-        .onDebouncedChange(of: $selectedSearchType, debounceFor: 0) { query in
+        .onDebouncedChange(of: $selectedSearchType, debounceFor: 0) { _ in
+            withAnimation {
+                if !$searchText.wrappedValue.isEmpty {
+                    isLoading = true
+                }
+            }
+        }
+        .onDebouncedChange(of: $selectedSearchType, debounceFor: 1) { query in
             withAnimation {
                 searchFetcher.typeParameter = query
-                searchFetcher.loadMoreContent()
+                searchFetcher.loadMoreContent { completed, _ in
+                    isLoading = !completed
+                }
             }
         }
     }

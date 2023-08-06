@@ -86,6 +86,7 @@ struct CommunityInfoView: View {
             Rectangle()
                 .foregroundStyle(.background)
                 .opacity(loadingOpacity)
+                .ignoresSafeArea()
             ProgressView(value: progressViewValue)
                 .frame(width: 100)
                 .opacity(loadingOpacity)

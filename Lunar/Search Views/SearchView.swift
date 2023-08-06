@@ -11,12 +11,10 @@ struct SearchView: View {
     @State var searchText: String = ""
     @State var selectedSearchType: String = "Users"
 
-    var searchTypes: [String] = ["Users", "Communities", "Posts"]
-
     var body: some View {
         NavigationView {
             List {
-                Picker("Favorite Color", selection: $selectedSearchType, content: {
+                Picker("Search Type", selection: $selectedSearchType, content: {
                     Text("Users").tag("Users")
                     Text("Communities").tag("Communities")
                     Text("Posts").tag("Posts")
@@ -28,7 +26,7 @@ struct SearchView: View {
                     searchFetcher: SearchFetcher(
                         searchQuery: "",
                         typeParameter: selectedSearchType,
-                        limitParameter: 5,
+                        limitParameter: 50,
                         clearListOnChange: true
                     ),
                     searchText: $searchText,
