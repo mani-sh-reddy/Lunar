@@ -27,7 +27,7 @@ struct CommunityInfoView: View {
     }
 
     var body: some View {
-        ZStack {
+        ZStack(alignment: .leading) {
             ScrollView {
                 if hasBanner, !bannerFailedToLoad {
                     KFImage(URL(string: community.banner ?? ""))
@@ -72,6 +72,7 @@ struct CommunityInfoView: View {
                             Text("@\(URLParser.extractDomain(from: community.actorID))").font(.headline)
                         }
                     }.padding(.bottom, 10)
+                        .border(debugModeEnabled ? Color.purple : Color.clear)
 
                     if let description = community.description {
                         ZStack {
@@ -82,6 +83,7 @@ struct CommunityInfoView: View {
                         }
                     }
                 }.padding()
+                    .border(debugModeEnabled ? Color.green : Color.clear)
             }
             Rectangle()
                 .foregroundStyle(.background)

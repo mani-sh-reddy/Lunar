@@ -12,7 +12,7 @@ import Foundation
 
 enum Settings {
     static let appBundleID: String = "io.github.mani-sh-reddy.Lunar.app"
-    static let instanceHostURL: String = "lemmy.world"
+    static let instanceHostURL: String = "lemmy.ml"
     static let displayName: String = "Mani"
     static let userName: String = "mani"
     // TODO: change after release
