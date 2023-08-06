@@ -35,61 +35,13 @@ struct ImagePopoverView: View {
             Rectangle().foregroundStyle(.black)
                 .ignoresSafeArea()
             AsyncImage(url: URL(string: thumbnailURL)) { state in
-                        if let image = state.image {
-                            PhotoDetailView(image: image.asUIImage())
-                        } else {
-                            ProgressView()
-                        }
+                if let image = state.image {
+                    PhotoDetailView(image: image.asUIImage())
+                } else {
+                    ProgressView()
+                }
             }
             .edgesIgnoringSafeArea(.all)
         }
-        
     }
 }
-
-//        ZStack(alignment: .top) {
-//            Rectangle().foregroundStyle(.black).ignoresSafeArea()
-//            GeometryReader { proxy in
-//                KFImage(URL(string: thumbnailURL))
-//                    .onProgress { receivedSize, totalSize in
-//                        if receivedSize < totalSize {
-//                            isLoading = true
-//                        } else {
-//                            isLoading = false
-//                        }
-//                    }
-//                    .onSuccess { image in
-//                        /// print(image.image.size.width)
-//                        /// print(image.image.size.height)
-//                        /// print("proxy width: \(proxy.size.width)")
-//                        /// print("proxy height: \(proxy.size.height)")
-//                        DispatchQueue.main.async {
-//                            imageSize = CGSize(width: image.image.size.width, height: image.image.size.height)
-//                        }
-//                    }
-//                    .onlyFromCache()
-//                    .setProcessor(processor)
-//                    .resizable()
-//                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-//                    .scaledToFit()
-//                    .frame(width: proxy.size.width, height: proxy.size.height)
-//                    .padding(.all, 10)
-//                    .modifier(ImageModifier(contentSize: imageSize, showingPopover: $showingPopover))
-//            }
-//            Button {
-//                showingPopover = false
-//            } label: {
-//                ZStack {
-//                    RoundedRectangle(cornerRadius: 20, style: .continuous).opacity(0.1).foregroundStyle(.black.opacity(0.1)).frame(height: 100).opacity(0.1).border(debugModeEnabled ? .purple : .clear)
-//                    Text("Swipe here to dismiss").foregroundStyle(.gray).opacity(debugModeEnabled ? 1 : buttonOpacity)
-//                        .border(debugModeEnabled ? .red : .clear)
-//                }
-//            }.task {
-//                let animation = Animation.easeIn(duration: 3)
-//                withAnimation(animation) {
-//                    buttonOpacity = 0.2
-//                }
-//            }
-//        }
-//    }
-// }

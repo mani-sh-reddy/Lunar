@@ -24,7 +24,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("Account", systemImage: "person")
                 }
-            PlaceholderView()
+            SearchView()
                 .tabItem {
                     Label("Search", systemImage: "magnifyingglass")
                 }

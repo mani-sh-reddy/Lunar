@@ -51,6 +51,8 @@ struct LoginButtonView: View {
 
     private let tempWarningAnimation = Animation.easeInOut(duration: 2).repeatCount(1, autoreverses: true)
 
+    let haptics = UINotificationFeedbackGenerator()
+
     var body: some View {
         Section {
             Button(action: {
@@ -108,6 +110,7 @@ struct LoginButtonView: View {
                 isTryingLogin = false
                 if isSuccessful {
                     print("LOGIN SUCCESSFUL")
+                    haptics.notificationOccurred(.success)
                     loggedIn = true
                     showingPopover = false
                 } else {

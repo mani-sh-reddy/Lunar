@@ -97,17 +97,6 @@ struct MyUser: Codable {
     let follows, moderates, communityBlocks, personBlocks: [JSONAny]
     let discussionLanguages: [JSONAny]
 
-//    init() {
-//        localUserView = LocalUserView(localUser: LocalUser(id: 0, personID: 0, email: "", showNsfw: false, theme: "", defaultSortType: "", defaultListingType: "", interfaceLanguage: "", showAvatars: false, sendNotificationsToEmail: false, validatorTime: "", showScores: false, showBotAccounts: false, showReadPosts: false, showNewPostNotifs: false, emailVerified: false, acceptedApplication: false, openLinksInNewTab: false),
-//                                      person: LocalUserViewPerson(id: 0, name: "", banned: false, published: "", actorID: "", local: false, deleted: false, admin: false, botAccount: false, instanceID: 0),
-//                                      counts: AdminCounts(id: 0, personID: 0, postCount: 0, postScore: 0, commentCount: 0, commentScore: 0))
-//        follows = []
-//        moderates = []
-//        communityBlocks = []
-//        personBlocks = []
-//        discussionLanguages = []
-//    }
-
     enum CodingKeys: String, CodingKey {
         case localUserView = "local_user_view"
         case follows, moderates
@@ -321,8 +310,8 @@ class JSONNull: Codable, Hashable {
         true
     }
 
-    public var hashValue: Int {
-        0
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(0)
     }
 
     public init() {}

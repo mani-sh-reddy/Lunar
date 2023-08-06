@@ -24,4 +24,22 @@ enum URLParser {
 
         return ""
     }
+
+    static func extractPath(from url: String) -> String {
+        guard let urlComponents = URLComponents(string: url) else {
+            return ""
+        }
+
+        let path = urlComponents.path
+
+        return path
+    }
+
+    static func extractUsername(from url: String) -> String {
+        let path = extractPath(from: url)
+        if let range = path.range(of: "/u/", options: .regularExpression) {
+            return String(path[range.upperBound...])
+        }
+        return ""
+    }
 }
