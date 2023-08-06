@@ -26,7 +26,6 @@ struct UserInfoView: View {
                         .resizable()
                         .scaledToFit()
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                        .frame(width: .infinity)
                         .padding()
                 }
             }
