@@ -61,10 +61,3 @@ struct CommunityInfoView: View {
         }
     }
 }
-
-//
-// struct CommunityInfoView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CommunityInfoView(community: MockData.communityInfoView2)
-//    }
-// }

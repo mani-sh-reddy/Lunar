@@ -27,16 +27,5 @@ struct InPostUserView: View {
         .background {
             Capsule().foregroundStyle(.ultraThinMaterial)
         }
-
-//        HStack(alignment: .center, spacing: 2) {
-//            ImageViewWithPlaceholder(imageURL: userAvatar, placeholderSystemName: "person.crop.square.fill")
-//
-//            Text(String(text))
-//                .foregroundColor(.gray)
-//                .textCase(.uppercase)
-//        }
-//        .font(.subheadline)
-//        .padding(.trailing, 2)
-//        .lineLimit(1)
     }
 }

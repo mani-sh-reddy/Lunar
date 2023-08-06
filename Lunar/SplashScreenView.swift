@@ -28,7 +28,6 @@ struct SplashScreen: View {
                 .padding(50)
                 .shadow(color: .black, radius: 100, x: 20, y: 20)
                 .scaleEffect(logoScale)
-//                .rotationEffect(logoRotationAngle)
                 .opacity(logoOpacity)
         }
         .onAppear {

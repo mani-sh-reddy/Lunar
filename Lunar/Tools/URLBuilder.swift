@@ -84,36 +84,3 @@ class URLBuilder {
         return endpoint
     }
 }
-
-// class APIEndpointBuilder {
-//    @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
-//    @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
-//
-//    private let endpointPath: String
-//    private var queryParams: [String: String] = [:]
-//
-//    init(
-//        endpointPath: String,
-//        queryParams: [String: String] = [:]
-//    ) {
-//        self.endpointPath = endpointPath
-//        self.queryParams = queryParams
-//    }
-//
-//    func buildURL() -> URLComponents {
-//        var endpoint = URLComponents()
-//
-//        if let authTokenUser = queryParams["authTokenUser"] {
-//            let keychainObject = KeychainHelper.standard.read(service: appBundleID, account: authTokenUser)
-//            let accessToken = String(data: keychainObject ?? Data(), encoding: .utf8)!
-//            queryParams["auth"] = accessToken
-//        }
-//
-//        endpoint.scheme = "https"
-//        endpoint.host = instanceHostURL
-//        endpoint.path = endpointPath
-//        endpoint.setQueryItems(with: queryParams)
-//
-//        return endpoint
-//    }
-// }

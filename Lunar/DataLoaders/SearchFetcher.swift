@@ -53,64 +53,6 @@ import SwiftUI
         loadMoreContent()
     }
 
-    ///    func refreshContent() async {
-//        do {
-//            try await Task.sleep(nanoseconds: 1_000_000_000)
-//        } catch {}
-//
-//        guard !isLoading else { return }
-//
-//        isLoading = true
-//        currentPage = 1
-//
-//        let cacher = ResponseCacher(behavior: .cache)
-//
-//        AF.request(endpoint) { urlRequest in
-//            print("SearchFetcher REF \(urlRequest.url as Any)")
-//            urlRequest.cachePolicy = .returnCacheDataElseLoad
-//        }
-//        .cacheResponse(using: cacher)
-//        .validate(statusCode: 200 ..< 300)
-//        .responseDecodable(of: SearchModel.self) { response in
-//            switch response.result {
-//            case let .success(result):
-//                // Check the typeParameter to determine which part of the code to execute
-//                switch self.typeParameter {
-//                case "communities":
-//                    let newCommunities = result.communities
-//                    let filteredNewCommunities = newCommunities.filter { newCommunity in
-//                        !self.communities.contains { $0.community.id == newCommunity.community.id }
-//                    }
-//                    self.communities.insert(contentsOf: filteredNewCommunities, at: 0)
-//                case "comments":
-//                    let newComments = result.comments
-//                    let filteredNewComments = newComments.filter { newComment in
-//                        !self.comments.contains { $0.comment.id == newComment.comment.id }
-//                    }
-//                    self.comments.insert(contentsOf: filteredNewComments, at: 0)
-//                case "posts":
-//                    let newPosts = result.posts
-//                    let filteredNewPosts = newPosts.filter { newPost in
-//                        !self.posts.contains { $0.post.id == newPost.post.id }
-//                    }
-//                    self.posts.insert(contentsOf: filteredNewPosts, at: 0)
-//                case "users":
-//                    let newUsers = result.users
-//                    let filteredNewUsers = newUsers.filter { newUser in
-//                        !self.users.contains { $0.person.id == newUser.person.id }
-//                    }
-//                    self.users.insert(contentsOf: filteredNewUsers, at: 0)
-//                default:
-//                    return
-//                }
-//
-//                self.isLoading = false
-//            case let .failure(error):
-//                print("SearchFetcher ERROR: \(error): \(error.errorDescription ?? "")")
-//            }
-//        }
-//    }
-
     func loadMoreCommentIfNeeded(currentItem comment: SearchCommentElement?) {
         guard let comment else {
             loadMoreContent()
