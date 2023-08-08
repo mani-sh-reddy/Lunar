@@ -13,27 +13,25 @@ import SwiftUI
 import UIKit
 
 struct InPostThumbnailImageView: View {
-    @State private var isLoading = true
-    var loadImageOnlyFromCache: Bool
-    let processor = DownsamplingImageProcessor(size: CGSize(width: 1300, height: 1300))
+//    @State private var isLoading = true
+//    var loadImageOnlyFromCache: Bool
     var thumbnailURL: String
     var body: some View {
         KFImage(URL(string: thumbnailURL))
-            .onProgress { receivedSize, totalSize in
-                if receivedSize < totalSize {
-                    isLoading = true
-                } else {
-                    isLoading = false
-                }
-            }
-            .setProcessor(processor)
+//            .onProgress { receivedSize, totalSize in
+//                if receivedSize < totalSize {
+//                    isLoading = true
+//                } else {
+//                    isLoading = false
+//                }
+//            }
             .resizable()
-            .cancelOnDisappear(true)
+//            .cancelOnDisappear(true)
             .fade(duration: 0.2)
             .progressViewStyle(.circular)
             .aspectRatio(contentMode: .fit)
-            .frame(alignment: .center)
+//            .frame(alignment: .center)
             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-            .padding(.bottom, 3)
+//            .padding(.bottom, 3)
     }
 }

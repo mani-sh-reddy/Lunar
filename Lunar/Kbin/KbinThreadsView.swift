@@ -43,7 +43,7 @@ struct KbinThreadsView: View {
         }
         .navigationTitle("Kbin")
         .navigationBarTitleDisplayMode(.inline)
-        .listStyle(.grouped)
+        .listStyle(.insetGrouped)
     }
 }
 

@@ -9,128 +9,182 @@ import Kingfisher
 import SwiftUI
 
 struct KbinPostRowView: View {
-    var post: KbinPost
+    @AppStorage("kbinHostURL") var kbinHostURL = Settings.kbinHostURL
 
-    @State var showingPlaceholderAlert = false
+    var post: KbinPost
+    @State var showingPlaceholderAlert: Bool = false
+    @State var goInto: Bool = false
 
     @State var upvoted: Bool = false
     @State var downvoted: Bool = false
 
-    let haptics = UIImpactFeedbackGenerator(style: .rigid)
+    var magazine: String {
+        if post.instanceLink != nil, post.instanceLink != "" {
+            return "\(post.magazine)@\(post.instanceLink ?? "")"
+        } else {
+            return "\(post.magazine)"
+        }
+    }
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(post.title)
-                .font(.headline)
-                .multilineTextAlignment(.leading)
-
-            HStack(alignment: .lastTextBaseline, spacing: 0) {
-                Text(String(post.magazine))
-                if post.instanceLink != "" {
-                    Text(String("@\(post.instanceLink ?? "")"))
-                        .foregroundStyle(.gray).opacity(0.8)
+        VStack {
+            InPostThumbnailView(thumbnailURL: post.imageUrl)
+            Spacer()
+            HStack {
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(magazine)
+                        .textCase(.lowercase)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                    Text(post.title)
+                        .font(.headline)
+                        .fontWeight(.heavy)
+                        .foregroundColor(.primary)
+                    Text("\(post.user.uppercased()), \(post.timeAgo)")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
                 }
+                .layoutPriority(100)
                 Spacer()
-                Text(String(post.timeAgo)
-                    .replacingOccurrences(of: "minute", with: "min")
-                    .replacingOccurrences(of: "hour", with: "h")
-                )
-                .font(.caption)
-                .foregroundColor(.gray)
-                .font(.subheadline)
-                .padding(.vertical, 2)
-                .padding(.horizontal, 5)
-                .lineLimit(1)
             }
-            .lineLimit(1)
-            .font(.subheadline)
-            .padding(.vertical, 1)
-
-            if post.imageUrl != "" {
-                InPostThumbnailView(thumbnailURL: post.imageUrl)
-            } else {
-                EmptyView()
-            }
-
-            HStack(spacing: 6) {
-                InPostUserView(
-                    text: post.userObject?.username ?? "",
-                    iconName: "person.crop",
-                    userAvatar: post.userObject?.avatarUrl ?? ""
-                )
-                Spacer(minLength: 20)
-
-                InPostMetadataView(
-                    bodyText: String(post.upvotes),
-                    iconName: "arrow.up.circle.fill",
-                    iconColor: upvoted ? .green : .gray
-                )
-                .onTapGesture {
-                    downvoted = false
-                    upvoted.toggle()
-                    haptics.impactOccurred()
+            HStack {
+                ReactionButton(text: String(post.upvotes), icon: "arrow.up.circle.fill", color: Color.green, active: $upvoted, opposite: $downvoted)
+                    .onTapGesture {
+                        upvoted.toggle()
+                        downvoted = false
+                    }
+                if post.downvotes > 0 {
+                    ReactionButton(text: String(post.downvotes), icon: "arrow.down.circle.fill", color: Color.red, active: $downvoted, opposite: $upvoted)
+                        .onTapGesture {
+                            downvoted.toggle()
+                            upvoted = false
+                        }
                 }
-
-                InPostMetadataView(
-                    bodyText: String(post.commentsCount),
-                    iconName: "bubble.left.circle.fill",
-                    iconColor: .gray
-                )
+                ReactionButton(text: String(post.commentsCount), icon: "bubble.left.circle.fill", color: Color.gray, active: .constant(false), opposite: .constant(false))
+                Spacer()
             }
         }
-
+        .padding(.horizontal, -5)
+        .padding(.vertical, 10)
         .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-            Button {
-                showingPlaceholderAlert = true
-            } label: {
-                Image(systemName: "chevron.forward.circle.fill")
-            }.tint(.blue)
+            GoIntotSwipeAction(isClicked: $goInto)
         }
-
         .swipeActions(edge: .leading, allowsFullSwipe: false) {
-            Button {
-                showingPlaceholderAlert = true
-            } label: {
-                Image(systemName: "arrow.up.circle")
-            }.tint(.green)
-            Button {
-                showingPlaceholderAlert = true
-            } label: {
-                Image(systemName: "arrow.down.circle")
-            }.tint(.red)
+            UpvoteSwipeAction(isClicked: $showingPlaceholderAlert)
+            DownvoteSwipeAction(isClicked: $showingPlaceholderAlert)
         }
-
         .contextMenu {
-            Menu("Menu") {
-                Button {
-                    showingPlaceholderAlert = true
-                } label: {
-                    Text("Coming Soon")
-                }
+            PostContextMenu(showingPlaceholderAlert: $showingPlaceholderAlert)
+        }
+        .alert("Coming soon", isPresented: $showingPlaceholderAlert) {
+            Button("OK", role: .cancel) {
+                showingPlaceholderAlert = false
             }
+        }
+    }
+}
 
+struct KbinPostRowView_Previews: PreviewProvider {
+    static var previews: some View {
+        KbinPostRowView(post: MockData.kbinPost)
+    }
+}
+
+struct GoIntotSwipeAction: View {
+    @Binding var isClicked: Bool
+
+    var body: some View {
+        Button {
+            isClicked = true
+        } label: {
+            Image(systemName: "chevron.forward.circle.fill")
+        }
+        .tint(.blue)
+    }
+}
+
+struct UpvoteSwipeAction: View {
+    @Binding var isClicked: Bool
+
+    var body: some View {
+        Button {
+            isClicked = true
+        } label: {
+            Image(systemName: "arrow.up.circle")
+        }
+        .tint(.green)
+    }
+}
+
+struct DownvoteSwipeAction: View {
+    @Binding var isClicked: Bool
+
+    var body: some View {
+        Button {
+            isClicked = true
+        } label: {
+            Image(systemName: "arrow.down.circle")
+        }
+        .tint(.red)
+    }
+}
+
+struct PostContextMenu: View {
+    @Binding var showingPlaceholderAlert: Bool
+
+    var body: some View {
+        Menu("Menu") {
             Button {
                 showingPlaceholderAlert = true
             } label: {
                 Text("Coming Soon")
             }
-
-            Divider()
-
-            Button(role: .destructive) {
-                showingPlaceholderAlert = true
-            } label: {
-                Label("Delete", systemImage: "trash")
-            }
         }
-        .alert("Coming soon", isPresented: $showingPlaceholderAlert) {
-            Button("OK", role: .cancel) {}
+        Button {
+            showingPlaceholderAlert = true
+        } label: {
+            Text("Coming Soon")
+        }
+
+        Divider()
+
+        Button(role: .destructive) {
+            showingPlaceholderAlert = true
+        } label: {
+            Label("Delete", systemImage: "trash")
         }
     }
 }
 
-// struct KbinPostRowView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        KbinPostRowView(post: KbinPost)
-//    }
-// }
+struct ReactionButton: View {
+    var text: String
+    var icon: String
+    var color: Color
+
+    @Binding var active: Bool
+    @Binding var opposite: Bool
+
+    let haptics = UIImpactFeedbackGenerator(style: .rigid)
+
+    var body: some View {
+        Button(action: {
+            active.toggle()
+            opposite = false
+            haptics.impactOccurred()
+        }) {
+            HStack {
+                Image(systemName: icon)
+                Text(text)
+                    .font(.subheadline)
+            }
+            .foregroundStyle(active ? Color.white : color)
+            .symbolRenderingMode(
+                active ? SymbolRenderingMode.monochrome : SymbolRenderingMode.hierarchical
+            )
+        }
+        .buttonStyle(BorderlessButtonStyle())
+        .padding(5).padding(.trailing, 3)
+        .background(active ? color.opacity(0.75) : .secondary.opacity(0.1), in: Capsule())
+        .padding(.top, 3)
+    }
+}
