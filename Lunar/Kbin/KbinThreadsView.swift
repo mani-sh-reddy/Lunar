@@ -16,32 +16,26 @@ struct KbinThreadsView: View {
 
     var body: some View {
         List {
-            ForEach(kbinThreadsFetcher.posts, id: \.id) { post in
-                Section {
-                    ZStack {
-                        KbinPostRowView(post: post)
-                        NavigationLink(
-                            destination: KbinCommentsView(
-                                kbinCommentsFetcher: KbinCommentsFetcher(
-                                    postURL: "https://\(kbinHostURL)\(post.postURL)"
-                                ), kbinThreadBodyFetcher: KbinThreadBodyFetcher(postURL: post.postURL),
-                                postURL: "https://\(kbinHostURL)\(post.postURL)",
-                                post: post
-                            )
-                        ) {
-                            EmptyView()
-                                .frame(height: 0)
-                        }
-                        .opacity(0)
-                    }
-                }
-                .task {
-                    kbinThreadsFetcher.loadMoreContentIfNeeded(currentItem: post)
-                    postURL = post.postURL
-                }
-            }
             if kbinThreadsFetcher.isLoading {
                 ProgressView().id(UUID())
+            } else {
+                ForEach(kbinThreadsFetcher.posts, id: \.id) { post in
+                    Section {
+                        ZStack {
+                            KbinPostRowView(post: post)
+                            NavigationLink {
+                                KbinCommentsView(postURL: "https://\(kbinHostURL)\(post.postURL)")
+                            } label: {
+                                EmptyView()
+                            }
+                            .opacity(0)
+                        }
+                    }
+                    .task {
+                        kbinThreadsFetcher.loadMoreContentIfNeeded(currentItem: post)
+                        postURL = post.postURL
+                    }
+                }
             }
         }
         .refreshable {

@@ -28,10 +28,9 @@ class KbinThreadsFetcher: ObservableObject {
         guard !isLoading else { return }
 
         isLoading = true
-        currentPage = 1
-
         posts.removeAll()
 
+        currentPage = 1
         loadMoreContent()
     }
 
@@ -110,11 +109,9 @@ class KbinThreadsFetcher: ObservableObject {
                             magazine: magazine,
                             userObject: userObject,
                             instanceLink: instanceLink,
-                            postURL: postURL ?? ""
+                            postURL: postURL
                         )
                         self.posts.append(post)
-                        self.isLoading = false
-                        self.currentPage += 1
                     }
                 } catch {
                     print("Error parsing HTML: \(error)")
@@ -122,6 +119,8 @@ class KbinThreadsFetcher: ObservableObject {
             } else {
                 print("Failed to get HTML content")
             }
+            self.isLoading = false
+            self.currentPage += 1
         }
     }
 }
