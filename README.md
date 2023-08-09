@@ -1,5 +1,6 @@
 # Lunar - An iOS Client for Lemmy
 
+[![CodeFactor](https://www.codefactor.io/repository/github/mani-sh-reddy/lunar-lemmy-ios/badge)](https://www.codefactor.io/repository/github/mani-sh-reddy/lunar-lemmy-ios)
 [![GitHub release](https://img.shields.io/github/v/release/mani-sh-reddy/Lunar-Lemmy-iOS)](https://github.com/mani-sh-reddy/Lunar-Lemmy-iOS/releases)
 ![Cocoapods platforms](https://img.shields.io/cocoapods/p/ios)
 [![Static Badge](https://img.shields.io/badge/Swift-5.9-orange?logo=swift&logoColor=orange)](https://www.swift.org/about/)
