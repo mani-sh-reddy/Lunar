@@ -31,7 +31,7 @@ final class KeychainHelper {
             kSecValueData: data,
             kSecAttrService: service,
             kSecAttrAccount: account,
-            kSecClass: kSecClassGenericPassword,
+            kSecClass: kSecClassGenericPassword
         ] as [CFString: Any] as CFDictionary
 
         // Add data in query to keychain
@@ -42,7 +42,7 @@ final class KeychainHelper {
             let query = [
                 kSecAttrService: service,
                 kSecAttrAccount: account,
-                kSecClass: kSecClassGenericPassword,
+                kSecClass: kSecClassGenericPassword
             ] as [CFString: Any] as CFDictionary
 
             let attributesToUpdate = [kSecValueData: data] as CFDictionary
@@ -57,7 +57,7 @@ final class KeychainHelper {
             kSecAttrService: service,
             kSecAttrAccount: account,
             kSecClass: kSecClassGenericPassword,
-            kSecReturnData: true,
+            kSecReturnData: true
         ] as [CFString: Any] as CFDictionary
 
         var result: AnyObject?
@@ -70,7 +70,7 @@ final class KeychainHelper {
         let query = [
             kSecAttrService: service,
             kSecAttrAccount: account,
-            kSecClass: kSecClassGenericPassword,
+            kSecClass: kSecClassGenericPassword
         ] as [CFString: Any] as CFDictionary
 
         // Delete item from keychain
@@ -80,7 +80,7 @@ final class KeychainHelper {
     func clearKeychain() {
         // Create a dictionary to specify the items to delete (in this case, we delete all items)
         let query: [CFString: Any] = [
-            kSecClass: kSecClassGenericPassword,
+            kSecClass: kSecClassGenericPassword
         ]
 
         // Delete the items
@@ -99,7 +99,7 @@ final class KeychainHelper {
             kSecMatchLimit: kSecMatchLimitAll,
             kSecReturnAttributes: true,
             kSecClass: kSecClassGenericPassword,
-            kSecReturnData as String: true,
+            kSecReturnData as String: true
         ] as [AnyHashable: Any] as CFDictionary
 
         var result: AnyObject?

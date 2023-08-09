@@ -12,12 +12,17 @@ struct AggregatedCommunityRowView: View {
 
     // Temporary workaround to be fixed
     var color: Color {
-        if button["iconColor"] == "green" { return Color.green }
-        else if button["iconColor"] == "cyan" { return Color.cyan }
-        else if button["iconColor"] == "pink" { return Color.pink }
-        else if button["iconColor"] == "yellow" { return Color.yellow }
-        else if button["iconColor"] == "red" { return Color.red }
-        else {
+        if button["iconColor"] == "green" {
+            return Color.green
+        } else if button["iconColor"] == "cyan" {
+            return Color.cyan
+        } else if button["iconColor"] == "pink" {
+            return Color.pink
+        } else if button["iconColor"] == "yellow" {
+            return Color.yellow
+        } else if button["iconColor"] == "red" {
+            return Color.red
+        } else {
             return Color.gray
         }
     }

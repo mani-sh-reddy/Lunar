@@ -37,14 +37,14 @@ class LoginHelper: ObservableObject {
     func login(completion: @escaping (Bool, String) -> Void) {
         let endpoint = "https://\(instanceHostURL)/api/v3/user/login"
         let credentialsRequest = CredentialsRequestModel(
-            username_or_email: usernameEmail,
+            usernameOrEmail: usernameEmail,
             password: password,
-            totp_2fa_token: twoFactor == "" ? nil : twoFactor
+            twoFactorToken: twoFactor == "" ? nil : twoFactor
         )
 
         let headers: HTTPHeaders = [
             "accept": "application/json",
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
         ]
 
         AF.request(
@@ -62,8 +62,7 @@ class LoginHelper: ObservableObject {
 
             case let .failure(error):
                 if let data = response.data,
-                   let loginErrorResponse = try? JSONDecoder().decode(ErrorResponseModel.self, from: data)
-                {
+                   let loginErrorResponse = try? JSONDecoder().decode(ErrorResponseModel.self, from: data) {
                     completion(false, loginErrorResponse.error)
 
                 } else {

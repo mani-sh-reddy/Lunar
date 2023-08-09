@@ -42,7 +42,7 @@ struct LogoutAllUsersButtonView: View {
                 } else {
                     Text("Logout All Users")
                         .foregroundStyle(.red)
-                        .opacity(loggedInUsersList.count == 0 ? 0.4 : 1)
+                        .opacity(loggedInUsersList.isEmpty ? 0.4 : 1)
                 }
 
                 Spacer()
@@ -70,10 +70,10 @@ struct LogoutAllUsersButtonView: View {
                     .font(.title2)
                     .foregroundStyle(.red)
                     .symbolRenderingMode(.hierarchical)
-                    .opacity(loggedInUsersList.count == 0 ? 0.3 : 1)
+                    .opacity(loggedInUsersList.isEmpty ? 0.3 : 1)
             }
         }
-        .disabled(loggedInUsersList.count == 0)
+        .disabled(loggedInUsersList.isEmpty)
         .confirmationDialog("Remove All Accounts?", isPresented: $deleteConfirmationShown) {
             Button(role: .destructive, action: {
                 isPresentingConfirm = true
@@ -86,7 +86,7 @@ struct LogoutAllUsersButtonView: View {
                 selectedAvatarURL = ""
                 selectedActorID = ""
 
-                if loggedInUsersList.count > 0 {
+                if !loggedInUsersList.isEmpty {
                     isLoadingDeleteButton = true
                     haptic.notificationOccurred(.success)
                     logoutAllUsersButtonClicked = true
@@ -103,8 +103,7 @@ struct LogoutAllUsersButtonView: View {
 
                     isLoadingDeleteButton = false
                     isPresentingConfirm = false
-                }
-            }) {
+                }}) {
                 Text("Logout All Users")
             }
         }

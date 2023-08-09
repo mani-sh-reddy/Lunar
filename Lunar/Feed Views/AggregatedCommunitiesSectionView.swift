@@ -14,26 +14,26 @@ struct AggregatedCommunitiesSectionView: View {
             "type": "Local",
             "sort": "Active",
             "icon": "house.circle.fill",
-            "iconColor": "green",
+            "iconColor": "green"
         ], [
             "title": "All",
             "type": "All",
             "sort": "Active",
             "icon": "building.2.crop.circle.fill",
-            "iconColor": "cyan",
+            "iconColor": "cyan"
         ], [
             "title": "Top",
             "type": "All",
             "sort": "TopWeek",
             "icon": "chart.line.uptrend.xyaxis.circle.fill",
-            "iconColor": "pink",
+            "iconColor": "pink"
         ], [
             "title": "New",
             "type": "All",
             "sort": "New",
             "icon": "star.circle.fill",
-            "iconColor": "yellow",
-        ],
+            "iconColor": "yellow"
+        ]
     ]
 
     var body: some View {

@@ -17,9 +17,9 @@ struct CredentialsResponseModel: Codable {
 }
 
 struct CredentialsRequestModel: Encodable {
-    let username_or_email: String
+    let usernameOrEmail: String
     let password: String
-    let totp_2fa_token: String?
+    let twoFactorToken: String?
 }
 
 struct ErrorResponseModel: Codable {

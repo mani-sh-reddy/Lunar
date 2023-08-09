@@ -27,7 +27,7 @@ struct FeedView: View {
                                 LinearGradient(gradient: Gradient(
                                     colors: [
                                         .purple,
-                                        .pink,
+                                        .pink
                                     ]), startPoint: .topLeading, endPoint: .bottomTrailing)
                             )
                             .padding(0)

@@ -172,7 +172,7 @@ struct MockData {
             read: false,
             creatorBlocked: false,
             unreadComments: 189
-        ),
+        )
     ])
     static let post = PostElement(
         post: PostObject(

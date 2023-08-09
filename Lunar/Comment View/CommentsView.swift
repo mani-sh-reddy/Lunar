@@ -12,8 +12,8 @@ struct CommentsView: View {
     @StateObject var commentsFetcher: CommentsFetcher
     @State var postID: Int
     var postTitle: String
-    var thumbnailURL: String? = nil
-    var postBody: String? = nil
+    var thumbnailURL: String?
+    var postBody: String?
 
     var body: some View {
         ScrollViewReader { _ in

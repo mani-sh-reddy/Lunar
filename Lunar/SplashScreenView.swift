@@ -18,7 +18,7 @@ struct SplashScreen: View {
             LinearGradient(gradient: Gradient(
                 colors: [
                     Color("AppBlue"),
-                    Color("AppDarkBlue"),
+                    Color("AppDarkBlue")
                 ]), startPoint: .topLeading, endPoint: .bottomTrailing)
                 .ignoresSafeArea()
 

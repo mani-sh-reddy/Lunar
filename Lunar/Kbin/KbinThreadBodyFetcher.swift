@@ -48,13 +48,11 @@ class KbinThreadBodyFetcher: ObservableObject {
         let url = "https://\(kbinHostURL)\(postURL)"
         AF.request(url).response { response in
             if let data = response.data,
-               let htmlString = String(data: data, encoding: .utf8)
-            {
+               let htmlString = String(data: data, encoding: .utf8) {
                 do {
                     let doc = try SwiftSoup.parse(htmlString)
                     if let entryBody = try doc.select("div.entry__body").first(),
-                       let postBody = try entryBody.select("div.content.formatted").first()?.text()
-                    {
+                       let postBody = try entryBody.select("div.content.formatted").first()?.text() {
                         self.postBody = postBody
                     } else {
                         print("Post body not found.")
