@@ -27,7 +27,7 @@ struct ImagePopoverView: View {
         }()
     }
 
-    let processor = DownsamplingImageProcessor(size: CGSize(width: 1300, height: 1300))
+    let processor = DownsamplingImageProcessor(size: CGSize(width: 1_300, height: 1_300))
     var thumbnailURL: String
 
     var body: some View {

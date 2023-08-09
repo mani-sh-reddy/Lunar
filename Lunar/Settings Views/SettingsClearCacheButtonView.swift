@@ -72,7 +72,7 @@ struct SettingsClearCacheButtonView: View {
         ImageCache.default.calculateDiskStorageSize { result in
             switch result {
             case let .success(size):
-                cacheSize = "\(String(format: "%.0f", Double(size) / 1024 / 1024)) MB"
+                cacheSize = "\(String(format: "%.0f", Double(size) / 1_024 / 1_024)) MB"
             case let .failure(error):
                 print("calculateCache FUNCTION ERROR: \(error)")
             }

@@ -79,7 +79,7 @@ extension MessagesViewController {
         }
 
         // Create the background view with the desired size and translucent background
-        let backgroundView = UIView(frame: CGRect(x: 0, y: 0, width: 1384, height: 1469))
+        let backgroundView = UIView(frame: CGRect(x: 0, y: 0, width: 1_384, height: 1_469))
         backgroundView.backgroundColor = UIColor.white.withAlphaComponent(0.5) // Translucent background
 
         // Create the image view and set its image
