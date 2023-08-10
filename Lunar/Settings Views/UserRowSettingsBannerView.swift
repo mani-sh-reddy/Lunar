@@ -49,7 +49,9 @@ struct UserRowSettingsBannerView: View {
             } else {
                 VStack(alignment: .leading, spacing: 3) {
                     Text(selectedName).font(.title2).bold()
-                    Text("@\(URLParser.extractDomain(from: selectedActorID))").font(.caption).foregroundStyle(.secondary)
+                    Text("@\(URLParser.extractDomain(from: selectedActorID))")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
                 }
             }
         }

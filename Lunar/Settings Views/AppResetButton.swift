@@ -18,9 +18,9 @@ struct AppResetButton: View {
 
     var body: some View {
         Section {
-            Button(role: .destructive, action: {
+            Button(role: .destructive) {
                 showConfirmation = true
-            }) {
+            } label: {
                 Label {
                     if isLoading {
                         ProgressView()
@@ -60,16 +60,15 @@ struct AppResetButton: View {
             .hapticFeedbackOnTap(style: .rigid)
             .listRowBackground(Color.red)
             .confirmationDialog("Clear user defaults and reset app", isPresented: $showConfirmation) {
-                Button(role: .destructive, action: {
-                    resetButtonAction()
-                }) {
+                Button(role: .destructive) {
+                    resetApp()
+                } label: {
                     Text("Confirm Reset")
                 }
             }
         }
     }
-
-    fileprivate func resetButtonAction() {
+    private func resetApp() {
         showConfirmation = true
         isLoading = true
         notificationHaptics.notificationOccurred(.success)

@@ -80,6 +80,16 @@ struct SettingsAccountView: View {
 
 struct SettingsAccountView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsAccountView(selectedAccount: .constant(LoggedInAccount(userID: "", name: "", email: "", avatarURL: "", actorID: "")))
+        SettingsAccountView(
+            selectedAccount: .constant(
+                LoggedInAccount(
+                    userID: "",
+                    name: "",
+                    email: "",
+                    avatarURL: "",
+                    actorID: ""
+                )
+            )
+        )
     }
 }

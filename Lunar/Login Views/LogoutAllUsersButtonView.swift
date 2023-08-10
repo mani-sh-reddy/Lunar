@@ -33,9 +33,9 @@ struct LogoutAllUsersButtonView: View {
     let haptic = UINotificationFeedbackGenerator()
 
     var body: some View {
-        Button(role: .destructive, action: {
+        Button(role: .destructive) {
             deleteConfirmationShown = true
-        }) {
+        } label: {
             Label {
                 if isLoadingDeleteButton {
                     ProgressView()
@@ -75,7 +75,7 @@ struct LogoutAllUsersButtonView: View {
         }
         .disabled(loggedInUsersList.isEmpty)
         .confirmationDialog("Remove All Accounts?", isPresented: $deleteConfirmationShown) {
-            Button(role: .destructive, action: {
+            Button(role: .destructive) {
                 isPresentingConfirm = true
                 selectedAccount = LoggedInAccount(userID: "", name: "", email: "", avatarURL: "", actorID: "")
                 loggedInAccounts.removeAll()
@@ -92,7 +92,10 @@ struct LogoutAllUsersButtonView: View {
                     logoutAllUsersButtonClicked = true
 
                     for userAccount in loggedInUsersList {
-                        KeychainHelper.standard.delete(service: "io.github.mani-sh-reddy.Lunar.app", account: userAccount)
+                        KeychainHelper.standard.delete(
+                            service: "io.github.mani-sh-reddy.Lunar.app",
+                            account: userAccount
+                        )
                         loggedInUsersList.removeAll { $0 == userAccount }
                         print("LOGGED OUT AND DELETED FROM KEYCHAIN: \(userAccount)")
                     }
@@ -103,9 +106,9 @@ struct LogoutAllUsersButtonView: View {
 
                     isLoadingDeleteButton = false
                     isPresentingConfirm = false
-                }}) {
-                Text("Logout All Users")
-            }
+                }} label: {
+                    Text("Logout All Users")
+                }
         }
     }
 }
