@@ -39,9 +39,9 @@ class SiteInfoFetcher: ObservableObject {
                     let avatarURL = result.myUser.localUserView.person.avatar
                     let actorID = result.myUser.localUserView.person.actorID
 
-//                    let localUserView = result.myUser.localUserView
-//
-//                    /// creating a loggedinuser object that can be persisted
+                    //                    let localUserView = result.myUser.localUserView
+                    //
+                    //                    /// creating a loggedinuser object that can be persisted
                     self.loggedInAccount.userID = String(userID)
                     self.loggedInAccount.name = username
                     self.loggedInAccount.email = email
@@ -51,7 +51,7 @@ class SiteInfoFetcher: ObservableObject {
                     /// adding to the list of already logged in accounts
                     self.loggedInAccounts.append(self.loggedInAccount)
 
-//                    Selecting and setting the latest logged in account as active
+                    //                    Selecting and setting the latest logged in account as active
                     self.selectedUserID = String(userID)
                     self.selectedName = username
                     self.selectedEmail = email
@@ -62,15 +62,16 @@ class SiteInfoFetcher: ObservableObject {
 
                     completion(username, email, response)
 
-                /// This function would only trigger if login was a success,
-                /// so here you only really need to return api, internet, and json decode errors
+                    /// This function would only trigger if login was a success,
+                    /// so here you only really need to return api, internet, and json decode errors
                 case let .failure(error):
                     if let data = response.data,
                        let fetchError = try? JSONDecoder().decode(ErrorResponseModel.self, from: data) {
                         print("fetchUsernameAndEmail ERROR: \(fetchError.error)")
                         completion(nil, nil, fetchError.error)
                     } else {
-                        print("fetchUsernameAndEmail JSON DECODE ERROR: \(error): \(String(describing: error.errorDescription))")
+                        let errorDescription = String(describing: error.errorDescription)
+                        print("fetchUsernameAndEmail JSON DECODE ERROR: \(error): \(errorDescription)")
                         completion(nil, nil, error.errorDescription)
                     }
                 }

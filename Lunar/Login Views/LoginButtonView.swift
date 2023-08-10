@@ -55,14 +55,14 @@ struct LoginButtonView: View {
 
     var body: some View {
         Section {
-            Button(action: {
+            Button {
                 let usernameEmail = usernameEmailInput.lowercased()
                 if loginButtonDisabled { return }
 
                 isLoginFlowComplete = false
                 tryLogin(usernameEmail: usernameEmail, password: password, twoFactor: twoFactor)
                 isLoginFlowComplete = true
-            }) {
+            } label: {
                 HStack {
                     Text("Login")
                         .disabled(loginButtonDisabled)

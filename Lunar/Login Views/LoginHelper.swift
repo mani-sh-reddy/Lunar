@@ -5,18 +5,17 @@
 //  Created by Mani on 28/07/2023.
 //
 
-/// Retrieving JWT Token
-/*  func getJWTFromKeychain() {
-     let keychainObject = KeychainHelper.standard.read(service: self.appBundleID, account: self.usernameEmail)
-
-     let accessToken = String(data: keychainObject, encoding: .utf8)!
-     print(accessToken)
- }
- */
-
 import Alamofire
 import SwiftUI
 
+/* **Retrieving JWT Token**
+ func getJWTFromKeychain() {
+ let keychainObject = KeychainHelper.standard.read(service: self.appBundleID, account: self.usernameEmail)
+
+ let accessToken = String(data: keychainObject, encoding: .utf8)!
+ print(accessToken)
+ }
+*/
 class LoginHelper: ObservableObject {
     @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
     @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID

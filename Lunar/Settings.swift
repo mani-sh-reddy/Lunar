@@ -17,7 +17,6 @@ enum Settings {
     static let kbinHostURL: String = "kbin.social"
     static let displayName: String = "Mani"
     static let userName: String = "mani"
-    // TODO: change after release
     static let debugModeEnabled: Bool = false
     static let appIconName: String = "AppIcon"
 

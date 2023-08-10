@@ -17,12 +17,11 @@ struct SettingsClearCacheButtonView: View {
     @State var cacheClearButtonOpacity: Double = 1
 
     var body: some View {
-        Button(action: {
+        Button {
             haptic.notificationOccurred(.success)
             clearCache()
             cacheClearButtonClicked = true
-        }
-        ) {
+        } label: {
             Label {
                 Text("Clear Cache")
                     .foregroundStyle(.red)

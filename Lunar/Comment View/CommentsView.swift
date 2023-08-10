@@ -85,11 +85,9 @@ struct CommentsView_Previews: PreviewProvider {
         CommentsView(
             commentsFetcher: commentsFetcher,
             postID: 1_442_451,
-            postTitle: "Lemmy.world active users is tapering off while other servers are gaining serious traction.",
-            thumbnailURL: "https://www.wallpapers13.com/wp-content/uploads/2015/12/Nature-Lake-Bled.-Desktop-background-image-1680x1050.jpg",
-            postBody: """
-            I noticed my feed on Lemmy was pretty dry today, even for Lemmy. Took me a while to realize lemmy.ml has been going up and down all morning
-            """
+            postTitle: MockData.commentsViewPostTitle1,
+            thumbnailURL: MockData.commentsViewThumbnailURL1,
+            postBody: MockData.commentsViewPostBody1
         )
     }
 }

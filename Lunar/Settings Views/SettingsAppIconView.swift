@@ -23,7 +23,10 @@ struct SettingsAppIconView: View {
                     }
                 }, label: {
                     HStack(spacing: 20) {
-                        Image(asset: "AppIcon\(appIconSuffix)").resizable().frame(width: 50, height: 50).clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                        Image(asset: "AppIcon\(appIconSuffix)")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                         Text("\(appIconSuffix)").foregroundStyle(.foreground)
                         Spacer()
                         Image(systemName: "checkmark.circle.fill")
@@ -41,8 +44,8 @@ struct SettingsAppIconView: View {
                     }
                 })
             }
-
-        }.navigationTitle("App Icon")
+        }
+        .navigationTitle("App Icon")
     }
 
     private func changeAppIcon(to iconName: String) {

@@ -17,10 +17,8 @@ extension String {
             "files.catbox.moe",
             "i.postimg.cc"
         ]
-        for url in validURLs {
-            if contains(url) {
-                return true
-            }
+        for url in validURLs where contains(url) {
+            return true
         }
         return false
     }

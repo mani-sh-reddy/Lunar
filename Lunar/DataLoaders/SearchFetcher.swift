@@ -126,35 +126,7 @@ import SwiftUI
         .responseDecodable(of: SearchModel.self) { response in
             switch response.result {
             case let .success(result):
-                // Check the typeParameter to determine which part of the code to execute
-                switch self.typeParameter {
-                case "Communities":
-                    let newCommunities = result.communities
-                    let filteredNewCommunities = newCommunities.filter { newCommunity in
-                        !self.communities.contains { $0.community.id == newCommunity.community.id }
-                    }
-                    self.communities += filteredNewCommunities
-                case "Comments":
-                    let newComments = result.comments
-                    let filteredNewComments = newComments.filter { newComment in
-                        !self.comments.contains { $0.comment.id == newComment.comment.id }
-                    }
-                    self.comments += filteredNewComments
-                case "Posts":
-                    let newPosts = result.posts
-                    let filteredNewPosts = newPosts.filter { newPost in
-                        !self.posts.contains { $0.post.id == newPost.post.id }
-                    }
-                    self.posts += filteredNewPosts
-                case "Users":
-                    let newUsers = result.users
-                    let filteredNewUsers = newUsers.filter { newUser in
-                        !self.users.contains { $0.person.id == newUser.person.id }
-                    }
-                    self.users += filteredNewUsers
-                default:
-                    print("break")
-                }
+                self.appendToList(result)
 
                 self.isLoading = false
                 self.currentPage += 1
@@ -167,4 +139,37 @@ import SwiftUI
             }
         }
     }
+
+    private func appendToList(_ result: SearchModel) {
+        // Check the typeParameter to determine which part of the code to execute
+        switch self.typeParameter {
+        case "Communities":
+            let newCommunities = result.communities
+            let filteredNewCommunities = newCommunities.filter { newCommunity in
+                !self.communities.contains { $0.community.id == newCommunity.community.id }
+            }
+            self.communities += filteredNewCommunities
+        case "Comments":
+            let newComments = result.comments
+            let filteredNewComments = newComments.filter { newComment in
+                !self.comments.contains { $0.comment.id == newComment.comment.id }
+            }
+            self.comments += filteredNewComments
+        case "Posts":
+            let newPosts = result.posts
+            let filteredNewPosts = newPosts.filter { newPost in
+                !self.posts.contains { $0.post.id == newPost.post.id }
+            }
+            self.posts += filteredNewPosts
+        case "Users":
+            let newUsers = result.users
+            let filteredNewUsers = newUsers.filter { newUser in
+                !self.users.contains { $0.person.id == newUser.person.id }
+            }
+            self.users += filteredNewUsers
+        default:
+            print("break")
+        }
+    }
+
 }

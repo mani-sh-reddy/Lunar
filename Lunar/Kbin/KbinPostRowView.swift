@@ -47,19 +47,37 @@ struct KbinPostRowView: View {
                 Spacer()
             }
             HStack {
-                ReactionButton(text: String(post.upvotes), icon: "arrow.up.circle.fill", color: Color.green, active: $upvoted, opposite: $downvoted)
-                    .onTapGesture {
-                        upvoted.toggle()
-                        downvoted = false
-                    }
-                if post.downvotes > 0 {
-                    ReactionButton(text: String(post.downvotes), icon: "arrow.down.circle.fill", color: Color.red, active: $downvoted, opposite: $upvoted)
-                        .onTapGesture {
-                            downvoted.toggle()
-                            upvoted = false
-                        }
+                ReactionButton(
+                    text: String(post.upvotes),
+                    icon: "arrow.up.circle.fill",
+                    color: Color.green,
+                    active: $upvoted,
+                    opposite: $downvoted
+                )
+                .onTapGesture {
+                    upvoted.toggle()
+                    downvoted = false
                 }
-                ReactionButton(text: String(post.commentsCount), icon: "bubble.left.circle.fill", color: Color.gray, active: .constant(false), opposite: .constant(false))
+                if post.downvotes > 0 {
+                    ReactionButton(
+                        text: String(post.downvotes),
+                        icon: "arrow.down.circle.fill",
+                        color: Color.red,
+                        active: $downvoted,
+                        opposite: $upvoted
+                    )
+                    .onTapGesture {
+                        downvoted.toggle()
+                        upvoted = false
+                    }
+                }
+                ReactionButton(
+                    text: String(post.commentsCount),
+                    icon: "bubble.left.circle.fill",
+                    color: Color.gray,
+                    active: .constant(false),
+                    opposite: .constant(false)
+                )
                 Spacer()
             }
         }
@@ -166,11 +184,11 @@ struct ReactionButton: View {
     let haptics = UIImpactFeedbackGenerator(style: .rigid)
 
     var body: some View {
-        Button(action: {
+        Button {
             active.toggle()
             opposite = false
             haptics.impactOccurred()
-        }) {
+        } label: {
             HStack {
                 Image(systemName: icon)
                 Text(text)
