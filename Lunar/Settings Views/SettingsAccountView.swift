@@ -8,88 +8,88 @@
 import SwiftUI
 
 struct SettingsAccountView: View {
-    @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
-    @AppStorage("loggedInEmailsList") var loggedInEmailsList = Settings.loggedInEmailsList
-    @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-    @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
+  @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
+  @AppStorage("loggedInEmailsList") var loggedInEmailsList = Settings.loggedInEmailsList
+  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
+  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
 
-    @State var showingPopover: Bool = false
-    @State var isPresentingConfirm: Bool = false
-    @State var logoutAllUsersButtonClicked: Bool = false
-    @State var logoutAllUsersButtonOpacity: Double = 1
-    @State var isLoadingDeleteButton: Bool = false
-    @State var deleteConfirmationShown = false
-    @State var isConvertingEmails: Bool = false
-    @State var keychainDebugString: String = ""
+  @State var showingPopover: Bool = false
+  @State var isPresentingConfirm: Bool = false
+  @State var logoutAllUsersButtonClicked: Bool = false
+  @State var logoutAllUsersButtonOpacity: Double = 1
+  @State var isLoadingDeleteButton: Bool = false
+  @State var deleteConfirmationShown = false
+  @State var isConvertingEmails: Bool = false
+  @State var keychainDebugString: String = ""
 
-    @Binding var selectedAccount: LoggedInAccount?
-    @State var isLoginFlowComplete: Bool = true
+  @Binding var selectedAccount: LoggedInAccount?
+  @State var isLoginFlowComplete: Bool = true
 
-    let haptic = UINotificationFeedbackGenerator()
+  let haptic = UINotificationFeedbackGenerator()
 
-    var body: some View {
-        List {
-            Section {
-                if isLoginFlowComplete {
-                    LoggedInUsersListView(selectedAccount: $selectedAccount)
-                } else {
-                    HStack {
-                        ProgressView()
-                            .padding(.trailing, 5)
-                        Text("Loading Users")
-                    }
-                }
-            }
-
-            Section {
-                AddNewUserButtonView(
-                    showingPopover: $showingPopover
-                )
-
-                LogoutAllUsersButtonView(
-                    showingPopover: $showingPopover,
-                    isPresentingConfirm: $isPresentingConfirm,
-                    logoutAllUsersButtonClicked: $logoutAllUsersButtonClicked,
-                    logoutAllUsersButtonOpacity: $logoutAllUsersButtonOpacity,
-                    isLoadingDeleteButton: $isLoadingDeleteButton,
-                    deleteConfirmationShown: $deleteConfirmationShown,
-                    isConvertingEmails: $isConvertingEmails,
-                    keychainDebugString: $keychainDebugString,
-                    selectedAccount: $selectedAccount
-                )
-            }
-
-            DebugAccountsPropertiesView(
-                showingPopover: showingPopover,
-                isPresentingConfirm: isPresentingConfirm,
-                logoutAllUsersButtonClicked: logoutAllUsersButtonClicked,
-                logoutAllUsersButtonOpacity: logoutAllUsersButtonOpacity,
-                isLoadingDeleteButton: isLoadingDeleteButton,
-                deleteConfirmationShown: deleteConfirmationShown
-            )
+  var body: some View {
+    List {
+      Section {
+        if isLoginFlowComplete {
+          LoggedInUsersListView(selectedAccount: $selectedAccount)
+        } else {
+          HStack {
+            ProgressView()
+              .padding(.trailing, 5)
+            Text("Loading Users")
+          }
         }
-        .navigationTitle("Accounts")
-        .sheet(isPresented: $showingPopover) {
-            LoginView(
-                showingPopover: $showingPopover,
-                isLoginFlowComplete: $isLoginFlowComplete
-            )
-        }
+      }
+
+      Section {
+        AddNewUserButtonView(
+          showingPopover: $showingPopover
+        )
+
+        LogoutAllUsersButtonView(
+          showingPopover: $showingPopover,
+          isPresentingConfirm: $isPresentingConfirm,
+          logoutAllUsersButtonClicked: $logoutAllUsersButtonClicked,
+          logoutAllUsersButtonOpacity: $logoutAllUsersButtonOpacity,
+          isLoadingDeleteButton: $isLoadingDeleteButton,
+          deleteConfirmationShown: $deleteConfirmationShown,
+          isConvertingEmails: $isConvertingEmails,
+          keychainDebugString: $keychainDebugString,
+          selectedAccount: $selectedAccount
+        )
+      }
+
+      DebugAccountsPropertiesView(
+        showingPopover: showingPopover,
+        isPresentingConfirm: isPresentingConfirm,
+        logoutAllUsersButtonClicked: logoutAllUsersButtonClicked,
+        logoutAllUsersButtonOpacity: logoutAllUsersButtonOpacity,
+        isLoadingDeleteButton: isLoadingDeleteButton,
+        deleteConfirmationShown: deleteConfirmationShown
+      )
     }
+    .navigationTitle("Accounts")
+    .sheet(isPresented: $showingPopover) {
+      LoginView(
+        showingPopover: $showingPopover,
+        isLoginFlowComplete: $isLoginFlowComplete
+      )
+    }
+  }
 }
 
 struct SettingsAccountView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsAccountView(
-            selectedAccount: .constant(
-                LoggedInAccount(
-                    userID: "",
-                    name: "",
-                    email: "",
-                    avatarURL: "",
-                    actorID: ""
-                )
-            )
+  static var previews: some View {
+    SettingsAccountView(
+      selectedAccount: .constant(
+        LoggedInAccount(
+          userID: "",
+          name: "",
+          email: "",
+          avatarURL: "",
+          actorID: ""
         )
-    }
+      )
+    )
+  }
 }

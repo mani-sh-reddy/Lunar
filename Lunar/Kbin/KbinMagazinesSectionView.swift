@@ -8,23 +8,23 @@
 import SwiftUI
 
 struct KbinMagazinesSectionView: View {
-    @AppStorage("kbinActive") var kbinActive = Settings.kbinActive
+  @AppStorage("kbinActive") var kbinActive = Settings.kbinActive
 
-    var body: some View {
-        if kbinActive {
-            NavigationLink {
-                KbinThreadsView(kbinThreadsFetcher: KbinThreadsFetcher())
-            } label: {
-                HStack {
-                    Image("KbinSymbol")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .symbolRenderingMode(.hierarchical)
+  var body: some View {
+    if kbinActive {
+      NavigationLink {
+        KbinThreadsView(kbinThreadsFetcher: KbinThreadsFetcher())
+      } label: {
+        HStack {
+          Image("KbinSymbol")
+            .resizable()
+            .frame(width: 30, height: 30)
+            .symbolRenderingMode(.hierarchical)
 
-                    Text("Kbin")
-                        .padding(.horizontal, 10)
-                }
-            }
+          Text("Kbin")
+            .padding(.horizontal, 10)
         }
+      }
     }
+  }
 }

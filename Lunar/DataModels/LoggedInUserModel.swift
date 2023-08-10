@@ -8,9 +8,9 @@
 import Foundation
 
 struct LoggedInAccount: Codable, Hashable {
-    var userID: String = ""
-    var name: String = ""
-    var email: String = ""
-    var avatarURL: String = ""
-    var actorID: String = ""
+  var userID: String = ""
+  var name: String = ""
+  var email: String = ""
+  var avatarURL: String = ""
+  var actorID: String = ""
 }

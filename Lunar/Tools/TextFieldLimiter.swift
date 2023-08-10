@@ -8,11 +8,11 @@
 import Foundation
 
 class TextFieldLimiter: ObservableObject {
-    @Published var twoFactor = ""
+  @Published var twoFactor = ""
 
-    let characterLimit: Int
+  let characterLimit: Int
 
-    init(limit: Int = 6) {
-        characterLimit = limit
-    }
+  init(limit: Int = 6) {
+    characterLimit = limit
+  }
 }

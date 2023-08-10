@@ -11,22 +11,22 @@ import SwiftUI
 // MARK: - Login
 
 struct CredentialsResponseModel: Codable {
-    let jwt: String
-    let registrationCreated: Bool?
-    let verifyEmailSent: Bool?
+  let jwt: String
+  let registrationCreated: Bool?
+  let verifyEmailSent: Bool?
 }
 
 struct CredentialsRequestModel: Encodable {
-    let usernameOrEmail: String
-    let password: String
-    let twoFactorToken: String?
+  let usernameOrEmail: String
+  let password: String
+  let twoFactorToken: String?
 }
 
 struct ErrorResponseModel: Codable {
-    let error: String
+  let error: String
 }
 
 struct UserInfoResponseModel: Codable {
-    let username: String
-    let email: String
+  let username: String
+  let email: String
 }
