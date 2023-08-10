@@ -1,14 +1,14 @@
 # Lunar - An iOS Client for Lemmy
 
-[![CodeFactor](https://www.codefactor.io/repository/github/mani-sh-reddy/lunar-lemmy-ios/badge)](https://www.codefactor.io/repository/github/mani-sh-reddy/lunar-lemmy-ios)
 [![GitHub release](https://img.shields.io/github/v/release/mani-sh-reddy/Lunar-Lemmy-iOS)](https://github.com/mani-sh-reddy/Lunar-Lemmy-iOS/releases)
+[![GitHub last commit (branch)](https://img.shields.io/github/last-commit/mani-sh-reddy/Lunar-Lemmy-iOS/dev)](https://github.com/mani-sh-reddy/Lunar-Lemmy-iOS/commits/main)
+[![DeepSource](https://app.deepsource.com/gh/mani-sh-reddy/Lunar-Lemmy-iOS.svg/?label=active+issues&show_trend=true&token=T8gxTn0BxZMno5Pxdh1pfAgB)](https://app.deepsource.com/gh/mani-sh-reddy/Lunar-Lemmy-iOS/?ref=repository-badge)
+
 ![Cocoapods platforms](https://img.shields.io/cocoapods/p/ios)
-[![Static Badge](https://img.shields.io/badge/Swift-5.9-orange?logo=swift&logoColor=orange)](https://www.swift.org/about/)
+[![Static Badge](https://img.shields.io/badge/Swift-5.8-orange?logo=swift&logoColor=orange)](https://www.swift.org/about/)
 [![Static Badge](https://img.shields.io/badge/SwiftUI-3.0-blue?logo=swift&logoColor=blue)
 ](https://developer.apple.com/xcode/swiftui/)
-[![GitHub last commit (branch)](https://img.shields.io/github/last-commit/mani-sh-reddy/Lunar-Lemmy-iOS/dev)](https://github.com/mani-sh-reddy/Lunar-Lemmy-iOS/commits/main)
 [![license: GPL v3](https://img.shields.io/badge/license-GPLv3-maroon.svg)](https://www.gnu.org/licenses/gpl-3.0)
-
 
 
 
