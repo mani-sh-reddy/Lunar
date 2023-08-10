@@ -1,0 +1,6 @@
+project: Lunar.xcodeproj
+retain_public: true
+schemes:
+- Lunar
+targets:
+- Lunar
