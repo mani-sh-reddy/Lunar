@@ -10,8 +10,8 @@ import SwiftUI
 
 struct CommunitySpecificPostsListView: View {
   @StateObject var communitySpecificPostsFetcher: CommunitySpecificPostsFetcher
-  var prop: [String: String]?
   @State var communityID: Int
+  var prop: [String: String] = [:]
   var title: String
 
   var body: some View {
