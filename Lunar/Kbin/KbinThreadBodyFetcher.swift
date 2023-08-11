@@ -47,7 +47,7 @@ class KbinThreadBodyFetcher: ObservableObject {
     isLoading = true
     AF.request(postURL).response { response in
       if let data = response.data,
-         let htmlString = String(data: data, encoding: .utf8)
+        let htmlString = String(data: data, encoding: .utf8)
       {
         do {
           let doc = try SwiftSoup.parse(htmlString)

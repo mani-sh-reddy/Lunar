@@ -54,13 +54,13 @@ struct KbinCommentSectionView: View {
 
   var body: some View {
     List {
-      Section{
+      Section {
         KbinPostRowView(post: post)
         if !postBody.isEmpty {
           Text(postBody)
         }
       }
-      Section{
+      Section {
         ForEach(comments, id: \.id) { comment in
           KbinCommentRowView(comment: comment)
         }
