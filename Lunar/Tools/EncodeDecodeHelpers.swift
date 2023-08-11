@@ -196,7 +196,7 @@ class JSONAny: Codable {
     to container: inout KeyedEncodingContainer<JSONCodingKey>, dictionary: [String: Any]
   ) throws {
     for (key, value) in dictionary {
-      let key = JSONCodingKey(stringValue: key)!
+      let key = JSONCodingKey(stringValue: key)! // skipcq: SW-W1023
       if let value = value as? Bool {
         try container.encode(value, forKey: key)
       } else if let value = value as? Int64 {

@@ -44,10 +44,10 @@ struct AggregatedCommunitiesSectionView: View {
       NavigationLink(
         destination: AggregatedPostsListView(
           aggregatedPostsFetcher: AggregatedPostsFetcher(
-            sortParameter: button["sort"]!,
-            typeParameter: button["type"]!
+            sortParameter: button["sort"] ?? "Active",
+            typeParameter: button["type"] ?? ""
           ),
-          title: button["title"]!
+          title: button["title"] ?? ""
         )
       ) {
         AggregatedCommunityRowView(button: button)

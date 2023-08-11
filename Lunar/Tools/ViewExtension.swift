@@ -109,7 +109,7 @@ extension View {
     controller.view.frame = CGRect(x: 0, y: CGFloat(Int.max), width: 1, height: 1)
     UIApplication.shared.connectedScenes.flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
       .filter(\.isKeyWindow)
-      .first!.rootViewController?.view.addSubview(controller.view)
+      .first!.rootViewController?.view.addSubview(controller.view) // skipcq: SW-W1023
     let size = controller.sizeThatFits(in: UIScreen.main.bounds.size)
     controller.view.bounds = CGRect(origin: .zero, size: size)
     controller.view.sizeToFit()
