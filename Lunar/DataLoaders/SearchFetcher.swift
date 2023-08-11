@@ -110,7 +110,7 @@ import SwiftUI
     }
 
     print("SEARCH QUERY: \(searchQuery)")
-    guard searchQuery != "" else {
+    guard !searchQuery.isEmpty else {
       print("SEARCH QUERY EMPTY, RETURNING")
       return
     }
