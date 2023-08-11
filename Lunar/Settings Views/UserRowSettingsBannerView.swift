@@ -44,7 +44,7 @@ struct UserRowSettingsBannerView: View {
           .symbolRenderingMode(.hierarchical)
       }
 
-      if selectedActorID == "" {
+      if selectedActorID.isEmpty {
         Text("Sign In").font(.title2).bold()
       } else {
         VStack(alignment: .leading, spacing: 3) {

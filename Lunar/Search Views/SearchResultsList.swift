@@ -57,7 +57,7 @@ struct SearchResultsList: View {
         },
         label: {
           Label {
-            if searchText != "" {
+            if !searchText.isEmpty {
               Text("More \(selectedSearchType) with \"\(searchText)\"")
             } else {
               Text("Trending")
@@ -72,7 +72,7 @@ struct SearchResultsList: View {
         })
     }
     .onDebouncedChange(of: $searchText, debounceFor: 0) { newValue in
-      if newValue == "" {
+      if newValue.isEmpty {
         withAnimation {
           isLoading = false
         }
