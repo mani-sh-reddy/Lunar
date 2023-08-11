@@ -11,74 +11,74 @@ import Kingfisher
 import SwiftUI
 
 @MainActor class TrendingCommunitiesFetcher: ObservableObject {
-    @Published var communities = [CommunityElement]()
-    @Published var isLoading = false
+  @Published var communities = [CommunityElement]()
+  @Published var isLoading = false
 
-    @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
+  @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
 
-    private var currentPage = 1
-    private var limitParameter: Int = 5
-    private var endpoint: URLComponents {
-        URLBuilder(
-            endpointPath: "/api/v3/community/list",
-            sortParameter: "Hot",
-            typeParameter: "All",
-            currentPage: currentPage,
-            limitParameter: limitParameter
-        ).buildURL()
+  private var currentPage = 1
+  private var limitParameter: Int = 5
+  private var endpoint: URLComponents {
+    URLBuilder(
+      endpointPath: "/api/v3/community/list",
+      sortParameter: "Hot",
+      typeParameter: "All",
+      currentPage: currentPage,
+      limitParameter: limitParameter
+    ).buildURL()
+  }
+
+  init() {
+    loadContent()
+  }
+
+  func refreshContent() async {
+    guard !isLoading else { return }
+
+    isLoading = true
+
+    let cacher = ResponseCacher(behavior: .cache)
+
+    AF.request(endpoint) { urlRequest in
+      print("TrendingCommunitiesFetcher REF \(urlRequest.url as Any)")
+      urlRequest.cachePolicy = .returnCacheDataElseLoad
     }
+    .cacheResponse(using: cacher)
+    .validate(statusCode: 200..<300)
+    .responseDecodable(of: CommunityModel.self) { response in
+      switch response.result {
+      case let .success(result):
+        self.communities = result.communities
+        self.isLoading = false
 
-    init() {
-        loadContent()
+      case let .failure(error):
+        print("TrendingCommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")")
+      }
     }
+  }
 
-    func refreshContent() async {
-        guard !isLoading else { return }
+  private func loadContent() {
+    guard !isLoading else { return }
 
-        isLoading = true
+    isLoading = true
 
-        let cacher = ResponseCacher(behavior: .cache)
+    let cacher = ResponseCacher(behavior: .cache)
 
-        AF.request(endpoint) { urlRequest in
-            print("TrendingCommunitiesFetcher REF \(urlRequest.url as Any)")
-            urlRequest.cachePolicy = .returnCacheDataElseLoad
-        }
-        .cacheResponse(using: cacher)
-        .validate(statusCode: 200 ..< 300)
-        .responseDecodable(of: CommunityModel.self) { response in
-            switch response.result {
-            case let .success(result):
-                self.communities = result.communities
-                self.isLoading = false
-
-            case let .failure(error):
-                print("TrendingCommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")")
-            }
-        }
+    AF.request(endpoint) { urlRequest in
+      print("TrendingCommunitiesFetcher LOAD \(urlRequest.url as Any)")
+      urlRequest.cachePolicy = .returnCacheDataElseLoad
     }
+    .cacheResponse(using: cacher)
+    .validate(statusCode: 200..<300)
+    .responseDecodable(of: CommunityModel.self) { response in
+      switch response.result {
+      case let .success(result):
+        self.communities = result.communities
+        self.isLoading = false
 
-    private func loadContent() {
-        guard !isLoading else { return }
-
-        isLoading = true
-
-        let cacher = ResponseCacher(behavior: .cache)
-
-        AF.request(endpoint) { urlRequest in
-            print("TrendingCommunitiesFetcher LOAD \(urlRequest.url as Any)")
-            urlRequest.cachePolicy = .returnCacheDataElseLoad
-        }
-        .cacheResponse(using: cacher)
-        .validate(statusCode: 200 ..< 300)
-        .responseDecodable(of: CommunityModel.self) { response in
-            switch response.result {
-            case let .success(result):
-                self.communities = result.communities
-                self.isLoading = false
-
-            case let .failure(error):
-                print("TrendingCommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")")
-            }
-        }
+      case let .failure(error):
+        print("TrendingCommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")")
+      }
     }
+  }
 }

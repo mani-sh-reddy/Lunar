@@ -8,22 +8,22 @@
 import SwiftUI
 
 struct AddNewUserButtonView: View {
-    @Binding var showingPopover: Bool
-    var body: some View {
-        Button(action: addNewUserButtonAction) {
-            Label {
-                Text("Add User").foregroundStyle(.blue)
-            } icon: {
-                Image(systemName: "plus.circle.fill")
-                    .font(.title2)
-                    .foregroundStyle(.blue)
-                    .symbolRenderingMode(.hierarchical)
-            }
-        }
+  @Binding var showingPopover: Bool
+  var body: some View {
+    Button(action: addNewUserButtonAction) {
+      Label {
+        Text("Add User").foregroundStyle(.blue)
+      } icon: {
+        Image(systemName: "plus.circle.fill")
+          .font(.title2)
+          .foregroundStyle(.blue)
+          .symbolRenderingMode(.hierarchical)
+      }
     }
-    private func addNewUserButtonAction() {
-        withAnimation(.linear(duration: 1)) {
-            showingPopover = true
-        }
+  }
+  private func addNewUserButtonAction() {
+    withAnimation(.linear(duration: 1)) {
+      showingPopover = true
     }
+  }
 }

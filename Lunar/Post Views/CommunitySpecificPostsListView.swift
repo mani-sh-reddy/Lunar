@@ -9,50 +9,52 @@ import Kingfisher
 import SwiftUI
 
 struct CommunitySpecificPostsListView: View {
-    @StateObject var communitySpecificPostsFetcher: CommunitySpecificPostsFetcher
-    var prop: [String: String]?
-    @State var communityID: Int
-    var title: String
+  @StateObject var communitySpecificPostsFetcher: CommunitySpecificPostsFetcher
+  var prop: [String: String]?
+  @State var communityID: Int
+  var title: String
 
-    var body: some View {
-        ScrollViewReader { _ in
-            List {
-                ForEach(communitySpecificPostsFetcher.posts, id: \.post.id) { post in
-                    Section {
-                        ZStack {
-                            PostRowView(post: post)
-                            NavigationLink(destination: CommentsView(
-                                commentsFetcher: CommentsFetcher(
-                                    postID: post.post.id,
-                                    sortParameter: "Top",
-                                    typeParameter: "All"
-                                ),
-                                postID: post.post.id,
-                                postTitle: post.post.name,
-                                thumbnailURL: post.post.thumbnailURL,
-                                postBody: post.post.body
-                            )) {
-                                EmptyView()
-                                    .frame(height: 0)
-                            }
-                            .opacity(0)
-                        }
-                        .task {
-                            communitySpecificPostsFetcher.loadMoreContentIfNeeded(currentItem: post)
-                        }
-                        .accentColor(Color.primary)
-                    }
-                }
-                if communitySpecificPostsFetcher.isLoading {
-                    ProgressView()
-                }
+  var body: some View {
+    ScrollViewReader { _ in
+      List {
+        ForEach(communitySpecificPostsFetcher.posts, id: \.post.id) { post in
+          Section {
+            ZStack {
+              PostRowView(post: post)
+              NavigationLink(
+                destination: CommentsView(
+                  commentsFetcher: CommentsFetcher(
+                    postID: post.post.id,
+                    sortParameter: "Top",
+                    typeParameter: "All"
+                  ),
+                  postID: post.post.id,
+                  postTitle: post.post.name,
+                  thumbnailURL: post.post.thumbnailURL,
+                  postBody: post.post.body
+                )
+              ) {
+                EmptyView()
+                  .frame(height: 0)
+              }
+              .opacity(0)
             }
-            .navigationTitle(title)
-            .navigationBarTitleDisplayMode(.inline)
-            .listStyle(.grouped)
-            .refreshable {
-                await communitySpecificPostsFetcher.refreshContent()
+            .task {
+              communitySpecificPostsFetcher.loadMoreContentIfNeeded(currentItem: post)
             }
+            .accentColor(Color.primary)
+          }
         }
+        if communitySpecificPostsFetcher.isLoading {
+          ProgressView()
+        }
+      }
+      .navigationTitle(title)
+      .navigationBarTitleDisplayMode(.inline)
+      .listStyle(.grouped)
+      .refreshable {
+        await communitySpecificPostsFetcher.refreshContent()
+      }
     }
+  }
 }
