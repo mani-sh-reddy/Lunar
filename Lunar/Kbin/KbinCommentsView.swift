@@ -22,47 +22,47 @@ struct KbinCommentsView: View {
     } else {
       KbinCommentSectionView(comments: kbinCommentsFetcher.comments)
     }
-}
-
-struct KbinCommentSectionView: View {
-  var comments: [KbinComment]
-  var body: some View {
-    List {
-      ForEach(comments, id: \.id) { comment in
-        KbinCommentRowView(comment: comment)
-      }
-    }.listStyle(.grouped)
   }
-}
 
-struct KbinCommentRowView: View {
+  struct KbinCommentSectionView: View {
+    var comments: [KbinComment]
+    var body: some View {
+      List {
+        ForEach(comments, id: \.id) { comment in
+          KbinCommentRowView(comment: comment)
+        }
+      }.listStyle(.grouped)
+    }
+  }
+
+  struct KbinCommentRowView: View {
     let comment: KbinComment
     let commentHierarchyColors: [Color] = [
-        .red,
-        .orange,
-        .yellow,
-        .green,
-        .cyan,
-        .blue,
-        .indigo,
-        .purple
+      .red,
+      .orange,
+      .yellow,
+      .green,
+      .cyan,
+      .blue,
+      .indigo,
+      .purple,
     ]
     var body: some View {
-        HStack {
-            ForEach(1 ..< (Int(comment.indentLevel) ?? 1), id: \.self) { _ in
-                Rectangle().opacity(0).frame(width: 0.5).padding(.horizontal, 0)
-            }
-            let indentLevel = min(Int(comment.indentLevel) ?? 0, commentHierarchyColors.count - 1)
-            let foregroundColor = commentHierarchyColors[indentLevel]
-            if (Int(comment.indentLevel) ?? 1) > 1 {
-                Capsule(style: .continuous)
-                    .foregroundStyle(foregroundColor)
-                    .frame(width: 1)
-                    .padding(.vertical, 0)
-                    .padding(.horizontal, 0)
-            }
-            Text(comment.content)
+      HStack {
+        ForEach(1..<(Int(comment.indentLevel) ?? 1), id: \.self) { _ in
+          Rectangle().opacity(0).frame(width: 0.5).padding(.horizontal, 0)
         }
+        let indentLevel = min(Int(comment.indentLevel) ?? 0, commentHierarchyColors.count - 1)
+        let foregroundColor = commentHierarchyColors[indentLevel]
+        if (Int(comment.indentLevel) ?? 1) > 1 {
+          Capsule(style: .continuous)
+            .foregroundStyle(foregroundColor)
+            .frame(width: 1)
+            .padding(.vertical, 0)
+            .padding(.horizontal, 0)
+        }
+        Text(comment.content)
+      }
     }
     //            if !comment.replies.isEmpty {
     //                KbinCommentRowView(comments: comment.replies)

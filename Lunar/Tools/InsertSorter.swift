@@ -13,7 +13,8 @@ enum InsertSorter {
     for (currentIndex, existingComment) in comments.enumerated() {
       if newComment.comment.path < existingComment.comment.path
         || (newComment.comment.path == existingComment.comment.path
-          && newComment.comment.id < existingComment.comment.id) {
+          && newComment.comment.id < existingComment.comment.id)
+      {
         index = currentIndex
         break
       }

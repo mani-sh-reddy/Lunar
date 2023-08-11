@@ -18,7 +18,8 @@ extension View {
     }
   }
   func hapticNotificationFeedbackOnTap(style: UINotificationFeedbackGenerator.FeedbackType)
-    -> some View {
+    -> some View
+  {
     onTapGesture {
       let haptic = UINotificationFeedbackGenerator()
       haptic.notificationOccurred(style)
