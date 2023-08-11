@@ -38,7 +38,7 @@ class LoginHelper: ObservableObject {
     let credentialsRequest = CredentialsRequestModel(
       usernameOrEmail: usernameEmail,
       password: password,
-      twoFactorToken: twoFactor.isEmpty ? nil : twoFactor
+      twoFactorToken: twoFactor == "" ? nil : twoFactor // skipcq: SW-P1006
     )
 
     let headers: HTTPHeaders = [
