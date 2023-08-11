@@ -60,18 +60,16 @@ struct KbinPostRowView: View {
           upvoted.toggle()
           downvoted = false
         }
-        if post.downvotes > 0 {
-          ReactionButton(
-            text: String(post.downvotes),
-            icon: "arrow.down.circle.fill",
-            color: Color.red,
-            active: $downvoted,
-            opposite: $upvoted
-          )
-          .onTapGesture {
-            downvoted.toggle()
-            upvoted = false
-          }
+        ReactionButton(
+          text: String(post.downvotes),
+          icon: "arrow.down.circle.fill",
+          color: Color.red,
+          active: $downvoted,
+          opposite: $upvoted
+        )
+        .onTapGesture {
+          downvoted.toggle()
+          upvoted = false
         }
         ReactionButton(
           text: String(post.commentsCount),
