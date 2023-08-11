@@ -43,7 +43,7 @@ class LoginHelper: ObservableObject {
 
     let headers: HTTPHeaders = [
       "accept": "application/json",
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     ]
 
     AF.request(
@@ -61,8 +61,7 @@ class LoginHelper: ObservableObject {
 
       case let .failure(error):
         if let data = response.data,
-          let loginErrorResponse = try? JSONDecoder().decode(ErrorResponseModel.self, from: data)
-        {
+          let loginErrorResponse = try? JSONDecoder().decode(ErrorResponseModel.self, from: data) {
           completion(false, loginErrorResponse.error)
 
         } else {

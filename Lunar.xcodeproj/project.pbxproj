@@ -95,7 +95,6 @@
 		3CD4DA262A7EF8DB00BC374A /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD4DA252A7EF8DB00BC374A /* UserInfoView.swift */; };
 		3CD4DA282A7F05CF00BC374A /* CommunityInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD4DA272A7F05CF00BC374A /* CommunityInfoView.swift */; };
 		3CDF229D2A6D436B009281F2 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDF229C2A6D436B009281F2 /* Settings.swift */; };
-		3CE0A78E2A840DC5008A782A /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 3CE0A78D2A840DC5008A782A /* .swiftlint.yml */; };
 		3CE0A7942A8551CD008A782A /* EncodeDecodeHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE0A7932A8551CD008A782A /* EncodeDecodeHelpers.swift */; };
 		3CEA54462A59E6FB009E4FB3 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEA54452A59E6FB009E4FB3 /* MockData.swift */; };
 		3CED897B2A71A5CF00BD9086 /* ImagePopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CED897A2A71A5CF00BD9086 /* ImagePopoverView.swift */; };
@@ -248,7 +247,6 @@
 		3CD4DA252A7EF8DB00BC374A /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		3CD4DA272A7F05CF00BC374A /* CommunityInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityInfoView.swift; sourceTree = "<group>"; };
 		3CDF229C2A6D436B009281F2 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		3CE0A78D2A840DC5008A782A /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		3CE0A7932A8551CD008A782A /* EncodeDecodeHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodeDecodeHelpers.swift; sourceTree = "<group>"; };
 		3CEA54452A59E6FB009E4FB3 /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		3CED897A2A71A5CF00BD9086 /* ImagePopoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePopoverView.swift; sourceTree = "<group>"; };
@@ -352,7 +350,6 @@
 		3C4F09F32A54399F009DF8AB = {
 			isa = PBXGroup;
 			children = (
-				3CE0A78D2A840DC5008A782A /* .swiftlint.yml */,
 				3C4F09FE2A54399F009DF8AB /* Lunar */,
 				3C10A76D2A72A6FC0040F1A9 /* Frameworks */,
 				3C10A7702A72A6FC0040F1A9 /* Lunar Stickers MessagesExtension */,
@@ -617,7 +614,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				3CE0A78B2A840917008A782A /* PBXTargetDependency */,
 			);
 			name = Lunar;
 			packageProductDependencies = (
@@ -666,7 +662,6 @@
 				3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */,
 				3CFE04BD2A7FEA71007BAD81 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
-				3CE0A78F2A840F85008A782A /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = 3C4F09FD2A54399F009DF8AB /* Products */;
 			projectDirPath = "";
@@ -702,7 +697,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CE0A78E2A840DC5008A782A /* .swiftlint.yml in Resources */,
 				3C1A3F532A731B8C00898FC6 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -830,10 +824,6 @@
 			isa = PBXTargetDependency;
 			target = 3C10A7682A72A6FC0040F1A9 /* Lunar Stickers MessagesExtension */;
 			targetProxy = 3C10A76B2A72A6FC0040F1A9 /* PBXContainerItemProxy */;
-		};
-		3CE0A78B2A840917008A782A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 3CE0A78A2A840917008A782A /* SwiftLintPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1236,22 +1226,6 @@
 				minimumVersion = 12.1.5;
 			};
 		};
-		3CE0A7852A8408DB008A782A /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/SwiftLint.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.52.4;
-			};
-		};
-		3CE0A78F2A840F85008A782A /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/SwiftLint.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.52.4;
-			};
-		};
 		3CEF19692A580672006736EF /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -1285,11 +1259,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = NukeUI;
-		};
-		3CE0A78A2A840917008A782A /* SwiftLintPlugin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3CE0A7852A8408DB008A782A /* XCRemoteSwiftPackageReference "SwiftLint" */;
-			productName = "plugin:SwiftLintPlugin";
 		};
 		3CEF196A2A580672006736EF /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

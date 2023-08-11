@@ -77,7 +77,6 @@ struct KbinCommentsView_Previews: PreviewProvider {
   }
 }
 
-
 //        List {
 //            Section {
 //                    KbinCommentRowView(comments: kbinCommentsFetcher.comments)

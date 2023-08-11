@@ -71,8 +71,7 @@ import SwiftUI
     }
     let thresholdIndex = communities.index(communities.endIndex, offsetBy: -1)
     if communities.firstIndex(where: { $0.community.id == community.community.id })
-      == thresholdIndex
-    {
+      == thresholdIndex {
       loadMoreContent { _, _ in }
     }
   }

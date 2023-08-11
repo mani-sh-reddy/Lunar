@@ -66,8 +66,7 @@ class SiteInfoFetcher: ObservableObject {
         /// so here you only really need to return api, internet, and json decode errors
         case let .failure(error):
           if let data = response.data,
-            let fetchError = try? JSONDecoder().decode(ErrorResponseModel.self, from: data)
-          {
+            let fetchError = try? JSONDecoder().decode(ErrorResponseModel.self, from: data) {
             print("fetchUsernameAndEmail ERROR: \(fetchError.error)")
             completion(nil, nil, fetchError.error)
           } else {

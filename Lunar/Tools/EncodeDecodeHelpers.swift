@@ -158,8 +158,7 @@ class JSONAny: Codable {
   }
 
   static func decodeDictionary(from container: inout KeyedDecodingContainer<JSONCodingKey>) throws
-    -> [String: Any]
-  {
+    -> [String: Any] {
     var dict = [String: Any]()
     for key in container.allKeys {
       let value = try decode(from: &container, forKey: key)

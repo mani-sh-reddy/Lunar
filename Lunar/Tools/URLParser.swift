@@ -18,8 +18,7 @@ enum URLParser {
 
     if let range = host.range(
       of: #"^(www\.)?([a-zA-Z0-9-]+\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?$"#,
-      options: .regularExpression)
-    {
+      options: .regularExpression) {
       return String(host[range])
     }
 
