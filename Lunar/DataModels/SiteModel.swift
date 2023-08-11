@@ -285,7 +285,8 @@ struct LocalSiteRateLimit: Codable {
 struct Site: Codable {
   let id: Int
   let name, sidebar, published, updated: String
-  let icon, banner: String
+  let icon: String
+  let banner: String?
   let description: String
   let actorID: String
   let lastRefreshedAt: String
