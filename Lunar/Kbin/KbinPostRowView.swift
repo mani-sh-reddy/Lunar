@@ -28,8 +28,10 @@ struct KbinPostRowView: View {
 
   var body: some View {
     VStack {
-      InPostThumbnailView(thumbnailURL: post.imageUrl)
-      Spacer()
+      if !post.imageUrl.isEmpty {
+        InPostThumbnailView(thumbnailURL: post.imageUrl)
+        Spacer()
+      }
       HStack {
         VStack(alignment: .leading, spacing: 5) {
           Text(magazine)
