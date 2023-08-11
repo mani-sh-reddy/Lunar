@@ -119,8 +119,8 @@ import SwiftUI
 
         if !filteredNewComments.isEmpty {
           DispatchQueue.main.async {
-            let sortedFilteredComments = filteredNewComments.sorted {
-              $0.comment.path < $1.comment.path
+            let sortedFilteredComments = filteredNewComments.sorted { sorted, newSorted in
+              sorted.comment.path < newSorted.comment.path
             }
             for newComment in sortedFilteredComments {
               InsertSorter.sortComments(newComment, into: &self.comments)
