@@ -36,9 +36,9 @@ class LoginHelper: ObservableObject {
   func login(completion: @escaping (Bool, String) -> Void) {
     let endpoint = "https://\(instanceHostURL)/api/v3/user/login"
     let credentialsRequest = CredentialsRequestModel(
-      usernameOrEmail: usernameEmail,
+      username_or_email: usernameEmail,
       password: password,
-      twoFactorToken: twoFactor == "" ? nil : twoFactor  // skipcq: SW-P1006
+      totp_2fa_token: twoFactor == "" ? nil : twoFactor  // skipcq: SW-P1006
     )
 
     let headers: HTTPHeaders = [
