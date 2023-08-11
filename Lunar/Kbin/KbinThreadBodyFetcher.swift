@@ -45,17 +45,19 @@ class KbinThreadBodyFetcher: ObservableObject {
     guard !isLoading else { return }
 
     isLoading = true
-    let url = "https://\(kbinHostURL)\(postURL)"
-    AF.request(url).response { response in
+    AF.request(postURL).response { response in
       if let data = response.data,
-        let htmlString = String(data: data, encoding: .utf8)
+         let htmlString = String(data: data, encoding: .utf8)
       {
         do {
           let doc = try SwiftSoup.parse(htmlString)
-          if let entryBody = try doc.select("div.entry__body").first(),
-            let postBody = try entryBody.select("div.content.formatted").first()?.text()
-          {
-            self.postBody = postBody
+          if let entryBody = try doc.select("div.entry__body").first() {
+            let paragraphs = try entryBody.select("div.content.formatted p")
+            var extractedText = ""
+            for paragraph in paragraphs {
+              extractedText += try paragraph.text() + "\n"
+            }
+            self.postBody = extractedText
           } else {
             print("Post body not found.")
           }
@@ -65,6 +67,7 @@ class KbinThreadBodyFetcher: ObservableObject {
       } else {
         print("Failed to get HTML content")
       }
+      self.isLoading = false
     }
   }
 }

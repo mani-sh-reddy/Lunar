@@ -24,7 +24,7 @@ struct KbinThreadsView: View {
             ZStack {
               KbinPostRowView(post: post)
               NavigationLink {
-                KbinCommentsView(postURL: "https://\(kbinHostURL)\(post.postURL)")
+                KbinCommentsView(post: post, postURL: "https://\(kbinHostURL)\(post.postURL)")
               } label: {
                 EmptyView()
               }
