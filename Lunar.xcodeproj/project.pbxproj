@@ -6,20 +6,6 @@
 	objectVersion = 56;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		3CE0A7952A855A88008A782A /* Unused Code */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 3CE0A7962A855A88008A782A /* Build configuration list for PBXAggregateTarget "Unused Code" */;
-			buildPhases = (
-				3CE0A7992A855A90008A782A /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = "Unused Code";
-			productName = "Unused Code";
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		3C10A7642A72A6FC0040F1A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C10A7632A72A6FC0040F1A9 /* Assets.xcassets */; };
 		3C10A76A2A72A6FC0040F1A9 /* Lunar Stickers MessagesExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3C10A7692A72A6FC0040F1A9 /* Lunar Stickers MessagesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -664,9 +650,6 @@
 					3C4F09FB2A54399F009DF8AB = {
 						CreatedOnToolsVersion = 15.0;
 					};
-					3CE0A7952A855A88008A782A = {
-						CreatedOnToolsVersion = 15.0;
-					};
 				};
 			};
 			buildConfigurationList = 3C4F09F72A54399F009DF8AB /* Build configuration list for PBXProject "Lunar" */;
@@ -692,7 +675,6 @@
 				3C4F09FB2A54399F009DF8AB /* Lunar */,
 				3C10A7602A72A6FB0040F1A9 /* Lunar Stickers */,
 				3C10A7682A72A6FC0040F1A9 /* Lunar Stickers MessagesExtension */,
-				3CE0A7952A855A88008A782A /* Unused Code */,
 			);
 		};
 /* End PBXProject section */
@@ -726,26 +708,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		3CE0A7992A855A90008A782A /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3C10A7652A72A6FC0040F1A9 /* Sources */ = {
@@ -1216,24 +1178,6 @@
 			};
 			name = Release;
 		};
-		3CE0A7972A855A88008A782A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QR8TDZJV2W;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		3CE0A7982A855A88008A782A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QR8TDZJV2W;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1269,15 +1213,6 @@
 			buildConfigurations = (
 				3C4F0A0D2A54399F009DF8AB /* Debug */,
 				3C4F0A0E2A54399F009DF8AB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3CE0A7962A855A88008A782A /* Build configuration list for PBXAggregateTarget "Unused Code" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3CE0A7972A855A88008A782A /* Debug */,
-				3CE0A7982A855A88008A782A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
