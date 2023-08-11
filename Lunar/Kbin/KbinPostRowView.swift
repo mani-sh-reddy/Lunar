@@ -82,7 +82,7 @@ struct KbinPostRowView: View {
       }
     }
     .padding(.horizontal, -5)
-    .padding(.vertical, 10)
+    .padding(.vertical, post.imageUrl.isEmpty ? 0 : 10)
     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
       GoIntotSwipeAction(isClicked: $goInto)
     }
