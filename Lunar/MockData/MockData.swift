@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MockData {
+enum MockData {
   static let kbinPostURL =
     "https://kbin.social/m/kbinMeta/t/86614/PSA-Upvote-is-not-an-upvote-like-you-are-used"
   static let kbinPostURL2 = "/m/kbinMeta/t/86614/PSA-Upvote-is-not-an-upvote-like-you-are-used"

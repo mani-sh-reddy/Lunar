@@ -7,7 +7,7 @@
 
 import Foundation
 
-class InsertSorter {
+enum InsertSorter {
   static func sortComments(_ newComment: CommentElement, into comments: inout [CommentElement]) {
     var index = comments.endIndex
     for (currentIndex, existingComment) in comments.enumerated() {

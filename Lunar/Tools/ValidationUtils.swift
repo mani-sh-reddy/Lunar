@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ValidationUtils {
+enum ValidationUtils {
   static func isValidEmail(input: String) -> Bool {
     guard input.count >= 3 else { return false }
     let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
