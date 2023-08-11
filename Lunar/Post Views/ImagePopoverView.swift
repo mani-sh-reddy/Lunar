@@ -21,7 +21,7 @@ struct ImagePopoverView: View {
   @State var buttonOpacity = 0.8
 
   private let pipeline = ImagePipeline { pipeline in
-      pipeline.dataLoader = {
+    pipeline.dataLoader = {
       let config = URLSessionConfiguration.default
       return DataLoader(configuration: config)
     }()
