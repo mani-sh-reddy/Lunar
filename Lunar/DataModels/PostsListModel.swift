@@ -12,9 +12,9 @@ import UIKit
 
 struct PostsModel: Codable {
   let posts: [PostElement]
-
+  
   var thumbnailURLs: [String] {
-    posts.compactMap(\.post.thumbnailURL)
+    posts.compactMap {$0.post.thumbnailURL}
   }
 
   var avatarURLs: [String] {
@@ -135,12 +135,12 @@ struct PostObject: Codable {
   let published: String
   let deleted: Bool
   let nsfw: Bool = false
-  let thumbnailURL: String?
+  let thumbnailURL: String = ""
   let apID: String
   let local: Bool
   let languageID: Int
   let featuredCommunity, featuredLocal: Bool
-  let body: String?
+  let body: String = ""
   let updated, embedTitle, embedDescription: String?
   let embedVideoURL: String?
 

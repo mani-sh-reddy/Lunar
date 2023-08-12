@@ -13,20 +13,27 @@ struct TrendingCommunitiesSectionView: View {
 
   var body: some View {
     ForEach(trendingCommunitiesFetcher.communities, id: \.community.id) { community in
-
-      NavigationLink(
-        destination: CommunitySpecificPostsListView(
-          communitySpecificPostsFetcher: CommunitySpecificPostsFetcher(
-            communityID: community.community.id,
-            sortParameter: "Hot",
-            typeParameter: "Local"
-          ),
-          communityID: community.community.id,
-          title: community.community.title
-        )
-      ) {
+      
+      // TODO: -
+      NavigationLink {
+        Text(String(describing: community.community))
+      } label: {
         CommunityRowView(community: community)
       }
+
+//      NavigationLink(
+//        destination: CommunitySpecificPostsListView(
+//          communitySpecificPostsFetcher: CommunitySpecificPostsFetcher(
+//            communityID: community.community.id,
+//            sortParameter: "Hot",
+//            typeParameter: "Local"
+//          ),
+//          communityID: community.community.id,
+//          title: community.community.title
+//        )
+//      ) {
+//        CommunityRowView(community: community)
+//      }
     }
     if trendingCommunitiesFetcher.isLoading {
       ProgressView()

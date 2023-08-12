@@ -17,20 +17,27 @@ struct MoreCommunitiesView: View {
     List {
       Section {
         ForEach(communitiesFetcher.communities, id: \.community.id) { community in
-
-          NavigationLink(
-            destination: CommunitySpecificPostsListView(
-              communitySpecificPostsFetcher: CommunitySpecificPostsFetcher(
-                communityID: community.community.id,
-                sortParameter: "Active",
-                typeParameter: "All"
-              ),
-              communityID: community.community.id,
-              title: community.community.title
-            )
-          ) {
-            MoreCommunitiesRowView(community: community)
+          
+          // TODO: -
+          NavigationLink {
+            Text(String(describing: community.community))
+          } label: {
+            CommunityRowView(community: community)
           }
+
+//          NavigationLink(
+//            destination: CommunitySpecificPostsListView(
+//              communitySpecificPostsFetcher: CommunitySpecificPostsFetcher(
+//                communityID: community.community.id,
+//                sortParameter: "Active",
+//                typeParameter: "All"
+//              ),
+//              communityID: community.community.id,
+//              title: community.community.title
+//            )
+//          ) {
+//            MoreCommunitiesRowView(community: community)
+//          }
           .task {
             communitiesFetcher.loadMoreContentIfNeeded(currentItem: community)
           }

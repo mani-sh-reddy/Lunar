@@ -42,10 +42,10 @@ struct AggregatedCommunitiesSectionView: View {
   var body: some View {
     ForEach(aggregatedCommunityButtons, id: \.self) { button in
       NavigationLink(
-        destination: AggregatedPostsListView(
-          aggregatedPostsFetcher: AggregatedPostsFetcher(
-            sortParameter: button["sort"] ?? "Active",
-            typeParameter: button["type"] ?? ""
+        destination: PostsView(
+          postsFetcher: PostsFetcher(
+            sortParameter: button["sort"] ?? "Hot",
+            typeParameter: button["type"] ?? "All"
           ),
           title: button["title"] ?? ""
         )

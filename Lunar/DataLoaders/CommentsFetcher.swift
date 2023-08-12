@@ -12,20 +12,19 @@ import Kingfisher
 import SwiftUI
 
 @MainActor class CommentsFetcher: ObservableObject {
+  @AppStorage("commentSort") var commentSort = Settings.commentSort
   @Published var comments = [CommentElement]()
   @Published var isLoading = false
 
   private var currentPage = 1
   private var postID: Int
-  private var sortParameter: String
-  private var typeParameter: String
   private var limitParameter: Int = 50
   private let maxDepth: Int = 50
+
   private var endpoint: URLComponents {
     URLBuilder(
       endpointPath: "/api/v3/comment/list",
-      sortParameter: sortParameter,
-      typeParameter: typeParameter,
+      sortParameter: commentSort,
       currentPage: currentPage,
       limitParameter: limitParameter,
       postID: postID,
@@ -33,14 +32,8 @@ import SwiftUI
     ).buildURL()
   }
 
-  init(
-    postID: Int,
-    sortParameter: String,
-    typeParameter: String
-  ) {
+  init(postID: Int) {
     self.postID = postID
-    self.sortParameter = sortParameter
-    self.typeParameter = typeParameter
     loadMoreContent()
   }
 

@@ -37,7 +37,7 @@ class URLBuilder {
 
   init(
     endpointPath: String,
-    sortParameter: String? = "Active",
+    sortParameter: String? = "Hot",
     typeParameter: String? = "",
     currentPage: Int? = 1,
     limitParameter: Int? = nil,

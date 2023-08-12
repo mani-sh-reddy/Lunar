@@ -64,7 +64,7 @@
 		3C96EA552A7857D900753199 /* LoggedInUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96EA542A7857D900753199 /* LoggedInUserModel.swift */; };
 		3CA3CBC32A5B026800D0D645 /* AggregatedPostsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA3CBC22A5B026800D0D645 /* AggregatedPostsFetcher.swift */; };
 		3CA5C40A2A574FF500BF8F1B /* PostsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */; };
-		3CA5C40E2A57525500BF8F1B /* AggregatedPostsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C40D2A57525500BF8F1B /* AggregatedPostsListView.swift */; };
+		3CA5C40E2A57525500BF8F1B /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C40D2A57525500BF8F1B /* PostsView.swift */; };
 		3CA5C4102A5753AC00BF8F1B /* PostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */; };
 		3CA92E3A2A543BF000688DEB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92E372A543BF000688DEB /* ContentView.swift */; };
 		3CA92E3B2A543BF000688DEB /* CommunityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92E382A543BF000688DEB /* CommunityModel.swift */; };
@@ -97,6 +97,7 @@
 		3CDF229D2A6D436B009281F2 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDF229C2A6D436B009281F2 /* Settings.swift */; };
 		3CE0A7942A8551CD008A782A /* EncodeDecodeHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE0A7932A8551CD008A782A /* EncodeDecodeHelpers.swift */; };
 		3CEA54462A59E6FB009E4FB3 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEA54452A59E6FB009E4FB3 /* MockData.swift */; };
+		3CEACBC72A88020700260A01 /* PostsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEACBC62A88020700260A01 /* PostsFetcher.swift */; };
 		3CED897B2A71A5CF00BD9086 /* ImagePopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CED897A2A71A5CF00BD9086 /* ImagePopoverView.swift */; };
 		3CED897D2A71DCFF00BD9086 /* SettingsHiddenOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CED897C2A71DCFF00BD9086 /* SettingsHiddenOptionsView.swift */; };
 		3CEF196B2A580672006736EF /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEF196A2A580672006736EF /* Kingfisher */; };
@@ -217,7 +218,7 @@
 		3C96EA542A7857D900753199 /* LoggedInUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInUserModel.swift; sourceTree = "<group>"; };
 		3CA3CBC22A5B026800D0D645 /* AggregatedPostsFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregatedPostsFetcher.swift; sourceTree = "<group>"; };
 		3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsListModel.swift; sourceTree = "<group>"; };
-		3CA5C40D2A57525500BF8F1B /* AggregatedPostsListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AggregatedPostsListView.swift; sourceTree = "<group>"; };
+		3CA5C40D2A57525500BF8F1B /* PostsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
 		3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostRowView.swift; sourceTree = "<group>"; };
 		3CA92E372A543BF000688DEB /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3CA92E382A543BF000688DEB /* CommunityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityModel.swift; sourceTree = "<group>"; };
@@ -249,6 +250,7 @@
 		3CDF229C2A6D436B009281F2 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		3CE0A7932A8551CD008A782A /* EncodeDecodeHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodeDecodeHelpers.swift; sourceTree = "<group>"; };
 		3CEA54452A59E6FB009E4FB3 /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		3CEACBC62A88020700260A01 /* PostsFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsFetcher.swift; sourceTree = "<group>"; };
 		3CED897A2A71A5CF00BD9086 /* ImagePopoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePopoverView.swift; sourceTree = "<group>"; };
 		3CED897C2A71DCFF00BD9086 /* SettingsHiddenOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsHiddenOptionsView.swift; sourceTree = "<group>"; };
 		3CEF4CC12A69B38B002B83C0 /* SubscribedCommunitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedCommunitiesView.swift; sourceTree = "<group>"; };
@@ -430,6 +432,7 @@
 			isa = PBXGroup;
 			children = (
 				3CA3CBC22A5B026800D0D645 /* AggregatedPostsFetcher.swift */,
+				3CEACBC62A88020700260A01 /* PostsFetcher.swift */,
 				3CC734A72A6D67B7007523B5 /* CommunitySpecificPostsFetcher.swift */,
 				3C65885C2A6189AF00A46DA3 /* CommentsFetcher.swift */,
 				3CB408B32A5C558B00B7C983 /* CommunitiesFetcher.swift */,
@@ -479,7 +482,7 @@
 		3CCAE1832A6ADDBA0040EE12 /* Post Views */ = {
 			isa = PBXGroup;
 			children = (
-				3CA5C40D2A57525500BF8F1B /* AggregatedPostsListView.swift */,
+				3CA5C40D2A57525500BF8F1B /* PostsView.swift */,
 				3C15DFED2A6D992A0038EFCD /* CommunitySpecificPostsListView.swift */,
 				3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */,
 				3CEF4CCF2A69B738002B83C0 /* InPostMetadataView.swift */,
@@ -744,7 +747,7 @@
 				3CEF4CD92A69B80A002B83C0 /* CommentIndentGuideView.swift in Sources */,
 				3CFE04C92A7FF375007BAD81 /* KbinThreadsView.swift in Sources */,
 				3CCAA8BF2A65309E007CCEC2 /* NoInternetConnectionView.swift in Sources */,
-				3CA5C40E2A57525500BF8F1B /* AggregatedPostsListView.swift in Sources */,
+				3CA5C40E2A57525500BF8F1B /* PostsView.swift in Sources */,
 				3CEF4CCC2A69B70C002B83C0 /* InPostThumbnailView.swift in Sources */,
 				3CC178952A7DAAE300C208D0 /* SearchFetcher.swift in Sources */,
 				3CF3F9C02A6EE0390051E725 /* SettingsClearCacheButtonView.swift in Sources */,
@@ -793,6 +796,7 @@
 				3C522F3B2A63241900129CAC /* TrendingCommunitiesFetcher.swift in Sources */,
 				3CEF4CD52A69B798002B83C0 /* URLParser.swift in Sources */,
 				3CA92E3B2A543BF000688DEB /* CommunityModel.swift in Sources */,
+				3CEACBC72A88020700260A01 /* PostsFetcher.swift in Sources */,
 				3CEF4CD72A69B7A8002B83C0 /* ImageViewWithPlaceholder.swift in Sources */,
 				3CA92E3A2A543BF000688DEB /* ContentView.swift in Sources */,
 				3CB408B42A5C558B00B7C983 /* CommunitiesFetcher.swift in Sources */,
