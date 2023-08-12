@@ -16,9 +16,6 @@ struct KbinThreadsView: View {
 
   var body: some View {
     List {
-      if kbinThreadsFetcher.isLoading {
-        ProgressView().id(UUID())
-      } else {
         ForEach(kbinThreadsFetcher.posts, id: \.id) { post in
           Section {
             ZStack {
@@ -35,7 +32,9 @@ struct KbinThreadsView: View {
             kbinThreadsFetcher.loadMoreContentIfNeeded(currentItem: post)
             postURL = post.postURL
           }
-        }
+      }
+      if kbinThreadsFetcher.isLoading {
+        ProgressView().id(UUID())
       }
     }
     .refreshable {
