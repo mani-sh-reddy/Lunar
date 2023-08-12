@@ -8,64 +8,64 @@
 import SwiftUI
 
 struct LoggedInUsersListView: View {
-    @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
-    @AppStorage("loggedInEmailsList") var loggedInEmailsList = Settings.loggedInEmailsList
-    @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-    @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
-    @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
+  @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
+  @AppStorage("loggedInEmailsList") var loggedInEmailsList = Settings.loggedInEmailsList
+  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
+  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
+  @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
 
-    @Binding var selectedAccount: LoggedInAccount?
+  @Binding var selectedAccount: LoggedInAccount?
 
-    var body: some View {
-        ForEach(loggedInAccounts, id: \.self) { account in
-            AccountSelectionItem(
-                selectedAccount: $selectedAccount,
-                account: account
-            )
-        }
+  var body: some View {
+    ForEach(loggedInAccounts, id: \.self) { account in
+      AccountSelectionItem(
+        selectedAccount: $selectedAccount,
+        account: account
+      )
     }
+  }
 }
 
 struct AccountSelectionItem: View {
-    @AppStorage("selectedUserID") var selectedUserID = Settings.selectedUserID
-    @AppStorage("selectedName") var selectedName = Settings.selectedName
-    @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
-    @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
-    @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
+  @AppStorage("selectedUserID") var selectedUserID = Settings.selectedUserID
+  @AppStorage("selectedName") var selectedName = Settings.selectedName
+  @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
+  @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
+  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
 
-    @Binding var selectedAccount: LoggedInAccount?
+  @Binding var selectedAccount: LoggedInAccount?
 
-    let account: LoggedInAccount
+  let account: LoggedInAccount
 
-    let haptics = UIImpactFeedbackGenerator(style: .soft)
+  let haptics = UIImpactFeedbackGenerator(style: .soft)
 
-    var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 3) {
-                Text(account.name).font(.title2).bold()
-                Text("@\(URLParser.extractDomain(from: account.actorID))")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
-            Spacer()
-            Image(systemName: account.actorID == selectedActorID ? "checkmark.circle.fill" : "circle")
-                .font(.title2)
-                .symbolRenderingMode(.hierarchical)
-                .foregroundStyle(.indigo)
-        }
-        .contentShape(Rectangle())
-
-        .onTapGesture {
-            haptics.impactOccurred()
-            selectedAccount = account
-
-            selectedUserID = account.userID
-            selectedName = account.name
-            selectedEmail = account.email
-            selectedAvatarURL = account.avatarURL
-            selectedActorID = account.actorID
-
-            print("\(String(describing: selectedAccount?.name)) = \(account.name)")
-        }
+  var body: some View {
+    HStack {
+      VStack(alignment: .leading, spacing: 3) {
+        Text(account.name).font(.title2).bold()
+        Text("@\(URLParser.extractDomain(from: account.actorID))")
+          .font(.caption)
+          .foregroundStyle(.secondary)
+      }
+      Spacer()
+      Image(systemName: account.actorID == selectedActorID ? "checkmark.circle.fill" : "circle")
+        .font(.title2)
+        .symbolRenderingMode(.hierarchical)
+        .foregroundStyle(.indigo)
     }
+    .contentShape(Rectangle())
+
+    .onTapGesture {
+      haptics.impactOccurred()
+      selectedAccount = account
+
+      selectedUserID = account.userID
+      selectedName = account.name
+      selectedEmail = account.email
+      selectedAvatarURL = account.avatarURL
+      selectedActorID = account.actorID
+
+      print("\(String(describing: selectedAccount?.name)) = \(account.name)")
+    }
+  }
 }

@@ -13,35 +13,35 @@ import SwiftUI
 import UIKit
 
 struct ImagePopoverView: View {
-    @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
+  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
 
-    @State private var isLoading = true
-    @State private var imageSize: CGSize = .zero
-    @Binding var showingPopover: Bool
-    @State var buttonOpacity = 0.8
+  @State private var isLoading = true
+  @State private var imageSize: CGSize = .zero
+  @Binding var showingPopover: Bool
+  @State var buttonOpacity = 0.8
 
-    private let pipeline = ImagePipeline {
-        $0.dataLoader = {
-            let config = URLSessionConfiguration.default
-            return DataLoader(configuration: config)
-        }()
-    }
+  private let pipeline = ImagePipeline { pipeline in
+    pipeline.dataLoader = {
+      let config = URLSessionConfiguration.default
+      return DataLoader(configuration: config)
+    }()
+  }
 
-    let processor = DownsamplingImageProcessor(size: CGSize(width: 1300, height: 1300))
-    var thumbnailURL: String
+  let processor = DownsamplingImageProcessor(size: CGSize(width: 1300, height: 1300))
+  var thumbnailURL: String
 
-    var body: some View {
-        ZStack {
-            Rectangle().foregroundStyle(.black)
-                .ignoresSafeArea()
-            AsyncImage(url: URL(string: thumbnailURL)) { state in
-                if let image = state.image {
-                    PhotoDetailView(image: image.asUIImage())
-                } else {
-                    ProgressView()
-                }
-            }
-            .edgesIgnoringSafeArea(.all)
+  var body: some View {
+    ZStack {
+      Rectangle().foregroundStyle(.black)
+        .ignoresSafeArea()
+      AsyncImage(url: URL(string: thumbnailURL)) { state in
+        if let image = state.image {
+          PhotoDetailView(image: image.asUIImage())
+        } else {
+          ProgressView()
         }
+      }
+      .edgesIgnoringSafeArea(.all)
     }
+  }
 }

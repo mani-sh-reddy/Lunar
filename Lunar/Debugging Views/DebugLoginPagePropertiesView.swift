@@ -9,100 +9,100 @@ import Foundation
 import SwiftUI
 
 struct DebugLoginPagePropertiesView: View {
-    @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
-    @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-    @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-    @AppStorage("loggedInEmailsList") var loggedInEmailsList = Settings.loggedInEmailsList
-    @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
-    @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
+  @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
+  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
+  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
+  @AppStorage("loggedInEmailsList") var loggedInEmailsList = Settings.loggedInEmailsList
+  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
+  @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
 
-    var isTryingLogin: Bool
-    var loggedIn: Bool
-    var showingTwoFactorField: Bool
-    var showingTwoFactorWarning: Bool
-    var showingLoginButtonWarning: Bool
-    var usernameEmailInvalid: Bool
-    var passwordInvalid: Bool
-    var twoFactorInvalid: Bool
-    var showingPopover: Bool
+  var isTryingLogin: Bool
+  var loggedIn: Bool
+  var showingTwoFactorField: Bool
+  var showingTwoFactorWarning: Bool
+  var showingLoginButtonWarning: Bool
+  var usernameEmailInvalid: Bool
+  var passwordInvalid: Bool
+  var twoFactorInvalid: Bool
+  var showingPopover: Bool
 
-    var body: some View {
-        Section {
-            VStack(alignment: .leading, spacing: 5) {
-                Text("Debug Properties").bold().textCase(.uppercase)
-                Group {
-                    HStack {
-                        Text("showingPopover").bold()
-                        Text("\(String(showingPopover))")
-                            .booleanColor(bool: showingPopover)
-                    }
-                    HStack {
-                        Text("isTryingLogin").bold()
-                        Text("\(String(isTryingLogin))")
-                            .booleanColor(bool: isTryingLogin)
-                    }
-                    HStack {
-                        Text("loggedIn").bold()
-                        Text("\(String(loggedIn))")
-                            .booleanColor(bool: loggedIn)
-                    }
-                    HStack {
-                        Text("showingTwoFactorField").bold()
-                        Text("\(String(showingTwoFactorField))")
-                            .booleanColor(bool: showingTwoFactorField)
-                    }
-                    HStack {
-                        Text("showingTwoFactorWarning").bold()
-                        Text("\(String(showingTwoFactorWarning))")
-                            .booleanColor(bool: showingTwoFactorWarning)
-                    }
-                    HStack {
-                        Text("showingLoginButtonWarning").bold()
-                        Text("\(String(showingLoginButtonWarning))")
-                            .booleanColor(bool: showingLoginButtonWarning)
-                    }
-                    HStack {
-                        Text("usernameEmailInvalid").bold()
-                        Text("\(String(usernameEmailInvalid))")
-                            .booleanColor(bool: usernameEmailInvalid)
-                    }
-                    HStack {
-                        Text("passwordInvalid").bold()
-                        Text("\(String(passwordInvalid))")
-                            .booleanColor(bool: passwordInvalid)
-                    }
-                    HStack {
-                        Text("twoFactorInvalid").bold()
-                        Text("\(String(twoFactorInvalid))")
-                            .booleanColor(bool: twoFactorInvalid)
-                    }
-                    HStack {
-                        Text("showingPopover").bold()
-                        Text("\(String(showingPopover))")
-                            .booleanColor(bool: showingPopover)
-                    }
-                }
-                VStack(alignment: .leading) {
-                    VStack(alignment: .leading) {
-                        Text("@AppStorage selectedActorID:").bold()
-                        Text("\(selectedActorID)")
-                    }.padding(.vertical, 10)
-                    VStack(alignment: .leading) {
-                        Text("@AppStorage loggedInUsersList:").bold()
-                        Text("\(loggedInUsersList.rawValue)")
-                    }.padding(.vertical, 10)
-                    VStack(alignment: .leading) {
-                        Text("@AppStorage loggedInEmailsList:").bold()
-                        Text("\(loggedInEmailsList.rawValue)")
-                    }.padding(.vertical, 10)
-                    VStack(alignment: .leading) {
-                        Text("@AppStorage loggedInAccounts:").bold()
-                        Text("\(loggedInAccounts.rawValue)")
-                    }.padding(.vertical, 10)
-                }
-            }
+  var body: some View {
+    Section {
+      VStack(alignment: .leading, spacing: 5) {
+        Text("Debug Properties").bold().textCase(.uppercase)
+        Group {
+          HStack {
+            Text("showingPopover").bold()
+            Text("\(String(showingPopover))")
+              .booleanColor(bool: showingPopover)
+          }
+          HStack {
+            Text("isTryingLogin").bold()
+            Text("\(String(isTryingLogin))")
+              .booleanColor(bool: isTryingLogin)
+          }
+          HStack {
+            Text("loggedIn").bold()
+            Text("\(String(loggedIn))")
+              .booleanColor(bool: loggedIn)
+          }
+          HStack {
+            Text("showingTwoFactorField").bold()
+            Text("\(String(showingTwoFactorField))")
+              .booleanColor(bool: showingTwoFactorField)
+          }
+          HStack {
+            Text("showingTwoFactorWarning").bold()
+            Text("\(String(showingTwoFactorWarning))")
+              .booleanColor(bool: showingTwoFactorWarning)
+          }
+          HStack {
+            Text("showingLoginButtonWarning").bold()
+            Text("\(String(showingLoginButtonWarning))")
+              .booleanColor(bool: showingLoginButtonWarning)
+          }
+          HStack {
+            Text("usernameEmailInvalid").bold()
+            Text("\(String(usernameEmailInvalid))")
+              .booleanColor(bool: usernameEmailInvalid)
+          }
+          HStack {
+            Text("passwordInvalid").bold()
+            Text("\(String(passwordInvalid))")
+              .booleanColor(bool: passwordInvalid)
+          }
+          HStack {
+            Text("twoFactorInvalid").bold()
+            Text("\(String(twoFactorInvalid))")
+              .booleanColor(bool: twoFactorInvalid)
+          }
+          HStack {
+            Text("showingPopover").bold()
+            Text("\(String(showingPopover))")
+              .booleanColor(bool: showingPopover)
+          }
         }
-        .font(.caption)
-        .if(!debugModeEnabled) { _ in EmptyView() }
+        VStack(alignment: .leading) {
+          VStack(alignment: .leading) {
+            Text("@AppStorage selectedActorID:").bold()
+            Text("\(selectedActorID)")
+          }.padding(.vertical, 10)
+          VStack(alignment: .leading) {
+            Text("@AppStorage loggedInUsersList:").bold()
+            Text("\(loggedInUsersList.rawValue)")
+          }.padding(.vertical, 10)
+          VStack(alignment: .leading) {
+            Text("@AppStorage loggedInEmailsList:").bold()
+            Text("\(loggedInEmailsList.rawValue)")
+          }.padding(.vertical, 10)
+          VStack(alignment: .leading) {
+            Text("@AppStorage loggedInAccounts:").bold()
+            Text("\(loggedInAccounts.rawValue)")
+          }.padding(.vertical, 10)
+        }
+      }
     }
+    .font(.caption)
+    .if(!debugModeEnabled) { _ in EmptyView() }
+  }
 }
