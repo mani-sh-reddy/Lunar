@@ -130,7 +130,7 @@ struct PostRowView: View {
   
   @State var showingPlaceholderAlert = false
   
-  var imageURL: String { return post.post.thumbnailURL }
+  var imageURL: String { return post.post.thumbnailURL ?? "" }
   var communityName: String { return post.community.name }
   var heading: String { return post.post.name }
   var creator: String { return post.creator.name }

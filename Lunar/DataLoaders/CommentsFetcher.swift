@@ -13,6 +13,7 @@ import SwiftUI
 
 @MainActor class CommentsFetcher: ObservableObject {
   @AppStorage("commentSort") var commentSort = Settings.commentSort
+  @AppStorage("commentType") var commentType = Settings.commentType
   @Published var comments = [CommentElement]()
   @Published var isLoading = false
 
@@ -25,6 +26,7 @@ import SwiftUI
     URLBuilder(
       endpointPath: "/api/v3/comment/list",
       sortParameter: commentSort,
+      typeParameter: commentType,
       currentPage: currentPage,
       limitParameter: limitParameter,
       postID: postID,

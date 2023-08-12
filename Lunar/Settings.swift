@@ -44,4 +44,5 @@ enum Settings {
   static let selectedActorID: String = ""
   
   static let commentSort: String = "Hot"
+  static let commentType: String = "All"
 }

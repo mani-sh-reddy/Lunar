@@ -26,7 +26,7 @@ struct CommentsView: View {
       CommentSectionView(
         post: post,
         comments: commentsFetcher.comments,
-        postBody: post.post.body
+        postBody: post.post.body ?? ""
       )
     }
   }
