@@ -9,9 +9,9 @@ import SwiftUI
 
 @main
 struct LunarApp: App {
-    var body: some Scene {
-        WindowGroup {
-            SplashScreen()
-        }
+  var body: some Scene {
+    WindowGroup {
+      SplashScreen()
     }
+  }
 }

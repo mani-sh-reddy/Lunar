@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PlaceholderView: View {
-    var body: some View {
-        Text("Coming Soon")
-    }
+  var body: some View {
+    Text("Coming Soon")
+  }
 }

@@ -8,27 +8,27 @@
 import SwiftUI
 
 struct SettingsHiddenOptionsView: View {
-    @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
+  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
 
-    var body: some View {
-        Section {
-            Toggle(isOn: $debugModeEnabled) {
-                Label {
-                    Text("Debug Mode")
-                } icon: {
-                    Image(systemName: "desktopcomputer.trianglebadge.exclamationmark")
-                        .symbolRenderingMode(.hierarchical)
-                        .foregroundStyle(.red)
-                }
-            }.toggleStyle(SwitchToggleStyle(tint: .red))
-        } header: {
-            Text("Developer Options")
+  var body: some View {
+    Section {
+      Toggle(isOn: $debugModeEnabled) {
+        Label {
+          Text("Debug Mode")
+        } icon: {
+          Image(systemName: "desktopcomputer.trianglebadge.exclamationmark")
+            .symbolRenderingMode(.hierarchical)
+            .foregroundStyle(.red)
         }
+      }.toggleStyle(SwitchToggleStyle(tint: .red))
+    } header: {
+      Text("Developer Options")
     }
+  }
 }
 
 struct SettingsHiddenOptionsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsHiddenOptionsView()
-    }
+  static var previews: some View {
+    SettingsHiddenOptionsView()
+  }
 }

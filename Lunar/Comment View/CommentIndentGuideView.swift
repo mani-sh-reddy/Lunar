@@ -9,19 +9,19 @@ import Foundation
 import SwiftUI
 
 struct CommentIndentGuideView: View {
-    var commentPath: String
+  var commentPath: String
 
-    var body: some View {
-        let commentIndentLevel = commentPath.split(separator: ".").count - 1
-        let commentIndentRange = 0 ..< commentIndentLevel
+  var body: some View {
+    let commentIndentLevel = commentPath.split(separator: ".").count - 1
+    let commentIndentRange = 0..<commentIndentLevel
 
-        ForEach(commentIndentRange, id: \.self) { _ in
-            Capsule()
-                .fill(Color(uiColor: .systemGray5))
-                .frame(width: 2)
-        }
-        .padding(.vertical, 10)
-        .padding(.top, 5)
-        .frame(alignment: .top)
+    ForEach(commentIndentRange, id: \.self) { _ in
+      Capsule()
+        .fill(Color(uiColor: .systemGray5))
+        .frame(width: 2)
     }
+    .padding(.vertical, 10)
+    .padding(.top, 5)
+    .frame(alignment: .top)
+  }
 }

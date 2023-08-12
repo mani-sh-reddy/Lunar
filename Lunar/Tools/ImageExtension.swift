@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension Image {
-    init(asset name: String) {
-        self.init(uiImage: UIImage(named: name)!)
-    }
+  init(asset name: String) {
+    self.init(uiImage: UIImage(named: name)!)  // skipcq: SW-W1023
+  }
 }
