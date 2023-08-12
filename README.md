@@ -1,6 +1,6 @@
 <div align="center">
    
-# Lunar - An iOS Client for Lemmy
+# Lunar - An iOS Client for Lemmy and Kbin
 
 [![GitHub release](https://img.shields.io/github/v/release/mani-sh-reddy/Lunar-Lemmy-iOS)](https://github.com/mani-sh-reddy/Lunar-Lemmy-iOS/releases)
 [![GitHub last commit (branch)](https://img.shields.io/github/last-commit/mani-sh-reddy/Lunar-Lemmy-iOS/dev)](https://github.com/mani-sh-reddy/Lunar-Lemmy-iOS/commits/main)
