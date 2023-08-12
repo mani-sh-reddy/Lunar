@@ -7,8 +7,7 @@
 ![GitHub issues](https://img.shields.io/github/issues/mani-sh-reddy/Lunar-Lemmy-iOS?logo=github)
 
 [![DeepSource](https://app.deepsource.com/gh/mani-sh-reddy/Lunar.svg/?label=active+issues&show_trend=true&token=T8gxTn0BxZMno5Pxdh1pfAgB)](https://app.deepsource.com/gh/mani-sh-reddy/Lunar/?ref=repository-badge)
-
-![Cocoapods platforms](https://img.shields.io/cocoapods/p/ios)
+![Static Badge](https://img.shields.io/badge/supports-iOS_15--17-lightgray)
 [![Static Badge](https://img.shields.io/badge/Swift-5.8-orange?logo=swift&logoColor=orange)](https://www.swift.org/about/)
 [![Static Badge](https://img.shields.io/badge/SwiftUI-3.0-blue?logo=swift&logoColor=blue)
 ](https://developer.apple.com/xcode/swiftui/)
@@ -39,16 +38,22 @@ Lunar is currently in its alpha testing phase and, as a result, it has not been 
 7. Now, you can run your app again, and it should work without any issues.
 
 
-## Components
+## Package Dependancies
 
 [Alamofire](https://github.com/Alamofire/Alamofire)  - Elegant HTTP Networking in Swift
 
 [Kingfisher](https://github.com/onevcat/Kingfisher) - A lightweight, pure-Swift library for downloading and caching images from the web.
 
+[SwiftSoup](https://github.com/scinfu/SwiftSoup) - Pure Swift HTML Parser
+
+[Nuke](https://github.com/kean/Nuke) - Image loading system
+
 
 ## Contributing
 
-Contributions are welcome! If you would like to contribute, please create a pull request with your changes.
+Contributions are welcome! If you would like to contribute, please [create/choose an issue](https://github.com/mani-sh-reddy/Lunar/issues) and raise a pull request when done.
+
+This repo uses [DeepSource](https://deepsource.com) for linting and formatting, and is automatically triggered and run on a PR.
 
 ## License
 
