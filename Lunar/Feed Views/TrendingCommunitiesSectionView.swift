@@ -16,7 +16,11 @@ struct TrendingCommunitiesSectionView: View {
       
       // TODO: -
       NavigationLink {
-        Text(String(describing: community.community))
+        PostsView(
+          postsFetcher: PostsFetcher(communityID: community.community.id),
+          title: community.community.name,
+          community: community
+        )
       } label: {
         CommunityRowView(community: community)
       }

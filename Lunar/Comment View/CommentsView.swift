@@ -55,6 +55,8 @@ struct CommentSectionView: View {
           Text(postBody)
         }
       }
+      .listRowSeparator(.hidden)
+      .listRowBackground(Color.clear)
       Section {
         ForEach(comments, id: \.comment.id) { comment in
           CommentRowView(comment: comment)
@@ -68,8 +70,13 @@ struct CommentRowView: View {
   let comment: CommentElement
   var indentLevel: Int {
     let elements = comment.comment.path.split(separator: ".").map { String($0) }
-    let elementCount = elements.isEmpty ? 1 : elements.count
-    return elementCount - 1
+    let elementCount = elements.isEmpty ? 1 : elements.count - 1
+    if elementCount >= 1 {
+      return elementCount
+    } else {
+      return 1
+    }
+    
   }
   let commentHierarchyColors: [Color] = [
     .red,
@@ -92,104 +99,9 @@ struct CommentRowView: View {
         Capsule(style: .continuous)
           .foregroundStyle(foregroundColor)
           .frame(width: 1)
-          .padding(.vertical, 0)
-          .padding(.horizontal, 0)
+          .padding(0)
       }
       Text(comment.comment.content)
     }
   }
 }
-
-//struct CommentsView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    /// need to set showing popover to a constant value
-//    CommentsView(post: MockData., postURL: MockData.kbinPostURL)
-//  }
-//}
-
-
-//struct CommentsView: View {
-//  @StateObject var commentsFetcher: CommentsFetcher
-//  @State var postID: Int
-//  var postTitle: String
-//  var thumbnailURL: String?
-//  var postBody: String?
-//
-//  var body: some View {
-//    ScrollViewReader { _ in
-//      VStack {
-//        List {
-//          Text(postTitle).font(.title).bold()
-//            .listRowSeparator(.hidden)
-//
-//          if let thumbnailURL {
-//            InPostThumbnailView(thumbnailURL: thumbnailURL)
-//              .listRowSeparator(.hidden)
-//          }
-//
-//          if let postBody {
-//            ZStack {
-//              RoundedRectangle(cornerRadius: 10, style: .continuous)
-//                .foregroundStyle(.regularMaterial)
-//              Text(postBody)
-//                .padding(10)
-//                .multilineTextAlignment(.leading)
-//            }
-//            .padding(.bottom, 20)
-//          }
-//
-//          ForEach(commentsFetcher.comments, id: \.comment.id) { comment in
-//            HStack(spacing: 5) {
-//              CommentIndentGuideView(commentPath: comment.comment.path)
-//              VStack(alignment: .leading) {
-//                Text(String(comment.creator.name.uppercased()))
-//                  .fontWeight(.bold)
-//                  .foregroundStyle(.gray)
-//                  .font(.footnote)
-//                  .padding(.vertical, 2)
-//                Text(String(comment.comment.content))
-//              }
-//              .padding(.leading, 10)
-//            }
-//            .padding(.vertical, 5)
-//            .task {
-//              commentsFetcher.loadMoreContentIfNeeded(currentItem: comment)
-//            }
-//            .accentColor(Color.primary)
-//          }
-//          if commentsFetcher.isLoading {
-//            ProgressView()
-//          }
-//        }
-//        .refreshable {
-//          await commentsFetcher.refreshContent()
-//        }
-//        .listStyle(.plain)
-//      }
-//      .navigationBarTitleDisplayMode(.inline)
-//      .toolbar {
-//        ToolbarItem(placement: .navigationBarTrailing) {
-//          Image(systemName: "chart.line.uptrend.xyaxis")
-//        }
-//      }
-//    }
-//  }
-//}
-//
-//struct CommentsView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    let commentsFetcher = CommentsFetcher(
-//      postID: 1_442_451,
-//      sortParameter: "Top",
-//      typeParameter: "All"
-//    )
-//
-//    CommentsView(
-//      commentsFetcher: commentsFetcher,
-//      postID: 1_442_451,
-//      postTitle: MockData.commentsViewPostTitle1,
-//      thumbnailURL: MockData.commentsViewThumbnailURL1,
-//      postBody: MockData.commentsViewPostBody1
-//    )
-//  }
-//}

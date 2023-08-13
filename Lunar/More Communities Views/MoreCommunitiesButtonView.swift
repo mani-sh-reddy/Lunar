@@ -9,18 +9,14 @@ import SwiftUI
 
 struct MoreCommunitiesButtonView: View {
   var body: some View {
-    let communitiesFetcher = CommunitiesFetcher(
-      sortParameter: "New",
-      typeParameter: "All",
-      limitParameter: 50
-    )
+    let communitiesFetcher = CommunitiesFetcher(limitParameter: 50)
 
-    let destination = MoreCommunitiesView(
-      communitiesFetcher: communitiesFetcher,
-      title: "Explore Communities"
-    )
-
-    NavigationLink(destination: destination) {
+    NavigationLink {
+      MoreCommunitiesView(
+        communitiesFetcher: communitiesFetcher,
+        title: "Explore Communities"
+      )
+    } label: {
       HStack {
         Image(systemName: "sailboat.circle.fill")
           .resizable()

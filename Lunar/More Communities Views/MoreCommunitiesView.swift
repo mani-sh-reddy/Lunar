@@ -20,7 +20,11 @@ struct MoreCommunitiesView: View {
           
           // TODO: -
           NavigationLink {
-            Text(String(describing: community.community))
+            PostsView(
+              postsFetcher: PostsFetcher(
+                communityID: community.community.id
+              ), community: community
+            )
           } label: {
             CommunityRowView(community: community)
           }

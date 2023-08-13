@@ -9,11 +9,11 @@ import Foundation
 import SwiftUI
 
 /// **USAGE**
-/// @AppStorage("userName") var userName = Settings.userName
+/// @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
 
 enum Settings {
   static let appBundleID: String = "io.github.mani-sh-reddy.Lunar.app"
-  static let instanceHostURL: String = "lemmy.ml"
+  static let instanceHostURL: String = "lemmy.world"
   static let kbinHostURL: String = "kbin.social"
   static let displayName: String = "Mani"
   static let userName: String = "mani"
@@ -45,4 +45,8 @@ enum Settings {
   
   static let commentSort: String = "Hot"
   static let commentType: String = "All"
+  static let postSort: String = "Hot"
+  static let postType: String = "All"
+  static let communitiesSort: String = "New"
+  static let communitiesType: String = "All"
 }

@@ -11,12 +11,15 @@ import Kingfisher
 import SwiftUI
 
 @MainActor class CommunitiesFetcher: ObservableObject {
+  @AppStorage("communitiesSort") var communitiesSort = Settings.communitiesSort
+  @AppStorage("communitiesType") var communitiesType = Settings.communitiesType
+  
   @Published var communities = [CommunityElement]()
   @Published var isLoading = false
 
   private var currentPage = 1
-  private var sortParameter: String
-  private var typeParameter: String
+  private var sortParameter: String?
+  private var typeParameter: String?
   private var limitParameter: Int = 30
   private var endpoint: URLComponents {
     URLBuilder(
@@ -29,12 +32,12 @@ import SwiftUI
   }
 
   init(
-    sortParameter: String,
-    typeParameter: String,
+    sortParameter: String? = nil,
+    typeParameter: String? = nil,
     limitParameter: Int
   ) {
-    self.sortParameter = sortParameter
-    self.typeParameter = typeParameter
+    self.sortParameter = sortParameter ?? communitiesSort
+    self.typeParameter = typeParameter ?? communitiesType
     self.limitParameter = limitParameter
     loadMoreContent()
   }
