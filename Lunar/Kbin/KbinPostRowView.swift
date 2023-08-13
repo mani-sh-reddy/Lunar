@@ -19,7 +19,7 @@ struct KbinPostRowView: View {
   @State var downvoted: Bool = false
 
   var magazine: String {
-    if post.instanceLink != nil, post.instanceLink != "" {
+    if post.instanceLink != nil, post.instanceLink != "" { // skipcq: SW-P1006
       return "\(post.magazine)@\(post.instanceLink ?? "")"
     } else {
       return "\(post.magazine)"
