@@ -16,26 +16,25 @@ struct KbinThreadsView: View {
 
   var body: some View {
     List {
-      if kbinThreadsFetcher.isLoading {
-        ProgressView().id(UUID())
-      } else {
-        ForEach(kbinThreadsFetcher.posts, id: \.id) { post in
-          Section {
-            ZStack {
-              KbinPostRowView(post: post)
-              NavigationLink {
-                KbinCommentsView(post: post, postURL: "https://\(kbinHostURL)\(post.postURL)")
-              } label: {
-                EmptyView()
-              }
-              .opacity(0)
+      ForEach(kbinThreadsFetcher.posts, id: \.id) { post in
+        Section {
+          ZStack {
+            KbinPostRowView(post: post)
+            NavigationLink {
+              KbinCommentsView(post: post, postURL: "https://\(kbinHostURL)\(post.postURL)")
+            } label: {
+              EmptyView()
             }
-          }
-          .task {
-            kbinThreadsFetcher.loadMoreContentIfNeeded(currentItem: post)
-            postURL = post.postURL
+            .opacity(0)
           }
         }
+        .task {
+          kbinThreadsFetcher.loadMoreContentIfNeeded(currentItem: post)
+          postURL = post.postURL
+        }
+      }
+      if kbinThreadsFetcher.isLoading {
+        ProgressView().id(UUID())
       }
     }
     .refreshable {
