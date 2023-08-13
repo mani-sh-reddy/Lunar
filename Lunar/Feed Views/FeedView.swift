@@ -25,11 +25,10 @@ struct FeedView: View {
               .bold()
               .foregroundStyle(
                 LinearGradient(
-                  gradient: Gradient(
-                    colors: [
-                      .purple,
-                      .pink,
-                    ]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                  gradient: Gradient(colors: [.purple, .pink]),
+                  startPoint: .topLeading,
+                  endPoint: .bottomTrailing
+                )
               )
               .padding(0)
           }
@@ -37,7 +36,7 @@ struct FeedView: View {
           .font(.largeTitle)
 
         Section(header: Text("Feed")) {
-          AggregatedCommunitiesSectionView()
+          GeneralCommunitiesView()
           KbinMagazinesSectionView()
         }
         Section(header: Text("Trending")) {

@@ -1,5 +1,5 @@
 //
-//  AggregatedPostsFetcher.swift
+//  PostsFetcher.swift
 //  Lunar
 //
 //  Created by Mani on 23/07/2023.
@@ -11,28 +11,35 @@ import Foundation
 import Kingfisher
 import SwiftUI
 
-@MainActor class AggregatedPostsFetcher: ObservableObject {
+@MainActor class PostsFetcher: ObservableObject {
+  @AppStorage("postSort") var postSort = Settings.postSort
+  @AppStorage("postType") var postType = Settings.postType
   @Published var posts = [PostElement]()
   @Published var isLoading = false
 
   private var currentPage = 1
-  private var sortParameter: String
-  private var typeParameter: String
+  private var sortParameter: String?
+  private var typeParameter: String?
+  private var communityID: Int?
   private var endpoint: URLComponents {
     URLBuilder(
       endpointPath: "/api/v3/post/list",
       sortParameter: sortParameter,
       typeParameter: typeParameter,
-      currentPage: currentPage
+      currentPage: currentPage,
+      communityID: communityID
     ).buildURL()
   }
 
   init(
-    sortParameter: String,
-    typeParameter: String
+    sortParameter: String? = nil,
+    typeParameter: String? = nil,
+    communityID: Int? = 0
   ) {
-    self.sortParameter = sortParameter
-    self.typeParameter = typeParameter
+    self.sortParameter = sortParameter ?? postSort
+    self.typeParameter = typeParameter ?? postType
+
+    self.communityID = (communityID == 0) ? nil : communityID
     loadMoreContent()
   }
 
@@ -49,7 +56,7 @@ import SwiftUI
     let cacher = ResponseCacher(behavior: .cache)
 
     AF.request(endpoint) { urlRequest in
-      print("AggregatedPostsFetcher REF \(urlRequest.url as Any)")
+      print("PostsFetcher REF \(urlRequest.url as Any)")
       urlRequest.cachePolicy = .reloadRevalidatingCacheData
     }
     .cacheResponse(using: cacher)
@@ -75,7 +82,7 @@ import SwiftUI
         prefetcher.start()
 
       case let .failure(error):
-        print("AggregatedPostsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
+        print("PostsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
       }
     }
   }
@@ -105,7 +112,7 @@ import SwiftUI
     let cacher = ResponseCacher(behavior: .cache)
 
     AF.request(endpoint) { urlRequest in
-      print("AggregatedPostsFetcher LOAD \(urlRequest.url as Any)")
+      print("PostsFetcher LOAD \(urlRequest.url as Any)")
       urlRequest.cachePolicy = .returnCacheDataElseLoad
     }
     .cacheResponse(using: cacher)
@@ -124,7 +131,7 @@ import SwiftUI
         self.currentPage += 1
 
       case let .failure(error):
-        print("AggregatedPostsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
+        print("PostsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
       }
     }
   }

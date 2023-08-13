@@ -18,19 +18,30 @@ struct MoreCommunitiesView: View {
       Section {
         ForEach(communitiesFetcher.communities, id: \.community.id) { community in
 
-          NavigationLink(
-            destination: CommunitySpecificPostsListView(
-              communitySpecificPostsFetcher: CommunitySpecificPostsFetcher(
-                communityID: community.community.id,
-                sortParameter: "Active",
-                typeParameter: "All"
-              ),
-              communityID: community.community.id,
-              title: community.community.title
+          // TODO: -
+          NavigationLink {
+            PostsView(
+              postsFetcher: PostsFetcher(
+                communityID: community.community.id
+              ), community: community
             )
-          ) {
-            MoreCommunitiesRowView(community: community)
+          } label: {
+            CommunityRowView(community: community)
           }
+
+          //          NavigationLink(
+          //            destination: CommunitySpecificPostsListView(
+          //              communitySpecificPostsFetcher: CommunitySpecificPostsFetcher(
+          //                communityID: community.community.id,
+          //                sortParameter: "Active",
+          //                typeParameter: "All"
+          //              ),
+          //              communityID: community.community.id,
+          //              title: community.community.title
+          //            )
+          //          ) {
+          //            MoreCommunitiesRowView(community: community)
+          //          }
           .task {
             communitiesFetcher.loadMoreContentIfNeeded(currentItem: community)
           }
@@ -58,9 +69,9 @@ struct MoreCommunitiesView: View {
 struct MoreCommunitiesView_Previews: PreviewProvider {
   static var previews: some View {
     let communitiesFetcher = CommunitiesFetcher(
+      limitParameter: 50,
       sortParameter: "Active",
-      typeParameter: "All",
-      limitParameter: 50
+      typeParameter: "All"
     )
     MoreCommunitiesView(
       communitiesFetcher: communitiesFetcher,

@@ -121,7 +121,7 @@ extension MessagesViewController {
 }
 
 extension MessagesViewController {
-  @IBAction func btnCreateImageAction(_: UIButton!) {
+  @IBAction func btnCreateImageAction(_: UIButton!) {  // skipcq: SW-W1022
     if let img = createImageForMessage(), let conversation = activeConversation {
       let layout = MSMessageTemplateLayout()
       layout.image = img

@@ -19,11 +19,11 @@ struct CommunityInfoView: View {
 
   var community: SearchCommunityInfo
   var hasBanner: Bool {
-    community.banner != "" && community.banner != nil
+    community.banner != "" && community.banner != nil  // skipcq: SW-P1006
   }
 
   var hasAvatar: Bool {
-    community.icon != "" && community.icon != nil
+    community.icon != "" && community.icon != nil  // skipcq: SW-P1006
   }
 
   var body: some View {
