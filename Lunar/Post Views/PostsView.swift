@@ -62,10 +62,10 @@ struct PostsView: View {
   var isCommunitySpecific: Bool { return community != nil }
 
   var hasBanner: Bool {
-    community?.community.banner != "" && community?.community.banner != nil // skipcq: SW-P1006
+    community?.community.banner != "" && community?.community.banner != nil  // skipcq: SW-P1006
   }
   var hasIcon: Bool {
-    community?.community.icon != "" && community?.community.icon != nil // skipcq: SW-P1006
+    community?.community.icon != "" && community?.community.icon != nil  // skipcq: SW-P1006
   }
 
   var body: some View {
