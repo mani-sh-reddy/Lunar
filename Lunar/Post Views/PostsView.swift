@@ -53,21 +53,21 @@ struct PostsView: View {
   @StateObject var postsFetcher: PostsFetcher
   @State private var bannerFailedToLoad = false
   @State private var iconFailedToLoad = false
-  
+
   var title: String?
   var community: CommunityElement?
   var navigationHeading: String { return community?.community.name ?? title ?? "" }
   var communityDescription: String? { return community?.community.description }
   var communityActorID: String { return community?.community.actorID ?? "" }
   var isCommunitySpecific: Bool { return community != nil }
-  
+
   var hasBanner: Bool {
     community?.community.banner != "" && community?.community.banner != nil
   }
   var hasIcon: Bool {
     community?.community.icon != "" && community?.community.icon != nil
   }
-  
+
   var body: some View {
     List {
       if isCommunitySpecific {
@@ -107,15 +107,15 @@ struct PostsView: View {
   }
 }
 
-
 struct PostsView_Previews: PreviewProvider {
   static var previews: some View {
     /// need to set showing popover to a constant value
-    PostsView(postsFetcher: PostsFetcher(
-      sortParameter: "Hot",
-      typeParameter: "All",
-      communityID: 234
-    ), title: "Title"
+    PostsView(
+      postsFetcher: PostsFetcher(
+        sortParameter: "Hot",
+        typeParameter: "All",
+        communityID: 234
+      ), title: "Title"
     )
   }
 }

@@ -30,6 +30,6 @@ struct PhotoDetailView: UIViewRepresentable {
   }
 
   func updateUIView(_: PDFView, context _: Context) {
-    
+
   }
 }

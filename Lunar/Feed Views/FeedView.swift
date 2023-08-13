@@ -25,7 +25,7 @@ struct FeedView: View {
               .bold()
               .foregroundStyle(
                 LinearGradient(
-                  gradient: Gradient(colors: [.purple,.pink,]),
+                  gradient: Gradient(colors: [.purple, .pink]),
                   startPoint: .topLeading,
                   endPoint: .bottomTrailing
                 )
@@ -34,7 +34,7 @@ struct FeedView: View {
           }
         }.listRowBackground(Color.clear)
           .font(.largeTitle)
-        
+
         Section(header: Text("Feed")) {
           GeneralCommunitiesView()
           KbinMagazinesSectionView()

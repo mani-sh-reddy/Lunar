@@ -11,14 +11,14 @@ import SwiftUI
 struct CommentsView: View {
   @StateObject private var commentsFetcher: CommentsFetcher
   var post: PostElement
-  
+
   init(post: PostElement) {
     self.post = post
     _commentsFetcher = StateObject(
       wrappedValue: CommentsFetcher(postID: post.post.id)
     )
   }
-  
+
   var body: some View {
     if commentsFetcher.isLoading {
       ProgressView()
@@ -36,7 +36,7 @@ struct CommentSectionView: View {
   var post: PostElement
   var comments: [CommentElement]
   var postBody: String
-  
+
   init(
     post: PostElement,
     comments: [CommentElement],
@@ -46,7 +46,7 @@ struct CommentSectionView: View {
     self.comments = comments
     self.postBody = postBody
   }
-  
+
   var body: some View {
     List {
       Section {
@@ -76,7 +76,7 @@ struct CommentRowView: View {
     } else {
       return 1
     }
-    
+
   }
   let commentHierarchyColors: [Color] = [
     .red,

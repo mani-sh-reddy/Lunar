@@ -42,7 +42,7 @@ enum Settings {
   static let selectedEmail: String = ""
   static let selectedAvatarURL: String = ""
   static let selectedActorID: String = ""
-  
+
   static let commentSort: String = "Hot"
   static let commentType: String = "All"
   static let postSort: String = "Hot"

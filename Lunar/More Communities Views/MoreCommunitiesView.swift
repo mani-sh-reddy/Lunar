@@ -17,7 +17,7 @@ struct MoreCommunitiesView: View {
     List {
       Section {
         ForEach(communitiesFetcher.communities, id: \.community.id) { community in
-          
+
           // TODO: -
           NavigationLink {
             PostsView(
@@ -29,19 +29,19 @@ struct MoreCommunitiesView: View {
             CommunityRowView(community: community)
           }
 
-//          NavigationLink(
-//            destination: CommunitySpecificPostsListView(
-//              communitySpecificPostsFetcher: CommunitySpecificPostsFetcher(
-//                communityID: community.community.id,
-//                sortParameter: "Active",
-//                typeParameter: "All"
-//              ),
-//              communityID: community.community.id,
-//              title: community.community.title
-//            )
-//          ) {
-//            MoreCommunitiesRowView(community: community)
-//          }
+          //          NavigationLink(
+          //            destination: CommunitySpecificPostsListView(
+          //              communitySpecificPostsFetcher: CommunitySpecificPostsFetcher(
+          //                communityID: community.community.id,
+          //                sortParameter: "Active",
+          //                typeParameter: "All"
+          //              ),
+          //              communityID: community.community.id,
+          //              title: community.community.title
+          //            )
+          //          ) {
+          //            MoreCommunitiesRowView(community: community)
+          //          }
           .task {
             communitiesFetcher.loadMoreContentIfNeeded(currentItem: community)
           }

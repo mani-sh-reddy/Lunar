@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import SwiftUI
 import Kingfisher
+import SwiftUI
 
 struct CommunityHeaderView: View {
   @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
@@ -19,7 +19,7 @@ struct CommunityHeaderView: View {
   var navigationHeading: String { return community?.community.name ?? "" }
   var communityDescription: String? { return community?.community.description }
   var communityActorID: String { return community?.community.actorID ?? "" }
-  
+
   var hasBanner: Bool {
     community?.community.banner != "" && community?.community.banner != nil
   }
@@ -34,7 +34,7 @@ struct CommunityHeaderView: View {
             .fade(duration: 0.25)
             .resizable()
             .onFailure { _ in
-                iconFailedToLoad = true
+              iconFailedToLoad = true
             }
             .clipped()
             .aspectRatio(contentMode: .fill)
@@ -53,7 +53,7 @@ struct CommunityHeaderView: View {
         }
       }
       .border(debugModeEnabled ? Color.purple : Color.clear)
-      
+
       if let description = communityDescription {
         Text(description)
       }

@@ -13,7 +13,7 @@ import SwiftUI
 @MainActor class CommunitiesFetcher: ObservableObject {
   @AppStorage("communitiesSort") var communitiesSort = Settings.communitiesSort
   @AppStorage("communitiesType") var communitiesType = Settings.communitiesType
-  
+
   @Published var communities = [CommunityElement]()
   @Published var isLoading = false
 
