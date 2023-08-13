@@ -32,9 +32,9 @@ import SwiftUI
   }
 
   init(
+    limitParameter: Int,
     sortParameter: String? = nil,
-    typeParameter: String? = nil,
-    limitParameter: Int
+    typeParameter: String? = nil
   ) {
     self.sortParameter = sortParameter ?? communitiesSort
     self.typeParameter = typeParameter ?? communitiesType

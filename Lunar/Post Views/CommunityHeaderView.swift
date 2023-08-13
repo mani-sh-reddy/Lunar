@@ -21,10 +21,10 @@ struct CommunityHeaderView: View {
   var communityActorID: String { return community?.community.actorID ?? "" }
 
   var hasBanner: Bool {
-    community?.community.banner != "" && community?.community.banner != nil
+    community?.community.banner != "" && community?.community.banner != nil // skipcq: SW-P1006
   }
   var hasIcon: Bool {
-    community?.community.icon != "" && community?.community.icon != nil
+    community?.community.icon != "" && community?.community.icon != nil // skipcq: SW-P1006
   }
   var body: some View {
     Section {

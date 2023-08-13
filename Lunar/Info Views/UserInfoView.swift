@@ -20,11 +20,11 @@ struct UserInfoView: View {
   var person: Creator
 
   var hasBanner: Bool {
-    person.banner != "" && person.banner != nil
+    person.banner != "" && person.banner != nil // skipcq: SW-P1006
   }
 
   var hasAvatar: Bool {
-    person.avatar != "" && person.avatar != nil
+    person.avatar != "" && person.avatar != nil // skipcq: SW-P1006
   }
 
   var body: some View {
