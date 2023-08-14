@@ -16,6 +16,7 @@ extension String {
       "media.giphy.com",
       "files.catbox.moe",
       "i.postimg.cc",
+      "lemmy.world/pictrs/"
     ]
     for url in validURLs where contains(url) {
       return true
