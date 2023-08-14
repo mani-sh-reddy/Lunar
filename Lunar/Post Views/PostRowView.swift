@@ -7,13 +7,14 @@
 
 import Kingfisher
 import SwiftUI
+import SafariServices
 
 struct PostRowView: View {
   @State var upvoted: Bool = false
   @State var downvoted: Bool = false
   @State var goInto: Bool = false
-  
   @State var showingPlaceholderAlert = false
+  @State private var showSafari: Bool = false
   
   var imageURL: String {
     if let thumbnailURL = post.post.thumbnailURL, !thumbnailURL.isEmpty {
@@ -55,6 +56,15 @@ struct PostRowView: View {
         InPostThumbnailView(thumbnailURL: imageURL)
         Spacer()
       }
+      Text("Open in Safari").font(.body)
+        .highPriorityGesture(
+          TapGesture().onEnded {
+            showSafari.toggle()
+          }
+        )
+        .fullScreenCover(isPresented: $showSafari, content: {
+          SFSafariViewWrapper(url: URL(string: post.post.url ?? "")!).ignoresSafeArea()
+        })
       HStack {
         VStack(alignment: .leading, spacing: 5) {
           Text("\(communityName)\(instanceTag)")
@@ -104,8 +114,8 @@ struct PostRowView: View {
         Spacer()
       }
     }
-    .padding(.horizontal, -5)
-    .padding(.vertical, imageURL.isEmpty ? 0 : 10)
+    .padding(.horizontal, -10)
+    .padding(.vertical, imageURL.isEmpty ? 0 : 5)
     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
       GoIntotSwipeAction(isClicked: $goInto)
     }

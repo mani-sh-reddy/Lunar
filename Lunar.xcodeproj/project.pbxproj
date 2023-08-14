@@ -18,6 +18,9 @@
 		3C113C3F2A6E8C9400FDE5CE /* SettingsGeneralSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C3E2A6E8C9400FDE5CE /* SettingsGeneralSectionView.swift */; };
 		3C113C412A6E8EEA00FDE5CE /* SettingsInfoSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C402A6E8EEA00FDE5CE /* SettingsInfoSectionView.swift */; };
 		3C113C432A6EA92600FDE5CE /* SettingsServerSelectionSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C422A6EA92600FDE5CE /* SettingsServerSelectionSectionView.swift */; };
+		3C130F6E2A8AB6CB0060B6E4 /* LinkPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C130F6D2A8AB6CB0060B6E4 /* LinkPresenter.swift */; };
+		3C130F702A8AD2920060B6E4 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C130F6F2A8AD2920060B6E4 /* SafariView.swift */; };
+		3C130F722A8AD56A0060B6E4 /* SFSafariViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C130F712A8AD56A0060B6E4 /* SFSafariViewWrapper.swift */; };
 		3C1A3F532A731B8C00898FC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0A032A54399F009DF8AB /* Assets.xcassets */; };
 		3C1A3F552A731C3F00898FC6 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F542A731C3F00898FC6 /* ImageExtension.swift */; };
 		3C1A3F592A73B17E00898FC6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F582A73B17E00898FC6 /* LoginView.swift */; };
@@ -168,6 +171,9 @@
 		3C113C3E2A6E8C9400FDE5CE /* SettingsGeneralSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsGeneralSectionView.swift; sourceTree = "<group>"; };
 		3C113C402A6E8EEA00FDE5CE /* SettingsInfoSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsInfoSectionView.swift; sourceTree = "<group>"; };
 		3C113C422A6EA92600FDE5CE /* SettingsServerSelectionSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsServerSelectionSectionView.swift; sourceTree = "<group>"; };
+		3C130F6D2A8AB6CB0060B6E4 /* LinkPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPresenter.swift; sourceTree = "<group>"; };
+		3C130F6F2A8AD2920060B6E4 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
+		3C130F712A8AD56A0060B6E4 /* SFSafariViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSafariViewWrapper.swift; sourceTree = "<group>"; };
 		3C1A3F542A731C3F00898FC6 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		3C1A3F582A73B17E00898FC6 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		3C1A3F5A2A73B2B800898FC6 /* KeychainInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainInterface.swift; sourceTree = "<group>"; };
@@ -325,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				3CC734A92A6D697C007523B5 /* InsertSorter.swift */,
+				3C130F6F2A8AD2920060B6E4 /* SafariView.swift */,
 				3CCAA8C02A65358C007CCEC2 /* NetworkMonitor.swift */,
 				3CC734A52A6D591A007523B5 /* URLComponentsExtension.swift */,
 				3CEF4CD22A69B770002B83C0 /* StringExtension.swift */,
@@ -342,6 +349,7 @@
 				3CA95F042A7ACBD500626353 /* PhotoDetailView.swift */,
 				3CE0A7932A8551CD008A782A /* EncodeDecodeHelpers.swift */,
 				3C7B7DC82A89485000A02A43 /* DateTimeParser.swift */,
+				3C130F712A8AD56A0060B6E4 /* SFSafariViewWrapper.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -479,6 +487,7 @@
 			children = (
 				3CA5C40D2A57525500BF8F1B /* PostsView.swift */,
 				3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */,
+				3C130F6D2A8AB6CB0060B6E4 /* LinkPresenter.swift */,
 				3CEF4CCF2A69B738002B83C0 /* InPostMetadataView.swift */,
 				3CEF4CCD2A69B71C002B83C0 /* InPostUserView.swift */,
 				3CEF4CCB2A69B70C002B83C0 /* InPostThumbnailView.swift */,
@@ -714,6 +723,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C1A3F5D2A73BC9F00898FC6 /* CredentialsModel.swift in Sources */,
+				3C130F702A8AD2920060B6E4 /* SafariView.swift in Sources */,
 				3C4B7DD82A58A741003C8192 /* CommentModel.swift in Sources */,
 				3CEF4CC62A69B3AD002B83C0 /* MoreCommunitiesButtonView.swift in Sources */,
 				3CEF4CD32A69B770002B83C0 /* StringExtension.swift in Sources */,
@@ -735,6 +745,7 @@
 				3CF3F9C22A6EE20C0051E725 /* ViewExtension.swift in Sources */,
 				3C5ECB2C2A7676B5002BA561 /* PasswordFieldView.swift in Sources */,
 				3CA5C40A2A574FF500BF8F1B /* PostsListModel.swift in Sources */,
+				3C130F722A8AD56A0060B6E4 /* SFSafariViewWrapper.swift in Sources */,
 				3C87092C2A745CE2004999CE /* ArrayExtension.swift in Sources */,
 				3CC734A42A6D58C6007523B5 /* URLBuilder.swift in Sources */,
 				3CEF4CD92A69B80A002B83C0 /* CommentIndentGuideView.swift in Sources */,
@@ -770,6 +781,7 @@
 				3C5ECB282A767681002BA561 /* UserAndPassFieldsView.swift in Sources */,
 				3CE0A7942A8551CD008A782A /* EncodeDecodeHelpers.swift in Sources */,
 				3CD4DA232A7EF3C200BC374A /* SearchUsersRowView.swift in Sources */,
+				3C130F6E2A8AB6CB0060B6E4 /* LinkPresenter.swift in Sources */,
 				3CED897D2A71DCFF00BD9086 /* SettingsHiddenOptionsView.swift in Sources */,
 				3C96EA4A2A78390F00753199 /* LogoutAllUsersButtonView.swift in Sources */,
 				3CD3F5672A8014B900D284D0 /* KbinMagazinesSectionView.swift in Sources */,
