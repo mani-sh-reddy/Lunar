@@ -62,7 +62,7 @@ struct CommentSectionView: View {
           CommentRowView(comment: comment)
         }
       }
-    }.listStyle(.insetGrouped)
+    }.listStyle(.grouped)
   }
 }
 

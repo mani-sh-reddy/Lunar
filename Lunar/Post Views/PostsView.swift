@@ -8,45 +8,6 @@
 import Kingfisher
 import SwiftUI
 
-//struct KbinThreadsView: View {
-//  @AppStorage("kbinHostURL") var kbinHostURL = Settings.kbinHostURL
-//  @StateObject var kbinThreadsFetcher: KbinThreadsFetcher
-//
-//  @State var postURL: String = ""
-//
-//  var body: some View {
-//    List {
-//      if kbinThreadsFetcher.isLoading {
-//        ProgressView().id(UUID())
-//      } else {
-//        ForEach(kbinThreadsFetcher.posts, id: \.id) { post in
-//          Section {
-//            ZStack {
-//              KbinPostRowView(post: post)
-//              NavigationLink {
-//                KbinCommentsView(post: post, postURL: "https://\(kbinHostURL)\(post.postURL)")
-//              } label: {
-//                EmptyView()
-//              }
-//              .opacity(0)
-//            }
-//          }
-//          .task {
-//            kbinThreadsFetcher.loadMoreContentIfNeeded(currentItem: post)
-//            postURL = post.postURL
-//          }
-//        }
-//      }
-//    }
-//    .refreshable {
-//      await kbinThreadsFetcher.refreshContent()
-//    }
-//    .navigationTitle("Kbin")
-//    .navigationBarTitleDisplayMode(.inline)
-//    .listStyle(.insetGrouped)
-//  }
-//}
-
 struct PostsView: View {
   @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled

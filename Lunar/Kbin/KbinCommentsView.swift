@@ -65,7 +65,7 @@ struct KbinCommentSectionView: View {
           KbinCommentRowView(comment: comment)
         }
       }
-    }.listStyle(.insetGrouped)
+    }.listStyle(.grouped)
   }
 }
 
