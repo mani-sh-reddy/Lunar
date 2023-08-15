@@ -29,7 +29,7 @@ struct ReactionButton: View {
       HStack {
         Image(systemName: icon)
           .font(iconSize)
-        if !text.isEmpty{
+        if !text.isEmpty {
           Text(text)
             .font(textSize)
             .padding(.trailing, 3)
