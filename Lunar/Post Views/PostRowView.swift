@@ -56,15 +56,6 @@ struct PostRowView: View {
         InPostThumbnailView(thumbnailURL: imageURL)
         Spacer()
       }
-      Text("Open in Safari").font(.body)
-        .highPriorityGesture(
-          TapGesture().onEnded {
-            showSafari.toggle()
-          }
-        )
-        .fullScreenCover(isPresented: $showSafari, content: {
-          SFSafariViewWrapper(url: URL(string: post.post.url ?? "")!).ignoresSafeArea()
-        })
       HStack {
         VStack(alignment: .leading, spacing: 5) {
           Text("\(communityName)\(instanceTag)")
@@ -112,6 +103,22 @@ struct PostRowView: View {
           opposite: .constant(false)
         )
         Spacer()
+        ReactionButton(
+          icon: "safari",
+          color: Color.blue,
+          iconSize: Font.title2,
+          padding: 1,
+          active: .constant(false),
+          opposite: .constant(false)
+        )
+          .highPriorityGesture(
+            TapGesture().onEnded {
+              showSafari.toggle()
+            }
+          )
+          .fullScreenCover(isPresented: $showSafari, content: {
+            SFSafariViewWrapper(url: URL(string: post.post.url ?? "")!).ignoresSafeArea()
+          })
       }
     }
     .padding(.horizontal, -5)

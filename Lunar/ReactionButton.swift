@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct ReactionButton: View {
-  var text: String
+  var text: String = ""
   var icon: String
   var color: Color
   var textSize: Font = Font.subheadline
   var iconSize: Font = Font.body
+  var padding: CGFloat = 5
   
   @Binding var active: Bool
   @Binding var opposite: Bool
@@ -28,8 +29,11 @@ struct ReactionButton: View {
       HStack {
         Image(systemName: icon)
           .font(iconSize)
-        Text(text)
-          .font(textSize)
+        if !text.isEmpty{
+          Text(text)
+            .font(textSize)
+            .padding(.trailing, 3)
+        }
       }
       .foregroundStyle(active ? Color.white : color)
       .symbolRenderingMode(
@@ -37,7 +41,7 @@ struct ReactionButton: View {
       )
     }
     .buttonStyle(BorderlessButtonStyle())
-    .padding(5).padding(.trailing, 3)
+    .padding(padding)
     .background(active ? color.opacity(0.75) : .secondary.opacity(0.1), in: Capsule())
     .padding(.top, 3)
   }
