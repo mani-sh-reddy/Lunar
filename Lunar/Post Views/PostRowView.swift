@@ -112,18 +112,18 @@ struct PostRowView: View {
             active: .constant(false),
             opposite: .constant(false)
           )
-        .highPriorityGesture(
-          TapGesture().onEnded {
-            showSafari.toggle()
-          }
-        )
-        .fullScreenCover(
-          isPresented: $showSafari,
-          content: {
-            SFSafariViewWrapper(url: URL(string: post.post.url ?? "")!).ignoresSafeArea()
-          })
+          .highPriorityGesture(
+            TapGesture().onEnded {
+              showSafari.toggle()
+            }
+          )
+          .fullScreenCover(
+            isPresented: $showSafari,
+            content: {
+              SFSafariViewWrapper(url: URL(string: post.post.url ?? "")!).ignoresSafeArea()
+            })
         }
-        
+
       }
     }
     .padding(.horizontal, -5)
