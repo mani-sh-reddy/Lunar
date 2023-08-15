@@ -27,6 +27,7 @@ import SwiftUI
       sortParameter: sortParameter,
       typeParameter: typeParameter,
       currentPage: currentPage,
+      limitParameter: 20,
       communityID: communityID
     ).buildURL()
   }
@@ -93,7 +94,7 @@ import SwiftUI
       return
     }
     /// preload early
-    var thresholdIndex = posts.index(posts.endIndex, offsetBy: -5)
+    var thresholdIndex = posts.index(posts.endIndex, offsetBy: -10)
     if posts.firstIndex(where: { $0.post.id == item.post.id }) == thresholdIndex {
       loadMoreContent()
     }
@@ -125,6 +126,17 @@ import SwiftUI
         let filteredNewPosts = newPosts.filter { newPost in
           !self.posts.contains { $0.post.id == newPost.post.id }
         }
+        
+        let cachableImageURLs =
+        result.thumbnailURLs.compactMap { URL(string: $0) }
+        + result.avatarURLs.compactMap { URL(string: $0) }
+        let prefetcher = ImagePrefetcher(urls: cachableImageURLs) { skippedResources, failedResources, completedResources in
+//        print("SKIPPED:\(skippedResources)")
+//        print("FAILED:\(failedResources)")
+//        print("CCOMPLETED:\(completedResources)")
+        }
+        prefetcher.start()
+        
 
         self.posts += filteredNewPosts
         self.isLoading = false
