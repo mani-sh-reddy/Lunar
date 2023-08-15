@@ -126,17 +126,17 @@ import SwiftUI
         let filteredNewPosts = newPosts.filter { newPost in
           !self.posts.contains { $0.post.id == newPost.post.id }
         }
-        
+
         let cachableImageURLs =
-        result.thumbnailURLs.compactMap { URL(string: $0) }
-        + result.avatarURLs.compactMap { URL(string: $0) }
-        let prefetcher = ImagePrefetcher(urls: cachableImageURLs) { skippedResources, failedResources, completedResources in
-//        print("SKIPPED:\(skippedResources)")
-//        print("FAILED:\(failedResources)")
-//        print("CCOMPLETED:\(completedResources)")
+          result.thumbnailURLs.compactMap { URL(string: $0) }
+          + result.avatarURLs.compactMap { URL(string: $0) }
+        let prefetcher = ImagePrefetcher(urls: cachableImageURLs) {
+          skippedResources, failedResources, completedResources in
+          //        print("SKIPPED:\(skippedResources)")
+          //        print("FAILED:\(failedResources)")
+          //        print("CCOMPLETED:\(completedResources)")
         }
         prefetcher.start()
-        
 
         self.posts += filteredNewPosts
         self.isLoading = false

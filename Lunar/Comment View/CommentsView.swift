@@ -11,7 +11,6 @@ import SwiftUI
 struct CommentsView: View {
   @StateObject private var commentsFetcher: CommentsFetcher
   var post: PostElement
-  
 
   init(post: PostElement) {
     self.post = post
@@ -69,17 +68,16 @@ struct CommentSectionView: View {
             } else {
               return 1
             }
-            
+
           }
-          
+
           let comment = comments[index]
           if index <= collapseToIndex && indentLevel != 1 {
             EmptyView()
           } else {
             CommentRowView(collapseToIndex: $collapseToIndex, comment: comment, listIndex: index)
           }
-          
-          
+
         }
       }
     }.listStyle(.grouped)
@@ -138,7 +136,7 @@ struct CommentRowView: View {
       if indentLevel != 1 {
         CollapseCommentsSwipeAction(collapseToIndex: $collapseToIndex, listIndex: listIndex)
       }
-     
+
     }
   }
 }
@@ -147,7 +145,7 @@ struct CollapseCommentsSwipeAction: View {
   //  @Binding var isClicked: Bool
   @Binding var collapseToIndex: Int
   var listIndex: Int
-  
+
   var body: some View {
     Button {
       print("SWIPED")
