@@ -172,4 +172,3 @@ struct PostContextMenu: View {
     }
   }
 }
-
