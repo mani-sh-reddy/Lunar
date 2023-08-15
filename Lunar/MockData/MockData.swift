@@ -9,7 +9,7 @@ import SwiftUI
 
 enum MockData {
   static let kbinPostURL =
-  "https://kbin.social/m/kbinMeta/t/86614/PSA-Upvote-is-not-an-upvote-like-you-are-used"
+    "https://kbin.social/m/kbinMeta/t/86614/PSA-Upvote-is-not-an-upvote-like-you-are-used"
   static let kbinPostURL2 = "/m/kbinMeta/t/86614/PSA-Upvote-is-not-an-upvote-like-you-are-used"
   static let kbinPost = KbinPost(
     id: "entry-315569", title: "Posadist Star Trek is solid canon (hexbear.net)", user: "culpritus",
@@ -23,9 +23,11 @@ enum MockData {
         followCount: 0)), instanceLink: Optional("hexbear.net"),
     postURL: "/m/memes@lemmy.ml/t/315569/Posadist-Star-Trek-is-solid-canon")
   static let kbinPostBody1 =
-  "Like the title says, if you want to upvote something on KBin, you should use the Boost link, not the upvote button (Why? Don't know...). The upvote button doesn't seem to do much, but Boost accomplishes what Reddit's upvote did. So if you're looking to encourage a post, use the Boost link."
-  
-  static let lemmyPostBody = Optional("I was interested in buying a Steam Deck... So my question is: are the rivals of the Steam Deck worth their price? Are really better than the Steam Deck (in terms of quality, screen, size)? Thank you for your opinion!")
+    "Like the title says, if you want to upvote something on KBin, you should use the Boost link, not the upvote button (Why? Don't know...). The upvote button doesn't seem to do much, but Boost accomplishes what Reddit's upvote did. So if you're looking to encourage a post, use the Boost link."
+
+  static let lemmyPostBody = Optional(
+    "I was interested in buying a Steam Deck... So my question is: are the rivals of the Steam Deck worth their price? Are really better than the Steam Deck (in terms of quality, screen, size)? Thank you for your opinion!"
+  )
   //  static let mockPost = PostsModel(posts: [
   //    PostElement(
   //      post: PostObject(
@@ -279,7 +281,7 @@ enum MockData {
     ),
     banner: "https://lemmy.world/pictrs/image/d470bf41-dfa9-419f-84b1-54c4008c9e09.png?format=webp",
     hidden: false, postingRestrictedToMods: false, instanceID: 257)
-  
+
   static let communityInfoView2 = SearchCommunityInfo(
     id: 1120, name: "gitlab", title: "GitLab is open source software to collaborate on code. ",
     description: Optional(
@@ -290,7 +292,7 @@ enum MockData {
     icon: Optional("https://lemmy.ml/pictrs/image/MfBKj2QzF0.png"),
     banner: Optional("https://lemmy.ml/pictrs/image/LV8mLLqMbT.png"), hidden: false,
     postingRestrictedToMods: false, instanceID: 3)
-  
+
   static let communityInfoView3 = SearchCommunityInfo(
     id: 5502, name: "TechEnthusiasts", title: "Tech Enthusiasts Hub",
     description: Optional(
@@ -303,7 +305,7 @@ enum MockData {
     banner: Optional(
       "https://techhub.social/pictrs/image/d7e2979e-47f7-4d47-9b7d-cd157ca234f6.jpg"),
     hidden: false, postingRestrictedToMods: false, instanceID: 105)
-  
+
   static let communityInfoView4 = SearchCommunityInfo(
     id: 7841, name: "TravelDiaries", title: "Travel Diaries",
     description: Optional(
@@ -316,7 +318,7 @@ enum MockData {
     banner: Optional(
       "https://travelersworld.com/pictrs/image/a5a45c16-55b6-4ebc-9f1c-125127c1a1db.jpg"),
     hidden: false, postingRestrictedToMods: false, instanceID: 205)
-  
+
   static let userInfoView1 = Creator(
     id: 125_358, name: "DarkGamer", displayName: Optional("DarkGamer"),
     avatar: Optional(
@@ -327,7 +329,7 @@ enum MockData {
       "https://media.kbin.social/media/0a/b8/0ab85953c2ae0ad635d8c234143e1a4801c3f280a2d9d992be1c2aff9e28f384.jpg"
     ), deleted: false, admin: false, botAccount: false, instanceID: 257, updated: nil,
     matrixUserID: nil)
-  
+
   static let userInfoView2 = Creator(
     id: 456_789, name: "CodingNinja", displayName: Optional("CodingNinja"),
     avatar: Optional(
@@ -341,7 +343,7 @@ enum MockData {
       "https://techhub.social/media/c6/9d/c69db24f7ff2a82630c70f76efc0a312e6c57c1e9e3e5dbf6f91eeab9caac5b8.jpg"
     ), deleted: false, admin: false, botAccount: false, instanceID: 105, updated: nil,
     matrixUserID: nil)
-  
+
   static let userInfoView3 = Creator(
     id: 987_654, name: "Bookworm_27", displayName: Optional("Bookworm_27"),
     avatar: Optional(
@@ -355,22 +357,91 @@ enum MockData {
       "https://travelersworld.com/media/80/23/8023bbab2d1a4d1c3b6e11401259b2df6497632e387c69cda7c74b1e41b9ce00.jpg"
     ), deleted: false, admin: false, botAccount: false, instanceID: 205, updated: nil,
     matrixUserID: nil)
-  
+
   static let userInfoView4 = Creator(
     id: 650_713, name: "maniel", displayName: nil,
     avatar: Optional("https://lemmy.ml/pictrs/image/3c00cbaa-f2d4-4b16-88bf-2438db3ab9c4.jpeg"),
     banned: false, published: "2023-06-07T09:24:31.398108", actorID: "https://lemmy.ml/u/maniel",
     bio: nil, local: true, banner: nil, deleted: false, admin: false, botAccount: false,
     instanceID: 394, updated: nil, matrixUserID: nil)
-  
+
   static let commentsViewPostTitle1 =
-  "Lemmy.world active users is tapering off while other servers are gaining serious traction."
+    "Lemmy.world active users is tapering off while other servers are gaining serious traction."
   static let commentsViewThumbnailURL1 =
-  "https://www.wallpapers13.com/wp-content/uploads/2015/12/Nature-Lake-Bled.-Desktop-background-image-1680x1050.jpg"
+    "https://www.wallpapers13.com/wp-content/uploads/2015/12/Nature-Lake-Bled.-Desktop-background-image-1680x1050.jpg"
   static let commentsViewPostBody1 = """
     I noticed my feed on Lemmy was pretty dry today, even for Lemmy. Took me a while to realize lemmy.ml has been going up and down all morning
     """
-  static let postElement = PostElement(image: nil, post: Lunar.PostObject(id: 7142208, name: "Steam Deck VS rivals", url: nil, creatorID: 835702, communityID: 7, removed: false, locked: false, published: "2023-08-14T18:10:07.587654", deleted: false, thumbnailURL: nil, apID: "https://programming.dev/post/1719459", local: false, languageID: 0, featuredCommunity: false, featuredLocal: false, body: Optional("I was interested in buying a Steam Deck... So my question is: are the rivals of the Steam Deck worth their price? Are really better than the Steam Deck (in terms of quality, screen, size)? Thank you for your opinion!"), updated: nil, embedTitle: nil, embedDescription: nil, embedVideoURL: nil), creator: Lunar.Creator(id: 835702, name: "Stefh", displayName: Optional("Ste"), avatar: Optional("https://programming.dev/pictrs/image/c90768f5-75da-4350-b8e5-0fee1ec1c95e.jpeg"), banned: false, published: "2023-07-05T08:07:29.093959", actorID: "https://programming.dev/u/Stefh", bio: Optional("I\'m an #indiedev! I like to develop websites, web apps, mobile apps and games!\nMy website: https://stesproject.com/\nFind me on Mastodon: @stefh@mastodon.social"), local: false, banner: nil, deleted: false, admin: false, botAccount: false, instanceID: 107288, updated: nil, matrixUserID: nil), community: Lunar.Community(id: 7, name: "gaming", title: "Gaming", description: Optional("From video gaming to card games and stuff in between, if it\'s gaming you can probably discuss it here!\n\nSee also Gaming\'s sister community [Tabletop Gaming](https://beehaw.org/c/tabletop).\n\n---\n\nThis community\'s icon was made by Aaron Schneider, under the [CC-BY-NC-SA 4.0 license](https://creativecommons.org/licenses/by-nc-sa/4.0/)."), removed: false, published: "2022-01-28T13:31:12.294106", updated: Optional("2023-06-30T01:19:49.293916"), deleted: false, actorID: "https://beehaw.org/c/gaming", local: true, icon: Optional("https://beehaw.org/pictrs/image/fed50129-04e7-4dbc-8f54-4ba5bae58370.png"), hidden: false, postingRestrictedToMods: false, instanceID: 664, banner: nil), creatorBannedFromCommunity: false, counts: Lunar.Counts(id: 224858, postID: 7142208, comments: 64, score: 59, upvotes: 59, downvotes: 0, published: "2023-08-14T18:10:07.587654", newestCommentTimeNecro: "2023-08-15T16:41:51.452534", newestCommentTime: "2023-08-15T16:41:51.452534", featuredCommunity: false, featuredLocal: false, hotRank: 54, hotRankActive: 3317), subscribed: Lunar.Subscribed.notSubscribed, saved: false, read: false, creatorBlocked: false, unreadComments: 64)
-  
-  static let commentElement = CommentElement(comment: Lunar.CommentsListObject(id: 957028, creatorID: 6277435, postID: 7139973, content: "Watching the drama unfold on lemmy.world and all the freeze peach warriors going ape shit over there has me grateful for this little corner. ", removed: false, published: "2023-08-15T16:36:54.377463", deleted: false, apID: "https://beehaw.org/comment/957028", local: true, path: "0.957028", distinguished: false, languageID: 37), creator: Lunar.CommentsListCreator(id: 6277435, name: "acastcandream", banned: false, published: "2023-08-03T13:29:25.016098", actorID: "https://beehaw.org/u/acastcandream", local: true, deleted: false, admin: false, botAccount: false, instanceID: 664, displayName: nil, avatar: nil, banner: nil, bio: nil), post: Lunar.CommentsListPost(id: 7139973, name: Optional("how\'s your week going, Beehaw"), body: Optional("we\'re so back (but i will be making a separate post for my circumstances)"), creatorID: 8, communityID: 16542, removed: false, locked: false, published: "2023-08-14T14:57:26.612558", updated: nil, deleted: false, nsfw: false, apID: "https://beehaw.org/post/7139973", local: true, languageID: 37, featuredCommunity: true, featuredLocal: true), community: Lunar.CommentsListCommunity(id: 16542, name: "chat", title: "Chat", description: Optional("Relaxed section for discussion and debate that doesn\'t fit anywhere else. Whether it\'s advice, how your week is going, a link that\'s at the back of your mind, or something like that, it can likely go here.\n\n---\n\nSubcommunities on Beehaw:\n- [AskBeehaw](https://beehaw.org/c/askbeehaw)\n\n---\n\nThis community\'s icon was made by Aaron Schneider, under the [CC-BY-NC-SA 4.0 license](https://creativecommons.org/licenses/by-nc-sa/4.0/)."), removed: Optional(false), published: "2023-02-09T17:49:43.318904", updated: Optional("2023-07-08T02:19:55.340768"), deleted: false, nsfw: false, actorID: "https://beehaw.org/c/chat", local: Optional(true), icon: Optional("https://beehaw.org/pictrs/image/bcae6839-244a-4162-a988-42ee46909013.png"), banner: nil, hidden: Optional(false), postingRestrictedToMods: Optional(false), instanceID: 664), counts: Lunar.CommentsListCounts(id: 807166, commentID: 957028, score: 2, upvotes: 2, downvotes: 0, published: "2023-08-15T16:36:54.377463", childCount: 0, hotRank: 1036), creatorBannedFromCommunity: false, subscribed: Lunar.CommentSubscribed.notSubscribed, saved: false, creatorBlocked: false)
+  static let postElement = PostElement(
+    image: nil,
+    post: Lunar.PostObject(
+      id: 7_142_208, name: "Steam Deck VS rivals", url: nil, creatorID: 835702, communityID: 7,
+      removed: false, locked: false, published: "2023-08-14T18:10:07.587654", deleted: false,
+      thumbnailURL: nil, apID: "https://programming.dev/post/1719459", local: false, languageID: 0,
+      featuredCommunity: false, featuredLocal: false,
+      body: Optional(
+        "I was interested in buying a Steam Deck... So my question is: are the rivals of the Steam Deck worth their price? Are really better than the Steam Deck (in terms of quality, screen, size)? Thank you for your opinion!"
+      ), updated: nil, embedTitle: nil, embedDescription: nil, embedVideoURL: nil),
+    creator: Lunar.Creator(
+      id: 835702, name: "Stefh", displayName: Optional("Ste"),
+      avatar: Optional(
+        "https://programming.dev/pictrs/image/c90768f5-75da-4350-b8e5-0fee1ec1c95e.jpeg"),
+      banned: false, published: "2023-07-05T08:07:29.093959",
+      actorID: "https://programming.dev/u/Stefh",
+      bio: Optional(
+        "I\'m an #indiedev! I like to develop websites, web apps, mobile apps and games!\nMy website: https://stesproject.com/\nFind me on Mastodon: @stefh@mastodon.social"
+      ), local: false, banner: nil, deleted: false, admin: false, botAccount: false,
+      instanceID: 107288, updated: nil, matrixUserID: nil),
+    community: Lunar.Community(
+      id: 7, name: "gaming", title: "Gaming",
+      description: Optional(
+        "From video gaming to card games and stuff in between, if it\'s gaming you can probably discuss it here!\n\nSee also Gaming\'s sister community [Tabletop Gaming](https://beehaw.org/c/tabletop).\n\n---\n\nThis community\'s icon was made by Aaron Schneider, under the [CC-BY-NC-SA 4.0 license](https://creativecommons.org/licenses/by-nc-sa/4.0/)."
+      ), removed: false, published: "2022-01-28T13:31:12.294106",
+      updated: Optional("2023-06-30T01:19:49.293916"), deleted: false,
+      actorID: "https://beehaw.org/c/gaming", local: true,
+      icon: Optional("https://beehaw.org/pictrs/image/fed50129-04e7-4dbc-8f54-4ba5bae58370.png"),
+      hidden: false, postingRestrictedToMods: false, instanceID: 664, banner: nil),
+    creatorBannedFromCommunity: false,
+    counts: Lunar.Counts(
+      id: 224858, postID: 7_142_208, comments: 64, score: 59, upvotes: 59, downvotes: 0,
+      published: "2023-08-14T18:10:07.587654", newestCommentTimeNecro: "2023-08-15T16:41:51.452534",
+      newestCommentTime: "2023-08-15T16:41:51.452534", featuredCommunity: false,
+      featuredLocal: false, hotRank: 54, hotRankActive: 3317),
+    subscribed: Lunar.Subscribed.notSubscribed, saved: false, read: false, creatorBlocked: false,
+    unreadComments: 64)
+
+  static let commentElement = CommentElement(
+    comment: Lunar.CommentsListObject(
+      id: 957028, creatorID: 6_277_435, postID: 7_139_973,
+      content:
+        "Watching the drama unfold on lemmy.world and all the freeze peach warriors going ape shit over there has me grateful for this little corner. ",
+      removed: false, published: "2023-08-15T16:36:54.377463", deleted: false,
+      apID: "https://beehaw.org/comment/957028", local: true, path: "0.957028",
+      distinguished: false, languageID: 37),
+    creator: Lunar.CommentsListCreator(
+      id: 6_277_435, name: "acastcandream", banned: false, published: "2023-08-03T13:29:25.016098",
+      actorID: "https://beehaw.org/u/acastcandream", local: true, deleted: false, admin: false,
+      botAccount: false, instanceID: 664, displayName: nil, avatar: nil, banner: nil, bio: nil),
+    post: Lunar.CommentsListPost(
+      id: 7_139_973, name: Optional("how\'s your week going, Beehaw"),
+      body: Optional("we\'re so back (but i will be making a separate post for my circumstances)"),
+      creatorID: 8, communityID: 16542, removed: false, locked: false,
+      published: "2023-08-14T14:57:26.612558", updated: nil, deleted: false, nsfw: false,
+      apID: "https://beehaw.org/post/7139973", local: true, languageID: 37, featuredCommunity: true,
+      featuredLocal: true),
+    community: Lunar.CommentsListCommunity(
+      id: 16542, name: "chat", title: "Chat",
+      description: Optional(
+        "Relaxed section for discussion and debate that doesn\'t fit anywhere else. Whether it\'s advice, how your week is going, a link that\'s at the back of your mind, or something like that, it can likely go here.\n\n---\n\nSubcommunities on Beehaw:\n- [AskBeehaw](https://beehaw.org/c/askbeehaw)\n\n---\n\nThis community\'s icon was made by Aaron Schneider, under the [CC-BY-NC-SA 4.0 license](https://creativecommons.org/licenses/by-nc-sa/4.0/)."
+      ), removed: Optional(false), published: "2023-02-09T17:49:43.318904",
+      updated: Optional("2023-07-08T02:19:55.340768"), deleted: false, nsfw: false,
+      actorID: "https://beehaw.org/c/chat", local: Optional(true),
+      icon: Optional("https://beehaw.org/pictrs/image/bcae6839-244a-4162-a988-42ee46909013.png"),
+      banner: nil, hidden: Optional(false), postingRestrictedToMods: Optional(false),
+      instanceID: 664),
+    counts: Lunar.CommentsListCounts(
+      id: 807166, commentID: 957028, score: 2, upvotes: 2, downvotes: 0,
+      published: "2023-08-15T16:36:54.377463", childCount: 0, hotRank: 1036),
+    creatorBannedFromCommunity: false, subscribed: Lunar.CommentSubscribed.notSubscribed,
+    saved: false, creatorBlocked: false)
 }
