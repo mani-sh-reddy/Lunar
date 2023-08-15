@@ -33,6 +33,7 @@ struct CommentsView: View {
   }
 }
 
+
 struct CommentSectionView: View {
   var post: PostElement
   var comments: [CommentElement]
@@ -86,9 +87,18 @@ struct CommentSectionView: View {
   }
 }
 
+struct CommentRowView_Previews: PreviewProvider {
+  static var previews: some View {
+    CommentRowView(collapseToIndex: .constant(0), comment: MockData.commentElement, listIndex: 0)
+      .previewLayout(PreviewLayout.sizeThatFits)
+  }
+}
+
 struct CommentRowView: View {
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @Binding var collapseToIndex: Int
+  @State var upvoted: Bool = false
+  @State var downvoted: Bool = false
   let comment: CommentElement
   let listIndex: Int
   var indentLevel: Int {
@@ -112,33 +122,64 @@ struct CommentRowView: View {
     .purple,
   ]
   var body: some View {
-    HStack {
-      if debugModeEnabled {
-        Text(String(listIndex))
+    VStack(alignment: .leading, spacing: 3) {
+      Text(comment.creator.name.uppercased())
+        .font(.caption)
+        .bold()
+        .foregroundStyle(.secondary)
+      HStack {
+        if debugModeEnabled {
+          Text(String(listIndex))
+        }
+        ForEach(1..<indentLevel, id: \.self) { _ in
+          Rectangle().opacity(0).frame(width: 0.5).padding(.horizontal, 0)
+        }
+        let indentLevel = min(indentLevel, commentHierarchyColors.count - 1)
+        let foregroundColor = commentHierarchyColors[indentLevel]
+        if indentLevel > 1 {
+          Capsule(style: .continuous)
+            .foregroundStyle(foregroundColor)
+            .frame(width: 1)
+            .padding(0)
+        }
+        Text(comment.comment.content)
       }
-      ForEach(1..<indentLevel, id: \.self) { _ in
-        Rectangle().opacity(0).frame(width: 0.5).padding(.horizontal, 0)
+      HStack {
+        ReactionButton(
+          text: String(comment.counts.upvotes),
+          icon: "arrow.up.circle.fill",
+          color: Color.green,
+          active: $upvoted,
+          opposite: $downvoted
+        )
+        .onTapGesture {
+          upvoted.toggle()
+          downvoted = false
+        }
+        ReactionButton(
+          text: String(comment.counts.downvotes),
+          icon: "arrow.down.circle.fill",
+          color: Color.red,
+          active: $downvoted,
+          opposite: $upvoted
+        )
+        .onTapGesture {
+          downvoted.toggle()
+          upvoted = false
+        }
       }
-      let indentLevel = min(indentLevel, commentHierarchyColors.count - 1)
-      let foregroundColor = commentHierarchyColors[indentLevel]
-      if indentLevel > 1 {
-        Capsule(style: .continuous)
-          .foregroundStyle(foregroundColor)
-          .frame(width: 1)
-          .padding(0)
-      }
-      Text(comment.comment.content)
+      
     }
-    .onTapGesture {
-      withAnimation(.smooth) {
-        self.collapseToIndex = listIndex
+      .onTapGesture {
+        withAnimation(.smooth) {
+          self.collapseToIndex = listIndex
+        }
       }
-    }
-    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-      if indentLevel != 1 {
-        CollapseCommentsSwipeAction(collapseToIndex: $collapseToIndex, listIndex: listIndex)
-      }
-     
+      .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+        if indentLevel != 1 {
+          CollapseCommentsSwipeAction(collapseToIndex: $collapseToIndex, listIndex: listIndex)
+        }
+       
     }
   }
 }
