@@ -103,14 +103,15 @@ struct PostRowView: View {
           opposite: .constant(false)
         )
         Spacer()
-        ReactionButton(
-          icon: "safari",
-          color: Color.blue,
-          iconSize: Font.title2,
-          padding: 1,
-          active: .constant(false),
-          opposite: .constant(false)
-        )
+        if post.post.url != post.post.thumbnailURL {
+          ReactionButton(
+            icon: "safari",
+            color: Color.blue,
+            iconSize: Font.title2,
+            padding: 1,
+            active: .constant(false),
+            opposite: .constant(false)
+          )
           .highPriorityGesture(
             TapGesture().onEnded {
               showSafari.toggle()
@@ -119,6 +120,8 @@ struct PostRowView: View {
           .fullScreenCover(isPresented: $showSafari, content: {
             SFSafariViewWrapper(url: URL(string: post.post.url ?? "")!).ignoresSafeArea()
           })
+        }
+        
       }
     }
     .padding(.horizontal, -5)
