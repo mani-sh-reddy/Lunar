@@ -114,8 +114,8 @@ struct PostRowView: View {
         Spacer()
       }
     }
-    .padding(.horizontal, -10)
-    .padding(.vertical, imageURL.isEmpty ? 0 : 5)
+    .padding(.horizontal, -5)
+    .padding(.vertical, imageURL.isEmpty ? 0 : 10)
     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
       GoIntotSwipeAction(isClicked: $goInto)
     }
