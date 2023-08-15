@@ -14,12 +14,12 @@ struct ReactionButton: View {
   var textSize: Font = Font.subheadline
   var iconSize: Font = Font.body
   var padding: CGFloat = 5
-  
+
   @Binding var active: Bool
   @Binding var opposite: Bool
-  
+
   let haptics = UIImpactFeedbackGenerator(style: .rigid)
-  
+
   var body: some View {
     Button {
       active.toggle()
@@ -29,7 +29,7 @@ struct ReactionButton: View {
       HStack {
         Image(systemName: icon)
           .font(iconSize)
-        if !text.isEmpty{
+        if !text.isEmpty {
           Text(text)
             .font(textSize)
             .padding(.trailing, 3)
