@@ -11,6 +11,7 @@ import SwiftUI
 struct CommentsView: View {
   @StateObject private var commentsFetcher: CommentsFetcher
   var post: PostElement
+  
 
   init(post: PostElement) {
     self.post = post
@@ -36,6 +37,7 @@ struct CommentSectionView: View {
   var post: PostElement
   var comments: [CommentElement]
   var postBody: String
+  @State private var collapseToIndex: Int = 0
 
   init(
     post: PostElement,
@@ -58,8 +60,26 @@ struct CommentSectionView: View {
       .listRowSeparator(.hidden)
       .listRowBackground(Color.clear)
       Section {
-        ForEach(comments, id: \.comment.id) { comment in
-          CommentRowView(comment: comment)
+        ForEach(comments.indices, id: \.self) { index in
+          var indentLevel: Int {
+            let elements = comment.comment.path.split(separator: ".").map { String($0) }
+            let elementCount = elements.isEmpty ? 1 : elements.count - 1
+            if elementCount >= 1 {
+              return elementCount
+            } else {
+              return 1
+            }
+            
+          }
+          
+          let comment = comments[index]
+          if index <= collapseToIndex && indentLevel != 1 {
+            EmptyView()
+          } else {
+            CommentRowView(collapseToIndex: $collapseToIndex, comment: comment, listIndex: index)
+          }
+          
+          
         }
       }
     }.listStyle(.grouped)
@@ -67,7 +87,10 @@ struct CommentSectionView: View {
 }
 
 struct CommentRowView: View {
+  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
+  @Binding var collapseToIndex: Int
   let comment: CommentElement
+  let listIndex: Int
   var indentLevel: Int {
     let elements = comment.comment.path.split(separator: ".").map { String($0) }
     let elementCount = elements.isEmpty ? 1 : elements.count - 1
@@ -90,6 +113,9 @@ struct CommentRowView: View {
   ]
   var body: some View {
     HStack {
+      if debugModeEnabled {
+        Text(String(listIndex))
+      }
       ForEach(1..<indentLevel, id: \.self) { _ in
         Rectangle().opacity(0).frame(width: 0.5).padding(.horizontal, 0)
       }
@@ -103,5 +129,34 @@ struct CommentRowView: View {
       }
       Text(comment.comment.content)
     }
+    .onTapGesture {
+      withAnimation(.smooth) {
+        self.collapseToIndex = listIndex
+      }
+    }
+    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+      if indentLevel != 1 {
+        CollapseCommentsSwipeAction(collapseToIndex: $collapseToIndex, listIndex: listIndex)
+      }
+     
+    }
+  }
+}
+
+struct CollapseCommentsSwipeAction: View {
+  //  @Binding var isClicked: Bool
+  @Binding var collapseToIndex: Int
+  var listIndex: Int
+  
+  var body: some View {
+    Button {
+      print("SWIPED")
+      withAnimation(.smooth) {
+        self.collapseToIndex = listIndex
+      }
+    } label: {
+      Image(systemName: "arrow.up.to.line.circle.fill")
+    }
+    .tint(.blue)
   }
 }
