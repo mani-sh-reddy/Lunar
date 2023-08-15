@@ -21,24 +21,31 @@ struct CommentsView: View {
   }
 
   var body: some View {
-    if commentsFetcher.isLoading {
-      ProgressView()
-    } else {
+//    if commentsFetcher.isLoading { //TODO change back once done
+//      ProgressView()
+//    } else {
       CommentSectionView(
         post: post,
         comments: commentsFetcher.comments,
         postBody: post.post.body ?? ""
       )
-    }
+//    }
   }
 }
 
+struct CommentsView_Previews: PreviewProvider {
+  static var previews: some View {
+    CommentsView(post: MockData.postElement)
+      .previewLayout(PreviewLayout.sizeThatFits)
+  }
+}
 
 struct CommentSectionView: View {
   var post: PostElement
   var comments: [CommentElement]
   var postBody: String
   @State private var collapseToIndex: Int = 0
+  @State private var postBodyExpanded:Bool = false
 
   init(
     post: PostElement,
@@ -55,7 +62,9 @@ struct CommentSectionView: View {
       Section {
         PostRowView(post: post)
         if !postBody.isEmpty {
-          Text(postBody)
+          VStack (alignment: .trailing){
+            ExpandableTextBox(postBody).font(.body)
+          }
         }
       }
       .listRowSeparator(.hidden)

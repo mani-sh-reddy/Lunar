@@ -21,6 +21,8 @@
 		3C130F6E2A8AB6CB0060B6E4 /* LinkPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C130F6D2A8AB6CB0060B6E4 /* LinkPresenter.swift */; };
 		3C130F702A8AD2920060B6E4 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C130F6F2A8AD2920060B6E4 /* SafariView.swift */; };
 		3C130F722A8AD56A0060B6E4 /* SFSafariViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C130F712A8AD56A0060B6E4 /* SFSafariViewWrapper.swift */; };
+		3C130F752A8C0A520060B6E4 /* ExpandableTextBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C130F742A8C0A520060B6E4 /* ExpandableTextBox.swift */; };
+		3C130F772A8C0CB90060B6E4 /* ReactionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C130F762A8C0CB90060B6E4 /* ReactionButton.swift */; };
 		3C1A3F532A731B8C00898FC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0A032A54399F009DF8AB /* Assets.xcassets */; };
 		3C1A3F552A731C3F00898FC6 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F542A731C3F00898FC6 /* ImageExtension.swift */; };
 		3C1A3F592A73B17E00898FC6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F582A73B17E00898FC6 /* LoginView.swift */; };
@@ -174,6 +176,8 @@
 		3C130F6D2A8AB6CB0060B6E4 /* LinkPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPresenter.swift; sourceTree = "<group>"; };
 		3C130F6F2A8AD2920060B6E4 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		3C130F712A8AD56A0060B6E4 /* SFSafariViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSafariViewWrapper.swift; sourceTree = "<group>"; };
+		3C130F742A8C0A520060B6E4 /* ExpandableTextBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableTextBox.swift; sourceTree = "<group>"; };
+		3C130F762A8C0CB90060B6E4 /* ReactionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionButton.swift; sourceTree = "<group>"; };
 		3C1A3F542A731C3F00898FC6 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		3C1A3F582A73B17E00898FC6 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		3C1A3F5A2A73B2B800898FC6 /* KeychainInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainInterface.swift; sourceTree = "<group>"; };
@@ -350,6 +354,7 @@
 				3CE0A7932A8551CD008A782A /* EncodeDecodeHelpers.swift */,
 				3C7B7DC82A89485000A02A43 /* DateTimeParser.swift */,
 				3C130F712A8AD56A0060B6E4 /* SFSafariViewWrapper.swift */,
+				3C130F742A8C0A520060B6E4 /* ExpandableTextBox.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -388,6 +393,7 @@
 				3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */,
 				3CCAA8BE2A65309E007CCEC2 /* NoInternetConnectionView.swift */,
 				3CDF229C2A6D436B009281F2 /* Settings.swift */,
+				3C130F762A8C0CB90060B6E4 /* ReactionButton.swift */,
 				3CFE04C42A7FF1E7007BAD81 /* Kbin */,
 				3CD4DA242A7EF8CE00BC374A /* Info Views */,
 				3CC1788F2A7DA68C00C208D0 /* Search Views */,
@@ -778,6 +784,7 @@
 				3C6D29652A793878007AFD99 /* DictionaryExtension.swift in Sources */,
 				3C42AD1A2A8038300056AFBC /* KbinCommentsView.swift in Sources */,
 				3C6299D12A751A5900BE2A9F /* TextExtension.swift in Sources */,
+				3C130F772A8C0CB90060B6E4 /* ReactionButton.swift in Sources */,
 				3C5ECB282A767681002BA561 /* UserAndPassFieldsView.swift in Sources */,
 				3CE0A7942A8551CD008A782A /* EncodeDecodeHelpers.swift in Sources */,
 				3CD4DA232A7EF3C200BC374A /* SearchUsersRowView.swift in Sources */,
@@ -813,6 +820,7 @@
 				3CA92E432A549A7F00688DEB /* CommunityRowView.swift in Sources */,
 				3CEF4CC42A69B39B002B83C0 /* TrendingCommunitiesSectionView.swift in Sources */,
 				3C113C3D2A6E8B0C00FDE5CE /* SettingsAppearanceSectionView.swift in Sources */,
+				3C130F752A8C0A520060B6E4 /* ExpandableTextBox.swift in Sources */,
 				3CBCCDF62A589F2C00307AC1 /* CommentsView.swift in Sources */,
 				3C65885F2A621C6100A46DA3 /* MoreCommunitiesView.swift in Sources */,
 				3CC734AA2A6D697C007523B5 /* InsertSorter.swift in Sources */,
