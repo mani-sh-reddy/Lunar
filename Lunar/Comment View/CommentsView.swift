@@ -122,11 +122,6 @@ struct CommentRowView: View {
     .purple,
   ]
   var body: some View {
-    VStack(alignment: .leading, spacing: 3) {
-      Text(comment.creator.name.uppercased())
-        .font(.caption)
-        .bold()
-        .foregroundStyle(.secondary)
       HStack {
         if debugModeEnabled {
           Text(String(listIndex))
@@ -142,34 +137,38 @@ struct CommentRowView: View {
             .frame(width: 1)
             .padding(0)
         }
-        Text(comment.comment.content)
-      }
-      HStack {
-        ReactionButton(
-          text: String(comment.counts.upvotes),
-          icon: "arrow.up.circle.fill",
-          color: Color.green,
-          active: $upvoted,
-          opposite: $downvoted
-        )
-        .onTapGesture {
-          upvoted.toggle()
-          downvoted = false
+        VStack(alignment: .leading, spacing: 3) {
+          Text(comment.creator.name.uppercased())
+            .font(.caption)
+            .bold()
+            .foregroundStyle(.secondary)
+          Text(comment.comment.content)
+          HStack {
+            ReactionButton(
+              text: String(comment.counts.upvotes),
+              icon: "arrow.up.circle.fill",
+              color: Color.green,
+              active: $upvoted,
+              opposite: $downvoted
+            )
+            .onTapGesture {
+              upvoted.toggle()
+              downvoted = false
+            }
+            ReactionButton(
+              text: String(comment.counts.downvotes),
+              icon: "arrow.down.circle.fill",
+              color: Color.red,
+              active: $downvoted,
+              opposite: $upvoted
+            )
+            .onTapGesture {
+              downvoted.toggle()
+              upvoted = false
+            }
+          }
         }
-        ReactionButton(
-          text: String(comment.counts.downvotes),
-          icon: "arrow.down.circle.fill",
-          color: Color.red,
-          active: $downvoted,
-          opposite: $upvoted
-        )
-        .onTapGesture {
-          downvoted.toggle()
-          upvoted = false
-        }
       }
-      
-    }
       .onTapGesture {
         withAnimation(.smooth) {
           self.collapseToIndex = listIndex
@@ -179,8 +178,7 @@ struct CommentRowView: View {
         if indentLevel != 1 {
           CollapseCommentsSwipeAction(collapseToIndex: $collapseToIndex, listIndex: listIndex)
         }
-       
-    }
+      }
   }
 }
 
