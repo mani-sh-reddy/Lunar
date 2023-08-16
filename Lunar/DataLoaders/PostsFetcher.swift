@@ -61,7 +61,7 @@ import SwiftUI
     let cacher = ResponseCacher(behavior: .cache)
 
     AF.request(endpoint) { urlRequest in
-//      print("PostsFetcher REF \(urlRequest.url as Any)")
+      //      print("PostsFetcher REF \(urlRequest.url as Any)")
       urlRequest.cachePolicy = .reloadRevalidatingCacheData
     }
     .cacheResponse(using: cacher)
@@ -117,7 +117,7 @@ import SwiftUI
     let cacher = ResponseCacher(behavior: .cache)
 
     AF.request(endpoint) { urlRequest in
-//      print("PostsFetcher LOAD \(urlRequest.url as Any)")
+      //      print("PostsFetcher LOAD \(urlRequest.url as Any)")
       urlRequest.cachePolicy = .returnCacheDataElseLoad
     }
     .cacheResponse(using: cacher)
@@ -130,17 +130,17 @@ import SwiftUI
         let filteredNewPosts = newPosts.filter { newPost in
           !self.posts.contains { $0.post.id == newPost.post.id }
         }
-        
+
         let cachableImageURLs =
-        result.thumbnailURLs.compactMap { URL(string: $0) }
-        + result.avatarURLs.compactMap { URL(string: $0) }
-        let prefetcher = ImagePrefetcher(urls: cachableImageURLs) { skippedResources, failedResources, completedResources in
-//        print("SKIPPED:\(skippedResources)")
-//        print("FAILED:\(failedResources)")
-//        print("CCOMPLETED:\(completedResources)")
+          result.thumbnailURLs.compactMap { URL(string: $0) }
+          + result.avatarURLs.compactMap { URL(string: $0) }
+        let prefetcher = ImagePrefetcher(urls: cachableImageURLs) {
+          skippedResources, failedResources, completedResources in
+          //        print("SKIPPED:\(skippedResources)")
+          //        print("FAILED:\(failedResources)")
+          //        print("CCOMPLETED:\(completedResources)")
         }
         prefetcher.start()
-        
 
         self.posts += filteredNewPosts
         self.isLoading = false
@@ -151,9 +151,11 @@ import SwiftUI
       }
     }
   }
-  
+
   func getJWTFromKeychain(actorID: String) -> String? {
-    if let keychainObject = KeychainHelper.standard.read(service: self.appBundleID, account: selectedActorID) {
+    if let keychainObject = KeychainHelper.standard.read(
+      service: self.appBundleID, account: selectedActorID)
+    {
       let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
       return jwt.replacingOccurrences(of: "\"", with: "")
     } else {

@@ -13,7 +13,6 @@ struct CommentsView: View {
   @State private var upvote: Bool = false
   @State private var downvote: Bool = false
   var post: PostElement
-  
 
   init(post: PostElement) {
     self.post = post
@@ -23,15 +22,15 @@ struct CommentsView: View {
   }
 
   var body: some View {
-//    if commentsFetcher.isLoading { //TODO change back once done
-//      ProgressView()
-//    } else {
-      CommentSectionView(
-        post: post,
-        comments: commentsFetcher.comments,
-        postBody: post.post.body ?? ""
-      )
-//    }
+    //    if commentsFetcher.isLoading { //TODO change back once done
+    //      ProgressView()
+    //    } else {
+    CommentSectionView(
+      post: post,
+      comments: commentsFetcher.comments,
+      postBody: post.post.body ?? ""
+    )
+    //    }
   }
 }
 
@@ -47,7 +46,7 @@ struct CommentSectionView: View {
   var comments: [CommentElement]
   var postBody: String
   @State private var collapseToIndex: Int = 0
-  @State private var postBodyExpanded:Bool = false
+  @State private var postBodyExpanded: Bool = false
 
   init(
     post: PostElement,
@@ -64,7 +63,7 @@ struct CommentSectionView: View {
       Section {
         PostRowView(upvoted: post.myVote == 1, downvoted: post.myVote == -1, post: post)
         if !postBody.isEmpty {
-          VStack (alignment: .trailing){
+          VStack(alignment: .trailing) {
             ExpandableTextBox(postBody).font(.body)
           }
         }
@@ -81,17 +80,16 @@ struct CommentSectionView: View {
             } else {
               return 1
             }
-            
+
           }
-          
+
           let comment = comments[index]
           if index <= collapseToIndex && indentLevel != 1 {
             EmptyView()
           } else {
             CommentRowView(collapseToIndex: $collapseToIndex, comment: comment, listIndex: index)
           }
-          
-          
+
         }
       }
     }.listStyle(.grouped)
@@ -133,63 +131,63 @@ struct CommentRowView: View {
     .purple,
   ]
   var body: some View {
-      HStack {
-        if debugModeEnabled {
-          Text(String(listIndex))
-        }
-        ForEach(1..<indentLevel, id: \.self) { _ in
-          Rectangle().opacity(0).frame(width: 0.5).padding(.horizontal, 0)
-        }
-        let indentLevel = min(indentLevel, commentHierarchyColors.count - 1)
-        let foregroundColor = commentHierarchyColors[indentLevel]
-        if indentLevel > 1 {
-          Capsule(style: .continuous)
-            .foregroundStyle(foregroundColor)
-            .frame(width: 1)
-            .padding(0)
-        }
-        VStack(alignment: .leading, spacing: 3) {
-          Text(comment.creator.name.uppercased())
-            .font(.caption)
-            .bold()
-            .foregroundStyle(.secondary)
-          Text(comment.comment.content)
-          HStack {
-            ReactionButton(
-              text: String(comment.counts.upvotes),
-              icon: "arrow.up.circle.fill",
-              color: Color.green,
-              active: $upvoted,
-              opposite: $downvoted
-            )
-            .onTapGesture {
-              upvoted.toggle()
-              downvoted = false
-            }
-            ReactionButton(
-              text: String(comment.counts.downvotes),
-              icon: "arrow.down.circle.fill",
-              color: Color.red,
-              active: $downvoted,
-              opposite: $upvoted
-            )
-            .onTapGesture {
-              downvoted.toggle()
-              upvoted = false
-            }
+    HStack {
+      if debugModeEnabled {
+        Text(String(listIndex))
+      }
+      ForEach(1..<indentLevel, id: \.self) { _ in
+        Rectangle().opacity(0).frame(width: 0.5).padding(.horizontal, 0)
+      }
+      let indentLevel = min(indentLevel, commentHierarchyColors.count - 1)
+      let foregroundColor = commentHierarchyColors[indentLevel]
+      if indentLevel > 1 {
+        Capsule(style: .continuous)
+          .foregroundStyle(foregroundColor)
+          .frame(width: 1)
+          .padding(0)
+      }
+      VStack(alignment: .leading, spacing: 3) {
+        Text(comment.creator.name.uppercased())
+          .font(.caption)
+          .bold()
+          .foregroundStyle(.secondary)
+        Text(comment.comment.content)
+        HStack {
+          ReactionButton(
+            text: String(comment.counts.upvotes),
+            icon: "arrow.up.circle.fill",
+            color: Color.green,
+            active: $upvoted,
+            opposite: $downvoted
+          )
+          .onTapGesture {
+            upvoted.toggle()
+            downvoted = false
+          }
+          ReactionButton(
+            text: String(comment.counts.downvotes),
+            icon: "arrow.down.circle.fill",
+            color: Color.red,
+            active: $downvoted,
+            opposite: $upvoted
+          )
+          .onTapGesture {
+            downvoted.toggle()
+            upvoted = false
           }
         }
       }
-      .onTapGesture {
-        withAnimation(.smooth) {
-          self.collapseToIndex = listIndex
-        }
+    }
+    .onTapGesture {
+      withAnimation(.smooth) {
+        self.collapseToIndex = listIndex
       }
-      .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-        if indentLevel != 1 {
-          CollapseCommentsSwipeAction(collapseToIndex: $collapseToIndex, listIndex: listIndex)
-        }
+    }
+    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+      if indentLevel != 1 {
+        CollapseCommentsSwipeAction(collapseToIndex: $collapseToIndex, listIndex: listIndex)
       }
+    }
   }
 }
 
@@ -197,7 +195,7 @@ struct CollapseCommentsSwipeAction: View {
   //  @Binding var isClicked: Bool
   @Binding var collapseToIndex: Int
   var listIndex: Int
-  
+
   var body: some View {
     Button {
       print("SWIPED")
