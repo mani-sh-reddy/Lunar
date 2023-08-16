@@ -37,7 +37,6 @@ enum Settings {
   static let loggedInAccounts: [LoggedInAccount] = []
 
   /// selectedUser split up to store in appstorage
-  static let selectedUserID: String = ""
   static let selectedName: String = ""
   static let selectedEmail: String = ""
   static let selectedAvatarURL: String = ""

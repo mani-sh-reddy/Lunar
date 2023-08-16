@@ -11,7 +11,6 @@ import NukeUI
 import SwiftUI
 
 struct UserRowSettingsBannerView: View {
-  @AppStorage("selectedUserID") var selectedUserID = Settings.selectedUserID
   @AppStorage("selectedName") var selectedName = Settings.selectedName
   @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
   @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL

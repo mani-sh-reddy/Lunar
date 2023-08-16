@@ -27,7 +27,6 @@ struct LoggedInUsersListView: View {
 }
 
 struct AccountSelectionItem: View {
-  @AppStorage("selectedUserID") var selectedUserID = Settings.selectedUserID
   @AppStorage("selectedName") var selectedName = Settings.selectedName
   @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
   @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
@@ -48,6 +47,7 @@ struct AccountSelectionItem: View {
           .foregroundStyle(.secondary)
       }
       Spacer()
+      let _ = print("\(account.actorID) == \(selectedActorID) : \(account.actorID == selectedActorID)")
       Image(systemName: account.actorID == selectedActorID ? "checkmark.circle.fill" : "circle")
         .font(.title2)
         .symbolRenderingMode(.hierarchical)
@@ -58,8 +58,6 @@ struct AccountSelectionItem: View {
     .onTapGesture {
       haptics.impactOccurred()
       selectedAccount = account
-
-      selectedUserID = account.userID
       selectedName = account.name
       selectedEmail = account.email
       selectedAvatarURL = account.avatarURL

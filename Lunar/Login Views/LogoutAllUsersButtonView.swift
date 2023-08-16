@@ -14,7 +14,6 @@ struct LogoutAllUsersButtonView: View {
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
   @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
-  @AppStorage("selectedUserID") var selectedUserID = Settings.selectedUserID
   @AppStorage("selectedName") var selectedName = Settings.selectedName
   @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
   @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
@@ -42,7 +41,7 @@ struct LogoutAllUsersButtonView: View {
         } else {
           Text("Logout All Users")
             .foregroundStyle(.red)
-            .opacity(loggedInUsersList.isEmpty ? 0.4 : 1)
+            .opacity(loggedInAccounts.isEmpty ? 0.4 : 1)
         }
 
         Spacer()
@@ -70,24 +69,22 @@ struct LogoutAllUsersButtonView: View {
           .font(.title2)
           .foregroundStyle(.red)
           .symbolRenderingMode(.hierarchical)
-          .opacity(loggedInUsersList.isEmpty ? 0.3 : 1)
+          .opacity(loggedInAccounts.isEmpty ? 0.3 : 1)
       }
     }
-    .disabled(loggedInUsersList.isEmpty)
+    .disabled(loggedInAccounts.isEmpty)
     .confirmationDialog("Remove All Accounts?", isPresented: $deleteConfirmationShown) {
       Button(role: .destructive) {
         isPresentingConfirm = true
         selectedAccount = LoggedInAccount(
           userID: "", name: "", email: "", avatarURL: "", actorID: "")
         loggedInAccounts.removeAll()
-
-        selectedUserID = ""
         selectedName = ""
         selectedEmail = ""
         selectedAvatarURL = ""
         selectedActorID = ""
 
-        if !loggedInUsersList.isEmpty {
+        if !loggedInAccounts.isEmpty {
           isLoadingDeleteButton = true
           haptic.notificationOccurred(.success)
           logoutAllUsersButtonClicked = true
