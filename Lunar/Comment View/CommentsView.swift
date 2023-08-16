@@ -10,6 +10,8 @@ import SwiftUI
 
 struct CommentsView: View {
   @StateObject private var commentsFetcher: CommentsFetcher
+  @State private var upvote: Bool = false
+  @State private var downvote: Bool = false
   var post: PostElement
   
 
@@ -60,7 +62,7 @@ struct CommentSectionView: View {
   var body: some View {
     List {
       Section {
-        PostRowView(post: post)
+        PostRowView(upvoted: post.myVote == 1, downvoted: post.myVote == -1, post: post)
         if !postBody.isEmpty {
           VStack (alignment: .trailing){
             ExpandableTextBox(postBody).font(.body)
@@ -96,12 +98,12 @@ struct CommentSectionView: View {
   }
 }
 
-struct CommentRowView_Previews: PreviewProvider {
-  static var previews: some View {
-    CommentRowView(collapseToIndex: .constant(0), comment: MockData.commentElement, listIndex: 0)
-      .previewLayout(PreviewLayout.sizeThatFits)
-  }
-}
+//struct CommentRowView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    CommentRowView(collapseToIndex: .constant(0), comment: MockData.commentElement, listIndex: 0)
+//      .previewLayout(PreviewLayout.sizeThatFits)
+//  }
+//}
 
 struct CommentRowView: View {
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled

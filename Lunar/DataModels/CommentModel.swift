@@ -20,7 +20,7 @@ struct CommentModel: Codable {
 struct CommentElement: Codable {
   let comment: CommentsListObject
   let creator: CommentsListCreator
-  let post: CommentsListPost
+  let post: PostObject
   let community: CommentsListCommunity
   let counts: CommentsListCounts
   let creatorBannedFromCommunity: Bool
@@ -127,34 +127,6 @@ struct CommentsListCreator: Codable {
     case instanceID = "instance_id"
     case displayName = "display_name"
     case avatar, banner, bio
-  }
-}
-
-// MARK: - CommentsListPost
-
-struct CommentsListPost: Codable {
-  let id: Int
-  let name, body: String?
-  let creatorID, communityID: Int
-  let removed, locked: Bool
-  let published: String
-  let updated: String?
-  let deleted, nsfw: Bool
-  let apID: String
-  let local: Bool
-  let languageID: Int
-  let featuredCommunity, featuredLocal: Bool
-
-  enum CodingKeys: String, CodingKey {
-    case id, name, body
-    case creatorID = "creator_id"
-    case communityID = "community_id"
-    case removed, locked, published, updated, deleted, nsfw
-    case apID = "ap_id"
-    case local
-    case languageID = "language_id"
-    case featuredCommunity = "featured_community"
-    case featuredLocal = "featured_local"
   }
 }
 
