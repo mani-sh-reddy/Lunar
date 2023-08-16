@@ -18,7 +18,7 @@ struct ReactionButton: View {
   @Binding var active: Bool
   @Binding var opposite: Bool
   
-  let haptics = UIImpactFeedbackGenerator(style: .rigid)
+  let haptics = UIImpactFeedbackGenerator(style: .light)
   
   var body: some View {
     Button {
@@ -45,4 +45,6 @@ struct ReactionButton: View {
     .background(active ? color.opacity(0.75) : .secondary.opacity(0.1), in: Capsule())
     .padding(.top, 3)
   }
+
 }
+
