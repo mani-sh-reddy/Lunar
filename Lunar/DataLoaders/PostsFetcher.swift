@@ -12,6 +12,8 @@ import Kingfisher
 import SwiftUI
 
 @MainActor class PostsFetcher: ObservableObject {
+  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
+  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
   @AppStorage("postSort") var postSort = Settings.postSort
   @AppStorage("postType") var postType = Settings.postType
   @Published var posts = [PostElement]()
@@ -21,6 +23,7 @@ import SwiftUI
   private var sortParameter: String?
   private var typeParameter: String?
   private var communityID: Int?
+  private var jwt: String = ""
   private var endpoint: URLComponents {
     URLBuilder(
       endpointPath: "/api/v3/post/list",
@@ -28,7 +31,8 @@ import SwiftUI
       typeParameter: typeParameter,
       currentPage: currentPage,
       limitParameter: 20,
-      communityID: communityID
+      communityID: communityID,
+      jwt: getJWTFromKeychain(actorID: selectedActorID) ?? ""
     ).buildURL()
   }
 
@@ -145,6 +149,15 @@ import SwiftUI
       case let .failure(error):
         print("PostsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
       }
+    }
+  }
+  
+  func getJWTFromKeychain(actorID: String) -> String? {
+    if let keychainObject = KeychainHelper.standard.read(service: self.appBundleID, account: selectedActorID) {
+      let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
+      return jwt.replacingOccurrences(of: "\"", with: "")
+    } else {
+      return nil
     }
   }
 }

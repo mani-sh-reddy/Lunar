@@ -34,6 +34,7 @@ struct PostElement: Codable {
   let subscribed: Subscribed
   let saved, read, creatorBlocked: Bool
   let unreadComments: Int
+  let myVote: Int?
 
   enum CodingKeys: String, CodingKey {
     case post, creator, community
@@ -41,6 +42,7 @@ struct PostElement: Codable {
     case counts, subscribed, saved, read
     case creatorBlocked = "creator_blocked"
     case unreadComments = "unread_comments"
+    case myVote = "my_vote"
   }
 }
 

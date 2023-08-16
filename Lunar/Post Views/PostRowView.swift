@@ -10,6 +10,7 @@ import SwiftUI
 import SafariServices
 
 struct PostRowView: View {
+  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @State var upvoted: Bool = false
   @State var downvoted: Bool = false
   @State var goInto: Bool = false
@@ -32,6 +33,7 @@ struct PostRowView: View {
   var upvotes: Int { return post.counts.upvotes }
   var downvotes: Int { return post.counts.downvotes }
   var commentCount: Int { return post.counts.comments }
+  var postID: Int { return post.post.id }
   var instanceTag: String {
     let tag = post.community.actorID
     if !tag.isEmpty {
@@ -74,33 +76,56 @@ struct PostRowView: View {
       }
       HStack {
         ReactionButton(
-          text: String(upvotes),
+          text: String(upvoted ? upvotes + 1 : upvotes),
           icon: "arrow.up.circle.fill",
           color: Color.green,
           active: $upvoted,
-          opposite: $downvoted
+          opposite: .constant(false)
         )
-        .onTapGesture {
-          upvoted.toggle()
-          downvoted = false
-        }
+        .highPriorityGesture(
+          TapGesture().onEnded {
+            haptics.impactOccurred()
+            upvoted.toggle()
+            downvoted = false
+            if upvoted {
+              print("upvoted")
+              sendReaction(voteType: 1, postID: post.post.id)
+            } else {
+              print("upvote removed")
+              sendReaction(voteType: 0, postID: post.post.id)
+            }
+          }
+        )
+
         ReactionButton(
-          text: String(downvotes),
+          text: String(downvoted ? downvotes + 1 : downvotes),
           icon: "arrow.down.circle.fill",
           color: Color.red,
           active: $downvoted,
-          opposite: $upvoted
+          opposite: .constant(false)
         )
-        .onTapGesture {
-          downvoted.toggle()
-          upvoted = false
-        }
+        .highPriorityGesture(
+          TapGesture().onEnded {
+            haptics.impactOccurred()
+            downvoted.toggle()
+            upvoted = false
+            if downvoted {
+              print("downvoted")
+              sendReaction(voteType: -1, postID: post.post.id)
+            } else {
+              print("downvote removed")
+              sendReaction(voteType: 0, postID: post.post.id)
+            }
+          }
+        )
+
         ReactionButton(
           text: String(commentCount),
           icon: "bubble.left.circle.fill",
           color: Color.gray,
           active: .constant(false),
           opposite: .constant(false)
+          
         )
         Spacer()
         if post.post.url != post.post.thumbnailURL {
@@ -121,7 +146,6 @@ struct PostRowView: View {
             SFSafariViewWrapper(url: URL(string: post.post.url ?? "")!).ignoresSafeArea()
           })
         }
-        
       }
     }
     .padding(.horizontal, -5)
@@ -140,6 +164,28 @@ struct PostRowView: View {
       Button("OK", role: .cancel) {
         showingPlaceholderAlert = false
       }
+    }
+    .onAppear {
+      if let voteType = post.myVote {
+        print(voteType)
+        switch voteType {
+        case 1:
+          self.upvoted = true
+          self.downvoted = false
+        case -1:
+          self.upvoted = false
+          self.downvoted = true
+        default:
+          self.upvoted = false
+          self.downvoted = false
+        }
+      }
+    }
+  }
+  
+  func sendReaction(voteType: Int, postID: Int) {
+    VoteSender(asActorID: selectedActorID, voteType: voteType, postID: postID, elementType: "post").fetchVoteInfo { postID, voteSubmittedSuccessfully, _ in
+      print("vote submitted successfully? : \(voteSubmittedSuccessfully)")
     }
   }
 }
