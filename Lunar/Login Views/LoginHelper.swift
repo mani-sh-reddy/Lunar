@@ -84,11 +84,11 @@ class LoginHelper: ObservableObject {
   func handleLoginSuccess(fetchedData: CredentialsResponseModel) {
     print("login successful inside handleLoginSuccess()")
     let jwt = fetchedData.jwt
-    SiteInfoFetcher(jwt: jwt).fetchSiteInfo { username, email, _ in
+    SiteInfoFetcher(jwt: jwt).fetchSiteInfo { username, email, actorID, _ in
 
-      if let validUsername = username {
-        self.loggedInUsersList.append(validUsername)
-        KeychainHelper.standard.save(jwt, service: self.appBundleID, account: validUsername)
+      if let validActorID = actorID {
+        self.loggedInUsersList.append(validActorID)
+        KeychainHelper.standard.save(jwt, service: self.appBundleID, account: validActorID)
       }
       if let validEmail = email {
         self.loggedInEmailsList.append(validEmail)
