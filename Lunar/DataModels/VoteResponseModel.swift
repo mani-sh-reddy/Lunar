@@ -10,7 +10,7 @@ import Foundation
 // MARK: - Welcome
 struct VoteResponseModel: Codable {
   let post: PostElement
-  
+
   enum CodingKeys: String, CodingKey {
     case post = "post_view"
   }
