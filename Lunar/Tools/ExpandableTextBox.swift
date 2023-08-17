@@ -13,48 +13,53 @@ struct ExpandableTextBox: View {
   @State private var truncated: Bool = false
   private var text: String
   var lineLimit = 3
-  
+
   let haptics = UIImpactFeedbackGenerator(style: .soft)
-  
+
   init(_ text: String) {
     self.text = text
   }
-  
+
   var body: some View {
     VStack(alignment: .leading) {
       Text(text)
         .lineLimit(expanded ? nil : lineLimit)
         .background(
           Text(text).lineLimit(lineLimit)
-            .background(GeometryReader { displayedGeometry in
-              ZStack {
-                Text(self.text)
-                  .background(GeometryReader { fullGeometry in
-                    
-                    Color.clear.onAppear {
-                      self.truncated = fullGeometry.size.height > displayedGeometry.size.height
-                    }
-                  })
+            .background(
+              GeometryReader { displayedGeometry in
+                ZStack {
+                  Text(self.text)
+                    .background(
+                      GeometryReader { fullGeometry in
+
+                        Color.clear.onAppear {
+                          self.truncated = fullGeometry.size.height > displayedGeometry.size.height
+                        }
+                      })
+                }
+                .frame(height: .greatestFiniteMagnitude)
               }
-              .frame(height: .greatestFiniteMagnitude)
-            })
+            )
             .hidden()
         )
-      
+
       if truncated { toggleButton }
     }
   }
-  
+
   var toggleButton: some View {
-//    Button(action: { self.expanded.toggle() }) {
-//      Text(self.expanded ? "Show less" : "Show more")
-//        .font(.caption)
-//    }
-    HStack{
+    //    Button(action: { self.expanded.toggle() }) {
+    //      Text(self.expanded ? "Show less" : "Show more")
+    //        .font(.caption)
+    //    }
+    HStack {
       Spacer()
       ReactionButton(
         text: self.expanded ? "Show less" : "Show more",
-        icon: self.expanded ? "arrow.down.and.line.horizontal.and.arrow.up" : "arrow.up.and.line.horizontal.and.arrow.down",
+        icon: self.expanded
+          ? "arrow.down.and.line.horizontal.and.arrow.up"
+          : "arrow.up.and.line.horizontal.and.arrow.down",
         color: Color.blue,
         textSize: Font.caption,
         iconSize: Font.caption,
@@ -64,11 +69,11 @@ struct ExpandableTextBox: View {
       .highPriorityGesture(
         TapGesture().onEnded {
           haptics.impactOccurred(intensity: 0.5)
-            self.expanded.toggle()
+          self.expanded.toggle()
         }
       )
       Spacer()
     }
-    
+
   }
 }
