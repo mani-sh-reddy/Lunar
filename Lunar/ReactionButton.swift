@@ -22,9 +22,9 @@ struct ReactionButton: View {
   
   var body: some View {
     Button {
-      active.toggle()
-      opposite = false
-      haptics.impactOccurred()
+//      active.toggle()
+//      opposite = false
+//      haptics.impactOccurred()
     } label: {
       HStack {
         Image(systemName: icon)

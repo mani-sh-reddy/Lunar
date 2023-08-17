@@ -11,11 +11,15 @@ import SafariServices
 
 struct PostRowView: View {
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  @State var upvoted: Bool = false
-  @State var downvoted: Bool = false
+  
+  @Binding var upvoted: Bool
+  @Binding var downvoted: Bool
+  
   @State var goInto: Bool = false
   @State var showingPlaceholderAlert = false
   @State private var showSafari: Bool = false
+  
+  var post: PostElement
   
   var imageURL: String {
     if let thumbnailURL = post.post.thumbnailURL, !thumbnailURL.isEmpty {
@@ -49,7 +53,6 @@ struct PostRowView: View {
     return ", \(dateTimeParser.timeAgoString(from: post.post.published))"
   }
   
-  var post: PostElement
   let haptics = UIImpactFeedbackGenerator(style: .rigid)
   
   var body: some View {
@@ -166,26 +169,28 @@ struct PostRowView: View {
       }
     }
     .onAppear {
-      if let voteType = post.myVote {
-        print(voteType)
-        switch voteType {
-        case 1:
-          self.upvoted = true
-          self.downvoted = false
-        case -1:
-          self.upvoted = false
-          self.downvoted = true
-        default:
-          self.upvoted = false
-          self.downvoted = false
+      print("ON APPEAR POST")
+        if let voteType = post.myVote {
+          print("ON APPEAR POST vote type : \(voteType)")
+          switch voteType {
+          case 1:
+            self.upvoted = true
+            self.downvoted = false
+          case -1:
+            self.upvoted = false
+            self.downvoted = true
+          default:
+            self.upvoted = false
+            self.downvoted = false
+          }
         }
-      }
     }
   }
   
   func sendReaction(voteType: Int, postID: Int) {
     VoteSender(asActorID: selectedActorID, voteType: voteType, postID: postID, elementType: "post").fetchVoteInfo { postID, voteSubmittedSuccessfully, _ in
       print("vote submitted successfully? : \(voteSubmittedSuccessfully)")
+      
     }
   }
 }

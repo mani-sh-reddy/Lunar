@@ -35,20 +35,10 @@ struct PostsView: View {
         CommunityHeaderView(community: community)
       }
       ForEach(postsFetcher.posts, id: \.post.id) { post in
-        Section {
-          ZStack {
-            PostRowView(post: post)
-            NavigationLink {
-              CommentsView(post: post)
-            } label: {
-              EmptyView()
-            }
-            .opacity(0)
-          }
+        PostSectionView(post: post)
           .task {
             postsFetcher.loadMoreContentIfNeeded(currentItem: post)
           }
-        }
       }
       if postsFetcher.isLoading {
         ProgressView().id(UUID())
@@ -78,5 +68,39 @@ struct PostsView_Previews: PreviewProvider {
         communityID: 234
       ), title: "Title"
     )
+  }
+}
+
+struct PostSectionView: View {
+  @State var upvoted: Bool = false
+  @State var downvoted: Bool = false
+  
+  var post: PostElement
+  
+  var body: some View {
+    let _ = print("----------------------")
+    let _ = print("UPVOTED \(post.post.name): \(upvoted)")
+    let _ = print("DOWNVOTED \(post.post.name): \(downvoted)")
+    let _ = print("----------------------")
+    Section {
+      ZStack {
+        PostRowView(
+          upvoted: $upvoted,
+          downvoted: $downvoted,
+          post: post
+        )
+        NavigationLink {
+          CommentsView(
+            commentsFetcher: CommentsFetcher(postID: post.post.id),
+            upvoted: $upvoted,
+            downvoted: $downvoted,
+            post: post
+          )
+        } label: {
+          EmptyView()
+        }
+        .opacity(0)
+      }
+    }
   }
 }

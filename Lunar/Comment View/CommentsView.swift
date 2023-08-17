@@ -9,18 +9,17 @@ import Kingfisher
 import SwiftUI
 
 struct CommentsView: View {
-  @StateObject private var commentsFetcher: CommentsFetcher
-  @State private var upvote: Bool = false
-  @State private var downvote: Bool = false
+  @StateObject var commentsFetcher: CommentsFetcher
+  @Binding var upvoted: Bool
+  @Binding var downvoted: Bool
   var post: PostElement
-  
 
-  init(post: PostElement) {
-    self.post = post
-    _commentsFetcher = StateObject(
-      wrappedValue: CommentsFetcher(postID: post.post.id)
-    )
-  }
+//  init(post: PostElement) {
+//    self.post = post
+//    _commentsFetcher = StateObject(
+//      wrappedValue: CommentsFetcher(postID: post.post.id)
+//    )
+//  }
 
   var body: some View {
 //    if commentsFetcher.isLoading { //TODO change back once done
@@ -29,40 +28,50 @@ struct CommentsView: View {
       CommentSectionView(
         post: post,
         comments: commentsFetcher.comments,
-        postBody: post.post.body ?? ""
+        postBody: post.post.body ?? "",
+        upvoted: $upvoted,
+        downvoted: $downvoted
       )
 //    }
   }
 }
 
-struct CommentsView_Previews: PreviewProvider {
-  static var previews: some View {
-    CommentsView(post: MockData.postElement)
-      .previewLayout(PreviewLayout.sizeThatFits)
-  }
-}
+//struct CommentsView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    CommentsView(post: MockData.postElement)
+//      .previewLayout(PreviewLayout.sizeThatFits)
+//  }
+//}
 
 struct CommentSectionView: View {
   var post: PostElement
   var comments: [CommentElement]
   var postBody: String
-  @State private var collapseToIndex: Int = 0
-  @State private var postBodyExpanded:Bool = false
+  
+  @State var collapseToIndex: Int = 0
+  @State var postBodyExpanded:Bool = false
+  
+  @Binding var upvoted: Bool
+  @Binding var downvoted: Bool
 
-  init(
-    post: PostElement,
-    comments: [CommentElement],
-    postBody: String
-  ) {
-    self.post = post
-    self.comments = comments
-    self.postBody = postBody
-  }
+//  init(
+//    post: PostElement,
+//    comments: [CommentElement],
+//    postBody: String
+////    upvoted: Binding<Bool>,
+////    downvoted: Binding<Bool>
+//  ) {
+//    self.post = post
+//    self.comments = comments
+//    self.postBody = postBody
+////    self._upvoted = upvoted
+////    self._downvoted = downvoted
+//  }
 
   var body: some View {
     List {
       Section {
-        PostRowView(upvoted: post.myVote == 1, downvoted: post.myVote == -1, post: post)
+        PostRowView(upvoted: $upvoted, downvoted: $downvoted, post: post)
         if !postBody.isEmpty {
           VStack (alignment: .trailing){
             ExpandableTextBox(postBody).font(.body)
@@ -81,7 +90,6 @@ struct CommentSectionView: View {
             } else {
               return 1
             }
-            
           }
           
           let comment = comments[index]
@@ -90,8 +98,6 @@ struct CommentSectionView: View {
           } else {
             CommentRowView(collapseToIndex: $collapseToIndex, comment: comment, listIndex: index)
           }
-          
-          
         }
       }
     }.listStyle(.grouped)
@@ -108,10 +114,12 @@ struct CommentSectionView: View {
 struct CommentRowView: View {
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @Binding var collapseToIndex: Int
-  @State var upvoted: Bool = false
-  @State var downvoted: Bool = false
+  @State var commentUpvoted: Bool = false
+  @State var commentDownvoted: Bool = false
+  
   let comment: CommentElement
   let listIndex: Int
+  
   var indentLevel: Int {
     let elements = comment.comment.path.split(separator: ".").map { String($0) }
     let elementCount = elements.isEmpty ? 1 : elements.count - 1
@@ -159,23 +167,23 @@ struct CommentRowView: View {
               text: String(comment.counts.upvotes),
               icon: "arrow.up.circle.fill",
               color: Color.green,
-              active: $upvoted,
-              opposite: $downvoted
+              active: $commentUpvoted,
+              opposite: $commentDownvoted
             )
             .onTapGesture {
-              upvoted.toggle()
-              downvoted = false
+              commentUpvoted.toggle()
+              commentDownvoted = false
             }
             ReactionButton(
               text: String(comment.counts.downvotes),
               icon: "arrow.down.circle.fill",
               color: Color.red,
-              active: $downvoted,
-              opposite: $upvoted
+              active: $commentUpvoted,
+              opposite: $commentDownvoted
             )
             .onTapGesture {
-              downvoted.toggle()
-              upvoted = false
+              commentDownvoted.toggle()
+              commentUpvoted = false
             }
           }
         }
