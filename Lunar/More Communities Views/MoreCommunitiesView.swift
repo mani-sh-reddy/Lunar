@@ -18,7 +18,8 @@ struct MoreCommunitiesView: View {
       Section {
         ForEach(communitiesFetcher.communities, id: \.community.id) { community in
           NavigationLink {
-            PostsView(community: community
+            PostsView(
+              community: community
             )
           } label: {
             CommunityRowView(community: community)

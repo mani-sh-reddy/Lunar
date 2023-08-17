@@ -15,25 +15,25 @@ struct CommentsView: View {
   @Binding var downvoted: Bool
   var post: PostElement
 
-//  init(post: PostElement) {
-//    self.post = post
-//    _commentsFetcher = StateObject(
-//      wrappedValue: CommentsFetcher(postID: post.post.id)
-//    )
-//  }
+  //  init(post: PostElement) {
+  //    self.post = post
+  //    _commentsFetcher = StateObject(
+  //      wrappedValue: CommentsFetcher(postID: post.post.id)
+  //    )
+  //  }
 
   var body: some View {
-//    if commentsFetcher.isLoading { //TODO change back once done
-//      ProgressView()
-//    } else {
-      CommentSectionView(
-        post: post,
-        comments: commentsFetcher.comments,
-        postBody: post.post.body ?? "",
-        upvoted: $upvoted,
-        downvoted: $downvoted
-      ).environmentObject(postsFetcher)
-//    }
+    //    if commentsFetcher.isLoading { //TODO change back once done
+    //      ProgressView()
+    //    } else {
+    CommentSectionView(
+      post: post,
+      comments: commentsFetcher.comments,
+      postBody: post.post.body ?? "",
+      upvoted: $upvoted,
+      downvoted: $downvoted
+    ).environmentObject(postsFetcher)
+    //    }
   }
 }
 
@@ -49,33 +49,34 @@ struct CommentSectionView: View {
   var post: PostElement
   var comments: [CommentElement]
   var postBody: String
-  
+
   @State var collapseToIndex: Int = 0
-  @State var postBodyExpanded:Bool = false
-  
+  @State var postBodyExpanded: Bool = false
+
   @Binding var upvoted: Bool
   @Binding var downvoted: Bool
 
-//  init(
-//    post: PostElement,
-//    comments: [CommentElement],
-//    postBody: String
-////    upvoted: Binding<Bool>,
-////    downvoted: Binding<Bool>
-//  ) {
-//    self.post = post
-//    self.comments = comments
-//    self.postBody = postBody
-////    self._upvoted = upvoted
-////    self._downvoted = downvoted
-//  }
+  //  init(
+  //    post: PostElement,
+  //    comments: [CommentElement],
+  //    postBody: String
+  ////    upvoted: Binding<Bool>,
+  ////    downvoted: Binding<Bool>
+  //  ) {
+  //    self.post = post
+  //    self.comments = comments
+  //    self.postBody = postBody
+  ////    self._upvoted = upvoted
+  ////    self._downvoted = downvoted
+  //  }
 
   var body: some View {
     List {
       Section {
-        PostRowView(upvoted: $upvoted, downvoted: $downvoted, post: post).environmentObject(postsFetcher)
+        PostRowView(upvoted: $upvoted, downvoted: $downvoted, post: post).environmentObject(
+          postsFetcher)
         if !postBody.isEmpty {
-          VStack (alignment: .trailing){
+          VStack(alignment: .trailing) {
             ExpandableTextBox(postBody).font(.body)
           }
         }
@@ -93,7 +94,7 @@ struct CommentSectionView: View {
               return 1
             }
           }
-          
+
           let comment = comments[index]
           if index <= collapseToIndex && indentLevel != 1 {
             EmptyView()
@@ -118,10 +119,10 @@ struct CommentRowView: View {
   @Binding var collapseToIndex: Int
   @State var commentUpvoted: Bool = false
   @State var commentDownvoted: Bool = false
-  
+
   let comment: CommentElement
   let listIndex: Int
-  
+
   var indentLevel: Int {
     let elements = comment.comment.path.split(separator: ".").map { String($0) }
     let elementCount = elements.isEmpty ? 1 : elements.count - 1
@@ -143,63 +144,63 @@ struct CommentRowView: View {
     .purple,
   ]
   var body: some View {
-      HStack {
-        if debugModeEnabled {
-          Text(String(listIndex))
-        }
-        ForEach(1..<indentLevel, id: \.self) { _ in
-          Rectangle().opacity(0).frame(width: 0.5).padding(.horizontal, 0)
-        }
-        let indentLevel = min(indentLevel, commentHierarchyColors.count - 1)
-        let foregroundColor = commentHierarchyColors[indentLevel]
-        if indentLevel > 1 {
-          Capsule(style: .continuous)
-            .foregroundStyle(foregroundColor)
-            .frame(width: 1)
-            .padding(0)
-        }
-        VStack(alignment: .leading, spacing: 3) {
-          Text(comment.creator.name.uppercased())
-            .font(.caption)
-            .bold()
-            .foregroundStyle(.secondary)
-          Text(comment.comment.content)
-          HStack {
-            ReactionButton(
-              text: String(comment.counts.upvotes),
-              icon: "arrow.up.circle.fill",
-              color: Color.green,
-              active: $commentUpvoted,
-              opposite: $commentDownvoted
-            )
-            .onTapGesture {
-              commentUpvoted.toggle()
-              commentDownvoted = false
-            }
-            ReactionButton(
-              text: String(comment.counts.downvotes),
-              icon: "arrow.down.circle.fill",
-              color: Color.red,
-              active: $commentUpvoted,
-              opposite: $commentDownvoted
-            )
-            .onTapGesture {
-              commentDownvoted.toggle()
-              commentUpvoted = false
-            }
+    HStack {
+      if debugModeEnabled {
+        Text(String(listIndex))
+      }
+      ForEach(1..<indentLevel, id: \.self) { _ in
+        Rectangle().opacity(0).frame(width: 0.5).padding(.horizontal, 0)
+      }
+      let indentLevel = min(indentLevel, commentHierarchyColors.count - 1)
+      let foregroundColor = commentHierarchyColors[indentLevel]
+      if indentLevel > 1 {
+        Capsule(style: .continuous)
+          .foregroundStyle(foregroundColor)
+          .frame(width: 1)
+          .padding(0)
+      }
+      VStack(alignment: .leading, spacing: 3) {
+        Text(comment.creator.name.uppercased())
+          .font(.caption)
+          .bold()
+          .foregroundStyle(.secondary)
+        Text(comment.comment.content)
+        HStack {
+          ReactionButton(
+            text: String(comment.counts.upvotes),
+            icon: "arrow.up.circle.fill",
+            color: Color.green,
+            active: $commentUpvoted,
+            opposite: $commentDownvoted
+          )
+          .onTapGesture {
+            commentUpvoted.toggle()
+            commentDownvoted = false
+          }
+          ReactionButton(
+            text: String(comment.counts.downvotes),
+            icon: "arrow.down.circle.fill",
+            color: Color.red,
+            active: $commentUpvoted,
+            opposite: $commentDownvoted
+          )
+          .onTapGesture {
+            commentDownvoted.toggle()
+            commentUpvoted = false
           }
         }
       }
-      .onTapGesture {
-        withAnimation(.smooth) {
-          self.collapseToIndex = listIndex
-        }
+    }
+    .onTapGesture {
+      withAnimation(.smooth) {
+        self.collapseToIndex = listIndex
       }
-      .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-        if indentLevel != 1 {
-          CollapseCommentsSwipeAction(collapseToIndex: $collapseToIndex, listIndex: listIndex)
-        }
+    }
+    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+      if indentLevel != 1 {
+        CollapseCommentsSwipeAction(collapseToIndex: $collapseToIndex, listIndex: listIndex)
       }
+    }
   }
 }
 
@@ -207,7 +208,7 @@ struct CollapseCommentsSwipeAction: View {
   //  @Binding var isClicked: Bool
   @Binding var collapseToIndex: Int
   var listIndex: Int
-  
+
   var body: some View {
     Button {
       print("SWIPED")
