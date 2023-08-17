@@ -74,9 +74,9 @@ struct PostsView_Previews: PreviewProvider {
 struct PostSectionView: View {
   @State var upvoted: Bool = false
   @State var downvoted: Bool = false
-  
+
   var post: PostElement
-  
+
   var body: some View {
     let _ = print("----------------------")
     let _ = print("UPVOTED \(post.post.name): \(upvoted)")
