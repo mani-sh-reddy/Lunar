@@ -14,6 +14,8 @@ struct ExpandableTextBox: View {
   private var text: String
   var lineLimit = 3
   
+  let haptics = UIImpactFeedbackGenerator(style: .soft)
+  
   init(_ text: String) {
     self.text = text
   }
@@ -60,13 +62,12 @@ struct ExpandableTextBox: View {
         opposite: .constant(false)
       )
       .highPriorityGesture(
-          TapGesture().onEnded {
-          withAnimation(.smooth) {
+        TapGesture().onEnded {
+          haptics.impactOccurred(intensity: 0.5)
             self.expanded.toggle()
-          }
         }
       )
-      
+      Spacer()
     }
     
   }
