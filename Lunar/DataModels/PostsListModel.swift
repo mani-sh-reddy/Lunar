@@ -30,11 +30,11 @@ struct PostElement: Codable {
   let creator: Creator
   let community: Community
   let creatorBannedFromCommunity: Bool
-  let counts: Counts
+  var counts: Counts
   let subscribed: Subscribed
   let saved, read, creatorBlocked: Bool
   let unreadComments: Int
-  let myVote: Int?
+  var myVote: Int?
 
   enum CodingKeys: String, CodingKey {
     case post, creator, community
@@ -78,7 +78,7 @@ struct Community: Codable {
 
 struct Counts: Codable {
   let id, postID, comments, score: Int
-  let upvotes, downvotes: Int
+  var upvotes, downvotes: Int
   let published, newestCommentTimeNecro, newestCommentTime: String
   let featuredCommunity, featuredLocal: Bool
   let hotRank, hotRankActive: Int

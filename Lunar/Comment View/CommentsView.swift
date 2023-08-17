@@ -9,6 +9,7 @@ import Kingfisher
 import SwiftUI
 
 struct CommentsView: View {
+  @EnvironmentObject var postsFetcher: PostsFetcher
   @StateObject var commentsFetcher: CommentsFetcher
   @Binding var upvoted: Bool
   @Binding var downvoted: Bool
@@ -31,7 +32,7 @@ struct CommentsView: View {
         postBody: post.post.body ?? "",
         upvoted: $upvoted,
         downvoted: $downvoted
-      )
+      ).environmentObject(postsFetcher)
 //    }
   }
 }
@@ -44,6 +45,7 @@ struct CommentsView: View {
 //}
 
 struct CommentSectionView: View {
+  @EnvironmentObject var postsFetcher: PostsFetcher
   var post: PostElement
   var comments: [CommentElement]
   var postBody: String
@@ -71,7 +73,7 @@ struct CommentSectionView: View {
   var body: some View {
     List {
       Section {
-        PostRowView(upvoted: $upvoted, downvoted: $downvoted, post: post)
+        PostRowView(upvoted: $upvoted, downvoted: $downvoted, post: post).environmentObject(postsFetcher)
         if !postBody.isEmpty {
           VStack (alignment: .trailing){
             ExpandableTextBox(postBody).font(.body)

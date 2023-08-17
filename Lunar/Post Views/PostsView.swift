@@ -11,7 +11,7 @@ import SwiftUI
 struct PostsView: View {
   @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-  @StateObject var postsFetcher: PostsFetcher
+  @StateObject private var postsFetcher = PostsFetcher()
   @State private var bannerFailedToLoad = false
   @State private var iconFailedToLoad = false
 
@@ -35,7 +35,7 @@ struct PostsView: View {
         CommunityHeaderView(community: community)
       }
       ForEach(postsFetcher.posts, id: \.post.id) { post in
-        PostSectionView(post: post)
+        PostSectionView(post: post).environmentObject(postsFetcher)
           .task {
             postsFetcher.loadMoreContentIfNeeded(currentItem: post)
           }
@@ -58,44 +58,46 @@ struct PostsView: View {
   }
 }
 
-struct PostsView_Previews: PreviewProvider {
-  static var previews: some View {
-    /// need to set showing popover to a constant value
-    PostsView(
-      postsFetcher: PostsFetcher(
-        sortParameter: "Hot",
-        typeParameter: "All",
-        communityID: 234
-      ), title: "Title"
-    )
-  }
-}
+//struct PostsView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    /// need to set showing popover to a constant value
+//    PostsView(
+//      postsFetcher: PostsFetcher(
+//        sortParameter: "Hot",
+//        typeParameter: "All",
+//        communityID: 234
+//      ), title: "Title"
+//    )
+//  }
+//}
 
 struct PostSectionView: View {
+  @EnvironmentObject var postsFetcher: PostsFetcher
+
   @State var upvoted: Bool = false
   @State var downvoted: Bool = false
   
   var post: PostElement
   
   var body: some View {
-    let _ = print("----------------------")
-    let _ = print("UPVOTED \(post.post.name): \(upvoted)")
-    let _ = print("DOWNVOTED \(post.post.name): \(downvoted)")
-    let _ = print("----------------------")
+//    let _ = print("----------------------")
+//    let _ = print("UPVOTED \(post.post.name): \(upvoted)")
+//    let _ = print("DOWNVOTED \(post.post.name): \(downvoted)")
+//    let _ = print("----------------------")
     Section {
       ZStack {
         PostRowView(
           upvoted: $upvoted,
           downvoted: $downvoted,
           post: post
-        )
+        ).environmentObject(postsFetcher)
         NavigationLink {
           CommentsView(
             commentsFetcher: CommentsFetcher(postID: post.post.id),
             upvoted: $upvoted,
             downvoted: $downvoted,
             post: post
-          )
+          ).environmentObject(postsFetcher)
         } label: {
           EmptyView()
         }
@@ -103,4 +105,10 @@ struct PostSectionView: View {
       }
     }
   }
+}
+
+import Combine
+
+class PostsFetcherMid: ObservableObject {
+  @Published var posts: [PostElement] = []
 }

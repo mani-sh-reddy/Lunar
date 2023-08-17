@@ -59,11 +59,14 @@ struct ExpandableTextBox: View {
         active: self.$expanded,
         opposite: .constant(false)
       )
-      .onTapGesture {
-        withAnimation(.smooth) {
-          self.expanded.toggle()
+      .highPriorityGesture(
+          TapGesture().onEnded {
+          withAnimation(.smooth) {
+            self.expanded.toggle()
+          }
         }
-      }
+      )
+      
     }
     
   }
