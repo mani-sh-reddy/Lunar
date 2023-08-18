@@ -133,8 +133,8 @@ struct PostRowView: View {
             text: "\(URLParser.extractBaseDomain(from: post.post.url ?? "")) ",
             icon: "safari.fill",
             color: Color.blue,
-            iconSize: Font.title2,
-            padding: 1,
+//            iconSize: Font.title2,
+//            padding: 1,
             active: .constant(false),
             opposite: .constant(false)
           )
