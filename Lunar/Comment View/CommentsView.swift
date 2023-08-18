@@ -32,7 +32,7 @@ struct CommentsView: View {
         postBody: post.post.body ?? "",
         upvoted: $upvoted,
         downvoted: $downvoted
-      ).environmentObject(postsFetcher)
+      ).environmentObject(postsFetcher).environmentObject(commentsFetcher)
 //    }
   }
 }
@@ -46,6 +46,7 @@ struct CommentsView: View {
 
 struct CommentSectionView: View {
   @EnvironmentObject var postsFetcher: PostsFetcher
+  @EnvironmentObject var commentsFetcher: CommentsFetcher
   var post: PostElement
   var comments: [CommentElement]
   var postBody: String
@@ -99,6 +100,7 @@ struct CommentSectionView: View {
             EmptyView()
           } else {
             CommentRowView(collapseToIndex: $collapseToIndex, comment: comment, listIndex: index)
+              .environmentObject(commentsFetcher)
           }
         }
       }
@@ -114,6 +116,8 @@ struct CommentSectionView: View {
 //}
 
 struct CommentRowView: View {
+  @EnvironmentObject var commentsFetcher: CommentsFetcher
+  @AppStorage("commentMetadataPosition") var commentMetadataPosition = Settings.commentMetadataPosition
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @Binding var collapseToIndex: Int
   @State var commentUpvoted: Bool = false
@@ -142,13 +146,15 @@ struct CommentRowView: View {
     .indigo,
     .purple,
   ]
+
+  
   var body: some View {
       HStack {
         if debugModeEnabled {
           Text(String(listIndex))
         }
         ForEach(1..<indentLevel, id: \.self) { _ in
-          Rectangle().opacity(0).frame(width: 0.5).padding(.horizontal, 0)
+          Rectangle().opacity(0).frame(width: 0.1).padding(.horizontal, 0)
         }
         let indentLevel = min(indentLevel, commentHierarchyColors.count - 1)
         let foregroundColor = commentHierarchyColors[indentLevel]
@@ -159,34 +165,16 @@ struct CommentRowView: View {
             .padding(0)
         }
         VStack(alignment: .leading, spacing: 3) {
-          Text(comment.creator.name.uppercased())
-            .font(.caption)
-            .bold()
-            .foregroundStyle(.secondary)
-          Text(comment.comment.content)
-          HStack {
-            ReactionButton(
-              text: String(comment.counts.upvotes),
-              icon: "arrow.up.circle.fill",
-              color: Color.green,
-              active: $commentUpvoted,
-              opposite: $commentDownvoted
-            )
-            .onTapGesture {
-              commentUpvoted.toggle()
-              commentDownvoted = false
-            }
-            ReactionButton(
-              text: String(comment.counts.downvotes),
-              icon: "arrow.down.circle.fill",
-              color: Color.red,
-              active: $commentUpvoted,
-              opposite: $commentDownvoted
-            )
-            .onTapGesture {
-              commentDownvoted.toggle()
-              commentUpvoted = false
-            }
+          if commentMetadataPosition == "Bottom" {
+            Text(comment.comment.content)
+            CommentMetadata(comment: comment, commentUpvoted: $commentUpvoted, commentDownvoted: $commentDownvoted)
+              .environmentObject(commentsFetcher)
+          } else if commentMetadataPosition == "Top" {
+            CommentMetadata(comment: comment, commentUpvoted: $commentUpvoted, commentDownvoted: $commentDownvoted)
+              .environmentObject(commentsFetcher)
+            Text(comment.comment.content)
+          } else {
+            Text(comment.comment.content)
           }
         }
       }
@@ -219,4 +207,102 @@ struct CollapseCommentsSwipeAction: View {
     }
     .tint(.blue)
   }
+}
+
+struct CommentMetadata: View {
+  @EnvironmentObject var commentsFetcher: CommentsFetcher
+  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
+  var comment: CommentElement
+  let dateTimeParser = DateTimeParser()
+  @Binding var commentUpvoted: Bool
+  @Binding var commentDownvoted: Bool
+  
+  let haptics = UIImpactFeedbackGenerator(style: .rigid)
+  
+  var body: some View {
+    HStack {
+      VStack(alignment: .leading) {
+        Text(comment.creator.name.uppercased())
+          .bold()
+        Text(dateTimeParser.timeAgoString(from: comment.comment.published))
+      }
+      .padding(.top, 2)
+      .font(.caption)
+      .foregroundStyle(.secondary)
+      Spacer()
+      ReactionButton(
+        text: String(commentUpvoted ? comment.counts.upvotes + 1 : comment.counts.upvotes),
+        icon: "arrow.up.circle.fill",
+        color: Color.green,
+        active: $commentUpvoted,
+        opposite: $commentDownvoted
+      )
+      .highPriorityGesture(
+        TapGesture().onEnded {
+          haptics.impactOccurred()
+          commentUpvoted.toggle()
+          commentDownvoted = false
+          if commentUpvoted {
+            sendReaction(voteType: 1)
+          } else {
+            sendReaction(voteType: 0)
+          }
+        }
+      )
+      ReactionButton(
+        text: String(commentDownvoted ? comment.counts.downvotes + 1 : comment.counts.downvotes),
+        icon: "arrow.down.circle.fill",
+        color: Color.red,
+        active: $commentDownvoted,
+        opposite: $commentUpvoted
+      )
+      .highPriorityGesture(
+        TapGesture().onEnded {
+          haptics.impactOccurred()
+          commentDownvoted.toggle()
+          commentUpvoted = false
+          if commentDownvoted {
+            sendReaction(voteType: -1)
+          } else {
+            sendReaction(voteType: 0 )
+          }
+        }
+      )
+    }
+    .onAppear {
+      print(comment.myVote ?? 343434343)
+      if let voteType = comment.myVote {
+        switch voteType {
+        case 1:
+          self.commentUpvoted = true
+          self.commentDownvoted = false
+        case -1:
+          self.commentUpvoted = false
+          self.commentDownvoted = true
+        default:
+          self.commentUpvoted = false
+          self.commentDownvoted = false
+        }
+      }
+    }
+  }
+  
+  func sendReaction(voteType: Int) {
+    VoteSender(
+      asActorID: selectedActorID,
+      voteType: voteType,
+      postID: 0,
+      commentID: comment.comment.id,
+      elementType: "comment"
+    ).fetchVoteInfo { commentID, voteSubmittedSuccessfully, _ in
+      if voteSubmittedSuccessfully {
+        if let index = commentsFetcher.comments.firstIndex(where: { $0.comment.id == commentID }) {
+          var updatedComment = commentsFetcher.comments[index]
+          updatedComment.myVote = voteType
+          commentsFetcher.comments[index] = updatedComment
+        }
+      }
+    }
+  }
+  
 }

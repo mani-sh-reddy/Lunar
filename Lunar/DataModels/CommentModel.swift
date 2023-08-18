@@ -26,12 +26,14 @@ struct CommentElement: Codable {
   let creatorBannedFromCommunity: Bool
   let subscribed: CommentSubscribed
   let saved, creatorBlocked: Bool
+  var myVote: Int?
 
   enum CodingKeys: String, CodingKey {
     case comment, creator, post, community, counts
     case creatorBannedFromCommunity = "creator_banned_from_community"
     case subscribed, saved
     case creatorBlocked = "creator_blocked"
+    case myVote = "my_vote"
   }
 }
 

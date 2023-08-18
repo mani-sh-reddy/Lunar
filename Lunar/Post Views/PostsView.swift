@@ -11,7 +11,7 @@ import SwiftUI
 struct PostsView: View {
   @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-  @StateObject private var postsFetcher = PostsFetcher()
+  @StateObject var postsFetcher: PostsFetcher
   @State private var bannerFailedToLoad = false
   @State private var iconFailedToLoad = false
 
@@ -107,8 +107,4 @@ struct PostSectionView: View {
   }
 }
 
-import Combine
 
-class PostsFetcherMid: ObservableObject {
-  @Published var posts: [PostElement] = []
-}

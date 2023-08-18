@@ -80,7 +80,7 @@ struct PostRowView: View {
       }
       HStack {
         ReactionButton(
-          text: String(upvotes),
+          text: String(upvoted ? upvotes + 1 : upvotes),
           icon: "arrow.up.circle.fill",
           color: Color.green,
           active: $upvoted,
@@ -100,7 +100,7 @@ struct PostRowView: View {
         )
 
         ReactionButton(
-          text: String(downvotes),
+          text: String(downvoted ? downvotes + 1 : downvotes),
           icon: "arrow.down.circle.fill",
           color: Color.red,
           active: $downvoted,
@@ -125,12 +125,13 @@ struct PostRowView: View {
           color: Color.gray,
           active: .constant(false),
           opposite: .constant(false)
-          
         )
+        
         Spacer()
         if post.post.url != post.post.thumbnailURL {
           ReactionButton(
-            icon: "safari",
+            text: "\(URLParser.extractBaseDomain(from: post.post.url ?? "")) ",
+            icon: "safari.fill",
             color: Color.blue,
             iconSize: Font.title2,
             padding: 1,
@@ -183,17 +184,18 @@ struct PostRowView: View {
   }
   
   func sendReaction(voteType: Int, postID: Int) {
-    VoteSender(asActorID: selectedActorID, voteType: voteType, postID: postID, elementType: "post").fetchVoteInfo { postID, voteSubmittedSuccessfully, _ in
+    VoteSender(
+      asActorID: selectedActorID,
+      voteType: voteType,
+      postID: postID,
+      commentID: 0,
+      elementType: "post"
+    ).fetchVoteInfo { postID, voteSubmittedSuccessfully, _ in
       if voteSubmittedSuccessfully {
         // Update the corresponding post in the postsFetcher.posts array
         if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == postID }) {
           var updatedPost = postsFetcher.posts[index]
           updatedPost.myVote = voteType
-          if voteType == 1 {
-            updatedPost.counts.upvotes += 1
-          } else if voteType == -1 {
-            updatedPost.counts.downvotes += 1
-          }
           postsFetcher.posts[index] = updatedPost
         }
       }
@@ -300,8 +302,8 @@ struct ReactionButtonView: View {
   }
 }
 
-//struct PostRowView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    PostRowView(post: MockData.post).padding()
-//  }
-//}
+struct PostRowView_Previews: PreviewProvider {
+  static var previews: some View {
+    PostRowView(upvoted: .constant(true), downvoted: .constant(false), post: MockData.postElement)
+  }
+}

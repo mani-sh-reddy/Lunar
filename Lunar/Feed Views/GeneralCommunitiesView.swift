@@ -41,7 +41,11 @@ struct GeneralCommunitiesView: View {
     ForEach(buttons, id: \.self) { button in
       NavigationLink {
         PostsView(
-          title: button.title)
+          postsFetcher: PostsFetcher(
+            sortParameter: button.sort,
+            typeParameter: button.type
+          ), title: button.title
+        )
       } label: {
         GeneralCommunityButtonView(button: button)
       }

@@ -16,8 +16,11 @@ class VoteSender: ObservableObject {
   /// remove vote = 0
   private var voteType: Int
   private var postID: Int
+  private var commentID: Int
+  private var elementID: Int
   private var asActorID: String
   private var jwt: String =  ""
+  private var elementType: String =  ""
   
   /// Adding info about the user to **@AppsStorage** loggedInAccounts
   var loggedInAccount = LoggedInAccount()
@@ -33,13 +36,17 @@ class VoteSender: ObservableObject {
     asActorID: String,
     voteType: Int,
     postID: Int,
+    commentID: Int,
     elementType: String
   ) {
     // TODO get the jwt from keychain using the actor id
     self.asActorID = asActorID
     self.voteType = voteType
     self.postID = postID
+    self.commentID = commentID
+    self.elementType = elementType
     //    self.endpoint = URLComponents()
+    self.elementID = 0
     self.jwt = getJWTFromKeychain(actorID: asActorID) ?? ""
   }
   
@@ -47,10 +54,11 @@ class VoteSender: ObservableObject {
     let parameters = [
       "score": voteType,
       "post_id": postID,
+      "comment_id": commentID,
       "auth": jwt.replacingOccurrences(of: "\"", with: "")
     ] as [String : Any]
     AF.request(
-      "https://\(instanceHostURL)/api/v3/post/like",
+      "https://\(instanceHostURL)/api/v3/\(elementType)/like",
       method: .post,
       parameters: parameters,
       encoding: JSONEncoding.default
@@ -61,10 +69,19 @@ class VoteSender: ObservableObject {
       switch response.result {
       case let .success(result):
         let response = String(response.response?.statusCode ?? 0)
-        let voteSubmittedSuccessfully = self.voteType == result.post.myVote
-        let postID = result.post.post.id
+        if self.elementType == "post" {
+          let voteSubmittedSuccessfully = self.voteType == result.post?.myVote
+          let elementID = result.post?.post.id
+          completion(elementID, voteSubmittedSuccessfully, response)
+        } else if self.elementType == "comment"{
+          let voteSubmittedSuccessfully = self.voteType == result.comment?.myVote
+          let elementID = result.comment?.comment.id
+          completion(elementID, voteSubmittedSuccessfully, response)
+        } else {
+          let voteSubmittedSuccessfully = false
+        }
         
-        completion(postID, voteSubmittedSuccessfully, response)
+//        completion(elementID, voteSubmittedSuccessfully, response)
         
       case let .failure(error):
         if let data = response.data,

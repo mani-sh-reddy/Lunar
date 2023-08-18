@@ -12,6 +12,8 @@ import Kingfisher
 import SwiftUI
 
 @MainActor class CommentsFetcher: ObservableObject {
+  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
+  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
   @AppStorage("commentSort") var commentSort = Settings.commentSort
   @AppStorage("commentType") var commentType = Settings.commentType
   @Published var comments = [CommentElement]()
@@ -21,6 +23,7 @@ import SwiftUI
   private var postID: Int
   private var limitParameter: Int = 50
   private let maxDepth: Int = 50
+  private var jwt: String = ""
 
   private var endpoint: URLComponents {
     URLBuilder(
@@ -30,7 +33,8 @@ import SwiftUI
       currentPage: currentPage,
       limitParameter: limitParameter,
       postID: postID,
-      maxDepth: maxDepth
+      maxDepth: maxDepth,
+      jwt: getJWTFromKeychain(actorID: selectedActorID) ?? ""
     ).buildURL()
   }
 
@@ -132,6 +136,14 @@ import SwiftUI
       case let .failure(error):
         print("CommentsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
       }
+    }
+  }
+  func getJWTFromKeychain(actorID: String) -> String? {
+    if let keychainObject = KeychainHelper.standard.read(service: self.appBundleID, account: selectedActorID) {
+      let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
+      return jwt.replacingOccurrences(of: "\"", with: "")
+    } else {
+      return nil
     }
   }
 }
