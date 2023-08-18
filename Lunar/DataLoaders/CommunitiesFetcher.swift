@@ -13,6 +13,8 @@ import SwiftUI
 @MainActor class CommunitiesFetcher: ObservableObject {
   @AppStorage("communitiesSort") var communitiesSort = Settings.communitiesSort
   @AppStorage("communitiesType") var communitiesType = Settings.communitiesType
+  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
+  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
 
   @Published var communities = [CommunityElement]()
   @Published var isLoading = false
@@ -21,24 +23,33 @@ import SwiftUI
   private var sortParameter: String?
   private var typeParameter: String?
   private var limitParameter: Int = 30
+  private var asActorID: String?
+  private var jwt: String =  ""
+  
   private var endpoint: URLComponents {
     URLBuilder(
       endpointPath: "/api/v3/community/list",
       sortParameter: sortParameter,
       typeParameter: typeParameter,
       currentPage: currentPage,
-      limitParameter: limitParameter
+      limitParameter: limitParameter,
+      jwt: jwt
     ).buildURL()
   }
 
   init(
     limitParameter: Int,
     sortParameter: String? = nil,
-    typeParameter: String? = nil
+    typeParameter: String? = nil,
+    asActorID: String?
   ) {
+    self.asActorID = asActorID ?? nil
     self.sortParameter = sortParameter ?? communitiesSort
     self.typeParameter = typeParameter ?? communitiesType
     self.limitParameter = limitParameter
+    if let asActorID = asActorID{
+      self.jwt = getJWTFromKeychain(actorID: asActorID) ?? ""
+    }
     loadMoreContent()
   }
 
@@ -56,7 +67,7 @@ import SwiftUI
     let cacher = ResponseCacher(behavior: .cache)
 
     AF.request(endpoint) { urlRequest in
-      print("CommunitiesFetcher REF \(urlRequest.url as Any)")
+//      print("CommunitiesFetcher REF \(urlRequest.url as Any)")
       urlRequest.cachePolicy = .reloadRevalidatingCacheData
     }
     .cacheResponse(using: cacher)
@@ -104,7 +115,7 @@ import SwiftUI
     let cacher = ResponseCacher(behavior: .cache)
 
     AF.request(endpoint) { urlRequest in
-      print("CommunitiesFetcher LOAD \(urlRequest.url as Any)")
+//      print("CommunitiesFetcher LOAD \(urlRequest.url as Any)")
       urlRequest.cachePolicy = .returnCacheDataElseLoad
     }
     .cacheResponse(using: cacher)
@@ -127,6 +138,15 @@ import SwiftUI
       case let .failure(error):
         print("CommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")")
       }
+    }
+  }
+  
+  func getJWTFromKeychain(actorID: String) -> String? {
+    if let keychainObject = KeychainHelper.standard.read(service: self.appBundleID, account: actorID) {
+      let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
+      return jwt.replacingOccurrences(of: "\"", with: "")
+    } else {
+      return nil
     }
   }
 }

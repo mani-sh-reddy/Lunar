@@ -74,4 +74,5 @@ struct CountsObject: Codable {
 
 enum SubscribedObject: String, Codable {
   case notSubscribed = "NotSubscribed"
+  case subscribed = "Subscribed"
 }

@@ -12,6 +12,7 @@ struct FeedView: View {
   @StateObject var networkMonitor = NetworkMonitor()
   @AppStorage("kbinActive") var kbinActive = Settings.kbinActive
   @AppStorage("kbinHostURL") var kbinHostURL = Settings.kbinHostURL
+  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
 
   var body: some View {
     NavigationView {
@@ -44,7 +45,7 @@ struct FeedView: View {
           MoreCommunitiesButtonView()
         }
         Section(header: Text("Subscribed")) {
-          SubscribedCommunitiesSectionView()
+          SubscribedCommunitiesSectionView(communitiesFetcher: CommunitiesFetcher(limitParameter: 50, sortParameter: "Active", typeParameter: "Subscribed", asActorID: selectedActorID))
         }
       }
     }

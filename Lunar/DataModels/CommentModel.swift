@@ -24,7 +24,7 @@ struct CommentElement: Codable {
   let community: CommentsListCommunity
   let counts: CommentsListCounts
   let creatorBannedFromCommunity: Bool
-  let subscribed: CommentSubscribed
+  let subscribed: CommentSubscribed?
   let saved, creatorBlocked: Bool
   var myVote: Int?
 
@@ -134,4 +134,5 @@ struct CommentsListCreator: Codable {
 
 enum CommentSubscribed: String, Codable {
   case notSubscribed = "NotSubscribed"
+  case subscribed = "Subscribed"
 }
