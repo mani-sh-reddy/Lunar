@@ -121,7 +121,9 @@
 		3CF3B8EF2A8E96D2001C08B5 /* VoteState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3B8EE2A8E96D2001C08B5 /* VoteState.swift */; };
 		3CF3B8F12A8F797D001C08B5 /* SettingsLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3B8F02A8F797D001C08B5 /* SettingsLayoutView.swift */; };
 		3CF3B8F32A8FF7D4001C08B5 /* KbinSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3B8F22A8FF7D4001C08B5 /* KbinSelectorView.swift */; };
-		3CF3B8F92A8FFDD7001C08B5 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3CF3B8F82A8FFDD7001C08B5 /* MarkdownUI */; };
+		3CF3B8FB2A901847001C08B5 /* CommentSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3B8FA2A901847001C08B5 /* CommentSectionView.swift */; };
+		3CF3B8FD2A90188D001C08B5 /* CommentMetadataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3B8FC2A90188D001C08B5 /* CommentMetadataView.swift */; };
+		3CF3B8FF2A9018B9001C08B5 /* CommentRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3B8FE2A9018B9001C08B5 /* CommentRowView.swift */; };
 		3CF3F9C02A6EE0390051E725 /* SettingsClearCacheButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheButtonView.swift */; };
 		3CF3F9C22A6EE20C0051E725 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3F9C12A6EE20C0051E725 /* ViewExtension.swift */; };
 		3CFE04BF2A7FEA71007BAD81 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 3CFE04BE2A7FEA71007BAD81 /* SwiftSoup */; };
@@ -282,6 +284,9 @@
 		3CF3B8EE2A8E96D2001C08B5 /* VoteState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteState.swift; sourceTree = "<group>"; };
 		3CF3B8F02A8F797D001C08B5 /* SettingsLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLayoutView.swift; sourceTree = "<group>"; };
 		3CF3B8F22A8FF7D4001C08B5 /* KbinSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinSelectorView.swift; sourceTree = "<group>"; };
+		3CF3B8FA2A901847001C08B5 /* CommentSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSectionView.swift; sourceTree = "<group>"; };
+		3CF3B8FC2A90188D001C08B5 /* CommentMetadataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentMetadataView.swift; sourceTree = "<group>"; };
+		3CF3B8FE2A9018B9001C08B5 /* CommentRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRowView.swift; sourceTree = "<group>"; };
 		3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsClearCacheButtonView.swift; sourceTree = "<group>"; };
 		3CF3F9C12A6EE20C0051E725 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		3CFE04C22A7FF0EB007BAD81 /* KbinThreadsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinThreadsModel.swift; sourceTree = "<group>"; };
@@ -305,7 +310,6 @@
 				3CA95F082A7ACF3B00626353 /* Nuke in Frameworks */,
 				3CEF196B2A580672006736EF /* Kingfisher in Frameworks */,
 				3C4B7DDB2A58AD23003C8192 /* Alamofire in Frameworks */,
-				3CF3B8F92A8FFDD7001C08B5 /* MarkdownUI in Frameworks */,
 				3CA95F0A2A7ACF3B00626353 /* NukeUI in Frameworks */,
 				3CFE04BF2A7FEA71007BAD81 /* SwiftSoup in Frameworks */,
 			);
@@ -532,6 +536,9 @@
 			isa = PBXGroup;
 			children = (
 				3CBCCDF52A589F2C00307AC1 /* CommentsView.swift */,
+				3CF3B8FE2A9018B9001C08B5 /* CommentRowView.swift */,
+				3CF3B8FC2A90188D001C08B5 /* CommentMetadataView.swift */,
+				3CF3B8FA2A901847001C08B5 /* CommentSectionView.swift */,
 				3CEF4CD82A69B80A002B83C0 /* CommentIndentGuideView.swift */,
 			);
 			path = "Comment View";
@@ -659,7 +666,6 @@
 				3CA95F072A7ACF3B00626353 /* Nuke */,
 				3CA95F092A7ACF3B00626353 /* NukeUI */,
 				3CFE04BE2A7FEA71007BAD81 /* SwiftSoup */,
-				3CF3B8F82A8FFDD7001C08B5 /* MarkdownUI */,
 			);
 			productName = Lunar;
 			productReference = 3C4F09FC2A54399F009DF8AB /* Lunar.app */;
@@ -700,7 +706,6 @@
 				3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */,
 				3CFE04BD2A7FEA71007BAD81 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
-				3CF3B8F72A8FFDD7001C08B5 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 			);
 			productRefGroup = 3C4F09FD2A54399F009DF8AB /* Products */;
 			projectDirPath = "";
@@ -793,6 +798,7 @@
 				3C96EA502A7843EC00753199 /* AddNewUserButtonView.swift in Sources */,
 				3C96EA3E2A76FC1200753199 /* LoginButtonView.swift in Sources */,
 				3CEF4CC22A69B38B002B83C0 /* SubscribedCommunitiesView.swift in Sources */,
+				3CF3B8FB2A901847001C08B5 /* CommentSectionView.swift in Sources */,
 				3CDF229D2A6D436B009281F2 /* Settings.swift in Sources */,
 				3C113C412A6E8EEA00FDE5CE /* SettingsInfoSectionView.swift in Sources */,
 				3CB527382A6C28EC0095F351 /* MoreCommunitiesRowView.swift in Sources */,
@@ -803,6 +809,7 @@
 				3C96EA552A7857D900753199 /* LoggedInUserModel.swift in Sources */,
 				3CADB5752A7EA03000095839 /* SearchUsersListAll.swift in Sources */,
 				3CED897B2A71A5CF00BD9086 /* ImagePopoverView.swift in Sources */,
+				3CF3B8FF2A9018B9001C08B5 /* CommentRowView.swift in Sources */,
 				3CFE04C32A7FF0EB007BAD81 /* KbinThreadsModel.swift in Sources */,
 				3CB8D2682A55F45900EE615A /* FeedView.swift in Sources */,
 				3C5ECB1F2A75ABFE002BA561 /* SiteInfoFetcher.swift in Sources */,
@@ -812,6 +819,7 @@
 				3C6D29652A793878007AFD99 /* DictionaryExtension.swift in Sources */,
 				3C42AD1A2A8038300056AFBC /* KbinCommentsView.swift in Sources */,
 				3C6299D12A751A5900BE2A9F /* TextExtension.swift in Sources */,
+				3CF3B8FD2A90188D001C08B5 /* CommentMetadataView.swift in Sources */,
 				3C130F772A8C0CB90060B6E4 /* ReactionButton.swift in Sources */,
 				3C5ECB282A767681002BA561 /* UserAndPassFieldsView.swift in Sources */,
 				3CE0A7942A8551CD008A782A /* EncodeDecodeHelpers.swift in Sources */,
@@ -1282,14 +1290,6 @@
 				minimumVersion = 7.8.1;
 			};
 		};
-		3CF3B8F72A8FFDD7001C08B5 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.0;
-			};
-		};
 		3CFE04BD2A7FEA71007BAD81 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scinfu/SwiftSoup";
@@ -1320,11 +1320,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3CEF19692A580672006736EF /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
-		};
-		3CF3B8F82A8FFDD7001C08B5 /* MarkdownUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3CF3B8F72A8FFDD7001C08B5 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
-			productName = MarkdownUI;
 		};
 		3CFE04BE2A7FEA71007BAD81 /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
