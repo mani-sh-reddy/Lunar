@@ -139,7 +139,9 @@ import SwiftUI
     }
   }
   func getJWTFromKeychain(actorID: String) -> String? {
-    if let keychainObject = KeychainHelper.standard.read(service: self.appBundleID, account: selectedActorID) {
+    if let keychainObject = KeychainHelper.standard.read(
+      service: self.appBundleID, account: selectedActorID)
+    {
       let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
       return jwt.replacingOccurrences(of: "\"", with: "")
     } else {

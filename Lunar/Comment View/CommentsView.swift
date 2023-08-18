@@ -15,25 +15,25 @@ struct CommentsView: View {
   @Binding var downvoted: Bool
   var post: PostElement
 
-//  init(post: PostElement) {
-//    self.post = post
-//    _commentsFetcher = StateObject(
-//      wrappedValue: CommentsFetcher(postID: post.post.id)
-//    )
-//  }
+  //  init(post: PostElement) {
+  //    self.post = post
+  //    _commentsFetcher = StateObject(
+  //      wrappedValue: CommentsFetcher(postID: post.post.id)
+  //    )
+  //  }
 
   var body: some View {
-//    if commentsFetcher.isLoading { //TODO change back once done
-//      ProgressView()
-//    } else {
-      CommentSectionView(
-        post: post,
-        comments: commentsFetcher.comments,
-        postBody: post.post.body ?? "",
-        upvoted: $upvoted,
-        downvoted: $downvoted
-      ).environmentObject(postsFetcher).environmentObject(commentsFetcher)
-//    }
+    //    if commentsFetcher.isLoading { //TODO change back once done
+    //      ProgressView()
+    //    } else {
+    CommentSectionView(
+      post: post,
+      comments: commentsFetcher.comments,
+      postBody: post.post.body ?? "",
+      upvoted: $upvoted,
+      downvoted: $downvoted
+    ).environmentObject(postsFetcher).environmentObject(commentsFetcher)
+    //    }
   }
 }
 
@@ -50,33 +50,34 @@ struct CommentSectionView: View {
   var post: PostElement
   var comments: [CommentElement]
   var postBody: String
-  
+
   @State var collapseToIndex: Int = 0
-  @State var postBodyExpanded:Bool = false
-  
+  @State var postBodyExpanded: Bool = false
+
   @Binding var upvoted: Bool
   @Binding var downvoted: Bool
 
-//  init(
-//    post: PostElement,
-//    comments: [CommentElement],
-//    postBody: String
-////    upvoted: Binding<Bool>,
-////    downvoted: Binding<Bool>
-//  ) {
-//    self.post = post
-//    self.comments = comments
-//    self.postBody = postBody
-////    self._upvoted = upvoted
-////    self._downvoted = downvoted
-//  }
+  //  init(
+  //    post: PostElement,
+  //    comments: [CommentElement],
+  //    postBody: String
+  ////    upvoted: Binding<Bool>,
+  ////    downvoted: Binding<Bool>
+  //  ) {
+  //    self.post = post
+  //    self.comments = comments
+  //    self.postBody = postBody
+  ////    self._upvoted = upvoted
+  ////    self._downvoted = downvoted
+  //  }
 
   var body: some View {
     List {
       Section {
-        PostRowView(upvoted: $upvoted, downvoted: $downvoted, post: post).environmentObject(postsFetcher)
+        PostRowView(upvoted: $upvoted, downvoted: $downvoted, post: post).environmentObject(
+          postsFetcher)
         if !postBody.isEmpty {
-          VStack (alignment: .trailing){
+          VStack(alignment: .trailing) {
             ExpandableTextBox(postBody).font(.body)
           }
         }
@@ -94,7 +95,7 @@ struct CommentSectionView: View {
               return 1
             }
           }
-          
+
           let comment = comments[index]
           if index <= collapseToIndex && indentLevel != 1 {
             EmptyView()
@@ -117,15 +118,16 @@ struct CommentSectionView: View {
 
 struct CommentRowView: View {
   @EnvironmentObject var commentsFetcher: CommentsFetcher
-  @AppStorage("commentMetadataPosition") var commentMetadataPosition = Settings.commentMetadataPosition
+  @AppStorage("commentMetadataPosition") var commentMetadataPosition = Settings
+    .commentMetadataPosition
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @Binding var collapseToIndex: Int
   @State var commentUpvoted: Bool = false
   @State var commentDownvoted: Bool = false
-  
+
   let comment: CommentElement
   let listIndex: Int
-  
+
   var indentLevel: Int {
     let elements = comment.comment.path.split(separator: ".").map { String($0) }
     let elementCount = elements.isEmpty ? 1 : elements.count - 1
@@ -147,47 +149,50 @@ struct CommentRowView: View {
     .purple,
   ]
 
-  
   var body: some View {
-      HStack {
-        if debugModeEnabled {
-          Text(String(listIndex))
-        }
-        ForEach(1..<indentLevel, id: \.self) { _ in
-          Rectangle().opacity(0).frame(width: 0.1).padding(.horizontal, 0)
-        }
-        let indentLevel = min(indentLevel, commentHierarchyColors.count - 1)
-        let foregroundColor = commentHierarchyColors[indentLevel]
-        if indentLevel > 1 {
-          Capsule(style: .continuous)
-            .foregroundStyle(foregroundColor)
-            .frame(width: 1)
-            .padding(0)
-        }
-        VStack(alignment: .leading, spacing: 3) {
-          if commentMetadataPosition == "Bottom" {
-            Text(comment.comment.content)
-            CommentMetadata(comment: comment, commentUpvoted: $commentUpvoted, commentDownvoted: $commentDownvoted)
-              .environmentObject(commentsFetcher)
-          } else if commentMetadataPosition == "Top" {
-            CommentMetadata(comment: comment, commentUpvoted: $commentUpvoted, commentDownvoted: $commentDownvoted)
-              .environmentObject(commentsFetcher)
-            Text(comment.comment.content)
-          } else {
-            Text(comment.comment.content)
-          }
+    HStack {
+      if debugModeEnabled {
+        Text(String(listIndex))
+      }
+      ForEach(1..<indentLevel, id: \.self) { _ in
+        Rectangle().opacity(0).frame(width: 0.1).padding(.horizontal, 0)
+      }
+      let indentLevel = min(indentLevel, commentHierarchyColors.count - 1)
+      let foregroundColor = commentHierarchyColors[indentLevel]
+      if indentLevel > 1 {
+        Capsule(style: .continuous)
+          .foregroundStyle(foregroundColor)
+          .frame(width: 1)
+          .padding(0)
+      }
+      VStack(alignment: .leading, spacing: 3) {
+        if commentMetadataPosition == "Bottom" {
+          Text(comment.comment.content)
+          CommentMetadata(
+            comment: comment, commentUpvoted: $commentUpvoted, commentDownvoted: $commentDownvoted
+          )
+          .environmentObject(commentsFetcher)
+        } else if commentMetadataPosition == "Top" {
+          CommentMetadata(
+            comment: comment, commentUpvoted: $commentUpvoted, commentDownvoted: $commentDownvoted
+          )
+          .environmentObject(commentsFetcher)
+          Text(comment.comment.content)
+        } else {
+          Text(comment.comment.content)
         }
       }
-      .onTapGesture {
-        withAnimation(.smooth) {
-          self.collapseToIndex = listIndex
-        }
+    }
+    .onTapGesture {
+      withAnimation(.smooth) {
+        self.collapseToIndex = listIndex
       }
-      .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-        if indentLevel != 1 {
-          CollapseCommentsSwipeAction(collapseToIndex: $collapseToIndex, listIndex: listIndex)
-        }
+    }
+    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+      if indentLevel != 1 {
+        CollapseCommentsSwipeAction(collapseToIndex: $collapseToIndex, listIndex: listIndex)
       }
+    }
   }
 }
 
@@ -195,7 +200,7 @@ struct CollapseCommentsSwipeAction: View {
   //  @Binding var isClicked: Bool
   @Binding var collapseToIndex: Int
   var listIndex: Int
-  
+
   var body: some View {
     Button {
       print("SWIPED")
@@ -216,9 +221,9 @@ struct CommentMetadata: View {
   let dateTimeParser = DateTimeParser()
   @Binding var commentUpvoted: Bool
   @Binding var commentDownvoted: Bool
-  
+
   let haptics = UIImpactFeedbackGenerator(style: .rigid)
-  
+
   var body: some View {
     HStack {
       VStack(alignment: .leading) {
@@ -264,13 +269,13 @@ struct CommentMetadata: View {
           if commentDownvoted {
             sendReaction(voteType: -1)
           } else {
-            sendReaction(voteType: 0 )
+            sendReaction(voteType: 0)
           }
         }
       )
     }
     .onAppear {
-      print(comment.myVote ?? 343434343)
+      print(comment.myVote ?? 343_434_343)
       if let voteType = comment.myVote {
         switch voteType {
         case 1:
@@ -286,7 +291,7 @@ struct CommentMetadata: View {
       }
     }
   }
-  
+
   func sendReaction(voteType: Int) {
     VoteSender(
       asActorID: selectedActorID,
@@ -304,5 +309,5 @@ struct CommentMetadata: View {
       }
     }
   }
-  
+
 }

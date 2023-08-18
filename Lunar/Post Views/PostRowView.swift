@@ -6,22 +6,22 @@
 //
 
 import Kingfisher
-import SwiftUI
 import SafariServices
+import SwiftUI
 
 struct PostRowView: View {
   @EnvironmentObject var postsFetcher: PostsFetcher
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  
+
   @Binding var upvoted: Bool
   @Binding var downvoted: Bool
-  
+
   @State var goInto: Bool = false
   @State var showingPlaceholderAlert = false
   @State private var showSafari: Bool = false
-  
+
   var post: PostElement
-  
+
   var imageURL: String {
     if let thumbnailURL = post.post.thumbnailURL, !thumbnailURL.isEmpty {
       return thumbnailURL
@@ -30,7 +30,7 @@ struct PostRowView: View {
     }
     return ""
   }
-  
+
   var communityName: String { return post.community.name }
   var heading: String { return post.post.name }
   var creator: String { return post.creator.name }
@@ -48,14 +48,14 @@ struct PostRowView: View {
       return ""
     }
   }
-  
+
   let dateTimeParser = DateTimeParser()
   var timeAgo: String {
     return ", \(dateTimeParser.timeAgoString(from: post.post.published))"
   }
-  
+
   let haptics = UIImpactFeedbackGenerator(style: .rigid)
-  
+
   var body: some View {
     VStack {
       if !imageURL.isEmpty {
@@ -126,7 +126,7 @@ struct PostRowView: View {
           active: .constant(false),
           opposite: .constant(false)
         )
-        
+
         Spacer()
         if post.post.url != post.post.thumbnailURL {
           ReactionButton(
@@ -143,9 +143,11 @@ struct PostRowView: View {
               showSafari.toggle()
             }
           )
-          .fullScreenCover(isPresented: $showSafari, content: {
-            SFSafariViewWrapper(url: URL(string: post.post.url ?? "")!).ignoresSafeArea()
-          })
+          .fullScreenCover(
+            isPresented: $showSafari,
+            content: {
+              SFSafariViewWrapper(url: URL(string: post.post.url ?? "")!).ignoresSafeArea()
+            })
         }
       }
     }
@@ -167,22 +169,22 @@ struct PostRowView: View {
       }
     }
     .onAppear {
-        if let voteType = post.myVote {
-          switch voteType {
-          case 1:
-            self.upvoted = true
-            self.downvoted = false
-          case -1:
-            self.upvoted = false
-            self.downvoted = true
-          default:
-            self.upvoted = false
-            self.downvoted = false
-          }
+      if let voteType = post.myVote {
+        switch voteType {
+        case 1:
+          self.upvoted = true
+          self.downvoted = false
+        case -1:
+          self.upvoted = false
+          self.downvoted = true
+        default:
+          self.upvoted = false
+          self.downvoted = false
         }
+      }
     }
   }
-  
+
   func sendReaction(voteType: Int, postID: Int) {
     VoteSender(
       asActorID: selectedActorID,
@@ -205,7 +207,7 @@ struct PostRowView: View {
 
 struct GoIntoButtonView: View {
   @Binding var isClicked: Bool
-  
+
   var body: some View {
     Button {
       isClicked = true
@@ -218,7 +220,7 @@ struct GoIntoButtonView: View {
 
 struct UpvoteButtonView: View {
   @Binding var isClicked: Bool
-  
+
   var body: some View {
     Button {
       isClicked = true
@@ -231,7 +233,7 @@ struct UpvoteButtonView: View {
 
 struct DownvoteButtonView: View {
   @Binding var isClicked: Bool
-  
+
   var body: some View {
     Button {
       isClicked = true
@@ -244,7 +246,7 @@ struct DownvoteButtonView: View {
 
 struct HapticMenuView: View {
   @Binding var showingPlaceholderAlert: Bool
-  
+
   var body: some View {
     Menu("Menu") {
       Button {
@@ -258,9 +260,9 @@ struct HapticMenuView: View {
     } label: {
       Text("Coming Soon")
     }
-    
+
     Divider()
-    
+
     Button(role: .destructive) {
       showingPlaceholderAlert = true
     } label: {
@@ -273,12 +275,12 @@ struct ReactionButtonView: View {
   var text: String
   var icon: String
   var color: Color
-  
+
   @Binding var active: Bool
   @Binding var opposite: Bool
-  
+
   let haptics = UIImpactFeedbackGenerator(style: .rigid)
-  
+
   var body: some View {
     Button {
       active.toggle()

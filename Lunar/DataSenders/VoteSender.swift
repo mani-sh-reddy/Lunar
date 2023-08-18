@@ -19,9 +19,9 @@ class VoteSender: ObservableObject {
   private var commentID: Int
   private var elementID: Int
   private var asActorID: String
-  private var jwt: String =  ""
-  private var elementType: String =  ""
-  
+  private var jwt: String = ""
+  private var elementType: String = ""
+
   /// Adding info about the user to **@AppsStorage** loggedInAccounts
   var loggedInAccount = LoggedInAccount()
   @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
@@ -31,7 +31,7 @@ class VoteSender: ObservableObject {
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
   @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
-  
+
   init(
     asActorID: String,
     voteType: Int,
@@ -49,14 +49,15 @@ class VoteSender: ObservableObject {
     self.elementID = 0
     self.jwt = getJWTFromKeychain(actorID: asActorID) ?? ""
   }
-  
+
   func fetchVoteInfo(completion: @escaping (Int?, Bool, String?) -> Void) {
-    let parameters = [
-      "score": voteType,
-      "post_id": postID,
-      "comment_id": commentID,
-      "auth": jwt.replacingOccurrences(of: "\"", with: "")
-    ] as [String : Any]
+    let parameters =
+      [
+        "score": voteType,
+        "post_id": postID,
+        "comment_id": commentID,
+        "auth": jwt.replacingOccurrences(of: "\"", with: ""),
+      ] as [String: Any]
     AF.request(
       "https://\(instanceHostURL)/api/v3/\(elementType)/like",
       method: .post,
@@ -73,19 +74,19 @@ class VoteSender: ObservableObject {
           let voteSubmittedSuccessfully = self.voteType == result.post?.myVote
           let elementID = result.post?.post.id
           completion(elementID, voteSubmittedSuccessfully, response)
-        } else if self.elementType == "comment"{
+        } else if self.elementType == "comment" {
           let voteSubmittedSuccessfully = self.voteType == result.comment?.myVote
           let elementID = result.comment?.comment.id
           completion(elementID, voteSubmittedSuccessfully, response)
         } else {
           let voteSubmittedSuccessfully = false
         }
-        
-//        completion(elementID, voteSubmittedSuccessfully, response)
-        
+
+      //        completion(elementID, voteSubmittedSuccessfully, response)
+
       case let .failure(error):
         if let data = response.data,
-           let fetchError = try? JSONDecoder().decode(ErrorResponseModel.self, from: data)
+          let fetchError = try? JSONDecoder().decode(ErrorResponseModel.self, from: data)
         {
           print("voteSender ERROR: \(fetchError.error)")
           completion(nil, false, fetchError.error)
@@ -98,7 +99,9 @@ class VoteSender: ObservableObject {
     }
   }
   func getJWTFromKeychain(actorID: String) -> String? {
-    if let keychainObject = KeychainHelper.standard.read(service: self.appBundleID, account: actorID) {
+    if let keychainObject = KeychainHelper.standard.read(
+      service: self.appBundleID, account: actorID)
+    {
       let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
       return jwt
     } else {

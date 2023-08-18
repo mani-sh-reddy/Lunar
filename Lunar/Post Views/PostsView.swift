@@ -76,14 +76,14 @@ struct PostSectionView: View {
 
   @State var upvoted: Bool = false
   @State var downvoted: Bool = false
-  
+
   var post: PostElement
-  
+
   var body: some View {
-//    let _ = print("----------------------")
-//    let _ = print("UPVOTED \(post.post.name): \(upvoted)")
-//    let _ = print("DOWNVOTED \(post.post.name): \(downvoted)")
-//    let _ = print("----------------------")
+    //    let _ = print("----------------------")
+    //    let _ = print("UPVOTED \(post.post.name): \(upvoted)")
+    //    let _ = print("DOWNVOTED \(post.post.name): \(downvoted)")
+    //    let _ = print("----------------------")
     Section {
       ZStack {
         PostRowView(
@@ -106,5 +106,3 @@ struct PostSectionView: View {
     }
   }
 }
-
-
