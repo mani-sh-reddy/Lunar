@@ -31,7 +31,10 @@ struct SettingsView: View {
         } label: {
           UserRowSettingsBannerView(selectedAccount: $selectedAccount)
         }
-        SettingsServerSelectionSectionView()
+        Section{
+          InstanceSelectorView()
+          KbinSelectorView()
+        }
         SettingsGeneralSectionView()
         SettingsAppearanceSectionView()
         SettingsInfoSectionView()

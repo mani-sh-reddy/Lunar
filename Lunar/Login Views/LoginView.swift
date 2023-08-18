@@ -34,6 +34,7 @@ struct LoginView: View {
 
   var body: some View {
     List {
+      InstanceSelectorView()
       Section {
         UsernameFieldView(
           usernameEmailInput: $usernameEmailInput,
@@ -55,7 +56,6 @@ struct LoginView: View {
             twoFactor: $twoFactor,
             showingTwoFactorWarning: $showingTwoFactorWarning,
             twoFactorInvalid: $twoFactorInvalid
-              //                        showingLoginButtonWarning: $showingLoginButtonWarning
           )
         }
       }

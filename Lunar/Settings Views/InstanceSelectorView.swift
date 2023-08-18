@@ -1,5 +1,5 @@
 //
-//  SettingsServerSelectionSectionView.swift
+//  InstanceSelectorView.swift
 //  Lunar
 //
 //  Created by Mani on 24/07/2023.
@@ -7,9 +7,8 @@
 
 import SwiftUI
 
-struct SettingsServerSelectionSectionView: View {
+struct InstanceSelectorView: View {
   @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
-  @AppStorage("kbinActive") var kbinActive = Settings.kbinActive
 
   var body: some View {
     Section {
@@ -23,7 +22,6 @@ struct SettingsServerSelectionSectionView: View {
         Text("sopuli.xyz").tag("sopuli.xyz")
       }
       .pickerStyle(.menu)
-      Toggle("Enable Kbin", isOn: $kbinActive).tint(.purple)
     }
   }
 }

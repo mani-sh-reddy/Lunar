@@ -17,7 +17,7 @@
 		3C113C3D2A6E8B0C00FDE5CE /* SettingsAppearanceSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C3C2A6E8B0C00FDE5CE /* SettingsAppearanceSectionView.swift */; };
 		3C113C3F2A6E8C9400FDE5CE /* SettingsGeneralSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C3E2A6E8C9400FDE5CE /* SettingsGeneralSectionView.swift */; };
 		3C113C412A6E8EEA00FDE5CE /* SettingsInfoSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C402A6E8EEA00FDE5CE /* SettingsInfoSectionView.swift */; };
-		3C113C432A6EA92600FDE5CE /* SettingsServerSelectionSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C422A6EA92600FDE5CE /* SettingsServerSelectionSectionView.swift */; };
+		3C113C432A6EA92600FDE5CE /* InstanceSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C422A6EA92600FDE5CE /* InstanceSelectorView.swift */; };
 		3C130F6E2A8AB6CB0060B6E4 /* LinkPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C130F6D2A8AB6CB0060B6E4 /* LinkPresenter.swift */; };
 		3C130F702A8AD2920060B6E4 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C130F6F2A8AD2920060B6E4 /* SafariView.swift */; };
 		3C130F722A8AD56A0060B6E4 /* SFSafariViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C130F712A8AD56A0060B6E4 /* SFSafariViewWrapper.swift */; };
@@ -120,6 +120,8 @@
 		3CEF4CD92A69B80A002B83C0 /* CommentIndentGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CD82A69B80A002B83C0 /* CommentIndentGuideView.swift */; };
 		3CF3B8EF2A8E96D2001C08B5 /* VoteState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3B8EE2A8E96D2001C08B5 /* VoteState.swift */; };
 		3CF3B8F12A8F797D001C08B5 /* SettingsLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3B8F02A8F797D001C08B5 /* SettingsLayoutView.swift */; };
+		3CF3B8F32A8FF7D4001C08B5 /* KbinSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3B8F22A8FF7D4001C08B5 /* KbinSelectorView.swift */; };
+		3CF3B8F92A8FFDD7001C08B5 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3CF3B8F82A8FFDD7001C08B5 /* MarkdownUI */; };
 		3CF3F9C02A6EE0390051E725 /* SettingsClearCacheButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheButtonView.swift */; };
 		3CF3F9C22A6EE20C0051E725 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3F9C12A6EE20C0051E725 /* ViewExtension.swift */; };
 		3CFE04BF2A7FEA71007BAD81 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 3CFE04BE2A7FEA71007BAD81 /* SwiftSoup */; };
@@ -176,7 +178,7 @@
 		3C113C3C2A6E8B0C00FDE5CE /* SettingsAppearanceSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAppearanceSectionView.swift; sourceTree = "<group>"; };
 		3C113C3E2A6E8C9400FDE5CE /* SettingsGeneralSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsGeneralSectionView.swift; sourceTree = "<group>"; };
 		3C113C402A6E8EEA00FDE5CE /* SettingsInfoSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsInfoSectionView.swift; sourceTree = "<group>"; };
-		3C113C422A6EA92600FDE5CE /* SettingsServerSelectionSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsServerSelectionSectionView.swift; sourceTree = "<group>"; };
+		3C113C422A6EA92600FDE5CE /* InstanceSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstanceSelectorView.swift; sourceTree = "<group>"; };
 		3C130F6D2A8AB6CB0060B6E4 /* LinkPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkPresenter.swift; sourceTree = "<group>"; };
 		3C130F6F2A8AD2920060B6E4 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		3C130F712A8AD56A0060B6E4 /* SFSafariViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSafariViewWrapper.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 		3CEF4CD82A69B80A002B83C0 /* CommentIndentGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentIndentGuideView.swift; sourceTree = "<group>"; };
 		3CF3B8EE2A8E96D2001C08B5 /* VoteState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteState.swift; sourceTree = "<group>"; };
 		3CF3B8F02A8F797D001C08B5 /* SettingsLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLayoutView.swift; sourceTree = "<group>"; };
+		3CF3B8F22A8FF7D4001C08B5 /* KbinSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinSelectorView.swift; sourceTree = "<group>"; };
 		3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsClearCacheButtonView.swift; sourceTree = "<group>"; };
 		3CF3F9C12A6EE20C0051E725 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		3CFE04C22A7FF0EB007BAD81 /* KbinThreadsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinThreadsModel.swift; sourceTree = "<group>"; };
@@ -302,6 +305,7 @@
 				3CA95F082A7ACF3B00626353 /* Nuke in Frameworks */,
 				3CEF196B2A580672006736EF /* Kingfisher in Frameworks */,
 				3C4B7DDB2A58AD23003C8192 /* Alamofire in Frameworks */,
+				3CF3B8F92A8FFDD7001C08B5 /* MarkdownUI in Frameworks */,
 				3CA95F0A2A7ACF3B00626353 /* NukeUI in Frameworks */,
 				3CFE04BF2A7FEA71007BAD81 /* SwiftSoup in Frameworks */,
 			);
@@ -566,9 +570,10 @@
 				3CED897C2A71DCFF00BD9086 /* SettingsHiddenOptionsView.swift */,
 				3CF3B8F02A8F797D001C08B5 /* SettingsLayoutView.swift */,
 				3C113C402A6E8EEA00FDE5CE /* SettingsInfoSectionView.swift */,
-				3C113C422A6EA92600FDE5CE /* SettingsServerSelectionSectionView.swift */,
+				3C113C422A6EA92600FDE5CE /* InstanceSelectorView.swift */,
 				3C113C3E2A6E8C9400FDE5CE /* SettingsGeneralSectionView.swift */,
 				3C6D296A2A7986AE007AFD99 /* AppResetButton.swift */,
+				3CF3B8F22A8FF7D4001C08B5 /* KbinSelectorView.swift */,
 			);
 			path = "Settings Views";
 			sourceTree = "<group>";
@@ -654,6 +659,7 @@
 				3CA95F072A7ACF3B00626353 /* Nuke */,
 				3CA95F092A7ACF3B00626353 /* NukeUI */,
 				3CFE04BE2A7FEA71007BAD81 /* SwiftSoup */,
+				3CF3B8F82A8FFDD7001C08B5 /* MarkdownUI */,
 			);
 			productName = Lunar;
 			productReference = 3C4F09FC2A54399F009DF8AB /* Lunar.app */;
@@ -694,6 +700,7 @@
 				3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */,
 				3CFE04BD2A7FEA71007BAD81 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+				3CF3B8F72A8FFDD7001C08B5 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 			);
 			productRefGroup = 3C4F09FD2A54399F009DF8AB /* Products */;
 			projectDirPath = "";
@@ -831,12 +838,13 @@
 				3CA92E3B2A543BF000688DEB /* CommunityModel.swift in Sources */,
 				3CEACBC72A88020700260A01 /* PostsFetcher.swift in Sources */,
 				3CEF4CD72A69B7A8002B83C0 /* ImageViewWithPlaceholder.swift in Sources */,
+				3CF3B8F32A8FF7D4001C08B5 /* KbinSelectorView.swift in Sources */,
 				3CA92E3A2A543BF000688DEB /* ContentView.swift in Sources */,
 				3CB408B42A5C558B00B7C983 /* CommunitiesFetcher.swift in Sources */,
 				3C7B7DC72A89226A00A02A43 /* CommunityHeaderView.swift in Sources */,
 				3C96EA422A77225E00753199 /* ValidationUtils.swift in Sources */,
 				3C432F5C2A819E54000D5321 /* KbinThreadBodyFetcher.swift in Sources */,
-				3C113C432A6EA92600FDE5CE /* SettingsServerSelectionSectionView.swift in Sources */,
+				3C113C432A6EA92600FDE5CE /* InstanceSelectorView.swift in Sources */,
 				3C8709322A747B91004999CE /* SiteModel.swift in Sources */,
 				3C5ECB2E2A767957002BA561 /* TwoFactorFieldView.swift in Sources */,
 				3C7B7DC92A89485000A02A43 /* DateTimeParser.swift in Sources */,
@@ -1274,6 +1282,14 @@
 				minimumVersion = 7.8.1;
 			};
 		};
+		3CF3B8F72A8FFDD7001C08B5 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.0;
+			};
+		};
 		3CFE04BD2A7FEA71007BAD81 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scinfu/SwiftSoup";
@@ -1304,6 +1320,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3CEF19692A580672006736EF /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		3CF3B8F82A8FFDD7001C08B5 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3CF3B8F72A8FFDD7001C08B5 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
 		};
 		3CFE04BE2A7FEA71007BAD81 /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
