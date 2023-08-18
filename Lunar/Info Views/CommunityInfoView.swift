@@ -78,7 +78,7 @@ struct CommunityInfoView: View {
             ZStack {
               RoundedRectangle(cornerRadius: 10, style: .continuous)
                 .foregroundStyle(.ultraThinMaterial)
-              Text(description)
+              Text(LocalizedStringKey(description))
                 .padding(10)
             }
           }

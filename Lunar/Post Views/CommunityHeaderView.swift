@@ -55,7 +55,7 @@ struct CommunityHeaderView: View {
       .border(debugModeEnabled ? Color.purple : Color.clear)
 
       if let description = communityDescription {
-        Text(description)
+        Text(LocalizedStringKey(description))
       }
     }
     .listRowSeparator(.hidden)

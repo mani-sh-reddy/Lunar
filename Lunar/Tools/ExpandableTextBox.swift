@@ -11,12 +11,12 @@ import SwiftUI
 struct ExpandableTextBox: View {
   @State private var expanded: Bool = false
   @State private var truncated: Bool = false
-  private var text: String
+  private var text: LocalizedStringKey
   var lineLimit = 3
   
   let haptics = UIImpactFeedbackGenerator(style: .soft)
   
-  init(_ text: String) {
+  init(_ text: LocalizedStringKey) {
     self.text = text
   }
   
@@ -30,7 +30,6 @@ struct ExpandableTextBox: View {
               ZStack {
                 Text(self.text)
                   .background(GeometryReader { fullGeometry in
-                    
                     Color.clear.onAppear {
                       self.truncated = fullGeometry.size.height > displayedGeometry.size.height
                     }
@@ -46,10 +45,6 @@ struct ExpandableTextBox: View {
   }
   
   var toggleButton: some View {
-//    Button(action: { self.expanded.toggle() }) {
-//      Text(self.expanded ? "Show less" : "Show more")
-//        .font(.caption)
-//    }
     HStack{
       Spacer()
       ReactionButton(
