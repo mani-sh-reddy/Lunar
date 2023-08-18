@@ -9,15 +9,16 @@ import SwiftUI
 
 struct CommentRowView: View {
   @EnvironmentObject var commentsFetcher: CommentsFetcher
-  @AppStorage("commentMetadataPosition") var commentMetadataPosition = Settings.commentMetadataPosition
+  @AppStorage("commentMetadataPosition") var commentMetadataPosition = Settings
+    .commentMetadataPosition
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @Binding var collapseToIndex: Int
   @State var commentUpvoted: Bool = false
   @State var commentDownvoted: Bool = false
-  
+
   let comment: CommentElement
   let listIndex: Int
-  
+
   var indentLevel: Int {
     let elements = comment.comment.path.split(separator: ".").map { String($0) }
     let elementCount = elements.isEmpty ? 1 : elements.count - 1
@@ -26,7 +27,7 @@ struct CommentRowView: View {
     } else {
       return 1
     }
-    
+
   }
   let commentHierarchyColors: [Color] = [
     .red,
@@ -38,8 +39,7 @@ struct CommentRowView: View {
     .indigo,
     .purple,
   ]
-  
-  
+
   var body: some View {
     HStack {
       if debugModeEnabled {
@@ -59,11 +59,15 @@ struct CommentRowView: View {
       VStack(alignment: .leading, spacing: 3) {
         if commentMetadataPosition == "Bottom" {
           Text(LocalizedStringKey(comment.comment.content))
-          CommentMetadataView(comment: comment, commentUpvoted: $commentUpvoted, commentDownvoted: $commentDownvoted)
-            .environmentObject(commentsFetcher)
+          CommentMetadataView(
+            comment: comment, commentUpvoted: $commentUpvoted, commentDownvoted: $commentDownvoted
+          )
+          .environmentObject(commentsFetcher)
         } else if commentMetadataPosition == "Top" {
-          CommentMetadataView(comment: comment, commentUpvoted: $commentUpvoted, commentDownvoted: $commentDownvoted)
-            .environmentObject(commentsFetcher)
+          CommentMetadataView(
+            comment: comment, commentUpvoted: $commentUpvoted, commentDownvoted: $commentDownvoted
+          )
+          .environmentObject(commentsFetcher)
           Text(LocalizedStringKey(comment.comment.content))
         } else {
           Text(LocalizedStringKey(comment.comment.content))
@@ -87,7 +91,7 @@ struct CollapseCommentsSwipeAction: View {
   //  @Binding var isClicked: Bool
   @Binding var collapseToIndex: Int
   var listIndex: Int
-  
+
   var body: some View {
     Button {
       print("SWIPED")
