@@ -78,7 +78,7 @@ class VoteSender: ObservableObject {
           let elementID = result.comment?.comment.id
           completion(elementID, voteSubmittedSuccessfully, response)
         } else {
-          let voteSubmittedSuccessfully = false
+          completion(nil, false, response)
         }
         
 //        completion(elementID, voteSubmittedSuccessfully, response)

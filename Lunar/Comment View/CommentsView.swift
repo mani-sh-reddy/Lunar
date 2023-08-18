@@ -270,7 +270,6 @@ struct CommentMetadata: View {
       )
     }
     .onAppear {
-      print(comment.myVote ?? 343434343)
       if let voteType = comment.myVote {
         switch voteType {
         case 1:

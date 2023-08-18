@@ -47,7 +47,7 @@ enum URLParser {
   static func extractBaseDomain(from url: String) -> String {
    let domain = extractDomain(from: url)
     
-    var components = domain.components(separatedBy: ".")
+    let components = domain.components(separatedBy: ".")
     
     return components.penultimate() ?? ""
     
