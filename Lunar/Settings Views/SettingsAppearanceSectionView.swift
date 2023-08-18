@@ -35,7 +35,7 @@ struct SettingsAppearanceSectionView: View {
       }
 
       NavigationLink {
-        PlaceholderView()
+        SettingsLayoutView()
       } label: {
         Label {
           Text("Layout")
