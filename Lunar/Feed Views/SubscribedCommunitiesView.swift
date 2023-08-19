@@ -68,7 +68,6 @@ struct SubscribedCommunitiesSectionView: View {
         await communitiesFetcher.refreshContent()
       }
     }
-  
   }
 }
 

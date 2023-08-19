@@ -53,6 +53,14 @@
 		3C6588592A6169EB00A46DA3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6588582A6169EB00A46DA3 /* SettingsView.swift */; };
 		3C65885D2A6189AF00A46DA3 /* CommentsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C65885C2A6189AF00A46DA3 /* CommentsFetcher.swift */; };
 		3C65885F2A621C6100A46DA3 /* MoreCommunitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C65885E2A621C6100A46DA3 /* MoreCommunitiesView.swift */; };
+		3C6BBF722A910F6100312E2B /* SubscriptionActionSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BBF712A910F6100312E2B /* SubscriptionActionSender.swift */; };
+		3C6BBF742A91108A00312E2B /* SubscribeResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BBF732A91108A00312E2B /* SubscribeResponseModel.swift */; };
+		3C6BBF762A91252700312E2B /* ReactionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BBF752A91252700312E2B /* ReactionButtonView.swift */; };
+		3C6BBF782A91254C00312E2B /* HapticMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BBF772A91254C00312E2B /* HapticMenuView.swift */; };
+		3C6BBF7A2A91255D00312E2B /* DownvoteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BBF792A91255D00312E2B /* DownvoteButtonView.swift */; };
+		3C6BBF7C2A91256900312E2B /* UpvoteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BBF7B2A91256900312E2B /* UpvoteButtonView.swift */; };
+		3C6BBF7E2A91257A00312E2B /* GoIntoButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BBF7D2A91257A00312E2B /* GoIntoButtonView.swift */; };
+		3C6BBF802A9125F500312E2B /* PostActionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BBF7F2A9125F500312E2B /* PostActionsManager.swift */; };
 		3C6D29652A793878007AFD99 /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D29642A793878007AFD99 /* DictionaryExtension.swift */; };
 		3C6D29672A795141007AFD99 /* DebugSettingsPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D29662A795141007AFD99 /* DebugSettingsPropertiesView.swift */; };
 		3C6D29692A797D6E007AFD99 /* UserRowSettingsBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D29682A797D6E007AFD99 /* UserRowSettingsBannerView.swift */; };
@@ -219,6 +227,14 @@
 		3C6588582A6169EB00A46DA3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3C65885C2A6189AF00A46DA3 /* CommentsFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsFetcher.swift; sourceTree = "<group>"; };
 		3C65885E2A621C6100A46DA3 /* MoreCommunitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreCommunitiesView.swift; sourceTree = "<group>"; };
+		3C6BBF712A910F6100312E2B /* SubscriptionActionSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionActionSender.swift; sourceTree = "<group>"; };
+		3C6BBF732A91108A00312E2B /* SubscribeResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribeResponseModel.swift; sourceTree = "<group>"; };
+		3C6BBF752A91252700312E2B /* ReactionButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionButtonView.swift; sourceTree = "<group>"; };
+		3C6BBF772A91254C00312E2B /* HapticMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticMenuView.swift; sourceTree = "<group>"; };
+		3C6BBF792A91255D00312E2B /* DownvoteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownvoteButtonView.swift; sourceTree = "<group>"; };
+		3C6BBF7B2A91256900312E2B /* UpvoteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpvoteButtonView.swift; sourceTree = "<group>"; };
+		3C6BBF7D2A91257A00312E2B /* GoIntoButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoIntoButtonView.swift; sourceTree = "<group>"; };
+		3C6BBF7F2A9125F500312E2B /* PostActionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostActionsManager.swift; sourceTree = "<group>"; };
 		3C6D29642A793878007AFD99 /* DictionaryExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
 		3C6D29662A795141007AFD99 /* DebugSettingsPropertiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugSettingsPropertiesView.swift; sourceTree = "<group>"; };
 		3C6D29682A797D6E007AFD99 /* UserRowSettingsBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRowSettingsBannerView.swift; sourceTree = "<group>"; };
@@ -381,6 +397,7 @@
 			isa = PBXGroup;
 			children = (
 				3C4D42A72A8D0FD1003B6F1D /* VoteSender.swift */,
+				3C6BBF712A910F6100312E2B /* SubscriptionActionSender.swift */,
 			);
 			path = DataSenders;
 			sourceTree = "<group>";
@@ -490,6 +507,7 @@
 				3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */,
 				3C8709312A747B91004999CE /* SiteModel.swift */,
 				3C4D42A92A8D12B8003B6F1D /* VoteResponseModel.swift */,
+				3C6BBF732A91108A00312E2B /* SubscribeResponseModel.swift */,
 				3C96EA542A7857D900753199 /* LoggedInUserModel.swift */,
 			);
 			path = DataModels;
@@ -522,6 +540,11 @@
 			children = (
 				3CA5C40D2A57525500BF8F1B /* PostsView.swift */,
 				3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */,
+				3C6BBF7F2A9125F500312E2B /* PostActionsManager.swift */,
+				3C6BBF7D2A91257A00312E2B /* GoIntoButtonView.swift */,
+				3C6BBF7B2A91256900312E2B /* UpvoteButtonView.swift */,
+				3C6BBF792A91255D00312E2B /* DownvoteButtonView.swift */,
+				3C6BBF772A91254C00312E2B /* HapticMenuView.swift */,
 				3C130F6D2A8AB6CB0060B6E4 /* LinkPresenter.swift */,
 				3CEF4CCF2A69B738002B83C0 /* InPostMetadataView.swift */,
 				3CEF4CCD2A69B71C002B83C0 /* InPostUserView.swift */,
@@ -531,6 +554,7 @@
 				3CEF4CC92A69B6FA002B83C0 /* InPostCommunityHeaderView.swift */,
 				3C7B7DC62A89226A00A02A43 /* CommunityHeaderView.swift */,
 				3CF3B9032A90C0ED001C08B5 /* HeaderView.swift */,
+				3C6BBF752A91252700312E2B /* ReactionButtonView.swift */,
 			);
 			path = "Post Views";
 			sourceTree = "<group>";
@@ -766,6 +790,7 @@
 				3C1A3F5D2A73BC9F00898FC6 /* CredentialsModel.swift in Sources */,
 				3C130F702A8AD2920060B6E4 /* SafariView.swift in Sources */,
 				3C4B7DD82A58A741003C8192 /* CommentModel.swift in Sources */,
+				3C6BBF762A91252700312E2B /* ReactionButtonView.swift in Sources */,
 				3CEF4CC62A69B3AD002B83C0 /* MoreCommunitiesButtonView.swift in Sources */,
 				3CEF4CD32A69B770002B83C0 /* StringExtension.swift in Sources */,
 				3CEF4CD02A69B738002B83C0 /* InPostMetadataView.swift in Sources */,
@@ -776,6 +801,7 @@
 				3CD4DA262A7EF8DB00BC374A /* UserInfoView.swift in Sources */,
 				3CC178912A7DA6A200C208D0 /* SearchView.swift in Sources */,
 				3C113C392A6E71E100FDE5CE /* SettingsAccountView.swift in Sources */,
+				3C6BBF722A910F6100312E2B /* SubscriptionActionSender.swift in Sources */,
 				3C113C3F2A6E8C9400FDE5CE /* SettingsGeneralSectionView.swift in Sources */,
 				3C1A3F5F2A73D64C00898FC6 /* LoginHelper.swift in Sources */,
 				3CCAA8C12A65358C007CCEC2 /* NetworkMonitor.swift in Sources */,
@@ -789,9 +815,11 @@
 				3C130F722A8AD56A0060B6E4 /* SFSafariViewWrapper.swift in Sources */,
 				3C87092C2A745CE2004999CE /* ArrayExtension.swift in Sources */,
 				3C4D42AA2A8D12B8003B6F1D /* VoteResponseModel.swift in Sources */,
+				3C6BBF782A91254C00312E2B /* HapticMenuView.swift in Sources */,
 				3CC734A42A6D58C6007523B5 /* URLBuilder.swift in Sources */,
 				3CEF4CD92A69B80A002B83C0 /* CommentIndentGuideView.swift in Sources */,
 				3CFE04C92A7FF375007BAD81 /* KbinThreadsView.swift in Sources */,
+				3C6BBF802A9125F500312E2B /* PostActionsManager.swift in Sources */,
 				3CCAA8BF2A65309E007CCEC2 /* NoInternetConnectionView.swift in Sources */,
 				3CA5C40E2A57525500BF8F1B /* PostsView.swift in Sources */,
 				3CEF4CCC2A69B70C002B83C0 /* InPostThumbnailView.swift in Sources */,
@@ -801,6 +829,7 @@
 				3C96EA502A7843EC00753199 /* AddNewUserButtonView.swift in Sources */,
 				3C96EA3E2A76FC1200753199 /* LoginButtonView.swift in Sources */,
 				3CEF4CC22A69B38B002B83C0 /* SubscribedCommunitiesView.swift in Sources */,
+				3C6BBF7C2A91256900312E2B /* UpvoteButtonView.swift in Sources */,
 				3CF3B8FB2A901847001C08B5 /* CommentSectionView.swift in Sources */,
 				3CDF229D2A6D436B009281F2 /* Settings.swift in Sources */,
 				3C113C412A6E8EEA00FDE5CE /* SettingsInfoSectionView.swift in Sources */,
@@ -811,6 +840,7 @@
 				3CC178932A7DA9FE00C208D0 /* SearchModel.swift in Sources */,
 				3C96EA552A7857D900753199 /* LoggedInUserModel.swift in Sources */,
 				3CADB5752A7EA03000095839 /* SearchUsersListAll.swift in Sources */,
+				3C6BBF7E2A91257A00312E2B /* GoIntoButtonView.swift in Sources */,
 				3CED897B2A71A5CF00BD9086 /* ImagePopoverView.swift in Sources */,
 				3CF3B8FF2A9018B9001C08B5 /* CommentRowView.swift in Sources */,
 				3CFE04C32A7FF0EB007BAD81 /* KbinThreadsModel.swift in Sources */,
@@ -852,6 +882,7 @@
 				3CEF4CD72A69B7A8002B83C0 /* ImageViewWithPlaceholder.swift in Sources */,
 				3CF3B8F32A8FF7D4001C08B5 /* KbinSelectorView.swift in Sources */,
 				3CA92E3A2A543BF000688DEB /* ContentView.swift in Sources */,
+				3C6BBF7A2A91255D00312E2B /* DownvoteButtonView.swift in Sources */,
 				3CB408B42A5C558B00B7C983 /* CommunitiesFetcher.swift in Sources */,
 				3C7B7DC72A89226A00A02A43 /* CommunityHeaderView.swift in Sources */,
 				3C96EA422A77225E00753199 /* ValidationUtils.swift in Sources */,
@@ -863,6 +894,7 @@
 				3CA92E432A549A7F00688DEB /* CommunityRowView.swift in Sources */,
 				3CEF4CC42A69B39B002B83C0 /* TrendingCommunitiesSectionView.swift in Sources */,
 				3C113C3D2A6E8B0C00FDE5CE /* SettingsAppearanceSectionView.swift in Sources */,
+				3C6BBF742A91108A00312E2B /* SubscribeResponseModel.swift in Sources */,
 				3C130F752A8C0A520060B6E4 /* ExpandableTextBox.swift in Sources */,
 				3CBCCDF62A589F2C00307AC1 /* CommentsView.swift in Sources */,
 				3C65885F2A621C6100A46DA3 /* MoreCommunitiesView.swift in Sources */,

@@ -20,7 +20,7 @@ struct CommunityModel: Codable {
 
 struct CommunityElement: Codable {
   let community: CommunityObject
-  let subscribed: SubscribedObject
+  let subscribed: SubscribedState
   let blocked: Bool
   let counts: CountsObject
 }
@@ -70,9 +70,4 @@ struct CountsObject: Codable {
     case usersActiveHalfYear = "users_active_half_year"
     case hotRank = "hot_rank"
   }
-}
-
-enum SubscribedObject: String, Codable {
-  case notSubscribed = "NotSubscribed"
-  case subscribed = "Subscribed"
 }

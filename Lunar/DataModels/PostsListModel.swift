@@ -31,7 +31,7 @@ struct PostElement: Codable {
   let community: Community
   let creatorBannedFromCommunity: Bool
   var counts: Counts
-  let subscribed: Subscribed?
+  var subscribed: SubscribedState
   let saved, read, creatorBlocked: Bool
   let unreadComments: Int
   var myVote: Int?
@@ -164,7 +164,8 @@ struct PostObject: Codable {
   }
 }
 
-enum Subscribed: String, Codable {
+enum SubscribedState: String, Codable {
   case notSubscribed = "NotSubscribed"
   case subscribed = "Subscribed"
+  case pending = "Pending"
 }
