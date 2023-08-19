@@ -36,8 +36,9 @@ class PostsFetcher: ObservableObject {
     ).buildURL()
   }
 
-  private let fetchQueue = DispatchQueue(label: "com.example.fetchQueue", qos: .userInitiated, attributes: .concurrent)
-  
+  private let fetchQueue = DispatchQueue(
+    label: "com.example.fetchQueue", qos: .userInitiated, attributes: .concurrent)
+
   init(
     sortParameter: String? = nil,
     typeParameter: String? = nil,
@@ -47,7 +48,7 @@ class PostsFetcher: ObservableObject {
     self.typeParameter = typeParameter ?? postType
 
     self.communityID = (communityID == 0) ? nil : communityID
-    if communityID == 99999999999999 { // TODO just a placeholder to prevent running when user posts
+    if communityID == 99_999_999_999_999 {  // TODO just a placeholder to prevent running when user posts
       return
     }
     fetchQueue.async {
@@ -57,10 +58,10 @@ class PostsFetcher: ObservableObject {
 
   func refreshContent() {
     guard !isLoading else { return }
-    
+
     isLoading = true
     currentPage = 1
-    
+
     fetchQueue.async {
       let cacher = ResponseCacher(behavior: .cache)
       AF.request(self.endpoint) { urlRequest in
@@ -98,9 +99,9 @@ class PostsFetcher: ObservableObject {
 
   private func loadMoreContent() {
     guard !isLoading else { return }
-    
+
     isLoading = true
-    
+
     fetchQueue.async {
       let cacher = ResponseCacher(behavior: .cache)
       AF.request(self.endpoint) { urlRequest in
@@ -119,26 +120,29 @@ class PostsFetcher: ObservableObject {
       }
     }
   }
-  
+
   private func handleResponse(result: PostsModel) {
     let newPosts = result.posts
     let filteredNewPosts = newPosts.filter { newPost in
       !self.posts.contains { $0.post.id == newPost.post.id }
     }
-    
-    let cachableImageURLs = result.thumbnailURLs.compactMap { URL(string: $0) }
-    + result.avatarURLs.compactMap { URL(string: $0) }
+
+    let cachableImageURLs =
+      result.thumbnailURLs.compactMap { URL(string: $0) }
+      + result.avatarURLs.compactMap { URL(string: $0) }
     let prefetcher = ImagePrefetcher(urls: cachableImageURLs) { _, _, _ in }
     prefetcher.start()
-    
+
     DispatchQueue.main.async {
       self.posts += filteredNewPosts
       self.isLoading = false
     }
   }
-  
+
   func getJWTFromKeychain(actorID: String) -> String? {
-    if let keychainObject = KeychainHelper.standard.read(service: self.appBundleID, account: selectedActorID) {
+    if let keychainObject = KeychainHelper.standard.read(
+      service: self.appBundleID, account: selectedActorID)
+    {
       let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
       return jwt.replacingOccurrences(of: "\"", with: "")
     } else {
