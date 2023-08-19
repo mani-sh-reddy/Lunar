@@ -6,23 +6,23 @@
 //
 
 import Kingfisher
-import SwiftUI
 import SafariServices
+import SwiftUI
 
 struct PostRowView: View {
   @EnvironmentObject var postsFetcher: PostsFetcher
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  
+
   @Binding var upvoted: Bool
   @Binding var downvoted: Bool
-  
+
   @State var goInto: Bool = false
   @State var showingPlaceholderAlert = false
   @State private var showSafari: Bool = false
   @State var subscribeState: SubscribedState = .notSubscribed
-  
+
   var post: PostElement
-  
+
   var imageURL: String {
     if let thumbnailURL = post.post.thumbnailURL, !thumbnailURL.isEmpty {
       return thumbnailURL
@@ -31,7 +31,7 @@ struct PostRowView: View {
     }
     return ""
   }
-  
+
   var communityName: String { return post.community.name }
   var heading: String { return post.post.name }
   var creator: String { return post.creator.name }
@@ -49,15 +49,15 @@ struct PostRowView: View {
       return ""
     }
   }
-  
+
   let dateTimeParser = DateTimeParser()
   var timeAgo: String {
     return ", \(dateTimeParser.timeAgoString(from: post.post.published))"
   }
-  
+
   let haptics = UIImpactFeedbackGenerator(style: .rigid)
   @State private var showCommunityActions: Bool = false
-  
+
   var body: some View {
     VStack {
       if !imageURL.isEmpty {
@@ -66,7 +66,7 @@ struct PostRowView: View {
       }
       HStack {
         VStack(alignment: .leading, spacing: 5) {
-          HStack{
+          HStack {
             Text("\(communityName)\(instanceTag)")
               .textCase(.lowercase)
             switch subscribeState {
@@ -86,7 +86,10 @@ struct PostRowView: View {
               showCommunityActions = true
             }
           )
-          .confirmationDialog("\(communityName)\(instanceTag)", isPresented: $showCommunityActions, titleVisibility: .visible) {
+          .confirmationDialog(
+            "\(communityName)\(instanceTag)", isPresented: $showCommunityActions,
+            titleVisibility: .visible
+          ) {
             Button {
               switch subscribeState {
               case .notSubscribed:
@@ -112,7 +115,7 @@ struct PostRowView: View {
               subscribeState = postsFetcher.posts[index].subscribed
             }
           }
-          
+
           Text(heading)
             .fontWeight(.semibold)
             .foregroundColor(.primary)
@@ -143,7 +146,7 @@ struct PostRowView: View {
             }
           }
         )
-        
+
         ReactionButton(
           text: String(downvoted ? downvotes + 1 : downvotes),
           icon: "arrow.down.circle.fill",
@@ -163,7 +166,7 @@ struct PostRowView: View {
             }
           }
         )
-        
+
         ReactionButton(
           text: String(commentCount),
           icon: "bubble.left.circle.fill",
@@ -171,7 +174,7 @@ struct PostRowView: View {
           active: .constant(false),
           opposite: .constant(false)
         )
-        
+
         Spacer()
         if post.post.url != post.post.thumbnailURL {
           ReactionButton(
@@ -188,9 +191,11 @@ struct PostRowView: View {
               showSafari.toggle()
             }
           )
-          .fullScreenCover(isPresented: $showSafari, content: {
-            SFSafariViewWrapper(url: URL(string: post.post.url ?? "")!).ignoresSafeArea()
-          })
+          .fullScreenCover(
+            isPresented: $showSafari,
+            content: {
+              SFSafariViewWrapper(url: URL(string: post.post.url ?? "")!).ignoresSafeArea()
+            })
         }
       }
     }
@@ -227,7 +232,7 @@ struct PostRowView: View {
       }
     }
   }
-  
+
   func subscribeAction(subscribeAction: Bool) {
     SubscriptionActionSender(
       communityID: post.community.id,
@@ -239,13 +244,12 @@ struct PostRowView: View {
           var updatedPost = postsFetcher.posts[index]
           updatedPost.subscribed = subscribeAction ? .subscribed : .notSubscribed
           postsFetcher.posts[index] = updatedPost
-          subscribeState = subscribeAction ? .subscribed : .notSubscribed // Update the local subscription status
+          subscribeState = subscribeAction ? .subscribed : .notSubscribed  // Update the local subscription status
         }
       }
     }
   }
-  
-  
+
   func sendReaction(voteType: Int, postID: Int) {
     VoteSender(
       asActorID: selectedActorID,

@@ -14,9 +14,9 @@ struct CommentMetadataView: View {
   let dateTimeParser = DateTimeParser()
   @Binding var commentUpvoted: Bool
   @Binding var commentDownvoted: Bool
-  
+
   let haptics = UIImpactFeedbackGenerator(style: .rigid)
-  
+
   var body: some View {
     HStack {
       VStack(alignment: .leading) {
@@ -62,7 +62,7 @@ struct CommentMetadataView: View {
           if commentDownvoted {
             sendReaction(voteType: -1)
           } else {
-            sendReaction(voteType: 0 )
+            sendReaction(voteType: 0)
           }
         }
       )
@@ -83,7 +83,7 @@ struct CommentMetadataView: View {
       }
     }
   }
-  
+
   func sendReaction(voteType: Int) {
     VoteSender(
       asActorID: selectedActorID,
@@ -101,5 +101,5 @@ struct CommentMetadataView: View {
       }
     }
   }
-  
+
 }

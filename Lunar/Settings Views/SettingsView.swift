@@ -31,7 +31,7 @@ struct SettingsView: View {
         } label: {
           UserRowSettingsBannerView(selectedAccount: $selectedAccount)
         }
-        Section{
+        Section {
           InstanceSelectorView()
           KbinSelectorView()
         }

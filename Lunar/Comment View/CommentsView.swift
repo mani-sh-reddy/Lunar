@@ -13,7 +13,7 @@ struct CommentsView: View {
   @StateObject var commentsFetcher: CommentsFetcher
   @Binding var upvoted: Bool
   @Binding var downvoted: Bool
-  
+
   var post: PostElement
 
   var body: some View {

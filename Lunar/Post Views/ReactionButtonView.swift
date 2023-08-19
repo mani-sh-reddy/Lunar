@@ -12,12 +12,12 @@ struct ReactionButtonView: View {
   var text: String
   var icon: String
   var color: Color
-  
+
   @Binding var active: Bool
   @Binding var opposite: Bool
-  
+
   let haptics = UIImpactFeedbackGenerator(style: .rigid)
-  
+
   var body: some View {
     Button {
       active.toggle()

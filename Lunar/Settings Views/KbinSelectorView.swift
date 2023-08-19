@@ -10,8 +10,8 @@ import SwiftUI
 
 struct KbinSelectorView: View {
   @AppStorage("kbinActive") var kbinActive = Settings.kbinActive
-  
+
   var body: some View {
-      Toggle("Enable Kbin", isOn: $kbinActive).tint(.purple)
+    Toggle("Enable Kbin", isOn: $kbinActive).tint(.purple)
   }
 }
