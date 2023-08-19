@@ -45,6 +45,9 @@ import SwiftUI
     self.typeParameter = typeParameter ?? postType
 
     self.communityID = (communityID == 0) ? nil : communityID
+    if communityID == 99999999999999 { // TODO just a placeholder to prevent running when user posts
+      return
+    }
     loadMoreContent()
   }
 

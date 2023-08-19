@@ -18,7 +18,7 @@ struct SearchUsersRowView: View {
       NavigationLink {
         PostsView(
           postsFetcher: PostsFetcher(
-            communityID: 2147483647 // TODO change once implement user posts/comments fetcher
+            communityID: 99999999999999 // TODO change once implement user posts/comments fetcher
           ), title: person.person.name,
           user: person
         )
