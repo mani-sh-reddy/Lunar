@@ -21,7 +21,6 @@ struct CommentSectionView: View {
   @Binding var downvoted: Bool
   
   var body: some View {
-    let _ = print(postBody)
     List {
       Section {
         PostRowView(upvoted: $upvoted, downvoted: $downvoted, post: post).environmentObject(postsFetcher)
