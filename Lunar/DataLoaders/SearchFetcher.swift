@@ -15,9 +15,9 @@ import SwiftUI
   @Published var searchModel = [SearchModel]()
 
   @Published var comments = [SearchCommentElement]()
-  @Published var communities = [SearchCommunityElement]()
+  @Published var communities = [CommunityElement]()
   @Published var posts = [SearchPostElement]()
-  @Published var users = [SearchUserElement]()
+  @Published var users = [UserElement]()
 
   @Published var isLoading = false
 
@@ -88,7 +88,7 @@ import SwiftUI
     }
   }
 
-  func loadMoreUsersIfNeeded(currentItem user: SearchUserElement?) {
+  func loadMoreUsersIfNeeded(currentItem user: UserElement?) {
     guard let user else {
       loadMoreContent { _, _ in }
       return
@@ -107,6 +107,7 @@ import SwiftUI
       communities.removeAll()
       posts.removeAll()
       users.removeAll()
+      currentPage = 1
     }
 
     print("SEARCH QUERY: \(searchQuery)")

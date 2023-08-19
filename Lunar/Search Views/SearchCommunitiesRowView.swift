@@ -10,13 +10,18 @@ import SwiftUI
 
 struct SearchCommunitiesRowView: View {
   @State var showingPlaceholderAlert = false
-  var searchCommunitiesResults: [SearchCommunityElement]
+  var searchCommunitiesResults: [CommunityElement]
   let processor = DownsamplingImageProcessor(size: CGSize(width: 60, height: 60))
 
   var body: some View {
     ForEach(searchCommunitiesResults, id: \.community.id) { community in
       NavigationLink {
-        CommunityInfoView(community: community.community)
+        PostsView(
+          postsFetcher: PostsFetcher(
+            communityID: community.community.id
+          ), title: community.community.name,
+          community: community
+        )
       } label: {
         HStack {
           KFImage(URL(string: community.community.icon ?? ""))

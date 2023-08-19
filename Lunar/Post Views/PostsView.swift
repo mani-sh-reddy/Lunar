@@ -17,22 +17,71 @@ struct PostsView: View {
 
   var title: String?
   var community: CommunityElement?
-  var navigationHeading: String { return community?.community.name ?? title ?? "" }
-  var communityDescription: String? { return community?.community.description }
-  var communityActorID: String { return community?.community.actorID ?? "" }
+  var user: UserElement?
+  
   var isCommunitySpecific: Bool { return community != nil }
+  var isUserSpecific: Bool { return user != nil }
 
   var hasBanner: Bool {
-    community?.community.banner != "" && community?.community.banner != nil  // skipcq: SW-P1006
+    if isCommunitySpecific {
+      return community?.community.banner != "" && community?.community.banner != nil  // skipcq: SW-P1006
+    } else if isUserSpecific {
+      return user?.person.banner != "" && user?.person.banner != nil // skipcq: SW-P1006
+    } else {
+      return false
+    }
   }
+  
   var hasIcon: Bool {
-    community?.community.icon != "" && community?.community.icon != nil  // skipcq: SW-P1006
+    if isCommunitySpecific {
+      return community?.community.icon != "" && community?.community.icon != nil  // skipcq: SW-P1006
+    } else if isUserSpecific {
+      return user?.person.avatar != "" && user?.person.avatar != nil // skipcq: SW-P1006
+    } else {
+      return false
+    }
   }
+  
+  var navigationHeading: String {
+    if isCommunitySpecific {
+      return community?.community.name ?? ""
+    } else if isUserSpecific {
+      return user?.person.name ?? ""
+    } else {
+      return ""
+    }
+  }
+  
+  var communityDescription: String? { return community?.community.description}
+  var communityActorID: String { return community?.community.actorID ?? "" }
+  var communityBanner: String? { return community?.community.banner}
+  var communityIcon: String? { return community?.community.icon}
+  
+  var userDescription: String? { return user?.person.bio}
+  var userActorID: String { return user?.person.actorID ?? "" }
+  var userBanner: String? { return user?.person.banner}
+  var userIcon: String? { return user?.person.avatar}
+
 
   var body: some View {
     List {
       if isCommunitySpecific {
-        CommunityHeaderView(community: community)
+        HeaderView(
+          navigationHeading: navigationHeading,
+          description: communityDescription,
+          actorID: communityActorID,
+          banner: communityBanner,
+          icon: communityIcon
+        )
+      }
+      if isUserSpecific {
+        HeaderView(
+          navigationHeading: navigationHeading,
+          description: userDescription,
+          actorID: userActorID,
+          banner: userBanner,
+          icon: userIcon
+        )
       }
       ForEach(postsFetcher.posts, id: \.post.id) { post in
         PostSectionView(post: post).environmentObject(postsFetcher)

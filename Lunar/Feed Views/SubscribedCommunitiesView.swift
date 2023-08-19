@@ -14,7 +14,7 @@ struct SubscribedCommunitiesSectionView: View {
   
   var subscribedPostsButton:CommunityButton {
     CommunityButton(
-      title: "Subscribed",
+      title: "Subscribed Feed",
       type: "Subscribed",
       sort: "Active",
       icon: "pin.circle.fill",

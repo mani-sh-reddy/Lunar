@@ -13,8 +13,8 @@ struct SearchModel: Codable {
   let type: String
   let comments: [SearchCommentElement]
   let posts: [SearchPostElement]
-  let communities: [SearchCommunityElement]
-  let users: [SearchUserElement]
+  let communities: [CommunityElement]
+  let users: [UserElement]
 
   enum CodingKeys: String, CodingKey {
     case type = "type_"
@@ -255,7 +255,7 @@ struct SearchPostCounts: Codable {
 
 // MARK: - User
 
-struct SearchUserElement: Codable {
+struct UserElement: Codable {
   let person: Creator
   let counts: SearchUserCounts
 }

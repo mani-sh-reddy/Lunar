@@ -10,13 +10,18 @@ import SwiftUI
 
 struct SearchUsersRowView: View {
   @State var showingPlaceholderAlert = false
-  var searchUsersResults: [SearchUserElement]
+  var searchUsersResults: [UserElement]
   let processor = DownsamplingImageProcessor(size: CGSize(width: 60, height: 60))
 
   var body: some View {
     ForEach(searchUsersResults, id: \.person.id) { person in
       NavigationLink {
-        UserInfoView(person: person.person)
+        PostsView(
+          postsFetcher: PostsFetcher(
+            communityID: 2147483647 // TODO change once implement user posts/comments fetcher
+          ), title: person.person.name,
+          user: person
+        )
       } label: {
         HStack {
           KFImage(URL(string: person.person.avatar ?? ""))
