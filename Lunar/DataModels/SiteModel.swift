@@ -58,17 +58,17 @@ struct AdminPerson: Codable {
   let id: Int
   let name: String
   let displayName: String?
-  let avatar: String
-  let banned: Bool
-  let published: String
-  let actorID: String
+  let avatar: String?
+  let banned: Bool?
+  let published: String?
+  let actorID: String?
   let bio: String?
-  let local: Bool
+  let local: Bool?
   let banner: String?
-  let deleted: Bool
+  let deleted: Bool?
   let matrixUserID: String?
   let admin, botAccount: Bool
-  let instanceID: Int
+  let instanceID: Int?
 
   enum CodingKeys: String, CodingKey {
     case id, name

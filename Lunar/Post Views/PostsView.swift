@@ -9,6 +9,7 @@ import Kingfisher
 import SwiftUI
 
 struct PostsView: View {
+  
   @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @StateObject var postsFetcher: PostsFetcher
@@ -61,6 +62,8 @@ struct PostsView: View {
   var userActorID: String { return user?.person.actorID ?? "" }
   var userBanner: String? { return user?.person.banner}
   var userIcon: String? { return user?.person.avatar}
+  
+  private let backgroundQueue = DispatchQueue(label: "com.example.backgroundQueue", qos: .background, attributes: .concurrent)
 
 
   var body: some View {
@@ -84,22 +87,23 @@ struct PostsView: View {
         )
       }
       ForEach(postsFetcher.posts, id: \.post.id) { post in
-        PostSectionView(post: post).environmentObject(postsFetcher)
+        PostSectionView(post: post)
+          .environmentObject(postsFetcher)
           .task {
             postsFetcher.loadMoreContentIfNeeded(currentItem: post)
           }
       }
       if postsFetcher.isLoading {
-        ProgressView().id(UUID())
+          ProgressView().id(UUID())
       }
     }
     .onChange(of: instanceHostURL) { _ in
-      Task {
-        await postsFetcher.refreshContent()
+      backgroundQueue.async {
+        postsFetcher.refreshContent()
       }
     }
     .refreshable {
-      await postsFetcher.refreshContent()
+      postsFetcher.refreshContent()
     }
     .navigationTitle(navigationHeading)
     .navigationBarTitleDisplayMode(.inline)
@@ -139,14 +143,16 @@ struct PostSectionView: View {
           upvoted: $upvoted,
           downvoted: $downvoted,
           post: post
-        ).environmentObject(postsFetcher)
+        )
+        .environmentObject(postsFetcher)
         NavigationLink {
           CommentsView(
             commentsFetcher: CommentsFetcher(postID: post.post.id),
             upvoted: $upvoted,
             downvoted: $downvoted,
             post: post
-          ).environmentObject(postsFetcher)
+          )
+          .environmentObject(postsFetcher)
         } label: {
           EmptyView()
         }

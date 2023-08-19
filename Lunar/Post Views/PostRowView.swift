@@ -22,6 +22,7 @@ struct PostRowView: View {
   @State var subscribeState: SubscribedState = .notSubscribed
   
   var post: PostElement
+  private let backgroundQueue = DispatchQueue(label: "com.example.backgroundQueue", qos: .background, attributes: .concurrent)
   
   var imageURL: String {
     if let thumbnailURL = post.post.thumbnailURL, !thumbnailURL.isEmpty {
@@ -75,7 +76,7 @@ struct PostRowView: View {
             case .pending:
               Image(systemName: "clock.arrow.2.circlepath")
             case .subscribed:
-              Image(systemName: "checkmark.circle")
+              Image(systemName: "checkmark")
             }
           }
           .font(.caption)
@@ -108,8 +109,12 @@ struct PostRowView: View {
             }
           }
           .onAppear {
-            if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == post.post.id }) {
-              subscribeState = postsFetcher.posts[index].subscribed
+            backgroundQueue.async {
+              if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == post.post.id }) {
+                DispatchQueue.main.async {
+                  subscribeState = postsFetcher.posts[index].subscribed
+                }
+              }
             }
           }
           
@@ -134,12 +139,14 @@ struct PostRowView: View {
         .highPriorityGesture(
           TapGesture().onEnded {
             haptics.impactOccurred()
-            upvoted.toggle()
-            downvoted = false
-            if upvoted {
+            backgroundQueue.async {
+              // Perform reaction sending logic
               sendReaction(voteType: 1, postID: post.post.id)
-            } else {
-              sendReaction(voteType: 0, postID: post.post.id)
+              // UI update on the main thread
+              DispatchQueue.main.async {
+                upvoted.toggle()
+                downvoted = false
+              }
             }
           }
         )
@@ -154,12 +161,14 @@ struct PostRowView: View {
         .highPriorityGesture(
           TapGesture().onEnded {
             haptics.impactOccurred()
-            downvoted.toggle()
-            upvoted = false
-            if downvoted {
+            backgroundQueue.async {
+              // Perform reaction sending logic
               sendReaction(voteType: -1, postID: post.post.id)
-            } else {
-              sendReaction(voteType: 0, postID: post.post.id)
+              // UI update on the main thread
+              DispatchQueue.main.async {
+                downvoted.toggle()
+                upvoted = false
+              }
             }
           }
         )
@@ -234,17 +243,18 @@ struct PostRowView: View {
       asActorID: selectedActorID,
       subscribeAction: subscribeAction
     ).fetchSubscribeInfo { communityID, subscribeResponse, error in
-      if subscribeResponse != nil {
-        if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == post.post.id }) {
-          var updatedPost = postsFetcher.posts[index]
-          updatedPost.subscribed = subscribeAction ? .subscribed : .notSubscribed
-          postsFetcher.posts[index] = updatedPost
-          subscribeState = subscribeAction ? .subscribed : .notSubscribed // Update the local subscription status
+      if let subscribeResponse = subscribeResponse {
+        DispatchQueue.main.async { // Move UI-related updates to the main thread
+          if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == post.post.id }) {
+            var updatedPost = postsFetcher.posts[index]
+            updatedPost.subscribed = subscribeAction ? .subscribed : .notSubscribed
+            postsFetcher.posts[index] = updatedPost
+            subscribeState = subscribeAction ? .subscribed : .notSubscribed
+          }
         }
       }
     }
   }
-  
   
   func sendReaction(voteType: Int, postID: Int) {
     VoteSender(
@@ -255,15 +265,18 @@ struct PostRowView: View {
       elementType: "post"
     ).fetchVoteInfo { postID, voteSubmittedSuccessfully, _ in
       if voteSubmittedSuccessfully {
-        // Update the corresponding post in the postsFetcher.posts array
-        if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == postID }) {
-          var updatedPost = postsFetcher.posts[index]
-          updatedPost.myVote = voteType
-          postsFetcher.posts[index] = updatedPost
+        DispatchQueue.main.async { // Move UI-related updates to the main thread
+          if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == postID }) {
+            var updatedPost = postsFetcher.posts[index]
+            updatedPost.myVote = voteType
+            postsFetcher.posts[index] = updatedPost
+            // You can add UI update logic here if needed
+          }
         }
       }
     }
   }
+
 }
 
 struct PostRowView_Previews: PreviewProvider {

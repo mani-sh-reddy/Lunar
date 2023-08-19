@@ -11,7 +11,7 @@ import Foundation
 import Kingfisher
 import SwiftUI
 
-@MainActor class PostsFetcher: ObservableObject {
+class PostsFetcher: ObservableObject {
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
   @AppStorage("postSort") var postSort = Settings.postSort
@@ -36,6 +36,8 @@ import SwiftUI
     ).buildURL()
   }
 
+  private let fetchQueue = DispatchQueue(label: "com.example.fetchQueue", qos: .userInitiated, attributes: .concurrent)
+  
   init(
     sortParameter: String? = nil,
     typeParameter: String? = nil,
@@ -48,49 +50,31 @@ import SwiftUI
     if communityID == 99999999999999 { // TODO just a placeholder to prevent running when user posts
       return
     }
-    loadMoreContent()
+    fetchQueue.async {
+      self.loadMoreContent()
+    }
   }
 
-  func refreshContent() async {
-    do {
-      try await Task.sleep(nanoseconds: 1_000_000_000)
-    } catch {}
-
+  func refreshContent() {
     guard !isLoading else { return }
-
+    
     isLoading = true
     currentPage = 1
-
-    let cacher = ResponseCacher(behavior: .cache)
-
-    AF.request(endpoint) { urlRequest in
-//      print("PostsFetcher REF \(urlRequest.url as Any)")
-      urlRequest.cachePolicy = .reloadRevalidatingCacheData
-    }
-    .cacheResponse(using: cacher)
-    .validate(statusCode: 200..<300)
-    .responseDecodable(of: PostsModel.self) { response in
-      switch response.result {
-      case let .success(result):
-
-        let newPosts = result.posts
-
-        let filteredNewPosts = newPosts.filter { newPost in
-          !self.posts.contains { $0.post.id == newPost.post.id }
+    
+    fetchQueue.async {
+      let cacher = ResponseCacher(behavior: .cache)
+      AF.request(self.endpoint) { urlRequest in
+        urlRequest.cachePolicy = .reloadRevalidatingCacheData
+      }
+      .cacheResponse(using: cacher)
+      .validate(statusCode: 200..<300)
+      .responseDecodable(of: PostsModel.self) { response in
+        switch response.result {
+        case let .success(result):
+          self.handleResponse(result: result)
+        case let .failure(error):
+          print("PostsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
         }
-
-        self.posts.insert(contentsOf: filteredNewPosts, at: 0)
-
-        self.isLoading = false
-
-        let cachableImageURLs =
-          result.thumbnailURLs.compactMap { URL(string: $0) }
-          + result.avatarURLs.compactMap { URL(string: $0) }
-        let prefetcher = ImagePrefetcher(urls: cachableImageURLs) { _, _, _ in }
-        prefetcher.start()
-
-      case let .failure(error):
-        print("PostsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
       }
     }
   }
@@ -114,44 +98,42 @@ import SwiftUI
 
   private func loadMoreContent() {
     guard !isLoading else { return }
-
+    
     isLoading = true
-
-    let cacher = ResponseCacher(behavior: .cache)
-
-    AF.request(endpoint) { urlRequest in
-//      print("PostsFetcher LOAD \(urlRequest.url as Any)")
-      urlRequest.cachePolicy = .returnCacheDataElseLoad
-    }
-    .cacheResponse(using: cacher)
-    .validate(statusCode: 200..<300)
-    .responseDecodable(of: PostsModel.self) { response in
-      switch response.result {
-      case let .success(result):
-        let newPosts = result.posts
-
-        let filteredNewPosts = newPosts.filter { newPost in
-          !self.posts.contains { $0.post.id == newPost.post.id }
-        }
-        
-        let cachableImageURLs =
-        result.thumbnailURLs.compactMap { URL(string: $0) }
-        + result.avatarURLs.compactMap { URL(string: $0) }
-        let prefetcher = ImagePrefetcher(urls: cachableImageURLs) { skippedResources, failedResources, completedResources in
-//        print("SKIPPED:\(skippedResources)")
-//        print("FAILED:\(failedResources)")
-//        print("CCOMPLETED:\(completedResources)")
-        }
-        prefetcher.start()
-        
-
-        self.posts += filteredNewPosts
-        self.isLoading = false
-        self.currentPage += 1
-
-      case let .failure(error):
-        print("PostsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
+    
+    fetchQueue.async {
+      let cacher = ResponseCacher(behavior: .cache)
+      AF.request(self.endpoint) { urlRequest in
+        urlRequest.cachePolicy = .returnCacheDataElseLoad
       }
+      .cacheResponse(using: cacher)
+      .validate(statusCode: 200..<300)
+      .responseDecodable(of: PostsModel.self) { response in
+        switch response.result {
+        case let .success(result):
+          self.handleResponse(result: result)
+          self.currentPage += 1
+        case let .failure(error):
+          print("PostsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
+        }
+      }
+    }
+  }
+  
+  private func handleResponse(result: PostsModel) {
+    let newPosts = result.posts
+    let filteredNewPosts = newPosts.filter { newPost in
+      !self.posts.contains { $0.post.id == newPost.post.id }
+    }
+    
+    let cachableImageURLs = result.thumbnailURLs.compactMap { URL(string: $0) }
+    + result.avatarURLs.compactMap { URL(string: $0) }
+    let prefetcher = ImagePrefetcher(urls: cachableImageURLs) { _, _, _ in }
+    prefetcher.start()
+    
+    DispatchQueue.main.async {
+      self.posts += filteredNewPosts
+      self.isLoading = false
     }
   }
   
