@@ -45,7 +45,10 @@ struct FeedView: View {
           MoreCommunitiesButtonView()
         }
         Section(header: Text("Subscribed")) {
-          SubscribedCommunitiesSectionView(communitiesFetcher: CommunitiesFetcher(limitParameter: 50, sortParameter: "Active", typeParameter: "Subscribed", asActorID: selectedActorID))
+          SubscribedCommunitiesSectionView(
+            communitiesFetcher: CommunitiesFetcher(
+              limitParameter: 50, sortParameter: "Active", typeParameter: "Subscribed",
+              asActorID: selectedActorID))
         }
       }
     }

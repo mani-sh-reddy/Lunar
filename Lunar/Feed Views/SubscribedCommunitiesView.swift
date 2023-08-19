@@ -11,8 +11,8 @@ struct SubscribedCommunitiesSectionView: View {
   @StateObject var communitiesFetcher: CommunitiesFetcher
   @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  
-  var subscribedPostsButton:CommunityButton {
+
+  var subscribedPostsButton: CommunityButton {
     CommunityButton(
       title: "Subscribed",
       type: "Subscribed",
@@ -21,7 +21,7 @@ struct SubscribedCommunitiesSectionView: View {
       iconColor: .purple
     )
   }
-  
+
   var body: some View {
     if selectedActorID.isEmpty {
       HStack {
@@ -46,29 +46,28 @@ struct SubscribedCommunitiesSectionView: View {
         GeneralCommunityButtonView(button: subscribedPostsButton)
       }
     }
-      ForEach(communitiesFetcher.communities, id: \.community.id) { community in
-        NavigationLink {
-          PostsView(
-            postsFetcher: PostsFetcher(
-              communityID: community.community.id
-            ), title: community.community.name,
-            community: community
-          )
-        } label: {
-          CommunityRowView(community: community)
-        }
-      }
-  
-  if communitiesFetcher.isLoading {
-    ProgressView()
-  }
-  EmptyView()
-    .onChange(of: instanceHostURL) { _ in
-      Task {
-        await communitiesFetcher.refreshContent()
+    ForEach(communitiesFetcher.communities, id: \.community.id) { community in
+      NavigationLink {
+        PostsView(
+          postsFetcher: PostsFetcher(
+            communityID: community.community.id
+          ), title: community.community.name,
+          community: community
+        )
+      } label: {
+        CommunityRowView(community: community)
       }
     }
-  
+
+    if communitiesFetcher.isLoading {
+      ProgressView()
+    }
+    EmptyView()
+      .onChange(of: instanceHostURL) { _ in
+        Task {
+          await communitiesFetcher.refreshContent()
+        }
+      }
+
   }
 }
-
