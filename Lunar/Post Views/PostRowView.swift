@@ -110,6 +110,12 @@ struct PostRowView: View {
           .onAppear {
             if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == post.post.id }) {
               subscribeState = postsFetcher.posts[index].subscribed
+              
+              // Sync subscription state with UserDefaults on first appear
+              let subscriptionKey = "\(communityName)\(instanceTag)"
+              if let savedSubscriptionState = UserDefaults.standard.value(forKey: subscriptionKey) as? Bool {
+                subscribeState = savedSubscriptionState ? .subscribed : .notSubscribed
+              }
             }
           }
           
@@ -240,6 +246,10 @@ struct PostRowView: View {
           updatedPost.subscribed = subscribeAction ? .subscribed : .notSubscribed
           postsFetcher.posts[index] = updatedPost
           subscribeState = subscribeAction ? .subscribed : .notSubscribed // Update the local subscription status
+          
+          // Save the subscription state using UserDefaults
+          let subscriptionKey = "\(communityName)\(instanceTag)"
+          UserDefaults.standard.set(subscribeAction, forKey: subscriptionKey)
         }
       }
     }
