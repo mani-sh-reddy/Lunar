@@ -30,7 +30,7 @@ import SwiftUI
       sortParameter: sortParameter,
       typeParameter: typeParameter,
       currentPage: currentPage,
-      limitParameter: 20,
+      limitParameter: 50,
       communityID: communityID,
       jwt: getJWTFromKeychain(actorID: selectedActorID) ?? ""
     ).buildURL()
