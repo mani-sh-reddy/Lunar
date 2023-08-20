@@ -29,10 +29,13 @@ import SwiftUI
 
   private var currentPage = 1
   var typeParameter: String
+  var sortParameter: String
   private var limitParameter: Int
+  
   private var endpoint: URLComponents {
     URLBuilder(
       endpointPath: "/api/v3/search",
+      sortParameter: sortParameter,
       typeParameter: typeParameter,
       currentPage: currentPage,
       limitParameter: limitParameter,
@@ -42,11 +45,13 @@ import SwiftUI
 
   init(
     searchQuery: String,
+    sortParameter: String,
     typeParameter: String,
     limitParameter: Int,
     clearListOnChange: Bool
   ) {
     self.searchQuery = searchQuery
+    self.sortParameter = sortParameter
     self.typeParameter = typeParameter
     self.limitParameter = limitParameter
     self.clearListOnChange = clearListOnChange

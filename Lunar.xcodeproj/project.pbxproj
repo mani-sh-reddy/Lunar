@@ -23,6 +23,7 @@
 		3C130F722A8AD56A0060B6E4 /* SFSafariViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C130F712A8AD56A0060B6E4 /* SFSafariViewWrapper.swift */; };
 		3C130F752A8C0A520060B6E4 /* ExpandableTextBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C130F742A8C0A520060B6E4 /* ExpandableTextBox.swift */; };
 		3C130F772A8C0CB90060B6E4 /* ReactionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C130F762A8C0CB90060B6E4 /* ReactionButton.swift */; };
+		3C17DE042A92D4D6008EEB10 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C17DE032A92D4D6008EEB10 /* IntExtension.swift */; };
 		3C1A3F532A731B8C00898FC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0A032A54399F009DF8AB /* Assets.xcassets */; };
 		3C1A3F552A731C3F00898FC6 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F542A731C3F00898FC6 /* ImageExtension.swift */; };
 		3C1A3F592A73B17E00898FC6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F582A73B17E00898FC6 /* LoginView.swift */; };
@@ -195,6 +196,7 @@
 		3C130F712A8AD56A0060B6E4 /* SFSafariViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSafariViewWrapper.swift; sourceTree = "<group>"; };
 		3C130F742A8C0A520060B6E4 /* ExpandableTextBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableTextBox.swift; sourceTree = "<group>"; };
 		3C130F762A8C0CB90060B6E4 /* ReactionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionButton.swift; sourceTree = "<group>"; };
+		3C17DE032A92D4D6008EEB10 /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		3C1A3F542A731C3F00898FC6 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		3C1A3F582A73B17E00898FC6 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		3C1A3F5A2A73B2B800898FC6 /* KeychainInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainInterface.swift; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 			isa = PBXGroup;
 			children = (
 				3CC734A92A6D697C007523B5 /* InsertSorter.swift */,
+				3C17DE032A92D4D6008EEB10 /* IntExtension.swift */,
 				3C130F6F2A8AD2920060B6E4 /* SafariView.swift */,
 				3CCAA8C02A65358C007CCEC2 /* NetworkMonitor.swift */,
 				3CC734A52A6D591A007523B5 /* URLComponentsExtension.swift */,
@@ -840,6 +843,7 @@
 				3CC178932A7DA9FE00C208D0 /* SearchModel.swift in Sources */,
 				3C96EA552A7857D900753199 /* LoggedInUserModel.swift in Sources */,
 				3CADB5752A7EA03000095839 /* SearchUsersListAll.swift in Sources */,
+				3C17DE042A92D4D6008EEB10 /* IntExtension.swift in Sources */,
 				3C6BBF7E2A91257A00312E2B /* GoIntoButtonView.swift in Sources */,
 				3CED897B2A71A5CF00BD9086 /* ImagePopoverView.swift in Sources */,
 				3CF3B8FF2A9018B9001C08B5 /* CommentRowView.swift in Sources */,

@@ -52,4 +52,6 @@ enum Settings {
   static let commentMetadataPosition = "Bottom"
   
   static let subscribedCommunityIDs: [Int] = []
+  
+  static let selectedSearchSortType: String = "Active"
 }

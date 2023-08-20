@@ -37,8 +37,48 @@ struct SearchCommunitiesRowView: View {
             .frame(width: 30, height: 30)
             .clipShape(Circle())
 
-          VStack(alignment: .leading) {
-            Text(community.community.name).lineLimit(2)
+          VStack(alignment: .leading, spacing: 2) {
+            HStack (alignment: .center, spacing: 4) {
+              Text(community.community.name).lineLimit(1)
+                .foregroundStyle(community.community.id == 201716 ? Color.purple : Color.primary)
+              
+              if community.community.postingRestrictedToMods {
+                Image(systemName: "exclamationmark.octagon.fill")
+                  .font(.caption)
+                  .foregroundStyle(.yellow)
+              }
+              if community.subscribed == .subscribed {
+                Image(systemName: "plus.circle.fill")
+                  .font(.caption)
+                  .foregroundStyle(.green)
+              }
+              if community.subscribed == .pending {
+                Image(systemName: "arrow.triangle.2.circlepath.circle")
+                  .font(.caption)
+                  .foregroundStyle(.yellow)
+              }
+              if community.community.nsfw {
+                Image(systemName: "18.square.fill")
+                  .font(.caption)
+                  .foregroundStyle(.pink)
+              }
+            }
+            HStack (spacing: 10) {
+              HStack (spacing: 1) {
+                Image(systemName: "person.2")
+                Text((community.counts.subscribers).convertToShortString())
+              }.foregroundStyle(community.counts.subscribers >= 10000 ? Color.yellow : Color.secondary )
+              HStack (spacing: 1) {
+                Image(systemName: "signpost.right")
+                Text((community.counts.posts).convertToShortString())
+              }
+              HStack (spacing: 1) {
+                Image(systemName: "quote.bubble")
+                Text((community.counts.comments).convertToShortString())
+              }
+            }.lineLimit(1)
+            .foregroundStyle(.secondary)
+            .font(.caption)
 
           }.padding(.horizontal, 10)
           Spacer()
@@ -89,5 +129,12 @@ struct SearchCommunitiesRowView: View {
         Button("OK", role: .cancel) {}
       }
     }
+  }
+}
+
+struct SearchCommunitiesRowView_Previews: PreviewProvider {
+  static var previews: some View {
+    SearchCommunitiesRowView(searchCommunitiesResults: MockData.searchCommunitiesResults)
+      .previewLayout(.sizeThatFits)
   }
 }
