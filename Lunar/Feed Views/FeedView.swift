@@ -50,16 +50,16 @@ struct FeedView: View {
         }
       }
     }
-//    .onAppear {
-//      networkMonitor.checkConnection()
-//    }
-//    .overlay(alignment: .bottom) {
-//      if networkMonitor.connected {
-//        EmptyView()
-//      } else {
-//        NoInternetConnectionView()
-//      }
-//    }
+    //    .onAppear {
+    //      networkMonitor.checkConnection()
+    //    }
+    //    .overlay(alignment: .bottom) {
+    //      if networkMonitor.connected {
+    //        EmptyView()
+    //      } else {
+    //        NoInternetConnectionView()
+    //      }
+    //    }
   }
 }
 

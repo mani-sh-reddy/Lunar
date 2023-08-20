@@ -13,13 +13,13 @@ struct CommentSectionView: View {
   var post: PostElement
   var comments: [CommentElement]
   var postBody: String
-  
+
   @State var collapseToIndex: Int = 0
-  @State var postBodyExpanded:Bool = false
-  
+  @State var postBodyExpanded: Bool = false
+
   @Binding var upvoted: Bool
   @Binding var downvoted: Bool
-  
+
   var communityIsSubscribed: Bool {
     if post.subscribed == .subscribed {
       return true
@@ -27,14 +27,16 @@ struct CommentSectionView: View {
       return false
     }
   }
-  
+
   var body: some View {
     List {
       Section {
-        PostRowView(upvoted: $upvoted, downvoted: $downvoted, isSubscribed: communityIsSubscribed, post: post).environmentObject(postsFetcher)
+        PostRowView(
+          upvoted: $upvoted, downvoted: $downvoted, isSubscribed: communityIsSubscribed, post: post
+        ).environmentObject(postsFetcher)
         if !postBody.isEmpty {
-          VStack (alignment: .trailing){
-              ExpandableTextBox(LocalizedStringKey(postBody)).font(.body)
+          VStack(alignment: .trailing) {
+            ExpandableTextBox(LocalizedStringKey(postBody)).font(.body)
           }
         }
       }
@@ -51,7 +53,7 @@ struct CommentSectionView: View {
               return 1
             }
           }
-          
+
           let comment = comments[index]
           if index <= collapseToIndex && indentLevel != 1 {
             EmptyView()
