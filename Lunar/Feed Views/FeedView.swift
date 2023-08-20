@@ -46,20 +46,10 @@ struct FeedView: View {
           MoreCommunitiesButtonView()
         }
         Section(header: Text("Subscribed")) {
-          SubscribedCommunitiesSectionView()
+          SubscribedCommunitiesSectionView(communitiesFetcher: CommunitiesFetcher(limitParameter: 50, sortParameter: "Active", typeParameter: "Subscribed"))
         }
       }
     }
-//    .onAppear {
-//      networkMonitor.checkConnection()
-//    }
-//    .overlay(alignment: .bottom) {
-//      if networkMonitor.connected {
-//        EmptyView()
-//      } else {
-//        NoInternetConnectionView()
-//      }
-//    }
   }
 }
 
