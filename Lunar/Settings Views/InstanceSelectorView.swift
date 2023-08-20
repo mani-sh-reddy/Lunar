@@ -9,22 +9,59 @@ import SwiftUI
 
 struct InstanceSelectorView: View {
   @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
-
+  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
+  @State private var isCustomSelected = false
+  @State private var customInstanceName = ""
+  @State private var tempInstanceName = ""
+  
   var body: some View {
+    if debugModeEnabled {
+      Text("instance: \(instanceHostURL)")
+        .bold()
+        .foregroundStyle(.cyan)
+    }
+    
     Section {
-      Picker(selection: $instanceHostURL, label: Text("Lemmy Instance")) {
+      Picker(selection: $tempInstanceName, label: Text("Lemmy Instance")) {
         Text("lemmy.world").tag("lemmy.world")
         Text("lemmy.ml").tag("lemmy.ml")
         Text("beehaw.org").tag("beehaw.org")
-        Text("feddit.de").tag("feddit.de")
-        Text("lemm.ee").tag("lemm.ee")
         Text("programming.dev").tag("programming.dev")
-        Text("sopuli.xyz").tag("sopuli.xyz")
+        Divider()
+          Text("Custom").tag("custom")
       }
       .pickerStyle(.menu)
+      
+      .onChange(of: tempInstanceName) { name in
+        if name == "custom" {
+          isCustomSelected = true
+          instanceHostURL = "lemmy.world"
+          customInstanceName = ""
+        } else {
+          isCustomSelected = false
+          instanceHostURL = name
+        }
+      }
+      
+      if isCustomSelected {
+        HStack {
+          Text("Custom:")
+            .multilineTextAlignment(.leading)
+          TextField("Custom", text: $customInstanceName, prompt: Text("lemmy.world"))
+            .multilineTextAlignment(.trailing)
+            .disableAutocorrection(true)
+            .textInputAutocapitalization(.never)
+            .keyboardType(.URL)
+            .onSubmit {
+              instanceHostURL = customInstanceName
+              // Dismiss Keyboard
+            }
+        }
+      }
     }
   }
 }
+
 
 struct SettingsServerSelectionSectionView_Previews: PreviewProvider {
   static var previews: some View {
