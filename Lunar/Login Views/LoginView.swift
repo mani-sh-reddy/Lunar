@@ -8,6 +8,12 @@
 import Alamofire
 import SwiftUI
 
+
+enum FocusedField {
+  case username
+  case password
+}
+
 struct LoginView: View {
   @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
@@ -31,6 +37,8 @@ struct LoginView: View {
 
   @Binding var showingPopover: Bool
   @Binding var isLoginFlowComplete: Bool
+  
+  @FocusState private var focusedField: FocusedField?
 
   var body: some View {
     List {
@@ -42,12 +50,21 @@ struct LoginView: View {
           usernameEmailInvalid: $usernameEmailInvalid,
           showingLoginButtonWarning: $showingLoginButtonWarning
         )
+        .focused($focusedField, equals: .username)
         PasswordFieldView(
           password: $password,
           showingTwoFactorField: $showingTwoFactorField,
           passwordInvalid: $passwordInvalid,
           showingLoginButtonWarning: $showingLoginButtonWarning
         )
+        .focused($focusedField, equals: .password)
+      }
+      .onSubmit {
+        if focusedField == .username {
+          focusedField = .password
+        } else {
+          focusedField = nil
+        }
       }
 
       if showingTwoFactorField {
