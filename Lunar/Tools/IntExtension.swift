@@ -10,7 +10,7 @@ import Foundation
 extension Int {
   func convertToShortString() -> String {
     let numberDouble = Double(self)
-    
+
     if self >= 1_000_000 {
       return String(format: "%.1fM", numberDouble / 1_000_000)
     } else if self >= 1_000 {

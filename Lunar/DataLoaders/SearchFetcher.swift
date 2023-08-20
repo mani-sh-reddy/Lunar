@@ -31,7 +31,7 @@ import SwiftUI
   var typeParameter: String
   var sortParameter: String
   private var limitParameter: Int
-  
+
   private var endpoint: URLComponents {
     URLBuilder(
       endpointPath: "/api/v3/search",

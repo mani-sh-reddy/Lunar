@@ -15,7 +15,7 @@ struct SearchResultsList: View {
 
   @Binding var searchText: String
   @Binding var selectedSearchType: String
-//  @Binding var selectedSortType: String
+  //  @Binding var selectedSortType: String
   @AppStorage("selectedSearchSortType") var selectedSearchSortType = Settings.selectedSearchSortType
 
   let processor = DownsamplingImageProcessor(size: CGSize(width: 50, height: 50))

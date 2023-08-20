@@ -48,10 +48,10 @@ enum Settings {
   static let postType: String = "All"
   static let communitiesSort: String = "New"
   static let communitiesType: String = "All"
-  
+
   static let commentMetadataPosition = "Bottom"
-  
+
   static let subscribedCommunityIDs: [Int] = []
-  
+
   static let selectedSearchSortType: String = "Active"
 }
