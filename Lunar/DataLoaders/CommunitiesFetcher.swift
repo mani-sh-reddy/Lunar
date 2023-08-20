@@ -25,16 +25,16 @@ import SwiftUI
   private var limitParameter: Int = 30
   private var asActorID: String?
   private var communityID: Int?
-  private var jwt: String =  ""
-  
+  private var jwt: String = ""
+
   private var endpointPath: String {
-    if (communityID != nil) {
-     return "/api/v3/community"
+    if communityID != nil {
+      return "/api/v3/community"
     } else {
       return "/api/v3/community/list"
     }
   }
-  
+
   private var endpoint: URLComponents {
     URLBuilder(
       endpointPath: endpointPath,
@@ -57,7 +57,7 @@ import SwiftUI
     self.sortParameter = sortParameter ?? communitiesSort
     self.typeParameter = typeParameter ?? communitiesType
     self.limitParameter = limitParameter
-    if let asActorID = asActorID{
+    if let asActorID = asActorID {
       self.jwt = getJWTFromKeychain(actorID: asActorID) ?? ""
     }
     loadMoreContent()
@@ -77,7 +77,7 @@ import SwiftUI
     let cacher = ResponseCacher(behavior: .cache)
 
     AF.request(endpoint) { urlRequest in
-//      print("CommunitiesFetcher REF \(urlRequest.url as Any)")
+      //      print("CommunitiesFetcher REF \(urlRequest.url as Any)")
       urlRequest.cachePolicy = .reloadRevalidatingCacheData
     }
     .cacheResponse(using: cacher)
@@ -125,7 +125,7 @@ import SwiftUI
     let cacher = ResponseCacher(behavior: .cache)
 
     AF.request(endpoint) { urlRequest in
-//      print("CommunitiesFetcher LOAD \(urlRequest.url as Any)")
+      //      print("CommunitiesFetcher LOAD \(urlRequest.url as Any)")
       urlRequest.cachePolicy = .returnCacheDataElseLoad
     }
     .cacheResponse(using: cacher)
@@ -150,9 +150,11 @@ import SwiftUI
       }
     }
   }
-  
+
   func getJWTFromKeychain(actorID: String) -> String? {
-    if let keychainObject = KeychainHelper.standard.read(service: self.appBundleID, account: actorID) {
+    if let keychainObject = KeychainHelper.standard.read(
+      service: self.appBundleID, account: actorID)
+    {
       let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
       return jwt.replacingOccurrences(of: "\"", with: "")
     } else {
@@ -160,4 +162,3 @@ import SwiftUI
     }
   }
 }
-
