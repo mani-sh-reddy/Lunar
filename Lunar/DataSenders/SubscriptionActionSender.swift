@@ -44,7 +44,7 @@ class SubscriptionActionSender: ObservableObject {
     ] as [String : Any]
     
     AF.request(
-      "https://\(instanceHostURL)/api/v3/community/follow",
+      "https://\(URLParser.extractDomain(from: selectedActorID))/api/v3/community/follow",
       method: .post,
       parameters: parameters,
       encoding: JSONEncoding.default

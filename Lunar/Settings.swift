@@ -51,5 +51,5 @@ enum Settings {
   
   static let commentMetadataPosition = "Bottom"
   
-  static let subscribedCommunities: [Int] = []
+  static let subscribedCommunityIDs: [Int] = []
 }

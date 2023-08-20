@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MoreCommunitiesButtonView: View {
   var body: some View {
-    let communitiesFetcher = CommunitiesFetcher(limitParameter: 50, asActorID: nil)
+    let communitiesFetcher = CommunitiesFetcher(limitParameter: 50)
 
     NavigationLink {
       MoreCommunitiesView(

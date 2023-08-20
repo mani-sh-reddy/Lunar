@@ -88,7 +88,7 @@ struct CommentMetadataView: View {
     VoteSender(
       asActorID: selectedActorID,
       voteType: voteType,
-      postID: 0,
+      postID: 0, communityActorID: "",
       commentID: comment.comment.id,
       elementType: "comment"
     ).fetchVoteInfo { commentID, voteSubmittedSuccessfully, _ in

@@ -12,15 +12,19 @@ import SafariServices
 struct PostRowView: View {
   @EnvironmentObject var postsFetcher: PostsFetcher
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  @AppStorage("subscribedCommunities") var subscribedCommunities = Settings.subscribedCommunities
+  @AppStorage("subscribedCommunityIDs") var subscribedCommunityIDs = Settings.subscribedCommunityIDs
   
   @Binding var upvoted: Bool
   @Binding var downvoted: Bool
+  
+  @State var upvoteState: Int = 0
+  @State var downvoteState: Int = 0
   
   @State var goInto: Bool = false
   @State var showingPlaceholderAlert = false
   @State private var showSafari: Bool = false
   @State var subscribeState: SubscribedState = .notSubscribed
+  @State var isSubscribed: Bool
   
   var post: PostElement
   
@@ -89,36 +93,44 @@ struct PostRowView: View {
           )
           .confirmationDialog("\(communityName)\(instanceTag)", isPresented: $showCommunityActions, titleVisibility: .visible) {
             Button {
-              switch subscribeState {
-              case .notSubscribed:
-                subscribeAction(subscribeAction: true)
-              case .pending:
-                subscribeAction(subscribeAction: false)
-              case .subscribed:
-                subscribeAction(subscribeAction: false)
-              }
+              sendSubscribeAction(subscribeAction: !isSubscribed)
+              isSubscribed.toggle()
             } label: {
-              switch subscribeState {
-              case .notSubscribed:
-                Text("Subscribe")
-              case .pending:
-                Text("Unsubscribe (Pending Subscription)")
-              case .subscribed:
-                Text("Unsubscribe")
-              }
+              Text(isSubscribed ? "Unsubscribe" : "Subscribe")
             }
           }
-          .onAppear {
-            if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == post.post.id }) {
-              subscribeState = postsFetcher.posts[index].subscribed
-              
-              // Sync subscription state with UserDefaults on first appear
-              let subscriptionKey = "\(communityName)\(instanceTag)"
-              if let savedSubscriptionState = UserDefaults.standard.value(forKey: subscriptionKey) as? Bool {
-                subscribeState = savedSubscriptionState ? .subscribed : .notSubscribed
-              }
-            }
-          }
+//          .confirmationDialog("\(communityName)\(instanceTag)", isPresented: $showCommunityActions, titleVisibility: .visible) {
+//            Button {
+//              switch subscribeState {
+//              case .notSubscribed:
+//                subscribeAction(subscribeAction: true)
+//              case .pending:
+//                subscribeAction(subscribeAction: false)
+//              case .subscribed:
+//                subscribeAction(subscribeAction: false)
+//              }
+//            } label: {
+//              switch subscribeState {
+//              case .notSubscribed:
+//                Text("Subscribe")
+//              case .pending:
+//                Text("Unsubscribe (Pending Subscription)")
+//              case .subscribed:
+//                Text("Unsubscribe")
+//              }
+//            }
+//          }
+//          .onAppear {
+//            if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == post.post.id }) {
+//              subscribeState = postsFetcher.posts[index].subscribed
+//              
+//              // Sync subscription state with UserDefaults on first appear
+//              let subscriptionKey = "\(communityName)\(instanceTag)"
+//              if let savedSubscriptionState = UserDefaults.standard.value(forKey: subscriptionKey) as? Bool {
+//                subscribeState = savedSubscriptionState ? .subscribed : .notSubscribed
+//              }
+//            }
+//          }
           
           Text(heading)
             .fontWeight(.semibold)
@@ -132,7 +144,7 @@ struct PostRowView: View {
       }
       HStack {
         ReactionButton(
-          text: String(upvoted ? upvotes + 1 : upvotes),
+          text: String(upvotes + upvoteState),
           icon: "arrow.up.circle.fill",
           color: Color.green,
           active: $upvoted,
@@ -141,18 +153,18 @@ struct PostRowView: View {
         .highPriorityGesture(
           TapGesture().onEnded {
             haptics.impactOccurred()
-            upvoted.toggle()
-            downvoted = false
-            if upvoted {
-              sendReaction(voteType: 1, postID: post.post.id)
+            if !upvoted {
+              print("SENT /post/like \(String(describing: postID)):upvote(+1)")
+              sendReaction(voteType: 1, postID: post.post.id, communityActorID: post.community.actorID)
             } else {
-              sendReaction(voteType: 0, postID: post.post.id)
+              print("SENT /post/like \(String(describing: postID)):un-upvote(0)")
+              sendReaction(voteType: 0, postID: post.post.id, communityActorID: post.community.actorID)
             }
           }
         )
         
         ReactionButton(
-          text: String(downvoted ? downvotes + 1 : downvotes),
+          text: String(downvotes + downvoteState),
           icon: "arrow.down.circle.fill",
           color: Color.red,
           active: $downvoted,
@@ -161,12 +173,10 @@ struct PostRowView: View {
         .highPriorityGesture(
           TapGesture().onEnded {
             haptics.impactOccurred()
-            downvoted.toggle()
-            upvoted = false
-            if downvoted {
-              sendReaction(voteType: -1, postID: post.post.id)
+            if !downvoted {
+              sendReaction(voteType: -1, postID: post.post.id, communityActorID: post.community.actorID)
             } else {
-              sendReaction(voteType: 0, postID: post.post.id)
+              sendReaction(voteType: 0, postID: post.post.id, communityActorID: post.community.actorID)
             }
           }
         )
@@ -224,18 +234,24 @@ struct PostRowView: View {
         case 1:
           self.upvoted = true
           self.downvoted = false
+          upvoteState = 1
+          downvoteState = 0
         case -1:
           self.upvoted = false
           self.downvoted = true
+          upvoteState = 0
+          downvoteState = 1
         default:
           self.upvoted = false
           self.downvoted = false
+          upvoteState = 0
+          downvoteState = 0
         }
       }
     }
   }
   
-  func subscribeAction(subscribeAction: Bool) {
+  func sendSubscribeAction(subscribeAction: Bool) {
     let notificationHaptics = UINotificationFeedbackGenerator()
     SubscriptionActionSender(
       communityID: post.community.id,
@@ -249,26 +265,48 @@ struct PostRowView: View {
           updatedPost.subscribed = subscribeAction ? .subscribed : .notSubscribed
           postsFetcher.posts[index] = updatedPost
           subscribeState = subscribeAction ? .subscribed : .notSubscribed // Update the local subscription status
-          
-          // Save the subscription state using UserDefaults
-          let subscriptionKey = "\(communityName)\(instanceTag)"
-          UserDefaults.standard.set(subscribeAction, forKey: subscriptionKey)
-          subscribedCommunities.append(communityID ?? 0)
+        }
+        if subscribeResponse == .subscribed {
+          subscribedCommunityIDs.append(post.community.id)
+        } else if subscribeResponse == .notSubscribed {
+          if let index = subscribedCommunityIDs.firstIndex(of: post.community.id) {
+            subscribedCommunityIDs.remove(at: index)
+          }
         }
       }
     }
   }
   
   
-  func sendReaction(voteType: Int, postID: Int) {
+  func sendReaction(voteType: Int, postID: Int, communityActorID: String) {
     VoteSender(
       asActorID: selectedActorID,
       voteType: voteType,
       postID: postID,
+      communityActorID: communityActorID,
       commentID: 0,
       elementType: "post"
     ).fetchVoteInfo { postID, voteSubmittedSuccessfully, _ in
+      print("RETURNED /post/like \(String(describing: postID)):\(voteSubmittedSuccessfully)")
       if voteSubmittedSuccessfully {
+        switch voteType {
+        case 1:
+          self.upvoted = true
+          self.downvoted = false
+          upvoteState = 1
+          downvoteState = 0
+        case -1:
+          self.upvoted = false
+          self.downvoted = true
+          upvoteState = 0
+          downvoteState = 1
+        default:
+          self.upvoted = false
+          self.downvoted = false
+          upvoteState = 0
+          downvoteState = 0
+        }
+            
         // Update the corresponding post in the postsFetcher.posts array
         if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == postID }) {
           var updatedPost = postsFetcher.posts[index]
@@ -282,6 +320,11 @@ struct PostRowView: View {
 
 struct PostRowView_Previews: PreviewProvider {
   static var previews: some View {
-    PostRowView(upvoted: .constant(false), downvoted: .constant(false), post: MockData.postElement)
+    PostRowView(
+      upvoted: .constant(false),
+      downvoted: .constant(false),
+      isSubscribed: false, post: MockData.postElement
+    )
+    .previewLayout(.sizeThatFits).frame(height: 300)
   }
 }

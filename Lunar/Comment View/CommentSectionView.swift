@@ -20,10 +20,18 @@ struct CommentSectionView: View {
   @Binding var upvoted: Bool
   @Binding var downvoted: Bool
   
+  var communityIsSubscribed: Bool {
+    if post.subscribed == .subscribed {
+      return true
+    } else {
+      return false
+    }
+  }
+  
   var body: some View {
     List {
       Section {
-        PostRowView(upvoted: $upvoted, downvoted: $downvoted, post: post).environmentObject(postsFetcher)
+        PostRowView(upvoted: $upvoted, downvoted: $downvoted, isSubscribed: communityIsSubscribed, post: post).environmentObject(postsFetcher)
         if !postBody.isEmpty {
           VStack (alignment: .trailing){
               ExpandableTextBox(LocalizedStringKey(postBody)).font(.body)

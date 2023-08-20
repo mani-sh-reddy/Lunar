@@ -16,6 +16,7 @@ class VoteSender: ObservableObject {
   /// remove vote = 0
   private var voteType: Int
   private var postID: Int
+  private var communityActorID: String
   private var commentID: Int
   private var elementID: Int
   private var asActorID: String
@@ -36,13 +37,14 @@ class VoteSender: ObservableObject {
     asActorID: String,
     voteType: Int,
     postID: Int,
+    communityActorID: String,
     commentID: Int,
     elementType: String
   ) {
-    // TODO get the jwt from keychain using the actor id
     self.asActorID = asActorID
     self.voteType = voteType
     self.postID = postID
+    self.communityActorID = communityActorID
     self.commentID = commentID
     self.elementType = elementType
     //    self.endpoint = URLComponents()
@@ -57,15 +59,22 @@ class VoteSender: ObservableObject {
       "comment_id": commentID,
       "auth": jwt.replacingOccurrences(of: "\"", with: "")
     ] as [String : Any]
+//    let headers: HTTPHeaders = ["Referer": "https://lemmy.world/c/programmer_humor@programming.dev"]
+//    let headers: HTTPHeaders = ["Referer": generateReferer(
+//      selectedActorID: selectedActorID,
+//      communityActorID: communityActorID
+//    ) ]
     AF.request(
-      "https://\(instanceHostURL)/api/v3/\(elementType)/like",
+      "https://\(URLParser.extractDomain(from: selectedActorID))/api/v3/\(elementType)/like",
       method: .post,
       parameters: parameters,
       encoding: JSONEncoding.default
+//      headers: headers
     )
     .validate(statusCode: 200..<300)
     .responseDecodable(of: VoteResponseModel.self) { response in
       print(response.request ?? "")
+      print(response.request?.headers as Any)
       switch response.result {
       case let .success(result):
         let response = String(response.response?.statusCode ?? 0)
@@ -97,6 +106,43 @@ class VoteSender: ObservableObject {
       }
     }
   }
+  
+  func generateReferer(selectedActorID: String, communityActorID: String) -> String {
+    let userSplit = splitURL(selectedActorID)
+    let communitySplit = splitURL(communityActorID)
+    
+    let userDomain = String(describing: userSplit.1)
+    let community = String(describing: communitySplit.2)
+    let communityDomain = String(describing: communitySplit.1)
+    
+    // https://lemmy.world/c/memes@lemmy.ml
+    print("https://\(userDomain)/c/\(community)@\(communityDomain)")
+    return "https://\(userDomain)/c/\(community)@\(communityDomain)"
+  }
+  
+  func splitURL(_ url: String) -> (String?, String?, String?, String?) {
+    guard let urlComponents = URLComponents(string: url),
+          let host = urlComponents.host,
+          let pathComponents = urlComponents.path.split(separator: "/").map(String.init) as? [String]
+    else {
+      return (nil, nil, nil, nil)
+    }
+    
+    let scheme = urlComponents.scheme
+    let domain = host
+    let pathPart1 = pathComponents.count > 1 ? pathComponents[1] : nil
+    let pathPart2 = pathComponents.count > 2 ? pathComponents[2] : nil
+    
+//    print("-----------------")
+//    print(url as Any)
+//    print(scheme as Any)
+//    print(domain as Any)
+//    print(pathPart1 as Any)
+//    print(pathPart2 as Any)
+    
+    return (scheme, domain, pathPart1, pathPart2)
+  }
+  
   func getJWTFromKeychain(actorID: String) -> String? {
     if let keychainObject = KeychainHelper.standard.read(service: self.appBundleID, account: actorID) {
       let jwt = String(data: keychainObject, encoding: .utf8) ?? ""

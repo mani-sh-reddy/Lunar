@@ -57,8 +57,7 @@ struct MoreCommunitiesView_Previews: PreviewProvider {
     let communitiesFetcher = CommunitiesFetcher(
       limitParameter: 50,
       sortParameter: "Active",
-      typeParameter: "All",
-      asActorID: nil
+      typeParameter: "All"
     )
     MoreCommunitiesView(
       communitiesFetcher: communitiesFetcher,

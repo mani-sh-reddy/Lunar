@@ -128,6 +128,14 @@ struct PostSectionView: View {
   
   var post: PostElement
   
+  var communityIsSubscribed: Bool {
+    if post.subscribed == .subscribed {
+      return true
+    } else {
+      return false
+    }
+  }
+  
   var body: some View {
 //    let _ = print("----------------------")
 //    let _ = print("UPVOTED \(post.post.name): \(upvoted)")
@@ -138,7 +146,7 @@ struct PostSectionView: View {
         PostRowView(
           upvoted: $upvoted,
           downvoted: $downvoted,
-          post: post
+          isSubscribed: communityIsSubscribed, post: post
         ).environmentObject(postsFetcher)
         NavigationLink {
           CommentsView(

@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct SubscribedCommunitiesSectionView: View {
-  @StateObject var communitiesFetcher: CommunitiesFetcher
+  @StateObject var communitiesFetcher = CommunitiesFetcher(limitParameter: 50, sortParameter: "Active", typeParameter: "Subscribed")
   @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  @AppStorage("subscribedCommunities") var subscribedCommunities = Settings.subscribedCommunities
+  @AppStorage("subscribedCommunityIDs") var subscribedCommunityIDs = Settings.subscribedCommunityIDs
+  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
+  
   
   var subscribedPostsButton:CommunityButton {
     CommunityButton(
@@ -48,6 +50,11 @@ struct SubscribedCommunitiesSectionView: View {
       }
     }
       ForEach(communitiesFetcher.communities, id: \.community.id) { community in
+        /// get all the community IDs fetched from server, 
+        /// append it to already existing AppStorage array and remove duplicates
+//        let _ = subscribedCommunityIDs.append(community.community.id)
+        let _ = print("TESt")
+        let _ = print(subscribedCommunityIDs)
         NavigationLink {
           PostsView(
             postsFetcher: PostsFetcher(
@@ -59,22 +66,32 @@ struct SubscribedCommunitiesSectionView: View {
           CommunityRowView(community: community)
         }
       }
-      .task {
-        let subscribedCommunityIDs = Set(subscribedCommunities.map { $0 })
-        let fetchedCommunityIDs = Set(communitiesFetcher.communities.map { $0.community.id })
-        if subscribedCommunityIDs != fetchedCommunityIDs {
-          let newSubscribedCommunities = communitiesFetcher.communities.filter { fetchedCommunityIDs.contains($0.community.id) }
-          subscribedCommunities = newSubscribedCommunities.map{$0.community.id }
-          let newCommunityIDs = fetchedCommunityIDs.subtracting(subscribedCommunityIDs)
-          for communityID in newCommunityIDs {
-            print(communityID)
-          }
-        }
-      }
+    
+//      .task {
+//        let subscribedCommunityIDs = Set(subscribedCommunityIDs.map { $0 })
+//        let fetchedCommunityIDs = Set(communitiesFetcher.communities.map { $0.community.id })
+//        if subscribedCommunityIDs != fetchedCommunityIDs {
+//          let newSubscribedCommunities = communitiesFetcher.communities.filter { fetchedCommunityIDs.contains($0.community.id) }
+//          subscribedCommunityIDs = newSubscribedCommunities.map{$0.community.id }
+//          let newCommunityIDs = fetchedCommunityIDs.subtracting(subscribedCommunityIDs)
+//          for communityID in newCommunityIDs {
+//            print(communityID)
+//          }
+//        }
+//      }
   
-  if communitiesFetcher.isLoading {
-    ProgressView()
-  }
+    if communitiesFetcher.isLoading {
+      ProgressView()
+    }
+    if debugModeEnabled {
+      Text("subscribedCommunityIDs App Storage Array:")
+      Text(String(describing: subscribedCommunityIDs))
+      Button {
+        subscribedCommunityIDs.removeAll()
+      } label: {
+        Text("Clear subscribedCommunityIDs Array")
+      }
+    }
   EmptyView()
     .onChange(of: instanceHostURL) { _ in
       Task {

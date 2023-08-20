@@ -23,7 +23,6 @@ import SwiftUI
   private var sortParameter: String?
   private var typeParameter: String?
   private var limitParameter: Int = 30
-  private var asActorID: String?
   private var communityID: Int?
   private var jwt: String =  ""
   
@@ -50,16 +49,12 @@ import SwiftUI
   init(
     limitParameter: Int,
     sortParameter: String? = nil,
-    typeParameter: String? = nil,
-    asActorID: String?
+    typeParameter: String? = nil
   ) {
-    self.asActorID = asActorID ?? nil
     self.sortParameter = sortParameter ?? communitiesSort
     self.typeParameter = typeParameter ?? communitiesType
     self.limitParameter = limitParameter
-    if let asActorID = asActorID{
-      self.jwt = getJWTFromKeychain(actorID: asActorID) ?? ""
-    }
+    self.jwt = getJWTFromKeychain(actorID: selectedActorID) ?? ""
     loadMoreContent()
   }
 
