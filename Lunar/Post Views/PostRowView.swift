@@ -12,6 +12,7 @@ import SafariServices
 struct PostRowView: View {
   @EnvironmentObject var postsFetcher: PostsFetcher
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
+  @AppStorage("subscribedCommunities") var subscribedCommunities = Settings.subscribedCommunities
   
   @Binding var upvoted: Bool
   @Binding var downvoted: Bool
@@ -235,12 +236,14 @@ struct PostRowView: View {
   }
   
   func subscribeAction(subscribeAction: Bool) {
+    let notificationHaptics = UINotificationFeedbackGenerator()
     SubscriptionActionSender(
       communityID: post.community.id,
       asActorID: selectedActorID,
       subscribeAction: subscribeAction
     ).fetchSubscribeInfo { communityID, subscribeResponse, error in
       if subscribeResponse != nil {
+        notificationHaptics.notificationOccurred(.success)
         if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == post.post.id }) {
           var updatedPost = postsFetcher.posts[index]
           updatedPost.subscribed = subscribeAction ? .subscribed : .notSubscribed
@@ -250,6 +253,7 @@ struct PostRowView: View {
           // Save the subscription state using UserDefaults
           let subscriptionKey = "\(communityName)\(instanceTag)"
           UserDefaults.standard.set(subscribeAction, forKey: subscriptionKey)
+          subscribedCommunities.append(communityID ?? 0)
         }
       }
     }

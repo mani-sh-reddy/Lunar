@@ -11,6 +11,7 @@ struct SubscribedCommunitiesSectionView: View {
   @StateObject var communitiesFetcher: CommunitiesFetcher
   @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
+  @AppStorage("subscribedCommunities") var subscribedCommunities = Settings.subscribedCommunities
   
   var subscribedPostsButton:CommunityButton {
     CommunityButton(
@@ -56,6 +57,18 @@ struct SubscribedCommunitiesSectionView: View {
           )
         } label: {
           CommunityRowView(community: community)
+        }
+      }
+      .task {
+        let subscribedCommunityIDs = Set(subscribedCommunities.map { $0 })
+        let fetchedCommunityIDs = Set(communitiesFetcher.communities.map { $0.community.id })
+        if subscribedCommunityIDs != fetchedCommunityIDs {
+          let newSubscribedCommunities = communitiesFetcher.communities.filter { fetchedCommunityIDs.contains($0.community.id) }
+          subscribedCommunities = newSubscribedCommunities.map{$0.community.id }
+          let newCommunityIDs = fetchedCommunityIDs.subtracting(subscribedCommunityIDs)
+          for communityID in newCommunityIDs {
+            print(communityID)
+          }
         }
       }
   

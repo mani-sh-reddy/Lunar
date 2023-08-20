@@ -50,4 +50,6 @@ enum Settings {
   static let communitiesType: String = "All"
   
   static let commentMetadataPosition = "Bottom"
+  
+  static let subscribedCommunities: [Int] = []
 }

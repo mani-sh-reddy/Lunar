@@ -13,6 +13,8 @@ struct FeedView: View {
   @AppStorage("kbinActive") var kbinActive = Settings.kbinActive
   @AppStorage("kbinHostURL") var kbinHostURL = Settings.kbinHostURL
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
+  @AppStorage("subscribedCommunities") var subscribedCommunities = Settings.subscribedCommunities
+  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
 
   var body: some View {
     NavigationView {
@@ -46,6 +48,10 @@ struct FeedView: View {
         }
         Section(header: Text("Subscribed")) {
           SubscribedCommunitiesSectionView(communitiesFetcher: CommunitiesFetcher(limitParameter: 50, sortParameter: "Active", typeParameter: "Subscribed", asActorID: selectedActorID))
+        }
+        if debugModeEnabled {
+          Text("SubscribedCommunities App Storage:")
+          Text(String(describing: subscribedCommunities))
         }
       }
     }

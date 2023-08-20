@@ -24,15 +24,25 @@ import SwiftUI
   private var typeParameter: String?
   private var limitParameter: Int = 30
   private var asActorID: String?
+  private var communityID: Int?
   private var jwt: String =  ""
+  
+  private var endpointPath: String {
+    if (communityID != nil) {
+     return "/api/v3/community"
+    } else {
+      return "/api/v3/community/list"
+    }
+  }
   
   private var endpoint: URLComponents {
     URLBuilder(
-      endpointPath: "/api/v3/community/list",
+      endpointPath: endpointPath,
       sortParameter: sortParameter,
       typeParameter: typeParameter,
       currentPage: currentPage,
       limitParameter: limitParameter,
+      communityID: communityID,
       jwt: jwt
     ).buildURL()
   }
@@ -150,3 +160,4 @@ import SwiftUI
     }
   }
 }
+
