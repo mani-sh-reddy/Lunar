@@ -79,6 +79,8 @@
 		3C96EA4E2A783FF100753199 /* LoggedInUsersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96EA4D2A783FF100753199 /* LoggedInUsersListView.swift */; };
 		3C96EA502A7843EC00753199 /* AddNewUserButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96EA4F2A7843EC00753199 /* AddNewUserButtonView.swift */; };
 		3C96EA552A7857D900753199 /* LoggedInUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96EA542A7857D900753199 /* LoggedInUserModel.swift */; };
+		3C9E54882A93F4740093DDC7 /* InPostActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E54872A93F4740093DDC7 /* InPostActionsView.swift */; };
+		3C9E548A2A940F9B0093DDC7 /* TextBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E54892A940F9B0093DDC7 /* TextBox.swift */; };
 		3CA5C40A2A574FF500BF8F1B /* PostsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */; };
 		3CA5C40E2A57525500BF8F1B /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C40D2A57525500BF8F1B /* PostsView.swift */; };
 		3CA5C4102A5753AC00BF8F1B /* PostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */; };
@@ -254,6 +256,8 @@
 		3C96EA4D2A783FF100753199 /* LoggedInUsersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInUsersListView.swift; sourceTree = "<group>"; };
 		3C96EA4F2A7843EC00753199 /* AddNewUserButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewUserButtonView.swift; sourceTree = "<group>"; };
 		3C96EA542A7857D900753199 /* LoggedInUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInUserModel.swift; sourceTree = "<group>"; };
+		3C9E54872A93F4740093DDC7 /* InPostActionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InPostActionsView.swift; sourceTree = "<group>"; };
+		3C9E54892A940F9B0093DDC7 /* TextBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBox.swift; sourceTree = "<group>"; };
 		3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsListModel.swift; sourceTree = "<group>"; };
 		3CA5C40D2A57525500BF8F1B /* PostsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
 		3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostRowView.swift; sourceTree = "<group>"; };
@@ -392,6 +396,7 @@
 				3C7B7DC82A89485000A02A43 /* DateTimeParser.swift */,
 				3C130F712A8AD56A0060B6E4 /* SFSafariViewWrapper.swift */,
 				3C130F742A8C0A520060B6E4 /* ExpandableTextBox.swift */,
+				3C9E54892A940F9B0093DDC7 /* TextBox.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -569,6 +574,7 @@
 				3CF3B8FE2A9018B9001C08B5 /* CommentRowView.swift */,
 				3CF3B8FC2A90188D001C08B5 /* CommentMetadataView.swift */,
 				3CF3B8FA2A901847001C08B5 /* CommentSectionView.swift */,
+				3C9E54872A93F4740093DDC7 /* InPostActionsView.swift */,
 				3CEF4CD82A69B80A002B83C0 /* CommentIndentGuideView.swift */,
 			);
 			path = "Comment View";
@@ -808,6 +814,7 @@
 				3C113C3F2A6E8C9400FDE5CE /* SettingsGeneralSectionView.swift in Sources */,
 				3C1A3F5F2A73D64C00898FC6 /* LoginHelper.swift in Sources */,
 				3CCAA8C12A65358C007CCEC2 /* NetworkMonitor.swift in Sources */,
+				3C9E548A2A940F9B0093DDC7 /* TextBox.swift in Sources */,
 				3C5ECB262A766E31002BA561 /* DebugAccountsPropertiesView.swift in Sources */,
 				3CA5C4102A5753AC00BF8F1B /* PostRowView.swift in Sources */,
 				3C96EA4E2A783FF100753199 /* LoggedInUsersListView.swift in Sources */,
@@ -881,6 +888,7 @@
 				3CC734A62A6D591A007523B5 /* URLComponentsExtension.swift in Sources */,
 				3C522F3B2A63241900129CAC /* TrendingCommunitiesFetcher.swift in Sources */,
 				3CEF4CD52A69B798002B83C0 /* URLParser.swift in Sources */,
+				3C9E54882A93F4740093DDC7 /* InPostActionsView.swift in Sources */,
 				3CA92E3B2A543BF000688DEB /* CommunityModel.swift in Sources */,
 				3CEACBC72A88020700260A01 /* PostsFetcher.swift in Sources */,
 				3CEF4CD72A69B7A8002B83C0 /* ImageViewWithPlaceholder.swift in Sources */,

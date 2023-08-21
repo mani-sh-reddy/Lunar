@@ -32,6 +32,7 @@ struct CommentSectionView: View {
     List {
       Section {
         PostRowView(upvoted: $upvoted, downvoted: $downvoted, isSubscribed: communityIsSubscribed, post: post).environmentObject(postsFetcher)
+        InPostActionsView(post: post)
         if !postBody.isEmpty {
           VStack (alignment: .trailing){
               ExpandableTextBox(LocalizedStringKey(postBody)).font(.body)

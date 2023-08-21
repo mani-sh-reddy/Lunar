@@ -60,7 +60,7 @@ struct SearchView: View {
                   Label{Text("Top All")} icon: {Image(systemName: "text.line.first.and.arrowtriangle.forward")}.tag("TopAll")
                   Label{Text("Most Comments")} icon: {Image(systemName: "star.bubble")}.tag("MostComments")
                 }
-                .textCase(.lowercase)
+                .textCase(.none)
               }
             )
             
