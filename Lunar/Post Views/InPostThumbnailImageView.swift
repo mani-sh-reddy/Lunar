@@ -17,7 +17,17 @@ struct InPostThumbnailImageView: View {
   //    var loadImageOnlyFromCache: Bool
   var thumbnailURL: String
   var body: some View {
-    KFImage(URL(string: thumbnailURL))
+    LazyImage(url: URL(string: thumbnailURL)) { state in
+      if let image = state.image {
+        image.resizable().aspectRatio(contentMode: .fit)
+      } else if state.error != nil {
+        Color.red // Indicates an error
+      } else {
+        Color.blue // Acts as a placeholder
+      }
+    }
+//      .cacheOriginalImage(true)
+//      .downsampling(size: CGSize(width: 500, height: 500))
       //            .onProgress { receivedSize, totalSize in
       //                if receivedSize < totalSize {
       //                    isLoading = true
@@ -25,11 +35,10 @@ struct InPostThumbnailImageView: View {
       //                    isLoading = false
       //                }
       //            }
-      .resizable()
-      //            .cancelOnDisappear(true)
-      .fade(duration: 0.2)
-      .progressViewStyle(.circular)
-      .aspectRatio(contentMode: .fit)
+//      .cancelOnDisappear(true)
+//      .fade(duration: 0.2)
+//      .progressViewStyle(.circular)
+//      .aspectRatio(contentMode: .fit)
       //            .frame(alignment: .center)
       .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
     //            .padding(.bottom, 3)
