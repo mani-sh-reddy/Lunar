@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
   let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
-  
+
   init() {
     if #available(iOS 15, *) {
       let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
@@ -18,7 +18,7 @@ struct ContentView: View {
       UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
     }
   }
-  
+
   var body: some View {
     TabView {
       FeedView()
