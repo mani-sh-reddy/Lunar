@@ -5,7 +5,7 @@
 //  Created by Mani on 05/08/2023.
 //
 
-import Kingfisher
+
 import SwiftUI
 
 struct SearchResultsList: View {
@@ -17,8 +17,6 @@ struct SearchResultsList: View {
   @Binding var selectedSearchType: String
 //  @Binding var selectedSortType: String
   @AppStorage("selectedSearchSortType") var selectedSearchSortType = Settings.selectedSearchSortType
-
-  let processor = DownsamplingImageProcessor(size: CGSize(width: 50, height: 50))
 
   var selectedSearchTypeIcon: (String, Color) {
     switch selectedSearchType {

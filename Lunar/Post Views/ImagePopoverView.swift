@@ -27,20 +27,29 @@ struct ImagePopoverView: View {
     }()
   }
 
-  let processor = DownsamplingImageProcessor(size: CGSize(width: 1300, height: 1300))
   var thumbnailURL: String
 
   var body: some View {
     ZStack {
       Rectangle().foregroundStyle(.black)
         .ignoresSafeArea()
-      AsyncImage(url: URL(string: thumbnailURL)) { state in
+      LazyImage(url: URL(string: thumbnailURL)) { state in
         if let image = state.image {
+//          image.resizable().aspectRatio(contentMode: .fit)
           PhotoDetailView(image: image.asUIImage())
+        } else if state.error != nil {
+          Color.clear // Indicates an error
         } else {
           ProgressView()
         }
       }
+//      AsyncImage(url: URL(string: thumbnailURL)) { state in
+//        if let image = state.image {
+//          PhotoDetailView(image: image.asUIImage())
+//        } else {
+//          ProgressView()
+//        }
+//      }
       .edgesIgnoringSafeArea(.all)
     }
   }
