@@ -15,17 +15,21 @@ import UIKit
 struct InPostThumbnailImageView: View {
   //    @State private var isLoading = true
   //    var loadImageOnlyFromCache: Bool
+  
   var thumbnailURL: String
   var body: some View {
+    
+    
     LazyImage(url: URL(string: thumbnailURL)) { state in
       if let image = state.image {
         image.resizable().aspectRatio(contentMode: .fit)
       } else if state.error != nil {
-        Color.red // Indicates an error
+        Color.clear // Indicates an error
       } else {
-        Color.blue // Acts as a placeholder
+        Color.clear // Acts as a placeholder
       }
     }
+    
 //      .cacheOriginalImage(true)
 //      .downsampling(size: CGSize(width: 500, height: 500))
       //            .onProgress { receivedSize, totalSize in

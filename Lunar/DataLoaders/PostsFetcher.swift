@@ -8,7 +8,8 @@
 import Alamofire
 import Combine
 import Foundation
-import Kingfisher
+//import Kingfisher
+import Nuke
 import SwiftUI
 
 @MainActor class PostsFetcher: ObservableObject {
@@ -18,6 +19,8 @@ import SwiftUI
   @AppStorage("postType") var postType = Settings.postType
   @Published var posts = [PostElement]()
   @Published var isLoading = false
+  
+  let imagePrefetcher = ImagePrefetcher()
 
   private var currentPage = 1
   private var sortParameter: String?
@@ -86,8 +89,11 @@ import SwiftUI
         let cachableImageURLs =
           result.thumbnailURLs.compactMap { URL(string: $0) }
           + result.avatarURLs.compactMap { URL(string: $0) }
-        let prefetcher = ImagePrefetcher(urls: cachableImageURLs) { _, _, _ in }
-        prefetcher.start()
+        
+        ImagePipeline.shared = ImagePipeline(configuration: .withDataCache)
+        self.imagePrefetcher.startPrefetching(with: cachableImageURLs)
+//        let prefetcher = ImagePrefetcher(urls: cachableImageURLs) { _, _, _ in }
+//        prefetcher.start()
 
       case let .failure(error):
         print("PostsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
@@ -137,12 +143,7 @@ import SwiftUI
         let cachableImageURLs =
         result.thumbnailURLs.compactMap { URL(string: $0) }
         + result.avatarURLs.compactMap { URL(string: $0) }
-        let prefetcher = ImagePrefetcher(urls: cachableImageURLs) { skippedResources, failedResources, completedResources in
-//        print("SKIPPED:\(skippedResources)")
-//        print("FAILED:\(failedResources)")
-//        print("CCOMPLETED:\(completedResources)")
-        }
-        prefetcher.start()
+        self.imagePrefetcher.startPrefetching(with: cachableImageURLs)
         
 
         self.posts += filteredNewPosts
