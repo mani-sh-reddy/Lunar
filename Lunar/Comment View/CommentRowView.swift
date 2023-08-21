@@ -12,6 +12,7 @@ struct CommentRowView: View {
   @AppStorage("commentMetadataPosition") var commentMetadataPosition = Settings.commentMetadataPosition
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @Binding var collapseToIndex: Int
+  @Binding var collapserPath: String
   @State var commentUpvoted: Bool = false
   @State var commentDownvoted: Bool = false
   
@@ -73,30 +74,42 @@ struct CommentRowView: View {
     .onTapGesture {
       withAnimation(.smooth) {
         self.collapseToIndex = listIndex
+        self.collapserPath = comment.comment.path
       }
     }
     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
       if indentLevel != 1 {
-        CollapseCommentsSwipeAction(collapseToIndex: $collapseToIndex, listIndex: listIndex)
+        Button {
+          print("SWIPED")
+          withAnimation(.smooth) {
+            self.collapseToIndex = listIndex
+            self.collapserPath = comment.comment.path
+          }
+        } label: {
+          Image(systemName: "arrow.up.to.line.circle.fill")
+        }
+        .tint(.blue)
       }
     }
   }
 }
 
-struct CollapseCommentsSwipeAction: View {
-  //  @Binding var isClicked: Bool
-  @Binding var collapseToIndex: Int
-  var listIndex: Int
-  
-  var body: some View {
-    Button {
-      print("SWIPED")
-      withAnimation(.smooth) {
-        self.collapseToIndex = listIndex
-      }
-    } label: {
-      Image(systemName: "arrow.up.to.line.circle.fill")
-    }
-    .tint(.blue)
-  }
-}
+//struct CollapseCommentsSwipeAction: View {
+//  //  @Binding var isClicked: Bool
+//  @Binding var collapseToIndex: Int
+//  @Binding var collapserPath: String
+//  var listIndex: Int
+//  
+//  var body: some View {
+//    Button {
+//      print("SWIPED")
+//      withAnimation(.smooth) {
+//        self.collapseToIndex = listIndex
+//        self.collapserPath = comment.comment.path
+//      }
+//    } label: {
+//      Image(systemName: "arrow.up.to.line.circle.fill")
+//    }
+//    .tint(.blue)
+//  }
+//}

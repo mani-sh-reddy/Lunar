@@ -15,6 +15,7 @@ struct CommentSectionView: View {
   var postBody: String
   
   @State var collapseToIndex: Int = 0
+  @State var collapserPath: String = ""
   @State var postBodyExpanded:Bool = false
   
   @Binding var upvoted: Bool
@@ -35,7 +36,7 @@ struct CommentSectionView: View {
         InPostActionsView(post: post)
         if !postBody.isEmpty {
           VStack (alignment: .trailing){
-              ExpandableTextBox(LocalizedStringKey(postBody)).font(.body)
+            ExpandableTextBox(LocalizedStringKey(postBody)).font(.body)
           }
         }
       }
@@ -54,12 +55,33 @@ struct CommentSectionView: View {
           }
           
           let comment = comments[index]
-          if index <= collapseToIndex && indentLevel != 1 {
-            EmptyView()
+          //          if index <= collapseToIndex && indentLevel != 1 {
+          let allCommentsElements = comment.comment.path.split(separator: ".").map { String($0) }
+          let actionedCommentElements = collapserPath.split(separator: ".").map { String($0) }
+          let _ = print("all comment elements \(allCommentsElements[1])")
+          
+          if actionedCommentElements.count > 1 {
+            let _ = print("actioned \(actionedCommentElements[1])")
+            if (allCommentsElements[1] == actionedCommentElements[1]) &&
+                (index > collapseToIndex) {
+              EmptyView()
+            } else {
+              CommentRowView(
+                collapseToIndex: $collapseToIndex,
+                collapserPath: $collapserPath,
+                comment: comment,
+                listIndex: index
+              ).environmentObject(commentsFetcher)
+            }
           } else {
-            CommentRowView(collapseToIndex: $collapseToIndex, comment: comment, listIndex: index)
-              .environmentObject(commentsFetcher)
+            CommentRowView(
+              collapseToIndex: $collapseToIndex,
+              collapserPath: $collapserPath,
+              comment: comment,
+              listIndex: index
+            ).environmentObject(commentsFetcher)
           }
+          
         }
       }
     }.listStyle(.grouped)

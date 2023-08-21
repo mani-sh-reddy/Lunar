@@ -27,6 +27,7 @@ struct CommentElement: Codable {
   let subscribed: CommentSubscribed?
   let saved, creatorBlocked: Bool
   var myVote: Int?
+  var isCollapsed: Bool = false
 
   enum CodingKeys: String, CodingKey {
     case comment, creator, post, community, counts
