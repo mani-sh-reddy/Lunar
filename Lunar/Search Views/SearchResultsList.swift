@@ -5,7 +5,6 @@
 //  Created by Mani on 05/08/2023.
 //
 
-
 import SwiftUI
 
 struct SearchResultsList: View {
@@ -15,7 +14,7 @@ struct SearchResultsList: View {
 
   @Binding var searchText: String
   @Binding var selectedSearchType: String
-//  @Binding var selectedSortType: String
+  //  @Binding var selectedSortType: String
   @AppStorage("selectedSearchSortType") var selectedSearchSortType = Settings.selectedSearchSortType
 
   var selectedSearchTypeIcon: (String, Color) {

@@ -6,9 +6,9 @@
 //
 
 import Kingfisher
+import Nuke
 import SwiftUI
 import UIKit
-import Nuke
 
 struct SettingsClearCacheButtonView: View {
   @State var cacheSize: String = ""
@@ -16,8 +16,8 @@ struct SettingsClearCacheButtonView: View {
 
   @State var cacheClearButtonClicked: Bool = false
   @State var cacheClearButtonOpacity: Double = 1
-  
-  @State private var diskCacheUsage:String = ""
+
+  @State private var diskCacheUsage: String = ""
 
   var body: some View {
     Button {
@@ -31,8 +31,8 @@ struct SettingsClearCacheButtonView: View {
         Spacer()
         ZStack(alignment: .trailing) {
           if !cacheClearButtonClicked {
-//              Text(humanReadableByteCount(bytes: URLCache.shared.diskCapacity))
-//              .foregroundStyle(.red)
+            //              Text(humanReadableByteCount(bytes: URLCache.shared.diskCapacity))
+            //              .foregroundStyle(.red)
           } else {
             Group {
               Image(systemName: "checkmark.circle.fill")
@@ -61,7 +61,7 @@ struct SettingsClearCacheButtonView: View {
   }
 
   func humanReadableByteCount(bytes: Int) -> String {
-    if (bytes < 1000) { return "\(bytes) B" }
+    if bytes < 1000 { return "\(bytes) B" }
     let exp = Int(log2(Double(bytes)) / log2(1000.0))
     let unit = ["KB", "MB", "GB", "TB", "PB", "EB"][exp - 1]
     let number = Double(bytes) / pow(1000, Double(exp))
@@ -77,7 +77,7 @@ struct SettingsClearCacheButtonView: View {
     let cache = ImageCache.default
     cache.clearMemoryCache()
     cache.clearDiskCache { print("Cache clear button clicked") }
-//    calculateCache()
+    //    calculateCache()
   }
 }
 
