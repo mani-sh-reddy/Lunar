@@ -45,6 +45,18 @@ struct SettingsAppearanceSectionView: View {
             .foregroundStyle(.mint)
         }
       }
+      
+      NavigationLink {
+        SettingsSplashScreenView()
+      } label: {
+        Label {
+          Text("Splash Screen")
+        } icon: {
+          Image(systemName: "moonphase.waning.gibbous")
+            .symbolRenderingMode(.hierarchical)
+            .foregroundStyle(.yellow)
+        }
+      }
 
     } header: {
       Text("Appearance")

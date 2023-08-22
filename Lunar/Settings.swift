@@ -54,4 +54,7 @@ enum Settings {
   static let subscribedCommunityIDs: [Int] = []
   
   static let selectedSearchSortType: String = "Active"
+  static let showLaunchSplashScreen: Bool = true
+  
+  
 }
