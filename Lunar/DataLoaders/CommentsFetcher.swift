@@ -101,7 +101,7 @@ import SwiftUI
     let cacher = ResponseCacher(behavior: .cache)
 
     AF.request(endpoint) { urlRequest in
-//      print("CommentsFetcher LOAD \(urlRequest.url as Any)")
+      //      print("CommentsFetcher LOAD \(urlRequest.url as Any)")
       urlRequest.cachePolicy = .returnCacheDataElseLoad
     }
     .cacheResponse(using: cacher)
@@ -139,7 +139,9 @@ import SwiftUI
     }
   }
   func getJWTFromKeychain(actorID: String) -> String? {
-    if let keychainObject = KeychainHelper.standard.read(service: self.appBundleID, account: selectedActorID) {
+    if let keychainObject = KeychainHelper.standard.read(
+      service: self.appBundleID, account: selectedActorID)
+    {
       let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
       return jwt.replacingOccurrences(of: "\"", with: "")
     } else {

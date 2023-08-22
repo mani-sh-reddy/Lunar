@@ -9,17 +9,18 @@ import SwiftUI
 
 struct CommentRowView: View {
   @EnvironmentObject var commentsFetcher: CommentsFetcher
-  @AppStorage("commentMetadataPosition") var commentMetadataPosition = Settings.commentMetadataPosition
+  @AppStorage("commentMetadataPosition") var commentMetadataPosition = Settings
+    .commentMetadataPosition
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @Binding var collapseToIndex: Int
   @Binding var collapserPath: String
   @State var commentUpvoted: Bool = false
   @State var commentDownvoted: Bool = false
-  
+
   var comment: CommentElement
   let listIndex: Int
   var comments: [CommentElement]
-  
+
   var indentLevel: Int {
     let elements = comment.comment.path.split(separator: ".").map { String($0) }
     let elementCount = elements.isEmpty ? 1 : elements.count - 1
@@ -29,7 +30,7 @@ struct CommentRowView: View {
       return 1
     }
   }
-  
+
   let commentHierarchyColors: [Color] = [
     .red,
     .orange,
@@ -40,7 +41,7 @@ struct CommentRowView: View {
     .indigo,
     .purple,
   ]
-  
+
   var body: some View {
     HStack {
       if debugModeEnabled {
@@ -60,28 +61,32 @@ struct CommentRowView: View {
       VStack(alignment: .leading, spacing: 3) {
         if commentMetadataPosition == "Bottom" {
           Text(LocalizedStringKey(comment.comment.content))
-          CommentMetadataView(comment: comment, commentUpvoted: $commentUpvoted, commentDownvoted: $commentDownvoted)
-            .environmentObject(commentsFetcher)
+          CommentMetadataView(
+            comment: comment, commentUpvoted: $commentUpvoted, commentDownvoted: $commentDownvoted
+          )
+          .environmentObject(commentsFetcher)
         } else if commentMetadataPosition == "Top" {
-          CommentMetadataView(comment: comment, commentUpvoted: $commentUpvoted, commentDownvoted: $commentDownvoted)
-            .environmentObject(commentsFetcher)
+          CommentMetadataView(
+            comment: comment, commentUpvoted: $commentUpvoted, commentDownvoted: $commentDownvoted
+          )
+          .environmentObject(commentsFetcher)
           Text(LocalizedStringKey(comment.comment.content))
         } else {
           Text(LocalizedStringKey(comment.comment.content))
         }
       }
     }.contentShape(Rectangle())
-    .onTapGesture {
-      commentCollapseAction()
-    }
-    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+      .onTapGesture {
+        commentCollapseAction()
+      }
+      .swipeActions(edge: .trailing, allowsFullSwipe: true) {
         Button {
           commentCollapseAction()
         } label: {
           Image(systemName: "list.bullet.indent")
         }
         .tint(.blue)
-    }
+      }
   }
   func commentCollapseAction() {
     withAnimation(.smooth) {
@@ -89,7 +94,7 @@ struct CommentRowView: View {
         commentsFetcher.updateCommentCollapseState(comment, isCollapsed: false)
       } else {
         for commentMainList in comments {
-          if commentMainList.comment.path.contains(comment.comment.path){
+          if commentMainList.comment.path.contains(comment.comment.path) {
             if commentMainList.comment.path != comment.comment.path {
               commentsFetcher.updateCommentCollapseState(commentMainList, isCollapsed: true)
             } else {
@@ -109,7 +114,7 @@ struct CommentRowView: View {
 //  @Binding var collapseToIndex: Int
 //  @Binding var collapserPath: String
 //  var listIndex: Int
-//  
+//
 //  var body: some View {
 //    Button {
 //      print("SWIPED")
