@@ -34,9 +34,13 @@ struct HeaderView: View {
               .clipShape(Circle())
               .frame(width: 60, height: 60)
           } else if state.error != nil {
-            Color.clear.frame(width: 0, height: 60)
+            Image(systemName:" person.circle.fill")
+              .resizable()
+              .frame(width: 60, height: 60)
+              .foregroundStyle(.secondary)
+              .symbolRenderingMode(.hierarchical)
           } else {
-            Color.clear.frame(width: 0, height: 60)
+            Color.clear.frame(width: 60, height: 60)
           }
         }
         .padding(5)
