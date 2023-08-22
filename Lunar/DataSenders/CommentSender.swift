@@ -14,7 +14,7 @@
 //  private var postID: Int
 //  private var parentID: Int?
 //  private var jwt: String =  ""
-//  
+//
 //  /// Adding info about the user to **@AppsStorage** loggedInAccounts
 //  var loggedInAccount = LoggedInAccount()
 //  @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
@@ -24,7 +24,7 @@
 //  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
 //  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
 //  @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
-//  
+//
 //  init(
 //    communityID: Int,
 //    asActorID: String,
@@ -35,14 +35,14 @@
 //    self.subscribeAction = subscribeAction
 //    self.jwt = getJWTFromKeychain(actorID: asActorID) ?? ""
 //  }
-//  
+//
 //  func fetchSubscribeInfo(completion: @escaping (Int?, SubscribedState?, String?) -> Void) {
 //    let parameters = [
 //      "follow": subscribeAction,
 //      "community_id": communityID,
 //      "auth": jwt.replacingOccurrences(of: "\"", with: "")
 //    ] as [String : Any]
-//    
+//
 //    AF.request(
 //      "https://\(URLParser.extractDomain(from: selectedActorID))/api/v3/community/follow",
 //      method: .post,
@@ -58,9 +58,9 @@
 //        let response = String(response.response?.statusCode ?? 0)
 //        let subscribeResponse = result.community?.subscribed
 //        let communityID = result.community?.community.id
-//        
+//
 //        completion(communityID, subscribeResponse, response)
-//        
+//
 //      case let .failure(error):
 //        if let data = response.data,
 //           let fetchError = try? JSONDecoder().decode(ErrorResponseModel.self, from: data)

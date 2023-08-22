@@ -13,14 +13,14 @@ struct InstanceSelectorView: View {
   @State private var isCustomSelected = false
   @State private var customInstanceName = ""
   @State private var tempInstanceName = ""
-  
+
   var body: some View {
     if debugModeEnabled {
       Text("instance: \(instanceHostURL)")
         .bold()
         .foregroundStyle(.cyan)
     }
-    
+
     Section {
       Picker(selection: $tempInstanceName, label: Text("Lemmy Instance")) {
         Text("lemmy.world").tag("lemmy.world")
@@ -28,13 +28,13 @@ struct InstanceSelectorView: View {
         Text("beehaw.org").tag("beehaw.org")
         Text("programming.dev").tag("programming.dev")
         Divider()
-          Text("Custom").tag("custom")
+        Text("Custom").tag("custom")
       }
       .pickerStyle(.menu)
       .onAppear {
         tempInstanceName = instanceHostURL
       }
-      
+
       .onChange(of: tempInstanceName) { name in
         if name == "custom" {
           isCustomSelected = true
@@ -45,7 +45,7 @@ struct InstanceSelectorView: View {
           instanceHostURL = name
         }
       }
-      
+
       if isCustomSelected {
         HStack {
           Text("Custom:")
@@ -64,7 +64,6 @@ struct InstanceSelectorView: View {
     }
   }
 }
-
 
 struct SettingsServerSelectionSectionView_Previews: PreviewProvider {
   static var previews: some View {

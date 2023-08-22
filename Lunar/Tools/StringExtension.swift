@@ -16,27 +16,27 @@ extension String {
       "media.giphy.com",
       "files.catbox.moe",
       "i.postimg.cc",
-      "lemmy.world/pictrs/"
+      "lemmy.world/pictrs/",
     ]
-    
+
     let validFileExtensions = [
       ".png",
       ".webp",
       ".jpg",
-      ".jpeg"
+      ".jpeg",
     ]
-    
+
     for url in validURLs where contains(url) {
       return true
     }
-    
+
     for fileExtension in validFileExtensions where lowercased().hasSuffix(fileExtension) {
       return true
     }
-    
+
     return false
   }
-  
+
   func matches(_ regex: String) -> Bool {
     range(of: regex, options: .regularExpression, range: nil, locale: nil) != nil
   }

@@ -31,7 +31,7 @@ struct SettingsView: View {
         } label: {
           UserRowSettingsBannerView(selectedAccount: $selectedAccount)
         }
-        Section{
+        Section {
           InstanceSelectorView()
           KbinSelectorView()
         }
@@ -62,8 +62,8 @@ struct SettingsView: View {
         .opacity(logoOpacity)
     }
   }
-  
-  func refresh(){
+
+  func refresh() {
     settingsViewOpacity = 0
     logoScale = 1.0
     logoOpacity = 1.0
