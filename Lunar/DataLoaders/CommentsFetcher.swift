@@ -146,4 +146,14 @@ import SwiftUI
       return nil
     }
   }
+  func updateCommentCollapseState(_ comment: CommentElement, isCollapsed: Bool) {
+    if let index = comments.firstIndex(where: { $0.comment.id == comment.comment.id }) {
+      comments[index].isCollapsed = isCollapsed
+    }
+  }
+  func updateCommentShrinkState(_ comment: CommentElement, isShrunk: Bool) {
+    if let index = comments.firstIndex(where: { $0.comment.id == comment.comment.id }) {
+      comments[index].isShrunk = isShrunk
+    }
+  }
 }

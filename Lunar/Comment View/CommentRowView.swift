@@ -16,8 +16,9 @@ struct CommentRowView: View {
   @State var commentUpvoted: Bool = false
   @State var commentDownvoted: Bool = false
   
-  let comment: CommentElement
+  var comment: CommentElement
   let listIndex: Int
+  var comments: [CommentElement]
   
   var indentLevel: Int {
     let elements = comment.comment.path.split(separator: ".").map { String($0) }
@@ -27,8 +28,8 @@ struct CommentRowView: View {
     } else {
       return 1
     }
-    
   }
+  
   let commentHierarchyColors: [Color] = [
     .red,
     .orange,
@@ -39,7 +40,6 @@ struct CommentRowView: View {
     .indigo,
     .purple,
   ]
-  
   
   var body: some View {
     HStack {
@@ -70,25 +70,35 @@ struct CommentRowView: View {
           Text(LocalizedStringKey(comment.comment.content))
         }
       }
-    }
+    }.contentShape(Rectangle())
     .onTapGesture {
-      withAnimation(.smooth) {
-        self.collapseToIndex = listIndex
-        self.collapserPath = comment.comment.path
-      }
+      commentCollapseAction()
     }
     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-      if indentLevel != 1 {
         Button {
-          print("SWIPED")
-          withAnimation(.smooth) {
-            self.collapseToIndex = listIndex
-            self.collapserPath = comment.comment.path
-          }
+          commentCollapseAction()
         } label: {
-          Image(systemName: "arrow.up.to.line.circle.fill")
+          Image(systemName: "list.bullet.indent")
         }
         .tint(.blue)
+    }
+  }
+  func commentCollapseAction() {
+    withAnimation(.smooth) {
+      if comment.isCollapsed {
+        commentsFetcher.updateCommentCollapseState(comment, isCollapsed: false)
+      } else {
+        for commentMainList in comments {
+          if commentMainList.comment.path.contains(comment.comment.path){
+            if commentMainList.comment.path != comment.comment.path {
+              commentsFetcher.updateCommentCollapseState(commentMainList, isCollapsed: true)
+            } else {
+              commentsFetcher.updateCommentShrinkState(commentMainList, isShrunk: true)
+            }
+          }
+        }
+        self.collapseToIndex = listIndex
+        self.collapserPath = comment.comment.path
       }
     }
   }

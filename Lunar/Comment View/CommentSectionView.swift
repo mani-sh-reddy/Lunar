@@ -44,46 +44,48 @@ struct CommentSectionView: View {
       .listRowBackground(Color.clear)
       Section {
         ForEach(comments.indices, id: \.self) { index in
-          var indentLevel: Int {
-            let elements = comment.comment.path.split(separator: ".").map { String($0) }
-            let elementCount = elements.isEmpty ? 1 : elements.count - 1
-            if elementCount >= 1 {
-              return elementCount
-            } else {
-              return 1
-            }
-          }
-          
           let comment = comments[index]
-          //          if index <= collapseToIndex && indentLevel != 1 {
-          let allCommentsElements = comment.comment.path.split(separator: ".").map { String($0) }
-          let actionedCommentElements = collapserPath.split(separator: ".").map { String($0) }
-          let _ = print("all comment elements \(allCommentsElements[1])")
-          
-          if actionedCommentElements.count > 1 {
-            let _ = print("actioned \(actionedCommentElements[1])")
-            if (allCommentsElements[1] == actionedCommentElements[1]) &&
-                (index > collapseToIndex) {
-              EmptyView()
-            } else {
-              CommentRowView(
-                collapseToIndex: $collapseToIndex,
-                collapserPath: $collapserPath,
-                comment: comment,
-                listIndex: index
-              ).environmentObject(commentsFetcher)
-            }
-          } else {
+          if !comment.isCollapsed && !comment.isShrunk {
             CommentRowView(
               collapseToIndex: $collapseToIndex,
               collapserPath: $collapserPath,
               comment: comment,
-              listIndex: index
-            ).environmentObject(commentsFetcher)
+              listIndex: index,
+              comments: comments
+            )
+            .environmentObject(commentsFetcher)
+          } else if !comment.isCollapsed && comment.isShrunk {
+            HStack{
+              Text("Collapsed").italic().foregroundStyle(.secondary).font(.caption)
+              Spacer()
+            }.contentShape(Rectangle())
+            .onTapGesture {
+              commentExpandAction(comment: comment)
+            }
+            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+              Button {
+                commentExpandAction(comment: comment)
+              } label: {
+                Image(systemName: "list.bullet.indent")
+              }
+              .tint(.blue)
+            }
           }
-          
         }
       }
     }.listStyle(.grouped)
+  }
+  func commentExpandAction(comment: CommentElement) {
+    withAnimation(.smooth) {
+      for commentOnMainList in comments {
+        if commentOnMainList.comment.path.contains(comment.comment.path){
+          if commentOnMainList.comment.path != comment.comment.path {
+            commentsFetcher.updateCommentCollapseState(commentOnMainList, isCollapsed: false)
+          } else {
+            commentsFetcher.updateCommentShrinkState(commentOnMainList, isShrunk: false)
+          }
+        }
+      }
+    }
   }
 }

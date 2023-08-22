@@ -17,6 +17,12 @@ struct CommentModel: Codable {
 
 // MARK: - CommentElement
 
+enum CollapseState {
+  case expanded
+  case collapsed
+  case partiallyCollapsed
+}
+
 struct CommentElement: Codable {
   let comment: CommentsListObject
   let creator: CommentsListCreator
@@ -28,6 +34,7 @@ struct CommentElement: Codable {
   let saved, creatorBlocked: Bool
   var myVote: Int?
   var isCollapsed: Bool = false
+  var isShrunk: Bool = false
 
   enum CodingKeys: String, CodingKey {
     case comment, creator, post, community, counts
