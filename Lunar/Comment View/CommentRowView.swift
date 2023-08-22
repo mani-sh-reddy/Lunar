@@ -9,7 +9,8 @@ import SwiftUI
 
 struct CommentRowView: View {
   @EnvironmentObject var commentsFetcher: CommentsFetcher
-  @AppStorage("commentMetadataPosition") var commentMetadataPosition = Settings.commentMetadataPosition
+  @AppStorage("commentMetadataPosition") var commentMetadataPosition = Settings
+    .commentMetadataPosition
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @Binding var collapseToIndex: Int
   @Binding var collapserPath: String
@@ -17,11 +18,11 @@ struct CommentRowView: View {
   @State var commentDownvoted: Bool = false
   @State var showCommentPopover: Bool = false
   @State private var parentID: Int = 0
-  
+
   var comment: CommentElement
   let listIndex: Int
   var comments: [CommentElement]
-  
+
   var indentLevel: Int {
     let elements = comment.comment.path.split(separator: ".").map { String($0) }
     let elementCount = elements.isEmpty ? 1 : elements.count - 1
@@ -31,7 +32,7 @@ struct CommentRowView: View {
       return 1
     }
   }
-  
+
   let commentHierarchyColors: [Color] = [
     .red,
     .orange,
@@ -42,7 +43,7 @@ struct CommentRowView: View {
     .indigo,
     .purple,
   ]
-  
+
   var body: some View {
     HStack {
       if debugModeEnabled {
@@ -62,48 +63,54 @@ struct CommentRowView: View {
       VStack(alignment: .leading, spacing: 3) {
         if commentMetadataPosition == "Bottom" {
           Text(LocalizedStringKey(comment.comment.content))
-          CommentMetadataView(comment: comment, commentUpvoted: $commentUpvoted, commentDownvoted: $commentDownvoted)
-            .environmentObject(commentsFetcher)
+          CommentMetadataView(
+            comment: comment, commentUpvoted: $commentUpvoted, commentDownvoted: $commentDownvoted
+          )
+          .environmentObject(commentsFetcher)
         } else if commentMetadataPosition == "Top" {
-          CommentMetadataView(comment: comment, commentUpvoted: $commentUpvoted, commentDownvoted: $commentDownvoted)
-            .environmentObject(commentsFetcher)
+          CommentMetadataView(
+            comment: comment, commentUpvoted: $commentUpvoted, commentDownvoted: $commentDownvoted
+          )
+          .environmentObject(commentsFetcher)
           Text(LocalizedStringKey(comment.comment.content))
         } else {
           Text(LocalizedStringKey(comment.comment.content))
         }
       }
     }.contentShape(Rectangle())
-    .onTapGesture {
-      commentCollapseAction()
-    }
-    .sheet(isPresented: $showCommentPopover, onDismiss: {
-      Task {
-        print("COMMENT SHEET DISMISSED")
-        await commentsFetcher.refreshContent()
-      }
-    }){
-      CommentPopoverView(
-        showCommentPopover: $showCommentPopover,
-        post: comment.post,
-        parentID: comment.comment.id
-      )
-    }
-    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-      Button {
+      .onTapGesture {
         commentCollapseAction()
-      } label: {
-        Label("collapse", systemImage: "arrow.up.to.line.circle.fill")
       }
-      .tint(.blue)
-      Button {
-        parentID = comment.comment.id
-        showCommentPopover = true
-      } label: {
-        Label("reply", systemImage: "arrowshape.turn.up.left.circle.fill")
-      }.tint(.orange)
-      
-      
-    }
+      .sheet(
+        isPresented: $showCommentPopover,
+        onDismiss: {
+          Task {
+            print("COMMENT SHEET DISMISSED")
+            await commentsFetcher.refreshContent()
+          }
+        }
+      ) {
+        CommentPopoverView(
+          showCommentPopover: $showCommentPopover,
+          post: comment.post,
+          parentID: comment.comment.id
+        )
+      }
+      .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+        Button {
+          commentCollapseAction()
+        } label: {
+          Label("collapse", systemImage: "arrow.up.to.line.circle.fill")
+        }
+        .tint(.blue)
+        Button {
+          parentID = comment.comment.id
+          showCommentPopover = true
+        } label: {
+          Label("reply", systemImage: "arrowshape.turn.up.left.circle.fill")
+        }.tint(.orange)
+
+      }
   }
   func commentCollapseAction() {
     withAnimation(.smooth) {
@@ -111,7 +118,7 @@ struct CommentRowView: View {
         commentsFetcher.updateCommentCollapseState(comment, isCollapsed: false)
       } else {
         for commentMainList in comments {
-          if commentMainList.comment.path.contains(comment.comment.path){
+          if commentMainList.comment.path.contains(comment.comment.path) {
             if commentMainList.comment.path != comment.comment.path {
               commentsFetcher.updateCommentCollapseState(commentMainList, isCollapsed: true)
             } else {
@@ -131,7 +138,7 @@ struct CommentRowView: View {
 //  @Binding var collapseToIndex: Int
 //  @Binding var collapserPath: String
 //  var listIndex: Int
-//  
+//
 //  var body: some View {
 //    Button {
 //      print("SWIPED")

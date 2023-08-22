@@ -13,17 +13,17 @@ struct CommentSectionView: View {
   var post: PostElement
   var comments: [CommentElement]
   var postBody: String
-  
+
   @State var collapseToIndex: Int = 0
   @State var collapserPath: String = ""
-  @State var postBodyExpanded:Bool = false
+  @State var postBodyExpanded: Bool = false
   @State var showCommentPopover: Bool = false
   @State var commentString: String = ""
   @State private var parentID: Int = 0
-  
+
   @Binding var upvoted: Bool
   @Binding var downvoted: Bool
-  
+
   var communityIsSubscribed: Bool {
     if post.subscribed == .subscribed {
       return true
@@ -31,14 +31,16 @@ struct CommentSectionView: View {
       return false
     }
   }
-  
+
   var body: some View {
     List {
       Section {
-        PostRowView(upvoted: $upvoted, downvoted: $downvoted, isSubscribed: communityIsSubscribed, post: post).environmentObject(postsFetcher)
+        PostRowView(
+          upvoted: $upvoted, downvoted: $downvoted, isSubscribed: communityIsSubscribed, post: post
+        ).environmentObject(postsFetcher)
         InPostActionsView(post: post.post)
         if !postBody.isEmpty {
-          VStack (alignment: .trailing){
+          VStack(alignment: .trailing) {
             ExpandableTextBox(LocalizedStringKey(postBody)).font(.body)
           }
         }
@@ -56,9 +58,9 @@ struct CommentSectionView: View {
               listIndex: index,
               comments: comments
             ).id(UUID())
-            .environmentObject(commentsFetcher)
+              .environmentObject(commentsFetcher)
           } else if !comment.isCollapsed && comment.isShrunk {
-            HStack{
+            HStack {
               Text("Collapsed").italic().foregroundStyle(.secondary).font(.caption)
               Spacer()
             }
@@ -80,11 +82,11 @@ struct CommentSectionView: View {
     }
     .listStyle(.grouped)
   }
-  
+
   func commentExpandAction(comment: CommentElement) {
     withAnimation(.smooth) {
       for commentOnMainList in comments {
-        if commentOnMainList.comment.path.contains(comment.comment.path){
+        if commentOnMainList.comment.path.contains(comment.comment.path) {
           if commentOnMainList.comment.path != comment.comment.path {
             commentsFetcher.updateCommentCollapseState(commentOnMainList, isCollapsed: false)
           } else {
