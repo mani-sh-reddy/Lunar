@@ -44,10 +44,7 @@ import SwiftUI
   }
 
   func refreshContent() async {
-    do {
-      try await Task.sleep(nanoseconds: 1_000_000_000)
-    } catch {}
-
+    comments.removeAll()
     guard !isLoading else { return }
 
     isLoading = true
@@ -57,7 +54,7 @@ import SwiftUI
     let cacher = ResponseCacher(behavior: .cache)
 
     AF.request(endpoint) { urlRequest in
-      print("CommentsFetcher REF \(urlRequest.url as Any)")
+//      print("CommentsFetcher REF \(urlRequest.url as Any)")
       urlRequest.cachePolicy = .reloadRevalidatingCacheData
     }
     .cacheResponse(using: cacher)
@@ -65,17 +62,28 @@ import SwiftUI
     .responseDecodable(of: CommentModel.self) { response in
       switch response.result {
       case let .success(result):
+        
         let newComments = result.comments
-
-        let filteredNewComments = newComments.filter { newComment in
-          !self.comments.contains { $0.comment.id == newComment.comment.id }
+        
+        let filteredNewComments = newComments.filter { newComments in
+          !self.comments.contains { $0.comment.id == newComments.comment.id }
         }
-
-        DispatchQueue.main.async {
-          self.comments.insert(contentsOf: filteredNewComments, at: 0)
+        
+        if !filteredNewComments.isEmpty {
+          DispatchQueue.main.async {
+            let sortedFilteredComments = filteredNewComments.sorted { sorted, newSorted in
+              sorted.comment.path < newSorted.comment.path
+            }
+            for newComment in sortedFilteredComments {
+              InsertSorter.sortComments(newComment, into: &self.comments)
+            }
+            self.isLoading = false
+          }
+          
+        } else {
           self.isLoading = false
         }
-
+        
       case let .failure(error):
         print("CommentsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
       }

@@ -17,6 +17,9 @@ struct CommentSectionView: View {
   @State var collapseToIndex: Int = 0
   @State var collapserPath: String = ""
   @State var postBodyExpanded:Bool = false
+  @State var showCommentPopover: Bool = false
+  @State var commentString: String = ""
+  @State private var parentID: Int = 0
   
   @Binding var upvoted: Bool
   @Binding var downvoted: Bool
@@ -33,7 +36,7 @@ struct CommentSectionView: View {
     List {
       Section {
         PostRowView(upvoted: $upvoted, downvoted: $downvoted, isSubscribed: communityIsSubscribed, post: post).environmentObject(postsFetcher)
-        InPostActionsView(post: post)
+        InPostActionsView(post: post.post)
         if !postBody.isEmpty {
           VStack (alignment: .trailing){
             ExpandableTextBox(LocalizedStringKey(postBody)).font(.body)
@@ -52,13 +55,14 @@ struct CommentSectionView: View {
               comment: comment,
               listIndex: index,
               comments: comments
-            )
+            ).id(UUID())
             .environmentObject(commentsFetcher)
           } else if !comment.isCollapsed && comment.isShrunk {
             HStack{
               Text("Collapsed").italic().foregroundStyle(.secondary).font(.caption)
               Spacer()
-            }.contentShape(Rectangle())
+            }
+            .contentShape(Rectangle())
             .onTapGesture {
               commentExpandAction(comment: comment)
             }
@@ -66,15 +70,17 @@ struct CommentSectionView: View {
               Button {
                 commentExpandAction(comment: comment)
               } label: {
-                Image(systemName: "list.bullet.indent")
+                Label("expand", systemImage: "arrow.up.left.and.arrow.down.right.circle.fill")
               }
               .tint(.blue)
             }
           }
         }
       }
-    }.listStyle(.grouped)
+    }
+    .listStyle(.grouped)
   }
+  
   func commentExpandAction(comment: CommentElement) {
     withAnimation(.smooth) {
       for commentOnMainList in comments {

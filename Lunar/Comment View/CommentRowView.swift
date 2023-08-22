@@ -15,6 +15,8 @@ struct CommentRowView: View {
   @Binding var collapserPath: String
   @State var commentUpvoted: Bool = false
   @State var commentDownvoted: Bool = false
+  @State var showCommentPopover: Bool = false
+  @State private var parentID: Int = 0
   
   var comment: CommentElement
   let listIndex: Int
@@ -74,13 +76,33 @@ struct CommentRowView: View {
     .onTapGesture {
       commentCollapseAction()
     }
+    .sheet(isPresented: $showCommentPopover, onDismiss: {
+      Task {
+        print("COMMENT SHEET DISMISSED")
+        await commentsFetcher.refreshContent()
+      }
+    }){
+      CommentPopoverView(
+        showCommentPopover: $showCommentPopover,
+        post: comment.post,
+        parentID: comment.comment.id
+      )
+    }
     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-        Button {
-          commentCollapseAction()
-        } label: {
-          Image(systemName: "list.bullet.indent")
-        }
-        .tint(.blue)
+      Button {
+        commentCollapseAction()
+      } label: {
+        Label("collapse", systemImage: "arrow.up.to.line.circle.fill")
+      }
+      .tint(.blue)
+      Button {
+        parentID = comment.comment.id
+        showCommentPopover = true
+      } label: {
+        Label("reply", systemImage: "arrowshape.turn.up.left.circle.fill")
+      }.tint(.orange)
+      
+      
     }
   }
   func commentCollapseAction() {
