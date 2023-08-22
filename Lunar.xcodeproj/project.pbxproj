@@ -81,6 +81,8 @@
 		3C96EA552A7857D900753199 /* LoggedInUserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96EA542A7857D900753199 /* LoggedInUserModel.swift */; };
 		3C9E54882A93F4740093DDC7 /* InPostActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E54872A93F4740093DDC7 /* InPostActionsView.swift */; };
 		3C9E548A2A940F9B0093DDC7 /* TextBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E54892A940F9B0093DDC7 /* TextBox.swift */; };
+		3C9E548C2A94A3DC0093DDC7 /* CommentSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E548B2A94A3DC0093DDC7 /* CommentSender.swift */; };
+		3C9E54982A953FB60093DDC7 /* SettingsSplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E54972A953FB60093DDC7 /* SettingsSplashScreenView.swift */; };
 		3CA5C40A2A574FF500BF8F1B /* PostsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */; };
 		3CA5C40E2A57525500BF8F1B /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C40D2A57525500BF8F1B /* PostsView.swift */; };
 		3CA5C4102A5753AC00BF8F1B /* PostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */; };
@@ -258,6 +260,8 @@
 		3C96EA542A7857D900753199 /* LoggedInUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInUserModel.swift; sourceTree = "<group>"; };
 		3C9E54872A93F4740093DDC7 /* InPostActionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InPostActionsView.swift; sourceTree = "<group>"; };
 		3C9E54892A940F9B0093DDC7 /* TextBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBox.swift; sourceTree = "<group>"; };
+		3C9E548B2A94A3DC0093DDC7 /* CommentSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentSender.swift; sourceTree = "<group>"; };
+		3C9E54972A953FB60093DDC7 /* SettingsSplashScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSplashScreenView.swift; sourceTree = "<group>"; };
 		3CA5C4092A574FF500BF8F1B /* PostsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsListModel.swift; sourceTree = "<group>"; };
 		3CA5C40D2A57525500BF8F1B /* PostsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
 		3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostRowView.swift; sourceTree = "<group>"; };
@@ -406,6 +410,7 @@
 			children = (
 				3C4D42A72A8D0FD1003B6F1D /* VoteSender.swift */,
 				3C6BBF712A910F6100312E2B /* SubscriptionActionSender.swift */,
+				3C9E548B2A94A3DC0093DDC7 /* CommentSender.swift */,
 			);
 			path = DataSenders;
 			sourceTree = "<group>";
@@ -447,6 +452,7 @@
 				3C130F762A8C0CB90060B6E4 /* ReactionButton.swift */,
 				3CF3B8EE2A8E96D2001C08B5 /* VoteState.swift */,
 				3CFE04C42A7FF1E7007BAD81 /* Kbin */,
+				3CCAE1832A6ADDBA0040EE12 /* Post Views */,
 				3CD4DA242A7EF8CE00BC374A /* Info Views */,
 				3CC1788F2A7DA68C00C208D0 /* Search Views */,
 				3C96EA582A79147C00753199 /* Debugging Views */,
@@ -454,7 +460,6 @@
 				3CDF22992A6D3FEF009281F2 /* Settings Views */,
 				3CCAE1852A6ADE5F0040EE12 /* Feed Views */,
 				3CCAE1822A6ADD9B0040EE12 /* More Communities Views */,
-				3CCAE1832A6ADDBA0040EE12 /* Post Views */,
 				3CCAE1842A6ADDE20040EE12 /* Comment View */,
 				3C4D42A62A8D0FB3003B6F1D /* DataSenders */,
 				3CA5C4062A5743EB00BF8F1B /* DataLoaders */,
@@ -490,6 +495,54 @@
 				3C6D29662A795141007AFD99 /* DebugSettingsPropertiesView.swift */,
 			);
 			path = "Debugging Views";
+			sourceTree = "<group>";
+		};
+		3C9E548F2A94C0870093DDC7 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				3C113C422A6EA92600FDE5CE /* InstanceSelectorView.swift */,
+				3C6D29682A797D6E007AFD99 /* UserRowSettingsBannerView.swift */,
+				3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */,
+				3CF3B8F22A8FF7D4001C08B5 /* KbinSelectorView.swift */,
+			);
+			name = Account;
+			sourceTree = "<group>";
+		};
+		3C9E54922A94C2F60093DDC7 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				3C113C3E2A6E8C9400FDE5CE /* SettingsGeneralSectionView.swift */,
+			);
+			name = General;
+			sourceTree = "<group>";
+		};
+		3C9E54942A94C3150093DDC7 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				3C113C402A6E8EEA00FDE5CE /* SettingsInfoSectionView.swift */,
+			);
+			name = Info;
+			sourceTree = "<group>";
+		};
+		3C9E54952A94C3170093DDC7 /* Debug Options */ = {
+			isa = PBXGroup;
+			children = (
+				3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheButtonView.swift */,
+				3CED897C2A71DCFF00BD9086 /* SettingsHiddenOptionsView.swift */,
+				3C6D296A2A7986AE007AFD99 /* AppResetButton.swift */,
+			);
+			name = "Debug Options";
+			sourceTree = "<group>";
+		};
+		3C9E54962A94C34D0093DDC7 /* Appearance */ = {
+			isa = PBXGroup;
+			children = (
+				3C113C3C2A6E8B0C00FDE5CE /* SettingsAppearanceSectionView.swift */,
+				3CF3B8F02A8F797D001C08B5 /* SettingsLayoutView.swift */,
+				3C9E54972A953FB60093DDC7 /* SettingsSplashScreenView.swift */,
+				3C62C2582A7309DC003BAC5B /* SettingsAppIconView.swift */,
+			);
+			name = Appearance;
 			sourceTree = "<group>";
 		};
 		3CA5C4062A5743EB00BF8F1B /* DataLoaders */ = {
@@ -604,19 +657,12 @@
 		3CDF22992A6D3FEF009281F2 /* Settings Views */ = {
 			isa = PBXGroup;
 			children = (
-				3C6D29682A797D6E007AFD99 /* UserRowSettingsBannerView.swift */,
 				3C6588582A6169EB00A46DA3 /* SettingsView.swift */,
-				3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */,
-				3C62C2582A7309DC003BAC5B /* SettingsAppIconView.swift */,
-				3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheButtonView.swift */,
-				3C113C3C2A6E8B0C00FDE5CE /* SettingsAppearanceSectionView.swift */,
-				3CED897C2A71DCFF00BD9086 /* SettingsHiddenOptionsView.swift */,
-				3CF3B8F02A8F797D001C08B5 /* SettingsLayoutView.swift */,
-				3C113C402A6E8EEA00FDE5CE /* SettingsInfoSectionView.swift */,
-				3C113C422A6EA92600FDE5CE /* InstanceSelectorView.swift */,
-				3C113C3E2A6E8C9400FDE5CE /* SettingsGeneralSectionView.swift */,
-				3C6D296A2A7986AE007AFD99 /* AppResetButton.swift */,
-				3CF3B8F22A8FF7D4001C08B5 /* KbinSelectorView.swift */,
+				3C9E54942A94C3150093DDC7 /* Info */,
+				3C9E54922A94C2F60093DDC7 /* General */,
+				3C9E54962A94C34D0093DDC7 /* Appearance */,
+				3C9E548F2A94C0870093DDC7 /* Account */,
+				3C9E54952A94C3170093DDC7 /* Debug Options */,
 			);
 			path = "Settings Views";
 			sourceTree = "<group>";
@@ -857,6 +903,7 @@
 				3CFE04C32A7FF0EB007BAD81 /* KbinThreadsModel.swift in Sources */,
 				3CB8D2682A55F45900EE615A /* FeedView.swift in Sources */,
 				3C5ECB1F2A75ABFE002BA561 /* SiteInfoFetcher.swift in Sources */,
+				3C9E548C2A94A3DC0093DDC7 /* CommentSender.swift in Sources */,
 				3C96EA402A77181C00753199 /* TextFieldLimiter.swift in Sources */,
 				3C62C2592A7309DC003BAC5B /* SettingsAppIconView.swift in Sources */,
 				3C62C2552A72F4BC003BAC5B /* SplashScreenView.swift in Sources */,
@@ -887,6 +934,7 @@
 				3C5ECB242A766D64002BA561 /* DebugLoginPagePropertiesView.swift in Sources */,
 				3CC734A62A6D591A007523B5 /* URLComponentsExtension.swift in Sources */,
 				3C522F3B2A63241900129CAC /* TrendingCommunitiesFetcher.swift in Sources */,
+				3C9E54982A953FB60093DDC7 /* SettingsSplashScreenView.swift in Sources */,
 				3CEF4CD52A69B798002B83C0 /* URLParser.swift in Sources */,
 				3C9E54882A93F4740093DDC7 /* InPostActionsView.swift in Sources */,
 				3CA92E3B2A543BF000688DEB /* CommunityModel.swift in Sources */,

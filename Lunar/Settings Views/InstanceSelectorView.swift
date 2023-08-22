@@ -31,6 +31,9 @@ struct InstanceSelectorView: View {
           Text("Custom").tag("custom")
       }
       .pickerStyle(.menu)
+      .onAppear {
+        tempInstanceName = instanceHostURL
+      }
       
       .onChange(of: tempInstanceName) { name in
         if name == "custom" {

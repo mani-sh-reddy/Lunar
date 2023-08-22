@@ -15,9 +15,9 @@ struct UserRowSettingsBannerView: View {
   @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
   @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-
+  
   @Binding var selectedAccount: LoggedInAccount?
-
+  
   var body: some View {
     HStack {
       if !selectedAvatarURL.isEmpty {
@@ -32,6 +32,7 @@ struct UserRowSettingsBannerView: View {
               .padding(.trailing, 10)
           } else {
             ProgressView()
+              .frame(width: 50, height: 50)
           }
         }
       } else {
@@ -42,7 +43,7 @@ struct UserRowSettingsBannerView: View {
           .foregroundStyle(.blue)
           .symbolRenderingMode(.hierarchical)
       }
-
+      
       if selectedActorID.isEmpty {
         Text("Sign In").font(.title2).bold()
       } else {

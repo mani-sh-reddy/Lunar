@@ -7,7 +7,7 @@
 
 
 import Foundation
-import Kingfisher
+import NukeUI
 import SwiftUI
 
 struct HeaderView: View {
@@ -25,23 +25,22 @@ struct HeaderView: View {
   var body: some View {
     Section {
       HStack {
-        if (icon != nil), !iconFailedToLoad {
-          KFImage(URL(string: icon ?? ""))
-            .fade(duration: 0.25)
-            .resizable()
-            .onFailure { _ in
-              iconFailedToLoad = true
-            }
-            .clipped()
-            .aspectRatio(contentMode: .fill)
-            .clipShape(Circle())
-            .frame(width: 60, height: 60)
-            .padding(5)
-            .border(debugModeEnabled ? Color.red : Color.clear)
-        } else {
-          EmptyView()
-            .frame(width: 0, height: 0)
+        
+        LazyImage(url: URL(string: icon ?? "")) { state in
+          if let image = state.image {
+            image
+              .resizable()
+              .aspectRatio(contentMode: .fill)
+              .clipShape(Circle())
+              .frame(width: 60, height: 60)
+          } else if state.error != nil {
+            Color.clear.frame(width: 0, height: 60)
+          } else {
+            Color.clear.frame(width: 0, height: 60)
+          }
         }
+        .padding(5)
+        
         VStack(alignment: .leading) {
           Text(navigationHeading)
             .font(.title).bold()

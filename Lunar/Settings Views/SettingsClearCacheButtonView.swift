@@ -11,6 +11,8 @@ import UIKit
 import Nuke
 
 struct SettingsClearCacheButtonView: View {
+  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
+
   @State var cacheSize: String = ""
   let haptic = UINotificationFeedbackGenerator()
 
@@ -31,7 +33,7 @@ struct SettingsClearCacheButtonView: View {
         Spacer()
         ZStack(alignment: .trailing) {
           if !cacheClearButtonClicked {
-//              Text(humanReadableByteCount(bytes: URLCache.shared.diskCapacity))
+//            Text(totalCacheSize())
 //              .foregroundStyle(.red)
           } else {
             Group {
@@ -58,6 +60,22 @@ struct SettingsClearCacheButtonView: View {
           .symbolRenderingMode(.hierarchical)
       }
     }
+  }
+  
+  func totalCacheSize() -> String {
+    do {
+      let dataCache = try DataCache(name: "\(self.appBundleID)")
+      dataCache.sizeLimit = 3000 * 1024 * 1024
+      print("path: \(dataCache.path)")
+      print("totalSize: \(dataCache.totalSize)")
+      print("totalAllocatedSize: \(dataCache.totalAllocatedSize)")
+      print("totalCount: \(dataCache.totalCount)")
+      print("sizeLimit: \(dataCache.sizeLimit)")
+      return humanReadableByteCount(bytes: dataCache.totalSize)
+    } catch{
+      print("CACHE ERROR")
+    }
+    return ""
   }
 
   func humanReadableByteCount(bytes: Int) -> String {

@@ -90,7 +90,7 @@ struct PostsView: View {
           }
       }
       if postsFetcher.isLoading {
-        ProgressView()
+        ProgressView().id(UUID())
       }
     }
     .onChange(of: instanceHostURL) { _ in

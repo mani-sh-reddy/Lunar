@@ -50,30 +50,34 @@ struct SettingsView: View {
       .navigationBarTitleDisplayMode(.inline)
     }
     .onChange(of: refreshView) { _ in
-      settingsViewOpacity = 0
-      logoScale = 1.0
-      logoOpacity = 1.0
-      DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-        withAnimation(.easeIn) {
-          settingsViewOpacity = 1
-        }
-        withAnimation(.smooth(duration: 1)) {
-          logoScale = 0.8
-        }
-        withAnimation(Animation.easeInOut(duration: 1.0).delay(0)) {
-          logoOpacity = 0
-        }
-      }
+      refresh()
     }
     .opacity(settingsViewOpacity)
-    .overlay(content: {
+    .overlay {
       Image("LunarLogo")
         .resizable()
         .scaledToFit()
         .padding(50)
         .scaleEffect(logoScale)
         .opacity(logoOpacity)
-    })
+    }
+  }
+  
+  func refresh(){
+    settingsViewOpacity = 0
+    logoScale = 1.0
+    logoOpacity = 1.0
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+      withAnimation(.easeIn) {
+        settingsViewOpacity = 1
+      }
+      withAnimation(.smooth(duration: 1)) {
+        logoScale = 0.8
+      }
+      withAnimation(Animation.easeInOut(duration: 1.0).delay(0)) {
+        logoOpacity = 0
+      }
+    }
   }
 }
 

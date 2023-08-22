@@ -12,9 +12,6 @@ import SwiftUI
 import UIKit
 
 struct InPostThumbnailImageView: View {
-  //    @State private var isLoading = true
-  //    var loadImageOnlyFromCache: Bool
-  
   var thumbnailURL: String
   var body: some View {
     
