@@ -16,61 +16,63 @@ struct OnboardingCard: Identifiable, Hashable {
 }
 
 struct WelcomeScreenView: View {
-  
+
   var onboardingCards: [OnboardingCard] = [
     OnboardingCard(
       title: "Welcome to Lunar",
       description: """
-_An iOS client for Lemmy_
+        _An iOS client for Lemmy_
 
-Thanks for trying out Lunar's early beta version! Keep track of the progress on the [Project Board](https://github.com/users/mani-sh-reddy/projects/3)
+        Thanks for trying out Lunar's early beta version! Keep track of the progress on the [Project Board](https://github.com/users/mani-sh-reddy/projects/3)
 
-If you find any bugs, please let me know on the [Issues Page](https://github.com/mani-sh-reddy/Lunar/issues) or at [lemmy.world/c/lunar](lemmy.world/c/lunar)
+        If you find any bugs, please let me know on the [Issues Page](https://github.com/mani-sh-reddy/Lunar/issues) or at [lemmy.world/c/lunar](lemmy.world/c/lunar)
 
-Show your support by starring the [GitHub repo](https://github.com/mani-sh-reddy/Lunar).
+        Show your support by starring the [GitHub repo](https://github.com/mani-sh-reddy/Lunar).
 
-**Your help is greatly appreciated!**
+        **Your help is greatly appreciated!**
 
-""",
+        """,
       image: "",
       imageColor: .teal
     ),
     OnboardingCard(
       title: "What's Lemmy?",
       description: """
-Lemmy is a platform where people can post and discuss links, text, and images in different communities.
+        Lemmy is a platform where people can post and discuss links, text, and images in different communities.
 
-You can pick one that fits your interests, _c/retrogaming_ or just a generic one, _c/world_
-""",
+        You can pick one that fits your interests, _c/retrogaming_ or just a generic one, _c/world_
+        """,
       image: "bubble.left.and.bubble.right.fill",
       imageColor: .purple
     ),
     OnboardingCard(
-      title: "Instances", description: """
-There are many different instances hosted across the world.
+      title: "Instances",
+      description: """
+        There are many different instances hosted across the world.
 
-Your account lives in the instance you select but you can still interact people from other instances, all thanks to the ActivityPub protocol.
-""",
+        Your account lives in the instance you select but you can still interact people from other instances, all thanks to the ActivityPub protocol.
+        """,
       image: "INSTANCES",
       imageColor: .teal
     ),
     OnboardingCard(
-      title: "Login", description: """
-Login to get started
-""",
+      title: "Login",
+      description: """
+        Login to get started
+        """,
       image: "rectangle.and.pencil.and.ellipsis",
       imageColor: .orange
-    )
+    ),
   ]
-  
+
   var body: some View {
     TabView {
       ForEach(Array(onboardingCards.enumerated()), id: \.element) { index, element in
         OnboardingCardView(card: element, index: index, lastIndex: (onboardingCards.count - 1))
       }
-      
+
       ForEach(onboardingCards, id: \.id) { card in
-        
+
       }
     }
     .tabViewStyle(.page)
@@ -79,25 +81,22 @@ Login to get started
   }
 }
 
-import SwiftUI
-
 struct OnboardingCardView: View {
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @AppStorage("showWelcomeScreen") var showWelcomeScreen = Settings.showWelcomeScreen
-  
+
   @State private var isAnimating = false
-  
+
   var card: OnboardingCard
   let haptics = UIImpactFeedbackGenerator(style: .soft)
-  
+
   let index: Int
   let lastIndex: Int
-  
-  
+
   var body: some View {
-    VStack(spacing:10) {
+    VStack(spacing: 10) {
       Spacer().frame(height: 50)
-      
+
       if card.image.isEmpty {
         Image(asset: "LunarLogo")
           .resizable()
@@ -107,10 +106,10 @@ struct OnboardingCardView: View {
           .symbolRenderingMode(.hierarchical)
           .padding(.top, -40)
       } else if card.image == "INSTANCES" {
-        ZStack{
-//          RoundedRectangle(cornerRadius: 20, style: .continuous)
-//            .foregroundStyle(.ultraThickMaterial)
-          ScrollView{
+        ZStack {
+          //          RoundedRectangle(cornerRadius: 20, style: .continuous)
+          //            .foregroundStyle(.ultraThickMaterial)
+          ScrollView {
             InstanceRowView(instanceURL: "lemmy.world", flag: "W")
             InstanceRowView(instanceURL: "beehaw.org", flag: "US")
             InstanceRowView(instanceURL: "programming.dev", flag: "W")
@@ -133,23 +132,23 @@ struct OnboardingCardView: View {
           .foregroundStyle(card.imageColor)
           .symbolRenderingMode(.hierarchical)
       }
-      
+
       Spacer().frame(height: 20)
-      
+
       Text(card.title)
         .fontWeight(.bold)
         .font(.largeTitle)
         .padding(.horizontal, 30)
         .padding(.vertical, 10)
-      
+
       Text(LocalizedStringKey(card.description))
         .multilineTextAlignment(.leading)
         .padding(.horizontal, 30)
-      
+
       Spacer()
-      
+
       if index == lastIndex {
-        HStack{
+        HStack {
           ReactionButton(
             text: "Login",
             icon: "lock.circle.fill",
@@ -162,7 +161,8 @@ struct OnboardingCardView: View {
             TapGesture().onEnded {
               haptics.impactOccurred(intensity: 0.5)
               showWelcomeScreen = false
-              let _ = LoginView(showingPopover: .constant(false), isLoginFlowComplete: .constant(false))
+              let _ = LoginView(
+                showingPopover: .constant(false), isLoginFlowComplete: .constant(false))
             }
           )
           ReactionButton(
@@ -182,23 +182,19 @@ struct OnboardingCardView: View {
         }
         .padding(.bottom, 80)
       }
-      
-      
-      
+
     }
   }
 }
 
-import SwiftUI
-
 struct InstanceRowView: View {
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-  
+
   var instanceURL: String
   var flag: String
-  
+
   var body: some View {
-    ZStack (alignment: .leading){
+    ZStack(alignment: .leading) {
       RoundedRectangle(cornerRadius: 10, style: .continuous)
         .foregroundStyle(.ultraThickMaterial)
       HStack {
@@ -222,7 +218,6 @@ struct InstanceRowView: View {
     .padding(.top, 2)
   }
 }
-
 
 struct WelcomeScreenView_Previews: PreviewProvider {
   static var previews: some View {
