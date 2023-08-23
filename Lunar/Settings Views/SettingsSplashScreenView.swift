@@ -8,15 +8,19 @@
 import SwiftUI
 
 struct SettingsSplashScreenView: View {
+  @AppStorage("showWelcomeScreen") var showWelcomeScreen = Settings.showWelcomeScreen
   @AppStorage("showLaunchSplashScreen") var showLaunchSplashScreen = Settings.showLaunchSplashScreen
 
   var body: some View {
     List {
       Toggle(isOn: $showLaunchSplashScreen) {
-        Text("Show Splash Screen on Launch")
+        Text("Show Logo Launch Screen")
+      }
+      Toggle(isOn: $showWelcomeScreen) {
+        Text("Show Welcome Screen")
       }
     }
-    .navigationTitle("Splash Screen")
+    .navigationTitle("Splash Screens")
   }
 }
 

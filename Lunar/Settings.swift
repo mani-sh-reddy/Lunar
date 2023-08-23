@@ -55,6 +55,7 @@ enum Settings {
   
   static let selectedSearchSortType: String = "Active"
   static let showLaunchSplashScreen: Bool = true
+  static let showWelcomeScreen: Bool = true
   
   
 }

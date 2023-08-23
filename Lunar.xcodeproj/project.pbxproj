@@ -99,6 +99,7 @@
 		3CB527382A6C28EC0095F351 /* MoreCommunitiesRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB527372A6C28EC0095F351 /* MoreCommunitiesRowView.swift */; };
 		3CB8D2662A55EFF900EE615A /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */; };
 		3CB8D2682A55F45900EE615A /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2672A55F45900EE615A /* FeedView.swift */; };
+		3CB9C40C2A95F4D30022EA64 /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB9C40B2A95F4D30022EA64 /* WelcomeScreenView.swift */; };
 		3CBCCDF62A589F2C00307AC1 /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBCCDF52A589F2C00307AC1 /* CommentsView.swift */; };
 		3CC178912A7DA6A200C208D0 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC178902A7DA6A200C208D0 /* SearchView.swift */; };
 		3CC178932A7DA9FE00C208D0 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC178922A7DA9FE00C208D0 /* SearchModel.swift */; };
@@ -279,6 +280,7 @@
 		3CB527372A6C28EC0095F351 /* MoreCommunitiesRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreCommunitiesRowView.swift; sourceTree = "<group>"; };
 		3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		3CB8D2672A55F45900EE615A /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		3CB9C40B2A95F4D30022EA64 /* WelcomeScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreenView.swift; sourceTree = "<group>"; };
 		3CBCCDF52A589F2C00307AC1 /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
 		3CC178902A7DA6A200C208D0 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		3CC178922A7DA9FE00C208D0 /* SearchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 				3C62C23E2A72AA4D003BAC5B /* Lunar.entitlements */,
 				3C4F09FF2A54399F009DF8AB /* LunarApp.swift */,
 				3C62C2542A72F4BC003BAC5B /* SplashScreenView.swift */,
+				3CB9C40B2A95F4D30022EA64 /* WelcomeScreenView.swift */,
 				3CA92E372A543BF000688DEB /* ContentView.swift */,
 				3CEF4CD62A69B7A8002B83C0 /* ImageViewWithPlaceholder.swift */,
 				3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */,
@@ -892,6 +895,7 @@
 				3CFE04C72A7FF270007BAD81 /* KbinThreadsFetcher.swift in Sources */,
 				3C96EA502A7843EC00753199 /* AddNewUserButtonView.swift in Sources */,
 				3C96EA3E2A76FC1200753199 /* LoginButtonView.swift in Sources */,
+				3CB9C40C2A95F4D30022EA64 /* WelcomeScreenView.swift in Sources */,
 				3CEF4CC22A69B38B002B83C0 /* SubscribedCommunitiesView.swift in Sources */,
 				3C6BBF7C2A91256900312E2B /* UpvoteButtonView.swift in Sources */,
 				3CF3B8FB2A901847001C08B5 /* CommentSectionView.swift in Sources */,
