@@ -81,3 +81,7 @@ fastlane/test_output
 Lunar.xcodeproj/xcshareddata/xcschemes/
 
 *.xcscheme
+
+fastlane/
+
+FastlaneScreenshots/

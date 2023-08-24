@@ -142,9 +142,11 @@ struct OnboardingCardView: View {
         .padding(.horizontal, 30)
         .padding(.vertical, 10)
       
-      Text(LocalizedStringKey(card.description))
-        .multilineTextAlignment(.leading)
-        .padding(.horizontal, 30)
+      ScrollView{
+        Text(LocalizedStringKey(card.description))
+          .multilineTextAlignment(.leading)
+          .padding(.horizontal, 30)
+      }
       
       Spacer()
       
@@ -182,9 +184,6 @@ struct OnboardingCardView: View {
         }
         .padding(.bottom, 80)
       }
-      
-      
-      
     }
   }
 }

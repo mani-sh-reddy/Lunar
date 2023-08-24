@@ -31,6 +31,9 @@
 		3C1A3F5D2A73BC9F00898FC6 /* CredentialsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F5C2A73BC9F00898FC6 /* CredentialsModel.swift */; };
 		3C1A3F5F2A73D64C00898FC6 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F5E2A73D64C00898FC6 /* LoginHelper.swift */; };
 		3C29F51D2A97AAC6001563E7 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 3C29F51C2A97AAC6001563E7 /* Algorithms */; };
+		3C29F5452A97D49C001563E7 /* LunarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C29F5442A97D49C001563E7 /* LunarUITests.swift */; };
+		3C29F5472A97D49C001563E7 /* LunarUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C29F5462A97D49C001563E7 /* LunarUITestsLaunchTests.swift */; };
+		3C29F54E2A97D4AE001563E7 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C29F54D2A97D4AE001563E7 /* SnapshotHelper.swift */; };
 		3C42AD1A2A8038300056AFBC /* KbinCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42AD192A8038300056AFBC /* KbinCommentsView.swift */; };
 		3C42AD1C2A803AE50056AFBC /* KbinCommentsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42AD1B2A803AE50056AFBC /* KbinCommentsFetcher.swift */; };
 		3C432F5C2A819E54000D5321 /* KbinThreadBodyFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C432F5B2A819E54000D5321 /* KbinThreadBodyFetcher.swift */; };
@@ -158,6 +161,13 @@
 			remoteGlobalIDString = 3C10A7682A72A6FC0040F1A9;
 			remoteInfo = "Lunar Stickers MessagesExtension";
 		};
+		3C29F5482A97D49C001563E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3C4F09F42A54399F009DF8AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3C4F09FB2A54399F009DF8AB;
+			remoteInfo = Lunar;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -210,6 +220,10 @@
 		3C1A3F5A2A73B2B800898FC6 /* KeychainInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainInterface.swift; sourceTree = "<group>"; };
 		3C1A3F5C2A73BC9F00898FC6 /* CredentialsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialsModel.swift; sourceTree = "<group>"; };
 		3C1A3F5E2A73D64C00898FC6 /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
+		3C29F5422A97D49C001563E7 /* LunarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LunarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C29F5442A97D49C001563E7 /* LunarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarUITests.swift; sourceTree = "<group>"; };
+		3C29F5462A97D49C001563E7 /* LunarUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3C29F54D2A97D4AE001563E7 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		3C42AD192A8038300056AFBC /* KbinCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinCommentsView.swift; sourceTree = "<group>"; };
 		3C42AD1B2A803AE50056AFBC /* KbinCommentsFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KbinCommentsFetcher.swift; sourceTree = "<group>"; };
 		3C432F5B2A819E54000D5321 /* KbinThreadBodyFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KbinThreadBodyFetcher.swift; sourceTree = "<group>"; };
@@ -338,6 +352,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3C29F53F2A97D49C001563E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3C4F09F92A54399F009DF8AB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -413,6 +434,16 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
+		3C29F5432A97D49C001563E7 /* LunarUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3C29F54D2A97D4AE001563E7 /* SnapshotHelper.swift */,
+				3C29F5442A97D49C001563E7 /* LunarUITests.swift */,
+				3C29F5462A97D49C001563E7 /* LunarUITestsLaunchTests.swift */,
+			);
+			path = LunarUITests;
+			sourceTree = "<group>";
+		};
 		3C4D42A62A8D0FB3003B6F1D /* DataSenders */ = {
 			isa = PBXGroup;
 			children = (
@@ -427,6 +458,7 @@
 			isa = PBXGroup;
 			children = (
 				3C4F09FE2A54399F009DF8AB /* Lunar */,
+				3C29F5432A97D49C001563E7 /* LunarUITests */,
 				3C10A76D2A72A6FC0040F1A9 /* Frameworks */,
 				3C10A7702A72A6FC0040F1A9 /* Lunar Stickers MessagesExtension */,
 				3C10A7622A72A6FB0040F1A9 /* Lunar Stickers */,
@@ -440,6 +472,7 @@
 				3C4F09FC2A54399F009DF8AB /* Lunar.app */,
 				3C10A7612A72A6FB0040F1A9 /* Lunar Stickers.app */,
 				3C10A7692A72A6FC0040F1A9 /* Lunar Stickers MessagesExtension.appex */,
+				3C29F5422A97D49C001563E7 /* LunarUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -739,6 +772,24 @@
 			productReference = 3C10A7692A72A6FC0040F1A9 /* Lunar Stickers MessagesExtension.appex */;
 			productType = "com.apple.product-type.app-extension.messages";
 		};
+		3C29F5412A97D49C001563E7 /* LunarUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3C29F54A2A97D49C001563E7 /* Build configuration list for PBXNativeTarget "LunarUITests" */;
+			buildPhases = (
+				3C29F53E2A97D49C001563E7 /* Sources */,
+				3C29F53F2A97D49C001563E7 /* Frameworks */,
+				3C29F5402A97D49C001563E7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3C29F5492A97D49C001563E7 /* PBXTargetDependency */,
+			);
+			name = LunarUITests;
+			productName = LunarUITests;
+			productReference = 3C29F5422A97D49C001563E7 /* LunarUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		3C4F09FB2A54399F009DF8AB /* Lunar */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3C4F0A0C2A54399F009DF8AB /* Build configuration list for PBXNativeTarget "Lunar" */;
@@ -772,7 +823,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					3C10A7602A72A6FB0040F1A9 = {
@@ -780,6 +831,10 @@
 					};
 					3C10A7682A72A6FC0040F1A9 = {
 						CreatedOnToolsVersion = 14.3.1;
+					};
+					3C29F5412A97D49C001563E7 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = 3C4F09FB2A54399F009DF8AB;
 					};
 					3C4F09FB2A54399F009DF8AB = {
 						CreatedOnToolsVersion = 15.0;
@@ -809,6 +864,7 @@
 				3C4F09FB2A54399F009DF8AB /* Lunar */,
 				3C10A7602A72A6FB0040F1A9 /* Lunar Stickers */,
 				3C10A7682A72A6FC0040F1A9 /* Lunar Stickers MessagesExtension */,
+				3C29F5412A97D49C001563E7 /* LunarUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -832,6 +888,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3C29F5402A97D49C001563E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3C4F09FA2A54399F009DF8AB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -848,6 +911,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C10A7722A72A6FC0040F1A9 /* MessagesViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3C29F53E2A97D49C001563E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C29F5452A97D49C001563E7 /* LunarUITests.swift in Sources */,
+				3C29F5472A97D49C001563E7 /* LunarUITestsLaunchTests.swift in Sources */,
+				3C29F54E2A97D4AE001563E7 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -993,6 +1066,11 @@
 			target = 3C10A7682A72A6FC0040F1A9 /* Lunar Stickers MessagesExtension */;
 			targetProxy = 3C10A76B2A72A6FC0040F1A9 /* PBXContainerItemProxy */;
 		};
+		3C29F5492A97D49C001563E7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3C4F09FB2A54399F009DF8AB /* Lunar */;
+			targetProxy = 3C29F5482A97D49C001563E7 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1131,6 +1209,50 @@
 			};
 			name = Release;
 		};
+		3C29F54B2A97D49C001563E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QR8TDZJV2W;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.LunarUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_TARGET_NAME = Lunar;
+			};
+			name = Debug;
+		};
+		3C29F54C2A97D49C001563E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QR8TDZJV2W;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.LunarUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_TARGET_NAME = Lunar;
+			};
+			name = Release;
+		};
 		3C4F0A0A2A54399F009DF8AB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1264,13 +1386,12 @@
 				ASSETCATALOG_COMPILER_TARGET_STICKERS_ICON_ROLE = extension;
 				CODE_SIGN_ENTITLEMENTS = Lunar/Lunar.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = QR8TDZJV2W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Lunar/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Lunar;
+				INFOPLIST_KEY_CFBundleDisplayName = "Lunar for Lemmy";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1283,7 +1404,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.8.x;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.Lunar";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1306,13 +1426,12 @@
 				ASSETCATALOG_COMPILER_TARGET_STICKERS_ICON_ROLE = extension;
 				CODE_SIGN_ENTITLEMENTS = Lunar/Lunar.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = QR8TDZJV2W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Lunar/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Lunar;
+				INFOPLIST_KEY_CFBundleDisplayName = "Lunar for Lemmy";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1325,7 +1444,6 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.8.x;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.Lunar";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1355,6 +1473,15 @@
 			buildConfigurations = (
 				3C10A77E2A72A6FC0040F1A9 /* Debug */,
 				3C10A77F2A72A6FC0040F1A9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3C29F54A2A97D49C001563E7 /* Build configuration list for PBXNativeTarget "LunarUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3C29F54B2A97D49C001563E7 /* Debug */,
+				3C29F54C2A97D49C001563E7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
