@@ -33,10 +33,10 @@ struct SplashScreen: View {
         .opacity(logoOpacity)
     }
     .onAppear {
-      withAnimation(.smooth(duration: 1)) {
+      withAnimation(.easeInOut(duration: 1)) {
         logoScale = 1.0
       }
-      withAnimation(Animation.smooth(duration: 1.0).delay(0.5)) {
+      withAnimation(Animation.easeInOut(duration: 1.0).delay(0.5)) {
         logoOpacity = 1.0
       }
       DispatchQueue.main.asyncAfter(deadline: .now() + 2) {

@@ -28,7 +28,7 @@ struct UserRowSettingsBannerView: View {
               .aspectRatio(contentMode: .fit)
               .frame(alignment: .center)
               .frame(width: 50, height: 50)
-              .clipShape(.circle)
+              .clipShape(Circle())
               .padding(.trailing, 10)
           } else {
             ProgressView()

@@ -131,7 +131,7 @@ struct LoginButtonView: View {
             showingTwoFactorWarning = true
           case "missing_totp_token":
             print("LOGIN FAILED - MISSING_TOTP")
-            withAnimation(.smooth) {
+            withAnimation(.easeInOut) {
               showingTwoFactorWarning = true
               showingTwoFactorField = true
             }

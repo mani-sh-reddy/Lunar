@@ -37,7 +37,7 @@ struct AppResetButton: View {
                   .symbolRenderingMode(.hierarchical)
                   .foregroundStyle(.white)
               }.onAppear {
-                let animation = Animation.smooth(duration: 2)
+                let animation = Animation.easeInOut(duration: 2)
                 confirmationOpacity = 1
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                   isClicked = false

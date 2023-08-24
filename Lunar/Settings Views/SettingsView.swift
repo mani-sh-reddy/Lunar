@@ -71,7 +71,7 @@ struct SettingsView: View {
       withAnimation(.easeIn) {
         settingsViewOpacity = 1
       }
-      withAnimation(.smooth(duration: 1)) {
+      withAnimation(.easeInOut(duration: 1)) {
         logoScale = 0.8
       }
       withAnimation(Animation.easeInOut(duration: 1.0).delay(0)) {

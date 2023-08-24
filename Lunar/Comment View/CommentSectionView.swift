@@ -82,7 +82,7 @@ struct CommentSectionView: View {
   }
   
   func commentExpandAction(comment: CommentElement) {
-    withAnimation(.smooth) {
+    withAnimation(.easeInOut) {
       for commentOnMainList in comments {
         if commentOnMainList.comment.path.contains(comment.comment.path){
           if commentOnMainList.comment.path != comment.comment.path {

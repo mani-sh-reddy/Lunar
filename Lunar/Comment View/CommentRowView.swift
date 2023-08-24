@@ -106,7 +106,7 @@ struct CommentRowView: View {
     }
   }
   func commentCollapseAction() {
-    withAnimation(.smooth) {
+    withAnimation(.easeInOut) {
       if comment.isCollapsed {
         commentsFetcher.updateCommentCollapseState(comment, isCollapsed: false)
       } else {
