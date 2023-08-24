@@ -30,6 +30,7 @@
 		3C1A3F5B2A73B2B800898FC6 /* KeychainInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F5A2A73B2B800898FC6 /* KeychainInterface.swift */; };
 		3C1A3F5D2A73BC9F00898FC6 /* CredentialsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F5C2A73BC9F00898FC6 /* CredentialsModel.swift */; };
 		3C1A3F5F2A73D64C00898FC6 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F5E2A73D64C00898FC6 /* LoginHelper.swift */; };
+		3C29F51D2A97AAC6001563E7 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 3C29F51C2A97AAC6001563E7 /* Algorithms */; };
 		3C42AD1A2A8038300056AFBC /* KbinCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42AD192A8038300056AFBC /* KbinCommentsView.swift */; };
 		3C42AD1C2A803AE50056AFBC /* KbinCommentsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42AD1B2A803AE50056AFBC /* KbinCommentsFetcher.swift */; };
 		3C432F5C2A819E54000D5321 /* KbinThreadBodyFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C432F5B2A819E54000D5321 /* KbinThreadBodyFetcher.swift */; };
@@ -341,6 +342,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C29F51D2A97AAC6001563E7 /* Algorithms in Frameworks */,
 				3CA95F082A7ACF3B00626353 /* Nuke in Frameworks */,
 				3CEF196B2A580672006736EF /* Kingfisher in Frameworks */,
 				3C4B7DDB2A58AD23003C8192 /* Alamofire in Frameworks */,
@@ -757,6 +759,7 @@
 				3CA95F072A7ACF3B00626353 /* Nuke */,
 				3CA95F092A7ACF3B00626353 /* NukeUI */,
 				3CFE04BE2A7FEA71007BAD81 /* SwiftSoup */,
+				3C29F51C2A97AAC6001563E7 /* Algorithms */,
 			);
 			productName = Lunar;
 			productReference = 3C4F09FC2A54399F009DF8AB /* Lunar.app */;
@@ -797,6 +800,7 @@
 				3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */,
 				3CFE04BD2A7FEA71007BAD81 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+				3C29F51B2A97AAC6001563E7 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 			);
 			productRefGroup = 3C4F09FD2A54399F009DF8AB /* Products */;
 			projectDirPath = "";
@@ -1260,7 +1264,7 @@
 				ASSETCATALOG_COMPILER_TARGET_STICKERS_ICON_ROLE = extension;
 				CODE_SIGN_ENTITLEMENTS = Lunar/Lunar.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = QR8TDZJV2W;
 				ENABLE_PREVIEWS = YES;
@@ -1271,6 +1275,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1278,16 +1283,16 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.Lunar.app";
+				MARKETING_VERSION = 0.8.x;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.Lunar";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1301,7 +1306,7 @@
 				ASSETCATALOG_COMPILER_TARGET_STICKERS_ICON_ROLE = extension;
 				CODE_SIGN_ENTITLEMENTS = Lunar/Lunar.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = QR8TDZJV2W;
 				ENABLE_PREVIEWS = YES;
@@ -1312,6 +1317,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1319,16 +1325,16 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.Lunar.app";
+				MARKETING_VERSION = 0.8.x;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.Lunar";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1374,6 +1380,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3C29F51B2A97AAC6001563E7 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -1409,6 +1423,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3C29F51C2A97AAC6001563E7 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3C29F51B2A97AAC6001563E7 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
 		3C4B7DDA2A58AD23003C8192 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */;

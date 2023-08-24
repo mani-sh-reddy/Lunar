@@ -16,12 +16,7 @@
 		</dict>
 	</array>
 	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSExceptionDomains</key>
-		<dict/>
-	</dict>
-	<key>UIBackgroundModes</key>
-	<array/>
+	<dict/>
 	<key>UILaunchScreen</key>
 	<dict/>
 </dict>
