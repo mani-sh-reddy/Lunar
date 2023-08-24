@@ -8,5 +8,7 @@
 	<array>
 		<string>group.io.github.mani-sh-reddy.Lunar</string>
 	</array>
+	<key>com.apple.security.network.client</key>
+	<true/>
 </dict>
 </plist>
