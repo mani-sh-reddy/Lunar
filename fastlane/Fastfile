@@ -1,10 +1,13 @@
 # This file contains the fastlane.tools configuration
 
+# sem_ver_tag = UI.select("Select Semantic Versioning Tag: ", ["major", "minor", "patch"])
+latest_git_tag = sh("git describe --abbrev=0 --tags")
+
 opt_out_usage
 update_fastlane
 
 default_platform(:ios)
-xcode_select("/Applications/Xcode_14.2.app")
+# xcode_select("/Applications/Xcode-beta.app")
 
 DEVELOPER_APPLE_ID = ENV["DEVELOPER_APPLE_ID"]
 DEVELOPER_APP_IDENTIFIER = ENV["DEVELOPER_APP_IDENTIFIER"]
@@ -17,83 +20,31 @@ APPLE_KEY_CONTENT = ENV["APPLE_KEY_CONTENT"]
 GIT_AUTHORIZATION = ENV["GIT_AUTHORIZATION"]
 LATEST_TAG = ENV["LATEST_TAG"]
 
-PROJECT_FILE_PATH = "./Lunar.xcodeproj"
-
-def delete_temp_keychain(name)
-delete_keychain(
-    name: name
-) if File.exist? File.expand_path("~/Library/Keychains/#{name}-db")
-end
-
-def create_temp_keychain(name, password)
-create_keychain(
-    name: name,
-    password: password,
-    unlock: false,
-    timeout: 0
-)
-end
-
-def ensure_temp_keychain(name, password)
-delete_temp_keychain(name)
-create_temp_keychain(name, password)
-end
-
+default_platform(:ios)
 platform :ios do
-        lane :testflight_build_release do
-            keychain_name = TEMP_KEYCHAIN_USER
-        keychain_password = TEMP_KEYCHAIN_PASSWORD
-    ensure_temp_keychain(keychain_name, keychain_password)
+  desc "Package and deploy to testflight"
+  lane :testflight_release do
+    match(type: "appstore")
 
-api_key = app_store_connect_api_key(
-    key_id: APPLE_KEY_ID,
-    issuer_id: APPLE_ISSUER_ID,
-    key_content: APPLE_KEY_CONTENT,
-    duration: 1200,
-    in_house: false
-)
+    latest_build_number = latest_testflight_build_number(
+      app_identifier: "#{DEVELOPER_APP_IDENTIFIER}"
+    )
+    
+    increment_build_number({
+        build_number: latest_build_number + 1
+    })
 
-latest_build_number = latest_testflight_build_number(
-  app_identifier: "#{DEVELOPER_APP_IDENTIFIER}"
-)
+    increment_version_number_in_xcodeproj(
+      scheme: "Lunar",
+      version_number: latest_git_tag, 
+    )
 
-increment_build_number({
-    build_number: latest_build_number + 1
-})
+    build_app(
+      scheme: "Lunar",
+      silent: true,
+      suppress_xcode_output: true
+    )
+    # upload_to_testflight
 
-match(
-    type: 'appstore',
-    app_identifier: "#{DEVELOPER_APP_IDENTIFIER}",
-    git_basic_authorization: Base64.strict_encode64(GIT_AUTHORIZATION),
-    readonly: true,
-    keychain_name: keychain_name,
-    keychain_password: keychain_password,
-    api_key: api_key
-)
-
-gym(
-    configuration: "Release",
-    scheme: "Lunar",
-    clean: true,
-    skip_profile_detection: true,
-    export_options: {
-        provisioningProfiles: {
-            DEVELOPER_APP_IDENTIFIER => PROVISIONING_PROFILE_SPECIFIER
-        }
-    }
-)
-
-pilot(
-    apple_id: "#{DEVELOPER_APPLE_ID}",
-    app_identifier: "#{DEVELOPER_APP_IDENTIFIER}",
-    skip_waiting_for_build_processing: true,
-    skip_submission: true,
-    distribute_external: true,
-    notify_external_testers: true,
-    ipa: "./Lunar.ipa",
-    changelog: changelog_from_git_commits
-)
-
-delete_temp_keychain(keychain_name)
-end
+  end
 end
