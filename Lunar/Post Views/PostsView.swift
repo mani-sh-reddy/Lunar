@@ -163,5 +163,3 @@ struct PostSectionView: View {
     }
   }
 }
-
-

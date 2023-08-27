@@ -8,21 +8,30 @@
 import XCTest
 
 final class LunarUITests: XCTestCase {
+  var app: XCUIApplication!
   
   override func setUpWithError() throws {
-    let app = XCUIApplication()
-    setupSnapshot(app)
-    app.launch()
-    XCUIDevice.shared.orientation = .portrait
-    let tabBarsQuery = XCUIApplication().tabBars
-    tabBarsQuery.buttons.element(boundBy: 0).tap()
-    snapshot("0FeedView")
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-    
-    // In UI tests it is usually best to stop immediately when a failure occurs.
     continueAfterFailure = false
     
-    // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+    app = XCUIApplication()
+    setupSnapshot(app)
+    app.launch()
+    
+  }
+  
+  func testTakeScreenshots() {
+    let scrollView = app.scrollViews.element(boundBy: 0)    
+    snapshot("01-WelcomeScreen")
+
+    scrollView.swipeLeft()
+    snapshot("02-WelcomeScreen")
+    
+    scrollView.swipeLeft()
+    snapshot("03-WelcomeScreen")
+    
+    scrollView.swipeLeft()
+    snapshot("04-WelcomeScreen")
+    
   }
   
   override func tearDownWithError() throws {

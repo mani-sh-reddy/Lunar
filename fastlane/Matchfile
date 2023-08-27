@@ -1,0 +1,5 @@
+git_url "https://github.com/mani-sh-reddy/Lunar-Fastlane-Certs"
+
+type "appstore" # The default type, can be: appstore, adhoc or development
+
+app_identifier "io.github.mani-sh-reddy.Lunar"

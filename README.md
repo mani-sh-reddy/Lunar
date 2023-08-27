@@ -15,7 +15,7 @@
 
 Lunar is an iOS app that serves as a client for [Lemmy](https://join-lemmy.org/instances) and [Kbin](https://kbin.pub/en), the open-source federated alternatives to Reddit
 
-![Lunar Github Screenshots](Screenshots/LunarGithubScreenshots.png)
+![Lunar Github Screenshots](Images/LunarGithubScreenshots.png)
 
 </div>
 
