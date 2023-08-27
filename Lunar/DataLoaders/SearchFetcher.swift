@@ -12,6 +12,8 @@ import Kingfisher
 import SwiftUI
 
 @MainActor class SearchFetcher: ObservableObject {
+  @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
+  @AppStorage("logs") var logs = Settings.logs
   @Published var searchModel = [SearchModel]()
 
   @Published var comments = [SearchCommentElement]()
@@ -126,7 +128,8 @@ import SwiftUI
     let cacher = ResponseCacher(behavior: .cache)
 
     AF.request(endpoint) { urlRequest in
-      print("SearchFetcher LOAD \(urlRequest.url as Any)")
+      let log = "SearchFetcher LOAD \(urlRequest.url as Any)"
+      print(log)
       urlRequest.cachePolicy = .returnCacheDataElseLoad
     }
     .cacheResponse(using: cacher)
@@ -141,7 +144,13 @@ import SwiftUI
         completion(true, nil)
 
       case let .failure(error):
-        print("SearchFetcher ERROR: \(error): \(error.errorDescription ?? "")")
+        DispatchQueue.main.async{
+          let log = "SearchFetcher ERROR: \(error): \(error.errorDescription ?? "")"
+          print(log)
+          let currentDateTime = String(describing: Date())
+          self.logs.append("\(currentDateTime) :: \(log)")
+        }
+        
         self.isLoading = false  // Set isLoading to false on failure as well
         completion(true, error)
       }

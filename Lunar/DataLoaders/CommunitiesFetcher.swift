@@ -15,6 +15,8 @@ import SwiftUI
   @AppStorage("communitiesType") var communitiesType = Settings.communitiesType
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
+  @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
+  @AppStorage("logs") var logs = Settings.logs
 
   @Published var communities = [CommunityElement]()
   @Published var isLoading = false
@@ -94,7 +96,12 @@ import SwiftUI
         prefetcher.start()
 
       case let .failure(error):
-        print("CommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")")
+        DispatchQueue.main.async{
+          let log = "CommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")"
+          print(log)
+          let currentDateTime = String(describing: Date())
+          self.logs.append("\(currentDateTime) :: \(log)")
+        }
       }
     }
   }
@@ -141,7 +148,12 @@ import SwiftUI
         self.currentPage += 1
 
       case let .failure(error):
-        print("CommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")")
+        DispatchQueue.main.async{
+          let log = "CommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")"
+          print(log)
+          let currentDateTime = String(describing: Date())
+          self.logs.append("\(currentDateTime) :: \(log)")
+        }
       }
     }
   }

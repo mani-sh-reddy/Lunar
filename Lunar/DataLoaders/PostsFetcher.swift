@@ -16,6 +16,9 @@ import SwiftUI
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
   @AppStorage("postSort") var postSort = Settings.postSort
   @AppStorage("postType") var postType = Settings.postType
+  @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
+  @AppStorage("logs") var logs = Settings.logs
+
   @Published var posts = [PostElement]()
   @Published var isLoading = false
   
@@ -90,7 +93,12 @@ import SwiftUI
         self.imagePrefetcher.startPrefetching(with: imagesToPrefetch)
         
       case let .failure(error):
-        print("PostsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
+        DispatchQueue.main.async{
+          let log = "PostsFetcher ERROR: \(error): \(error.errorDescription ?? "")"
+          print(log)
+          let currentDateTime = String(describing: Date())
+          self.logs.append("\(currentDateTime) :: \(log)")
+        }
       }
     }
   }
@@ -133,7 +141,12 @@ import SwiftUI
         self.currentPage += 1
         
       case let .failure(error):
-        print("PostsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
+        DispatchQueue.main.async{
+          let log = "PostsFetcher ERROR: \(error): \(error.errorDescription ?? "")"
+          print(log)
+          let currentDateTime = String(describing: Date())
+          self.logs.append("\(currentDateTime) :: \(log)")
+        }
       }
     }
   }

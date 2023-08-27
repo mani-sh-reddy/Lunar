@@ -26,7 +26,7 @@ struct AppResetButton: View {
             ProgressView()
           } else {
             Text("Reset App")
-              .foregroundStyle(.white)
+              .foregroundStyle(.primary)
           }
           Spacer()
           ZStack(alignment: .trailing) {
@@ -35,7 +35,7 @@ struct AppResetButton: View {
                 Image(systemName: "checkmark.circle.fill")
                   .font(.title2).opacity(confirmationOpacity)
                   .symbolRenderingMode(.hierarchical)
-                  .foregroundStyle(.white)
+                  .foregroundStyle(.primary)
               }.onAppear {
                 let animation = Animation.easeInOut(duration: 2)
                 confirmationOpacity = 1
@@ -51,14 +51,13 @@ struct AppResetButton: View {
         } icon: {
           Image(systemName: "exclamationmark.octagon.fill")
             .font(.title2)
-            .foregroundStyle(.white)
+            .foregroundStyle(.red)
             .symbolRenderingMode(.hierarchical)
         }.onTapGesture {
           showConfirmation = true
         }
       }
       .hapticFeedbackOnTap(style: .rigid)
-      .listRowBackground(Color.red)
       .confirmationDialog("Clear user defaults and reset app", isPresented: $showConfirmation) {
         Button(role: .destructive) {
           resetApp()

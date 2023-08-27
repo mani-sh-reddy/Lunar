@@ -35,6 +35,9 @@ enum Settings {
   /// loggedInAccount.actorID = "123"
   /// self.loggedInAccounts.append(loggedInAccount)
   static let loggedInAccounts: [LoggedInAccount] = []
+  
+  static let enableLogging: Bool = false
+  static let logs: [String] = []
 
   /// selectedUser split up to store in appstorage
   static let selectedName: String = ""
@@ -59,3 +62,4 @@ enum Settings {
   
   
 }
+

@@ -16,6 +16,8 @@ import SwiftUI
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
   @AppStorage("commentSort") var commentSort = Settings.commentSort
   @AppStorage("commentType") var commentType = Settings.commentType
+  @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
+  @AppStorage("logs") var logs = Settings.logs
   @Published var comments = [CommentElement]()
   @Published var isLoading = false
 
@@ -85,7 +87,12 @@ import SwiftUI
         }
         
       case let .failure(error):
-        print("CommentsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
+        DispatchQueue.main.async{
+          let log = "CommentsFetcher ERROR: \(error): \(error.errorDescription ?? "")"
+          print(log)
+          let currentDateTime = String(describing: Date())
+          self.logs.append("\(currentDateTime) :: \(log)")
+        }
       }
     }
   }
@@ -142,7 +149,12 @@ import SwiftUI
         self.currentPage += 1
 
       case let .failure(error):
-        print("CommentsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
+        DispatchQueue.main.async{
+          let log = "CommentsFetcher ERROR: \(error): \(error.errorDescription ?? "")"
+          print(log)
+          let currentDateTime = String(describing: Date())
+          self.logs.append("\(currentDateTime) :: \(log)")
+        }
       }
     }
   }

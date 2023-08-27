@@ -61,11 +61,6 @@ increment_build_number({
     build_number: latest_build_number + 1
 })
 
-increment_version_number(
-    xcodeproj: "#{PROJECT_FILE_PATH}",
-    version_number: "#{LATEST_TAG}"
-)
-
 match(
     type: 'appstore',
     app_identifier: "#{DEVELOPER_APP_IDENTIFIER}",
@@ -79,7 +74,8 @@ match(
 gym(
     configuration: "Release",
     scheme: "Lunar",
-    export_method: "app-store",
+    clean: true,
+    skip_profile_detection: true,
     export_options: {
         provisioningProfiles: {
             DEVELOPER_APP_IDENTIFIER => PROVISIONING_PROFILE_SPECIFIER

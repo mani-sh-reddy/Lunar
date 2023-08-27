@@ -65,6 +65,12 @@
 		3C72E21B2A71735E00C794C6 /* InPostThumbnailImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C72E21A2A71735E00C794C6 /* InPostThumbnailImageView.swift */; };
 		3C7B7DC72A89226A00A02A43 /* CommunityHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7B7DC62A89226A00A02A43 /* CommunityHeaderView.swift */; };
 		3C7B7DC92A89485000A02A43 /* DateTimeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7B7DC82A89485000A02A43 /* DateTimeParser.swift */; };
+		3C808E242A9B6DAD008FA62E /* SettingsDevOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C808E232A9B6DAD008FA62E /* SettingsDevOptionsView.swift */; };
+		3C808E262A9B7174008FA62E /* SettingsDevSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C808E252A9B7174008FA62E /* SettingsDevSectionView.swift */; };
+		3C808E282A9B7639008FA62E /* LogsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C808E272A9B7639008FA62E /* LogsView.swift */; };
+		3C808E2A2A9B772A008FA62E /* ClearLogsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C808E292A9B772A008FA62E /* ClearLogsButton.swift */; };
+		3C808E2C2A9B8763008FA62E /* ShareLogsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C808E2B2A9B8763008FA62E /* ShareLogsButton.swift */; };
+		3C808E2E2A9B87FA008FA62E /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C808E2D2A9B87FA008FA62E /* ShareSheet.swift */; };
 		3C87092C2A745CE2004999CE /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C87092B2A745CE2004999CE /* ArrayExtension.swift */; };
 		3C87092E2A74647A004999CE /* BindingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C87092D2A74647A004999CE /* BindingExtension.swift */; };
 		3C8709322A747B91004999CE /* SiteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8709312A747B91004999CE /* SiteModel.swift */; };
@@ -232,6 +238,12 @@
 		3C7B7DC62A89226A00A02A43 /* CommunityHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityHeaderView.swift; sourceTree = "<group>"; };
 		3C7B7DC82A89485000A02A43 /* DateTimeParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeParser.swift; sourceTree = "<group>"; };
 		3C808E222A9A8C95008FA62E /* LunarDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LunarDebug.entitlements; sourceTree = "<group>"; };
+		3C808E232A9B6DAD008FA62E /* SettingsDevOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDevOptionsView.swift; sourceTree = "<group>"; };
+		3C808E252A9B7174008FA62E /* SettingsDevSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDevSectionView.swift; sourceTree = "<group>"; };
+		3C808E272A9B7639008FA62E /* LogsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsView.swift; sourceTree = "<group>"; };
+		3C808E292A9B772A008FA62E /* ClearLogsButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClearLogsButton.swift; sourceTree = "<group>"; };
+		3C808E2B2A9B8763008FA62E /* ShareLogsButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareLogsButton.swift; sourceTree = "<group>"; };
+		3C808E2D2A9B87FA008FA62E /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		3C87092B2A745CE2004999CE /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		3C87092D2A74647A004999CE /* BindingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExtension.swift; sourceTree = "<group>"; };
 		3C8709312A747B91004999CE /* SiteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteModel.swift; sourceTree = "<group>"; };
@@ -366,6 +378,7 @@
 				3C130F712A8AD56A0060B6E4 /* SFSafariViewWrapper.swift */,
 				3C130F742A8C0A520060B6E4 /* ExpandableTextBox.swift */,
 				3C9E54892A940F9B0093DDC7 /* TextBox.swift */,
+				3C808E2D2A9B87FA008FA62E /* ShareSheet.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -499,14 +512,19 @@
 			name = Info;
 			sourceTree = "<group>";
 		};
-		3C9E54952A94C3170093DDC7 /* Debug Options */ = {
+		3C9E54952A94C3170093DDC7 /* Developer Options */ = {
 			isa = PBXGroup;
 			children = (
-				3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheButtonView.swift */,
 				3CED897C2A71DCFF00BD9086 /* SettingsHiddenOptionsView.swift */,
+				3C808E252A9B7174008FA62E /* SettingsDevSectionView.swift */,
+				3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheButtonView.swift */,
+				3C808E232A9B6DAD008FA62E /* SettingsDevOptionsView.swift */,
 				3C6D296A2A7986AE007AFD99 /* AppResetButton.swift */,
+				3C808E272A9B7639008FA62E /* LogsView.swift */,
+				3C808E292A9B772A008FA62E /* ClearLogsButton.swift */,
+				3C808E2B2A9B8763008FA62E /* ShareLogsButton.swift */,
 			);
-			name = "Debug Options";
+			name = "Developer Options";
 			sourceTree = "<group>";
 		};
 		3C9E54962A94C34D0093DDC7 /* Appearance */ = {
@@ -639,7 +657,7 @@
 				3C9E54942A94C3150093DDC7 /* Info */,
 				3C9E54922A94C2F60093DDC7 /* General */,
 				3C9E54962A94C34D0093DDC7 /* Appearance */,
-				3C9E54952A94C3170093DDC7 /* Debug Options */,
+				3C9E54952A94C3170093DDC7 /* Developer Options */,
 			);
 			path = "Settings Views";
 			sourceTree = "<group>";
@@ -791,9 +809,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C808E2C2A9B8763008FA62E /* ShareLogsButton.swift in Sources */,
 				3C1A3F5D2A73BC9F00898FC6 /* CredentialsModel.swift in Sources */,
 				3C130F702A8AD2920060B6E4 /* SafariView.swift in Sources */,
 				3C4B7DD82A58A741003C8192 /* CommentModel.swift in Sources */,
+				3C808E2A2A9B772A008FA62E /* ClearLogsButton.swift in Sources */,
 				3C6BBF762A91252700312E2B /* ReactionButtonView.swift in Sources */,
 				3CEF4CC62A69B3AD002B83C0 /* MoreCommunitiesButtonView.swift in Sources */,
 				3CEF4CD32A69B770002B83C0 /* StringExtension.swift in Sources */,
@@ -834,6 +854,7 @@
 				3CF3F9C02A6EE0390051E725 /* SettingsClearCacheButtonView.swift in Sources */,
 				3CFE04C72A7FF270007BAD81 /* KbinThreadsFetcher.swift in Sources */,
 				3C96EA502A7843EC00753199 /* AddNewUserButtonView.swift in Sources */,
+				3C808E282A9B7639008FA62E /* LogsView.swift in Sources */,
 				3C96EA3E2A76FC1200753199 /* LoginButtonView.swift in Sources */,
 				3CB9C40C2A95F4D30022EA64 /* WelcomeScreenView.swift in Sources */,
 				3CEF4CC22A69B38B002B83C0 /* SubscribedCommunitiesView.swift in Sources */,
@@ -860,6 +881,7 @@
 				3C62C2592A7309DC003BAC5B /* SettingsAppIconView.swift in Sources */,
 				3C62C2552A72F4BC003BAC5B /* SplashScreenView.swift in Sources */,
 				3C6D29652A793878007AFD99 /* DictionaryExtension.swift in Sources */,
+				3C808E242A9B6DAD008FA62E /* SettingsDevOptionsView.swift in Sources */,
 				3C42AD1A2A8038300056AFBC /* KbinCommentsView.swift in Sources */,
 				3C6299D12A751A5900BE2A9F /* TextExtension.swift in Sources */,
 				3CF3B8FD2A90188D001C08B5 /* CommentMetadataView.swift in Sources */,
@@ -897,11 +919,13 @@
 				3C6BBF7A2A91255D00312E2B /* DownvoteButtonView.swift in Sources */,
 				3CB408B42A5C558B00B7C983 /* CommunitiesFetcher.swift in Sources */,
 				3C7B7DC72A89226A00A02A43 /* CommunityHeaderView.swift in Sources */,
+				3C808E2E2A9B87FA008FA62E /* ShareSheet.swift in Sources */,
 				3C96EA422A77225E00753199 /* ValidationUtils.swift in Sources */,
 				3C432F5C2A819E54000D5321 /* KbinThreadBodyFetcher.swift in Sources */,
 				3C113C432A6EA92600FDE5CE /* InstanceSelectorView.swift in Sources */,
 				3C8709322A747B91004999CE /* SiteModel.swift in Sources */,
 				3C5ECB2E2A767957002BA561 /* TwoFactorFieldView.swift in Sources */,
+				3C808E262A9B7174008FA62E /* SettingsDevSectionView.swift in Sources */,
 				3C7B7DC92A89485000A02A43 /* DateTimeParser.swift in Sources */,
 				3CA92E432A549A7F00688DEB /* CommunityRowView.swift in Sources */,
 				3CEF4CC42A69B39B002B83C0 /* TrendingCommunitiesSectionView.swift in Sources */,
@@ -935,8 +959,8 @@
 		3C29F54B2A97D49C001563E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Distribution: Manish Reddy (QR8TDZJV2W)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 274;
 				DEVELOPMENT_TEAM = QR8TDZJV2W;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -944,6 +968,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.LunarUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -958,8 +983,8 @@
 		3C29F54C2A97D49C001563E7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 274;
 				DEVELOPMENT_TEAM = QR8TDZJV2W;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -1136,12 +1161,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.8.64;
+				MARKETING_VERSION = 0.8.65;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.Lunar";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1160,10 +1185,11 @@
 				ASSETCATALOG_COMPILER_TARGET_STICKERS_ICON_ROLE = extension;
 				CODE_SIGN_ENTITLEMENTS = Lunar/Lunar.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution: Manish Reddy (QR8TDZJV2W)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution: Manish Reddy (QR8TDZJV2W)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 274;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = QR8TDZJV2W;
+				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = QR8TDZJV2W;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
@@ -1181,13 +1207,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.8.64;
+				MARKETING_VERSION = 0.8.65;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.Lunar";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore io.github.mani-sh-reddy.Lunar";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore io.github.mani-sh-reddy.Lunar";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;

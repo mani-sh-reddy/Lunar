@@ -20,7 +20,7 @@ struct SettingsSplashScreenView: View {
         Text("Show Welcome Screen")
       }
     }
-    .navigationTitle("Splash Screens")
+    .navigationTitle("Splash Screen")
   }
 }
 

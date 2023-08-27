@@ -20,6 +20,8 @@ class SiteInfoFetcher: ObservableObject {
   @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
   @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
+  @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
+  @AppStorage("logs") var logs = Settings.logs
 
   init(jwt: String) {
     self.jwt = jwt
@@ -61,11 +63,21 @@ class SiteInfoFetcher: ObservableObject {
           if let data = response.data,
             let fetchError = try? JSONDecoder().decode(ErrorResponseModel.self, from: data)
           {
-            print("fetchUsernameAndEmail ERROR: \(fetchError.error)")
+            DispatchQueue.main.async{
+              let log = "fetchUsernameAndEmail ERROR: \(fetchError.error)"
+              print(log)
+              let currentDateTime = String(describing: Date())
+              self.logs.append("\(currentDateTime) :: \(log)")
+            }
             completion(nil, nil, nil, fetchError.error)
           } else {
-            let errorDescription = String(describing: error.errorDescription)
-            print("fetchUsernameAndEmail JSON DECODE ERROR: \(error): \(errorDescription)")
+            DispatchQueue.main.async{
+              let errorDescription = String(describing: error.errorDescription)
+              let log = "fetchUsernameAndEmail JSON DECODE ERROR: \(error): \(errorDescription)"
+              print(log)
+              let currentDateTime = String(describing: Date())
+              self.logs.append("\(currentDateTime) :: \(log)")
+            }
             completion(nil, nil, nil, error.errorDescription)
           }
         }
