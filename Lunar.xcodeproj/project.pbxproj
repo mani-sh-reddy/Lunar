@@ -1121,7 +1121,7 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = QR8TDZJV2W;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = NO;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Lunar/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Lunar;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
