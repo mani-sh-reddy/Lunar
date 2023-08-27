@@ -39,14 +39,14 @@ class SiteInfoFetcher: ObservableObject {
           let actorID = result.myUser.localUserView.person.actorID
           /// creating a loggedinuser object that can be persisted
           self.loggedInAccount.userID = String(userID)
-          self.loggedInAccount.name = username
+          self.loggedInAccount.name = username ?? URLParser.extractUsername(from: actorID)
           self.loggedInAccount.email = email
           self.loggedInAccount.avatarURL = avatarURL ?? ""
           self.loggedInAccount.actorID = actorID
           /// adding to the list of already logged in accounts
           self.loggedInAccounts.append(self.loggedInAccount)
           /// Selecting and setting the latest logged in account as active
-          self.selectedName = username
+          self.selectedName = username ?? URLParser.extractUsername(from: actorID)
           self.selectedEmail = email
           self.selectedAvatarURL = avatarURL ?? ""
           self.selectedActorID = actorID

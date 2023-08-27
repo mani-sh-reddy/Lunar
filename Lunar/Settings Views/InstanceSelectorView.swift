@@ -8,11 +8,39 @@
 import SwiftUI
 
 struct InstanceSelectorView: View {
+  // TODO: - #183 Temporarily removed custom instances and added more instances to list
   @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-  @State private var isCustomSelected = false
-  @State private var customInstanceName = ""
-  @State private var tempInstanceName = ""
+  
+  let topInstances: [String] = [
+    "lemmy.world",
+    "lemmy.ml",
+    "beehaw.org",
+    "programming.dev",
+    "lemm.ee",
+    "reddthat.com"
+  ]
+  
+  let moreIinstances: [String] = [
+    "discuss.online",
+    "discuss.tchncs.de",
+    "feddit.de",
+    "feddit.it",
+    "feddit.uk",
+    "hexbear.net",
+    "infosec.pub",
+    "lemmy.blahaj.zone",
+    "lemmy.ca",
+    "lemmy.dbzer0.com",
+    "lemmy.one",
+    "lemmy.sdf.org",
+    "lemmy.zip",
+    "sh.itjust.works",
+    "slrpnk.net",
+    "sopuli.xyz",
+    "startrek.website",
+    "ttrpg.network"
+  ]
   
   var body: some View {
     if debugModeEnabled {
@@ -22,46 +50,16 @@ struct InstanceSelectorView: View {
     }
     
     Section {
-      Picker(selection: $tempInstanceName, label: Text("Lemmy Instance")) {
-        Text("lemmy.world").tag("lemmy.world")
-        Text("lemmy.ml").tag("lemmy.ml")
-        Text("beehaw.org").tag("beehaw.org")
-        Text("programming.dev").tag("programming.dev")
+      Picker(selection: $instanceHostURL, label: Text("Lemmy Instance")) {
+        ForEach(topInstances, id: \.self) { instance in
+          Text(instance).tag(instance)
+        }
         Divider()
-          Text("Custom").tag("custom")
+        ForEach(moreIinstances, id: \.self) { instance in
+          Text(instance).tag(instance)
+        }
       }
       .pickerStyle(.menu)
-      
-      
-      .onChange(of: tempInstanceName) { name in
-        if name == "custom" {
-          isCustomSelected = true
-          instanceHostURL = "lemmy.world"
-          customInstanceName = ""
-        } else {
-          isCustomSelected = false
-          instanceHostURL = name
-        }
-      }
-      
-      if isCustomSelected {
-        HStack {
-          Text("Custom:")
-            .multilineTextAlignment(.leading)
-          TextField("Custom", text: $customInstanceName, prompt: Text("lemmy.world"))
-            .multilineTextAlignment(.trailing)
-            .disableAutocorrection(true)
-            .textInputAutocapitalization(.never)
-            .keyboardType(.URL)
-            .onSubmit {
-              instanceHostURL = customInstanceName
-              // Dismiss Keyboard
-            }
-        }
-      }
-    }
-    .onAppear {
-      tempInstanceName = instanceHostURL
     }
   }
 }
