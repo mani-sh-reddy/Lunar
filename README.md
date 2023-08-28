@@ -38,7 +38,7 @@ Lunar is currently in its alpha testing phase and, as a result, it has not been 
 7. Now, you can run your app again, and it should work without any issues.
 
 
-## Package Dependancies
+## Package Dependencies
 
 [Alamofire](https://github.com/Alamofire/Alamofire)  - Elegant HTTP Networking in Swift
 
