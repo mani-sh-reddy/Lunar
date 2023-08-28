@@ -10,9 +10,9 @@ import SwiftUI
 struct LogsView: View {
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @AppStorage("logs") var logs = Settings.logs
-  
+
   var body: some View {
-    List{
+    List {
       ForEach(logs, id: \.self) { log in
         Text(log)
       }

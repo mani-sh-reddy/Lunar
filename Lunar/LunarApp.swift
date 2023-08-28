@@ -11,7 +11,7 @@ import SwiftUI
 struct LunarApp: App {
   @AppStorage("showLaunchSplashScreen") var showLaunchSplashScreen = Settings.showLaunchSplashScreen
   @AppStorage("showWelcomeScreen") var showWelcomeScreen = Settings.showWelcomeScreen
-  
+
   var body: some Scene {
     WindowGroup {
       if showWelcomeScreen {

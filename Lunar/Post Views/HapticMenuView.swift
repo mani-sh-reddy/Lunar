@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HapticMenuView: View {
   @Binding var showingPlaceholderAlert: Bool
-  
+
   var body: some View {
     Menu("Menu") {
       Button {
@@ -23,9 +23,9 @@ struct HapticMenuView: View {
     } label: {
       Text("Coming Soon")
     }
-    
+
     Divider()
-    
+
     Button(role: .destructive) {
       showingPlaceholderAlert = true
     } label: {

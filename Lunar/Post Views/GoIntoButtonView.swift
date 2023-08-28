@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GoIntoButtonView: View {
   @Binding var isClicked: Bool
-  
+
   var body: some View {
     Button {
       isClicked = true

@@ -35,7 +35,7 @@ enum Settings {
   /// loggedInAccount.actorID = "123"
   /// self.loggedInAccounts.append(loggedInAccount)
   static let loggedInAccounts: [LoggedInAccount] = []
-  
+
   static let enableLogging: Bool = false
   static let logs: [String] = []
 
@@ -51,15 +51,13 @@ enum Settings {
   static let postType: String = "All"
   static let communitiesSort: String = "New"
   static let communitiesType: String = "All"
-  
+
   static let commentMetadataPosition = "Bottom"
-  
+
   static let subscribedCommunityIDs: [Int] = []
-  
+
   static let selectedSearchSortType: String = "Active"
   static let showLaunchSplashScreen: Bool = true
   static let showWelcomeScreen: Bool = true
-  
-  
-}
 
+}

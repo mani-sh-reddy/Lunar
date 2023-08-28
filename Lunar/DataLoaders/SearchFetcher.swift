@@ -33,7 +33,7 @@ import SwiftUI
   var typeParameter: String
   var sortParameter: String
   private var limitParameter: Int
-  
+
   private var endpoint: URLComponents {
     URLBuilder(
       endpointPath: "/api/v3/search",
@@ -144,13 +144,13 @@ import SwiftUI
         completion(true, nil)
 
       case let .failure(error):
-        DispatchQueue.main.async{
+        DispatchQueue.main.async {
           let log = "SearchFetcher ERROR: \(error): \(error.errorDescription ?? "")"
           print(log)
           let currentDateTime = String(describing: Date())
           self.logs.append("\(currentDateTime) :: \(log)")
         }
-        
+
         self.isLoading = false  // Set isLoading to false on failure as well
         completion(true, error)
       }

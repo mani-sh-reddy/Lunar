@@ -18,7 +18,7 @@ struct PostsView: View {
   var title: String?
   var community: CommunityElement?
   var user: UserElement?
-  
+
   var isCommunitySpecific: Bool { return community != nil }
   var isUserSpecific: Bool { return user != nil }
 
@@ -26,22 +26,22 @@ struct PostsView: View {
     if isCommunitySpecific {
       return community?.community.banner != "" && community?.community.banner != nil  // skipcq: SW-P1006
     } else if isUserSpecific {
-      return user?.person.banner != "" && user?.person.banner != nil // skipcq: SW-P1006
+      return user?.person.banner != "" && user?.person.banner != nil  // skipcq: SW-P1006
     } else {
       return false
     }
   }
-  
+
   var hasIcon: Bool {
     if isCommunitySpecific {
       return community?.community.icon != "" && community?.community.icon != nil  // skipcq: SW-P1006
     } else if isUserSpecific {
-      return user?.person.avatar != "" && user?.person.avatar != nil // skipcq: SW-P1006
+      return user?.person.avatar != "" && user?.person.avatar != nil  // skipcq: SW-P1006
     } else {
       return false
     }
   }
-  
+
   var navigationHeading: String {
     if isCommunitySpecific {
       return community?.community.name ?? ""
@@ -51,17 +51,16 @@ struct PostsView: View {
       return ""
     }
   }
-  
-  var communityDescription: String? { return community?.community.description}
-  var communityActorID: String { return community?.community.actorID ?? "" }
-  var communityBanner: String? { return community?.community.banner}
-  var communityIcon: String? { return community?.community.icon}
-  
-  var userDescription: String? { return user?.person.bio}
-  var userActorID: String { return user?.person.actorID ?? "" }
-  var userBanner: String? { return user?.person.banner}
-  var userIcon: String? { return user?.person.avatar}
 
+  var communityDescription: String? { return community?.community.description }
+  var communityActorID: String { return community?.community.actorID ?? "" }
+  var communityBanner: String? { return community?.community.banner }
+  var communityIcon: String? { return community?.community.icon }
+
+  var userDescription: String? { return user?.person.bio }
+  var userActorID: String { return user?.person.actorID ?? "" }
+  var userBanner: String? { return user?.person.banner }
+  var userIcon: String? { return user?.person.avatar }
 
   var body: some View {
     List {
@@ -125,9 +124,9 @@ struct PostSectionView: View {
 
   @State var upvoted: Bool = false
   @State var downvoted: Bool = false
-  
+
   var post: PostElement
-  
+
   var communityIsSubscribed: Bool {
     if post.subscribed == .subscribed {
       return true
@@ -135,12 +134,12 @@ struct PostSectionView: View {
       return false
     }
   }
-  
+
   var body: some View {
-//    let _ = print("----------------------")
-//    let _ = print("UPVOTED \(post.post.name): \(upvoted)")
-//    let _ = print("DOWNVOTED \(post.post.name): \(downvoted)")
-//    let _ = print("----------------------")
+    //    let _ = print("----------------------")
+    //    let _ = print("UPVOTED \(post.post.name): \(upvoted)")
+    //    let _ = print("DOWNVOTED \(post.post.name): \(downvoted)")
+    //    let _ = print("----------------------")
     Section {
       ZStack {
         PostRowView(

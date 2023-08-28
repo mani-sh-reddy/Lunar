@@ -10,13 +10,13 @@ import SwiftUI
 struct ShareLogsButton: View {
   @AppStorage("logs") var logs = Settings.logs
   @State private var isPresentingShareSheet = false
-  
+
   let haptic = UINotificationFeedbackGenerator()
-  
+
   var body: some View {
     Button {
       isPresentingShareSheet = true
-      
+
     } label: {
       Label {
         Text("Share Logs")

@@ -63,7 +63,7 @@ class SiteInfoFetcher: ObservableObject {
           if let data = response.data,
             let fetchError = try? JSONDecoder().decode(ErrorResponseModel.self, from: data)
           {
-            DispatchQueue.main.async{
+            DispatchQueue.main.async {
               let log = "fetchUsernameAndEmail ERROR: \(fetchError.error)"
               print(log)
               let currentDateTime = String(describing: Date())
@@ -71,7 +71,7 @@ class SiteInfoFetcher: ObservableObject {
             }
             completion(nil, nil, nil, fetchError.error)
           } else {
-            DispatchQueue.main.async{
+            DispatchQueue.main.async {
               let errorDescription = String(describing: error.errorDescription)
               let log = "fetchUsernameAndEmail JSON DECODE ERROR: \(error): \(errorDescription)"
               print(log)

@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SettingsLayoutView: View {
-  @AppStorage("commentMetadataPosition") var commentMetadataPosition = Settings.commentMetadataPosition
+  @AppStorage("commentMetadataPosition") var commentMetadataPosition = Settings
+    .commentMetadataPosition
 
   var body: some View {
     List {
