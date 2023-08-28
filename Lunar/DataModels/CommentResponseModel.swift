@@ -12,10 +12,9 @@ import SwiftUI
 struct CommentResponseModel: Codable {
   let comment: CommentElement?
   let recipientIDS: [JSONAny]
-  
+
   enum CodingKeys: String, CodingKey {
     case comment = "comment_view"
     case recipientIDS = "recipient_ids"
   }
 }
-

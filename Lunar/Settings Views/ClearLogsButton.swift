@@ -9,11 +9,11 @@ import SwiftUI
 
 struct ClearLogsButton: View {
   @AppStorage("logs") var logs = Settings.logs
-  
+
   let haptic = UINotificationFeedbackGenerator()
-  
+
   @State var showingConfirmation: Bool = false
-  
+
   var body: some View {
     Button {
       showingConfirmation = true
@@ -26,8 +26,10 @@ struct ClearLogsButton: View {
           .foregroundStyle(.red)
       }
     }
-    .confirmationDialog("Are you sure?",
-                        isPresented: $showingConfirmation) {
+    .confirmationDialog(
+      "Are you sure?",
+      isPresented: $showingConfirmation
+    ) {
       Button("Delete all items?", role: .destructive) {
         haptic.notificationOccurred(.success)
         logs = []

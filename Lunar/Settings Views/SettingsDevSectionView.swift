@@ -25,16 +25,16 @@ struct SettingsDevSectionView: View {
     } header: {
       Text("Extras")
     } footer: {
-      HStack(){
+      HStack {
         Spacer()
-        VStack(alignment: .center){
+        VStack(alignment: .center) {
           Text("~ made by mani ~")
             .padding(.bottom, 5)
           Text(LocalizedStringKey("[mani-sh-reddy.github.io](http://mani-sh-reddy.github.io/)"))
         }
         Spacer()
       }.padding(.vertical, 40)
-      
+
     }
   }
 }

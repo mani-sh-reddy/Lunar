@@ -8,7 +8,6 @@
 import Alamofire
 import SwiftUI
 
-
 enum FocusedField {
   case username
   case password
@@ -37,7 +36,7 @@ struct LoginView: View {
 
   @Binding var showingPopover: Bool
   @Binding var isLoginFlowComplete: Bool
-  
+
   @FocusState private var focusedField: FocusedField?
 
   var body: some View {

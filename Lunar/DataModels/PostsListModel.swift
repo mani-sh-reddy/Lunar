@@ -16,7 +16,7 @@ struct PostsModel: Codable {
   var thumbnailURLs: [String] {
     posts.compactMap { $0.post.thumbnailURL }
   }
-  
+
   var imageURLs: [String] {
     var uniqueURLs = Set<String>()
     posts.forEach {

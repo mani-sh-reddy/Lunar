@@ -11,13 +11,13 @@ struct CommentPopoverView: View {
   @Binding var showCommentPopover: Bool
   @State private var commentString: String = ""
   @State private var commentStringUnsent: String = ""
-  
+
   var post: PostObject
   var parentID: Int?
-  
+
   var body: some View {
     List {
-      
+
       // MARK: - Post Title
       Section {
         Text(post.name)
@@ -27,7 +27,7 @@ struct CommentPopoverView: View {
       }
       .listRowSeparator(.hidden)
       .listRowBackground(Color.clear)
-      
+
       // MARK: - Text Field
       Section {
         TextEditor(text: $commentStringUnsent)
@@ -38,10 +38,10 @@ struct CommentPopoverView: View {
         Text("Type here to comment...")
           .textCase(.none)
       }
-      
+
       // MARK: - Submit Button
-      Section{
-        Button{
+      Section {
+        Button {
           commentString = commentStringUnsent
           if !commentString.isEmpty {
             CommentSender(
@@ -58,23 +58,21 @@ struct CommentPopoverView: View {
           }
           print(commentString)
         } label: {
-          HStack{
+          HStack {
             Spacer()
             Text("Post")
             Spacer()
           }
         }
       }
-      
+
     }
     .listStyle(.insetGrouped)
   }
 }
-
 
 struct CommentPopoverView_Previews: PreviewProvider {
   static var previews: some View {
     CommentPopoverView(showCommentPopover: .constant(false), post: MockData.postElement.post)
   }
 }
-

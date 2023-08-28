@@ -11,16 +11,16 @@ struct InstanceSelectorView: View {
   // TODO: - #183 Temporarily removed custom instances and added more instances to list
   @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-  
+
   let topInstances: [String] = [
     "lemmy.world",
     "lemmy.ml",
     "beehaw.org",
     "programming.dev",
     "lemm.ee",
-    "reddthat.com"
+    "reddthat.com",
   ]
-  
+
   let moreIinstances: [String] = [
     "discuss.online",
     "discuss.tchncs.de",
@@ -39,16 +39,16 @@ struct InstanceSelectorView: View {
     "slrpnk.net",
     "sopuli.xyz",
     "startrek.website",
-    "ttrpg.network"
+    "ttrpg.network",
   ]
-  
+
   var body: some View {
     if debugModeEnabled {
       Text("instance: \(instanceHostURL)")
         .bold()
         .foregroundStyle(.cyan)
     }
-    
+
     Section {
       Picker(selection: $instanceHostURL, label: Text("Lemmy Instance")) {
         ForEach(topInstances, id: \.self) { instance in
@@ -63,7 +63,6 @@ struct InstanceSelectorView: View {
     }
   }
 }
-
 
 struct SettingsServerSelectionSectionView_Previews: PreviewProvider {
   static var previews: some View {
