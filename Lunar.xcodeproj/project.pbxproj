@@ -761,9 +761,9 @@
 			);
 			mainGroup = 3C4F09F32A54399F009DF8AB;
 			packageReferences = (
-				3CEF19692A580672006736EF /* XCRemoteSwiftPackageReference "Kingfisher.git" */,
-				3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire.git" */,
-				3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */,
+				3CEF19692A580672006736EF /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */,
 				3CFE04BD2A7FEA71007BAD81 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 			);
 			productRefGroup = 3C4F09FD2A54399F009DF8AB /* Products */;
@@ -1144,6 +1144,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_STICKER_CONTENT = YES;
+				ASSETCATALOG_COMPILER_OPTIMIZATION = "";
 				ASSETCATALOG_COMPILER_TARGET_STICKERS_ICON_ROLE = extension;
 				CODE_SIGN_ENTITLEMENTS = Lunar/LunarDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1189,6 +1190,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_STICKER_CONTENT = YES;
+				ASSETCATALOG_COMPILER_OPTIMIZATION = "";
 				ASSETCATALOG_COMPILER_TARGET_STICKERS_ICON_ROLE = extension;
 				CODE_SIGN_ENTITLEMENTS = Lunar/Lunar.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1260,7 +1262,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
+		3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -1268,7 +1270,7 @@
 				minimumVersion = 5.7.1;
 			};
 		};
-		3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */ = {
+		3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kean/Nuke.git";
 			requirement = {
@@ -1276,7 +1278,7 @@
 				minimumVersion = 12.1.5;
 			};
 		};
-		3CEF19692A580672006736EF /* XCRemoteSwiftPackageReference "Kingfisher.git" */ = {
+		3CEF19692A580672006736EF /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -1297,22 +1299,22 @@
 /* Begin XCSwiftPackageProductDependency section */
 		3C4B7DDA2A58AD23003C8192 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire.git" */;
+			package = 3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 		3CA95F072A7ACF3B00626353 /* Nuke */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */;
+			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = Nuke;
 		};
 		3CA95F092A7ACF3B00626353 /* NukeUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */;
+			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = NukeUI;
 		};
 		3CEF196A2A580672006736EF /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CEF19692A580672006736EF /* XCRemoteSwiftPackageReference "Kingfisher.git" */;
+			package = 3CEF19692A580672006736EF /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
 		3CFE04BE2A7FEA71007BAD81 /* SwiftSoup */ = {
