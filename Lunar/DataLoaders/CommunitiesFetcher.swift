@@ -13,6 +13,10 @@ import SwiftUI
 @MainActor class CommunitiesFetcher: ObservableObject {
   @AppStorage("communitiesSort") var communitiesSort = Settings.communitiesSort
   @AppStorage("communitiesType") var communitiesType = Settings.communitiesType
+  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
+  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
+  @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
+  @AppStorage("logs") var logs = Settings.logs
 
   @Published var communities = [CommunityElement]()
   @Published var isLoading = false
@@ -21,13 +25,26 @@ import SwiftUI
   private var sortParameter: String?
   private var typeParameter: String?
   private var limitParameter: Int = 30
+  private var communityID: Int?
+  private var jwt: String =  ""
+  
+  private var endpointPath: String {
+    if (communityID != nil) {
+     return "/api/v3/community"
+    } else {
+      return "/api/v3/community/list"
+    }
+  }
+  
   private var endpoint: URLComponents {
     URLBuilder(
-      endpointPath: "/api/v3/community/list",
+      endpointPath: endpointPath,
       sortParameter: sortParameter,
       typeParameter: typeParameter,
       currentPage: currentPage,
-      limitParameter: limitParameter
+      limitParameter: limitParameter,
+      communityID: communityID,
+      jwt: jwt
     ).buildURL()
   }
 
@@ -39,6 +56,7 @@ import SwiftUI
     self.sortParameter = sortParameter ?? communitiesSort
     self.typeParameter = typeParameter ?? communitiesType
     self.limitParameter = limitParameter
+    self.jwt = getJWTFromKeychain(actorID: selectedActorID) ?? ""
     loadMoreContent()
   }
 
@@ -56,7 +74,7 @@ import SwiftUI
     let cacher = ResponseCacher(behavior: .cache)
 
     AF.request(endpoint) { urlRequest in
-      print("CommunitiesFetcher REF \(urlRequest.url as Any)")
+//      print("CommunitiesFetcher REF \(urlRequest.url as Any)")
       urlRequest.cachePolicy = .reloadRevalidatingCacheData
     }
     .cacheResponse(using: cacher)
@@ -78,7 +96,12 @@ import SwiftUI
         prefetcher.start()
 
       case let .failure(error):
-        print("CommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")")
+        DispatchQueue.main.async{
+          let log = "CommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")"
+          print(log)
+          let currentDateTime = String(describing: Date())
+          self.logs.append("\(currentDateTime) :: \(log)")
+        }
       }
     }
   }
@@ -104,7 +127,7 @@ import SwiftUI
     let cacher = ResponseCacher(behavior: .cache)
 
     AF.request(endpoint) { urlRequest in
-      print("CommunitiesFetcher LOAD \(urlRequest.url as Any)")
+//      print("CommunitiesFetcher LOAD \(urlRequest.url as Any)")
       urlRequest.cachePolicy = .returnCacheDataElseLoad
     }
     .cacheResponse(using: cacher)
@@ -125,8 +148,23 @@ import SwiftUI
         self.currentPage += 1
 
       case let .failure(error):
-        print("CommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")")
+        DispatchQueue.main.async{
+          let log = "CommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")"
+          print(log)
+          let currentDateTime = String(describing: Date())
+          self.logs.append("\(currentDateTime) :: \(log)")
+        }
       }
     }
   }
+  
+  func getJWTFromKeychain(actorID: String) -> String? {
+    if let keychainObject = KeychainHelper.standard.read(service: self.appBundleID, account: actorID) {
+      let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
+      return jwt.replacingOccurrences(of: "\"", with: "")
+    } else {
+      return nil
+    }
+  }
 }
+

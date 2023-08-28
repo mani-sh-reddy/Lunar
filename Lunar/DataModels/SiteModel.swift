@@ -11,12 +11,12 @@ import Foundation
 
 struct SiteModel: Codable {
   let siteView: SiteView
-  let admins: [Admin]
-  let version: String
+  let admins: [Admin]?
+  let version: String?
   let myUser: MyUser
-  let allLanguages: [AllLanguage]
-  let discussionLanguages: [Int]
-  let taglines, customEmojis: [JSONAny]
+  let allLanguages: [AllLanguage]?
+  let discussionLanguages: [Int]?
+  let taglines, customEmojis: [JSONAny]?
 
   enum CodingKeys: String, CodingKey {
     case siteView = "site_view"
@@ -39,8 +39,8 @@ struct Admin: Codable {
 // MARK: - AdminCounts
 
 struct AdminCounts: Codable {
-  let id, personID, postCount, postScore: Int
-  let commentCount, commentScore: Int
+  let id, personID, postCount, postScore: Int?
+  let commentCount, commentScore: Int?
 
   enum CodingKeys: String, CodingKey {
     case id
@@ -56,19 +56,19 @@ struct AdminCounts: Codable {
 
 struct AdminPerson: Codable {
   let id: Int
-  let name: String
+  let name: String?
   let displayName: String?
-  let avatar: String
-  let banned: Bool
-  let published: String
-  let actorID: String
+  let avatar: String?
+  let banned: Bool?
+  let published: String?
+  let actorID: String?
   let bio: String?
-  let local: Bool
+  let local: Bool?
   let banner: String?
-  let deleted: Bool
+  let deleted: Bool?
   let matrixUserID: String?
-  let admin, botAccount: Bool
-  let instanceID: Int
+  let admin, botAccount: Bool?
+  let instanceID: Int?
 
   enum CodingKeys: String, CodingKey {
     case id, name
@@ -87,15 +87,15 @@ struct AdminPerson: Codable {
 
 struct AllLanguage: Codable {
   let id: Int
-  let code, name: String
+  let code, name: String?
 }
 
 // MARK: - MyUser
 
 struct MyUser: Codable {
   let localUserView: LocalUserView
-  let follows, moderates, communityBlocks, personBlocks: [JSONAny]
-  let discussionLanguages: [JSONAny]
+  let follows, moderates, communityBlocks, personBlocks: [JSONAny]?
+  let discussionLanguages: [JSONAny]?
 
   enum CodingKeys: String, CodingKey {
     case localUserView = "local_user_view"
@@ -124,14 +124,14 @@ struct LocalUserView: Codable {
 struct LocalUser: Codable {
   let id, personID: Int
   let email: String
-  let showNsfw: Bool
-  let theme, defaultSortType, defaultListingType, interfaceLanguage: String
-  let showAvatars, sendNotificationsToEmail: Bool
-  let validatorTime: String
-  let showScores, showBotAccounts, showReadPosts, showNewPostNotifs: Bool
-  let emailVerified, acceptedApplication: Bool
+  let showNsfw: Bool?
+  let theme, defaultSortType, defaultListingType, interfaceLanguage: String?
+  let showAvatars, sendNotificationsToEmail: Bool?
+  let validatorTime: String?
+  let showScores, showBotAccounts, showReadPosts, showNewPostNotifs: Bool?
+  let emailVerified, acceptedApplication: Bool?
   let totp2FaURL: String? = ""
-  let openLinksInNewTab: Bool
+  let openLinksInNewTab: Bool?
 
   enum CodingKeys: String, CodingKey {
     case id
@@ -160,13 +160,13 @@ struct LocalUser: Codable {
 
 struct LocalUserViewPerson: Codable {
   let id: Int
-  let name: String
+  let name: String?
   let avatar: String?
-  let banned: Bool
-  let published: String
+  let banned: Bool?
+  let published: String?
   let actorID: String
-  let local, deleted, admin, botAccount: Bool
-  let instanceID: Int
+  let local, deleted, admin, botAccount: Bool?
+  let instanceID: Int?
 
   enum CodingKeys: String, CodingKey {
     case id, name, banned, published, avatar
@@ -196,9 +196,9 @@ struct SiteView: Codable {
 // MARK: - SiteViewCounts
 
 struct SiteViewCounts: Codable {
-  let id, siteID, users, posts: Int
-  let comments, communities, usersActiveDay, usersActiveWeek: Int
-  let usersActiveMonth, usersActiveHalfYear: Int
+  let id, siteID, users, posts: Int?
+  let comments, communities, usersActiveDay, usersActiveWeek: Int?
+  let usersActiveMonth, usersActiveHalfYear: Int?
 
   enum CodingKeys: String, CodingKey {
     case id
@@ -215,17 +215,17 @@ struct SiteViewCounts: Codable {
 
 struct LocalSite: Codable {
   let id, siteID: Int
-  let siteSetup, enableDownvotes, enableNsfw, communityCreationAdminOnly: Bool
-  let requireEmailVerification: Bool
-  let applicationQuestion: String
-  let privateInstance: Bool
-  let defaultTheme, defaultPostListingType: String
-  let hideModlogModNames, applicationEmailAdmins: Bool
-  let slurFilterRegex: String
-  let actorNameMaxLength: Int
-  let federationEnabled, captchaEnabled: Bool
-  let captchaDifficulty, published, updated, registrationMode: String
-  let reportsEmailAdmins: Bool
+  let siteSetup, enableDownvotes, enableNsfw, communityCreationAdminOnly: Bool?
+  let requireEmailVerification: Bool?
+  let applicationQuestion: String?
+  let privateInstance: Bool?
+  let defaultTheme, defaultPostListingType: String?
+  let hideModlogModNames, applicationEmailAdmins: Bool?
+  let slurFilterRegex: String?
+  let actorNameMaxLength: Int?
+  let federationEnabled, captchaEnabled: Bool?
+  let captchaDifficulty, published, updated, registrationMode: String?
+  let reportsEmailAdmins: Bool?
 
   enum CodingKeys: String, CodingKey {
     case id
@@ -255,11 +255,11 @@ struct LocalSite: Codable {
 // MARK: - LocalSiteRateLimit
 
 struct LocalSiteRateLimit: Codable {
-  let id, localSiteID, message, messagePerSecond: Int
-  let post, postPerSecond, register, registerPerSecond: Int
-  let image, imagePerSecond, comment, commentPerSecond: Int
-  let search, searchPerSecond: Int
-  let published: String
+  let id, localSiteID, message, messagePerSecond: Int?
+  let post, postPerSecond, register, registerPerSecond: Int?
+  let image, imagePerSecond, comment, commentPerSecond: Int?
+  let search, searchPerSecond: Int?
+  let published: String?
 
   enum CodingKeys: String, CodingKey {
     case id
@@ -284,15 +284,15 @@ struct LocalSiteRateLimit: Codable {
 
 struct Site: Codable {
   let id: Int
-  let name, sidebar, published, updated: String
-  let icon: String
+  let name, sidebar, published, updated: String?
+  let icon: String?
   let banner: String?
-  let description: String
-  let actorID: String
-  let lastRefreshedAt: String
-  let inboxURL: String
-  let publicKey: String
-  let instanceID: Int
+  let description: String?
+  let actorID: String?
+  let lastRefreshedAt: String?
+  let inboxURL: String?
+  let publicKey: String?
+  let instanceID: Int?
 
   enum CodingKeys: String, CodingKey {
     case id, name, sidebar, published, updated, icon, banner, description

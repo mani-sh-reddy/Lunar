@@ -34,6 +34,7 @@ class URLBuilder {
   private let jwt: String?
   private let searchQuery: String?
   private let listingType: String?
+  private let voteType: Int?
 
   init(
     endpointPath: String,
@@ -46,7 +47,8 @@ class URLBuilder {
     maxDepth: Int? = nil,
     jwt: String? = nil,
     searchQuery: String? = nil,
-    listingType: String? = nil
+    listingType: String? = nil,
+    voteType: Int? = nil
   ) {
     self.endpointPath = endpointPath
     self.sortParameter = sortParameter
@@ -59,6 +61,7 @@ class URLBuilder {
     self.jwt = jwt
     self.searchQuery = searchQuery
     self.listingType = listingType
+    self.voteType = voteType
   }
 
   func buildURL() -> URLComponents {
@@ -72,9 +75,10 @@ class URLBuilder {
     if let communityID { queryParams["community_id"] = String(communityID) }
     if let postID { queryParams["post_id"] = String(postID) }
     if let maxDepth { queryParams["max_depth"] = String(maxDepth) }
-    if let jwt { queryParams["auth"] = String(jwt) }
+    if let jwt { queryParams["auth"] = jwt }
     if let searchQuery { queryParams["q"] = String(searchQuery) }
     if let listingType { queryParams["listing_type"] = String(listingType) }
+    if let voteType { queryParams["score"] = String(voteType) }
 
     endpoint.scheme = "https"
     endpoint.host = instanceHostURL

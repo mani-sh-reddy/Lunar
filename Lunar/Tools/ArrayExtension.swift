@@ -25,4 +25,13 @@ extension Array: RawRepresentable where Element: Codable {
     }
     return result
   }
+  
+  func penultimate() -> Element? {
+    if self.count < 2 {
+      return nil
+    }
+    let index = self.count - 2
+    return self[index]
+  }
+  
 }

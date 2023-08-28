@@ -5,7 +5,6 @@
 //  Created by Mani on 06/08/2023.
 //
 
-import Kingfisher
 import SwiftUI
 
 struct KbinCommentsView: View {
@@ -65,7 +64,7 @@ struct KbinCommentSectionView: View {
           KbinCommentRowView(comment: comment)
         }
       }
-    }.listStyle(.insetGrouped)
+    }.listStyle(.grouped)
   }
 }
 

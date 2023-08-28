@@ -6,45 +6,60 @@
 //
 
 import SwiftUI
+import SafariServices
 
 struct SettingsInfoSectionView: View {
+  @State private var showSafariGithub: Bool = false
+  @State private var showSafariLemmy: Bool = false
+  
   var body: some View {
     Section {
-      NavigationLink {
-        PlaceholderView()
+      // MARK: - Privacy Policy
+      Button {
       } label: {
         Label {
           Text("Privacy Policy")
+            .foregroundStyle(.foreground)
         } icon: {
-          Image(systemName: "eye.slash.fill")
+          Image(systemName: "shield.lefthalf.filled")
             .symbolRenderingMode(.hierarchical)
-            .foregroundStyle(.pink)
+            .foregroundStyle(.red)
         }
       }
-
-      NavigationLink {
-        PlaceholderView()
+      .foregroundStyle(.foreground)
+      // MARK: - Contact
+      Button {
+        showSafariLemmy = true
       } label: {
         Label {
           Text("Contact")
+            .foregroundStyle(.foreground)
         } icon: {
           Image(systemName: "paperplane.fill")
             .symbolRenderingMode(.hierarchical)
             .foregroundStyle(.blue)
         }
       }
-
-      NavigationLink {
-        PlaceholderView()
+      .foregroundStyle(.foreground)
+      .fullScreenCover(isPresented: $showSafariLemmy, content: {
+        SFSafariViewWrapper(url: URL(string: "https://lemmy.world/c/lunar" )!).ignoresSafeArea()
+      })
+      // MARK: - Github
+      Button {
+        showSafariGithub = true
       } label: {
         Label {
-          Text("Lunar for Lemmy Github")
+          Text("Github")
         } icon: {
           Image(systemName: "ellipsis.curlybraces")
             .symbolRenderingMode(.hierarchical)
-            .foregroundStyle(.foreground)
         }
       }
+      .foregroundStyle(.foreground)
+      .fullScreenCover(isPresented: $showSafariGithub, content: {
+        SFSafariViewWrapper(url: URL(string: "https://github.com/mani-sh-reddy/Lunar" )!).ignoresSafeArea()
+      })
+      
     } header: {
       Text("Info")
     }

@@ -1,44 +1,44 @@
+////
+////  ImageViewWithPlaceholder.swift
+////  Lunar
+////
+////  Created by Mani on 20/07/2023.
+////
 //
-//  ImageViewWithPlaceholder.swift
-//  Lunar
+//import Foundation
+//import Kingfisher
+//import SwiftUI
 //
-//  Created by Mani on 20/07/2023.
+//struct ImageViewWithPlaceholder: View {
+//  var imageURL: String?
+//  var placeholderSystemName: String
 //
-
-import Foundation
-import Kingfisher
-import SwiftUI
-
-struct ImageViewWithPlaceholder: View {
-  var imageURL: String?
-  var placeholderSystemName: String
-
-  var body: some View {
-    let processor = DownsamplingImageProcessor(size: CGSize(width: 50, height: 50))
-    if let url = imageURL, let image = URL(string: url) {
-      KFImage(image)
-        .setProcessor(processor)
-        .placeholder {
-          Image(systemName: placeholderSystemName)
-            .resizable()
-            .scaledToFit()
-            .frame(width: 20, height: 20)
-            .symbolRenderingMode(.hierarchical)
-            .foregroundColor(.gray)
-        }
-        .resizable()
-        .frame(width: 20, height: 20)
-        .clipShape(Circle())
-        .scaledToFit()
-        .padding(.trailing, 5)
-    } else {
-      Image(systemName: placeholderSystemName)
-        .resizable()
-        .scaledToFit()
-        .frame(width: 20, height: 20)
-        .symbolRenderingMode(.hierarchical)
-        .foregroundColor(.gray)
-        .padding(.trailing, 5)
-    }
-  }
-}
+//  var body: some View {
+//    let processor = DownsamplingImageProcessor(size: CGSize(width: 50, height: 50))
+//    if let url = imageURL, let image = URL(string: url) {
+//      KFImage(image)
+//        .setProcessor(processor)
+//        .placeholder {
+//          Image(systemName: placeholderSystemName)
+//            .resizable()
+//            .scaledToFit()
+//            .frame(width: 20, height: 20)
+//            .symbolRenderingMode(.hierarchical)
+//            .foregroundColor(.gray)
+//        }
+//        .resizable()
+//        .frame(width: 20, height: 20)
+//        .clipShape(Circle())
+//        .scaledToFit()
+//        .padding(.trailing, 5)
+//    } else {
+//      Image(systemName: placeholderSystemName)
+//        .resizable()
+//        .scaledToFit()
+//        .frame(width: 20, height: 20)
+//        .symbolRenderingMode(.hierarchical)
+//        .foregroundColor(.gray)
+//        .padding(.trailing, 5)
+//    }
+//  }
+//}

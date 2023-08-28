@@ -13,7 +13,8 @@ import SwiftUI
 @MainActor class TrendingCommunitiesFetcher: ObservableObject {
   @Published var communities = [CommunityElement]()
   @Published var isLoading = false
-
+  @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
+  @AppStorage("logs") var logs = Settings.logs
   @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
 
   private var currentPage = 1
@@ -40,7 +41,8 @@ import SwiftUI
     let cacher = ResponseCacher(behavior: .cache)
 
     AF.request(endpoint) { urlRequest in
-      print("TrendingCommunitiesFetcher REF \(urlRequest.url as Any)")
+      let log = "TrendingCommunitiesFetcher REF \(urlRequest.url as Any)"
+      print(log)
       urlRequest.cachePolicy = .returnCacheDataElseLoad
     }
     .cacheResponse(using: cacher)
@@ -52,7 +54,12 @@ import SwiftUI
         self.isLoading = false
 
       case let .failure(error):
-        print("TrendingCommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")")
+        DispatchQueue.main.async{
+          let log = "TrendingCommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")"
+          print(log)
+          let currentDateTime = String(describing: Date())
+          self.logs.append("\(currentDateTime) :: \(log)")
+        }
       }
     }
   }
@@ -65,7 +72,8 @@ import SwiftUI
     let cacher = ResponseCacher(behavior: .cache)
 
     AF.request(endpoint) { urlRequest in
-      print("TrendingCommunitiesFetcher LOAD \(urlRequest.url as Any)")
+      let log = "TrendingCommunitiesFetcher LOAD \(urlRequest.url as Any)"
+      print(log)
       urlRequest.cachePolicy = .returnCacheDataElseLoad
     }
     .cacheResponse(using: cacher)
@@ -77,7 +85,12 @@ import SwiftUI
         self.isLoading = false
 
       case let .failure(error):
-        print("TrendingCommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")")
+        DispatchQueue.main.async{
+          let log = "TrendingCommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")"
+          print(log)
+          let currentDateTime = String(describing: Date())
+          self.logs.append("\(currentDateTime) :: \(log)")
+        }
       }
     }
   }

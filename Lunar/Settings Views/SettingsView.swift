@@ -13,15 +13,9 @@ struct SettingsView: View {
   @AppStorage("displayName") var displayName = Settings.displayName
   @AppStorage("userName") var userName = Settings.userName
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-
+  
   @State var selectedAccount: LoggedInAccount?
-  @State var refreshView: Bool = false
-  @State var settingsViewOpacity: Double = 1
-  @State var refreshIconOpacity: Double = 0
-
-  @State private var logoScale: CGFloat = 0.1
-  @State private var logoOpacity: Double = 0
-
+  
   var body: some View {
     NavigationView {
       List {
@@ -31,46 +25,18 @@ struct SettingsView: View {
         } label: {
           UserRowSettingsBannerView(selectedAccount: $selectedAccount)
         }
-        SettingsServerSelectionSectionView()
+        Section{
+          InstanceSelectorView()
+          KbinSelectorView()
+        }
         SettingsGeneralSectionView()
         SettingsAppearanceSectionView()
         SettingsInfoSectionView()
-        SettingsHiddenOptionsView()
-        SettingsClearCacheButtonView()
-
-        if debugModeEnabled {
-          AppResetButton(refreshView: $refreshView)
-        }
+        SettingsDevSectionView()
       }
-
       .navigationTitle("Settings")
       .navigationBarTitleDisplayMode(.inline)
     }
-    .onChange(of: refreshView) { _ in
-      settingsViewOpacity = 0
-      logoScale = 1.0
-      logoOpacity = 1.0
-      DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-        withAnimation(.easeIn) {
-          settingsViewOpacity = 1
-        }
-        withAnimation(.smooth(duration: 1)) {
-          logoScale = 0.8
-        }
-        withAnimation(Animation.easeInOut(duration: 1.0).delay(0)) {
-          logoOpacity = 0
-        }
-      }
-    }
-    .opacity(settingsViewOpacity)
-    .overlay(content: {
-      Image("LunarLogo")
-        .resizable()
-        .scaledToFit()
-        .padding(50)
-        .scaleEffect(logoScale)
-        .opacity(logoOpacity)
-    })
   }
 }
 

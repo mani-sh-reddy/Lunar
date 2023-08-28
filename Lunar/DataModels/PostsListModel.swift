@@ -16,6 +16,19 @@ struct PostsModel: Codable {
   var thumbnailURLs: [String] {
     posts.compactMap { $0.post.thumbnailURL }
   }
+  
+  var imageURLs: [String] {
+    var uniqueURLs = Set<String>()
+    posts.forEach {
+      if let thumbnailURL = $0.post.thumbnailURL {
+        uniqueURLs.insert(thumbnailURL)
+      }
+      if let postURL = $0.post.url, postURL.isValidExternalImageURL() {
+        uniqueURLs.insert(postURL)
+      }
+    }
+    return Array(uniqueURLs)
+  }
 
   var avatarURLs: [String] {
     posts.compactMap(\.creator.avatar)
@@ -30,10 +43,11 @@ struct PostElement: Codable {
   let creator: Creator
   let community: Community
   let creatorBannedFromCommunity: Bool
-  let counts: Counts
-  let subscribed: Subscribed
+  var counts: Counts
+  var subscribed: SubscribedState
   let saved, read, creatorBlocked: Bool
   let unreadComments: Int
+  var myVote: Int?
 
   enum CodingKeys: String, CodingKey {
     case post, creator, community
@@ -41,6 +55,7 @@ struct PostElement: Codable {
     case counts, subscribed, saved, read
     case creatorBlocked = "creator_blocked"
     case unreadComments = "unread_comments"
+    case myVote = "my_vote"
   }
 }
 
@@ -76,7 +91,7 @@ struct Community: Codable {
 
 struct Counts: Codable {
   let id, postID, comments, score: Int
-  let upvotes, downvotes: Int
+  var upvotes, downvotes: Int
   let published, newestCommentTimeNecro, newestCommentTime: String
   let featuredCommunity, featuredLocal: Bool
   let hotRank, hotRankActive: Int
@@ -162,6 +177,8 @@ struct PostObject: Codable {
   }
 }
 
-enum Subscribed: String, Codable {
+enum SubscribedState: String, Codable {
   case notSubscribed = "NotSubscribed"
+  case subscribed = "Subscribed"
+  case pending = "Pending"
 }

@@ -35,7 +35,7 @@ struct SettingsAppearanceSectionView: View {
       }
 
       NavigationLink {
-        PlaceholderView()
+        SettingsLayoutView()
       } label: {
         Label {
           Text("Layout")
@@ -43,6 +43,18 @@ struct SettingsAppearanceSectionView: View {
           Image(systemName: "square.on.square.squareshape.controlhandles")
             .symbolRenderingMode(.hierarchical)
             .foregroundStyle(.mint)
+        }
+      }
+      
+      NavigationLink {
+        SettingsSplashScreenView()
+      } label: {
+        Label {
+          Text("Splash Screen")
+        } icon: {
+          Image(systemName: "moonphase.waning.gibbous")
+            .symbolRenderingMode(.hierarchical)
+            .foregroundStyle(.yellow)
         }
       }
 

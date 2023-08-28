@@ -7,15 +7,36 @@
 
 import Kingfisher
 import SwiftUI
+import SafariServices
 
 struct PostRowView: View {
-  @State var upvoted: Bool = false
-  @State var downvoted: Bool = false
+  @EnvironmentObject var postsFetcher: PostsFetcher
+  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
+  @AppStorage("subscribedCommunityIDs") var subscribedCommunityIDs = Settings.subscribedCommunityIDs
+  
+  @Binding var upvoted: Bool
+  @Binding var downvoted: Bool
+  
+  @State var upvoteState: Int = 0
+  @State var downvoteState: Int = 0
+  
   @State var goInto: Bool = false
-
   @State var showingPlaceholderAlert = false
-
-  var imageURL: String { return post.post.thumbnailURL ?? "" }
+  @State private var showSafari: Bool = false
+  @State var subscribeState: SubscribedState = .notSubscribed
+  @State var isSubscribed: Bool
+  
+  var post: PostElement
+  
+  var imageURL: String {
+    if let thumbnailURL = post.post.thumbnailURL, !thumbnailURL.isEmpty {
+      return thumbnailURL
+    } else if let postURL = post.post.url, !postURL.isEmpty, postURL.isValidExternalImageURL() {
+      return postURL
+    }
+    return ""
+  }
+  
   var communityName: String { return post.community.name }
   var heading: String { return post.post.name }
   var creator: String { return post.creator.name }
@@ -23,6 +44,7 @@ struct PostRowView: View {
   var upvotes: Int { return post.counts.upvotes }
   var downvotes: Int { return post.counts.downvotes }
   var commentCount: Int { return post.counts.comments }
+  var postID: Int { return post.post.id }
   var instanceTag: String {
     let tag = post.community.actorID
     if !tag.isEmpty {
@@ -32,15 +54,15 @@ struct PostRowView: View {
       return ""
     }
   }
-
+  
   let dateTimeParser = DateTimeParser()
   var timeAgo: String {
     return ", \(dateTimeParser.timeAgoString(from: post.post.published))"
   }
-
-  var post: PostElement
+  
   let haptics = UIImpactFeedbackGenerator(style: .rigid)
-
+  @State private var showCommunityActions: Bool = false
+  
   var body: some View {
     VStack {
       if !imageURL.isEmpty {
@@ -49,10 +71,67 @@ struct PostRowView: View {
       }
       HStack {
         VStack(alignment: .leading, spacing: 5) {
-          Text("\(communityName)\(instanceTag)")
-            .textCase(.lowercase)
-            .font(.caption)
-            .foregroundColor(.secondary)
+          HStack{
+            Text("\(communityName)\(instanceTag)")
+              .textCase(.lowercase)
+            switch subscribeState {
+            case .notSubscribed:
+              EmptyView()
+            case .pending:
+              Image(systemName: "clock.arrow.2.circlepath")
+            case .subscribed:
+              Image(systemName: "checkmark.circle")
+            }
+          }
+          .font(.caption)
+          .foregroundColor(.secondary)
+          .highPriorityGesture(
+            TapGesture().onEnded {
+              haptics.impactOccurred(intensity: 0.5)
+              showCommunityActions = true
+            }
+          )
+          .confirmationDialog("\(communityName)\(instanceTag)", isPresented: $showCommunityActions, titleVisibility: .visible) {
+            Button {
+              sendSubscribeAction(subscribeAction: !isSubscribed)
+              isSubscribed.toggle()
+            } label: {
+              Text(isSubscribed ? "Unsubscribe" : "Subscribe")
+            }
+          }
+//          .confirmationDialog("\(communityName)\(instanceTag)", isPresented: $showCommunityActions, titleVisibility: .visible) {
+//            Button {
+//              switch subscribeState {
+//              case .notSubscribed:
+//                subscribeAction(subscribeAction: true)
+//              case .pending:
+//                subscribeAction(subscribeAction: false)
+//              case .subscribed:
+//                subscribeAction(subscribeAction: false)
+//              }
+//            } label: {
+//              switch subscribeState {
+//              case .notSubscribed:
+//                Text("Subscribe")
+//              case .pending:
+//                Text("Unsubscribe (Pending Subscription)")
+//              case .subscribed:
+//                Text("Unsubscribe")
+//              }
+//            }
+//          }
+//          .onAppear {
+//            if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == post.post.id }) {
+//              subscribeState = postsFetcher.posts[index].subscribed
+//              
+//              // Sync subscription state with UserDefaults on first appear
+//              let subscriptionKey = "\(communityName)\(instanceTag)"
+//              if let savedSubscriptionState = UserDefaults.standard.value(forKey: subscriptionKey) as? Bool {
+//                subscribeState = savedSubscriptionState ? .subscribed : .notSubscribed
+//              }
+//            }
+//          }
+          
           Text(heading)
             .fontWeight(.semibold)
             .foregroundColor(.primary)
@@ -65,27 +144,43 @@ struct PostRowView: View {
       }
       HStack {
         ReactionButton(
-          text: String(upvotes),
+          text: String(upvotes + upvoteState),
           icon: "arrow.up.circle.fill",
           color: Color.green,
           active: $upvoted,
-          opposite: $downvoted
+          opposite: .constant(false)
         )
-        .onTapGesture {
-          upvoted.toggle()
-          downvoted = false
-        }
+        .highPriorityGesture(
+          TapGesture().onEnded {
+            haptics.impactOccurred()
+            if !upvoted {
+              print("SENT /post/like \(String(describing: postID)):upvote(+1)")
+              sendReaction(voteType: 1, postID: post.post.id, communityActorID: post.community.actorID)
+            } else {
+              print("SENT /post/like \(String(describing: postID)):un-upvote(0)")
+              sendReaction(voteType: 0, postID: post.post.id, communityActorID: post.community.actorID)
+            }
+          }
+        )
+        
         ReactionButton(
-          text: String(downvotes),
+          text: String(downvotes + downvoteState),
           icon: "arrow.down.circle.fill",
           color: Color.red,
           active: $downvoted,
-          opposite: $upvoted
+          opposite: .constant(false)
         )
-        .onTapGesture {
-          downvoted.toggle()
-          upvoted = false
-        }
+        .highPriorityGesture(
+          TapGesture().onEnded {
+            haptics.impactOccurred()
+            if !downvoted {
+              sendReaction(voteType: -1, postID: post.post.id, communityActorID: post.community.actorID)
+            } else {
+              sendReaction(voteType: 0, postID: post.post.id, communityActorID: post.community.actorID)
+            }
+          }
+        )
+        
         ReactionButton(
           text: String(commentCount),
           icon: "bubble.left.circle.fill",
@@ -93,7 +188,27 @@ struct PostRowView: View {
           active: .constant(false),
           opposite: .constant(false)
         )
+        
         Spacer()
+        if post.post.url != post.post.thumbnailURL {
+          ReactionButton(
+            text: "\(URLParser.extractBaseDomain(from: post.post.url ?? "")) ",
+            icon: "safari.fill",
+            color: Color.blue,
+            //            iconSize: Font.title2,
+            //            padding: 1,
+            active: .constant(false),
+            opposite: .constant(false)
+          )
+          .highPriorityGesture(
+            TapGesture().onEnded {
+              showSafari.toggle()
+            }
+          )
+          .fullScreenCover(isPresented: $showSafari, content: {
+            SFSafariViewWrapper(url: URL(string: post.post.url ?? "")!).ignoresSafeArea()
+          })
+        }
       }
     }
     .padding(.horizontal, -5)
@@ -113,110 +228,103 @@ struct PostRowView: View {
         showingPlaceholderAlert = false
       }
     }
-  }
-}
-
-struct GoIntoButtonView: View {
-  @Binding var isClicked: Bool
-
-  var body: some View {
-    Button {
-      isClicked = true
-    } label: {
-      Image(systemName: "chevron.forward.circle.fill")
-    }
-    .tint(.blue)
-  }
-}
-
-struct UpvoteButtonView: View {
-  @Binding var isClicked: Bool
-
-  var body: some View {
-    Button {
-      isClicked = true
-    } label: {
-      Image(systemName: "arrow.up.circle")
-    }
-    .tint(.green)
-  }
-}
-
-struct DownvoteButtonView: View {
-  @Binding var isClicked: Bool
-
-  var body: some View {
-    Button {
-      isClicked = true
-    } label: {
-      Image(systemName: "arrow.down.circle")
-    }
-    .tint(.red)
-  }
-}
-
-struct HapticMenuView: View {
-  @Binding var showingPlaceholderAlert: Bool
-
-  var body: some View {
-    Menu("Menu") {
-      Button {
-        showingPlaceholderAlert = true
-      } label: {
-        Text("Coming Soon")
+    .onAppear {
+      if let voteType = post.myVote {
+        switch voteType {
+        case 1:
+          self.upvoted = true
+          self.downvoted = false
+          upvoteState = 1
+          downvoteState = 0
+        case -1:
+          self.upvoted = false
+          self.downvoted = true
+          upvoteState = 0
+          downvoteState = 1
+        default:
+          self.upvoted = false
+          self.downvoted = false
+          upvoteState = 0
+          downvoteState = 0
+        }
       }
     }
-    Button {
-      showingPlaceholderAlert = true
-    } label: {
-      Text("Coming Soon")
-    }
-
-    Divider()
-
-    Button(role: .destructive) {
-      showingPlaceholderAlert = true
-    } label: {
-      Label("Delete", systemImage: "trash")
-    }
   }
-}
-
-struct ReactionButtonView: View {
-  var text: String
-  var icon: String
-  var color: Color
-
-  @Binding var active: Bool
-  @Binding var opposite: Bool
-
-  let haptics = UIImpactFeedbackGenerator(style: .rigid)
-
-  var body: some View {
-    Button {
-      active.toggle()
-      opposite = false
-      haptics.impactOccurred()
-    } label: {
-      HStack {
-        Image(systemName: icon)
-        Text(text)
-          .font(.subheadline)
+  
+  func sendSubscribeAction(subscribeAction: Bool) {
+    let notificationHaptics = UINotificationFeedbackGenerator()
+    SubscriptionActionSender(
+      communityID: post.community.id,
+      asActorID: selectedActorID,
+      subscribeAction: subscribeAction
+    ).fetchSubscribeInfo { communityID, subscribeResponse, error in
+      if subscribeResponse != nil {
+        notificationHaptics.notificationOccurred(.success)
+        if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == post.post.id }) {
+          var updatedPost = postsFetcher.posts[index]
+          updatedPost.subscribed = subscribeAction ? .subscribed : .notSubscribed
+          postsFetcher.posts[index] = updatedPost
+          subscribeState = subscribeAction ? .subscribed : .notSubscribed // Update the local subscription status
+        }
+        if subscribeResponse == .subscribed {
+          subscribedCommunityIDs.append(post.community.id)
+        } else if subscribeResponse == .notSubscribed {
+          if let index = subscribedCommunityIDs.firstIndex(of: post.community.id) {
+            subscribedCommunityIDs.remove(at: index)
+          }
+        }
       }
-      .foregroundStyle(active ? Color.white : color)
-      .symbolRenderingMode(
-        active ? SymbolRenderingMode.monochrome : SymbolRenderingMode.hierarchical
-      )
     }
-    .buttonStyle(BorderlessButtonStyle())
-    .padding(5).padding(.trailing, 3)
-    .background(active ? color.opacity(0.75) : .secondary.opacity(0.1), in: Capsule())
-    .padding(.top, 3)
+  }
+  
+  
+  func sendReaction(voteType: Int, postID: Int, communityActorID: String) {
+    VoteSender(
+      asActorID: selectedActorID,
+      voteType: voteType,
+      postID: postID,
+      communityActorID: communityActorID,
+      commentID: 0,
+      elementType: "post"
+    ).fetchVoteInfo { postID, voteSubmittedSuccessfully, _ in
+      print("RETURNED /post/like \(String(describing: postID)):\(voteSubmittedSuccessfully)")
+      if voteSubmittedSuccessfully {
+        switch voteType {
+        case 1:
+          self.upvoted = true
+          self.downvoted = false
+          upvoteState = 1
+          downvoteState = 0
+        case -1:
+          self.upvoted = false
+          self.downvoted = true
+          upvoteState = 0
+          downvoteState = 1
+        default:
+          self.upvoted = false
+          self.downvoted = false
+          upvoteState = 0
+          downvoteState = 0
+        }
+            
+        // Update the corresponding post in the postsFetcher.posts array
+        if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == postID }) {
+          var updatedPost = postsFetcher.posts[index]
+          updatedPost.myVote = voteType
+          postsFetcher.posts[index] = updatedPost
+        }
+      }
+    }
   }
 }
 
-//struct PostRowView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    PostRowView(post: MockData.post).padding()
-//  }
-//}
+struct PostRowView_Previews: PreviewProvider {
+  static var previews: some View {
+    PostRowView(
+      upvoted: .constant(false),
+      downvoted: .constant(false),
+      isSubscribed: false, post: MockData.postElement
+    )
+    .previewLayout(.sizeThatFits).frame(height: 300)
+  }
+}

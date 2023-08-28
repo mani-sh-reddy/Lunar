@@ -12,12 +12,14 @@ import Kingfisher
 import SwiftUI
 
 @MainActor class SearchFetcher: ObservableObject {
+  @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
+  @AppStorage("logs") var logs = Settings.logs
   @Published var searchModel = [SearchModel]()
 
   @Published var comments = [SearchCommentElement]()
-  @Published var communities = [SearchCommunityElement]()
+  @Published var communities = [CommunityElement]()
   @Published var posts = [SearchPostElement]()
-  @Published var users = [SearchUserElement]()
+  @Published var users = [UserElement]()
 
   @Published var isLoading = false
 
@@ -29,10 +31,13 @@ import SwiftUI
 
   private var currentPage = 1
   var typeParameter: String
+  var sortParameter: String
   private var limitParameter: Int
+  
   private var endpoint: URLComponents {
     URLBuilder(
       endpointPath: "/api/v3/search",
+      sortParameter: sortParameter,
       typeParameter: typeParameter,
       currentPage: currentPage,
       limitParameter: limitParameter,
@@ -42,11 +47,13 @@ import SwiftUI
 
   init(
     searchQuery: String,
+    sortParameter: String,
     typeParameter: String,
     limitParameter: Int,
     clearListOnChange: Bool
   ) {
     self.searchQuery = searchQuery
+    self.sortParameter = sortParameter
     self.typeParameter = typeParameter
     self.limitParameter = limitParameter
     self.clearListOnChange = clearListOnChange
@@ -88,7 +95,7 @@ import SwiftUI
     }
   }
 
-  func loadMoreUsersIfNeeded(currentItem user: SearchUserElement?) {
+  func loadMoreUsersIfNeeded(currentItem user: UserElement?) {
     guard let user else {
       loadMoreContent { _, _ in }
       return
@@ -107,6 +114,7 @@ import SwiftUI
       communities.removeAll()
       posts.removeAll()
       users.removeAll()
+      currentPage = 1
     }
 
     print("SEARCH QUERY: \(searchQuery)")
@@ -120,7 +128,8 @@ import SwiftUI
     let cacher = ResponseCacher(behavior: .cache)
 
     AF.request(endpoint) { urlRequest in
-      print("SearchFetcher LOAD \(urlRequest.url as Any)")
+      let log = "SearchFetcher LOAD \(urlRequest.url as Any)"
+      print(log)
       urlRequest.cachePolicy = .returnCacheDataElseLoad
     }
     .cacheResponse(using: cacher)
@@ -135,7 +144,13 @@ import SwiftUI
         completion(true, nil)
 
       case let .failure(error):
-        print("SearchFetcher ERROR: \(error): \(error.errorDescription ?? "")")
+        DispatchQueue.main.async{
+          let log = "SearchFetcher ERROR: \(error): \(error.errorDescription ?? "")"
+          print(log)
+          let currentDateTime = String(describing: Date())
+          self.logs.append("\(currentDateTime) :: \(log)")
+        }
+        
         self.isLoading = false  // Set isLoading to false on failure as well
         completion(true, error)
       }

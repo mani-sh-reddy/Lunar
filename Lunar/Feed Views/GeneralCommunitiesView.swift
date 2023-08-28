@@ -42,8 +42,10 @@ struct GeneralCommunitiesView: View {
       NavigationLink {
         PostsView(
           postsFetcher: PostsFetcher(
-            sortParameter: button.sort, typeParameter: button.type, communityID: 0),
-          title: button.title)
+            sortParameter: button.sort,
+            typeParameter: button.type
+          ), title: button.title
+        )
       } label: {
         GeneralCommunityButtonView(button: button)
       }

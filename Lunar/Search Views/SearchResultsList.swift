@@ -5,7 +5,7 @@
 //  Created by Mani on 05/08/2023.
 //
 
-import Kingfisher
+
 import SwiftUI
 
 struct SearchResultsList: View {
@@ -15,8 +15,8 @@ struct SearchResultsList: View {
 
   @Binding var searchText: String
   @Binding var selectedSearchType: String
-
-  let processor = DownsamplingImageProcessor(size: CGSize(width: 50, height: 50))
+//  @Binding var selectedSortType: String
+  @AppStorage("selectedSearchSortType") var selectedSearchSortType = Settings.selectedSearchSortType
 
   var selectedSearchTypeIcon: (String, Color) {
     switch selectedSearchType {
@@ -60,7 +60,7 @@ struct SearchResultsList: View {
             if !searchText.isEmpty {
               Text("More \(selectedSearchType) with \"\(searchText)\"")
             } else {
-              Text("Trending")
+              Text("Trending \(selectedSearchType)")
             }
           } icon: {
             Image(systemName: selectedSearchTypeIcon.0)
@@ -70,6 +70,14 @@ struct SearchResultsList: View {
 
           }.foregroundStyle(selectedSearchTypeIcon.1)
         })
+    }
+    .onChange(of: selectedSearchSortType) { query in
+      withAnimation {
+        searchFetcher.sortParameter = query
+        searchFetcher.loadMoreContent { completed, _ in
+          isLoading = !completed
+        }
+      }
     }
     .onDebouncedChange(of: $searchText, debounceFor: 0) { newValue in
       if newValue.isEmpty {

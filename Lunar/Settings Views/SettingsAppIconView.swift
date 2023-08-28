@@ -11,7 +11,7 @@ import SwiftUI
 struct SettingsAppIconView: View {
   @AppStorage("appIconName") var appIconName = Settings.appIconName
   /// prepended by "AppIcon"
-  let appIconSuffixes = ["Light", "Dark", "Night", "Indigo", "LemmY"]
+  let appIconSuffixes = ["Light", "Dark", "Night", "Indigo", "LemmY", "Kbin"]
 
   var body: some View {
     List {

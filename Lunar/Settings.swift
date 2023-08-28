@@ -35,9 +35,11 @@ enum Settings {
   /// loggedInAccount.actorID = "123"
   /// self.loggedInAccounts.append(loggedInAccount)
   static let loggedInAccounts: [LoggedInAccount] = []
+  
+  static let enableLogging: Bool = false
+  static let logs: [String] = []
 
   /// selectedUser split up to store in appstorage
-  static let selectedUserID: String = ""
   static let selectedName: String = ""
   static let selectedEmail: String = ""
   static let selectedAvatarURL: String = ""
@@ -49,4 +51,15 @@ enum Settings {
   static let postType: String = "All"
   static let communitiesSort: String = "New"
   static let communitiesType: String = "All"
+  
+  static let commentMetadataPosition = "Bottom"
+  
+  static let subscribedCommunityIDs: [Int] = []
+  
+  static let selectedSearchSortType: String = "Active"
+  static let showLaunchSplashScreen: Bool = true
+  static let showWelcomeScreen: Bool = true
+  
+  
 }
+

@@ -8,13 +8,18 @@
 import Kingfisher
 import SwiftUI
 import UIKit
+import Nuke
 
 struct SettingsClearCacheButtonView: View {
+  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
+
   @State var cacheSize: String = ""
   let haptic = UINotificationFeedbackGenerator()
 
   @State var cacheClearButtonClicked: Bool = false
   @State var cacheClearButtonOpacity: Double = 1
+  
+  @State private var diskCacheUsage:String = ""
 
   var body: some View {
     Button {
@@ -24,12 +29,12 @@ struct SettingsClearCacheButtonView: View {
     } label: {
       Label {
         Text("Clear Cache")
-          .foregroundStyle(.red)
+          .foregroundStyle(.foreground)
         Spacer()
         ZStack(alignment: .trailing) {
           if !cacheClearButtonClicked {
-            Text(cacheSize)
-              .foregroundStyle(.red)
+//            Text(totalCacheSize())
+//              .foregroundStyle(.red)
           } else {
             Group {
               Image(systemName: "checkmark.circle.fill")
@@ -55,8 +60,34 @@ struct SettingsClearCacheButtonView: View {
           .symbolRenderingMode(.hierarchical)
       }
     }
-    .task {
-      calculateCache()
+  }
+  
+  func totalCacheSize() -> String {
+    do {
+      let dataCache = try DataCache(name: "\(self.appBundleID)")
+      dataCache.sizeLimit = 3000 * 1024 * 1024
+      print("path: \(dataCache.path)")
+      print("totalSize: \(dataCache.totalSize)")
+      print("totalAllocatedSize: \(dataCache.totalAllocatedSize)")
+      print("totalCount: \(dataCache.totalCount)")
+      print("sizeLimit: \(dataCache.sizeLimit)")
+      return humanReadableByteCount(bytes: dataCache.totalSize)
+    } catch{
+      print("CACHE ERROR")
+    }
+    return ""
+  }
+
+  func humanReadableByteCount(bytes: Int) -> String {
+    if (bytes < 1000) { return "\(bytes) B" }
+    let exp = Int(log2(Double(bytes)) / log2(1000.0))
+    let unit = ["KB", "MB", "GB", "TB", "PB", "EB"][exp - 1]
+    let number = Double(bytes) / pow(1000, Double(exp))
+    if exp <= 1 || number >= 100 {
+      return String(format: "%.0f %@", number, unit)
+    } else {
+      return String(format: "%.1f %@", number, unit)
+        .replacingOccurrences(of: ".0", with: "")
     }
   }
 
@@ -64,23 +95,13 @@ struct SettingsClearCacheButtonView: View {
     let cache = ImageCache.default
     cache.clearMemoryCache()
     cache.clearDiskCache { print("Cache clear button clicked") }
-    calculateCache()
-  }
-
-  func calculateCache() {
-    ImageCache.default.calculateDiskStorageSize { result in
-      switch result {
-      case let .success(size):
-        cacheSize = "\(String(format: "%.0f", Double(size) / 1024 / 1024)) MB"
-      case let .failure(error):
-        print("calculateCache FUNCTION ERROR: \(error)")
-      }
-    }
+//    calculateCache()
   }
 }
 
 struct SettingsClearCacheButtonView_Previews: PreviewProvider {
   static var previews: some View {
     SettingsClearCacheButtonView()
+      .previewLayout(.sizeThatFits)
   }
 }

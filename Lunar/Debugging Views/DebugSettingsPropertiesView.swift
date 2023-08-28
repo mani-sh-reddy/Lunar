@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct DebugSettingsPropertiesView: View {
-  @AppStorage("selectedUserID") var selectedUserID = Settings.selectedUserID
   @AppStorage("selectedName") var selectedName = Settings.selectedName
   @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
   @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
@@ -19,10 +18,6 @@ struct DebugSettingsPropertiesView: View {
     Section {
       VStack(alignment: .leading) {
         Text("Debug Properties").bold().textCase(.uppercase)
-        VStack(alignment: .leading) {
-          Text("selectedUserID: ").bold()
-          Text("\(String(selectedUserID))")
-        }.padding(.vertical, 3)
         VStack(alignment: .leading) {
           Text("selectedName: ").bold()
           Text("\(String(selectedName))")

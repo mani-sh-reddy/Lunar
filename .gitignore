@@ -54,10 +54,17 @@ playground.xcworkspace
 # For more information about the recommended setup visit:
 # https://docs.fastlane.tools/best-practices/source-control/#source-control
 
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/screenshots
-fastlane/test_output
+# fastlane specific
+**/fastlane/report.xml
+
+# deliver temporary files
+**/fastlane/Preview.html
+
+# snapshot generated screenshots
+**/fastlane/screenshots
+
+# scan temporary files
+**/fastlane/test_output
 
 ### Xcode ###
 # Xcode
@@ -71,7 +78,6 @@ fastlane/test_output
 ## Other
 
 ### Xcode Patch ###
-*.xcodeproj/*
 !*.xcodeproj/project.pbxproj
 !*.xcodeproj/xcshareddata/
 !*.xcworkspace/contents.xcworkspacedata
@@ -82,3 +88,7 @@ fastlane/test_output
 Lunar.xcodeproj/xcshareddata/xcschemes/
 
 *.xcscheme
+
+fastlane/Appfile
+
+FastlaneScreenshots/

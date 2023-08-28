@@ -10,6 +10,7 @@ import SwiftUI
 struct MoreCommunitiesView: View {
   @StateObject var communitiesFetcher: CommunitiesFetcher
   @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
+  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
 
   var title: String
 
@@ -17,31 +18,16 @@ struct MoreCommunitiesView: View {
     List {
       Section {
         ForEach(communitiesFetcher.communities, id: \.community.id) { community in
-
-          // TODO: -
           NavigationLink {
             PostsView(
               postsFetcher: PostsFetcher(
                 communityID: community.community.id
-              ), community: community
+              ), title: community.community.name,
+              community: community
             )
           } label: {
             CommunityRowView(community: community)
           }
-
-          //          NavigationLink(
-          //            destination: CommunitySpecificPostsListView(
-          //              communitySpecificPostsFetcher: CommunitySpecificPostsFetcher(
-          //                communityID: community.community.id,
-          //                sortParameter: "Active",
-          //                typeParameter: "All"
-          //              ),
-          //              communityID: community.community.id,
-          //              title: community.community.title
-          //            )
-          //          ) {
-          //            MoreCommunitiesRowView(community: community)
-          //          }
           .task {
             communitiesFetcher.loadMoreContentIfNeeded(currentItem: community)
           }

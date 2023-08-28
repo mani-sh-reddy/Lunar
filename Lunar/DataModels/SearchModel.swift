@@ -13,8 +13,8 @@ struct SearchModel: Codable {
   let type: String
   let comments: [SearchCommentElement]
   let posts: [SearchPostElement]
-  let communities: [SearchCommunityElement]
-  let users: [SearchUserElement]
+  let communities: [CommunityElement]
+  let users: [UserElement]
 
   enum CodingKeys: String, CodingKey {
     case type = "type_"
@@ -31,7 +31,7 @@ struct SearchCommentElement: Codable {
   let community: SearchCommunityInfo
   let counts: SearchCommentCounts
   let creatorBannedFromCommunity: Bool
-  let subscribed: Subscribed
+  let subscribed: SubscribedState
   let saved, creatorBlocked: Bool
 
   enum CodingKeys: String, CodingKey {
@@ -181,7 +181,7 @@ enum SearchSubscribed: String, Codable {
 
 struct SearchCommunityElement: Codable {
   let community: SearchCommunityInfo
-  let subscribed: Subscribed
+  let subscribed: SubscribedState
   let blocked: Bool
   let counts: SearchCommunityCounts
 }
@@ -215,7 +215,7 @@ struct SearchPostElement: Codable {
   let community: SearchCommunityInfo
   let creatorBannedFromCommunity: Bool
   let counts: SearchPostCounts
-  let subscribed: Subscribed
+  let subscribed: SubscribedState?
   let saved, read, creatorBlocked: Bool
   let unreadComments: Int
 
@@ -255,7 +255,7 @@ struct SearchPostCounts: Codable {
 
 // MARK: - User
 
-struct SearchUserElement: Codable {
+struct UserElement: Codable {
   let person: Creator
   let counts: SearchUserCounts
 }
