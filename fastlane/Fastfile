@@ -2,6 +2,8 @@
 
 # sem_ver_tag = UI.select("Select Semantic Versioning Tag: ", ["major", "minor", "patch"])
 
+line_separator = "========================================================================="
+
 changelog = prompt(
   text: "Changelog: ",
   multi_line_end_keyword: "END"
@@ -24,6 +26,7 @@ APPLE_ISSUER_ID = ENV["APPLE_ISSUER_ID"]
 APPLE_KEY_ID = ENV["APPLE_KEY_ID"]
 APPLE_KEY_CONTENT = ENV["APPLE_KEY_CONTENT"]
 GIT_AUTHORIZATION = ENV["GIT_AUTHORIZATION"]
+REPO_GITHUB_TOKEN = ENV["REPO_GITHUB_TOKEN"]
 LATEST_TAG = ENV["LATEST_TAG"]
 API_KEY_FILEPATH = ENV["API_KEY_FILEPATH"]
 
@@ -60,6 +63,10 @@ platform :ios do
       in_house: false # optional but may be required if using match/sigh
     )
 
+      UI.message "\n #{line_separator}#{line_separator} \n"
+      UI.message "Release Notes: \n #{latest_git_tag} \n \n #{changelog} \n"
+      UI.message "\n #{line_separator}#{line_separator} \n"
+
     upload_to_testflight(
       changelog: changelog,
       skip_submission: true, # skip submission, only upload build
@@ -71,6 +78,12 @@ platform :ios do
       force: true,
       files: ["./Lunar.xcodeproj/project.pbxproj"]
     )
+
+    # Next Steps
+    #   Create/merge PR to main
+    #   Create release
+    #   Add release notes
+    #   Upload IPA file
 
   end
 end
