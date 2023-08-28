@@ -45,7 +45,7 @@ struct SettingsAppearanceSectionView: View {
             .foregroundStyle(.mint)
         }
       }
-      
+
       NavigationLink {
         SettingsSplashScreenView()
       } label: {

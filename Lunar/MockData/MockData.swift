@@ -9,7 +9,7 @@ import SwiftUI
 
 enum MockData {
   static let kbinPostURL =
-  "https://kbin.social/m/kbinMeta/t/86614/PSA-Upvote-is-not-an-upvote-like-you-are-used"
+    "https://kbin.social/m/kbinMeta/t/86614/PSA-Upvote-is-not-an-upvote-like-you-are-used"
   static let kbinPostURL2 = "/m/kbinMeta/t/86614/PSA-Upvote-is-not-an-upvote-like-you-are-used"
   static let kbinPost = KbinPost(
     id: "entry-315569", title: "Posadist Star Trek is solid canon (hexbear.net)", user: "culpritus",
@@ -23,9 +23,11 @@ enum MockData {
         followCount: 0)), instanceLink: Optional("hexbear.net"),
     postURL: "/m/memes@lemmy.ml/t/315569/Posadist-Star-Trek-is-solid-canon")
   static let kbinPostBody1 =
-  "Like the title says, if you want to upvote something on KBin, you should use the Boost link, not the upvote button (Why? Don't know...). The upvote button doesn't seem to do much, but Boost accomplishes what Reddit's upvote did. So if you're looking to encourage a post, use the Boost link."
-  
-  static let lemmyPostBody = Optional("I was interested in buying a Steam Deck... So my question is: are the rivals of the Steam Deck worth their price? Are really better than the Steam Deck (in terms of quality, screen, size)? Thank you for your opinion!")
+    "Like the title says, if you want to upvote something on KBin, you should use the Boost link, not the upvote button (Why? Don't know...). The upvote button doesn't seem to do much, but Boost accomplishes what Reddit's upvote did. So if you're looking to encourage a post, use the Boost link."
+
+  static let lemmyPostBody = Optional(
+    "I was interested in buying a Steam Deck... So my question is: are the rivals of the Steam Deck worth their price? Are really better than the Steam Deck (in terms of quality, screen, size)? Thank you for your opinion!"
+  )
   //  static let mockPost = PostsModel(posts: [
   //    PostElement(
   //      post: PostObject(
@@ -279,7 +281,7 @@ enum MockData {
     ),
     banner: "https://lemmy.world/pictrs/image/d470bf41-dfa9-419f-84b1-54c4008c9e09.png?format=webp",
     hidden: false, postingRestrictedToMods: false, instanceID: 257)
-  
+
   static let communityInfoView2 = SearchCommunityInfo(
     id: 1120, name: "gitlab", title: "GitLab is open source software to collaborate on code. ",
     description: Optional(
@@ -290,7 +292,7 @@ enum MockData {
     icon: Optional("https://lemmy.ml/pictrs/image/MfBKj2QzF0.png"),
     banner: Optional("https://lemmy.ml/pictrs/image/LV8mLLqMbT.png"), hidden: false,
     postingRestrictedToMods: false, instanceID: 3)
-  
+
   static let communityInfoView3 = SearchCommunityInfo(
     id: 5502, name: "TechEnthusiasts", title: "Tech Enthusiasts Hub",
     description: Optional(
@@ -303,7 +305,7 @@ enum MockData {
     banner: Optional(
       "https://techhub.social/pictrs/image/d7e2979e-47f7-4d47-9b7d-cd157ca234f6.jpg"),
     hidden: false, postingRestrictedToMods: false, instanceID: 105)
-  
+
   static let communityInfoView4 = SearchCommunityInfo(
     id: 7841, name: "TravelDiaries", title: "Travel Diaries",
     description: Optional(
@@ -316,7 +318,7 @@ enum MockData {
     banner: Optional(
       "https://travelersworld.com/pictrs/image/a5a45c16-55b6-4ebc-9f1c-125127c1a1db.jpg"),
     hidden: false, postingRestrictedToMods: false, instanceID: 205)
-  
+
   static let userInfoView1 = Creator(
     id: 125_358, name: "DarkGamer", displayName: Optional("DarkGamer"),
     avatar: Optional(
@@ -327,7 +329,7 @@ enum MockData {
       "https://media.kbin.social/media/0a/b8/0ab85953c2ae0ad635d8c234143e1a4801c3f280a2d9d992be1c2aff9e28f384.jpg"
     ), deleted: false, admin: false, botAccount: false, instanceID: 257, updated: nil,
     matrixUserID: nil)
-  
+
   static let userInfoView2 = Creator(
     id: 456_789, name: "CodingNinja", displayName: Optional("CodingNinja"),
     avatar: Optional(
@@ -341,7 +343,7 @@ enum MockData {
       "https://techhub.social/media/c6/9d/c69db24f7ff2a82630c70f76efc0a312e6c57c1e9e3e5dbf6f91eeab9caac5b8.jpg"
     ), deleted: false, admin: false, botAccount: false, instanceID: 105, updated: nil,
     matrixUserID: nil)
-  
+
   static let userInfoView3 = Creator(
     id: 987_654, name: "Bookworm_27", displayName: Optional("Bookworm_27"),
     avatar: Optional(
@@ -355,28 +357,195 @@ enum MockData {
       "https://travelersworld.com/media/80/23/8023bbab2d1a4d1c3b6e11401259b2df6497632e387c69cda7c74b1e41b9ce00.jpg"
     ), deleted: false, admin: false, botAccount: false, instanceID: 205, updated: nil,
     matrixUserID: nil)
-  
+
   static let userInfoView4 = Creator(
     id: 650_713, name: "maniel", displayName: nil,
     avatar: Optional("https://lemmy.ml/pictrs/image/3c00cbaa-f2d4-4b16-88bf-2438db3ab9c4.jpeg"),
     banned: false, published: "2023-06-07T09:24:31.398108", actorID: "https://lemmy.ml/u/maniel",
     bio: nil, local: true, banner: nil, deleted: false, admin: false, botAccount: false,
     instanceID: 394, updated: nil, matrixUserID: nil)
-  
+
   static let commentsViewPostTitle1 =
-  "Lemmy.world active users is tapering off while other servers are gaining serious traction."
+    "Lemmy.world active users is tapering off while other servers are gaining serious traction."
   static let commentsViewThumbnailURL1 =
-  "https://www.wallpapers13.com/wp-content/uploads/2015/12/Nature-Lake-Bled.-Desktop-background-image-1680x1050.jpg"
+    "https://www.wallpapers13.com/wp-content/uploads/2015/12/Nature-Lake-Bled.-Desktop-background-image-1680x1050.jpg"
   static let commentsViewPostBody1 = """
     I noticed my feed on Lemmy was pretty dry today, even for Lemmy. Took me a while to realize lemmy.ml has been going up and down all morning
     """
-  static let postElement = PostElement(image: nil, post: Lunar.PostObject(id: 3389331, name: "France wants your browser to censor the web, and Mozilla is petitioning against it", url: Optional("https://foundation.mozilla.org/en/campaigns/sign-our-petition-to-stop-france-from-forcing-browsers-like-mozillas-firefox-to-censor-websites/"), creatorID: 645391, communityID: 2478, removed: false, locked: false, published: "2023-08-18T14:46:39.367843", deleted: false, thumbnailURL: Optional("https://lemmy.world/pictrs/image/fd7c305a-5c7b-454b-89f4-e156d509979e.png"), apID: "https://lemmy.world/post/3389331", local: true, languageID: 37, featuredCommunity: false, featuredLocal: false, body: Optional("More context: https://blog.mozilla.org/netpolicy/2023/06/26/france-browser-website-blocking/"), updated: nil, embedTitle: Optional("Sign our petition to stop France from forcing browsers like Mozilla\'s Firefox to censor websites"), embedDescription: Optional("The French government is considering a law that would require web browsers – like Mozilla\'s Firefox – to block websites chosen by the government."), embedVideoURL: nil), creator: Lunar.Creator(id: 645391, name: "AccidentalLemming", displayName: nil, avatar: nil, banned: false, published: "2023-07-02T13:50:38.748078", actorID: "https://lemmy.world/u/AccidentalLemming", bio: nil, local: true, banner: nil, deleted: false, admin: false, botAccount: false, instanceID: 1, updated: nil, matrixUserID: nil), community: Lunar.Community(id: 2478, name: "technology", title: "Technology", description: Optional("This is a [most excellent](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3N0NmhuODNib3d3Nzg0OHU2bTFqMXAzNW42Y2JsOTVmenNsNG8ycSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l46CDHTqbmnGZyxKo/giphy.gif) place for technology news and articles.\n \n---\n \n## Our Rules\n \n---\n \n1. Follow the [lemmy.world rules.](https://mastodon.world/about) \n2. Only tech related content.\n3. Be [excellent to each another!](https://www.youtube.com/watch?v=rph_1DODXDU)\n4. Mod approved content bots can post up to 10 articles per day.\n5. Threads asking for personal tech support may be deleted.\n6. Politics threads may be removed.\n7. No memes allowed as posts, OK to post as comments.\n8. Only approved bots from the list below, to ask if your bot can be added please contact us.\n9. Check for duplicates before posting, duplicates may be removed\n \n---\n \n## Approved Bots\n \n---\n \n- [@L4s@lemmy.world](https://lemmy.world/u/L4s) \n- [@autotldr@lemmings.world](https://lemmings.world/u/autotldr) \n- [@PipedLinkBot@feddit.rocks](https://feddit.rocks/u/PipedLinkBot) "), removed: false, published: "2023-06-11T02:16:17.173483", updated: Optional("2023-08-18T03:42:50.251018"), deleted: false, actorID: "https://lemmy.world/c/technology", local: true, icon: Optional("https://lemmy.world/pictrs/image/06660c76-9219-486e-a146-27b69dcac8ce.png"), hidden: false, postingRestrictedToMods: false, instanceID: 1, banner: nil), creatorBannedFromCommunity: false, counts: Lunar.Counts(id: 549580, postID: 3389331, comments: 207, score: 1761, upvotes: 1774, downvotes: 13, published: "2023-08-18T14:46:39.367843", newestCommentTimeNecro: "2023-08-19T16:19:35.968452", newestCommentTime: "2023-08-19T16:19:35.968452", featuredCommunity: false, featuredLocal: false, hotRank: 82, hotRankActive: 8019), subscribed: Lunar.SubscribedState.notSubscribed, saved: false, read: false, creatorBlocked: false, unreadComments: 207, myVote: nil)
-  
-//  static let commentElement = CommentElement(comment: Lunar.CommentsListObject(id: 957028, creatorID: 6277435, postID: 7139973, content: "Watching the drama unfold on lemmy.world and all the freeze peach warriors going ape shit over there has me grateful for this little corner. ", removed: false, published: "2023-08-15T16:36:54.377463", deleted: false, apID: "https://beehaw.org/comment/957028", local: true, path: "0.957028", distinguished: false, languageID: 37), creator: Lunar.CommentsListCreator(id: 6277435, name: "acastcandream", banned: false, published: "2023-08-03T13:29:25.016098", actorID: "https://beehaw.org/u/acastcandream", local: true, deleted: false, admin: false, botAccount: false, instanceID: 664, displayName: nil, avatar: nil, banner: nil, bio: nil), post: PostElement(id: 7139973, name: Optional("how\'s your week going, Beehaw"), body: Optional("we\'re so back (but i will be making a separate post for my circumstances)"), creatorID: 8, communityID: 16542, removed: false, locked: false, published: "2023-08-14T14:57:26.612558", updated: nil, deleted: false, nsfw: false, apID: "https://beehaw.org/post/7139973", local: true, languageID: 37, featuredCommunity: true, featuredLocal: true), community: Lunar.CommentsListCommunity(id: 16542, name: "chat", title: "Chat", description: Optional("Relaxed section for discussion and debate that doesn\'t fit anywhere else. Whether it\'s advice, how your week is going, a link that\'s at the back of your mind, or something like that, it can likely go here.\n\n---\n\nSubcommunities on Beehaw:\n- [AskBeehaw](https://beehaw.org/c/askbeehaw)\n\n---\n\nThis community\'s icon was made by Aaron Schneider, under the [CC-BY-NC-SA 4.0 license](https://creativecommons.org/licenses/by-nc-sa/4.0/)."), removed: Optional(false), published: "2023-02-09T17:49:43.318904", updated: Optional("2023-07-08T02:19:55.340768"), deleted: false, nsfw: false, actorID: "https://beehaw.org/c/chat", local: Optional(true), icon: Optional("https://beehaw.org/pictrs/image/bcae6839-244a-4162-a988-42ee46909013.png"), banner: nil, hidden: Optional(false), postingRestrictedToMods: Optional(false), instanceID: 664), counts: Lunar.CommentsListCounts(id: 807166, commentID: 957028, score: 2, upvotes: 2, downvotes: 0, published: "2023-08-15T16:36:54.377463", childCount: 0, hotRank: 1036), creatorBannedFromCommunity: false, subscribed: Lunar.CommentSubscribed.notSubscribed, saved: false, creatorBlocked: false)
-  
-  static let searchUserRow = [Lunar.UserElement(person: Lunar.Creator(id: 44936, name: "manitcor", displayName: Optional("manitcor"), avatar: Optional("https://lemmy.intai.tech/pictrs/image/354e199f-c2b7-4da5-9a38-a7b1459adb25.png"), banned: false, published: "2023-06-11T04:31:18.917668", actorID: "https://lemmy.intai.tech/u/manitcor", bio: Optional("It\'s your internet, own it.\n\n[Fediverse Welcome Kit](https://lemmy.intai.tech/post/30829)\n\n[Topical Instances](https://lemmy.intai.tech/post/3511)\n\n[ML Community Web](https://lemmy.intai.tech/post/2182)\n\n[AI Bots](https://lemmy.intai.tech/post/2484)"), local: false, banner: Optional("https://lemmy.intai.tech/pictrs/image/dd8f1ef3-2624-498f-b078-375c2f33f493.png"), deleted: false, admin: false, botAccount: false, instanceID: 838, updated: nil, matrixUserID: nil), counts: Lunar.SearchUserCounts(id: 22904, personID: 44936, postCount: 698, postScore: 1425, commentCount: 921, commentScore: 996))]
-  
-  static let searchCommunitiesResults = [Lunar.CommunityElement(community: Lunar.CommunityObject(id: 134975, name: "nvidia", title: "The NVIDIA Subreddit", removed: false, published: "2023-07-18T17:09:25.318559", deleted: false, actorID: "https://zerobytes.monster/c/nvidia", local: false, hidden: false, postingRestrictedToMods: true, instanceID: 2156, description: Optional("A place for everything NVIDIA, come talk about news, drivers, rumors, GPUs, the industry, show-off your build and more. This Subreddit is..."), updated: nil, icon: nil, banner: nil), subscribed: Lunar.SubscribedState.notSubscribed, blocked: false, counts: Lunar.CountsObject(id: 31667, communityID: 134975, subscribers: 1, posts: 0, comments: 0, published: "2023-07-18T17:09:25.318559", usersActiveDay: 0, usersActiveWeek: 0, usersActiveMonth: 0, usersActiveHalfYear: 0, hotRank: 0))]
-  
-  static let commentsList1 = [Lunar.CommentElement(comment: Lunar.CommentsListObject(id: 2625440, creatorID: 1473371, postID: 3527783, content: "api test comment", removed: false, published: "2023-08-20T23:32:22.391969", deleted: false, apID: "https://lemmy.world/comment/2625440", local: true, path: "0.2625440", distinguished: false, languageID: 0), creator: Lunar.CommentsListCreator(id: 1473371, name: "dummyuser3", banned: false, published: "2023-07-29T10:53:59.561923", actorID: "https://lemmy.world/u/dummyuser3", local: true, deleted: false, admin: false, botAccount: false, instanceID: 1, displayName: nil, avatar: Optional("https://lemmy.world/pictrs/image/863bbd5b-e57b-4938-92b5-b62cc3db91bd.png"), banner: nil, bio: nil), post: Lunar.PostObject(id: 3527783, name: "api test pls ignore", url: nil, creatorID: 1473371, communityID: 234309, removed: false, locked: false, published: "2023-08-20T23:30:54.429176", deleted: false, thumbnailURL: nil, apID: "https://lemmy.world/post/3527783", local: true, languageID: 0, featuredCommunity: false, featuredLocal: false, body: nil, updated: nil, embedTitle: nil, embedDescription: nil, embedVideoURL: nil), community: Lunar.CommentsListCommunity(id: 234309, name: "api_testing_pls_ignore", title: "API Testing Pls Ignore", description: nil, removed: Optional(false), published: "2023-08-20T23:28:19.057982", updated: nil, deleted: false, nsfw: false, actorID: "https://lemmy.world/c/api_testing_pls_ignore", local: Optional(true), icon: nil, banner: nil, hidden: Optional(false), postingRestrictedToMods: Optional(false), instanceID: 1), counts: Lunar.CommentsListCounts(id: 2409928, commentID: 2625440, score: 1, upvotes: 1, downvotes: 0, published: "2023-08-20T23:32:22.391969", childCount: 1, hotRank: 23), creatorBannedFromCommunity: false, subscribed: Optional(Lunar.CommentSubscribed.subscribed), saved: false, creatorBlocked: false, myVote: Optional(1)), Lunar.CommentElement(comment: Lunar.CommentsListObject(id: 2625471, creatorID: 1473371, postID: 3527783, content: "api test comment", removed: false, published: "2023-08-20T23:33:15.420698", deleted: false, apID: "https://lemmy.world/comment/2625471", local: true, path: "0.2625440.2625471", distinguished: false, languageID: 0), creator: Lunar.CommentsListCreator(id: 1473371, name: "dummyuser3", banned: false, published: "2023-07-29T10:53:59.561923", actorID: "https://lemmy.world/u/dummyuser3", local: true, deleted: false, admin: false, botAccount: false, instanceID: 1, displayName: nil, avatar: Optional("https://lemmy.world/pictrs/image/863bbd5b-e57b-4938-92b5-b62cc3db91bd.png"), banner: nil, bio: nil), post: Lunar.PostObject(id: 3527783, name: "api test pls ignore", url: nil, creatorID: 1473371, communityID: 234309, removed: false, locked: false, published: "2023-08-20T23:30:54.429176", deleted: false, thumbnailURL: nil, apID: "https://lemmy.world/post/3527783", local: true, languageID: 0, featuredCommunity: false, featuredLocal: false, body: nil, updated: nil, embedTitle: nil, embedDescription: nil, embedVideoURL: nil), community: Lunar.CommentsListCommunity(id: 234309, name: "api_testing_pls_ignore", title: "API Testing Pls Ignore", description: nil, removed: Optional(false), published: "2023-08-20T23:28:19.057982", updated: nil, deleted: false, nsfw: false, actorID: "https://lemmy.world/c/api_testing_pls_ignore", local: Optional(true), icon: nil, banner: nil, hidden: Optional(false), postingRestrictedToMods: Optional(false), instanceID: 1), counts: Lunar.CommentsListCounts(id: 2409958, commentID: 2625471, score: 0, upvotes: 0, downvotes: 0, published: "2023-08-20T23:33:15.420698", childCount: 0, hotRank: 18), creatorBannedFromCommunity: false, subscribed: Optional(Lunar.CommentSubscribed.subscribed), saved: false, creatorBlocked: false, myVote: nil), Lunar.CommentElement(comment: Lunar.CommentsListObject(id: 2626225, creatorID: 1592467, postID: 3527783, content: "I can’t ignore this", removed: false, published: "2023-08-21T00:05:24.109346", deleted: false, apID: "https://lemmy.world/comment/2626225", local: true, path: "0.2626225", distinguished: false, languageID: 0), creator: Lunar.CommentsListCreator(id: 1592467, name: "CluckN", banned: false, published: "2023-08-03T01:12:28.891865", actorID: "https://lemmy.world/u/CluckN", local: true, deleted: false, admin: false, botAccount: false, instanceID: 1, displayName: nil, avatar: nil, banner: nil, bio: nil), post: Lunar.PostObject(id: 3527783, name: "api test pls ignore", url: nil, creatorID: 1473371, communityID: 234309, removed: false, locked: false, published: "2023-08-20T23:30:54.429176", deleted: false, thumbnailURL: nil, apID: "https://lemmy.world/post/3527783", local: true, languageID: 0, featuredCommunity: false, featuredLocal: false, body: nil, updated: nil, embedTitle: nil, embedDescription: nil, embedVideoURL: nil), community: Lunar.CommentsListCommunity(id: 234309, name: "api_testing_pls_ignore", title: "API Testing Pls Ignore", description: nil, removed: Optional(false), published: "2023-08-20T23:28:19.057982", updated: nil, deleted: false, nsfw: false, actorID: "https://lemmy.world/c/api_testing_pls_ignore", local: Optional(true), icon: nil, banner: nil, hidden: Optional(false), postingRestrictedToMods: Optional(false), instanceID: 1), counts: Lunar.CommentsListCounts(id: 2410648, commentID: 2626225, score: 8, upvotes: 8, downvotes: 0, published: "2023-08-21T00:05:24.109346", childCount: 0, hotRank: 42), creatorBannedFromCommunity: false, subscribed: Optional(Lunar.CommentSubscribed.subscribed), saved: false, creatorBlocked: false, myVote: Optional(1))]
+  static let postElement = PostElement(
+    image: nil,
+    post: Lunar.PostObject(
+      id: 3_389_331,
+      name: "France wants your browser to censor the web, and Mozilla is petitioning against it",
+      url: Optional(
+        "https://foundation.mozilla.org/en/campaigns/sign-our-petition-to-stop-france-from-forcing-browsers-like-mozillas-firefox-to-censor-websites/"
+      ), creatorID: 645391, communityID: 2478, removed: false, locked: false,
+      published: "2023-08-18T14:46:39.367843", deleted: false,
+      thumbnailURL: Optional(
+        "https://lemmy.world/pictrs/image/fd7c305a-5c7b-454b-89f4-e156d509979e.png"),
+      apID: "https://lemmy.world/post/3389331", local: true, languageID: 37,
+      featuredCommunity: false, featuredLocal: false,
+      body: Optional(
+        "More context: https://blog.mozilla.org/netpolicy/2023/06/26/france-browser-website-blocking/"
+      ), updated: nil,
+      embedTitle: Optional(
+        "Sign our petition to stop France from forcing browsers like Mozilla\'s Firefox to censor websites"
+      ),
+      embedDescription: Optional(
+        "The French government is considering a law that would require web browsers – like Mozilla\'s Firefox – to block websites chosen by the government."
+      ), embedVideoURL: nil),
+    creator: Lunar.Creator(
+      id: 645391, name: "AccidentalLemming", displayName: nil, avatar: nil, banned: false,
+      published: "2023-07-02T13:50:38.748078", actorID: "https://lemmy.world/u/AccidentalLemming",
+      bio: nil, local: true, banner: nil, deleted: false, admin: false, botAccount: false,
+      instanceID: 1, updated: nil, matrixUserID: nil),
+    community: Lunar.Community(
+      id: 2478, name: "technology", title: "Technology",
+      description: Optional(
+        "This is a [most excellent](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3N0NmhuODNib3d3Nzg0OHU2bTFqMXAzNW42Y2JsOTVmenNsNG8ycSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l46CDHTqbmnGZyxKo/giphy.gif) place for technology news and articles.\n \n---\n \n## Our Rules\n \n---\n \n1. Follow the [lemmy.world rules.](https://mastodon.world/about) \n2. Only tech related content.\n3. Be [excellent to each another!](https://www.youtube.com/watch?v=rph_1DODXDU)\n4. Mod approved content bots can post up to 10 articles per day.\n5. Threads asking for personal tech support may be deleted.\n6. Politics threads may be removed.\n7. No memes allowed as posts, OK to post as comments.\n8. Only approved bots from the list below, to ask if your bot can be added please contact us.\n9. Check for duplicates before posting, duplicates may be removed\n \n---\n \n## Approved Bots\n \n---\n \n- [@L4s@lemmy.world](https://lemmy.world/u/L4s) \n- [@autotldr@lemmings.world](https://lemmings.world/u/autotldr) \n- [@PipedLinkBot@feddit.rocks](https://feddit.rocks/u/PipedLinkBot) "
+      ), removed: false, published: "2023-06-11T02:16:17.173483",
+      updated: Optional("2023-08-18T03:42:50.251018"), deleted: false,
+      actorID: "https://lemmy.world/c/technology", local: true,
+      icon: Optional("https://lemmy.world/pictrs/image/06660c76-9219-486e-a146-27b69dcac8ce.png"),
+      hidden: false, postingRestrictedToMods: false, instanceID: 1, banner: nil),
+    creatorBannedFromCommunity: false,
+    counts: Lunar.Counts(
+      id: 549580, postID: 3_389_331, comments: 207, score: 1761, upvotes: 1774, downvotes: 13,
+      published: "2023-08-18T14:46:39.367843", newestCommentTimeNecro: "2023-08-19T16:19:35.968452",
+      newestCommentTime: "2023-08-19T16:19:35.968452", featuredCommunity: false,
+      featuredLocal: false, hotRank: 82, hotRankActive: 8019),
+    subscribed: Lunar.SubscribedState.notSubscribed, saved: false, read: false,
+    creatorBlocked: false, unreadComments: 207, myVote: nil)
+
+  //  static let commentElement = CommentElement(comment: Lunar.CommentsListObject(id: 957028, creatorID: 6277435, postID: 7139973, content: "Watching the drama unfold on lemmy.world and all the freeze peach warriors going ape shit over there has me grateful for this little corner. ", removed: false, published: "2023-08-15T16:36:54.377463", deleted: false, apID: "https://beehaw.org/comment/957028", local: true, path: "0.957028", distinguished: false, languageID: 37), creator: Lunar.CommentsListCreator(id: 6277435, name: "acastcandream", banned: false, published: "2023-08-03T13:29:25.016098", actorID: "https://beehaw.org/u/acastcandream", local: true, deleted: false, admin: false, botAccount: false, instanceID: 664, displayName: nil, avatar: nil, banner: nil, bio: nil), post: PostElement(id: 7139973, name: Optional("how\'s your week going, Beehaw"), body: Optional("we\'re so back (but i will be making a separate post for my circumstances)"), creatorID: 8, communityID: 16542, removed: false, locked: false, published: "2023-08-14T14:57:26.612558", updated: nil, deleted: false, nsfw: false, apID: "https://beehaw.org/post/7139973", local: true, languageID: 37, featuredCommunity: true, featuredLocal: true), community: Lunar.CommentsListCommunity(id: 16542, name: "chat", title: "Chat", description: Optional("Relaxed section for discussion and debate that doesn\'t fit anywhere else. Whether it\'s advice, how your week is going, a link that\'s at the back of your mind, or something like that, it can likely go here.\n\n---\n\nSubcommunities on Beehaw:\n- [AskBeehaw](https://beehaw.org/c/askbeehaw)\n\n---\n\nThis community\'s icon was made by Aaron Schneider, under the [CC-BY-NC-SA 4.0 license](https://creativecommons.org/licenses/by-nc-sa/4.0/)."), removed: Optional(false), published: "2023-02-09T17:49:43.318904", updated: Optional("2023-07-08T02:19:55.340768"), deleted: false, nsfw: false, actorID: "https://beehaw.org/c/chat", local: Optional(true), icon: Optional("https://beehaw.org/pictrs/image/bcae6839-244a-4162-a988-42ee46909013.png"), banner: nil, hidden: Optional(false), postingRestrictedToMods: Optional(false), instanceID: 664), counts: Lunar.CommentsListCounts(id: 807166, commentID: 957028, score: 2, upvotes: 2, downvotes: 0, published: "2023-08-15T16:36:54.377463", childCount: 0, hotRank: 1036), creatorBannedFromCommunity: false, subscribed: Lunar.CommentSubscribed.notSubscribed, saved: false, creatorBlocked: false)
+
+  static let searchUserRow = [
+    Lunar.UserElement(
+      person: Lunar.Creator(
+        id: 44936, name: "manitcor", displayName: Optional("manitcor"),
+        avatar: Optional(
+          "https://lemmy.intai.tech/pictrs/image/354e199f-c2b7-4da5-9a38-a7b1459adb25.png"),
+        banned: false, published: "2023-06-11T04:31:18.917668",
+        actorID: "https://lemmy.intai.tech/u/manitcor",
+        bio: Optional(
+          "It\'s your internet, own it.\n\n[Fediverse Welcome Kit](https://lemmy.intai.tech/post/30829)\n\n[Topical Instances](https://lemmy.intai.tech/post/3511)\n\n[ML Community Web](https://lemmy.intai.tech/post/2182)\n\n[AI Bots](https://lemmy.intai.tech/post/2484)"
+        ), local: false,
+        banner: Optional(
+          "https://lemmy.intai.tech/pictrs/image/dd8f1ef3-2624-498f-b078-375c2f33f493.png"),
+        deleted: false, admin: false, botAccount: false, instanceID: 838, updated: nil,
+        matrixUserID: nil),
+      counts: Lunar.SearchUserCounts(
+        id: 22904, personID: 44936, postCount: 698, postScore: 1425, commentCount: 921,
+        commentScore: 996))
+  ]
+
+  static let searchCommunitiesResults = [
+    Lunar.CommunityElement(
+      community: Lunar.CommunityObject(
+        id: 134975, name: "nvidia", title: "The NVIDIA Subreddit", removed: false,
+        published: "2023-07-18T17:09:25.318559", deleted: false,
+        actorID: "https://zerobytes.monster/c/nvidia", local: false, hidden: false,
+        postingRestrictedToMods: true, instanceID: 2156,
+        description: Optional(
+          "A place for everything NVIDIA, come talk about news, drivers, rumors, GPUs, the industry, show-off your build and more. This Subreddit is..."
+        ), updated: nil, icon: nil, banner: nil), subscribed: Lunar.SubscribedState.notSubscribed,
+      blocked: false,
+      counts: Lunar.CountsObject(
+        id: 31667, communityID: 134975, subscribers: 1, posts: 0, comments: 0,
+        published: "2023-07-18T17:09:25.318559", usersActiveDay: 0, usersActiveWeek: 0,
+        usersActiveMonth: 0, usersActiveHalfYear: 0, hotRank: 0))
+  ]
+
+  static let commentsList1 = [
+    Lunar.CommentElement(
+      comment: Lunar.CommentsListObject(
+        id: 2_625_440, creatorID: 1_473_371, postID: 3_527_783, content: "api test comment",
+        removed: false, published: "2023-08-20T23:32:22.391969", deleted: false,
+        apID: "https://lemmy.world/comment/2625440", local: true, path: "0.2625440",
+        distinguished: false, languageID: 0),
+      creator: Lunar.CommentsListCreator(
+        id: 1_473_371, name: "dummyuser3", banned: false, published: "2023-07-29T10:53:59.561923",
+        actorID: "https://lemmy.world/u/dummyuser3", local: true, deleted: false, admin: false,
+        botAccount: false, instanceID: 1, displayName: nil,
+        avatar: Optional(
+          "https://lemmy.world/pictrs/image/863bbd5b-e57b-4938-92b5-b62cc3db91bd.png"), banner: nil,
+        bio: nil),
+      post: Lunar.PostObject(
+        id: 3_527_783, name: "api test pls ignore", url: nil, creatorID: 1_473_371,
+        communityID: 234309, removed: false, locked: false, published: "2023-08-20T23:30:54.429176",
+        deleted: false, thumbnailURL: nil, apID: "https://lemmy.world/post/3527783", local: true,
+        languageID: 0, featuredCommunity: false, featuredLocal: false, body: nil, updated: nil,
+        embedTitle: nil, embedDescription: nil, embedVideoURL: nil),
+      community: Lunar.CommentsListCommunity(
+        id: 234309, name: "api_testing_pls_ignore", title: "API Testing Pls Ignore",
+        description: nil, removed: Optional(false), published: "2023-08-20T23:28:19.057982",
+        updated: nil, deleted: false, nsfw: false,
+        actorID: "https://lemmy.world/c/api_testing_pls_ignore", local: Optional(true), icon: nil,
+        banner: nil, hidden: Optional(false), postingRestrictedToMods: Optional(false),
+        instanceID: 1),
+      counts: Lunar.CommentsListCounts(
+        id: 2_409_928, commentID: 2_625_440, score: 1, upvotes: 1, downvotes: 0,
+        published: "2023-08-20T23:32:22.391969", childCount: 1, hotRank: 23),
+      creatorBannedFromCommunity: false, subscribed: Optional(Lunar.CommentSubscribed.subscribed),
+      saved: false, creatorBlocked: false, myVote: Optional(1)),
+    Lunar.CommentElement(
+      comment: Lunar.CommentsListObject(
+        id: 2_625_471, creatorID: 1_473_371, postID: 3_527_783, content: "api test comment",
+        removed: false, published: "2023-08-20T23:33:15.420698", deleted: false,
+        apID: "https://lemmy.world/comment/2625471", local: true, path: "0.2625440.2625471",
+        distinguished: false, languageID: 0),
+      creator: Lunar.CommentsListCreator(
+        id: 1_473_371, name: "dummyuser3", banned: false, published: "2023-07-29T10:53:59.561923",
+        actorID: "https://lemmy.world/u/dummyuser3", local: true, deleted: false, admin: false,
+        botAccount: false, instanceID: 1, displayName: nil,
+        avatar: Optional(
+          "https://lemmy.world/pictrs/image/863bbd5b-e57b-4938-92b5-b62cc3db91bd.png"), banner: nil,
+        bio: nil),
+      post: Lunar.PostObject(
+        id: 3_527_783, name: "api test pls ignore", url: nil, creatorID: 1_473_371,
+        communityID: 234309, removed: false, locked: false, published: "2023-08-20T23:30:54.429176",
+        deleted: false, thumbnailURL: nil, apID: "https://lemmy.world/post/3527783", local: true,
+        languageID: 0, featuredCommunity: false, featuredLocal: false, body: nil, updated: nil,
+        embedTitle: nil, embedDescription: nil, embedVideoURL: nil),
+      community: Lunar.CommentsListCommunity(
+        id: 234309, name: "api_testing_pls_ignore", title: "API Testing Pls Ignore",
+        description: nil, removed: Optional(false), published: "2023-08-20T23:28:19.057982",
+        updated: nil, deleted: false, nsfw: false,
+        actorID: "https://lemmy.world/c/api_testing_pls_ignore", local: Optional(true), icon: nil,
+        banner: nil, hidden: Optional(false), postingRestrictedToMods: Optional(false),
+        instanceID: 1),
+      counts: Lunar.CommentsListCounts(
+        id: 2_409_958, commentID: 2_625_471, score: 0, upvotes: 0, downvotes: 0,
+        published: "2023-08-20T23:33:15.420698", childCount: 0, hotRank: 18),
+      creatorBannedFromCommunity: false, subscribed: Optional(Lunar.CommentSubscribed.subscribed),
+      saved: false, creatorBlocked: false, myVote: nil),
+    Lunar.CommentElement(
+      comment: Lunar.CommentsListObject(
+        id: 2_626_225, creatorID: 1_592_467, postID: 3_527_783, content: "I can’t ignore this",
+        removed: false, published: "2023-08-21T00:05:24.109346", deleted: false,
+        apID: "https://lemmy.world/comment/2626225", local: true, path: "0.2626225",
+        distinguished: false, languageID: 0),
+      creator: Lunar.CommentsListCreator(
+        id: 1_592_467, name: "CluckN", banned: false, published: "2023-08-03T01:12:28.891865",
+        actorID: "https://lemmy.world/u/CluckN", local: true, deleted: false, admin: false,
+        botAccount: false, instanceID: 1, displayName: nil, avatar: nil, banner: nil, bio: nil),
+      post: Lunar.PostObject(
+        id: 3_527_783, name: "api test pls ignore", url: nil, creatorID: 1_473_371,
+        communityID: 234309, removed: false, locked: false, published: "2023-08-20T23:30:54.429176",
+        deleted: false, thumbnailURL: nil, apID: "https://lemmy.world/post/3527783", local: true,
+        languageID: 0, featuredCommunity: false, featuredLocal: false, body: nil, updated: nil,
+        embedTitle: nil, embedDescription: nil, embedVideoURL: nil),
+      community: Lunar.CommentsListCommunity(
+        id: 234309, name: "api_testing_pls_ignore", title: "API Testing Pls Ignore",
+        description: nil, removed: Optional(false), published: "2023-08-20T23:28:19.057982",
+        updated: nil, deleted: false, nsfw: false,
+        actorID: "https://lemmy.world/c/api_testing_pls_ignore", local: Optional(true), icon: nil,
+        banner: nil, hidden: Optional(false), postingRestrictedToMods: Optional(false),
+        instanceID: 1),
+      counts: Lunar.CommentsListCounts(
+        id: 2_410_648, commentID: 2_626_225, score: 8, upvotes: 8, downvotes: 0,
+        published: "2023-08-21T00:05:24.109346", childCount: 0, hotRank: 42),
+      creatorBannedFromCommunity: false, subscribed: Optional(Lunar.CommentSubscribed.subscribed),
+      saved: false, creatorBlocked: false, myVote: Optional(1)),
+  ]
 }

@@ -47,7 +47,8 @@ struct AccountSelectionItem: View {
           .foregroundStyle(.secondary)
       }
       Spacer()
-      let _ = print("\(account.actorID) == \(selectedActorID) : \(account.actorID == selectedActorID)")
+      let _ = print(
+        "\(account.actorID) == \(selectedActorID) : \(account.actorID == selectedActorID)")
       Image(systemName: account.actorID == selectedActorID ? "checkmark.circle.fill" : "circle")
         .font(.title2)
         .symbolRenderingMode(.hierarchical)

@@ -13,8 +13,8 @@ class CommentSender: ObservableObject {
   private var content: String
   private var postID: Int
   private var parentID: Int?
-  private var jwt: String =  ""
-  
+  private var jwt: String = ""
+
   /// Adding info about the user to **@AppsStorage** loggedInAccounts
   var loggedInAccount = LoggedInAccount()
   @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
@@ -24,7 +24,7 @@ class CommentSender: ObservableObject {
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
   @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
-  
+
   init(
     content: String,
     postID: Int,
@@ -35,15 +35,16 @@ class CommentSender: ObservableObject {
     self.parentID = parentID
     self.jwt = getJWTFromKeychain(actorID: selectedActorID) ?? ""
   }
-  
+
   func fetchCommentResponse(completion: @escaping (String?) -> Void) {
-    let parameters = [
-      "content": content,
-      "post_id": postID,
-      "parent_id": parentID as Any,
-      "auth": jwt.replacingOccurrences(of: "\"", with: "")
-    ] as [String : Any]
-    
+    let parameters =
+      [
+        "content": content,
+        "post_id": postID,
+        "parent_id": parentID as Any,
+        "auth": jwt.replacingOccurrences(of: "\"", with: ""),
+      ] as [String: Any]
+
     AF.request(
       "https://\(URLParser.extractDomain(from: selectedActorID))/api/v3/comment",
       method: .post,
@@ -56,10 +57,10 @@ class CommentSender: ObservableObject {
       case let .success(result):
         print(result.comment?.creator.name as Any)
         completion("success")
-        
+
       case let .failure(error):
         if let data = response.data,
-           let fetchError = try? JSONDecoder().decode(ErrorResponseModel.self, from: data)
+          let fetchError = try? JSONDecoder().decode(ErrorResponseModel.self, from: data)
         {
           print("subscriptionActionSender ERROR: \(fetchError.error)")
           completion(fetchError.error)
@@ -72,7 +73,9 @@ class CommentSender: ObservableObject {
     }
   }
   func getJWTFromKeychain(actorID: String) -> String? {
-    if let keychainObject = KeychainHelper.standard.read(service: self.appBundleID, account: actorID) {
+    if let keychainObject = KeychainHelper.standard.read(
+      service: self.appBundleID, account: actorID)
+    {
       let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
       return jwt
     } else {

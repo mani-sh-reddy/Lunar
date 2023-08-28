@@ -54,7 +54,7 @@ import SwiftUI
         self.isLoading = false
 
       case let .failure(error):
-        DispatchQueue.main.async{
+        DispatchQueue.main.async {
           let log = "TrendingCommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")"
           print(log)
           let currentDateTime = String(describing: Date())
@@ -85,7 +85,7 @@ import SwiftUI
         self.isLoading = false
 
       case let .failure(error):
-        DispatchQueue.main.async{
+        DispatchQueue.main.async {
           let log = "TrendingCommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")"
           print(log)
           let currentDateTime = String(describing: Date())

@@ -38,10 +38,10 @@ struct SearchCommunitiesRowView: View {
             .clipShape(Circle())
 
           VStack(alignment: .leading, spacing: 2) {
-            HStack (alignment: .center, spacing: 4) {
+            HStack(alignment: .center, spacing: 4) {
               Text(community.community.name).lineLimit(1)
                 .foregroundStyle(community.community.id == 201716 ? Color.purple : Color.primary)
-              
+
               if community.community.postingRestrictedToMods {
                 Image(systemName: "exclamationmark.octagon.fill")
                   .font(.caption)
@@ -63,22 +63,23 @@ struct SearchCommunitiesRowView: View {
                   .foregroundStyle(.pink)
               }
             }
-            HStack (spacing: 10) {
-              HStack (spacing: 1) {
+            HStack(spacing: 10) {
+              HStack(spacing: 1) {
                 Image(systemName: "person.2")
                 Text((community.counts.subscribers).convertToShortString())
-              }.foregroundStyle(community.counts.subscribers >= 10000 ? Color.yellow : Color.secondary )
-              HStack (spacing: 1) {
+              }.foregroundStyle(
+                community.counts.subscribers >= 10000 ? Color.yellow : Color.secondary)
+              HStack(spacing: 1) {
                 Image(systemName: "signpost.right")
                 Text((community.counts.posts).convertToShortString())
               }
-              HStack (spacing: 1) {
+              HStack(spacing: 1) {
                 Image(systemName: "quote.bubble")
                 Text((community.counts.comments).convertToShortString())
               }
             }.lineLimit(1)
-            .foregroundStyle(.secondary)
-            .font(.caption)
+              .foregroundStyle(.secondary)
+              .font(.caption)
 
           }.padding(.horizontal, 10)
           Spacer()

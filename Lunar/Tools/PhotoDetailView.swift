@@ -24,7 +24,7 @@ struct PhotoDetailView: UIViewRepresentable {
     view.backgroundColor = UIColor.black
     view.displayMode = .singlePageContinuous
     view.displayDirection = .vertical
-    
+
     return view
   }
 

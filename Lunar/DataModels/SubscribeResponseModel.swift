@@ -9,7 +9,7 @@ import Foundation
 
 struct SubscribeResponseModel: Codable {
   let community: CommunityElement?
-  
+
   enum CodingKeys: String, CodingKey {
     case community = "community_view"
   }
