@@ -9,7 +9,7 @@ import Kingfisher
 import SwiftUI
 
 struct PostsView: View {
-  @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
+  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @StateObject var postsFetcher: PostsFetcher
   @State private var bannerFailedToLoad = false
@@ -92,7 +92,7 @@ struct PostsView: View {
         ProgressView().id(UUID())
       }
     }
-    .onChange(of: instanceHostURL) { _ in
+    .onChange(of: selectedInstance) { _ in
       Task {
         await postsFetcher.refreshContent()
       }

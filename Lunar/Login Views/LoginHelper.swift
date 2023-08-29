@@ -17,7 +17,7 @@ import SwiftUI
  }
 */
 class LoginHelper: ObservableObject {
-  @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
+  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
   @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
@@ -34,7 +34,7 @@ class LoginHelper: ObservableObject {
   }
 
   func login(completion: @escaping (Bool, String) -> Void) {
-    let endpoint = "https://\(instanceHostURL)/api/v3/user/login"
+    let endpoint = "https://\(selectedInstance)/api/v3/user/login"
     let credentialsRequest = CredentialsRequestModel(
       username_or_email: usernameEmail,
       password: password,

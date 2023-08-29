@@ -9,8 +9,8 @@ import SwiftUI
 
 struct SubscribedCommunitiesSectionView: View {
   @StateObject var communitiesFetcher: CommunitiesFetcher
-  @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
-
+  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
+  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @AppStorage("subscribedCommunityIDs") var subscribedCommunityIDs = Settings.subscribedCommunityIDs
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
 

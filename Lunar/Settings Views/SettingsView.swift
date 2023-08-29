@@ -9,13 +9,13 @@ import Kingfisher
 import SwiftUI
 
 struct SettingsView: View {
-  @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
+  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
   @AppStorage("displayName") var displayName = Settings.displayName
   @AppStorage("userName") var userName = Settings.userName
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-
+  
   @State var selectedAccount: LoggedInAccount?
-
+  
   var body: some View {
     NavigationView {
       List {

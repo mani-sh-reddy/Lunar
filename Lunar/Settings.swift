@@ -13,7 +13,14 @@ import SwiftUI
 
 enum Settings {
   static let appBundleID: String = "io.github.mani-sh-reddy.Lunar.app"
-  static let instanceHostURL: String = "lemmy.world"
+  static let lemmyInstances: [String] = [
+    "lemmy.world",
+    "lemmy.ml",
+    "beehaw.org",
+    "programming.dev",
+    "lemm.ee"
+  ]
+  static let selectedInstance: String = "lemmy.world"
   static let kbinHostURL: String = "kbin.social"
   static let displayName: String = "Mani"
   static let userName: String = "mani"
@@ -59,5 +66,6 @@ enum Settings {
   static let selectedSearchSortType: String = "Active"
   static let showLaunchSplashScreen: Bool = true
   static let showWelcomeScreen: Bool = true
+  static let detailedCommunityLabels: Bool = true
 
 }

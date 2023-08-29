@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FeedView: View {
-  @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
+  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
   @StateObject var networkMonitor = NetworkMonitor()
   @AppStorage("kbinActive") var kbinActive = Settings.kbinActive
   @AppStorage("kbinHostURL") var kbinHostURL = Settings.kbinHostURL
@@ -19,7 +19,7 @@ struct FeedView: View {
     NavigationView {
       List {
         VStack(alignment: .leading, spacing: 10) {
-          Text(instanceHostURL)
+          Text(selectedInstance)
             .bold()
             .padding(0)
           if kbinActive {
