@@ -45,7 +45,7 @@ struct FeedView: View {
           TrendingCommunitiesSectionView(trendingCommunitiesFetcher: TrendingCommunitiesFetcher())
           MoreCommunitiesButtonView()
         }
-        Section(header: Text("Subscribed")) {
+        Section(header: Text("\(URLParser.extractUsername(from: selectedActorID))'s Subscribed Communities")) {
           SubscribedCommunitiesSectionView(
             communitiesFetcher: CommunitiesFetcher(
               limitParameter: 50, sortParameter: "Active", typeParameter: "Subscribed"))

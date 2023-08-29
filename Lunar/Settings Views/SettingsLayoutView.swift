@@ -22,6 +22,9 @@ struct SettingsLayoutView: View {
       } header: {
         Text("Comments")
       }
+      Toggle(isOn: $detailedCommunityLabels) {
+        Text("Detailed Community Labels")
+      }
     }
     .navigationTitle("Layout")
   }

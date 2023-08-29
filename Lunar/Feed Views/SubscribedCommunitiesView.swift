@@ -37,6 +37,16 @@ struct SubscribedCommunitiesSectionView: View {
         CommunityRowView(community: community)
       }
     }
+    .onChange(of: selectedInstance) { _ in
+      Task {
+        await communitiesFetcher.refreshContent()
+      }
+    }
+    .onChange(of: selectedActorID) { _ in
+      Task {
+        await communitiesFetcher.refreshContent()
+      }
+    }
     .onChange(of: subscribedCommunityIDs) { _ in
       if !initialSync {
         Task {
@@ -45,15 +55,15 @@ struct SubscribedCommunitiesSectionView: View {
       }
     }
     .onAppear {
-      if initialSync {
-        print("INITIAL SYNC")
-        let newSubscribedIDs = communitiesFetcher.communities.map { $0.community.id }
-        subscribedCommunityIDs.removeAll()
-        subscribedCommunityIDs.append(contentsOf: newSubscribedIDs)
-        subscribedCommunityIDs = Array(Set(subscribedCommunityIDs))  // Remove duplicates
-        initialSync = false
-        print(subscribedCommunityIDs)
-        print("INITIAL SYNC DONE")
+      Task{
+        if initialSync {
+          let newSubscribedIDs = communitiesFetcher.communities.map { $0.community.id }
+          subscribedCommunityIDs.removeAll()
+          subscribedCommunityIDs.append(contentsOf: newSubscribedIDs)
+          subscribedCommunityIDs = Array(Set(subscribedCommunityIDs))  // Remove duplicates
+          initialSync = false
+          print(subscribedCommunityIDs)
+        }
       }
     }
 
@@ -69,12 +79,6 @@ struct SubscribedCommunitiesSectionView: View {
         Text("Clear subscribedCommunityIDs Array")
       }
     }
-    EmptyView()
-      .onChange(of: instanceHostURL) { _ in
-        Task {
-          await communitiesFetcher.refreshContent()
-        }
-      }
   }
 }
 

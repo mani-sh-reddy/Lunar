@@ -74,7 +74,7 @@ import SwiftUI
     let cacher = ResponseCacher(behavior: .cache)
 
     AF.request(endpoint) { urlRequest in
-      //      print("CommunitiesFetcher REF \(urlRequest.url as Any)")
+            print("CommunitiesFetcher REF - hidden url due to jwt")
       urlRequest.cachePolicy = .reloadRevalidatingCacheData
     }
     .cacheResponse(using: cacher)
