@@ -61,13 +61,11 @@ import SwiftUI
   }
 
   func refreshContent() async {
-    do {
-      try await Task.sleep(nanoseconds: 1_000_000_000)
-    } catch {}
 
     guard !isLoading else { return }
 
     isLoading = true
+    communities.removeAll()
 
     currentPage = 1
 
@@ -102,7 +100,9 @@ import SwiftUI
           let currentDateTime = String(describing: Date())
           self.logs.append("\(currentDateTime) :: \(log)")
         }
+        self.isLoading = false
       }
+      self.isLoading = false
     }
   }
 

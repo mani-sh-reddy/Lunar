@@ -41,9 +41,12 @@ struct TrendingCommunitiesSectionView: View {
       //      }
     }
     .onChange(of: selectedInstance) { _ in
-        Task {
-          await trendingCommunitiesFetcher.refreshContent()
-        }
+      Task {
+        await trendingCommunitiesFetcher.refreshContent()
       }
+    }
+    if trendingCommunitiesFetcher.isLoading {
+      ProgressView()
+    }
   }
 }

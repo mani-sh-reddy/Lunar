@@ -59,9 +59,11 @@ import SwiftUI
           print(log)
           let currentDateTime = String(describing: Date())
           self.logs.append("\(currentDateTime) :: \(log)")
+          self.isLoading = false
         }
       }
     }
+    self.isLoading = false
   }
 
   private func loadContent() {
