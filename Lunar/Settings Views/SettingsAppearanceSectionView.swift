@@ -23,7 +23,7 @@ struct SettingsAppearanceSectionView: View {
       }
 
       NavigationLink {
-        PlaceholderView()
+        SettingsThemeView()
       } label: {
         Label {
           Text("Theme")

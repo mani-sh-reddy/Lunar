@@ -74,6 +74,9 @@
 		3C87092C2A745CE2004999CE /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C87092B2A745CE2004999CE /* ArrayExtension.swift */; };
 		3C87092E2A74647A004999CE /* BindingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C87092D2A74647A004999CE /* BindingExtension.swift */; };
 		3C8709322A747B91004999CE /* SiteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8709312A747B91004999CE /* SiteModel.swift */; };
+		3C87A3642A9F97B80029C18F /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C87A3632A9F97B80029C18F /* EntryView.swift */; };
+		3C87A3682A9F999D0029C18F /* SettingsThemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C87A3672A9F999D0029C18F /* SettingsThemeView.swift */; };
+		3C87A36A2A9F9C4E0029C18F /* ForceAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C87A3692A9F9C4E0029C18F /* ForceAppearance.swift */; };
 		3C96EA3E2A76FC1200753199 /* LoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96EA3D2A76FC1200753199 /* LoginButtonView.swift */; };
 		3C96EA402A77181C00753199 /* TextFieldLimiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96EA3F2A77181C00753199 /* TextFieldLimiter.swift */; };
 		3C96EA422A77225E00753199 /* ValidationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96EA412A77225E00753199 /* ValidationUtils.swift */; };
@@ -175,6 +178,16 @@
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3CAEDE452A9F3EE1001469AA /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -250,6 +263,9 @@
 		3C87092B2A745CE2004999CE /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 		3C87092D2A74647A004999CE /* BindingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExtension.swift; sourceTree = "<group>"; };
 		3C8709312A747B91004999CE /* SiteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteModel.swift; sourceTree = "<group>"; };
+		3C87A3632A9F97B80029C18F /* EntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
+		3C87A3672A9F999D0029C18F /* SettingsThemeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsThemeView.swift; sourceTree = "<group>"; };
+		3C87A3692A9F9C4E0029C18F /* ForceAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceAppearance.swift; sourceTree = "<group>"; };
 		3C96EA3D2A76FC1200753199 /* LoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonView.swift; sourceTree = "<group>"; };
 		3C96EA3F2A77181C00753199 /* TextFieldLimiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldLimiter.swift; sourceTree = "<group>"; };
 		3C96EA412A77225E00753199 /* ValidationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationUtils.swift; sourceTree = "<group>"; };
@@ -275,6 +291,8 @@
 		3CAEDDE22A9E55C6001469AA /* EditableList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableList.swift; sourceTree = "<group>"; };
 		3CAEDDE42A9E58DB001469AA /* ManageInstancesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageInstancesView.swift; sourceTree = "<group>"; };
 		3CAEDDE62A9E9390001469AA /* DroppableList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppableList.swift; sourceTree = "<group>"; };
+		3CAEDE332A9F3EDF001469AA /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		3CAEDE352A9F3EDF001469AA /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		3CB408B32A5C558B00B7C983 /* CommunitiesFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunitiesFetcher.swift; sourceTree = "<group>"; };
 		3CB527372A6C28EC0095F351 /* MoreCommunitiesRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreCommunitiesRowView.swift; sourceTree = "<group>"; };
 		3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
@@ -354,6 +372,8 @@
 			isa = PBXGroup;
 			children = (
 				3C10A76E2A72A6FC0040F1A9 /* Messages.framework */,
+				3CAEDE332A9F3EDF001469AA /* WidgetKit.framework */,
+				3CAEDE352A9F3EDF001469AA /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -387,6 +407,7 @@
 				3C808E2D2A9B87FA008FA62E /* ShareSheet.swift */,
 				3CAEDDE22A9E55C6001469AA /* EditableList.swift */,
 				3CAEDDE62A9E9390001469AA /* DroppableList.swift */,
+				3C87A3692A9F9C4E0029C18F /* ForceAppearance.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -438,9 +459,10 @@
 				3C62C23F2A72AABD003BAC5B /* Info.plist */,
 				3C62C23E2A72AA4D003BAC5B /* Lunar.entitlements */,
 				3C4F09FF2A54399F009DF8AB /* LunarApp.swift */,
+				3C87A3632A9F97B80029C18F /* EntryView.swift */,
+				3CA92E372A543BF000688DEB /* ContentView.swift */,
 				3C62C2542A72F4BC003BAC5B /* SplashScreenView.swift */,
 				3CB9C40B2A95F4D30022EA64 /* WelcomeScreenView.swift */,
-				3CA92E372A543BF000688DEB /* ContentView.swift */,
 				3CEF4CD62A69B7A8002B83C0 /* ImageViewWithPlaceholder.swift */,
 				3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */,
 				3CCAA8BE2A65309E007CCEC2 /* NoInternetConnectionView.swift */,
@@ -541,6 +563,7 @@
 			children = (
 				3C113C3C2A6E8B0C00FDE5CE /* SettingsAppearanceSectionView.swift */,
 				3CF3B8F02A8F797D001C08B5 /* SettingsLayoutView.swift */,
+				3C87A3672A9F999D0029C18F /* SettingsThemeView.swift */,
 				3C9E54972A953FB60093DDC7 /* SettingsSplashScreenView.swift */,
 				3C62C2582A7309DC003BAC5B /* SettingsAppIconView.swift */,
 			);
@@ -724,6 +747,7 @@
 				3C4F09F92A54399F009DF8AB /* Frameworks */,
 				3C4F09FA2A54399F009DF8AB /* Resources */,
 				3C74D59F2A6B29480057505A /* Embed Foundation Extensions */,
+				3CAEDE452A9F3EE1001469AA /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -748,6 +772,9 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
@@ -844,7 +871,9 @@
 				3C96EA4E2A783FF100753199 /* LoggedInUsersListView.swift in Sources */,
 				3CEF4CCA2A69B6FA002B83C0 /* InPostCommunityHeaderView.swift in Sources */,
 				3CF3F9C22A6EE20C0051E725 /* ViewExtension.swift in Sources */,
+				3C87A36A2A9F9C4E0029C18F /* ForceAppearance.swift in Sources */,
 				3C5ECB2C2A7676B5002BA561 /* PasswordFieldView.swift in Sources */,
+				3C87A3642A9F97B80029C18F /* EntryView.swift in Sources */,
 				3CA5C40A2A574FF500BF8F1B /* PostsListModel.swift in Sources */,
 				3C130F722A8AD56A0060B6E4 /* SFSafariViewWrapper.swift in Sources */,
 				3C87092C2A745CE2004999CE /* ArrayExtension.swift in Sources */,
@@ -883,6 +912,7 @@
 				3C17DE042A92D4D6008EEB10 /* IntExtension.swift in Sources */,
 				3C6BBF7E2A91257A00312E2B /* GoIntoButtonView.swift in Sources */,
 				3CED897B2A71A5CF00BD9086 /* ImagePopoverView.swift in Sources */,
+				3C87A3682A9F999D0029C18F /* SettingsThemeView.swift in Sources */,
 				3CF3B8FF2A9018B9001C08B5 /* CommentRowView.swift in Sources */,
 				3CFE04C32A7FF0EB007BAD81 /* KbinThreadsModel.swift in Sources */,
 				3CB8D2682A55F45900EE615A /* FeedView.swift in Sources */,
@@ -973,11 +1003,11 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 279;
+				CURRENT_PROJECT_VERSION = 294;
 				DEVELOPMENT_TEAM = QR8TDZJV2W;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 0.8.66;
+				MARKETING_VERSION = 0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.LunarUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -997,11 +1027,11 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 279;
+				CURRENT_PROJECT_VERSION = 294;
 				DEVELOPMENT_TEAM = QR8TDZJV2W;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 0.8.66;
+				MARKETING_VERSION = 0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.LunarUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1161,7 +1191,7 @@
 				CODE_SIGN_ENTITLEMENTS = Lunar/LunarDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 279;
+				CURRENT_PROJECT_VERSION = 295;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = QR8TDZJV2W;
 				ENABLE_PREVIEWS = YES;
@@ -1180,7 +1210,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.8.66;
+				MARKETING_VERSION = 0.8.71;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.Lunar";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1207,7 +1237,7 @@
 				CODE_SIGN_ENTITLEMENTS = Lunar/Lunar.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 279;
+				CURRENT_PROJECT_VERSION = 295;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = QR8TDZJV2W;
 				ENABLE_PREVIEWS = YES;
@@ -1226,7 +1256,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.8.66;
+				MARKETING_VERSION = 0.8.71;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.Lunar";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
