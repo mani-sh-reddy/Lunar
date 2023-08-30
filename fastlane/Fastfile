@@ -4,11 +4,6 @@
 
 line_separator = "========================================================================="
 
-changelog = prompt(
-  text: "Changelog: ",
-  multi_line_end_keyword: "END"
-)
-
 latest_git_tag = sh("git describe --abbrev=0 --tags | tr -d '\n'")
 
 opt_out_usage
@@ -32,8 +27,24 @@ API_KEY_FILEPATH = ENV["API_KEY_FILEPATH"]
 
 default_platform(:ios)
 platform :ios do
+  desc "Only Increment Xcode Build/version numbers"
+  lane :INCREMENT_ONLY do
+    increment_build_number({
+      build_number: number_of_commits
+  })
+
+  increment_version_number_in_xcodeproj(
+    scheme: "Lunar",
+    version_number: latest_git_tag, 
+  )
+  end
+
   desc "Package and deploy to testflight"
-  lane :testflight_release do
+  lane :INCREMENT_AND_TESTFLIGHT_UPLOAD do
+    changelog = prompt(
+      text: "Changelog: ",
+      multi_line_end_keyword: "END"
+    )
     match(type: "appstore")
 
     latest_build_number = latest_testflight_build_number(

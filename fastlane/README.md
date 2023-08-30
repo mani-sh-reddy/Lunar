@@ -15,10 +15,18 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 ## iOS
 
-### ios testflight_release
+### ios INCREMENT_ONLY
 
 ```sh
-[bundle exec] fastlane ios testflight_release
+[bundle exec] fastlane ios INCREMENT_ONLY
+```
+
+Only Increment Xcode Build/version numbers
+
+### ios INCREMENT_AND_TESTFLIGHT_UPLOAD
+
+```sh
+[bundle exec] fastlane ios INCREMENT_AND_TESTFLIGHT_UPLOAD
 ```
 
 Package and deploy to testflight
