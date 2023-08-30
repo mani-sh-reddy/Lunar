@@ -25,7 +25,7 @@ enum Settings {
   static let displayName: String = "Mani"
   static let userName: String = "mani"
   static let debugModeEnabled: Bool = false
-  static let appIconName: String = "AppIcon"
+  static let selectedAppIcon: String = "AppIconLight"
 
   static let kbinActive: Bool = false
 

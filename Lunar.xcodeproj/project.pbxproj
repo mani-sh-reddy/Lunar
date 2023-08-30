@@ -18,7 +18,6 @@
 		3C130F752A8C0A520060B6E4 /* ExpandableTextBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C130F742A8C0A520060B6E4 /* ExpandableTextBox.swift */; };
 		3C130F772A8C0CB90060B6E4 /* ReactionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C130F762A8C0CB90060B6E4 /* ReactionButton.swift */; };
 		3C17DE042A92D4D6008EEB10 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C17DE032A92D4D6008EEB10 /* IntExtension.swift */; };
-		3C1A3F532A731B8C00898FC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0A032A54399F009DF8AB /* Assets.xcassets */; };
 		3C1A3F552A731C3F00898FC6 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F542A731C3F00898FC6 /* ImageExtension.swift */; };
 		3C1A3F592A73B17E00898FC6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F582A73B17E00898FC6 /* LoginView.swift */; };
 		3C1A3F5B2A73B2B800898FC6 /* KeychainInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F5A2A73B2B800898FC6 /* KeychainInterface.swift */; };
@@ -77,6 +76,8 @@
 		3C87A3642A9F97B80029C18F /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C87A3632A9F97B80029C18F /* EntryView.swift */; };
 		3C87A3682A9F999D0029C18F /* SettingsThemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C87A3672A9F999D0029C18F /* SettingsThemeView.swift */; };
 		3C87A36A2A9F9C4E0029C18F /* ForceAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C87A3692A9F9C4E0029C18F /* ForceAppearance.swift */; };
+		3C87A36C2A9FB6BF0029C18F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C87A36B2A9FB6BF0029C18F /* Assets.xcassets */; };
+		3C87A36E2A9FBDE70029C18F /* SettingsAppIconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C87A36D2A9FBDE70029C18F /* SettingsAppIconPickerView.swift */; };
 		3C96EA3E2A76FC1200753199 /* LoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96EA3D2A76FC1200753199 /* LoginButtonView.swift */; };
 		3C96EA402A77181C00753199 /* TextFieldLimiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96EA3F2A77181C00753199 /* TextFieldLimiter.swift */; };
 		3C96EA422A77225E00753199 /* ValidationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96EA412A77225E00753199 /* ValidationUtils.swift */; };
@@ -167,29 +168,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		3C74D59F2A6B29480057505A /* Embed Foundation Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(EXTENSIONS_FOLDER_PATH)";
-			dstSubfolderSpec = 16;
-			files = (
-			);
-			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3CAEDE452A9F3EE1001469AA /* Embed Foundation Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 8;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-			);
-			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		3C10A76E2A72A6FC0040F1A9 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAccountView.swift; sourceTree = "<group>"; };
@@ -221,7 +199,6 @@
 		3C4EE4B82A8006D0009EE4A8 /* KbinPostRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KbinPostRowView.swift; sourceTree = "<group>"; };
 		3C4F09FC2A54399F009DF8AB /* Lunar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lunar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4F09FF2A54399F009DF8AB /* LunarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarApp.swift; sourceTree = "<group>"; };
-		3C4F0A032A54399F009DF8AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C522F3A2A63241900129CAC /* TrendingCommunitiesFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingCommunitiesFetcher.swift; sourceTree = "<group>"; };
 		3C5ECB1E2A75ABFE002BA561 /* SiteInfoFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteInfoFetcher.swift; sourceTree = "<group>"; };
 		3C5ECB232A766D64002BA561 /* DebugLoginPagePropertiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLoginPagePropertiesView.swift; sourceTree = "<group>"; };
@@ -266,6 +243,8 @@
 		3C87A3632A9F97B80029C18F /* EntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
 		3C87A3672A9F999D0029C18F /* SettingsThemeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsThemeView.swift; sourceTree = "<group>"; };
 		3C87A3692A9F9C4E0029C18F /* ForceAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceAppearance.swift; sourceTree = "<group>"; };
+		3C87A36B2A9FB6BF0029C18F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3C87A36D2A9FBDE70029C18F /* SettingsAppIconPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAppIconPickerView.swift; sourceTree = "<group>"; };
 		3C96EA3D2A76FC1200753199 /* LoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonView.swift; sourceTree = "<group>"; };
 		3C96EA3F2A77181C00753199 /* TextFieldLimiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldLimiter.swift; sourceTree = "<group>"; };
 		3C96EA412A77225E00753199 /* ValidationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationUtils.swift; sourceTree = "<group>"; };
@@ -435,6 +414,7 @@
 		3C4F09F32A54399F009DF8AB = {
 			isa = PBXGroup;
 			children = (
+				3C87A36B2A9FB6BF0029C18F /* Assets.xcassets */,
 				3C4F09FE2A54399F009DF8AB /* Lunar */,
 				3C29F5432A97D49C001563E7 /* LunarUITests */,
 				3C10A76D2A72A6FC0040F1A9 /* Frameworks */,
@@ -455,7 +435,6 @@
 			isa = PBXGroup;
 			children = (
 				3C808E222A9A8C95008FA62E /* LunarDebug.entitlements */,
-				3C4F0A032A54399F009DF8AB /* Assets.xcassets */,
 				3C62C23F2A72AABD003BAC5B /* Info.plist */,
 				3C62C23E2A72AA4D003BAC5B /* Lunar.entitlements */,
 				3C4F09FF2A54399F009DF8AB /* LunarApp.swift */,
@@ -562,10 +541,11 @@
 			isa = PBXGroup;
 			children = (
 				3C113C3C2A6E8B0C00FDE5CE /* SettingsAppearanceSectionView.swift */,
+				3C62C2582A7309DC003BAC5B /* SettingsAppIconView.swift */,
+				3C87A36D2A9FBDE70029C18F /* SettingsAppIconPickerView.swift */,
 				3CF3B8F02A8F797D001C08B5 /* SettingsLayoutView.swift */,
 				3C87A3672A9F999D0029C18F /* SettingsThemeView.swift */,
 				3C9E54972A953FB60093DDC7 /* SettingsSplashScreenView.swift */,
-				3C62C2582A7309DC003BAC5B /* SettingsAppIconView.swift */,
 			);
 			name = Appearance;
 			sourceTree = "<group>";
@@ -746,8 +726,6 @@
 				3C4F09F82A54399F009DF8AB /* Sources */,
 				3C4F09F92A54399F009DF8AB /* Frameworks */,
 				3C4F09FA2A54399F009DF8AB /* Resources */,
-				3C74D59F2A6B29480057505A /* Embed Foundation Extensions */,
-				3CAEDE452A9F3EE1001469AA /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -824,7 +802,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C1A3F532A731B8C00898FC6 /* Assets.xcassets in Resources */,
+				3C87A36C2A9FB6BF0029C18F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -863,6 +841,7 @@
 				3C113C392A6E71E100FDE5CE /* SettingsAccountView.swift in Sources */,
 				3C6BBF722A910F6100312E2B /* SubscriptionActionSender.swift in Sources */,
 				3C113C3F2A6E8C9400FDE5CE /* SettingsGeneralSectionView.swift in Sources */,
+				3C87A36E2A9FBDE70029C18F /* SettingsAppIconPickerView.swift in Sources */,
 				3C1A3F5F2A73D64C00898FC6 /* LoginHelper.swift in Sources */,
 				3CCAA8C12A65358C007CCEC2 /* NetworkMonitor.swift in Sources */,
 				3C9E548A2A940F9B0093DDC7 /* TextBox.swift in Sources */,
@@ -1051,6 +1030,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconLight;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_STICKER_CONTENT = YES;
@@ -1122,6 +1102,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconLight;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_STICKER_CONTENT = YES;
@@ -1184,11 +1165,10 @@
 		3C4F0A0D2A54399F009DF8AB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-Dark AppIcon AppIcon-Light AppIconIndigo AppIconLemmY AppIconLight AppIconDark AppIconNight AppIconKbin";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconKbin AppIconNight AppIconIndigo AppIconLemmY AppIconDark";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconLight;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_STICKER_CONTENT = YES;
-				ASSETCATALOG_COMPILER_OPTIMIZATION = time;
 				ASSETCATALOG_COMPILER_TARGET_STICKERS_ICON_ROLE = extension;
 				CODE_SIGN_ENTITLEMENTS = Lunar/LunarDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1230,11 +1210,10 @@
 		3C4F0A0E2A54399F009DF8AB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-Dark AppIcon AppIcon-Light AppIconIndigo AppIconLemmY AppIconLight AppIconDark AppIconNight AppIconKbin";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconKbin AppIconNight AppIconIndigo AppIconLemmY AppIconDark";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconLight;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_STICKER_CONTENT = YES;
-				ASSETCATALOG_COMPILER_OPTIMIZATION = time;
 				ASSETCATALOG_COMPILER_TARGET_STICKERS_ICON_ROLE = extension;
 				CODE_SIGN_ENTITLEMENTS = Lunar/Lunar.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";

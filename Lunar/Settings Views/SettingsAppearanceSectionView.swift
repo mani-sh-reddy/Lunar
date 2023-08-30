@@ -10,8 +10,9 @@ import SwiftUI
 struct SettingsAppearanceSectionView: View {
   var body: some View {
     Section {
+      
       NavigationLink {
-        SettingsAppIconView()
+        SettingsAppIconPickerView()
       } label: {
         Label {
           Text("App Icon")
