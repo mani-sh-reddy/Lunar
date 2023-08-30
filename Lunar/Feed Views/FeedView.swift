@@ -14,7 +14,24 @@ struct FeedView: View {
   @AppStorage("kbinHostURL") var kbinHostURL = Settings.kbinHostURL
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @AppStorage("subscribedCommunityIDs") var subscribedCommunityIDs = Settings.subscribedCommunityIDs
-
+  
+  
+  var subscribedCommunityListHeading: String {
+    if !selectedActorID.isEmpty {
+      return "\(URLParser.extractUsername(from: selectedActorID))'s Subscribed Communities"
+    } else {
+      return "Subscribed Communities"
+    }
+  }
+  
+  var feedTabHeading: String {
+    if kbinActive {
+      return "\(selectedInstance) & \(kbinHostURL)"
+    } else {
+      return "\(selectedInstance)"
+    }
+  }
+  
   var body: some View {
     NavigationView {
       List {
@@ -36,7 +53,8 @@ struct FeedView: View {
           }
         }.listRowBackground(Color.clear)
           .font(.largeTitle)
-
+          .padding(0)
+        
         Section(header: Text("Feed")) {
           GeneralCommunitiesView()
           KbinMagazinesSectionView()
@@ -45,12 +63,14 @@ struct FeedView: View {
           TrendingCommunitiesSectionView(trendingCommunitiesFetcher: TrendingCommunitiesFetcher())
           MoreCommunitiesButtonView()
         }
-        Section(header: Text("\(URLParser.extractUsername(from: selectedActorID))'s Subscribed Communities")) {
+        Section(header: Text(subscribedCommunityListHeading)) {
           SubscribedCommunitiesSectionView(
             communitiesFetcher: CommunitiesFetcher(
               limitParameter: 50, sortParameter: "Active", typeParameter: "Subscribed"))
         }
       }
+      .navigationTitle("Home")
+      .navigationBarTitleDisplayMode(.inline)
     }
   }
 }

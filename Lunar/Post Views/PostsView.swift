@@ -45,11 +45,13 @@ struct PostsView: View {
   var navigationHeading: String {
     if isCommunitySpecific {
       return community?.community.name ?? ""
-    } else if isUserSpecific {
-      return user?.person.name ?? ""
-    } else {
-      return ""
     }
+    
+    if isUserSpecific {
+      return user?.person.name ?? ""
+    }
+    
+    return title ?? ""
   }
 
   var communityDescription: String? { return community?.community.description }
