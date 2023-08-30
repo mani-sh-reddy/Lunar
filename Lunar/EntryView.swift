@@ -1,5 +1,5 @@
 //
-//  LunarApp.swift
+//  EntryView.swift
 //  Lunar
 //
 //  Created by Mani on 04/07/2023.
@@ -7,14 +7,12 @@
 
 import SwiftUI
 
-@main
-struct LunarApp: App {
+struct EntryView: View {
   @AppStorage("showLaunchSplashScreen") var showLaunchSplashScreen = Settings.showLaunchSplashScreen
   @AppStorage("showWelcomeScreen") var showWelcomeScreen = Settings.showWelcomeScreen
 
-  var body: some Scene {
-    WindowGroup {
-      EntryView()
+  var body: some View {
+      if showWelcomeScreen {
         WelcomeScreenView()
       } else {
         if showLaunchSplashScreen {
@@ -23,6 +21,5 @@ struct LunarApp: App {
           ContentView()
         }
       }
-    }
   }
 }
