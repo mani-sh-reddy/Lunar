@@ -22,6 +22,9 @@ struct SettingsDevOptionsView: View {
   var body: some View {
     List {
       Section {
+        Toggle(isOn: $debugModeEnabled) {
+          Text("Enable Debug Mode")
+        }
         //        SettingsHiddenOptionsView()
         Toggle(isOn: $enableLogging) {
           Text("Enable Logging")
@@ -34,8 +37,6 @@ struct SettingsDevOptionsView: View {
           }
         }
         ShareLogsButton()
-      }
-      Section {
         ClearLogsButton()
       }
       Section {

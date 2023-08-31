@@ -15,7 +15,7 @@ import SwiftUI
   @Published var isLoading = false
   @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
   @AppStorage("logs") var logs = Settings.logs
-  @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
+  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
 
   private var currentPage = 1
   private var limitParameter: Int = 5
@@ -59,9 +59,11 @@ import SwiftUI
           print(log)
           let currentDateTime = String(describing: Date())
           self.logs.append("\(currentDateTime) :: \(log)")
+          self.isLoading = false
         }
       }
     }
+    self.isLoading = false
   }
 
   private func loadContent() {

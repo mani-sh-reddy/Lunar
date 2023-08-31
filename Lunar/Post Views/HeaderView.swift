@@ -10,7 +10,7 @@ import NukeUI
 import SwiftUI
 
 struct HeaderView: View {
-  @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
+  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @State private var bannerFailedToLoad = false
   @State private var iconFailedToLoad = false

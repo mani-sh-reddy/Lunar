@@ -31,7 +31,7 @@ class VoteSender: ObservableObject {
   @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
-  @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
+  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
 
   init(
     asActorID: String,

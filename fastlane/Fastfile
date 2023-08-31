@@ -2,10 +2,7 @@
 
 # sem_ver_tag = UI.select("Select Semantic Versioning Tag: ", ["major", "minor", "patch"])
 
-changelog = prompt(
-  text: "Changelog: ",
-  multi_line_end_keyword: "END"
-)
+line_separator = "========================================================================="
 
 latest_git_tag = sh("git describe --abbrev=0 --tags | tr -d '\n'")
 
@@ -24,13 +21,30 @@ APPLE_ISSUER_ID = ENV["APPLE_ISSUER_ID"]
 APPLE_KEY_ID = ENV["APPLE_KEY_ID"]
 APPLE_KEY_CONTENT = ENV["APPLE_KEY_CONTENT"]
 GIT_AUTHORIZATION = ENV["GIT_AUTHORIZATION"]
+REPO_GITHUB_TOKEN = ENV["REPO_GITHUB_TOKEN"]
 LATEST_TAG = ENV["LATEST_TAG"]
 API_KEY_FILEPATH = ENV["API_KEY_FILEPATH"]
 
 default_platform(:ios)
 platform :ios do
+  desc "Only Increment Xcode Build/version numbers"
+  lane :INCREMENT_ONLY do
+    increment_build_number({
+      build_number: number_of_commits
+  })
+
+  increment_version_number_in_xcodeproj(
+    scheme: "Lunar",
+    version_number: latest_git_tag, 
+  )
+  end
+
   desc "Package and deploy to testflight"
-  lane :testflight_release do
+  lane :INCREMENT_AND_TESTFLIGHT_UPLOAD do
+    changelog = prompt(
+      text: "Changelog: ",
+      multi_line_end_keyword: "END"
+    )
     match(type: "appstore")
 
     latest_build_number = latest_testflight_build_number(
@@ -60,6 +74,10 @@ platform :ios do
       in_house: false # optional but may be required if using match/sigh
     )
 
+      UI.message "\n #{line_separator}#{line_separator} \n"
+      UI.message "Release Notes: \n #{latest_git_tag} \n \n #{changelog} \n"
+      UI.message "\n #{line_separator}#{line_separator} \n"
+
     upload_to_testflight(
       changelog: changelog,
       skip_submission: true, # skip submission, only upload build
@@ -71,6 +89,12 @@ platform :ios do
       force: true,
       files: ["./Lunar.xcodeproj/project.pbxproj"]
     )
+
+    # Next Steps
+    #   Create/merge PR to main
+    #   Create release
+    #   Add release notes
+    #   Upload IPA file
 
   end
 end

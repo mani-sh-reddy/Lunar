@@ -9,7 +9,7 @@ import Kingfisher
 import SwiftUI
 
 struct PostsView: View {
-  @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
+  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @StateObject var postsFetcher: PostsFetcher
   @State private var bannerFailedToLoad = false
@@ -45,11 +45,13 @@ struct PostsView: View {
   var navigationHeading: String {
     if isCommunitySpecific {
       return community?.community.name ?? ""
-    } else if isUserSpecific {
-      return user?.person.name ?? ""
-    } else {
-      return ""
     }
+    
+    if isUserSpecific {
+      return user?.person.name ?? ""
+    }
+    
+    return title ?? ""
   }
 
   var communityDescription: String? { return community?.community.description }
@@ -92,7 +94,7 @@ struct PostsView: View {
         ProgressView().id(UUID())
       }
     }
-    .onChange(of: instanceHostURL) { _ in
+    .onChange(of: selectedInstance) { _ in
       Task {
         await postsFetcher.refreshContent()
       }

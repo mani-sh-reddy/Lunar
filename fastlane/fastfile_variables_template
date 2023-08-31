@@ -9,3 +9,4 @@ export APPLE_ISSUER_ID="1a2b3c4d-1a2b-1a2b-1a2b-1a2b3c4d5e6f"
 export APPLE_KEY_ID="1111AAAA11"
 # export APPLE_KEY_CONTENT or export APPLE_KEY_PATH for .p8 file from appstore connect
 export GIT_AUTHORIZATION="github_pat_******************"
+export REPO_GITHUB_TOKEN="github_pat_******************"

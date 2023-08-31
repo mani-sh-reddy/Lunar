@@ -61,20 +61,18 @@ import SwiftUI
   }
 
   func refreshContent() async {
-    do {
-      try await Task.sleep(nanoseconds: 1_000_000_000)
-    } catch {}
 
     guard !isLoading else { return }
 
     isLoading = true
+    communities.removeAll()
 
     currentPage = 1
 
     let cacher = ResponseCacher(behavior: .cache)
 
     AF.request(endpoint) { urlRequest in
-      //      print("CommunitiesFetcher REF \(urlRequest.url as Any)")
+            print("CommunitiesFetcher REF - hidden url due to jwt")
       urlRequest.cachePolicy = .reloadRevalidatingCacheData
     }
     .cacheResponse(using: cacher)
@@ -102,7 +100,9 @@ import SwiftUI
           let currentDateTime = String(describing: Date())
           self.logs.append("\(currentDateTime) :: \(log)")
         }
+        self.isLoading = false
       }
+      self.isLoading = false
     }
   }
 

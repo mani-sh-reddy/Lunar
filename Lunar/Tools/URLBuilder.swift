@@ -20,7 +20,7 @@ import SwiftUI
 /// comment/list?type_=Local&sort=Top&max_depth=2&page=1&limit=10&post_id=2021423
 
 class URLBuilder {
-  @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
+  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
 
   private let endpointPath: String
@@ -81,7 +81,7 @@ class URLBuilder {
     if let voteType { queryParams["score"] = String(voteType) }
 
     endpoint.scheme = "https"
-    endpoint.host = instanceHostURL
+    endpoint.host = selectedInstance
     endpoint.path = endpointPath
     endpoint.setQueryItems(with: queryParams)
 

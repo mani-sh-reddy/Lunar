@@ -64,20 +64,35 @@ struct WelcomeScreenView: View {
       imageColor: .orange
     ),
   ]
+  
+  @AppStorage("showWelcomeScreen") var showWelcomeScreen = Settings.showWelcomeScreen
+  let haptics = UIImpactFeedbackGenerator(style: .soft)
 
   var body: some View {
-    TabView {
-      ForEach(Array(onboardingCards.enumerated()), id: \.element) { index, element in
-        OnboardingCardView(card: element, index: index, lastIndex: (onboardingCards.count - 1))
+    ZStack(alignment: .topTrailing){
+      Button{
+        haptics.impactOccurred(intensity: 0.5)
+        showWelcomeScreen = false
+      }label: {
+        Image(systemName: "xmark.circle.fill")
+          .resizable()
+          .frame(width: 40, height: 40)
+          .foregroundStyle(.ultraThickMaterial)
       }
-
-      ForEach(onboardingCards, id: \.id) { card in
-
+      .padding(.top, 0)
+      .padding(.trailing, 30)
+      TabView {
+        ForEach(Array(onboardingCards.enumerated()), id: \.element) { index, element in
+          OnboardingCardView(card: element, index: index, lastIndex: (onboardingCards.count - 1))
+        }
+        
+        ForEach(onboardingCards, id: \.id) { card in
+        }
       }
+      .tabViewStyle(.page)
+      .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+      .padding(.vertical, 20)
     }
-    .tabViewStyle(.page)
-    .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-    .padding(.vertical, 20)
   }
 }
 
@@ -121,9 +136,12 @@ struct OnboardingCardView: View {
             InstanceRowView(instanceURL: "reddthat.com", flag: "W")
             InstanceRowView(instanceURL: "lemm.ee", flag: "W")
           }
+          .background(.foreground.opacity(0.1))
+          .clipShape(RoundedRectangle(cornerRadius: 25.0, style: .continuous))
         }
-        .frame(height: 200)
-        .padding(.top, -50)
+        .padding()
+        .frame(height: 380)
+        .padding(.top, -40)
       } else {
         Image(systemName: card.image)
           .resizable()
@@ -133,7 +151,7 @@ struct OnboardingCardView: View {
           .symbolRenderingMode(.hierarchical)
       }
 
-      Spacer().frame(height: 20)
+      Spacer().frame(height: 5)
 
       Text(card.title)
         .fontWeight(.bold)
@@ -197,7 +215,7 @@ struct InstanceRowView: View {
   var body: some View {
     ZStack(alignment: .leading) {
       RoundedRectangle(cornerRadius: 10, style: .continuous)
-        .foregroundStyle(.ultraThickMaterial)
+        .foregroundStyle(.thinMaterial)
       HStack {
         Image(asset: "LemmyInstances/\(instanceURL)")
           .resizable()

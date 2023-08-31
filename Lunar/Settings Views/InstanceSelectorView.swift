@@ -6,60 +6,76 @@
 //
 
 import SwiftUI
+import Alamofire
 
 struct InstanceSelectorView: View {
   // TODO: - #183 Temporarily removed custom instances and added more instances to list
-  @AppStorage("instanceHostURL") var instanceHostURL = Settings.instanceHostURL
+  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
+  @AppStorage("lemmyInstances") var lemmyInstances = Settings.lemmyInstances
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-
-  let topInstances: [String] = [
-    "lemmy.world",
-    "lemmy.ml",
-    "beehaw.org",
-    "programming.dev",
-    "lemm.ee",
-    "reddthat.com",
-  ]
-
-  let moreIinstances: [String] = [
-    "discuss.online",
-    "discuss.tchncs.de",
-    "feddit.de",
-    "feddit.it",
-    "feddit.uk",
-    "hexbear.net",
-    "infosec.pub",
-    "lemmy.blahaj.zone",
-    "lemmy.ca",
-    "lemmy.dbzer0.com",
-    "lemmy.one",
-    "lemmy.sdf.org",
-    "lemmy.zip",
-    "sh.itjust.works",
-    "slrpnk.net",
-    "sopuli.xyz",
-    "startrek.website",
-    "ttrpg.network",
-  ]
-
+  @AppStorage("logs") var logs = Settings.logs
+  
+  //  let topInstances: [String] = [
+  //    "lemmy.world",
+  //    "lemmy.ml",
+  //    "beehaw.org",
+  //    "programming.dev",
+  //    "lemm.ee",
+  //    "reddthat.com",
+  //  ]
+  //
+  //  let moreIinstances: [String] = [
+  //    "discuss.online",
+  //    "discuss.tchncs.de",
+  //    "feddit.de",
+  //    "feddit.it",
+  //    "feddit.uk",
+  //    "hexbear.net",
+  //    "infosec.pub",
+  //    "lemmy.blahaj.zone",
+  //    "lemmy.ca",
+  //    "lemmy.dbzer0.com",
+  //    "lemmy.one",
+  //    "lemmy.sdf.org",
+  //    "lemmy.zip",
+  //    "sh.itjust.works",
+  //    "slrpnk.net",
+  //    "sopuli.xyz",
+  //    "startrek.website",
+  //    "ttrpg.network",
+  //  ]
+  
+  
+  @State var showingAlreadyExistsError = false
+  @State var showingInvalidInstanceError = false
+  @State var customInstance = ""
+  @State var enteredCustomInstance = ""
+  @State var instanceOnAppear = "lemmy.world"
+  
   var body: some View {
     if debugModeEnabled {
-      Text("instance: \(instanceHostURL)")
-        .bold()
-        .foregroundStyle(.cyan)
+      Text("deselected: \(selectedInstance)")
     }
-
+    
+    
     Section {
-      Picker(selection: $instanceHostURL, label: Text("Lemmy Instance")) {
-        ForEach(topInstances, id: \.self) { instance in
-          Text(instance).tag(instance)
+      if lemmyInstances.isEmpty{
+        Text("Add instances to get started!")
+          .foregroundStyle(.orange)
+      } else {
+        Picker(selection: $selectedInstance, label: Text("Selected Instance")) {
+          ForEach(lemmyInstances, id: \.self) { instance in
+            Text(instance).tag(instance)
+          }
         }
-        Divider()
-        ForEach(moreIinstances, id: \.self) { instance in
-          Text(instance).tag(instance)
-        }
+        .pickerStyle(.menu)
       }
-      .pickerStyle(.menu)
+      
+    }
+    NavigationLink {
+      ManageInstancesView()
+    } label: {
+      Text("Manage Instances")
     }
   }
 }
