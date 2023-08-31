@@ -27,6 +27,11 @@ struct SettingsView: View {
         }
         Section {
           InstanceSelectorView()
+          NavigationLink {
+            ManageInstancesView()
+          } label: {
+            Text("Manage Instances")
+          }
           KbinSelectorView()
         }
         SettingsGeneralSectionView()
