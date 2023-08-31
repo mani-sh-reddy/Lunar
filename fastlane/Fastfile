@@ -97,4 +97,22 @@ platform :ios do
     #   Upload IPA file
 
   end
+
+  desc "Generate a release on github"
+  lane :GENERATE_GITHUB_RELEASE do
+    changelog = prompt(
+      text: "Changelog: ",
+      multi_line_end_keyword: "END"
+    )
+    github_release = set_github_release(
+      repository_name: "mani-sh-reddy/Lunar",
+      api_token: "#{REPO_GITHUB_TOKEN}",
+      name: latest_git_tag,
+      tag_name: latest_git_tag,
+      description: changelog,
+      commitish: "dev",
+      upload_assets: ["Lunar.ipa"]
+    )
+  end
+
 end
