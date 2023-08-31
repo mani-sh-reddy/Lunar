@@ -13,13 +13,15 @@ struct EditableList<
 >: View where Data.Element: Identifiable {
   @Binding var data: Data
   var content: (Binding<Data.Element>) -> Content
-  
-  init(_ data: Binding<Data>,
-       content: @escaping (Binding<Data.Element>) -> Content) {
+
+  init(
+    _ data: Binding<Data>,
+    content: @escaping (Binding<Data.Element>) -> Content
+  ) {
     self._data = data
     self.content = content
   }
-  
+
   var body: some View {
     List {
       ForEach($data, content: content)

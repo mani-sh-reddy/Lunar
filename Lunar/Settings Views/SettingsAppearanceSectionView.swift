@@ -10,7 +10,7 @@ import SwiftUI
 struct SettingsAppearanceSectionView: View {
   var body: some View {
     Section {
-      
+
       NavigationLink {
         SettingsAppIconPickerView()
       } label: {

@@ -10,14 +10,15 @@ import NukeUI
 import SwiftUI
 
 struct CommunityRowView: View {
-  @AppStorage("detailedCommunityLabels") var detailedCommunityLabels = Settings.detailedCommunityLabels
+  @AppStorage("detailedCommunityLabels") var detailedCommunityLabels = Settings
+    .detailedCommunityLabels
   var community: CommunityElement
 
   @State var showingPlaceholderAlert = false
 
   var body: some View {
-    
-    if detailedCommunityLabels{
+
+    if detailedCommunityLabels {
       HStack {
         LazyImage(url: URL(string: community.community.icon ?? "")) { state in
           if let image = state.image {
@@ -34,13 +35,12 @@ struct CommunityRowView: View {
           }
         }
         .processors([.resize(width: 60)])
-        
-        
+
         VStack(alignment: .leading, spacing: 2) {
           HStack(alignment: .center, spacing: 4) {
             Text(community.community.name).lineLimit(1)
               .foregroundStyle(community.community.id == 201716 ? Color.purple : Color.primary)
-            
+
             if community.community.postingRestrictedToMods {
               Image(systemName: "exclamationmark.octagon.fill")
                 .font(.caption)
@@ -79,7 +79,7 @@ struct CommunityRowView: View {
           }.lineLimit(1)
             .foregroundStyle(.secondary)
             .font(.caption)
-          
+
         }.padding(.horizontal, 10)
         Spacer()
         Text(String("\(URLParser.extractDomain(from: community.community.actorID))"))
@@ -99,7 +99,7 @@ struct CommunityRowView: View {
           Label("Hide", systemImage: "eye.slash.circle.fill")
         }.tint(.orange)
       }
-      
+
       .contextMenu {
         Menu("Menu") {
           Button {
@@ -108,15 +108,15 @@ struct CommunityRowView: View {
             Text("Coming Soon")
           }
         }
-        
+
         Button {
           showingPlaceholderAlert = true
         } label: {
           Text("Coming Soon")
         }
-        
+
         Divider()
-        
+
         Button(role: .destructive) {
           showingPlaceholderAlert = true
         } label: {
@@ -126,8 +126,7 @@ struct CommunityRowView: View {
       .alert("Coming soon", isPresented: $showingPlaceholderAlert) {
         Button("OK", role: .cancel) {}
       }
-    }
-    else {
+    } else {
       HStack {
         LazyImage(url: URL(string: community.community.icon ?? "")) { state in
           if let image = state.image {
@@ -147,48 +146,47 @@ struct CommunityRowView: View {
         Text(community.community.title)
           .padding(.horizontal, 10)
       }
-      
-        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-          Button {
-            showingPlaceholderAlert = true
-          } label: {
-            Label("go", systemImage: "chevron.forward.circle.fill")
-          }.tint(.blue)
-          Button {
-            showingPlaceholderAlert = true
-          } label: {
-            Label("Hide", systemImage: "eye.slash.circle.fill")
-          }.tint(.orange)
-        }
-      
-        .contextMenu {
-          Menu("Menu") {
-            Button {
-              showingPlaceholderAlert = true
-            } label: {
-              Text("Coming Soon")
-            }
-          }
-          
+
+      .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+        Button {
+          showingPlaceholderAlert = true
+        } label: {
+          Label("go", systemImage: "chevron.forward.circle.fill")
+        }.tint(.blue)
+        Button {
+          showingPlaceholderAlert = true
+        } label: {
+          Label("Hide", systemImage: "eye.slash.circle.fill")
+        }.tint(.orange)
+      }
+
+      .contextMenu {
+        Menu("Menu") {
           Button {
             showingPlaceholderAlert = true
           } label: {
             Text("Coming Soon")
           }
-          
-          Divider()
-          
-          Button(role: .destructive) {
-            showingPlaceholderAlert = true
-          } label: {
-            Label("Delete", systemImage: "trash")
-          }
         }
-        .alert("Coming soon", isPresented: $showingPlaceholderAlert) {
-          Button("OK", role: .cancel) {}
+
+        Button {
+          showingPlaceholderAlert = true
+        } label: {
+          Text("Coming Soon")
         }
+
+        Divider()
+
+        Button(role: .destructive) {
+          showingPlaceholderAlert = true
+        } label: {
+          Label("Delete", systemImage: "trash")
+        }
+      }
+      .alert("Coming soon", isPresented: $showingPlaceholderAlert) {
+        Button("OK", role: .cancel) {}
+      }
     }
-    
-    
+
   }
 }

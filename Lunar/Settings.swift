@@ -18,7 +18,7 @@ enum Settings {
     "lemmy.ml",
     "beehaw.org",
     "programming.dev",
-    "lemm.ee"
+    "lemm.ee",
   ]
   static let selectedInstance: String = "lemmy.world"
   static let kbinHostURL: String = "kbin.social"

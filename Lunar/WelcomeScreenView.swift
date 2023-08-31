@@ -64,16 +64,16 @@ struct WelcomeScreenView: View {
       imageColor: .orange
     ),
   ]
-  
+
   @AppStorage("showWelcomeScreen") var showWelcomeScreen = Settings.showWelcomeScreen
   let haptics = UIImpactFeedbackGenerator(style: .soft)
 
   var body: some View {
-    ZStack(alignment: .topTrailing){
-      Button{
+    ZStack(alignment: .topTrailing) {
+      Button {
         haptics.impactOccurred(intensity: 0.5)
         showWelcomeScreen = false
-      }label: {
+      } label: {
         Image(systemName: "xmark.circle.fill")
           .resizable()
           .frame(width: 40, height: 40)
@@ -85,7 +85,7 @@ struct WelcomeScreenView: View {
         ForEach(Array(onboardingCards.enumerated()), id: \.element) { index, element in
           OnboardingCardView(card: element, index: index, lastIndex: (onboardingCards.count - 1))
         }
-        
+
         ForEach(onboardingCards, id: \.id) { card in
         }
       }

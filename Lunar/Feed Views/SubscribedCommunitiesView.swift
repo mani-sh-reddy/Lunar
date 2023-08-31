@@ -55,7 +55,7 @@ struct SubscribedCommunitiesSectionView: View {
       }
     }
     .onAppear {
-      Task{
+      Task {
         if initialSync {
           let newSubscribedIDs = communitiesFetcher.communities.map { $0.community.id }
           subscribedCommunityIDs.removeAll()

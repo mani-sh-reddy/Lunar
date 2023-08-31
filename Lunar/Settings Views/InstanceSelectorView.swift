@@ -5,8 +5,8 @@
 //  Created by Mani on 24/07/2023.
 //
 
-import SwiftUI
 import Alamofire
+import SwiftUI
 
 struct InstanceSelectorView: View {
   // TODO: - #183 Temporarily removed custom instances and added more instances to list
@@ -14,7 +14,7 @@ struct InstanceSelectorView: View {
   @AppStorage("lemmyInstances") var lemmyInstances = Settings.lemmyInstances
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @AppStorage("logs") var logs = Settings.logs
-  
+
   //  let topInstances: [String] = [
   //    "lemmy.world",
   //    "lemmy.ml",
@@ -44,22 +44,20 @@ struct InstanceSelectorView: View {
   //    "startrek.website",
   //    "ttrpg.network",
   //  ]
-  
-  
+
   @State var showingAlreadyExistsError = false
   @State var showingInvalidInstanceError = false
   @State var customInstance = ""
   @State var enteredCustomInstance = ""
   @State var instanceOnAppear = "lemmy.world"
-  
+
   var body: some View {
     if debugModeEnabled {
       Text("deselected: \(selectedInstance)")
     }
-    
-    
+
     Section {
-      if lemmyInstances.isEmpty{
+      if lemmyInstances.isEmpty {
         Text("Add instances to get started!")
           .foregroundStyle(.orange)
       } else {
@@ -70,7 +68,7 @@ struct InstanceSelectorView: View {
         }
         .pickerStyle(.menu)
       }
-      
+
     }
     NavigationLink {
       ManageInstancesView()

@@ -5,13 +5,13 @@
 //  Created by Mani on 24/07/2023.
 //
 
-import SwiftUI
 import Alamofire
+import SwiftUI
 
 struct ManageInstancesView: View {
   @AppStorage("lemmyInstances") var lemmyInstances = Settings.lemmyInstances
   @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
-  
+
   @State private var selection: String?
   @State private var showingSheet = false
   @State private var newName = ""
@@ -21,30 +21,30 @@ struct ManageInstancesView: View {
   @State var showingInvalidInstanceError = false
   @State var showingAlreadyExistsError = false
   @State var showingResetConfirmation = false
-  
+
   @State private var editMode = EditMode.inactive
   private static var count = 0
-  
+
   var body: some View {
-    
+
     /// **Future implementation**
-//    DroppableList("Users 1", users: $users1) { dropped, index in
-//      users1.insert(dropped, at: index)
-//      users2.removeAll { $0 == dropped }
-//    }
-//    DroppableList("Users 2", users: $users2)  { dropped, index in
-//      users2.insert(dropped, at: index)
-//      users1.removeAll { $0 == dropped }
-//    }
-    
+    //    DroppableList("Users 1", users: $users1) { dropped, index in
+    //      users1.insert(dropped, at: index)
+    //      users2.removeAll { $0 == dropped }
+    //    }
+    //    DroppableList("Users 2", users: $users2)  { dropped, index in
+    //      users2.insert(dropped, at: index)
+    //      users1.removeAll { $0 == dropped }
+    //    }
+
     List {
-      Section{
+      Section {
         ForEach(lemmyInstances, id: \.self) { instance in
           Text(instance)
-          
+
         }
         .onDelete(perform: delete)
-        
+
         Button {
           showingAddInstanceAlert = true
         } label: {
@@ -52,32 +52,31 @@ struct ManageInstancesView: View {
             .foregroundStyle(.blue)
         }
       }
-        Section{
-          Button {
-            showingResetConfirmation = true
-          } label: {
-            Text("Reset Instance List")
-              .foregroundStyle(.red)
+      Section {
+        Button {
+          showingResetConfirmation = true
+        } label: {
+          Text("Reset Instance List")
+            .foregroundStyle(.red)
+        }
+      }
+      .confirmationDialog("Are you sure?", isPresented: $showingResetConfirmation) {
+        Button("Reset", role: .destructive) {
+          withAnimation {
+            lemmyInstances = [
+              "lemmy.world",
+              "lemmy.ml",
+              "beehaw.org",
+              "programming.dev",
+              "lemm.ee",
+            ]
+            selectedInstance = "lemmy.world"
           }
         }
-        .confirmationDialog("Are you sure?", isPresented: $showingResetConfirmation) {
-          Button("Reset", role: .destructive) {
-            withAnimation {
-              lemmyInstances = [
-                "lemmy.world",
-                "lemmy.ml",
-                "beehaw.org",
-                "programming.dev",
-                "lemm.ee"
-              ]
-              selectedInstance = "lemmy.world"
-            }
-          }
-          
-          Button("Cancel", role: .cancel) {}
-        }
-      
-      
+
+        Button("Cancel", role: .cancel) {}
+      }
+
     }
     .alert("Add custom instance", isPresented: $showingAddInstanceAlert) {
       AddInstancePopupView(
@@ -105,13 +104,13 @@ struct ManageInstancesView: View {
       }
       Button("Dismiss", role: .cancel) {}
     }
-    
+
     .toolbar {
       EditButton()
     }
-    
+
   }
-  
+
   func delete(at offsets: IndexSet) {
     lemmyInstances.remove(atOffsets: offsets)
     if lemmyInstances.isEmpty {
@@ -121,13 +120,13 @@ struct ManageInstancesView: View {
         selectedInstance = lemmyInstances[0]
       }
     }
-    
+
   }
-  
-  private func addInstance(){
+
+  private func addInstance() {
     showingAddInstanceAlert = true
   }
-  
+
 }
 
 struct ManageInstancesView_Previews: PreviewProvider {
@@ -136,18 +135,16 @@ struct ManageInstancesView_Previews: PreviewProvider {
   }
 }
 
-
-
 struct AddInstancePopupView: View {
   @AppStorage("lemmyInstances") var lemmyInstances = Settings.lemmyInstances
   @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
   @AppStorage("logs") var logs = Settings.logs
-  
+
   @Binding var enteredCustomInstance: String
   @Binding var showingAddInstanceAlert: Bool
   @Binding var showingInvalidInstanceError: Bool
   @Binding var showingAlreadyExistsError: Bool
-  
+
   var body: some View {
     TextField("lemmy.world", text: $enteredCustomInstance)
       .autocorrectionDisabled()
@@ -168,6 +165,6 @@ struct AddInstancePopupView: View {
         showingAlreadyExistsError = true
       }
     }.disabled(enteredCustomInstance.isEmpty)
-    
+
   }
 }

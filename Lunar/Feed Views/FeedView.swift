@@ -14,8 +14,7 @@ struct FeedView: View {
   @AppStorage("kbinHostURL") var kbinHostURL = Settings.kbinHostURL
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @AppStorage("subscribedCommunityIDs") var subscribedCommunityIDs = Settings.subscribedCommunityIDs
-  
-  
+
   var subscribedCommunityListHeading: String {
     if !selectedActorID.isEmpty {
       return "\(URLParser.extractUsername(from: selectedActorID))'s Subscribed Communities"
@@ -23,7 +22,7 @@ struct FeedView: View {
       return "Subscribed Communities"
     }
   }
-  
+
   var feedTabHeading: String {
     if kbinActive {
       return "\(selectedInstance) & \(kbinHostURL)"
@@ -31,7 +30,7 @@ struct FeedView: View {
       return "\(selectedInstance)"
     }
   }
-  
+
   var body: some View {
     NavigationView {
       List {
@@ -54,7 +53,7 @@ struct FeedView: View {
         }.listRowBackground(Color.clear)
           .font(.largeTitle)
           .padding(0)
-        
+
         Section(header: Text("Feed")) {
           GeneralCommunitiesView()
           KbinMagazinesSectionView()

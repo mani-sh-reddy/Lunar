@@ -46,11 +46,11 @@ struct PostsView: View {
     if isCommunitySpecific {
       return community?.community.name ?? ""
     }
-    
+
     if isUserSpecific {
       return user?.person.name ?? ""
     }
-    
+
     return title ?? ""
   }
 
