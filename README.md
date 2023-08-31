@@ -19,7 +19,7 @@ Lunar is an iOS app that serves as a client for [Lemmy](https://join-lemmy.org/i
 
 ## Getting Started
 
-**I have now released Lunar to [TestFlight](https://testflight.apple.com/join/GEFCCQTb)!**
+**Lunar is now on [TestFlight](https://testflight.apple.com/join/GEFCCQTb)!**
 
 Please note: the current version is only supported on iOS 15+
 
