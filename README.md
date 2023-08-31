@@ -1,12 +1,10 @@
 <div align="center">
    
 # Lunar - An iOS Client for Lemmy and Kbin
-
+[![TestFlight](https://img.shields.io/badge/Download%20via-TestFlight-blue)](https://testflight.apple.com/join/GEFCCQTb)
 [![GitHub release](https://img.shields.io/github/v/release/mani-sh-reddy/Lunar-Lemmy-iOS)](https://github.com/mani-sh-reddy/Lunar-Lemmy-iOS/releases)
-[![GitHub last commit (branch)](https://img.shields.io/github/last-commit/mani-sh-reddy/Lunar-Lemmy-iOS/dev)](https://github.com/mani-sh-reddy/Lunar-Lemmy-iOS/commits/main)
-![GitHub issues](https://img.shields.io/github/issues/mani-sh-reddy/Lunar-Lemmy-iOS?logo=github)
 
-[![DeepSource](https://app.deepsource.com/gh/mani-sh-reddy/Lunar.svg/?label=active+issues&show_trend=true&token=T8gxTn0BxZMno5Pxdh1pfAgB)](https://app.deepsource.com/gh/mani-sh-reddy/Lunar/?ref=repository-badge)
+![GitHub issues](https://img.shields.io/github/issues/mani-sh-reddy/Lunar-Lemmy-iOS?logo=github)
 ![Static Badge](https://img.shields.io/badge/supports-iOS_15--17-lightgray)
 [![Static Badge](https://img.shields.io/badge/Swift-5.8-orange?logo=swift&logoColor=orange)](https://www.swift.org/about/)
 [![Static Badge](https://img.shields.io/badge/SwiftUI-3.0-blue?logo=swift&logoColor=blue)
@@ -21,21 +19,9 @@ Lunar is an iOS app that serves as a client for [Lemmy](https://join-lemmy.org/i
 
 ## Getting Started
 
-Lunar is currently in its alpha testing phase and, as a result, it has not been released on the app store or TestFlight yet. However, you can still install Lunar on your iOS device by following these steps:
+**I have now released Lunar to [TestFlight](https://testflight.apple.com/join/GEFCCQTb)!**
 
-1. Ensure you have an Apple developer account. If you don't have one, you can create a free developer account by visiting this link: https://developer.apple.com
-   
-2. Clone the Lunar repository and open Lunar.xcodeproj.
-   
-3. In Xcode, select your project, go to the "General" tab, and choose "Automatically manage signing" and your personal team.
-   
-4. Connect your iPhone to your computer and select it as the run destination.
-   
-5. Run your project. After a successful build, you might encounter an error in Xcode stating that your app is not from a trustworthy source.
-   
-6. To resolve this issue, navigate to your device's Settings, search for "Device Management," select your profile name, and then click "Trust."
-
-7. Now, you can run your app again, and it should work without any issues.
+Please note: the current version is only supported on iOS 15+
 
 
 ## Package Dependancies
