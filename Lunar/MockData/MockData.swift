@@ -373,7 +373,7 @@ enum MockData {
     I noticed my feed on Lemmy was pretty dry today, even for Lemmy. Took me a while to realize lemmy.ml has been going up and down all morning
     """
   static let postElement = PostElement(
-    image: nil,
+    image:nil,
     post: Lunar.PostObject(
       id: 3_389_331,
       name: "France wants your browser to censor the web, and Mozilla is petitioning against it",

@@ -10,9 +10,32 @@ import SwiftUI
 struct SettingsLayoutView: View {
   @AppStorage("commentMetadataPosition") var commentMetadataPosition = Settings.commentMetadataPosition
   @AppStorage("detailedCommunityLabels") var detailedCommunityLabels = Settings.detailedCommunityLabels
+  @AppStorage("compactViewEnabled") var compactViewEnabled = Settings.compactViewEnabled
 
   var body: some View {
     List {
+      // MARK: - Posts Section
+
+      Section {
+        Toggle(isOn: $compactViewEnabled) {
+          Text("Compact Posts")
+        }
+      } header: {
+        Text("Posts")
+      }
+
+      // MARK: - Labels Section
+
+      Section {
+        Toggle(isOn: $detailedCommunityLabels) {
+          Text("Detailed Community Labels")
+        }
+      } header: {
+        Text("Labels")
+      }
+
+      // MARK: - Comments Section
+
       Section {
         Picker("Comment Metadata Position", selection: $commentMetadataPosition) {
           Text("Bottom").tag("Bottom")
@@ -21,9 +44,6 @@ struct SettingsLayoutView: View {
         }
       } header: {
         Text("Comments")
-      }
-      Toggle(isOn: $detailedCommunityLabels) {
-        Text("Detailed Community Labels")
       }
     }
     .navigationTitle("Layout")

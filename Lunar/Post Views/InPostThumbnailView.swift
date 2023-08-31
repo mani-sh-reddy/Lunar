@@ -16,10 +16,12 @@ struct InPostThumbnailView: View {
   @State private var scale: CGFloat = 1
 
   var thumbnailURL: String
+  var imageRadius: CGFloat = 10
 
   var body: some View {
     InPostThumbnailImageView(
-      thumbnailURL: thumbnailURL
+      thumbnailURL: thumbnailURL,
+      imageRadius: imageRadius
     )
     .highPriorityGesture(
       TapGesture().onEnded {

@@ -36,7 +36,7 @@ struct CommentSectionView: View {
     List {
       Section {
         PostRowView(
-          upvoted: $upvoted, downvoted: $downvoted, isSubscribed: communityIsSubscribed, post: post
+          upvoted: $upvoted, downvoted: $downvoted, isSubscribed: communityIsSubscribed, post: post, insideCommentsView: true
         ).environmentObject(postsFetcher)
         InPostActionsView(post: post.post)
         if !postBody.isEmpty {

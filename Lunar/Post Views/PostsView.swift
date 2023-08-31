@@ -11,6 +11,8 @@ import SwiftUI
 struct PostsView: View {
   @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
+  @AppStorage("compactViewEnabled") var compactViewEnabled = Settings.compactViewEnabled
+  
   @StateObject var postsFetcher: PostsFetcher
   @State private var bannerFailedToLoad = false
   @State private var iconFailedToLoad = false
@@ -65,46 +67,90 @@ struct PostsView: View {
   var userIcon: String? { return user?.person.avatar }
 
   var body: some View {
-    List {
-      if isCommunitySpecific {
-        HeaderView(
-          navigationHeading: navigationHeading,
-          description: communityDescription,
-          actorID: communityActorID,
-          banner: communityBanner,
-          icon: communityIcon
-        )
+    if compactViewEnabled {
+      List {
+        if isCommunitySpecific {
+          HeaderView(
+            navigationHeading: navigationHeading,
+            description: communityDescription,
+            actorID: communityActorID,
+            banner: communityBanner,
+            icon: communityIcon
+          )
+        }
+        if isUserSpecific {
+          HeaderView(
+            navigationHeading: navigationHeading,
+            description: userDescription,
+            actorID: userActorID,
+            banner: userBanner,
+            icon: userIcon
+          )
+        }
+        ForEach(postsFetcher.posts, id: \.post.id) { post in
+          PostSectionView(post: post).environmentObject(postsFetcher)
+            .task {
+              postsFetcher.loadMoreContentIfNeeded(currentItem: post)
+            }
+        }
+        if postsFetcher.isLoading {
+          ProgressView().id(UUID())
+        }
+        Divider()
       }
-      if isUserSpecific {
-        HeaderView(
-          navigationHeading: navigationHeading,
-          description: userDescription,
-          actorID: userActorID,
-          banner: userBanner,
-          icon: userIcon
-        )
+      .onChange(of: selectedInstance) { _ in
+        Task {
+          await postsFetcher.refreshContent()
+        }
       }
-      ForEach(postsFetcher.posts, id: \.post.id) { post in
-        PostSectionView(post: post).environmentObject(postsFetcher)
-          .task {
-            postsFetcher.loadMoreContentIfNeeded(currentItem: post)
-          }
-      }
-      if postsFetcher.isLoading {
-        ProgressView().id(UUID())
-      }
-    }
-    .onChange(of: selectedInstance) { _ in
-      Task {
+      .refreshable {
         await postsFetcher.refreshContent()
       }
+      .navigationTitle(navigationHeading)
+      .navigationBarTitleDisplayMode(.inline)
+      .listStyle(.plain)
+    } else {
+      List {
+        if isCommunitySpecific {
+          HeaderView(
+            navigationHeading: navigationHeading,
+            description: communityDescription,
+            actorID: communityActorID,
+            banner: communityBanner,
+            icon: communityIcon
+          )
+        }
+        if isUserSpecific {
+          HeaderView(
+            navigationHeading: navigationHeading,
+            description: userDescription,
+            actorID: userActorID,
+            banner: userBanner,
+            icon: userIcon
+          )
+        }
+        ForEach(postsFetcher.posts, id: \.post.id) { post in
+          PostSectionView(post: post).environmentObject(postsFetcher)
+            .task {
+              postsFetcher.loadMoreContentIfNeeded(currentItem: post)
+            }
+        }
+        if postsFetcher.isLoading {
+          ProgressView().id(UUID())
+        }
+      }
+      .onChange(of: selectedInstance) { _ in
+        Task {
+          await postsFetcher.refreshContent()
+        }
+      }
+      .refreshable {
+        await postsFetcher.refreshContent()
+      }
+      .navigationTitle(navigationHeading)
+      .navigationBarTitleDisplayMode(.inline)
+      .listStyle(.insetGrouped)
     }
-    .refreshable {
-      await postsFetcher.refreshContent()
-    }
-    .navigationTitle(navigationHeading)
-    .navigationBarTitleDisplayMode(.inline)
-    .listStyle(.insetGrouped)
   }
 }
 
@@ -162,5 +208,11 @@ struct PostSectionView: View {
         .opacity(0)
       }
     }
+  }
+}
+
+struct PostsView_Previews: PreviewProvider {
+  static var previews: some View {
+    PostsView(postsFetcher: PostsFetcher())
   }
 }

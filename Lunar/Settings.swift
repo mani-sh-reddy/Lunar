@@ -67,5 +67,6 @@ enum Settings {
   static let showLaunchSplashScreen: Bool = true
   static let showWelcomeScreen: Bool = true
   static let detailedCommunityLabels: Bool = true
+  static let compactViewEnabled: Bool = false
 
 }

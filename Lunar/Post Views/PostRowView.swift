@@ -13,6 +13,7 @@ struct PostRowView: View {
   @EnvironmentObject var postsFetcher: PostsFetcher
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @AppStorage("subscribedCommunityIDs") var subscribedCommunityIDs = Settings.subscribedCommunityIDs
+  @AppStorage("compactViewEnabled") var compactViewEnabled = Settings.compactViewEnabled
 
   @Binding var upvoted: Bool
   @Binding var downvoted: Bool
@@ -27,6 +28,7 @@ struct PostRowView: View {
   @State var isSubscribed: Bool
 
   var post: PostElement
+  var insideCommentsView: Bool = false
 
   var imageURL: String {
     if let thumbnailURL = post.post.thumbnailURL, !thumbnailURL.isEmpty {
@@ -64,16 +66,44 @@ struct PostRowView: View {
   @State private var showCommunityActions: Bool = false
 
   var body: some View {
-    VStack {
-      if !imageURL.isEmpty {
-        InPostThumbnailView(thumbnailURL: imageURL)
+    if compactViewEnabled && !insideCommentsView {
+      HStack{
+        InPostThumbnailView(
+          thumbnailURL: imageURL,
+          imageRadius: 4
+        )
+        .frame(width: 80)
         Spacer()
       }
+    }
+    VStack {
+      if !compactViewEnabled || insideCommentsView {
+        if !imageURL.isEmpty {
+          InPostThumbnailView(thumbnailURL: imageURL)
+          Spacer()
+        }
+      }
       HStack {
+        if compactViewEnabled && !insideCommentsView {
+          if !imageURL.isEmpty {
+            Rectangle()
+              .disabled(true)
+              .opacity(0)
+              .frame(width: 80)
+              .padding(.trailing, 10)
+          }
+        }
         VStack(alignment: .leading, spacing: 5) {
           HStack {
             Text("\(communityName)\(instanceTag)")
               .textCase(.lowercase)
+              .foregroundColor(.secondary)
+              .highPriorityGesture(
+                TapGesture().onEnded {
+                  haptics.impactOccurred(intensity: 0.5)
+                  showCommunityActions = true
+                }
+              )
             switch subscribeState {
             case .notSubscribed:
               EmptyView()
@@ -82,15 +112,62 @@ struct PostRowView: View {
             case .subscribed:
               Image(systemName: "checkmark.circle")
             }
+            Spacer()
+            if compactViewEnabled {
+              HStack {
+                HStack (spacing: 1){
+                  Image(systemName: "arrow.up")
+                  Text(String(upvotes + upvoteState))
+                    .fixedSize()
+                }
+                .lineLimit(1)
+                .foregroundStyle(.green)
+                .highPriorityGesture(
+                  TapGesture().onEnded {
+                    haptics.impactOccurred()
+                    if !upvoted {
+                      print("SENT /post/like \(String(describing: postID)):upvote(+1)")
+                      sendReaction(
+                        voteType: 1, postID: post.post.id, communityActorID: post.community.actorID)
+                    } else {
+                      print("SENT /post/like \(String(describing: postID)):un-upvote(0)")
+                      sendReaction(
+                        voteType: 0, postID: post.post.id, communityActorID: post.community.actorID)
+                    }
+                  }
+                )
+                
+                HStack (spacing: 1){
+                  Image(systemName: "arrow.down")
+                  Text(String(downvotes + downvoteState))
+                    .fixedSize()
+                }
+                .lineLimit(1)
+                .foregroundStyle(.red)
+                .highPriorityGesture(
+                  TapGesture().onEnded {
+                    haptics.impactOccurred()
+                    if !downvoted {
+                      sendReaction(
+                        voteType: -1, postID: post.post.id, communityActorID: post.community.actorID)
+                    } else {
+                      sendReaction(
+                        voteType: 0, postID: post.post.id, communityActorID: post.community.actorID)
+                    }
+                  }
+                )
+                
+                HStack (spacing: 2){
+                  Image(systemName: "bubble.left")
+                  Text(String(commentCount))
+                    .fixedSize()
+                }
+                .lineLimit(1)
+                .foregroundStyle(.gray)
+              }
+            }
           }
           .font(.caption)
-          .foregroundColor(.secondary)
-          .highPriorityGesture(
-            TapGesture().onEnded {
-              haptics.impactOccurred(intensity: 0.5)
-              showCommunityActions = true
-            }
-          )
           .confirmationDialog(
             "\(communityName)\(instanceTag)", isPresented: $showCommunityActions,
             titleVisibility: .visible
@@ -102,121 +179,117 @@ struct PostRowView: View {
               Text(isSubscribed ? "Unsubscribe" : "Subscribe")
             }
           }
-          //          .confirmationDialog("\(communityName)\(instanceTag)", isPresented: $showCommunityActions, titleVisibility: .visible) {
-          //            Button {
-          //              switch subscribeState {
-          //              case .notSubscribed:
-          //                subscribeAction(subscribeAction: true)
-          //              case .pending:
-          //                subscribeAction(subscribeAction: false)
-          //              case .subscribed:
-          //                subscribeAction(subscribeAction: false)
-          //              }
-          //            } label: {
-          //              switch subscribeState {
-          //              case .notSubscribed:
-          //                Text("Subscribe")
-          //              case .pending:
-          //                Text("Unsubscribe (Pending Subscription)")
-          //              case .subscribed:
-          //                Text("Unsubscribe")
-          //              }
-          //            }
-          //          }
-          //          .onAppear {
-          //            if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == post.post.id }) {
-          //              subscribeState = postsFetcher.posts[index].subscribed
-          //
-          //              // Sync subscription state with UserDefaults on first appear
-          //              let subscriptionKey = "\(communityName)\(instanceTag)"
-          //              if let savedSubscriptionState = UserDefaults.standard.value(forKey: subscriptionKey) as? Bool {
-          //                subscribeState = savedSubscriptionState ? .subscribed : .notSubscribed
-          //              }
-          //            }
-          //          }
 
           Text(heading)
             .fontWeight(.semibold)
             .foregroundColor(.primary)
-          Text("\(creator.uppercased())\(timeAgo)")
-            .font(.caption)
-            .foregroundColor(.secondary)
+          HStack{
+            Text("\(creator.uppercased())\(timeAgo)")
+              .foregroundColor(.secondary)
+            if compactViewEnabled{
+              Spacer()
+              if post.post.url != post.post.thumbnailURL {
+                HStack (spacing: 2){
+                  Image(systemName: "safari")
+                  Text("\(URLParser.extractBaseDomain(from: post.post.url ?? "")) ")
+                    .fixedSize()
+                }
+                .lineLimit(1)
+                .foregroundStyle(.blue)
+                .highPriorityGesture(
+                  TapGesture().onEnded {
+                    showSafari.toggle()
+                  }
+                )
+                .fullScreenCover(
+                  isPresented: $showSafari,
+                  content: {
+                    SFSafariViewWrapper(url: URL(string: post.post.url ?? "")!).ignoresSafeArea()
+                  })
+              }
+            }
+          }
+          .font(.caption)
+          
+          
         }
         .layoutPriority(100)
         Spacer()
       }
-      HStack {
-        ReactionButton(
-          text: String(upvotes + upvoteState),
-          icon: "arrow.up.circle.fill",
-          color: Color.green,
-          active: $upvoted,
-          opposite: .constant(false)
-        )
-        .highPriorityGesture(
-          TapGesture().onEnded {
-            haptics.impactOccurred()
-            if !upvoted {
-              print("SENT /post/like \(String(describing: postID)):upvote(+1)")
-              sendReaction(
-                voteType: 1, postID: post.post.id, communityActorID: post.community.actorID)
-            } else {
-              print("SENT /post/like \(String(describing: postID)):un-upvote(0)")
-              sendReaction(
-                voteType: 0, postID: post.post.id, communityActorID: post.community.actorID)
-            }
-          }
-        )
-
-        ReactionButton(
-          text: String(downvotes + downvoteState),
-          icon: "arrow.down.circle.fill",
-          color: Color.red,
-          active: $downvoted,
-          opposite: .constant(false)
-        )
-        .highPriorityGesture(
-          TapGesture().onEnded {
-            haptics.impactOccurred()
-            if !downvoted {
-              sendReaction(
-                voteType: -1, postID: post.post.id, communityActorID: post.community.actorID)
-            } else {
-              sendReaction(
-                voteType: 0, postID: post.post.id, communityActorID: post.community.actorID)
-            }
-          }
-        )
-
-        ReactionButton(
-          text: String(commentCount),
-          icon: "bubble.left.circle.fill",
-          color: Color.gray,
-          active: .constant(false),
-          opposite: .constant(false)
-        )
-
-        Spacer()
-        if post.post.url != post.post.thumbnailURL {
+      if !compactViewEnabled {
+        HStack {
           ReactionButton(
-            text: "\(URLParser.extractBaseDomain(from: post.post.url ?? "")) ",
-            icon: "safari.fill",
-            color: Color.blue,
-            //            iconSize: Font.title2,
-            //            padding: 1,
-            active: .constant(false),
+            text: String(upvotes + upvoteState),
+            icon: "arrow.up.circle.fill",
+            color: Color.green,
+            active: $upvoted,
             opposite: .constant(false)
           )
           .highPriorityGesture(
             TapGesture().onEnded {
-              showSafari.toggle()
+              haptics.impactOccurred()
+              if !upvoted {
+                print("SENT /post/like \(String(describing: postID)):upvote(+1)")
+                sendReaction(
+                  voteType: 1, postID: post.post.id, communityActorID: post.community.actorID)
+              } else {
+                print("SENT /post/like \(String(describing: postID)):un-upvote(0)")
+                sendReaction(
+                  voteType: 0, postID: post.post.id, communityActorID: post.community.actorID)
+              }
             }
           )
-          .fullScreenCover(
-            isPresented: $showSafari,
-            content: {
-              SFSafariViewWrapper(url: URL(string: post.post.url ?? "")!).ignoresSafeArea()
-            })
+          
+          ReactionButton(
+            text: String(downvotes + downvoteState),
+            icon: "arrow.down.circle.fill",
+            color: Color.red,
+            active: $downvoted,
+            opposite: .constant(false)
+          )
+          .highPriorityGesture(
+            TapGesture().onEnded {
+              haptics.impactOccurred()
+              if !downvoted {
+                sendReaction(
+                  voteType: -1, postID: post.post.id, communityActorID: post.community.actorID)
+              } else {
+                sendReaction(
+                  voteType: 0, postID: post.post.id, communityActorID: post.community.actorID)
+              }
+            }
+          )
+          
+          ReactionButton(
+            text: String(commentCount),
+            icon: "bubble.left.circle.fill",
+            color: Color.gray,
+            active: .constant(false),
+            opposite: .constant(false)
+          )
+          
+          Spacer()
+          if post.post.url != post.post.thumbnailURL {
+            ReactionButton(
+              text: "\(URLParser.extractBaseDomain(from: post.post.url ?? "")) ",
+              icon: "safari.fill",
+              color: Color.blue,
+              //            iconSize: Font.title2,
+              //            padding: 1,
+              active: .constant(false),
+              opposite: .constant(false)
+            )
+            .highPriorityGesture(
+              TapGesture().onEnded {
+                showSafari.toggle()
+              }
+            )
+            .fullScreenCover(
+              isPresented: $showSafari,
+              content: {
+                SFSafariViewWrapper(url: URL(string: post.post.url ?? "")!).ignoresSafeArea()
+              })
+          }
         }
       }
     }

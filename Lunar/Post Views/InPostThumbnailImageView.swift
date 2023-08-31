@@ -13,6 +13,7 @@ import UIKit
 
 struct InPostThumbnailImageView: View {
   var thumbnailURL: String
+  var imageRadius: CGFloat = 10
   var body: some View {
 
     LazyImage(url: URL(string: thumbnailURL)) { state in
@@ -24,6 +25,6 @@ struct InPostThumbnailImageView: View {
         Color.clear  // Acts as a placeholder
       }
     }
-    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+    .clipShape(RoundedRectangle(cornerRadius: imageRadius, style: .continuous))
   }
 }
