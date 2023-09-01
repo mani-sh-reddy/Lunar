@@ -92,7 +92,7 @@ struct UserRowDetailView: View {
       
       VStack(alignment: .leading, spacing: 2) {
         HStack(alignment: .center, spacing: 4) {
-          Text(person.person.name ?? "").lineLimit(1)
+          Text(person.person.name ).lineLimit(1)
             .foregroundStyle(person.person.id == 35253 ? Color.purple : Color.primary)
           
           if person.person.banned {
