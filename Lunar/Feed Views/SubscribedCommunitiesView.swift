@@ -39,33 +39,32 @@ struct SubscribedCommunitiesSectionView: View {
     }
     .onChange(of: selectedInstance) { _ in
       Task {
+        try await Task.sleep(nanoseconds: UInt64(2 * Double(NSEC_PER_SEC)))
         await communitiesFetcher.refreshContent()
       }
     }
     .onChange(of: selectedActorID) { _ in
       Task {
+        try await Task.sleep(nanoseconds: UInt64(2 * Double(NSEC_PER_SEC)))
         await communitiesFetcher.refreshContent()
       }
     }
     .onChange(of: subscribedCommunityIDs) { _ in
-      if !initialSync {
         Task {
+          try await Task.sleep(nanoseconds: UInt64(2 * Double(NSEC_PER_SEC)))
           await communitiesFetcher.refreshContent()
         }
-      }
     }
-    .onAppear {
-      Task{
-        if initialSync {
-          let newSubscribedIDs = communitiesFetcher.communities.map { $0.community.id }
-          subscribedCommunityIDs.removeAll()
-          subscribedCommunityIDs.append(contentsOf: newSubscribedIDs)
-          subscribedCommunityIDs = Array(Set(subscribedCommunityIDs))  // Remove duplicates
-          initialSync = false
-          print(subscribedCommunityIDs)
-        }
-      }
-    }
+//    .onAppear {
+//        if initialSync {
+//          let newSubscribedIDs = communitiesFetcher.communities.map { $0.community.id }
+//          subscribedCommunityIDs.removeAll()
+//          subscribedCommunityIDs.append(contentsOf: newSubscribedIDs)
+////          subscribedCommunityIDs = Array(Set(subscribedCommunityIDs))  // Remove duplicates
+//          initialSync = false
+//          print(subscribedCommunityIDs)
+//        }
+//    }
 
     if communitiesFetcher.isLoading {
       ProgressView()
