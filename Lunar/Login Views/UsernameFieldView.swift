@@ -30,7 +30,7 @@ struct UsernameFieldView: View {
         usernameEmailInput = devUsername
       }
     }
-    .onDebouncedChange(of: $usernameEmailInput, debounceFor: 0.1) { newValue in
+    .onDebouncedChange(of: $usernameEmailInput, debounceFor: 0.25) { newValue in
       showingTwoFactorField = false
       showingLoginButtonWarning = false
       usernameEmailInvalid =

@@ -53,7 +53,7 @@ struct PasswordFieldView: View {
         password = devPassword
       }
     }
-    .onDebouncedChange(of: $password, debounceFor: 0.1) { newValue in
+    .onDebouncedChange(of: $password, debounceFor: 0.25) { newValue in
       showingTwoFactorField = false
       showingLoginButtonWarning = false
       passwordInvalid = !ValidationUtils.isValidPassword(input: newValue)

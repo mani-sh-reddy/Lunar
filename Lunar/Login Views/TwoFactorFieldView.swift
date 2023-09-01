@@ -27,7 +27,7 @@ struct TwoFactorFieldView: View {
         Image(systemName: "shield")
           .foregroundStyle(.foreground)
       }
-      .onDebouncedChange(of: $twoFactor, debounceFor: 0.1) { newValue in
+      .onDebouncedChange(of: $twoFactor, debounceFor: 0.25) { newValue in
         showingTwoFactorWarning = false
         twoFactorInvalid = !ValidationUtils.isValidTwoFactor(input: newValue)
       }
