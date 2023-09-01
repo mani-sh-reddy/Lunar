@@ -26,7 +26,7 @@ import SwiftUI
   private var typeParameter: String?
   private var limitParameter: Int = 30
   private var communityID: Int?
-  private var jwt: String = ""
+  private var jwt: String?
 
   private var endpointPath: String {
     if communityID != nil {
