@@ -14,7 +14,7 @@ struct LoggedInUsersListView: View {
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
   @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
 
-  @Binding var selectedAccount: LoggedInAccount?
+  @Binding var selectedAccount: AccountModel?
 
   var body: some View {
     ForEach(loggedInAccounts, id: \.self) { account in
@@ -32,9 +32,9 @@ struct AccountSelectionItem: View {
   @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
 
-  @Binding var selectedAccount: LoggedInAccount?
+  @Binding var selectedAccount: AccountModel?
 
-  let account: LoggedInAccount
+  let account: AccountModel
 
   let haptics = UIImpactFeedbackGenerator(style: .soft)
 

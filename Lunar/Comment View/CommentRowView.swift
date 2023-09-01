@@ -19,9 +19,9 @@ struct CommentRowView: View {
   @State var showCommentPopover: Bool = false
   @State private var parentID: Int = 0
 
-  var comment: CommentElement
+  var comment: CommentObject
   let listIndex: Int
-  var comments: [CommentElement]
+  var comments: [CommentObject]
 
   var indentLevel: Int {
     let elements = comment.comment.path.split(separator: ".").map { String($0) }

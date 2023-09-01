@@ -11,7 +11,7 @@ import Kingfisher
 import SwiftUI
 
 @MainActor class TrendingCommunitiesFetcher: ObservableObject {
-  @Published var communities = [CommunityElement]()
+  @Published var communities = [CommunityObject]()
   @Published var isLoading = false
   @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
   @AppStorage("logs") var logs = Settings.logs

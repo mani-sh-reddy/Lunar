@@ -37,6 +37,11 @@ struct SubscribedCommunitiesSectionView: View {
         CommunityRowView(community: community)
       }
     }
+//    .onAppear {
+//      Task {
+//        await communitiesFetcher.refreshContent()
+//      }
+//    }
     .onChange(of: selectedInstance) { _ in
       Task {
         try await Task.sleep(nanoseconds: UInt64(2 * Double(NSEC_PER_SEC)))
@@ -56,14 +61,16 @@ struct SubscribedCommunitiesSectionView: View {
         }
     }
 //    .onAppear {
+//      Task{
 //        if initialSync {
 //          let newSubscribedIDs = communitiesFetcher.communities.map { $0.community.id }
 //          subscribedCommunityIDs.removeAll()
 //          subscribedCommunityIDs.append(contentsOf: newSubscribedIDs)
-////          subscribedCommunityIDs = Array(Set(subscribedCommunityIDs))  // Remove duplicates
+//          subscribedCommunityIDs = Array(Set(subscribedCommunityIDs))  // Remove duplicates
 //          initialSync = false
 //          print(subscribedCommunityIDs)
 //        }
+//      }
 //    }
 
     if communitiesFetcher.isLoading {

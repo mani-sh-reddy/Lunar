@@ -10,7 +10,7 @@ import SwiftUI
 struct CommentMetadataView: View {
   @EnvironmentObject var commentsFetcher: CommentsFetcher
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  var comment: CommentElement
+  var comment: CommentObject
   let dateTimeParser = DateTimeParser()
   @Binding var commentUpvoted: Bool
   @Binding var commentDownvoted: Bool
@@ -29,7 +29,9 @@ struct CommentMetadataView: View {
       .foregroundStyle(.secondary)
       Spacer()
       ReactionButton(
-        text: String(commentUpvoted ? comment.counts.upvotes + 1 : comment.counts.upvotes),
+        text: String(
+          (commentUpvoted ? (comment.counts.upvotes ?? 0) + 1 : comment.counts.upvotes) ?? 0
+        ),
         icon: "arrow.up.circle.fill",
         color: Color.green,
         active: $commentUpvoted,
@@ -48,7 +50,7 @@ struct CommentMetadataView: View {
         }
       )
       ReactionButton(
-        text: String(commentDownvoted ? comment.counts.downvotes + 1 : comment.counts.downvotes),
+        text: String((commentDownvoted ? (comment.counts.downvotes ?? 0) + 1 : comment.counts.downvotes) ?? 0),
         icon: "arrow.down.circle.fill",
         color: Color.red,
         active: $commentDownvoted,

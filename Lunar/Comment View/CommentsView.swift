@@ -14,7 +14,7 @@ struct CommentsView: View {
   @Binding var upvoted: Bool
   @Binding var downvoted: Bool
 
-  var post: PostElement
+  var post: PostObject
 
   var body: some View {
     if commentsFetcher.isLoading {

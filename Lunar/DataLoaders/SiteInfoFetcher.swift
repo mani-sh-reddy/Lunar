@@ -14,7 +14,7 @@ class SiteInfoFetcher: ObservableObject {
   private var endpoint: URLComponents
 
   /// Adding info about the user to **@AppsStorage** loggedInAccounts
-  var loggedInAccount = LoggedInAccount()
+  var loggedInAccount = AccountModel()
   @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
   @AppStorage("selectedName") var selectedName = Settings.selectedName
   @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
@@ -36,22 +36,22 @@ class SiteInfoFetcher: ObservableObject {
         case let .success(result):
           let userID = result.myUser.localUserView.person.id
           let username = result.myUser.localUserView.person.name
-          let email = result.myUser.localUserView.localUser.email
+          let email = result.myUser.localUserView.email
           let avatarURL = result.myUser.localUserView.person.avatar
           let actorID = result.myUser.localUserView.person.actorID
           /// creating a loggedinuser object that can be persisted
-          self.loggedInAccount.userID = String(userID)
-          self.loggedInAccount.name = username ?? URLParser.extractUsername(from: actorID)
-          self.loggedInAccount.email = email
+          self.loggedInAccount.userID = String(userID ?? 0)
+          self.loggedInAccount.name = username 
+          self.loggedInAccount.email = email ?? ""
           self.loggedInAccount.avatarURL = avatarURL ?? ""
-          self.loggedInAccount.actorID = actorID
+          self.loggedInAccount.actorID = actorID 
           /// adding to the list of already logged in accounts
           self.loggedInAccounts.append(self.loggedInAccount)
           /// Selecting and setting the latest logged in account as active
-          self.selectedName = username ?? URLParser.extractUsername(from: actorID)
-          self.selectedEmail = email
+          self.selectedName = username 
+          self.selectedEmail = email ?? ""
           self.selectedAvatarURL = avatarURL ?? ""
-          self.selectedActorID = actorID
+          self.selectedActorID = actorID 
 
           let response = String(response.response?.statusCode ?? 0)
 

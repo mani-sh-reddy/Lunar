@@ -5,12 +5,10 @@
 //  Created by Mani on 03/07/2023.
 //
 
-import Alamofire
 import Foundation
-import SwiftUI
 
 struct CommentResponseModel: Codable {
-  let comment: CommentElement?
+  let comment: CommentObject
   let recipientIDS: [JSONAny]
 
   enum CodingKeys: String, CodingKey {

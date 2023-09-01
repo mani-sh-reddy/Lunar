@@ -22,7 +22,7 @@ struct SettingsAccountView: View {
   @State var isConvertingEmails: Bool = false
   @State var keychainDebugString: String = ""
 
-  @Binding var selectedAccount: LoggedInAccount?
+  @Binding var selectedAccount: AccountModel?
   @State var isLoginFlowComplete: Bool = true
 
   let haptic = UINotificationFeedbackGenerator()
@@ -82,7 +82,7 @@ struct SettingsAccountView_Previews: PreviewProvider {
   static var previews: some View {
     SettingsAccountView(
       selectedAccount: .constant(
-        LoggedInAccount(
+        AccountModel(
           userID: "",
           name: "",
           email: "",

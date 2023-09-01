@@ -16,7 +16,7 @@ struct UserRowSettingsBannerView: View {
   @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
 
-  @Binding var selectedAccount: LoggedInAccount?
+  @Binding var selectedAccount: AccountModel?
 
   var body: some View {
     HStack {

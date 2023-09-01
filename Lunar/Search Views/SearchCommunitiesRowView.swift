@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SearchCommunitiesRowView: View {
   @State var showingPlaceholderAlert = false
-  var searchCommunitiesResults: [CommunityElement]
+  var searchCommunitiesResults: [CommunityObject]
   let processor = DownsamplingImageProcessor(size: CGSize(width: 60, height: 60))
 
   var body: some View {
@@ -66,16 +66,16 @@ struct SearchCommunitiesRowView: View {
             HStack(spacing: 10) {
               HStack(spacing: 1) {
                 Image(systemName: "person.2")
-                Text((community.counts.subscribers).convertToShortString())
+                Text((community.counts.subscribers)?.convertToShortString() ?? "0")
               }.foregroundStyle(
-                community.counts.subscribers >= 10000 ? Color.yellow : Color.secondary)
+                community.counts.subscribers ?? 0 >= 10000 ? Color.yellow : Color.secondary)
               HStack(spacing: 1) {
                 Image(systemName: "signpost.right")
-                Text((community.counts.posts).convertToShortString())
+                Text((community.counts.posts)?.convertToShortString() ?? "0")
               }
               HStack(spacing: 1) {
                 Image(systemName: "quote.bubble")
-                Text((community.counts.comments).convertToShortString())
+                Text((community.counts.comments)?.convertToShortString() ?? "0")
               }
             }.lineLimit(1)
               .foregroundStyle(.secondary)
@@ -133,9 +133,9 @@ struct SearchCommunitiesRowView: View {
   }
 }
 
-struct SearchCommunitiesRowView_Previews: PreviewProvider {
-  static var previews: some View {
-    SearchCommunitiesRowView(searchCommunitiesResults: MockData.searchCommunitiesResults)
-      .previewLayout(.sizeThatFits)
-  }
-}
+//struct SearchCommunitiesRowView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    SearchCommunitiesRowView(searchCommunitiesResults: MockData.searchCommunitiesResults)
+//      .previewLayout(.sizeThatFits)
+//  }
+//}

@@ -12,7 +12,7 @@ struct CommentPopoverView: View {
   @State private var commentString: String = ""
   @State private var commentStringUnsent: String = ""
 
-  var post: PostObject
+  var post: Post
   var parentID: Int?
 
   var body: some View {
@@ -71,8 +71,8 @@ struct CommentPopoverView: View {
   }
 }
 
-struct CommentPopoverView_Previews: PreviewProvider {
-  static var previews: some View {
-    CommentPopoverView(showCommentPopover: .constant(false), post: MockData.postElement.post)
-  }
-}
+//struct CommentPopoverView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    CommentPopoverView(showCommentPopover: .constant(false), post: MockData.postElement.post)
+//  }
+//}

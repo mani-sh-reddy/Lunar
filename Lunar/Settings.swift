@@ -41,7 +41,7 @@ enum Settings {
   /// var loggedInAccount = LoggedInAccount()
   /// loggedInAccount.actorID = "123"
   /// self.loggedInAccounts.append(loggedInAccount)
-  static let loggedInAccounts: [LoggedInAccount] = []
+  static let loggedInAccounts: [AccountModel] = []
 
   static let enableLogging: Bool = false
   static let logs: [String] = []
