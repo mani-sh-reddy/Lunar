@@ -9,7 +9,7 @@ import Kingfisher
 import SwiftUI
 
 struct MoreCommunitiesRowView: View {
-  var community: CommunityElement
+  var community: CommunityObject
 
   @State var showingPlaceholderAlert = false
 

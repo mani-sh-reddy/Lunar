@@ -18,8 +18,8 @@ struct PostsView: View {
   @State private var iconFailedToLoad = false
 
   var title: String?
-  var community: CommunityElement?
-  var user: UserElement?
+  var community: CommunityObject?
+  var user: PersonObject?
 
   var isCommunitySpecific: Bool { return community != nil }
   var isUserSpecific: Bool { return user != nil }
@@ -173,7 +173,7 @@ struct PostSectionView: View {
   @State var upvoted: Bool = false
   @State var downvoted: Bool = false
 
-  var post: PostElement
+  var post: PostObject
 
   var communityIsSubscribed: Bool {
     if post.subscribed == .subscribed {

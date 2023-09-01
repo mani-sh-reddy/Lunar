@@ -16,10 +16,10 @@ import SwiftUI
   @AppStorage("logs") var logs = Settings.logs
   @Published var searchModel = [SearchModel]()
 
-  @Published var comments = [SearchCommentElement]()
-  @Published var communities = [CommunityElement]()
-  @Published var posts = [SearchPostElement]()
-  @Published var users = [UserElement]()
+  @Published var comments = [CommentObject]()
+  @Published var communities = [CommunityObject]()
+  @Published var posts = [PostObject]()
+  @Published var users = [PersonObject]()
 
   @Published var isLoading = false
 
@@ -60,7 +60,7 @@ import SwiftUI
     loadMoreContent { _, _ in }
   }
 
-  func loadMoreCommentIfNeeded(currentItem comment: SearchCommentElement?) {
+  func loadMoreCommentIfNeeded(currentItem comment: CommentObject?) {
     guard let comment else {
       loadMoreContent { _, _ in }
       return
@@ -71,7 +71,7 @@ import SwiftUI
     }
   }
 
-  func loadMoreCommunitiesIfNeeded(currentItem community: SearchCommunityElement?) {
+  func loadMoreCommunitiesIfNeeded(currentItem community: CommunityObject?) {
     guard let community else {
       loadMoreContent { _, _ in }
       return
@@ -84,7 +84,7 @@ import SwiftUI
     }
   }
 
-  func loadMorePostsIfNeeded(currentItem post: SearchPostElement?) {
+  func loadMorePostsIfNeeded(currentItem post: PostObject?) {
     guard let post else {
       loadMoreContent { _, _ in }
       return
@@ -95,7 +95,7 @@ import SwiftUI
     }
   }
 
-  func loadMoreUsersIfNeeded(currentItem user: UserElement?) {
+  func loadMoreUsersIfNeeded(currentItem user: PersonObject?) {
     guard let user else {
       loadMoreContent { _, _ in }
       return

@@ -11,7 +11,7 @@ import SwiftUI
 
 struct CommunityRowView: View {
   @AppStorage("detailedCommunityLabels") var detailedCommunityLabels = Settings.detailedCommunityLabels
-  var community: CommunityElement
+  var community: CommunityObject
 
   @State var showingPlaceholderAlert = false
 
@@ -65,16 +65,16 @@ struct CommunityRowView: View {
           HStack(spacing: 10) {
             HStack(spacing: 1) {
               Image(systemName: "person.2")
-              Text((community.counts.subscribers).convertToShortString())
+              Text((community.counts.subscribers)?.convertToShortString() ?? "0")
             }.foregroundStyle(
-              community.counts.subscribers >= 10000 ? Color.yellow : Color.secondary)
+              community.counts.subscribers ?? 0 >= 10000 ? Color.yellow : Color.secondary)
             HStack(spacing: 1) {
               Image(systemName: "signpost.right")
-              Text((community.counts.posts).convertToShortString())
+              Text((community.counts.posts)?.convertToShortString() ?? "0")
             }
             HStack(spacing: 1) {
               Image(systemName: "quote.bubble")
-              Text((community.counts.comments).convertToShortString())
+              Text((community.counts.comments)?.convertToShortString() ?? "0")
             }
           }.lineLimit(1)
             .foregroundStyle(.secondary)

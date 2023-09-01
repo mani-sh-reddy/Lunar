@@ -15,7 +15,7 @@ struct CommunityHeaderView: View {
   @State private var bannerFailedToLoad = false
   @State private var iconFailedToLoad = false
 
-  var community: CommunityElement?
+  var community: CommunityObject?
   var navigationHeading: String { return community?.community.name ?? "" }
   var communityDescription: String? { return community?.community.description }
   var communityActorID: String { return community?.community.actorID ?? "" }

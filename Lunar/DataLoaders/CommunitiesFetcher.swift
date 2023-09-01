@@ -18,7 +18,7 @@ import SwiftUI
   @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
   @AppStorage("logs") var logs = Settings.logs
 
-  @Published var communities = [CommunityElement]()
+  @Published var communities = [CommunityObject]()
   @Published var isLoading = false
 
   private var currentPage = 1
@@ -72,7 +72,7 @@ import SwiftUI
     let cacher = ResponseCacher(behavior: .cache)
 
     AF.request(endpoint) { urlRequest in
-            print("CommunitiesFetcher REF - hidden url due to jwt")
+            print("CommunitiesFetcher REF - hidden url due to jwt \(urlRequest)")
       urlRequest.cachePolicy = .reloadRevalidatingCacheData
     }
     .cacheResponse(using: cacher)
@@ -106,7 +106,7 @@ import SwiftUI
     }
   }
 
-  func loadMoreContentIfNeeded(currentItem community: CommunityElement?) {
+  func loadMoreContentIfNeeded(currentItem community: CommunityObject?) {
     guard let community else {
       loadMoreContent()
       return

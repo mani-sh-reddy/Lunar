@@ -6,9 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
-
-// MARK: - Login
 
 struct CredentialsResponseModel: Codable {
   let jwt: String

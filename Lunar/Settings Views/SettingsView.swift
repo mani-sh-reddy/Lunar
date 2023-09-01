@@ -14,7 +14,7 @@ struct SettingsView: View {
   @AppStorage("userName") var userName = Settings.userName
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   
-  @State var selectedAccount: LoggedInAccount?
+  @State var selectedAccount: AccountModel?
   
   var body: some View {
     NavigationView {

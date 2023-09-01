@@ -100,11 +100,11 @@ struct KbinPostRowView: View {
   }
 }
 
-struct KbinPostRowView_Previews: PreviewProvider {
-  static var previews: some View {
-    KbinPostRowView(post: MockData.kbinPost)
-  }
-}
+//struct KbinPostRowView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    KbinPostRowView(post: MockData.kbinPost)
+//  }
+//}
 
 struct GoIntotSwipeAction: View {
   @Binding var isClicked: Bool

@@ -19,7 +19,7 @@ import SwiftUI
   @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
   @AppStorage("logs") var logs = Settings.logs
 
-  @Published var posts = [PostElement]()
+  @Published var posts = [PostObject]()
   @Published var isLoading = false
 
   let imagePrefetcher = ImagePrefetcher()
@@ -75,7 +75,7 @@ import SwiftUI
     }
     .cacheResponse(using: cacher)
     .validate(statusCode: 200..<300)
-    .responseDecodable(of: PostsModel.self) { response in
+    .responseDecodable(of: PostModel.self) { response in
       switch response.result {
       case let .success(result):
 
@@ -103,7 +103,7 @@ import SwiftUI
     }
   }
 
-  func loadMoreContentIfNeeded(currentItem item: PostElement?) {
+  func loadMoreContentIfNeeded(currentItem item: PostObject?) {
     guard let item else { return }
     let thresholdIndex = posts.index(before: posts.endIndex)
     if posts.firstIndex(where: { $0.post.id == item.post.id }) == thresholdIndex {
@@ -124,7 +124,7 @@ import SwiftUI
     }
     .cacheResponse(using: cacher)
     .validate(statusCode: 200..<300)
-    .responseDecodable(of: PostsModel.self) { response in
+    .responseDecodable(of: PostModel.self) { response in
       switch response.result {
       case let .success(result):
         let newPosts = result.posts

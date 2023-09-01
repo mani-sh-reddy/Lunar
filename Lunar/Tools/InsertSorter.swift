@@ -8,7 +8,7 @@
 import Foundation
 
 enum InsertSorter {
-  static func sortComments(_ newComment: CommentElement, into comments: inout [CommentElement]) {
+  static func sortComments(_ newComment: CommentObject, into comments: inout [CommentObject]) {
     var index = comments.endIndex
     for (currentIndex, existingComment) in comments.enumerated() {
       if newComment.comment.path < existingComment.comment.path

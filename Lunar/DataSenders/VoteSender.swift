@@ -24,7 +24,7 @@ class VoteSender: ObservableObject {
   private var elementType: String = ""
 
   /// Adding info about the user to **@AppsStorage** loggedInAccounts
-  var loggedInAccount = LoggedInAccount()
+  var loggedInAccount = AccountModel()
   @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
   @AppStorage("selectedName") var selectedName = Settings.selectedName
   @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail

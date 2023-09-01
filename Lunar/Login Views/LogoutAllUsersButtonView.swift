@@ -27,7 +27,7 @@ struct LogoutAllUsersButtonView: View {
   @Binding var deleteConfirmationShown: Bool
   @Binding var isConvertingEmails: Bool
   @Binding var keychainDebugString: String
-  @Binding var selectedAccount: LoggedInAccount?
+  @Binding var selectedAccount: AccountModel?
 
   let haptic = UINotificationFeedbackGenerator()
 
@@ -76,7 +76,7 @@ struct LogoutAllUsersButtonView: View {
     .confirmationDialog("Remove All Accounts?", isPresented: $deleteConfirmationShown) {
       Button(role: .destructive) {
         isPresentingConfirm = true
-        selectedAccount = LoggedInAccount(
+        selectedAccount = AccountModel(
           userID: "", name: "", email: "", avatarURL: "", actorID: "")
         loggedInAccounts.removeAll()
         selectedName = ""
