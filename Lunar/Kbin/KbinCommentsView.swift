@@ -99,9 +99,9 @@ struct KbinCommentRowView: View {
   }
 }
 
-struct KbinCommentsView_Previews: PreviewProvider {
-  static var previews: some View {
-    /// need to set showing popover to a constant value
-    KbinCommentsView(post: MockData.kbinPost, postURL: MockData.kbinPostURL)
-  }
-}
+//struct KbinCommentsView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    /// need to set showing popover to a constant value
+//    KbinCommentsView(post: MockData.kbinPost, postURL: MockData.kbinPostURL)
+//  }
+//}

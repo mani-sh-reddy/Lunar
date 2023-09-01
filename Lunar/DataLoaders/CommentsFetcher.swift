@@ -18,7 +18,7 @@ import SwiftUI
   @AppStorage("commentType") var commentType = Settings.commentType
   @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
   @AppStorage("logs") var logs = Settings.logs
-  @Published var comments = [CommentElement]()
+  @Published var comments = [CommentObject]()
   @Published var isLoading = false
 
   private var currentPage = 1
@@ -97,7 +97,7 @@ import SwiftUI
     }
   }
 
-  func loadMoreContentIfNeeded(currentItem comment: CommentElement?) {
+  func loadMoreContentIfNeeded(currentItem comment: CommentObject?) {
     guard let comment else {
       loadMoreContent()
       return
@@ -168,12 +168,12 @@ import SwiftUI
       return nil
     }
   }
-  func updateCommentCollapseState(_ comment: CommentElement, isCollapsed: Bool) {
+  func updateCommentCollapseState(_ comment: CommentObject, isCollapsed: Bool) {
     if let index = comments.firstIndex(where: { $0.comment.id == comment.comment.id }) {
       comments[index].isCollapsed = isCollapsed
     }
   }
-  func updateCommentShrinkState(_ comment: CommentElement, isShrunk: Bool) {
+  func updateCommentShrinkState(_ comment: CommentObject, isShrunk: Bool) {
     if let index = comments.firstIndex(where: { $0.comment.id == comment.comment.id }) {
       comments[index].isShrunk = isShrunk
     }

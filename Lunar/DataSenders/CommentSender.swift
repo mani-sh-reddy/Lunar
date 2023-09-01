@@ -16,7 +16,7 @@ class CommentSender: ObservableObject {
   private var jwt: String = ""
 
   /// Adding info about the user to **@AppsStorage** loggedInAccounts
-  var loggedInAccount = LoggedInAccount()
+  var loggedInAccount = AccountModel()
   @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
   @AppStorage("selectedName") var selectedName = Settings.selectedName
   @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
@@ -55,7 +55,7 @@ class CommentSender: ObservableObject {
     .responseDecodable(of: CommentResponseModel.self) { response in
       switch response.result {
       case let .success(result):
-        print(result.comment?.creator.name as Any)
+        print(result.comment.creator.name as Any)
         completion("success")
 
       case let .failure(error):

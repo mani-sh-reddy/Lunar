@@ -23,13 +23,13 @@ struct InPostActionsView: View {
       }
     )
     .sheet(isPresented: $showCommentPopover) {
-      CommentPopoverView(showCommentPopover: $showCommentPopover, post: post)
+      CommentPopoverView(showCommentPopover: $showCommentPopover, post: post.post)
     }
   }
 }
 
-struct InPostActionsView_Previews: PreviewProvider {
-  static var previews: some View {
-    InPostActionsView(post: MockData.postElement.post)
-  }
-}
+//struct InPostActionsView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    InPostActionsView(post: MockData.postElement.post)
+//  }
+//}

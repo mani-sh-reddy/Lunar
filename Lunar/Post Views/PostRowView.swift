@@ -27,7 +27,7 @@ struct PostRowView: View {
   @State var subscribeState: SubscribedState = .notSubscribed
   @State var isSubscribed: Bool
 
-  var post: PostElement
+  var post: PostObject
   var insideCommentsView: Bool = false
 
   var imageURL: String {
@@ -43,9 +43,9 @@ struct PostRowView: View {
   var heading: String { return post.post.name }
   var creator: String { return post.creator.name }
   var published: String { return post.post.published }
-  var upvotes: Int { return post.counts.upvotes }
-  var downvotes: Int { return post.counts.downvotes }
-  var commentCount: Int { return post.counts.comments }
+  var upvotes: Int { return post.counts.upvotes ?? 0 }
+  var downvotes: Int { return post.counts.downvotes ?? 0 }
+  var commentCount: Int { return post.counts.comments ?? 0 }
   var postID: Int { return post.post.id }
   var instanceTag: String {
     let tag = post.community.actorID
@@ -399,13 +399,13 @@ struct PostRowView: View {
   }
 }
 
-struct PostRowView_Previews: PreviewProvider {
-  static var previews: some View {
-    PostRowView(
-      upvoted: .constant(false),
-      downvoted: .constant(false),
-      isSubscribed: false, post: MockData.postElement
-    )
-    .previewLayout(.sizeThatFits).frame(height: 300)
-  }
-}
+//struct PostRowView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    PostRowView(
+//      upvoted: .constant(false),
+//      downvoted: .constant(false),
+//      isSubscribed: false, post: MockData.postElement
+//    )
+//    .previewLayout(.sizeThatFits).frame(height: 300)
+//  }
+//}

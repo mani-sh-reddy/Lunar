@@ -10,8 +10,8 @@ import SwiftUI
 struct CommentSectionView: View {
   @EnvironmentObject var postsFetcher: PostsFetcher
   @EnvironmentObject var commentsFetcher: CommentsFetcher
-  var post: PostElement
-  var comments: [CommentElement]
+  var post: PostObject
+  var comments: [CommentObject]
   var postBody: String
 
   @State var collapseToIndex: Int = 0
@@ -38,7 +38,7 @@ struct CommentSectionView: View {
         PostRowView(
           upvoted: $upvoted, downvoted: $downvoted, isSubscribed: communityIsSubscribed, post: post, insideCommentsView: true
         ).environmentObject(postsFetcher)
-        InPostActionsView(post: post.post)
+        InPostActionsView(post: post)
         if !postBody.isEmpty {
           VStack(alignment: .trailing) {
             ExpandableTextBox(LocalizedStringKey(postBody)).font(.body)
@@ -83,7 +83,7 @@ struct CommentSectionView: View {
     .listStyle(.grouped)
   }
 
-  func commentExpandAction(comment: CommentElement) {
+  func commentExpandAction(comment: CommentObject) {
     withAnimation(.easeInOut) {
       for commentOnMainList in comments {
         if commentOnMainList.comment.path.contains(comment.comment.path) {

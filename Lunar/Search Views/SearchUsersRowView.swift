@@ -10,7 +10,7 @@ import SwiftUI
 
 struct SearchUsersRowView: View {
   @State var showingPlaceholderAlert = false
-  var searchUsersResults: [UserElement]
+  var searchUsersResults: [PersonObject]
   let processor = DownsamplingImageProcessor(size: CGSize(width: 60, height: 60))
 
   var body: some View {
@@ -23,64 +23,7 @@ struct SearchUsersRowView: View {
           user: person
         )
       } label: {
-        HStack(alignment: .center) {
-          KFImage(URL(string: person.person.avatar ?? ""))
-            .setProcessor(processor)
-            .placeholder {
-              Image(systemName: "person.circle.fill")
-                .resizable()
-                .frame(width: 30, height: 30)
-                .symbolRenderingMode(.hierarchical)
-                .foregroundStyle(.blue)
-            }
-            .resizable()
-            .frame(width: 30, height: 30)
-            .clipShape(Circle())
-
-          VStack(alignment: .leading, spacing: 2) {
-            HStack(alignment: .center, spacing: 4) {
-              Text(person.person.name).lineLimit(1)
-                .foregroundStyle(person.person.id == 35253 ? Color.purple : Color.primary)
-
-              if person.person.banned {
-                Image(systemName: "exclamationmark.triangle.fill")
-                  .font(.caption)
-                  .foregroundStyle(.secondary)
-              }
-              if person.person.botAccount {
-                Image(systemName: "desktopcomputer")
-                  .font(.caption)
-                  .foregroundStyle(.blue)
-              }
-              if person.person.admin {
-                Image(systemName: "checkmark.shield.fill")
-                  .font(.caption)
-                  .foregroundStyle(.yellow)
-              }
-            }
-            HStack(spacing: 10) {
-              HStack(spacing: 1) {
-                Image(systemName: "arrow.up")
-                Text((person.counts.postScore + person.counts.commentScore).convertToShortString())
-              }.foregroundStyle(
-                (person.counts.postScore + person.counts.commentScore) >= 100000
-                  ? Color.yellow : Color.secondary)
-
-              HStack(spacing: 1) {
-                Image(systemName: "list.bullet.below.rectangle")
-                Text((person.counts.postCount + person.counts.commentCount).convertToShortString())
-              }
-            }.lineLimit(1)
-              .foregroundStyle(.secondary)
-              .font(.caption)
-          }
-          .padding(.horizontal, 10)
-          Spacer()
-          Text(String("\(URLParser.extractDomain(from: person.person.actorID))"))
-            .font(.caption)
-            .foregroundStyle(.gray)
-            .fixedSize()
-        }
+        UserRowDetailView(person: person, processor: processor)
       }
 
       .swipeActions(edge: .trailing, allowsFullSwipe: true) {
@@ -126,9 +69,79 @@ struct SearchUsersRowView: View {
   }
 }
 
-struct SearchUsersRowView_Previews: PreviewProvider {
-  static var previews: some View {
-    SearchUsersRowView(searchUsersResults: MockData.searchUserRow)
-      .previewLayout(.sizeThatFits)
+struct UserRowDetailView: View {
+  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
+  
+  var person: PersonObject
+  var processor: DownsamplingImageProcessor
+  
+  var body: some View {
+    HStack(alignment: .center) {
+      KFImage(URL(string: person.person.avatar ?? ""))
+        .setProcessor(processor)
+        .placeholder {
+          Image(systemName: "person.circle.fill")
+            .resizable()
+            .frame(width: 30, height: 30)
+            .symbolRenderingMode(.hierarchical)
+            .foregroundStyle(.blue)
+        }
+        .resizable()
+        .frame(width: 30, height: 30)
+        .clipShape(Circle())
+      
+      VStack(alignment: .leading, spacing: 2) {
+        HStack(alignment: .center, spacing: 4) {
+          Text(person.person.name ?? "").lineLimit(1)
+            .foregroundStyle(person.person.id == 35253 ? Color.purple : Color.primary)
+          
+          if person.person.banned {
+            Image(systemName: "exclamationmark.triangle.fill")
+              .font(.caption)
+              .foregroundStyle(.secondary)
+          }
+          if person.person.botAccount {
+            Image(systemName: "desktopcomputer")
+              .font(.caption)
+              .foregroundStyle(.blue)
+          }
+          if person.person.admin {
+            Image(systemName: "checkmark.shield.fill")
+              .font(.caption)
+              .foregroundStyle(.yellow)
+          }
+        }
+        HStack(spacing: 10) {
+          HStack(spacing: 1) {
+            Image(systemName: "arrow.up")
+            Text(((person.counts.postScore ?? 0) + (person.counts.commentScore ?? 0)).convertToShortString())
+          }.foregroundStyle(
+            ((person.counts.postScore ?? 0) + (person.counts.commentScore ?? 0)) >= 100000
+            ? Color.yellow : Color.secondary)
+          
+          HStack(spacing: 1) {
+            Image(systemName: "list.bullet.below.rectangle")
+            Text(((person.counts.postCount ?? 0) + (person.counts.commentCount ?? 0)).convertToShortString())
+          }
+        }.lineLimit(1)
+          .foregroundStyle(.secondary)
+          .font(.caption)
+      }
+      .padding(.horizontal, 10)
+      Spacer()
+      Text(String("\(URLParser.extractDomain(from: person.person.actorID))"))
+        .font(.caption)
+        .foregroundStyle(.gray)
+        .fixedSize()
+    }
   }
 }
+
+
+
+//struct SearchUsersRowView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    SearchUsersRowView(searchUsersResults: MockData.searchUserRow)
+//      .previewLayout(.sizeThatFits)
+//  }
+//}
