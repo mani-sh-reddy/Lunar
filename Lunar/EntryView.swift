@@ -12,14 +12,14 @@ struct EntryView: View {
   @AppStorage("showWelcomeScreen") var showWelcomeScreen = Settings.showWelcomeScreen
 
   var body: some View {
-      if showWelcomeScreen {
-        WelcomeScreenView()
+    if showWelcomeScreen {
+      WelcomeScreenView()
+    } else {
+      if showLaunchSplashScreen {
+        SplashScreen()
       } else {
-        if showLaunchSplashScreen {
-          SplashScreen()
-        } else {
-          ContentView()
-        }
+        ContentView()
       }
+    }
   }
 }

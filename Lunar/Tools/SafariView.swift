@@ -12,7 +12,7 @@ import UIKit
 struct SafariView: UIViewControllerRepresentable {
   var url: URL
 
-  func makeUIViewController(context: UIViewControllerRepresentableContext<SafariView>)
+  func makeUIViewController(context _: UIViewControllerRepresentableContext<SafariView>)
     -> SFSafariViewController
   {
     let safariView = SFSafariViewController(url: url)
@@ -20,9 +20,7 @@ struct SafariView: UIViewControllerRepresentable {
   }
 
   func updateUIViewController(
-    _ uiViewController: SFSafariViewController,
-    context: UIViewControllerRepresentableContext<SafariView>
-  ) {
-
-  }
+    _: SFSafariViewController,
+    context _: UIViewControllerRepresentableContext<SafariView>
+  ) {}
 }

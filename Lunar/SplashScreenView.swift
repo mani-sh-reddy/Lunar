@@ -10,7 +10,6 @@ import SwiftUI
 struct SplashScreen: View {
   @State private var logoScale: CGFloat = 0.1
   @State private var logoOpacity: Double = 0
-  @State private var logoRotationAngle: Angle = .degrees(0)
   @State private var showFeedView = false
 
   var body: some View {

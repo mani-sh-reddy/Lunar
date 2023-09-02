@@ -1,21 +1,21 @@
+////
+////  GoIntoButtonView.swift
+////  Lunar
+////
+////  Created by Mani on 19/08/2023.
+////
 //
-//  GoIntoButtonView.swift
-//  Lunar
+// import SwiftUI
 //
-//  Created by Mani on 19/08/2023.
+// struct GoIntoButtonView: View {
+//  @Binding var isClicked: Bool
 //
-
-import SwiftUI
-
-struct GoIntoButtonView: View {
-  @Binding var isClicked: Bool
-
-  var body: some View {
-    Button {
-      isClicked = true
-    } label: {
-      Image(systemName: "chevron.forward.circle.fill")
-    }
-    .tint(.blue)
-  }
-}
+//  var body: some View {
+//    Button {
+//      isClicked = true
+//    } label: {
+//      Image(systemName: "chevron.forward.circle.fill")
+//    }
+//    .tint(.blue)
+//  }
+// }

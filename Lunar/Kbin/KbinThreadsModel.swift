@@ -32,10 +32,6 @@ struct KbinUser {
   var followCount: Int
 }
 
-struct KbinWebPage {
-  var posts: [KbinPost]
-}
-
 struct KbinComment {
   let id: String
   let indentLevel: String

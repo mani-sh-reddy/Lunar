@@ -10,14 +10,8 @@ import SwiftUI
 struct AppResetButton: View {
   @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
   @AppStorage("loggedInEmailsList") var loggedInEmailsList = Settings.loggedInEmailsList
-  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
   @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
-  @AppStorage("selectedName") var selectedName = Settings.selectedName
-  @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
-  @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
-  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  
+
   @State private var showConfirmation: Bool = false
   @State private var isLoading: Bool = false
   @State private var isClicked: Bool = false
@@ -77,16 +71,17 @@ struct AppResetButton: View {
       }
     }
   }
+
   private func resetApp() {
     showConfirmation = true
     isLoading = true
     notificationHaptics.notificationOccurred(.success)
     isClicked = true
-    
+
     loggedInEmailsList.removeAll()
     loggedInAccounts.removeAll()
     loggedInUsersList.removeAll()
-    
+
     KeychainHelper.standard.clearKeychain()
 
     if let bundleID = Bundle.main.bundleIdentifier {

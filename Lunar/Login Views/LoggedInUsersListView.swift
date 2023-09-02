@@ -8,10 +8,6 @@
 import SwiftUI
 
 struct LoggedInUsersListView: View {
-  @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
-  @AppStorage("loggedInEmailsList") var loggedInEmailsList = Settings.loggedInEmailsList
-  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
   @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
 
   @Binding var selectedAccount: AccountModel?
@@ -27,9 +23,6 @@ struct LoggedInUsersListView: View {
 }
 
 struct AccountSelectionItem: View {
-  @AppStorage("selectedName") var selectedName = Settings.selectedName
-  @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
-  @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
 
   @Binding var selectedAccount: AccountModel?
@@ -59,9 +52,6 @@ struct AccountSelectionItem: View {
     .onTapGesture {
       haptics.impactOccurred()
       selectedAccount = account
-      selectedName = account.name
-      selectedEmail = account.email
-      selectedAvatarURL = account.avatarURL
       selectedActorID = account.actorID
 
       print("\(String(describing: selectedAccount?.name)) = \(account.name)")

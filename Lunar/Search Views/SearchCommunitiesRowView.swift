@@ -5,9 +5,9 @@
 //  Created by Mani on 05/08/2023.
 //
 
-import SwiftUI
 import Nuke
 import NukeUI
+import SwiftUI
 
 struct SearchCommunitiesRowView: View {
   @State var showingPlaceholderAlert = false
@@ -24,7 +24,6 @@ struct SearchCommunitiesRowView: View {
         )
       } label: {
         HStack {
-          
           LazyImage(url: URL(string: community.community.icon ?? "")) { state in
             if let image = state.image {
               image
@@ -44,7 +43,7 @@ struct SearchCommunitiesRowView: View {
           VStack(alignment: .leading, spacing: 2) {
             HStack(alignment: .center, spacing: 4) {
               Text(community.community.name).lineLimit(1)
-                .foregroundStyle(community.community.id == 201716 ? Color.purple : Color.primary)
+                .foregroundStyle(community.community.id == 201_716 ? Color.purple : Color.primary)
 
               if community.community.postingRestrictedToMods {
                 Image(systemName: "exclamationmark.octagon.fill")
@@ -137,9 +136,9 @@ struct SearchCommunitiesRowView: View {
   }
 }
 
-//struct SearchCommunitiesRowView_Previews: PreviewProvider {
+// struct SearchCommunitiesRowView_Previews: PreviewProvider {
 //  static var previews: some View {
 //    SearchCommunitiesRowView(searchCommunitiesResults: MockData.searchCommunitiesResults)
 //      .previewLayout(.sizeThatFits)
 //  }
-//}
+// }

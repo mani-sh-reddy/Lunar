@@ -73,14 +73,14 @@ struct CommentMetadataView: View {
       if let voteType = comment.myVote {
         switch voteType {
         case 1:
-          self.commentUpvoted = true
-          self.commentDownvoted = false
+          commentUpvoted = true
+          commentDownvoted = false
         case -1:
-          self.commentUpvoted = false
-          self.commentDownvoted = true
+          commentUpvoted = false
+          commentDownvoted = true
         default:
-          self.commentUpvoted = false
-          self.commentDownvoted = false
+          commentUpvoted = false
+          commentDownvoted = false
         }
       }
     }
@@ -90,7 +90,7 @@ struct CommentMetadataView: View {
     VoteSender(
       asActorID: selectedActorID,
       voteType: voteType,
-      postID: 0, communityActorID: "",
+      postID: 0,
       commentID: comment.comment.id,
       elementType: "comment"
     ).fetchVoteInfo { commentID, voteSubmittedSuccessfully, _ in
@@ -103,5 +103,4 @@ struct CommentMetadataView: View {
       }
     }
   }
-
 }

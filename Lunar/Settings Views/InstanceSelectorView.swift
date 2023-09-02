@@ -5,29 +5,21 @@
 //  Created by Mani on 24/07/2023.
 //
 
-import SwiftUI
 import Alamofire
+import SwiftUI
 
 struct InstanceSelectorView: View {
   @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
   @AppStorage("lemmyInstances") var lemmyInstances = Settings.lemmyInstances
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-  @AppStorage("logs") var logs = Settings.logs
-  
-  @State var showingAlreadyExistsError = false
-  @State var showingInvalidInstanceError = false
-  @State var customInstance = ""
-  @State var enteredCustomInstance = ""
-  @State var instanceOnAppear = "lemmy.world"
-  
+
   var body: some View {
     if debugModeEnabled {
       Text("deselected: \(selectedInstance)")
     }
-    
-    
+
     Section {
-      if lemmyInstances.isEmpty{
+      if lemmyInstances.isEmpty {
         Text("Add instances to get started!")
           .foregroundStyle(.orange)
       } else {
@@ -38,7 +30,6 @@ struct InstanceSelectorView: View {
         }
         .pickerStyle(.menu)
       }
-      
     }
   }
 }

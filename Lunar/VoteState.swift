@@ -1,24 +1,24 @@
+////
+////  VoteState.swift
+////  Lunar
+////
+////  Created by Mani on 17/08/2023.
+////
 //
-//  VoteState.swift
-//  Lunar
+// import Foundation
+// import SwiftUI
 //
-//  Created by Mani on 17/08/2023.
+// class VoteState: ObservableObject {
+//  @Published var upvoteStates: [Int: Bool] = [:]
+//  @Published var downvoteStates: [Int: Bool] = [:]
 //
-
-import Foundation
-import SwiftUI
-
-class VoteState: ObservableObject {
-  @Published var upvoteStates: [Int: Bool] = [:]
-  @Published var downvoteStates: [Int: Bool] = [:]
-
-  func toggleUpvote(postID: Int) {
-    upvoteStates[postID]?.toggle()
-    downvoteStates[postID] = false
-  }
-
-  func toggleDownvote(postID: Int) {
-    downvoteStates[postID]?.toggle()
-    upvoteStates[postID] = false
-  }
-}
+//  func toggleUpvote(postID: Int) {
+//    upvoteStates[postID]?.toggle()
+//    downvoteStates[postID] = false
+//  }
+//
+//  func toggleDownvote(postID: Int) {
+//    downvoteStates[postID]?.toggle()
+//    upvoteStates[postID] = false
+//  }
+// }

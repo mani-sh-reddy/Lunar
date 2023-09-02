@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-  let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
-
   init() {
     if #available(iOS 15, *) {
-      let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
+      let tabBarAppearance: UITabBarAppearance = .init()
       tabBarAppearance.configureWithDefaultBackground()
       UITabBar.appearance().standardAppearance = tabBarAppearance
       UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance

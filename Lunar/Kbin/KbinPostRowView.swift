@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct KbinPostRowView: View {
-  @AppStorage("kbinHostURL") var kbinHostURL = Settings.kbinHostURL
-
   var post: KbinPost
   @State var showingPlaceholderAlert: Bool = false
   @State var goInto: Bool = false
@@ -18,7 +16,7 @@ struct KbinPostRowView: View {
   @State var downvoted: Bool = false
 
   var magazine: String {
-    if post.instanceLink != nil, post.instanceLink != "" {  // skipcq: SW-P1006
+    if post.instanceLink != nil, post.instanceLink != "" { // skipcq: SW-P1006
       return "\(post.magazine)@\(post.instanceLink ?? "")"
     } else {
       return "\(post.magazine)"
@@ -100,11 +98,11 @@ struct KbinPostRowView: View {
   }
 }
 
-//struct KbinPostRowView_Previews: PreviewProvider {
+// struct KbinPostRowView_Previews: PreviewProvider {
 //  static var previews: some View {
 //    KbinPostRowView(post: MockData.kbinPost)
 //  }
-//}
+// }
 
 struct GoIntotSwipeAction: View {
   @Binding var isClicked: Bool

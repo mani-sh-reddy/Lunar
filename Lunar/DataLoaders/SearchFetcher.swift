@@ -11,9 +11,7 @@ import Foundation
 import SwiftUI
 
 @MainActor class SearchFetcher: ObservableObject {
-  @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
   @AppStorage("logs") var logs = Settings.logs
-  @Published var searchModel = [SearchModel]()
 
   @Published var comments = [CommentObject]()
   @Published var communities = [CommunityObject]()
@@ -59,52 +57,6 @@ import SwiftUI
     loadMoreContent { _, _ in }
   }
 
-  func loadMoreCommentIfNeeded(currentItem comment: CommentObject?) {
-    guard let comment else {
-      loadMoreContent { _, _ in }
-      return
-    }
-    let thresholdIndex = comments.index(comments.endIndex, offsetBy: -1)
-    if comments.firstIndex(where: { $0.comment.id == comment.comment.id }) == thresholdIndex {
-      loadMoreContent { _, _ in }
-    }
-  }
-
-  func loadMoreCommunitiesIfNeeded(currentItem community: CommunityObject?) {
-    guard let community else {
-      loadMoreContent { _, _ in }
-      return
-    }
-    let thresholdIndex = communities.index(communities.endIndex, offsetBy: -1)
-    if communities.firstIndex(where: { $0.community.id == community.community.id })
-      == thresholdIndex
-    {
-      loadMoreContent { _, _ in }
-    }
-  }
-
-  func loadMorePostsIfNeeded(currentItem post: PostObject?) {
-    guard let post else {
-      loadMoreContent { _, _ in }
-      return
-    }
-    let thresholdIndex = posts.index(posts.endIndex, offsetBy: -1)
-    if posts.firstIndex(where: { $0.post.id == post.post.id }) == thresholdIndex {
-      loadMoreContent { _, _ in }
-    }
-  }
-
-  func loadMoreUsersIfNeeded(currentItem user: PersonObject?) {
-    guard let user else {
-      loadMoreContent { _, _ in }
-      return
-    }
-    let thresholdIndex = users.index(users.endIndex, offsetBy: -1)
-    if users.firstIndex(where: { $0.person.id == user.person.id }) == thresholdIndex {
-      loadMoreContent { _, _ in }
-    }
-  }
-
   func loadMoreContent(completion: @escaping (Bool, Error?) -> Void) {
     guard !isLoading else { return }
 
@@ -132,7 +84,7 @@ import SwiftUI
       urlRequest.cachePolicy = .returnCacheDataElseLoad
     }
     .cacheResponse(using: cacher)
-    .validate(statusCode: 200..<300)
+    .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: SearchModel.self) { response in
       switch response.result {
       case let .success(result):
@@ -150,7 +102,7 @@ import SwiftUI
           self.logs.append("\(currentDateTime) :: \(log)")
         }
 
-        self.isLoading = false  // Set isLoading to false on failure as well
+        self.isLoading = false // Set isLoading to false on failure as well
         completion(true, error)
       }
     }
@@ -158,34 +110,33 @@ import SwiftUI
 
   private func appendToList(_ result: SearchModel) {
     // Check the typeParameter to determine which part of the code to execute
-    switch self.typeParameter {
+    switch typeParameter {
     case "Communities":
       let newCommunities = result.communities
       let filteredNewCommunities = newCommunities.filter { newCommunity in
         !self.communities.contains { $0.community.id == newCommunity.community.id }
       }
-      self.communities += filteredNewCommunities
+      communities += filteredNewCommunities
     case "Comments":
       let newComments = result.comments
       let filteredNewComments = newComments.filter { newComment in
         !self.comments.contains { $0.comment.id == newComment.comment.id }
       }
-      self.comments += filteredNewComments
+      comments += filteredNewComments
     case "Posts":
       let newPosts = result.posts
       let filteredNewPosts = newPosts.filter { newPost in
         !self.posts.contains { $0.post.id == newPost.post.id }
       }
-      self.posts += filteredNewPosts
+      posts += filteredNewPosts
     case "Users":
       let newUsers = result.users
       let filteredNewUsers = newUsers.filter { newUser in
         !self.users.contains { $0.person.id == newUser.person.id }
       }
-      self.users += filteredNewUsers
+      users += filteredNewUsers
     default:
       print("break")
     }
   }
-
 }

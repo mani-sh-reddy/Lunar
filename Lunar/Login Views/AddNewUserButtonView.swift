@@ -21,6 +21,7 @@ struct AddNewUserButtonView: View {
       }
     }
   }
+
   private func addNewUserButtonAction() {
     withAnimation(.linear(duration: 1)) {
       showingPopover = true

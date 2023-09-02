@@ -13,7 +13,6 @@ struct DebugLoginPagePropertiesView: View {
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @AppStorage("loggedInEmailsList") var loggedInEmailsList = Settings.loggedInEmailsList
-  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
   @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
 
   var isTryingLogin: Bool

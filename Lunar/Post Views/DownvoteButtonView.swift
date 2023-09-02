@@ -1,21 +1,21 @@
+////
+////  DownvoteButtonView.swift
+////  Lunar
+////
+////  Created by Mani on 19/08/2023.
+////
 //
-//  DownvoteButtonView.swift
-//  Lunar
+// import SwiftUI
 //
-//  Created by Mani on 19/08/2023.
+// struct DownvoteButtonView: View {
+//  @Binding var isClicked: Bool
 //
-
-import SwiftUI
-
-struct DownvoteButtonView: View {
-  @Binding var isClicked: Bool
-
-  var body: some View {
-    Button {
-      isClicked = true
-    } label: {
-      Image(systemName: "arrow.down.circle")
-    }
-    .tint(.red)
-  }
-}
+//  var body: some View {
+//    Button {
+//      isClicked = true
+//    } label: {
+//      Image(systemName: "arrow.down.circle")
+//    }
+//    .tint(.red)
+//  }
+// }

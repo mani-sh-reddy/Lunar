@@ -15,8 +15,8 @@ struct SettingsInfoSectionView: View {
   var body: some View {
     Section {
       // MARK: - Privacy Policy
-      Button {
-      } label: {
+
+      Button {} label: {
         Label {
           Text("Privacy Policy")
             .foregroundStyle(.foreground)
@@ -27,7 +27,9 @@ struct SettingsInfoSectionView: View {
         }
       }
       .foregroundStyle(.foreground)
+
       // MARK: - Contact
+
       Button {
         showSafariLemmy = true
       } label: {
@@ -45,8 +47,11 @@ struct SettingsInfoSectionView: View {
         isPresented: $showSafariLemmy,
         content: {
           SFSafariViewWrapper(url: URL(string: "https://lemmy.world/c/lunar")!).ignoresSafeArea()
-        })
+        }
+      )
+
       // MARK: - Github
+
       Button {
         showSafariGithub = true
       } label: {
@@ -63,7 +68,8 @@ struct SettingsInfoSectionView: View {
         content: {
           SFSafariViewWrapper(url: URL(string: "https://github.com/mani-sh-reddy/Lunar")!)
             .ignoresSafeArea()
-        })
+        }
+      )
 
     } header: {
       Text("Info")

@@ -15,15 +15,8 @@ class CommentSender: ObservableObject {
   private var parentID: Int?
   private var jwt: String = ""
 
-  /// Adding info about the user to **@AppsStorage** loggedInAccounts
-  var loggedInAccount = AccountModel()
-  @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
-  @AppStorage("selectedName") var selectedName = Settings.selectedName
-  @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
-  @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
-  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
 
   init(
     content: String,
@@ -33,7 +26,7 @@ class CommentSender: ObservableObject {
     self.content = content
     self.postID = postID
     self.parentID = parentID
-    self.jwt = getJWTFromKeychain(actorID: selectedActorID) ?? ""
+    jwt = getJWTFromKeychain(actorID: selectedActorID) ?? ""
   }
 
   func fetchCommentResponse(completion: @escaping (String?) -> Void) {
@@ -51,7 +44,7 @@ class CommentSender: ObservableObject {
       parameters: parameters,
       encoding: JSONEncoding.default
     )
-    .validate(statusCode: 200..<300)
+    .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: CommentResponseModel.self) { response in
       switch response.result {
       case let .success(result):
@@ -60,7 +53,7 @@ class CommentSender: ObservableObject {
 
       case let .failure(error):
         if let data = response.data,
-          let fetchError = try? JSONDecoder().decode(ErrorResponseModel.self, from: data)
+           let fetchError = try? JSONDecoder().decode(ErrorResponseModel.self, from: data)
         {
           print("subscriptionActionSender ERROR: \(fetchError.error)")
           completion(fetchError.error)
@@ -72,10 +65,11 @@ class CommentSender: ObservableObject {
       }
     }
   }
+
   func getJWTFromKeychain(actorID: String) -> String? {
     if let keychainObject = KeychainHelper.standard.read(
-      service: self.appBundleID, account: actorID)
-    {
+      service: appBundleID, account: actorID
+    ) {
       let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
       return jwt
     } else {

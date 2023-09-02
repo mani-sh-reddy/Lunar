@@ -16,7 +16,6 @@ final class LunarUITests: XCTestCase {
     app = XCUIApplication()
     setupSnapshot(app)
     app.launch()
-
   }
 
   func testTakeScreenshots() {
@@ -31,7 +30,6 @@ final class LunarUITests: XCTestCase {
 
     scrollView.swipeLeft()
     snapshot("04-WelcomeScreen")
-
   }
 
   override func tearDownWithError() throws {

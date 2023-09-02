@@ -11,6 +11,6 @@ struct CommunityObject: Codable {
   let community: Community
   let subscribed: SubscribedState
   let counts: Counts
-  
+
   let blocked: Bool
 }

@@ -22,7 +22,7 @@ struct PostObject: Codable {
   let creatorBannedFromCommunity: Bool
 
   let unreadComments: Int
-  
+
   var myVote: Int?
 
   enum CodingKeys: String, CodingKey {
@@ -34,4 +34,3 @@ struct PostObject: Codable {
     case myVote = "my_vote"
   }
 }
-

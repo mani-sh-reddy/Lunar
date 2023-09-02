@@ -1,35 +1,35 @@
+////
+////  HapticMenuView.swift
+////  Lunar
+////
+////  Created by Mani on 19/08/2023.
+////
 //
-//  HapticMenuView.swift
-//  Lunar
+// import SwiftUI
 //
-//  Created by Mani on 19/08/2023.
+// struct HapticMenuView: View {
+//  @Binding var showingPlaceholderAlert: Bool
 //
-
-import SwiftUI
-
-struct HapticMenuView: View {
-  @Binding var showingPlaceholderAlert: Bool
-
-  var body: some View {
-    Menu("Menu") {
-      Button {
-        showingPlaceholderAlert = true
-      } label: {
-        Text("Coming Soon")
-      }
-    }
-    Button {
-      showingPlaceholderAlert = true
-    } label: {
-      Text("Coming Soon")
-    }
-
-    Divider()
-
-    Button(role: .destructive) {
-      showingPlaceholderAlert = true
-    } label: {
-      Label("Delete", systemImage: "trash")
-    }
-  }
-}
+//  var body: some View {
+//    Menu("Menu") {
+//      Button {
+//        showingPlaceholderAlert = true
+//      } label: {
+//        Text("Coming Soon")
+//      }
+//    }
+//    Button {
+//      showingPlaceholderAlert = true
+//    } label: {
+//      Text("Coming Soon")
+//    }
+//
+//    Divider()
+//
+//    Button(role: .destructive) {
+//      showingPlaceholderAlert = true
+//    } label: {
+//      Label("Delete", systemImage: "trash")
+//    }
+//  }
+// }

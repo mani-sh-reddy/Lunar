@@ -11,7 +11,7 @@ struct Post: Codable {
   let name: String
   let published: String
   let apID: String
-  
+
   let url: String?
   let body: String?
   let updated: String?
@@ -19,21 +19,21 @@ struct Post: Codable {
   let embedVideoURL: String?
   let thumbnailURL: String?
   let embedDescription: String?
-  
+
   let id: Int
   let languageID: Int
   let creatorID: Int
   let communityID: Int
-  
+
   let removed: Bool
   let locked: Bool
   let deleted: Bool
   let local: Bool
   let featuredCommunity: Bool
   let featuredLocal: Bool
-  
+
   let nsfw: Bool = false
-  
+
   enum CodingKeys: String, CodingKey {
     case id, name, url
     case creatorID = "creator_id"

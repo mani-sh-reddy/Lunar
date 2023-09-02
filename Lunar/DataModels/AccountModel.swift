@@ -14,4 +14,3 @@ struct AccountModel: Codable, Hashable {
   var avatarURL: String = ""
   var actorID: String = ""
 }
-

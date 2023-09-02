@@ -8,11 +8,6 @@
 import SwiftUI
 
 struct SettingsAccountView: View {
-  @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
-  @AppStorage("loggedInEmailsList") var loggedInEmailsList = Settings.loggedInEmailsList
-  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
-
   @State var showingPopover: Bool = false
   @State var isPresentingConfirm: Bool = false
   @State var logoutAllUsersButtonClicked: Bool = false
@@ -21,11 +16,9 @@ struct SettingsAccountView: View {
   @State var deleteConfirmationShown = false
   @State var isConvertingEmails: Bool = false
   @State var keychainDebugString: String = ""
-
-  @Binding var selectedAccount: AccountModel?
   @State var isLoginFlowComplete: Bool = true
 
-  let haptic = UINotificationFeedbackGenerator()
+  @Binding var selectedAccount: AccountModel?
 
   var body: some View {
     List {

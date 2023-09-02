@@ -12,14 +12,13 @@ import SwiftUI
 struct SearchUsersRowView: View {
   @State var showingPlaceholderAlert = false
   var searchUsersResults: [PersonObject]
-//  let processor = DownsamplingImageProcessor(size: CGSize(width: 60, height: 60))
 
   var body: some View {
     ForEach(searchUsersResults, id: \.person.id) { person in
       NavigationLink {
         PostsView(
           postsFetcher: PostsFetcher(
-            communityID: 99_999_999_999_999  // TODO change once implement user posts/comments fetcher
+            communityID: 99_999_999_999_999 // TODO: change once implement user posts/comments fetcher
           ), title: person.person.name,
           user: person
         )
@@ -71,17 +70,11 @@ struct SearchUsersRowView: View {
 }
 
 struct UserRowDetailView: View {
-  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-  
   var person: PersonObject
-  
+
   var body: some View {
     HStack(alignment: .center) {
-      
-      
-      
-      
-      LazyImage(url: URL(string: (person.person.avatar ?? ""))) { state in
+      LazyImage(url: URL(string: person.person.avatar ?? "")) { state in
         if let image = state.image {
           image
             .resizable()
@@ -96,16 +89,12 @@ struct UserRowDetailView: View {
         }
       }
       .processors([.resize(width: 30)])
-      
-      
-      
-        
-      
+
       VStack(alignment: .leading, spacing: 2) {
         HStack(alignment: .center, spacing: 4) {
-          Text(person.person.name ).lineLimit(1)
+          Text(person.person.name).lineLimit(1)
             .foregroundStyle(person.person.id == 35253 ? Color.purple : Color.primary)
-          
+
           if person.person.banned {
             Image(systemName: "exclamationmark.triangle.fill")
               .font(.caption)
@@ -127,9 +116,9 @@ struct UserRowDetailView: View {
             Image(systemName: "arrow.up")
             Text(((person.counts.postScore ?? 0) + (person.counts.commentScore ?? 0)).convertToShortString())
           }.foregroundStyle(
-            ((person.counts.postScore ?? 0) + (person.counts.commentScore ?? 0)) >= 100000
-            ? Color.yellow : Color.secondary)
-          
+            ((person.counts.postScore ?? 0) + (person.counts.commentScore ?? 0)) >= 100_000
+              ? Color.yellow : Color.secondary)
+
           HStack(spacing: 1) {
             Image(systemName: "list.bullet.below.rectangle")
             Text(((person.counts.postCount ?? 0) + (person.counts.commentCount ?? 0)).convertToShortString())
@@ -148,11 +137,9 @@ struct UserRowDetailView: View {
   }
 }
 
-
-
-//struct SearchUsersRowView_Previews: PreviewProvider {
+// struct SearchUsersRowView_Previews: PreviewProvider {
 //  static var previews: some View {
 //    SearchUsersRowView(searchUsersResults: MockData.searchUserRow)
 //      .previewLayout(.sizeThatFits)
 //  }
-//}
+// }

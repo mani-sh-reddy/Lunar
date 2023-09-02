@@ -5,10 +5,10 @@
 ////  Created by Mani on 20/07/2023.
 ////
 //
-//import Foundation
-//import SwiftUI
+// import Foundation
+// import SwiftUI
 //
-//struct InPostCommunityHeaderView: View {
+// struct InPostCommunityHeaderView: View {
 //  var community: Community
 //
 //  var body: some View {
@@ -25,4 +25,4 @@
 //      .font(.subheadline)
 //    }
 //  }
-//}
+// }

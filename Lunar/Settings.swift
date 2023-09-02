@@ -18,12 +18,10 @@ enum Settings {
     "lemmy.ml",
     "beehaw.org",
     "programming.dev",
-    "lemm.ee"
+    "lemm.ee",
   ]
   static let selectedInstance: String = "lemmy.world"
   static let kbinHostURL: String = "kbin.social"
-  static let displayName: String = "Mani"
-  static let userName: String = "mani"
   static let debugModeEnabled: Bool = false
   static let selectedAppIcon: String = "AppIconLight"
 
@@ -68,5 +66,4 @@ enum Settings {
   static let showWelcomeScreen: Bool = true
   static let detailedCommunityLabels: Bool = true
   static let compactViewEnabled: Bool = false
-
 }

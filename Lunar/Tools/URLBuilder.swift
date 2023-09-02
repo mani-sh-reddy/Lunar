@@ -21,7 +21,6 @@ import SwiftUI
 
 class URLBuilder {
   @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
-  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
 
   private let endpointPath: String
   private let sortParameter: String?

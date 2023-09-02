@@ -9,7 +9,6 @@ import SwiftUI
 
 @main
 struct LunarApp: App {
-  
   var body: some Scene {
     WindowGroup {
       EntryView()

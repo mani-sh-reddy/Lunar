@@ -11,7 +11,7 @@ import SwiftUI
 enum URLParser {
   static func extractDomain(from url: String) -> String {
     guard let urlComponents = URLComponents(string: url),
-      let host = urlComponents.host
+          let host = urlComponents.host
     else {
       return ""
     }
@@ -50,6 +50,5 @@ enum URLParser {
     let components = domain.components(separatedBy: ".")
 
     return components.penultimate() ?? ""
-
   }
 }

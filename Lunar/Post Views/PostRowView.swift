@@ -38,14 +38,13 @@ struct PostRowView: View {
     return ""
   }
 
-  var communityName: String { return post.community.name }
-  var heading: String { return post.post.name }
-  var creator: String { return post.creator.name }
-  var published: String { return post.post.published }
-  var upvotes: Int { return post.counts.upvotes ?? 0 }
-  var downvotes: Int { return post.counts.downvotes ?? 0 }
-  var commentCount: Int { return post.counts.comments ?? 0 }
-  var postID: Int { return post.post.id }
+  var communityName: String { post.community.name }
+  var heading: String { post.post.name }
+  var creator: String { post.creator.name }
+  var upvotes: Int { post.counts.upvotes ?? 0 }
+  var downvotes: Int { post.counts.downvotes ?? 0 }
+  var commentCount: Int { post.counts.comments ?? 0 }
+  var postID: Int { post.post.id }
   var instanceTag: String {
     let tag = post.community.actorID
     if !tag.isEmpty {
@@ -58,15 +57,15 @@ struct PostRowView: View {
 
   let dateTimeParser = DateTimeParser()
   var timeAgo: String {
-    return ", \(dateTimeParser.timeAgoString(from: post.post.published))"
+    ", \(dateTimeParser.timeAgoString(from: post.post.published))"
   }
 
   let haptics = UIImpactFeedbackGenerator(style: .rigid)
   @State private var showCommunityActions: Bool = false
 
   var body: some View {
-    if compactViewEnabled && !insideCommentsView {
-      HStack{
+    if compactViewEnabled, !insideCommentsView {
+      HStack {
         InPostThumbnailView(
           thumbnailURL: imageURL,
           imageRadius: 4
@@ -83,7 +82,7 @@ struct PostRowView: View {
         }
       }
       HStack {
-        if compactViewEnabled && !insideCommentsView {
+        if compactViewEnabled, !insideCommentsView {
           if !imageURL.isEmpty {
             Rectangle()
               .disabled(true)
@@ -114,7 +113,7 @@ struct PostRowView: View {
             Spacer()
             if compactViewEnabled {
               HStack {
-                HStack (spacing: 1){
+                HStack(spacing: 1) {
                   Image(systemName: "arrow.up")
                   Text(String(upvotes + upvoteState))
                     .fixedSize()
@@ -127,16 +126,18 @@ struct PostRowView: View {
                     if !upvoted {
                       print("SENT /post/like \(String(describing: postID)):upvote(+1)")
                       sendReaction(
-                        voteType: 1, postID: post.post.id, communityActorID: post.community.actorID)
+                        voteType: 1, postID: post.post.id
+                      )
                     } else {
                       print("SENT /post/like \(String(describing: postID)):un-upvote(0)")
                       sendReaction(
-                        voteType: 0, postID: post.post.id, communityActorID: post.community.actorID)
+                        voteType: 0, postID: post.post.id
+                      )
                     }
                   }
                 )
-                
-                HStack (spacing: 1){
+
+                HStack(spacing: 1) {
                   Image(systemName: "arrow.down")
                   Text(String(downvotes + downvoteState))
                     .fixedSize()
@@ -148,15 +149,17 @@ struct PostRowView: View {
                     haptics.impactOccurred()
                     if !downvoted {
                       sendReaction(
-                        voteType: -1, postID: post.post.id, communityActorID: post.community.actorID)
+                        voteType: -1, postID: post.post.id
+                      )
                     } else {
                       sendReaction(
-                        voteType: 0, postID: post.post.id, communityActorID: post.community.actorID)
+                        voteType: 0, postID: post.post.id
+                      )
                     }
                   }
                 )
-                
-                HStack (spacing: 2){
+
+                HStack(spacing: 2) {
                   Image(systemName: "bubble.left")
                   Text(String(commentCount))
                     .fixedSize()
@@ -182,13 +185,13 @@ struct PostRowView: View {
           Text(heading)
             .fontWeight(.semibold)
             .foregroundColor(.primary)
-          HStack{
+          HStack {
             Text("\(creator.uppercased())\(timeAgo)")
               .foregroundColor(.secondary)
-            if compactViewEnabled{
+            if compactViewEnabled {
               Spacer()
               if post.post.url != post.post.thumbnailURL {
-                HStack (spacing: 2){
+                HStack(spacing: 2) {
                   Image(systemName: "safari")
                   Text("\(URLParser.extractBaseDomain(from: post.post.url ?? "")) ")
                     .fixedSize()
@@ -204,13 +207,12 @@ struct PostRowView: View {
                   isPresented: $showSafari,
                   content: {
                     SFSafariViewWrapper(url: URL(string: post.post.url ?? "")!).ignoresSafeArea()
-                  })
+                  }
+                )
               }
             }
           }
           .font(.caption)
-          
-          
         }
         .layoutPriority(100)
         Spacer()
@@ -230,15 +232,17 @@ struct PostRowView: View {
               if !upvoted {
                 print("SENT /post/like \(String(describing: postID)):upvote(+1)")
                 sendReaction(
-                  voteType: 1, postID: post.post.id, communityActorID: post.community.actorID)
+                  voteType: 1, postID: post.post.id
+                )
               } else {
                 print("SENT /post/like \(String(describing: postID)):un-upvote(0)")
                 sendReaction(
-                  voteType: 0, postID: post.post.id, communityActorID: post.community.actorID)
+                  voteType: 0, postID: post.post.id
+                )
               }
             }
           )
-          
+
           ReactionButton(
             text: String(downvotes + downvoteState),
             icon: "arrow.down.circle.fill",
@@ -251,14 +255,16 @@ struct PostRowView: View {
               haptics.impactOccurred()
               if !downvoted {
                 sendReaction(
-                  voteType: -1, postID: post.post.id, communityActorID: post.community.actorID)
+                  voteType: -1, postID: post.post.id
+                )
               } else {
                 sendReaction(
-                  voteType: 0, postID: post.post.id, communityActorID: post.community.actorID)
+                  voteType: 0, postID: post.post.id
+                )
               }
             }
           )
-          
+
           ReactionButton(
             text: String(commentCount),
             icon: "bubble.left.circle.fill",
@@ -266,7 +272,7 @@ struct PostRowView: View {
             active: .constant(false),
             opposite: .constant(false)
           )
-          
+
           Spacer()
           if post.post.url != post.post.thumbnailURL {
             ReactionButton(
@@ -287,7 +293,8 @@ struct PostRowView: View {
               isPresented: $showSafari,
               content: {
                 SFSafariViewWrapper(url: URL(string: post.post.url ?? "")!).ignoresSafeArea()
-              })
+              }
+            )
           }
         }
       }
@@ -313,18 +320,18 @@ struct PostRowView: View {
       if let voteType = post.myVote {
         switch voteType {
         case 1:
-          self.upvoted = true
-          self.downvoted = false
+          upvoted = true
+          downvoted = false
           upvoteState = 1
           downvoteState = 0
         case -1:
-          self.upvoted = false
-          self.downvoted = true
+          upvoted = false
+          downvoted = true
           upvoteState = 0
           downvoteState = 1
         default:
-          self.upvoted = false
-          self.downvoted = false
+          upvoted = false
+          downvoted = false
           upvoteState = 0
           downvoteState = 0
         }
@@ -338,14 +345,14 @@ struct PostRowView: View {
       communityID: post.community.id,
       asActorID: selectedActorID,
       subscribeAction: subscribeAction
-    ).fetchSubscribeInfo { communityID, subscribeResponse, error in
+    ).fetchSubscribeInfo { _, subscribeResponse, _ in
       if subscribeResponse != nil {
         notificationHaptics.notificationOccurred(.success)
         if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == post.post.id }) {
           var updatedPost = postsFetcher.posts[index]
           updatedPost.subscribed = subscribeAction ? .subscribed : .notSubscribed
           postsFetcher.posts[index] = updatedPost
-          subscribeState = subscribeAction ? .subscribed : .notSubscribed  // Update the local subscription status
+          subscribeState = subscribeAction ? .subscribed : .notSubscribed // Update the local subscription status
         }
         if subscribeResponse == .subscribed {
           subscribedCommunityIDs.append(post.community.id)
@@ -358,12 +365,11 @@ struct PostRowView: View {
     }
   }
 
-  func sendReaction(voteType: Int, postID: Int, communityActorID: String) {
+  func sendReaction(voteType: Int, postID: Int) {
     VoteSender(
       asActorID: selectedActorID,
       voteType: voteType,
       postID: postID,
-      communityActorID: communityActorID,
       commentID: 0,
       elementType: "post"
     ).fetchVoteInfo { postID, voteSubmittedSuccessfully, _ in
@@ -371,18 +377,18 @@ struct PostRowView: View {
       if voteSubmittedSuccessfully {
         switch voteType {
         case 1:
-          self.upvoted = true
-          self.downvoted = false
+          upvoted = true
+          downvoted = false
           upvoteState = 1
           downvoteState = 0
         case -1:
-          self.upvoted = false
-          self.downvoted = true
+          upvoted = false
+          downvoted = true
           upvoteState = 0
           downvoteState = 1
         default:
-          self.upvoted = false
-          self.downvoted = false
+          upvoted = false
+          downvoted = false
           upvoteState = 0
           downvoteState = 0
         }
@@ -398,7 +404,7 @@ struct PostRowView: View {
   }
 }
 
-//struct PostRowView_Previews: PreviewProvider {
+// struct PostRowView_Previews: PreviewProvider {
 //  static var previews: some View {
 //    PostRowView(
 //      upvoted: .constant(false),
@@ -407,4 +413,4 @@ struct PostRowView: View {
 //    )
 //    .previewLayout(.sizeThatFits).frame(height: 300)
 //  }
-//}
+// }

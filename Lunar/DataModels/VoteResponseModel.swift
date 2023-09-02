@@ -8,6 +8,7 @@
 import Foundation
 
 // MARK: - Welcome
+
 struct VoteResponseModel: Codable {
   let post: PostObject?
   let comment: CommentObject?

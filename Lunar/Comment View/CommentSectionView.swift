@@ -16,10 +16,6 @@ struct CommentSectionView: View {
 
   @State var collapseToIndex: Int = 0
   @State var collapserPath: String = ""
-  @State var postBodyExpanded: Bool = false
-  @State var showCommentPopover: Bool = false
-  @State var commentString: String = ""
-  @State private var parentID: Int = 0
 
   @Binding var upvoted: Bool
   @Binding var downvoted: Bool
@@ -50,7 +46,7 @@ struct CommentSectionView: View {
       Section {
         ForEach(comments.indices, id: \.self) { index in
           let comment = comments[index]
-          if !comment.isCollapsed && !comment.isShrunk {
+          if !comment.isCollapsed, !comment.isShrunk {
             CommentRowView(
               collapseToIndex: $collapseToIndex,
               collapserPath: $collapserPath,
@@ -59,7 +55,7 @@ struct CommentSectionView: View {
               comments: comments
             ).id(UUID())
               .environmentObject(commentsFetcher)
-          } else if !comment.isCollapsed && comment.isShrunk {
+          } else if !comment.isCollapsed, comment.isShrunk {
             HStack {
               Text("Collapsed").italic().foregroundStyle(.secondary).font(.caption)
               Spacer()

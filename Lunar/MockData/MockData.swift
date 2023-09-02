@@ -5,9 +5,9 @@
 ////  Created by Mani on 06/07/2023.
 ////
 //
-//import SwiftUI
+// import SwiftUI
 //
-//enum MockData {
+// enum MockData {
 //  static let kbinPostURL =
 //    "https://kbin.social/m/kbinMeta/t/86614/PSA-Upvote-is-not-an-upvote-like-you-are-used"
 //  static let kbinPostURL2 = "/m/kbinMeta/t/86614/PSA-Upvote-is-not-an-upvote-like-you-are-used"
@@ -548,4 +548,4 @@
 //      creatorBannedFromCommunity: false, subscribed: Optional(Lunar.CommentSubscribed.subscribed),
 //      saved: false, creatorBlocked: false, myVote: Optional(1)),
 //  ]
-//}
+// }

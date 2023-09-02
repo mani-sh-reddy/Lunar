@@ -28,8 +28,8 @@ struct InPostActionsView: View {
   }
 }
 
-//struct InPostActionsView_Previews: PreviewProvider {
+// struct InPostActionsView_Previews: PreviewProvider {
 //  static var previews: some View {
 //    InPostActionsView(post: MockData.postElement.post)
 //  }
-//}
+// }

@@ -15,7 +15,6 @@ import SwiftUI
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
   @AppStorage("commentSort") var commentSort = Settings.commentSort
   @AppStorage("commentType") var commentType = Settings.commentType
-  @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
   @AppStorage("logs") var logs = Settings.logs
   @Published var comments = [CommentObject]()
   @Published var isLoading = false
@@ -24,7 +23,6 @@ import SwiftUI
   private var postID: Int
   private var limitParameter: Int = 50
   private let maxDepth: Int = 50
-  private var jwt: String = ""
 
   private var endpoint: URLComponents {
     URLBuilder(
@@ -35,7 +33,7 @@ import SwiftUI
       limitParameter: limitParameter,
       postID: postID,
       maxDepth: maxDepth,
-      jwt: getJWTFromKeychain(actorID: selectedActorID) ?? ""
+      jwt: getJWTFromKeychain()
     ).buildURL()
   }
 
@@ -59,7 +57,7 @@ import SwiftUI
       urlRequest.cachePolicy = .reloadRevalidatingCacheData
     }
     .cacheResponse(using: cacher)
-    .validate(statusCode: 200..<300)
+    .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: CommentModel.self) { response in
       switch response.result {
       case let .success(result):
@@ -96,17 +94,6 @@ import SwiftUI
     }
   }
 
-  func loadMoreContentIfNeeded(currentItem comment: CommentObject?) {
-    guard let comment else {
-      loadMoreContent()
-      return
-    }
-    let thresholdIndex = comments.index(comments.endIndex, offsetBy: 0)
-    if comments.firstIndex(where: { $0.comment.id == comment.comment.id }) == thresholdIndex {
-      loadMoreContent()
-    }
-  }
-
   private func loadMoreContent() {
     guard !isLoading else { return }
 
@@ -119,7 +106,7 @@ import SwiftUI
       urlRequest.cachePolicy = .returnCacheDataElseLoad
     }
     .cacheResponse(using: cacher)
-    .validate(statusCode: 200..<300)
+    .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: CommentModel.self) { response in
       switch response.result {
       case let .success(result):
@@ -157,21 +144,24 @@ import SwiftUI
       }
     }
   }
-  func getJWTFromKeychain(actorID: String) -> String? {
+
+  func getJWTFromKeychain() -> String? {
     if let keychainObject = KeychainHelper.standard.read(
-      service: self.appBundleID, account: selectedActorID)
-    {
+      service: appBundleID, account: selectedActorID
+    ) {
       let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
       return jwt.replacingOccurrences(of: "\"", with: "")
     } else {
       return nil
     }
   }
+
   func updateCommentCollapseState(_ comment: CommentObject, isCollapsed: Bool) {
     if let index = comments.firstIndex(where: { $0.comment.id == comment.comment.id }) {
       comments[index].isCollapsed = isCollapsed
     }
   }
+
   func updateCommentShrinkState(_ comment: CommentObject, isShrunk: Bool) {
     if let index = comments.firstIndex(where: { $0.comment.id == comment.comment.id }) {
       comments[index].isShrunk = isShrunk

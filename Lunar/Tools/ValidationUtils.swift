@@ -25,7 +25,7 @@ enum ValidationUtils {
   }
 
   static func isValidPassword(input: String) -> Bool {
-    let isValid = 10...60 ~= input.count
+    let isValid = 10 ... 60 ~= input.count
     return isValid
   }
 

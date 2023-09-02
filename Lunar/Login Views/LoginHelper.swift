@@ -15,10 +15,10 @@ import SwiftUI
  let accessToken = String(data: keychainObject, encoding: .utf8)!
  print(accessToken)
  }
-*/
+ */
+
 class LoginHelper: ObservableObject {
   @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
-  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
   @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
   @AppStorage("loggedInEmailsList") var loggedInEmailsList = Settings.loggedInEmailsList
@@ -38,7 +38,7 @@ class LoginHelper: ObservableObject {
     let credentialsRequest = CredentialsRequestModel(
       username_or_email: usernameEmail,
       password: password,
-      totp_2fa_token: twoFactor == "" ? nil : twoFactor  // skipcq: SW-P1006
+      totp_2fa_token: twoFactor == "" ? nil : twoFactor // skipcq: SW-P1006
     )
 
     let headers: HTTPHeaders = [
@@ -61,7 +61,7 @@ class LoginHelper: ObservableObject {
 
       case let .failure(error):
         if let data = response.data,
-          let loginErrorResponse = try? JSONDecoder().decode(ErrorResponseModel.self, from: data)
+           let loginErrorResponse = try? JSONDecoder().decode(ErrorResponseModel.self, from: data)
         {
           completion(false, loginErrorResponse.error)
 
@@ -84,7 +84,7 @@ class LoginHelper: ObservableObject {
   func handleLoginSuccess(fetchedData: CredentialsResponseModel) {
     print("login successful inside handleLoginSuccess()")
     let jwt = fetchedData.jwt
-    SiteInfoFetcher(jwt: jwt).fetchSiteInfo { username, email, actorID, _ in
+    SiteInfoFetcher(jwt: jwt).fetchSiteInfo { _, email, actorID, _ in
 
       if let validActorID = actorID {
         self.loggedInUsersList.append(validActorID)

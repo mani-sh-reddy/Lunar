@@ -10,9 +10,7 @@ import SwiftUI
 import UIKit
 
 struct InPostThumbnailView: View {
-  @State private var isLoading = true
   @State private var showingPopover = false
-  @State private var scale: CGFloat = 1
 
   var thumbnailURL: String
   var imageRadius: CGFloat = 10

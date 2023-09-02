@@ -1,5 +1,5 @@
 //
-//  InsertSorter.swift
+//  IntExtension.swift
 //  Lunar
 //
 //  Created by Mani on 23/07/2023.
@@ -13,8 +13,8 @@ extension Int {
 
     if self >= 1_000_000 {
       return String(format: "%.1fM", numberDouble / 1_000_000)
-    } else if self >= 1_000 {
-      return String(format: "%.0fK", numberDouble / 1_000)
+    } else if self >= 1000 {
+      return String(format: "%.0fK", numberDouble / 1000)
     } else {
       return String(self)
     }

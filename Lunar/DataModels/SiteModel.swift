@@ -9,7 +9,7 @@ import Foundation
 
 struct SiteModel: Codable {
   let siteView: Site?
-//  let admins: [Person]?
+  //  let admins: [Person]?
   let version: String?
   let myUser: MyUser
   let allLanguages: [Language]?

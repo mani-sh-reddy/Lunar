@@ -28,7 +28,5 @@ struct PhotoDetailView: UIViewRepresentable {
     return view
   }
 
-  func updateUIView(_: PDFView, context _: Context) {
-
-  }
+  func updateUIView(_: PDFView, context _: Context) {}
 }

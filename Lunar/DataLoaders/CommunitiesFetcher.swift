@@ -14,7 +14,6 @@ import SwiftUI
   @AppStorage("communitiesType") var communitiesType = Settings.communitiesType
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
-  @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
   @AppStorage("logs") var logs = Settings.logs
 
   @Published var communities = [CommunityObject]()
@@ -55,12 +54,11 @@ import SwiftUI
     self.sortParameter = sortParameter ?? communitiesSort
     self.typeParameter = typeParameter ?? communitiesType
     self.limitParameter = limitParameter
-    self.jwt = getJWTFromKeychain(actorID: selectedActorID) ?? ""
+    jwt = getJWTFromKeychain(actorID: selectedActorID) ?? ""
     loadMoreContent()
   }
 
   func refreshContent() async {
-
     guard !isLoading else { return }
 
     isLoading = true
@@ -71,11 +69,11 @@ import SwiftUI
     let cacher = ResponseCacher(behavior: .cache)
 
     AF.request(endpoint) { urlRequest in
-            print("CommunitiesFetcher REF - hidden url due to jwt \(urlRequest)")
+      print("CommunitiesFetcher REF - hidden url due to jwt \(urlRequest)")
       urlRequest.cachePolicy = .reloadRevalidatingCacheData
     }
     .cacheResponse(using: cacher)
-    .validate(statusCode: 200..<300)
+    .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: CommunityModel.self) { response in
       switch response.result {
       case let .success(result):
@@ -87,8 +85,6 @@ import SwiftUI
         self.communities.insert(contentsOf: filteredNewCommunities, at: 0)
 
         self.isLoading = false
-
-//        let cachableImageURLs = result.iconURLs.compactMap { URL(string: $0) }
 
       case let .failure(error):
         DispatchQueue.main.async {
@@ -128,7 +124,7 @@ import SwiftUI
       urlRequest.cachePolicy = .returnCacheDataElseLoad
     }
     .cacheResponse(using: cacher)
-    .validate(statusCode: 200..<300)
+    .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: CommunityModel.self) { response in
       switch response.result {
       case let .success(result):
@@ -157,8 +153,8 @@ import SwiftUI
 
   func getJWTFromKeychain(actorID: String) -> String? {
     if let keychainObject = KeychainHelper.standard.read(
-      service: self.appBundleID, account: actorID)
-    {
+      service: appBundleID, account: actorID
+    ) {
       let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
       return jwt.replacingOccurrences(of: "\"", with: "")
     } else {

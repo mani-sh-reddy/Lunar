@@ -9,8 +9,6 @@ import SwiftUI
 
 struct MoreCommunitiesView: View {
   @StateObject var communitiesFetcher: CommunitiesFetcher
-  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
-  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
 
   var title: String
 

@@ -82,7 +82,7 @@ struct KbinCommentRowView: View {
   ]
   var body: some View {
     HStack {
-      ForEach(1..<(Int(comment.indentLevel) ?? 1), id: \.self) { _ in
+      ForEach(1 ..< (Int(comment.indentLevel) ?? 1), id: \.self) { _ in
         Rectangle().opacity(0).frame(width: 0.5).padding(.horizontal, 0)
       }
       let indentLevel = min(Int(comment.indentLevel) ?? 0, commentHierarchyColors.count - 1)
@@ -99,9 +99,9 @@ struct KbinCommentRowView: View {
   }
 }
 
-//struct KbinCommentsView_Previews: PreviewProvider {
+// struct KbinCommentsView_Previews: PreviewProvider {
 //  static var previews: some View {
 //    /// need to set showing popover to a constant value
 //    KbinCommentsView(post: MockData.kbinPost, postURL: MockData.kbinPostURL)
 //  }
-//}
+// }

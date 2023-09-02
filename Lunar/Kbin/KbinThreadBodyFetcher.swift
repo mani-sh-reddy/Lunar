@@ -10,34 +10,15 @@ import SwiftSoup
 import SwiftUI
 
 class KbinThreadBodyFetcher: ObservableObject {
-  @AppStorage("kbinHostURL") var kbinHostURL = Settings.kbinHostURL
-
   @Published var postBody: String = ""
   @Published var isLoading = false
 
   var postURL: String
 
-  private var currentPage = 1
-
   init(
     postURL: String
   ) {
     self.postURL = postURL
-    loadMoreContent()
-  }
-
-  func refreshContent() async {
-    do {
-      try await Task.sleep(nanoseconds: 1_000_000_000)
-    } catch {}
-
-    guard !isLoading else { return }
-
-    isLoading = true
-    currentPage = 1
-
-    postBody = ""
-
     loadMoreContent()
   }
 
@@ -47,7 +28,7 @@ class KbinThreadBodyFetcher: ObservableObject {
     isLoading = true
     AF.request(postURL).response { response in
       if let data = response.data,
-        let htmlString = String(data: data, encoding: .utf8)
+         let htmlString = String(data: data, encoding: .utf8)
       {
         do {
           let doc = try SwiftSoup.parse(htmlString)

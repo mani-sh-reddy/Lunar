@@ -16,7 +16,6 @@ import SwiftUI
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
   @AppStorage("postSort") var postSort = Settings.postSort
   @AppStorage("postType") var postType = Settings.postType
-  @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
   @AppStorage("logs") var logs = Settings.logs
 
   @Published var posts = [PostObject]()
@@ -28,7 +27,6 @@ import SwiftUI
   private var sortParameter: String?
   private var typeParameter: String?
   private var communityID: Int?
-  private var jwt: String = ""
   private var endpoint: URLComponents {
     URLBuilder(
       endpointPath: "/api/v3/post/list",
@@ -37,7 +35,7 @@ import SwiftUI
       currentPage: currentPage,
       limitParameter: 50,
       communityID: communityID,
-      jwt: getJWTFromKeychain(actorID: selectedActorID) ?? ""
+      jwt: getJWTFromKeychain()
     ).buildURL()
   }
 
@@ -50,7 +48,7 @@ import SwiftUI
     self.typeParameter = typeParameter ?? postType
 
     self.communityID = (communityID == 0) ? nil : communityID
-    if communityID == 99_999_999_999_999 {  // TODO just a placeholder to prevent running when user posts
+    if communityID == 99_999_999_999_999 { // TODO: just a placeholder to prevent running when user posts
       return
     }
 
@@ -74,7 +72,7 @@ import SwiftUI
       urlRequest.cachePolicy = .reloadRevalidatingCacheData
     }
     .cacheResponse(using: cacher)
-    .validate(statusCode: 200..<300)
+    .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: PostModel.self) { response in
       switch response.result {
       case let .success(result):
@@ -123,7 +121,7 @@ import SwiftUI
       urlRequest.cachePolicy = .returnCacheDataElseLoad
     }
     .cacheResponse(using: cacher)
-    .validate(statusCode: 200..<300)
+    .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: PostModel.self) { response in
       switch response.result {
       case let .success(result):
@@ -151,10 +149,10 @@ import SwiftUI
     }
   }
 
-  func getJWTFromKeychain(actorID: String) -> String? {
+  func getJWTFromKeychain() -> String? {
     if let keychainObject = KeychainHelper.standard.read(
-      service: self.appBundleID, account: selectedActorID)
-    {
+      service: appBundleID, account: selectedActorID
+    ) {
       let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
       return jwt.replacingOccurrences(of: "\"", with: "")
     } else {

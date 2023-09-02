@@ -9,18 +9,18 @@ import Foundation
 import SwiftUI
 
 struct SettingsAppIconPickerView: View {
-    @AppStorage("selectedAppIcon") var selectedAppIcon = Settings.selectedAppIcon
+  @AppStorage("selectedAppIcon") var selectedAppIcon = Settings.selectedAppIcon
   //
   private var appIconNames = [ /// **Prepended with 'AppIcon'**
-    "Light","Dark", "Purple", "Night", "LemmY", "Kbin"
+    "Light", "Dark", "Purple", "Night", "LemmY", "Kbin",
   ]
-  
+
   let haptics = UIImpactFeedbackGenerator(style: .soft)
-  
+
   var body: some View {
-    List{
+    List {
       ForEach(appIconNames, id: \.self) { iconName in
-        Button{
+        Button {
           selectedAppIcon = "AppIcon\(iconName)"
           if selectedAppIcon == "AppIconLight" {
             UIApplication.shared.setAlternateIconName(nil)
@@ -29,7 +29,7 @@ struct SettingsAppIconPickerView: View {
           }
           haptics.impactOccurred(intensity: 0.5)
         } label: {
-          HStack{
+          HStack {
             Image("AppIconDownsized\(iconName)")
               .resizable()
               .frame(width: 50, height: 50)

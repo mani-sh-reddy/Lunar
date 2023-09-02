@@ -5,10 +5,10 @@
 ////  Created by Mani on 20/07/2023.
 ////
 //
-//import Foundation
-//import SwiftUI
+// import Foundation
+// import SwiftUI
 //
-//struct InPostUserView: View {
+// struct InPostUserView: View {
 //  var text: String
 //  var iconName: String
 //  var userAvatar: String?
@@ -29,4 +29,4 @@
 //      Capsule().foregroundStyle(.ultraThinMaterial)
 //    }
 //  }
-//}
+// }

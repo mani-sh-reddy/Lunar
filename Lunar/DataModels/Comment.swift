@@ -12,19 +12,19 @@ struct Comment: Codable {
   let published: String
   let apID: String
   let path: String
-  
+
   let id: Int
   let creatorID: Int
   let postID: Int
   let languageID: Int
-  
+
   let removed: Bool
   let deleted: Bool
   let local: Bool
   let distinguished: Bool
-  
+
   let updated: String?
-  
+
   enum CodingKeys: String, CodingKey {
     case id
     case creatorID = "creator_id"

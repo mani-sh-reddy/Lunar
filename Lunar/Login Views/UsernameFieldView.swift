@@ -35,7 +35,7 @@ struct UsernameFieldView: View {
       showingLoginButtonWarning = false
       usernameEmailInvalid =
         !ValidationUtils.isValidUsername(input: newValue)
-        && !ValidationUtils.isValidEmail(input: newValue)
+          && !ValidationUtils.isValidEmail(input: newValue)
     }
   }
 }

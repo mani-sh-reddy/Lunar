@@ -17,8 +17,8 @@ struct CommentPopoverView: View {
 
   var body: some View {
     List {
-
       // MARK: - Post Title
+
       Section {
         Text(post.name)
       } header: {
@@ -29,6 +29,7 @@ struct CommentPopoverView: View {
       .listRowBackground(Color.clear)
 
       // MARK: - Text Field
+
       Section {
         TextEditor(text: $commentStringUnsent)
           .background(Color.clear)
@@ -40,6 +41,7 @@ struct CommentPopoverView: View {
       }
 
       // MARK: - Submit Button
+
       Section {
         Button {
           commentString = commentStringUnsent
@@ -65,14 +67,13 @@ struct CommentPopoverView: View {
           }
         }
       }
-
     }
     .listStyle(.insetGrouped)
   }
 }
 
-//struct CommentPopoverView_Previews: PreviewProvider {
+// struct CommentPopoverView_Previews: PreviewProvider {
 //  static var previews: some View {
 //    CommentPopoverView(showCommentPopover: .constant(false), post: MockData.postElement.post)
 //  }
-//}
+// }

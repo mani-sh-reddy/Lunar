@@ -11,8 +11,6 @@ struct KbinThreadsView: View {
   @AppStorage("kbinHostURL") var kbinHostURL = Settings.kbinHostURL
   @StateObject var kbinThreadsFetcher: KbinThreadsFetcher
 
-  @State var postURL: String = ""
-
   var body: some View {
     List {
       ForEach(kbinThreadsFetcher.posts, id: \.id) { post in
@@ -29,7 +27,6 @@ struct KbinThreadsView: View {
         }
         .task {
           kbinThreadsFetcher.loadMoreContentIfNeeded(currentItem: post)
-          postURL = post.postURL
         }
       }
       if kbinThreadsFetcher.isLoading {

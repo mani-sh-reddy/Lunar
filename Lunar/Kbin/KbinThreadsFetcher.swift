@@ -141,7 +141,8 @@ class KbinThreadsFetcher: ObservableObject {
         joined: joined,
         reputationPoints: reputationPoints,
         browseUrl: browseUrl,
-        followCount: followCount)
+        followCount: followCount
+      )
       return userObject
     } catch {
       print("Error parsing HTML: \(error)")
@@ -159,7 +160,5 @@ class KbinThreadsFetcher: ObservableObject {
       print("Error parsing HTML: \(error)")
       return nil
     }
-
   }
-
 }

@@ -17,35 +17,9 @@ class KbinCommentsFetcher: ObservableObject {
 
   @State var postURL: String
 
-  private var currentPage = 1
-
   init(postURL: String) {
     self.postURL = postURL
     loadMoreContent()
-  }
-
-  func refreshContent() async {
-    do {
-      try await Task.sleep(nanoseconds: 1_000_000_000)
-    } catch {}
-
-    guard !isLoading else { return }
-    currentPage = 1
-
-    comments.removeAll()
-
-    loadMoreContent()
-  }
-
-  func loadMoreContentIfNeeded(currentItem item: KbinComment?) {
-    guard let item else {
-      loadMoreContent()
-      return
-    }
-    let thresholdIndex = comments.index(comments.endIndex, offsetBy: -1)
-    if comments.firstIndex(where: { $0.id == item.id }) == thresholdIndex {
-      loadMoreContent()
-    }
   }
 
   func loadMoreContent(completion: FetchCompletion? = nil) {

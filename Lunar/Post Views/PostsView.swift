@@ -9,61 +9,38 @@ import SwiftUI
 
 struct PostsView: View {
   @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
-  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @AppStorage("compactViewEnabled") var compactViewEnabled = Settings.compactViewEnabled
-  
+
   @StateObject var postsFetcher: PostsFetcher
-  @State private var bannerFailedToLoad = false
-  @State private var iconFailedToLoad = false
 
   var title: String?
   var community: CommunityObject?
   var user: PersonObject?
 
-  var isCommunitySpecific: Bool { return community != nil }
-  var isUserSpecific: Bool { return user != nil }
-
-  var hasBanner: Bool {
-    if isCommunitySpecific {
-      return community?.community.banner != "" && community?.community.banner != nil  // skipcq: SW-P1006
-    } else if isUserSpecific {
-      return user?.person.banner != "" && user?.person.banner != nil  // skipcq: SW-P1006
-    } else {
-      return false
-    }
-  }
-
-  var hasIcon: Bool {
-    if isCommunitySpecific {
-      return community?.community.icon != "" && community?.community.icon != nil  // skipcq: SW-P1006
-    } else if isUserSpecific {
-      return user?.person.avatar != "" && user?.person.avatar != nil  // skipcq: SW-P1006
-    } else {
-      return false
-    }
-  }
+  var isCommunitySpecific: Bool { community != nil }
+  var isUserSpecific: Bool { user != nil }
 
   var navigationHeading: String {
     if isCommunitySpecific {
       return community?.community.name ?? ""
     }
-    
+
     if isUserSpecific {
       return user?.person.name ?? ""
     }
-    
+
     return title ?? ""
   }
 
-  var communityDescription: String? { return community?.community.description }
-  var communityActorID: String { return community?.community.actorID ?? "" }
-  var communityBanner: String? { return community?.community.banner }
-  var communityIcon: String? { return community?.community.icon }
+  var communityDescription: String? { community?.community.description }
+  var communityActorID: String { community?.community.actorID ?? "" }
+  var communityBanner: String? { community?.community.banner }
+  var communityIcon: String? { community?.community.icon }
 
-  var userDescription: String? { return user?.person.bio }
-  var userActorID: String { return user?.person.actorID ?? "" }
-  var userBanner: String? { return user?.person.banner }
-  var userIcon: String? { return user?.person.avatar }
+  var userDescription: String? { user?.person.bio }
+  var userActorID: String { user?.person.actorID ?? "" }
+  var userBanner: String? { user?.person.banner }
+  var userIcon: String? { user?.person.avatar }
 
   var body: some View {
     if compactViewEnabled {
@@ -153,7 +130,7 @@ struct PostsView: View {
   }
 }
 
-//struct PostsView_Previews: PreviewProvider {
+// struct PostsView_Previews: PreviewProvider {
 //  static var previews: some View {
 //    /// need to set showing popover to a constant value
 //    PostsView(
@@ -164,7 +141,7 @@ struct PostsView: View {
 //      ), title: "Title"
 //    )
 //  }
-//}
+// }
 
 struct PostSectionView: View {
   @EnvironmentObject var postsFetcher: PostsFetcher

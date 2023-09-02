@@ -12,9 +12,7 @@ import SwiftUI
 @MainActor class TrendingCommunitiesFetcher: ObservableObject {
   @Published var communities = [CommunityObject]()
   @Published var isLoading = false
-  @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
   @AppStorage("logs") var logs = Settings.logs
-  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
 
   private var currentPage = 1
   private var limitParameter: Int = 5
@@ -45,7 +43,7 @@ import SwiftUI
       urlRequest.cachePolicy = .returnCacheDataElseLoad
     }
     .cacheResponse(using: cacher)
-    .validate(statusCode: 200..<300)
+    .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: CommunityModel.self) { response in
       switch response.result {
       case let .success(result):
@@ -62,7 +60,7 @@ import SwiftUI
         }
       }
     }
-    self.isLoading = false
+    isLoading = false
   }
 
   private func loadContent() {
@@ -78,7 +76,7 @@ import SwiftUI
       urlRequest.cachePolicy = .returnCacheDataElseLoad
     }
     .cacheResponse(using: cacher)
-    .validate(statusCode: 200..<300)
+    .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: CommunityModel.self) { response in
       switch response.result {
       case let .success(result):

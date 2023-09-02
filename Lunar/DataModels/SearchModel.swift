@@ -1,5 +1,5 @@
 //
-//  CredentialsModel.swift
+//  SearchModel.swift
 //  Lunar
 //
 //  Created by Mani on 28/07/2023.
@@ -12,7 +12,7 @@ struct SearchModel: Codable {
   let posts: [PostObject]
   let communities: [CommunityObject]
   let users: [PersonObject]
-  
+
   let type: String
 
   enum CodingKeys: String, CodingKey {

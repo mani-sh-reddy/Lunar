@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct LogsView: View {
-  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @AppStorage("logs") var logs = Settings.logs
 
   var body: some View {

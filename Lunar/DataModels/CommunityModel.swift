@@ -9,7 +9,7 @@ import Foundation
 
 struct CommunityModel: Codable {
   let communities: [CommunityObject]
-  
+
   var iconURLs: [String] {
     communities.compactMap(\.community.icon)
   }

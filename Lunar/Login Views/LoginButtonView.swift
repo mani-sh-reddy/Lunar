@@ -49,9 +49,6 @@ struct LoginButtonView: View {
     return false
   }
 
-  private let tempWarningAnimation = Animation.easeInOut(duration: 2).repeatCount(
-    1, autoreverses: true)
-
   let haptics = UINotificationFeedbackGenerator()
 
   var body: some View {

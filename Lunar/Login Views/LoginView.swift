@@ -15,12 +15,7 @@ enum FocusedField {
 
 struct LoginView: View {
   @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
-  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @AppStorage("loggedInEmailsList") var loggedInEmailsList = Settings.loggedInEmailsList
-  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
-
-  @Environment(\.dismiss) var dismiss
 
   @State private var isTryingLogin: Bool = false
   @State private var usernameEmailInput: String = ""

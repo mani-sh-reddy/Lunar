@@ -14,7 +14,7 @@ struct MyUser: Codable {
   let communityBlocks: [JSONAny]?
   let personBlocks: [JSONAny]?
   let discussionLanguages: [JSONAny]?
-  
+
   enum CodingKeys: String, CodingKey {
     case localUserView = "local_user_view"
     case follows

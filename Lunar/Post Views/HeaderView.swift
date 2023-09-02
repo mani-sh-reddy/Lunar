@@ -10,10 +10,7 @@ import NukeUI
 import SwiftUI
 
 struct HeaderView: View {
-  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-  @State private var bannerFailedToLoad = false
-  @State private var iconFailedToLoad = false
 
   var navigationHeading: String
   var description: String?
@@ -24,7 +21,6 @@ struct HeaderView: View {
   var body: some View {
     Section {
       HStack {
-
         LazyImage(url: URL(string: icon ?? "")) { state in
           if let image = state.image {
             image
@@ -53,7 +49,7 @@ struct HeaderView: View {
 
       .border(debugModeEnabled ? Color.purple : Color.clear)
 
-      if let description = description {
+      if let description {
         Text(LocalizedStringKey(description))
       }
     }

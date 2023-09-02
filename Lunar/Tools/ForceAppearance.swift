@@ -15,7 +15,7 @@ enum AppearanceOptions: String, CaseIterable {
 class AppearanceController {
   static let shared = AppearanceController()
   @AppStorage("appAppearance") var appAppearance: AppearanceOptions = .system
-  
+
   var appearance: UIUserInterfaceStyle {
     switch appAppearance {
     case .system:
@@ -26,6 +26,7 @@ class AppearanceController {
       return .dark
     }
   }
+
   func setAppearance() {
     let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
     guard let window = windowScene?.windows.first else { return }

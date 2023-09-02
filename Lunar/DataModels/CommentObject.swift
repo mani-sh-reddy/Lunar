@@ -14,16 +14,16 @@ struct CommentObject: Codable {
   let community: Community
   let counts: Counts
   let subscribed: SubscribedState?
-  
+
   let saved: Bool
   let creatorBannedFromCommunity: Bool
   let creatorBlocked: Bool
-  
+
   var myVote: Int?
-  
+
   var isCollapsed: Bool = false
   var isShrunk: Bool = false
-  
+
   enum CodingKeys: String, CodingKey {
     case comment, creator, post, community, counts
     case creatorBannedFromCommunity = "creator_banned_from_community"

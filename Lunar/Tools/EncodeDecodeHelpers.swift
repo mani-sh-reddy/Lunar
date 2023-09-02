@@ -62,13 +62,15 @@ class JSONAny: Codable {
 
   static func decodingError(forCodingPath codingPath: [CodingKey]) -> DecodingError {
     let context = DecodingError.Context(
-      codingPath: codingPath, debugDescription: "Cannot decode JSONAny")
+      codingPath: codingPath, debugDescription: "Cannot decode JSONAny"
+    )
     return DecodingError.typeMismatch(JSONAny.self, context)
   }
 
   static func encodingError(forValue value: Any, codingPath: [CodingKey]) -> EncodingError {
     let context = EncodingError.Context(
-      codingPath: codingPath, debugDescription: "Cannot encode JSONAny")
+      codingPath: codingPath, debugDescription: "Cannot encode JSONAny"
+    )
     return EncodingError.invalidValue(value, context)
   }
 
@@ -196,7 +198,7 @@ class JSONAny: Codable {
     to container: inout KeyedEncodingContainer<JSONCodingKey>, dictionary: [String: Any]
   ) throws {
     for (key, value) in dictionary {
-      let key = JSONCodingKey(stringValue: key)!  // skipcq: SW-W1023
+      let key = JSONCodingKey(stringValue: key)! // skipcq: SW-W1023
       if let value = value as? Bool {
         try container.encode(value, forKey: key)
       } else if let value = value as? Int64 {

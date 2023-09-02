@@ -1,18 +1,18 @@
+////
+////  TextFieldLimiter.swift
+////  Lunar
+////
+////  Created by Mani on 30/07/2023.
+////
 //
-//  TextFieldLimiter.swift
-//  Lunar
+// import Foundation
 //
-//  Created by Mani on 30/07/2023.
+// class TextFieldLimiter: ObservableObject {
+//  @Published var twoFactor = ""
 //
-
-import Foundation
-
-class TextFieldLimiter: ObservableObject {
-  @Published var twoFactor = ""
-
-  let characterLimit: Int
-
-  init(limit: Int = 6) {
-    characterLimit = limit
-  }
-}
+//  let characterLimit: Int
+//
+//  init(limit: Int = 6) {
+//    characterLimit = limit
+//  }
+// }

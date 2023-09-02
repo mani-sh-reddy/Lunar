@@ -8,14 +8,11 @@
 import SwiftUI
 
 struct SettingsDevOptionsView: View {
-  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
   @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-  @AppStorage("logs") var logs = Settings.logs
 
   @State var refreshView: Bool = false
   @State var settingsViewOpacity: Double = 1
-  @State var refreshIconOpacity: Double = 0
   @State private var logoScale: CGFloat = 0.1
   @State private var logoOpacity: Double = 0
 

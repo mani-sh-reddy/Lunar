@@ -46,7 +46,8 @@ struct PasswordFieldView: View {
             .symbolRenderingMode(.hierarchical)
             .foregroundStyle(.foreground)
             .padding(.leading, 10)
-        })
+        }
+      )
     }
     .onAppear {
       if let devPassword = ProcessInfo.processInfo.environment["LEMMY_TEST_ACC_PASS"] {

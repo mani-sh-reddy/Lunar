@@ -68,7 +68,8 @@ struct SearchResultsList: View {
               .symbolRenderingMode(.hierarchical)
 
           }.foregroundStyle(selectedSearchTypeIcon.1)
-        })
+        }
+      )
     }
     .onChange(of: selectedSearchSortType) { query in
       withAnimation {

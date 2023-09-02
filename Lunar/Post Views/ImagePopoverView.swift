@@ -12,19 +12,7 @@ import SwiftUI
 import UIKit
 
 struct ImagePopoverView: View {
-  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-
-  @State private var isLoading = true
-  @State private var imageSize: CGSize = .zero
   @Binding var showingPopover: Bool
-  @State var buttonOpacity = 0.8
-
-  private let pipeline = ImagePipeline { pipeline in
-    pipeline.dataLoader = {
-      let config = URLSessionConfiguration.default
-      return DataLoader(configuration: config)
-    }()
-  }
 
   var thumbnailURL: String
 
@@ -37,7 +25,7 @@ struct ImagePopoverView: View {
           //          image.resizable().aspectRatio(contentMode: .fit)
           PhotoDetailView(image: image.asUIImage())
         } else if state.error != nil {
-          Color.clear  // Indicates an error
+          Color.clear // Indicates an error
         } else {
           ProgressView()
         }

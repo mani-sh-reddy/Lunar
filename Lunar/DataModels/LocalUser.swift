@@ -52,4 +52,3 @@ struct LocalUser: Codable {
     case openLinksInNewTab = "open_links_in_new_tab"
   }
 }
-

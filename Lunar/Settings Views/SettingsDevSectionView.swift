@@ -10,7 +10,6 @@ import SwiftUI
 struct SettingsDevSectionView: View {
   var body: some View {
     Section {
-
       NavigationLink {
         SettingsDevOptionsView()
       } label: {
@@ -34,7 +33,6 @@ struct SettingsDevSectionView: View {
         }
         Spacer()
       }.padding(.vertical, 40)
-
     }
   }
 }

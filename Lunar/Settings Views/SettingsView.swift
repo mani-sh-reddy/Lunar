@@ -8,13 +8,8 @@
 import SwiftUI
 
 struct SettingsView: View {
-  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
-  @AppStorage("displayName") var displayName = Settings.displayName
-  @AppStorage("userName") var userName = Settings.userName
-  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-  
   @State var selectedAccount: AccountModel?
-  
+
   var body: some View {
     NavigationView {
       List {

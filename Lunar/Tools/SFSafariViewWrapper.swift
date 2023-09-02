@@ -11,16 +11,14 @@ import SwiftUI
 struct SFSafariViewWrapper: UIViewControllerRepresentable {
   let url: URL
 
-  func makeUIViewController(context: UIViewControllerRepresentableContext<Self>)
+  func makeUIViewController(context _: UIViewControllerRepresentableContext<Self>)
     -> SFSafariViewController
   {
-    return SFSafariViewController(url: url)
+    SFSafariViewController(url: url)
   }
 
   func updateUIViewController(
-    _ uiViewController: SFSafariViewController,
-    context: UIViewControllerRepresentableContext<SFSafariViewWrapper>
-  ) {
-    return
-  }
+    _: SFSafariViewController,
+    context _: UIViewControllerRepresentableContext<SFSafariViewWrapper>
+  ) {}
 }

@@ -11,7 +11,7 @@ struct PostModel: Codable {
   let posts: [PostObject]
 
   var thumbnailURLs: [String] {
-    posts.compactMap { $0.post.thumbnailURL }
+    posts.compactMap(\.post.thumbnailURL)
   }
 
   var imageURLs: [String] {
@@ -31,4 +31,3 @@ struct PostModel: Codable {
     posts.compactMap(\.creator.avatar)
   }
 }
-

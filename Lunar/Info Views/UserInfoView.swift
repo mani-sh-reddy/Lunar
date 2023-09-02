@@ -5,9 +5,9 @@
 ////  Created by Mani on 05/08/2023.
 ////
 //
-//import SwiftUI
+// import SwiftUI
 //
-//struct UserInfoView: View {
+// struct UserInfoView: View {
 //  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
 //
 //  @State private var loadingOpacity: Double = 1
@@ -106,10 +106,10 @@
 //      }
 //    }
 //  }
-//}
+// }
 //
-//struct UserInfoView_Previews: PreviewProvider {
+// struct UserInfoView_Previews: PreviewProvider {
 //  static var previews: some View {
 //    UserInfoView(person: MockData.userInfoView3)
 //  }
-//}
+// }

@@ -5,10 +5,10 @@
 ////  Created by Mani on 20/07/2023.
 ////
 //
-//import Foundation
-//import SwiftUI
+// import Foundation
+// import SwiftUI
 //
-//struct ImageViewWithPlaceholder: View {
+// struct ImageViewWithPlaceholder: View {
 //  var imageURL: String?
 //  var placeholderSystemName: String
 //
@@ -40,4 +40,4 @@
 //        .padding(.trailing, 5)
 //    }
 //  }
-//}
+// }

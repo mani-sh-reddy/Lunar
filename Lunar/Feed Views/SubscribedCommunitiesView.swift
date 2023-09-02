@@ -1,5 +1,5 @@
 //
-//  SubscribedCommunitiesSectionView.swift
+//  SubscribedCommunitiesView.swift
 //  Lunar
 //
 //  Created by Mani on 20/07/2023.
@@ -14,17 +14,10 @@ struct SubscribedCommunitiesSectionView: View {
   @AppStorage("subscribedCommunityIDs") var subscribedCommunityIDs = Settings.subscribedCommunityIDs
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
 
-  @State var initialSync: Bool = true
-  @State private var refreshView = false
-
   var body: some View {
     SubscribedFeedButton()
 
     ForEach(communitiesFetcher.communities, id: \.community.id) { community in
-      /// get all the community IDs fetched from server,
-      /// append it to already existing AppStorage array and remove duplicates
-      //        let _ = subscribedCommunityIDs.append(community.community.id)
-      //      let _ = print(subscribedCommunityIDs)
       NavigationLink {
         PostsView(
           postsFetcher: PostsFetcher(
@@ -37,11 +30,6 @@ struct SubscribedCommunitiesSectionView: View {
         CommunityRowView(community: community)
       }
     }
-//    .onAppear {
-//      Task {
-//        await communitiesFetcher.refreshContent()
-//      }
-//    }
     .onChange(of: selectedInstance) { _ in
       Task {
         try await Task.sleep(nanoseconds: UInt64(2 * Double(NSEC_PER_SEC)))
@@ -55,23 +43,11 @@ struct SubscribedCommunitiesSectionView: View {
       }
     }
     .onChange(of: subscribedCommunityIDs) { _ in
-        Task {
-          try await Task.sleep(nanoseconds: UInt64(2 * Double(NSEC_PER_SEC)))
-          await communitiesFetcher.refreshContent()
-        }
+      Task {
+        try await Task.sleep(nanoseconds: UInt64(2 * Double(NSEC_PER_SEC)))
+        await communitiesFetcher.refreshContent()
+      }
     }
-//    .onAppear {
-//      Task{
-//        if initialSync {
-//          let newSubscribedIDs = communitiesFetcher.communities.map { $0.community.id }
-//          subscribedCommunityIDs.removeAll()
-//          subscribedCommunityIDs.append(contentsOf: newSubscribedIDs)
-//          subscribedCommunityIDs = Array(Set(subscribedCommunityIDs))  // Remove duplicates
-//          initialSync = false
-//          print(subscribedCommunityIDs)
-//        }
-//      }
-//    }
 
     if communitiesFetcher.isLoading {
       ProgressView()
@@ -102,7 +78,6 @@ struct SubscribedFeedButton: View {
   }
 
   var body: some View {
-
     if selectedActorID.isEmpty {
       HStack {
         Image(systemName: "lock.circle.fill")

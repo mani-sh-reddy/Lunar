@@ -11,13 +11,7 @@ import SwiftUI
 struct LogoutAllUsersButtonView: View {
   @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
   @AppStorage("loggedInEmailsList") var loggedInEmailsList = Settings.loggedInEmailsList
-  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
   @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
-  @AppStorage("selectedName") var selectedName = Settings.selectedName
-  @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
-  @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
-  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
 
   @Binding var showingPopover: Bool
   @Binding var isPresentingConfirm: Bool
@@ -77,12 +71,9 @@ struct LogoutAllUsersButtonView: View {
       Button(role: .destructive) {
         isPresentingConfirm = true
         selectedAccount = AccountModel(
-          userID: "", name: "", email: "", avatarURL: "", actorID: "")
+          userID: "", name: "", email: "", avatarURL: "", actorID: ""
+        )
         loggedInAccounts.removeAll()
-        selectedName = ""
-        selectedEmail = ""
-        selectedAvatarURL = ""
-        selectedActorID = ""
 
         if !loggedInAccounts.isEmpty {
           isLoadingDeleteButton = true

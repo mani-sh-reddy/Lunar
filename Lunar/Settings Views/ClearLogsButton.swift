@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct ClearLogsButton: View {
-  @AppStorage("logs") var logs = Settings.logs
-
   let haptic = UINotificationFeedbackGenerator()
 
   @State var showingConfirmation: Bool = false
@@ -32,7 +30,6 @@ struct ClearLogsButton: View {
     ) {
       Button("Delete all items?", role: .destructive) {
         haptic.notificationOccurred(.success)
-        logs = []
       }
     } message: {
       Text("You cannot undo this action")

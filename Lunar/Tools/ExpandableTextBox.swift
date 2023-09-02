@@ -29,11 +29,11 @@ struct ExpandableTextBox: View {
             .background(
               GeometryReader { displayedGeometry in
                 ZStack {
-                  Text(self.text)
+                  Text(text)
                     .background(
                       GeometryReader { fullGeometry in
                         Color.clear.onAppear {
-                          self.truncated = fullGeometry.size.height > displayedGeometry.size.height
+                          truncated = fullGeometry.size.height > displayedGeometry.size.height
                         }
                       })
                 }
@@ -51,24 +51,23 @@ struct ExpandableTextBox: View {
     HStack {
       Spacer()
       ReactionButton(
-        text: self.expanded ? "Show less" : "Show more",
-        icon: self.expanded
+        text: expanded ? "Show less" : "Show more",
+        icon: expanded
           ? "arrow.down.and.line.horizontal.and.arrow.up"
           : "arrow.up.and.line.horizontal.and.arrow.down",
         color: Color.blue,
         textSize: Font.caption,
         iconSize: Font.caption,
-        active: self.$expanded,
+        active: $expanded,
         opposite: .constant(false)
       )
       .highPriorityGesture(
         TapGesture().onEnded {
           haptics.impactOccurred(intensity: 0.5)
-          self.expanded.toggle()
+          expanded.toggle()
         }
       )
       Spacer()
     }
-
   }
 }

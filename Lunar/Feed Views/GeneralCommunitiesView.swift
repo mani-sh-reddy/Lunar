@@ -26,15 +26,19 @@ struct CommunityButton: Hashable {
 struct GeneralCommunitiesView: View {
   let buttons: [CommunityButton] = [
     CommunityButton(
-      title: "Local", type: "Local", sort: "Active", icon: "house.circle.fill", iconColor: .green),
+      title: "Local", type: "Local", sort: "Active", icon: "house.circle.fill", iconColor: .green
+    ),
     CommunityButton(
       title: "All", type: "All", sort: "Active", icon: "building.2.crop.circle.fill",
-      iconColor: .cyan),
+      iconColor: .cyan
+    ),
     CommunityButton(
       title: "Top", type: "All", sort: "TopWeek", icon: "chart.line.uptrend.xyaxis.circle.fill",
-      iconColor: .pink),
+      iconColor: .pink
+    ),
     CommunityButton(
-      title: "New", type: "All", sort: "New", icon: "star.circle.fill", iconColor: .yellow),
+      title: "New", type: "All", sort: "New", icon: "star.circle.fill", iconColor: .yellow
+    ),
   ]
 
   var body: some View {

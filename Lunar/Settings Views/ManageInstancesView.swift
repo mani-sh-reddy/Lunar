@@ -13,21 +13,13 @@ struct ManageInstancesView: View {
   @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @AppStorage("logs") var logs = Settings.logs
-  
-  @State private var selection: String?
-  @State private var showingSheet = false
-  @State private var newName = ""
-  @State private var textFieldInput = ""
+
   @State var enteredCustomInstance = ""
   @State var showingAddInstanceAlert = false
   @State var showingInvalidInstanceError = false
   @State var showingAlreadyExistsError = false
   @State var showingResetConfirmation = false
-  @State private var checkingInstanceValidity = false
-  
-  @State private var editMode = EditMode.inactive
-  private static var count = 0
-  
+
   var body: some View {
     /// **Future implementation**
     //    DroppableList("Users 1", users: $users1) { dropped, index in
@@ -38,9 +30,9 @@ struct ManageInstancesView: View {
     //      users2.insert(dropped, at: index)
     //      users1.removeAll { $0 == dropped }
     //    }
-    
+
     List {
-      if debugModeEnabled{
+      if debugModeEnabled {
         Text(String(describing: lemmyInstances))
       }
       Section {
@@ -48,7 +40,7 @@ struct ManageInstancesView: View {
           Text(instance)
         }
         .onDelete(perform: delete)
-        
+
         Button {
           showingAddInstanceAlert = true
         } label: {
@@ -72,12 +64,12 @@ struct ManageInstancesView: View {
               "lemmy.ml",
               "beehaw.org",
               "programming.dev",
-              "lemm.ee"
+              "lemm.ee",
             ]
             selectedInstance = "lemmy.world"
           }
         }
-        
+
         Button("Cancel", role: .cancel) {}
       }
     }
@@ -109,12 +101,12 @@ struct ManageInstancesView: View {
       }
       Button("Dismiss", role: .cancel) {}
     }
-    
+
     .toolbar {
       EditButton()
     }
   }
-  
+
   func checkInstanceValidity() {
     if !lemmyInstances.contains(enteredCustomInstance) {
       AF.request("https://\(enteredCustomInstance)/api/v3/site").response { response in
@@ -130,7 +122,7 @@ struct ManageInstancesView: View {
       showingAlreadyExistsError = true
     }
   }
-  
+
   func delete(at offsets: IndexSet) {
     lemmyInstances.remove(atOffsets: offsets)
     if lemmyInstances.isEmpty {

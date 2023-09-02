@@ -17,7 +17,6 @@ struct CommentRowView: View {
   @State var commentUpvoted: Bool = false
   @State var commentDownvoted: Bool = false
   @State var showCommentPopover: Bool = false
-  @State private var parentID: Int = 0
 
   var comment: CommentObject
   let listIndex: Int
@@ -49,7 +48,7 @@ struct CommentRowView: View {
       if debugModeEnabled {
         Text(String(listIndex))
       }
-      ForEach(1..<indentLevel, id: \.self) { _ in
+      ForEach(1 ..< indentLevel, id: \.self) { _ in
         Rectangle().opacity(0).frame(width: 0.1).padding(.horizontal, 0)
       }
       let indentLevel = min(indentLevel, commentHierarchyColors.count - 1)
@@ -92,8 +91,7 @@ struct CommentRowView: View {
       ) {
         CommentPopoverView(
           showCommentPopover: $showCommentPopover,
-          post: comment.post,
-          parentID: comment.comment.id
+          post: comment.post
         )
       }
       .swipeActions(edge: .trailing, allowsFullSwipe: true) {
@@ -104,14 +102,13 @@ struct CommentRowView: View {
         }
         .tint(.blue)
         Button {
-          parentID = comment.comment.id
           showCommentPopover = true
         } label: {
           Label("reply", systemImage: "arrowshape.turn.up.left.circle.fill")
         }.tint(.orange)
-
       }
   }
+
   func commentCollapseAction() {
     withAnimation(.easeInOut) {
       if comment.isCollapsed {
@@ -126,14 +123,14 @@ struct CommentRowView: View {
             }
           }
         }
-        self.collapseToIndex = listIndex
-        self.collapserPath = comment.comment.path
+        collapseToIndex = listIndex
+        collapserPath = comment.comment.path
       }
     }
   }
 }
 
-//struct CollapseCommentsSwipeAction: View {
+// struct CollapseCommentsSwipeAction: View {
 //  //  @Binding var isClicked: Bool
 //  @Binding var collapseToIndex: Int
 //  @Binding var collapserPath: String
@@ -151,4 +148,4 @@ struct CommentRowView: View {
 //    }
 //    .tint(.blue)
 //  }
-//}
+// }

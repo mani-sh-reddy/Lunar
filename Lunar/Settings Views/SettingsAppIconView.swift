@@ -5,10 +5,10 @@
 ////  Created by Mani on 27/07/2023.
 ////
 //
-//import Foundation
-//import SwiftUI
+// import Foundation
+// import SwiftUI
 //
-//struct SettingsAppIconView: View {
+// struct SettingsAppIconView: View {
 //  @AppStorage("appIconName") var appIconName = Settings.appIconName
 //  /// prepended by "AppIcon"
 //  let appIconSuffixes = ["Light", "Dark", "Night", "Indigo", "LemmY", "Kbin"]
@@ -57,10 +57,10 @@
 //      }
 //    }
 //  }
-//}
+// }
 //
-//struct SettingsAppIconView_Previews: PreviewProvider {
+// struct SettingsAppIconView_Previews: PreviewProvider {
 //  static var previews: some View {
 //    SettingsAppIconView()
 //  }
-//}
+// }
