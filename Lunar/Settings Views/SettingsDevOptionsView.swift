@@ -42,6 +42,15 @@ struct SettingsDevOptionsView: View {
       Section {
         AppResetButton(refreshView: $refreshView)
       }
+      Section {
+        NavigationLink {
+          NewWelcomeScreen()
+        } label: {
+          Text("New Welcome Screen")
+        }
+      } header: {
+        Text("Unreleased views")
+      }
     }
     .onChange(of: refreshView) { _ in
       refresh()
