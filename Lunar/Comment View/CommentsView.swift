@@ -5,7 +5,6 @@
 //  Created by Mani on 07/07/2023.
 //
 
-import Kingfisher
 import SwiftUI
 
 struct CommentsView: View {

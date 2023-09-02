@@ -7,7 +7,6 @@
 
 import Alamofire
 import Foundation
-import Kingfisher
 import SwiftUI
 
 @MainActor class CommunitiesFetcher: ObservableObject {
@@ -89,9 +88,7 @@ import SwiftUI
 
         self.isLoading = false
 
-        let cachableImageURLs = result.iconURLs.compactMap { URL(string: $0) }
-        let prefetcher = ImagePrefetcher(urls: cachableImageURLs) { _, _, _ in }
-        prefetcher.start()
+//        let cachableImageURLs = result.iconURLs.compactMap { URL(string: $0) }
 
       case let .failure(error):
         DispatchQueue.main.async {

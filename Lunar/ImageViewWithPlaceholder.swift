@@ -6,7 +6,6 @@
 ////
 //
 //import Foundation
-//import Kingfisher
 //import SwiftUI
 //
 //struct ImageViewWithPlaceholder: View {

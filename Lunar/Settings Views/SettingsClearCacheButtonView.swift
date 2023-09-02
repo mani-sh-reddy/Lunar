@@ -5,7 +5,6 @@
 //  Created by Mani on 24/07/2023.
 //
 
-import Kingfisher
 import Nuke
 import SwiftUI
 import UIKit
@@ -92,10 +91,7 @@ struct SettingsClearCacheButtonView: View {
   }
 
   func clearCache() {
-    let cache = ImageCache.default
-    cache.clearMemoryCache()
-    cache.clearDiskCache { print("Cache clear button clicked") }
-    //    calculateCache()
+    
   }
 }
 

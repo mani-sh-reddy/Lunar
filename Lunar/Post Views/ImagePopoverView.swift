@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Kingfisher
 import Nuke
 import NukeUI
 import SwiftUI

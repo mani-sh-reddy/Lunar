@@ -8,7 +8,6 @@
 import Alamofire
 import Combine
 import Foundation
-import Kingfisher
 import SwiftUI
 
 @MainActor class SearchFetcher: ObservableObject {

@@ -5,7 +5,8 @@
 //  Created by Mani on 22/07/2023.
 //
 
-import Kingfisher
+import Nuke
+import NukeUI
 import SwiftUI
 
 struct MoreCommunitiesRowView: View {
@@ -15,24 +16,26 @@ struct MoreCommunitiesRowView: View {
 
   var body: some View {
     HStack {
-      let processor = DownsamplingImageProcessor(size: CGSize(width: 60, height: 60))
-      KFImage(URL(string: community.community.icon ?? ""))
-        .setProcessor(processor)
-        .placeholder {
+      LazyImage(url: URL(string: community.community.icon ?? "")) { state in
+        if let image = state.image {
+          image
+            .resizable()
+            .frame(width: 30, height: 30)
+            .clipShape(Circle())
+        } else {
           Image(systemName: "books.vertical.circle.fill")
             .resizable()
             .frame(width: 30, height: 30)
             .symbolRenderingMode(.hierarchical)
             .foregroundStyle(.gray)
         }
-        .resizable()
-        .frame(width: 30, height: 30)
-        .clipShape(Circle())
+      }
+      .processors([.resize(width: 30)])
 
       VStack(alignment: .leading) {
         Text(community.community.title).lineLimit(2)
-
-      }.padding(.horizontal, 10)
+      }
+      .padding(.horizontal, 10)
       Spacer()
       Text(String("\(URLParser.extractDomain(from: community.community.actorID))"))
         .font(.caption)

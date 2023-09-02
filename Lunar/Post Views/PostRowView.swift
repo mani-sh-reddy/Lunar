@@ -5,7 +5,6 @@
 //  Created by Mani on 04/07/2023.
 //
 
-import Kingfisher
 import SafariServices
 import SwiftUI
 

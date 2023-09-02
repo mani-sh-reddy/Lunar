@@ -5,13 +5,13 @@
 //  Created by Mani on 05/08/2023.
 //
 
-import Kingfisher
 import SwiftUI
+import Nuke
+import NukeUI
 
 struct SearchCommunitiesRowView: View {
   @State var showingPlaceholderAlert = false
   var searchCommunitiesResults: [CommunityObject]
-  let processor = DownsamplingImageProcessor(size: CGSize(width: 60, height: 60))
 
   var body: some View {
     ForEach(searchCommunitiesResults, id: \.community.id) { community in
@@ -24,18 +24,22 @@ struct SearchCommunitiesRowView: View {
         )
       } label: {
         HStack {
-          KFImage(URL(string: community.community.icon ?? ""))
-            .setProcessor(processor)
-            .placeholder {
+          
+          LazyImage(url: URL(string: community.community.icon ?? "")) { state in
+            if let image = state.image {
+              image
+                .resizable()
+                .frame(width: 30, height: 30)
+                .clipShape(Circle())
+            } else {
               Image(systemName: "books.vertical.circle.fill")
                 .resizable()
                 .frame(width: 30, height: 30)
                 .symbolRenderingMode(.hierarchical)
                 .foregroundStyle(.teal)
             }
-            .resizable()
-            .frame(width: 30, height: 30)
-            .clipShape(Circle())
+          }
+          .processors([.resize(width: 30)])
 
           VStack(alignment: .leading, spacing: 2) {
             HStack(alignment: .center, spacing: 4) {

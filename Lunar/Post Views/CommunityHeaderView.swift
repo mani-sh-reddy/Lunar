@@ -6,14 +6,14 @@
 //
 
 import Foundation
-import Kingfisher
 import SwiftUI
+import Nuke
+import NukeUI
 
 struct CommunityHeaderView: View {
   @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @State private var bannerFailedToLoad = false
-  @State private var iconFailedToLoad = false
 
   var community: CommunityObject?
   var navigationHeading: String { return community?.community.name ?? "" }
@@ -29,23 +29,27 @@ struct CommunityHeaderView: View {
   var body: some View {
     Section {
       HStack {
-        if hasIcon, !iconFailedToLoad {
-          KFImage(URL(string: community?.community.icon ?? ""))
-            .fade(duration: 0.25)
-            .resizable()
-            .onFailure { _ in
-              iconFailedToLoad = true
+        if hasIcon {
+          
+          LazyImage(url: URL(string: (community?.community.icon) ?? "")) { state in
+            if let image = state.image {
+              image
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .clipShape(Circle())
+                .frame(width: 60, height: 60)
+                .padding(5)
+                .border(debugModeEnabled ? Color.red : Color.clear)
+            } else if state.error != nil {
+              EmptyView()
+            } else {
+              Color.clear // Acts as a placeholder
             }
-            .clipped()
-            .aspectRatio(contentMode: .fill)
-            .clipShape(Circle())
-            .frame(width: 60, height: 60)
-            .padding(5)
-            .border(debugModeEnabled ? Color.red : Color.clear)
-        } else {
-          EmptyView()
-            .frame(width: 0, height: 0)
+          }
+          .processors([.resize(width: 60)])
+          //          .clipShape(RoundedRectangle(cornerRadius: imageRadius, style: .continuous))
         }
+          
         VStack(alignment: .leading) {
           Text(navigationHeading)
             .font(.title).bold()

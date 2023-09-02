@@ -7,7 +7,6 @@
 
 import Alamofire
 import Foundation
-import Kingfisher
 import SwiftUI
 
 @MainActor class TrendingCommunitiesFetcher: ObservableObject {

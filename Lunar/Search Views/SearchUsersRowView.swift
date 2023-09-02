@@ -5,13 +5,14 @@
 //  Created by Mani on 05/08/2023.
 //
 
-import Kingfisher
+import Nuke
+import NukeUI
 import SwiftUI
 
 struct SearchUsersRowView: View {
   @State var showingPlaceholderAlert = false
   var searchUsersResults: [PersonObject]
-  let processor = DownsamplingImageProcessor(size: CGSize(width: 60, height: 60))
+//  let processor = DownsamplingImageProcessor(size: CGSize(width: 60, height: 60))
 
   var body: some View {
     ForEach(searchUsersResults, id: \.person.id) { person in
@@ -23,7 +24,7 @@ struct SearchUsersRowView: View {
           user: person
         )
       } label: {
-        UserRowDetailView(person: person, processor: processor)
+        UserRowDetailView(person: person)
       }
 
       .swipeActions(edge: .trailing, allowsFullSwipe: true) {
@@ -73,22 +74,32 @@ struct UserRowDetailView: View {
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   
   var person: PersonObject
-  var processor: DownsamplingImageProcessor
   
   var body: some View {
     HStack(alignment: .center) {
-      KFImage(URL(string: person.person.avatar ?? ""))
-        .setProcessor(processor)
-        .placeholder {
+      
+      
+      
+      
+      LazyImage(url: URL(string: (person.person.avatar ?? ""))) { state in
+        if let image = state.image {
+          image
+            .resizable()
+            .frame(width: 30, height: 30)
+            .clipShape(Circle())
+        } else {
           Image(systemName: "person.circle.fill")
             .resizable()
             .frame(width: 30, height: 30)
             .symbolRenderingMode(.hierarchical)
             .foregroundStyle(.blue)
         }
-        .resizable()
-        .frame(width: 30, height: 30)
-        .clipShape(Circle())
+      }
+      .processors([.resize(width: 30)])
+      
+      
+      
+        
       
       VStack(alignment: .leading, spacing: 2) {
         HStack(alignment: .center, spacing: 4) {
