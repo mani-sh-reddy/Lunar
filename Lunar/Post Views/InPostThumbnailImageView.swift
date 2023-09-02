@@ -18,13 +18,16 @@ struct InPostThumbnailImageView: View {
 
     LazyImage(url: URL(string: thumbnailURL)) { state in
       if let image = state.image {
-        image.resizable().aspectRatio(contentMode: .fit)
+          image
+            .resizable()
+            .aspectRatio(contentMode: .fit)
       } else if state.error != nil {
         Color.clear  // Indicates an error
       } else {
         Color.clear  // Acts as a placeholder
       }
     }
+    .processors([.resize(width: 300)])
     .clipShape(RoundedRectangle(cornerRadius: imageRadius, style: .continuous))
   }
 }
