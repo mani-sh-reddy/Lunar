@@ -1330,7 +1330,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconKbin AppIconNight AppIconIndigo AppIconLemmY AppIconDark";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconLight;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_STICKER_CONTENT = YES;
 				ASSETCATALOG_COMPILER_TARGET_STICKERS_ICON_ROLE = extension;
@@ -1358,7 +1358,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.8.75;
-				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.Lunar";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.Lunar.dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
