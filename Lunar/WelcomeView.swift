@@ -16,7 +16,7 @@ struct WelcomeView: View {
   let haptics = UIImpactFeedbackGenerator(style: .soft)
 
   var body: some View {
-    VStack {
+    ZStack {
       TabView(selection: $currentPage) {
         ForEach(welcomeScreenInfo.info.indices, id: \.self) { index in
           ScrollView {
@@ -29,44 +29,45 @@ struct WelcomeView: View {
             Spacer()
             Rectangle().frame(height: 100).foregroundStyle(.clear)
           }
-          .padding(.bottom, 70)
-          
+          .padding(.bottom, 150)
         }
       }
-      .padding(.vertical, 20)
+//      .padding(.vertical, 20)
       .tabViewStyle(.page)
       .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-
-      Button {
-        if currentPage >= 3 {
-          haptics.impactOccurred()
-          showWelcomeScreen = false
-        } else {
-          haptics.impactOccurred()
-          withAnimation(.bouncy) {
-            currentPage += 1
+      VStack {
+        Spacer()
+        Button {
+          if currentPage >= 3 {
+            haptics.impactOccurred()
+            showWelcomeScreen = false
+          } else {
+            haptics.impactOccurred()
+            withAnimation(.bouncy) {
+              currentPage += 1
+            }
           }
+        } label: {
+          LargeNavButton(
+            text: currentPage < 3 ? currentPage == 2 ? "View all features →" : "Continue →" : "Get Started",
+            color: Color.blue
+          )
         }
-      } label: {
-        LargeNavButton(
-          text: currentPage < 3 ? currentPage == 2 ? "View all features →" : "Continue →" : "Get Started",
-          color: Color.blue
-        )
-      }
-      .padding(.bottom, 30)
-      .padding(.horizontal, 29)
+        .padding(.bottom, 20)
+        .padding(.horizontal, 29)
 
-      Button {
-        showWelcomeScreen = false
-      } label: {
-        SmallNavButton(
-          systemImage: "xmark",
-          text: "Close Introduction",
-          color: currentPage < 3 ? Color.red : Color.clear,
-          symbolLocation: .left
-        ).disabled(currentPage >= 3)
+        Button {
+          showWelcomeScreen = false
+        } label: {
+          SmallNavButton(
+            systemImage: "xmark",
+            text: "Close Introduction",
+            color: currentPage < 3 ? Color.red : Color.clear,
+            symbolLocation: .left
+          ).disabled(currentPage >= 3)
+        }
       }
-      .padding(.bottom, 30)
+      .padding(.bottom, 80)
     }
   }
 }
@@ -110,24 +111,7 @@ struct WelcomeScreenCard: View {
           }
         }
       }
-      .padding(.top, 40)
-
-//      if info.first?.heading == "Lunar" {
-//        Button {
-//          showWelcomeScreen = false
-//          withAnimation(.bouncy) {
-//            currentPage = 3
-//          }
-//        } label: {
-//          SmallNavButton(
-//            systemImage: "chevron.right",
-//            text: "View all features",
-//            color: Color.blue,
-//            symbolLocation: .right
-//          )
-//        }
-//        .padding(.top, 30)
-//      }
+      .padding(.top, 60)
 
       Spacer()
     }
