@@ -29,6 +29,8 @@ struct WelcomeView: View {
             Spacer()
             Rectangle().frame(height: 100).foregroundStyle(.clear)
           }
+          .padding(.bottom, 70)
+          
         }
       }
       .padding(.vertical, 20)
@@ -47,8 +49,8 @@ struct WelcomeView: View {
         }
       } label: {
         LargeNavButton(
-          text: currentPage < 3 ? currentPage == 2 ? "View all features →" : "Continue →" : "Close",
-          color: currentPage < 3 ? Color.blue : Color.red
+          text: currentPage < 3 ? currentPage == 2 ? "View all features →" : "Continue →" : "Get Started",
+          color: Color.blue
         )
       }
       .padding(.bottom, 30)
