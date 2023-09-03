@@ -13,7 +13,7 @@ struct EntryView: View {
 
   var body: some View {
     if showWelcomeScreen {
-      WelcomeScreenView()
+      WelcomeView()
     } else {
       if showLaunchSplashScreen {
         SplashScreen()

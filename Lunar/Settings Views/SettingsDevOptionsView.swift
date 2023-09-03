@@ -44,9 +44,9 @@ struct SettingsDevOptionsView: View {
       }
       Section {
         NavigationLink {
-          NewWelcomeScreen()
+          PlaceholderView()
         } label: {
-          Text("New Welcome Screen")
+          Text("Placeholder")
         }
       } header: {
         Text("Unreleased views")
