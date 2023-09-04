@@ -22,13 +22,21 @@ struct ImagePopoverView: View {
         .ignoresSafeArea()
       LazyImage(url: URL(string: thumbnailURL)) { state in
         if let image = state.image {
+          //          image.resizable().aspectRatio(contentMode: .fit)
           PhotoDetailView(image: image.asUIImage())
         } else if state.error != nil {
-          Color.black // Indicates an error
+          Color.clear // Indicates an error
         } else {
           ProgressView()
         }
       }
+      //      AsyncImage(url: URL(string: thumbnailURL)) { state in
+      //        if let image = state.image {
+      //          PhotoDetailView(image: image.asUIImage())
+      //        } else {
+      //          ProgressView()
+      //        }
+      //      }
       .edgesIgnoringSafeArea(.all)
     }
   }

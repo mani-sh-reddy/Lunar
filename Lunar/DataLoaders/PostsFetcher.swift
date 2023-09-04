@@ -23,7 +23,6 @@ import SwiftUI
 
   let imagePrefetcher = ImagePrefetcher()
 
-
   private var currentPage = 1
   private var sortParameter: String?
   private var typeParameter: String?
@@ -52,7 +51,7 @@ import SwiftUI
     if communityID == 99_999_999_999_999 { // TODO: just a placeholder to prevent running when user posts
       return
     }
-    ImagePipeline.shared = ImagePipeline(configuration: .withDataCache)
+
     loadMoreContent()
   }
 
@@ -88,10 +87,8 @@ import SwiftUI
 
         self.isLoading = false
 
-        
-//        let imagesToPrefetch = result.imageURLs.compactMap { URL(string: $0) }
-//          self.imagePrefetcher.startPrefetching(with: imagesToPrefetch)
-        
+        let imagesToPrefetch = result.imageURLs.compactMap { URL(string: $0) }
+        self.imagePrefetcher.startPrefetching(with: imagesToPrefetch)
 
       case let .failure(error):
         DispatchQueue.main.async {
@@ -134,9 +131,8 @@ import SwiftUI
           !self.posts.contains { $0.post.id == newPost.post.id }
         }
 
-//        let imagesToPrefetch = result.imageURLs.compactMap {URL(string: $0)}
-//        self.imagePrefetcher.startPrefetching(with: imagesToPrefetch)
-        
+        let imagesToPrefetch = result.imageURLs.compactMap { URL(string: $0) }
+        self.imagePrefetcher.startPrefetching(with: imagesToPrefetch)
 
         self.posts += filteredNewPosts
         self.isLoading = false
