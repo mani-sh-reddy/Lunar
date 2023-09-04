@@ -12,6 +12,8 @@ import SwiftUI
 import UIKit
 
 struct InPostThumbnailImageView: View {
+  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
+
   var thumbnailURL: String
   var imageRadius: CGFloat = 10
 
@@ -21,13 +23,15 @@ struct InPostThumbnailImageView: View {
         image
           .resizable()
           .aspectRatio(contentMode: .fit)
+          .clipShape(RoundedRectangle(cornerRadius: imageRadius, style: .continuous))
       } else if state.error != nil {
-        Color.clear // Indicates an error
+        Color.clear
+          .aspectRatio(contentMode: .fit)
       } else {
-        Color.clear // Acts as a placeholder
+        Color.clear
+          .aspectRatio(contentMode: .fit)
       }
     }
-    .processors([.resize(width: 250)])
-    .clipShape(RoundedRectangle(cornerRadius: imageRadius, style: .continuous))
+    .pipeline(ImagePipeline(configuration: .withDataCache))
   }
 }
