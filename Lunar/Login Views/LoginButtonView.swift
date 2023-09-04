@@ -9,9 +9,9 @@ import Foundation
 import SwiftUI
 
 struct LoginButtonView: View {
+  @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
+  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
   @Binding var isTryingLogin: Bool
-  @Binding var loggedInUsersList: [String]
-  @Binding var loggedInEmailsList: [String]
   @Binding var usernameEmailInput: String
   @Binding var password: String
   @Binding var twoFactor: String
@@ -44,8 +44,17 @@ struct LoginButtonView: View {
     if isTryingLogin { return true }
     if usernameEmailInvalid || passwordInvalid { return true }
     if showingTwoFactorField, twoFactorInvalid { return true }
-    if loggedInUsersList.contains(usernameEmailInput) { return true }
-    if loggedInUsersList.contains(usernameEmailInput) { return true }
+    for account in loggedInAccounts {
+      let instanceBaseDomain = URLParser.extractBaseDomain(from: account.actorID)
+      print("selected instance:\(selectedInstance) \n instancebasedomain: \(instanceBaseDomain) ")
+      if (account.email.contains(usernameEmailInput) && selectedInstance == instanceBaseDomain) ||
+          (account.userID.contains(usernameEmailInput) && selectedInstance == instanceBaseDomain)
+       {
+        return true
+      } else{
+        return false
+      }
+    }
     return false
   }
 

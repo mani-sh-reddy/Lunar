@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct AppResetButton: View {
-  @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
-  @AppStorage("loggedInEmailsList") var loggedInEmailsList = Settings.loggedInEmailsList
   @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
 
   @State private var showConfirmation: Bool = false
@@ -77,10 +75,7 @@ struct AppResetButton: View {
     isLoading = true
     notificationHaptics.notificationOccurred(.success)
     isClicked = true
-
-    loggedInEmailsList.removeAll()
     loggedInAccounts.removeAll()
-    loggedInUsersList.removeAll()
 
     KeychainHelper.standard.clearKeychain()
 

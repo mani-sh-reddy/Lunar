@@ -44,6 +44,11 @@ struct SettingsDevOptionsView: View {
       }
       Section {
         NavigationLink {
+          UserDefaultsExplorerView()
+        } label: {
+          Text("UserDefaults Explorer")
+        }
+        NavigationLink {
           PlaceholderView()
         } label: {
           Text("Placeholder")

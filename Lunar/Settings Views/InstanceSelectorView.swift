@@ -15,7 +15,7 @@ struct InstanceSelectorView: View {
 
   var body: some View {
     if debugModeEnabled {
-      Text("deselected: \(selectedInstance)")
+      Text("selected instance: \(selectedInstance)")
     }
 
     Section {

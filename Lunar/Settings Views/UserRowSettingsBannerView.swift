@@ -14,6 +14,7 @@ struct UserRowSettingsBannerView: View {
   @AppStorage("selectedName") var selectedName = Settings.selectedName
   @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
+  @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
 
   @Binding var selectedAccount: AccountModel?
 

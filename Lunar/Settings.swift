@@ -12,7 +12,7 @@ import SwiftUI
 /// @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
 
 enum Settings {
-  static let appBundleID: String = "io.github.mani-sh-reddy.Lunar.app"
+  static let appBundleID: String = Bundle.main.bundleIdentifier ?? "io.github.mani-sh-reddy.Lunar.app"
   static let lemmyInstances: [String] = [
     "lemmy.world",
     "lemmy.ml",
@@ -26,11 +26,6 @@ enum Settings {
   static let selectedAppIcon: String = "AppIconLight"
 
   static let kbinActive: Bool = false
-
-  /// requires extension to array
-  /// useage: Text("loggedInUsersList: \(String(describing: loggedInUsersList))")
-  static let loggedInUsersList: [String] = []
-  static let loggedInEmailsList: [String] = []
 
   /// **USAGE**
   /// @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts

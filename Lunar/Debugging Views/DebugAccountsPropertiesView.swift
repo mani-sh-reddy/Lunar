@@ -9,11 +9,10 @@ import Foundation
 import SwiftUI
 
 struct DebugAccountsPropertiesView: View {
-  @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  @AppStorage("loggedInEmailsList") var loggedInEmailsList = Settings.loggedInEmailsList
   @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
+  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
 
   var showingPopover: Bool
   var isPresentingConfirm: Bool
@@ -24,7 +23,7 @@ struct DebugAccountsPropertiesView: View {
 
   var keychainDebugString: String {
     KeychainHelper.standard.generateDebugString(
-      service: "io.github.mani-sh-reddy.Lunar.app"
+      service: appBundleID
     )
   }
 
@@ -75,11 +74,11 @@ struct DebugAccountsPropertiesView: View {
           }.padding(.vertical, 10)
           VStack(alignment: .leading) {
             Text("@AppStorage loggedInUsersList:").bold()
-            Text("\(loggedInUsersList.rawValue)")
+            Text("**removed variable**")
           }.padding(.vertical, 10)
           VStack(alignment: .leading) {
             Text("@AppStorage loggedInEmailsList:").bold()
-            Text("\(loggedInEmailsList.rawValue)")
+            Text("**removed variable**")
           }.padding(.vertical, 10)
           VStack(alignment: .leading) {
             Text("@AppStorage loggedInAccounts:").bold()

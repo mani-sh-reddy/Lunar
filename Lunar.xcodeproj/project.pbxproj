@@ -26,6 +26,7 @@
 		3C29F5452A97D49C001563E7 /* LunarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C29F5442A97D49C001563E7 /* LunarUITests.swift */; };
 		3C29F5472A97D49C001563E7 /* LunarUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C29F5462A97D49C001563E7 /* LunarUITestsLaunchTests.swift */; };
 		3C29F54E2A97D4AE001563E7 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C29F54D2A97D4AE001563E7 /* SnapshotHelper.swift */; };
+		3C2C454A2AA648A000727DD5 /* UserDefaultsExplorerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2C45492AA648A000727DD5 /* UserDefaultsExplorerView.swift */; };
 		3C42AD1A2A8038300056AFBC /* KbinCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42AD192A8038300056AFBC /* KbinCommentsView.swift */; };
 		3C42AD1C2A803AE50056AFBC /* KbinCommentsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42AD1B2A803AE50056AFBC /* KbinCommentsFetcher.swift */; };
 		3C432F5C2A819E54000D5321 /* KbinThreadBodyFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C432F5B2A819E54000D5321 /* KbinThreadBodyFetcher.swift */; };
@@ -213,6 +214,7 @@
 		3C29F5442A97D49C001563E7 /* LunarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarUITests.swift; sourceTree = "<group>"; };
 		3C29F5462A97D49C001563E7 /* LunarUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3C29F54D2A97D4AE001563E7 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
+		3C2C45492AA648A000727DD5 /* UserDefaultsExplorerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExplorerView.swift; sourceTree = "<group>"; };
 		3C42AD192A8038300056AFBC /* KbinCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinCommentsView.swift; sourceTree = "<group>"; };
 		3C42AD1B2A803AE50056AFBC /* KbinCommentsFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KbinCommentsFetcher.swift; sourceTree = "<group>"; };
 		3C432F5B2A819E54000D5321 /* KbinThreadBodyFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KbinThreadBodyFetcher.swift; sourceTree = "<group>"; };
@@ -579,6 +581,7 @@
 				3C808E252A9B7174008FA62E /* SettingsDevSectionView.swift */,
 				3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheButtonView.swift */,
 				3C808E232A9B6DAD008FA62E /* SettingsDevOptionsView.swift */,
+				3C2C45492AA648A000727DD5 /* UserDefaultsExplorerView.swift */,
 				3C6D296A2A7986AE007AFD99 /* AppResetButton.swift */,
 				3C808E272A9B7639008FA62E /* LogsView.swift */,
 				3C808E292A9B772A008FA62E /* ClearLogsButton.swift */,
@@ -986,6 +989,7 @@
 				3CD4DA262A7EF8DB00BC374A /* UserInfoView.swift in Sources */,
 				3CC178912A7DA6A200C208D0 /* SearchView.swift in Sources */,
 				3C113C392A6E71E100FDE5CE /* SettingsAccountView.swift in Sources */,
+				3C2C454A2AA648A000727DD5 /* UserDefaultsExplorerView.swift in Sources */,
 				3C6BBF722A910F6100312E2B /* SubscriptionActionSender.swift in Sources */,
 				3C113C3F2A6E8C9400FDE5CE /* SettingsGeneralSectionView.swift in Sources */,
 				3C87A36E2A9FBDE70029C18F /* SettingsAppIconPickerView.swift in Sources */,

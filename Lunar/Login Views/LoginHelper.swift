@@ -20,8 +20,12 @@ import SwiftUI
 class LoginHelper: ObservableObject {
   @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
-  @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
-  @AppStorage("loggedInEmailsList") var loggedInEmailsList = Settings.loggedInEmailsList
+  @AppStorage("selectedName") var selectedName = Settings.selectedName
+  @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
+  @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
+  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
+  @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
+  
   @Published var usernameEmail: String
   @Published var password: String
   @Published var twoFactor: String?
@@ -84,14 +88,10 @@ class LoginHelper: ObservableObject {
   func handleLoginSuccess(fetchedData: CredentialsResponseModel) {
     print("login successful inside handleLoginSuccess()")
     let jwt = fetchedData.jwt
-    SiteInfoFetcher(jwt: jwt).fetchSiteInfo { _, email, actorID, _ in
+    SiteInfoFetcher(jwt: jwt).fetchSiteInfo { username, email, actorID, _ in
 
       if let validActorID = actorID {
-        self.loggedInUsersList.append(validActorID)
         KeychainHelper.standard.save(jwt, service: self.appBundleID, account: validActorID)
-      }
-      if let validEmail = email {
-        self.loggedInEmailsList.append(validEmail)
       }
     }
   }

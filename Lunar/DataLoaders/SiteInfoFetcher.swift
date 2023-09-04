@@ -11,13 +11,21 @@ import SwiftUI
 
 class SiteInfoFetcher: ObservableObject {
   private var endpoint: URLComponents
+  private var jwt: String
 
   /// Adding info about the user to **@AppsStorage** loggedInAccounts
   var loggedInAccount = AccountModel()
   @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
+  @AppStorage("selectedName") var selectedName = Settings.selectedName
+  @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
+  @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
+  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
+  @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
+
   @AppStorage("logs") var logs = Settings.logs
 
   init(jwt: String) {
+    self.jwt = jwt
     endpoint = URLBuilder(endpointPath: "/api/v3/site", jwt: jwt).buildURL()
   }
 
@@ -40,6 +48,12 @@ class SiteInfoFetcher: ObservableObject {
           self.loggedInAccount.actorID = actorID
           /// adding to the list of already logged in accounts
           self.loggedInAccounts.append(self.loggedInAccount)
+          
+          /// Selecting and setting the latest logged in account as active
+          self.selectedName = username
+          self.selectedEmail = email ?? ""
+          self.selectedAvatarURL = avatarURL ?? ""
+          self.selectedActorID = actorID
 
           let response = String(response.response?.statusCode ?? 0)
 

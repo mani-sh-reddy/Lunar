@@ -9,9 +9,13 @@ import Foundation
 import SwiftUI
 
 struct LogoutAllUsersButtonView: View {
-  @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
-  @AppStorage("loggedInEmailsList") var loggedInEmailsList = Settings.loggedInEmailsList
   @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
+  @AppStorage("selectedName") var selectedName = Settings.selectedName
+  @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
+  @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
+  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
+  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
+  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
 
   @Binding var showingPopover: Bool
   @Binding var isPresentingConfirm: Bool
@@ -70,29 +74,32 @@ struct LogoutAllUsersButtonView: View {
     .confirmationDialog("Remove All Accounts?", isPresented: $deleteConfirmationShown) {
       Button(role: .destructive) {
         isPresentingConfirm = true
+        if !loggedInAccounts.isEmpty {
         selectedAccount = AccountModel(
           userID: "", name: "", email: "", avatarURL: "", actorID: ""
         )
         loggedInAccounts.removeAll()
+        selectedName = ""
+        selectedEmail = ""
+        selectedAvatarURL = ""
+        selectedActorID = ""
 
-        if !loggedInAccounts.isEmpty {
+        
           isLoadingDeleteButton = true
           haptic.notificationOccurred(.success)
           logoutAllUsersButtonClicked = true
-
-          for userAccount in loggedInUsersList {
-            KeychainHelper.standard.delete(
-              service: "io.github.mani-sh-reddy.Lunar.app",
-              account: userAccount
-            )
-            loggedInUsersList.removeAll { $0 == userAccount }
-            print("LOGGED OUT AND DELETED FROM KEYCHAIN: \(userAccount)")
-          }
-          loggedInEmailsList.removeAll()
-          print("REMOVED ALL from loggedInEmailsList")
+          
           KeychainHelper.standard.clearKeychain()
+          UserDefaults.standard.synchronize()
           print("REMOVED ALL JWT from Keychain")
 
+          for account in loggedInAccounts {
+            KeychainHelper.standard.delete(
+              service: appBundleID,
+              account: account.actorID
+            )
+          }
+          loggedInAccounts.removeAll()
           isLoadingDeleteButton = false
           isPresentingConfirm = false
         }

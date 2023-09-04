@@ -9,10 +9,8 @@ import Foundation
 import SwiftUI
 
 struct DebugLoginPagePropertiesView: View {
-  @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  @AppStorage("loggedInEmailsList") var loggedInEmailsList = Settings.loggedInEmailsList
   @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
 
   var isTryingLogin: Bool
@@ -88,11 +86,11 @@ struct DebugLoginPagePropertiesView: View {
           }.padding(.vertical, 10)
           VStack(alignment: .leading) {
             Text("@AppStorage loggedInUsersList:").bold()
-            Text("\(loggedInUsersList.rawValue)")
+            Text("**removed variable**")
           }.padding(.vertical, 10)
           VStack(alignment: .leading) {
             Text("@AppStorage loggedInEmailsList:").bold()
-            Text("\(loggedInEmailsList.rawValue)")
+            Text("**removed variable**")
           }.padding(.vertical, 10)
           VStack(alignment: .leading) {
             Text("@AppStorage loggedInAccounts:").bold()

@@ -14,8 +14,15 @@ enum FocusedField {
 }
 
 struct LoginView: View {
-  @AppStorage("loggedInUsersList") var loggedInUsersList = Settings.loggedInUsersList
-  @AppStorage("loggedInEmailsList") var loggedInEmailsList = Settings.loggedInEmailsList
+  @AppStorage("selectedName") var selectedName = Settings.selectedName
+  @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
+  @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
+  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
+  @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
+  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
+  
+  @Environment(\.dismiss) var dismiss
+
 
   @State private var isTryingLogin: Bool = false
   @State private var usernameEmailInput: String = ""
@@ -74,8 +81,6 @@ struct LoginView: View {
       Section {
         LoginButtonView(
           isTryingLogin: $isTryingLogin,
-          loggedInUsersList: $loggedInUsersList,
-          loggedInEmailsList: $loggedInEmailsList,
           usernameEmailInput: $usernameEmailInput,
           password: $password,
           twoFactor: $twoFactor,
