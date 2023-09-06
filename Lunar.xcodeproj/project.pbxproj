@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C0E2DD02AA909BB00095FA5 /* PostsSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0E2DCF2AA909BB00095FA5 /* PostsSectionView.swift */; };
 		3C113C392A6E71E100FDE5CE /* SettingsAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */; };
 		3C113C3D2A6E8B0C00FDE5CE /* SettingsAppearanceSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C3C2A6E8B0C00FDE5CE /* SettingsAppearanceSectionView.swift */; };
 		3C113C3F2A6E8C9400FDE5CE /* SettingsGeneralSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C3E2A6E8C9400FDE5CE /* SettingsGeneralSectionView.swift */; };
@@ -193,6 +194,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C0E2DCF2AA909BB00095FA5 /* PostsSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsSectionView.swift; sourceTree = "<group>"; };
 		3C10A76E2A72A6FC0040F1A9 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAccountView.swift; sourceTree = "<group>"; };
 		3C113C3C2A6E8B0C00FDE5CE /* SettingsAppearanceSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAppearanceSectionView.swift; sourceTree = "<group>"; };
@@ -742,6 +744,7 @@
 			isa = PBXGroup;
 			children = (
 				3CA5C40D2A57525500BF8F1B /* PostsView.swift */,
+				3C0E2DCF2AA909BB00095FA5 /* PostsSectionView.swift */,
 				3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */,
 				3C6BBF7F2A9125F500312E2B /* PostActionsManager.swift */,
 				3C6BBF7D2A91257A00312E2B /* GoIntoButtonView.swift */,
@@ -1000,6 +1003,7 @@
 				3CB9C73E2AA24A8800FB5A10 /* LocalUser.swift in Sources */,
 				3CA5C4102A5753AC00BF8F1B /* PostRowView.swift in Sources */,
 				3C96EA4E2A783FF100753199 /* LoggedInUsersListView.swift in Sources */,
+				3C0E2DD02AA909BB00095FA5 /* PostsSectionView.swift in Sources */,
 				3CEF4CCA2A69B6FA002B83C0 /* InPostCommunityHeaderView.swift in Sources */,
 				3CF3F9C22A6EE20C0051E725 /* ViewExtension.swift in Sources */,
 				3C87A36A2A9F9C4E0029C18F /* ForceAppearance.swift in Sources */,

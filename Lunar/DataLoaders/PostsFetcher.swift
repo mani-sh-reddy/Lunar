@@ -6,8 +6,6 @@
 //
 
 import Alamofire
-import Combine
-import Foundation
 import Nuke
 import SwiftUI
 
@@ -52,92 +50,65 @@ import SwiftUI
       return
     }
 
-    loadMoreContent()
+    loadContent()
   }
-
-  func refreshContent() async {
-    do {
-      try await Task.sleep(nanoseconds: 1_000_000_000)
-    } catch {}
-
-    guard !isLoading else { return }
-
-    isLoading = true
-    currentPage = 1
-
-    let cacher = ResponseCacher(behavior: .cache)
-
-    AF.request(endpoint) { urlRequest in
-      //      print("PostsFetcher REF \(urlRequest.url as Any)")
-      urlRequest.cachePolicy = .reloadRevalidatingCacheData
+  
+  func loadMoreContentIfNeeded(currentItem: PostObject) {
+//    print("\(posts.last?.post.id ?? 0) -> \(currentItem.post.id)")
+    guard currentItem.post.id == posts.last?.post.id else {
+      return
     }
-    .cacheResponse(using: cacher)
-    .validate(statusCode: 200 ..< 300)
-    .responseDecodable(of: PostModel.self) { response in
-      switch response.result {
-      case let .success(result):
+    loadContent()
+  }
+  
+//  func loadMoreContentIfNeeded(currentItem item: PostObject?) {
+//    guard let item else { return }
+//    let thresholdIndex = posts.index(before: posts.endIndex)
+//    if posts.firstIndex(where: { $0.post.id == item.post.id }) == thresholdIndex {
+//      loadContent()
+//    }
+//  }
 
-        let newPosts = result.posts
-
-        let filteredNewPosts = newPosts.filter { newPost in
-          !self.posts.contains { $0.post.id == newPost.post.id }
-        }
-
-        self.posts.insert(contentsOf: filteredNewPosts, at: 0)
-
-        self.isLoading = false
-
-        let imagesToPrefetch = result.imageURLs.compactMap { URL(string: $0) }
-        self.imagePrefetcher.startPrefetching(with: imagesToPrefetch)
-
-      case let .failure(error):
-        DispatchQueue.main.async {
-          let log = "PostsFetcher ERROR: \(error): \(error.errorDescription ?? "")"
-          print(log)
-          let currentDateTime = String(describing: Date())
-          self.logs.append("\(currentDateTime) :: \(log)")
-        }
+  func loadContent(isRefreshing: Bool = false) {
+    if isRefreshing {
+      Task {
+        try await Task.sleep(nanoseconds: 1_000_000_000)
       }
+      currentPage = 1
     }
-  }
 
-  func loadMoreContentIfNeeded(currentItem item: PostObject?) {
-    guard let item else { return }
-    let thresholdIndex = posts.index(before: posts.endIndex)
-    if posts.firstIndex(where: { $0.post.id == item.post.id }) == thresholdIndex {
-      loadMoreContent()
-    }
-  }
-
-  private func loadMoreContent() {
     guard !isLoading else { return }
 
     isLoading = true
 
     let cacher = ResponseCacher(behavior: .cache)
-
     AF.request(endpoint) { urlRequest in
-      //      print("PostsFetcher LOAD \(urlRequest.url as Any)")
-      urlRequest.cachePolicy = .returnCacheDataElseLoad
+//      urlRequest.timeoutInterval = 5
+      print(urlRequest.url ?? "" )
     }
     .cacheResponse(using: cacher)
     .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: PostModel.self) { response in
       switch response.result {
       case let .success(result):
-        let newPosts = result.posts
 
-        let filteredNewPosts = newPosts.filter { newPost in
-          !self.posts.contains { $0.post.id == newPost.post.id }
-        }
+        let fetchedPosts = result.posts
 
         let imagesToPrefetch = result.imageURLs.compactMap { URL(string: $0) }
         self.imagePrefetcher.startPrefetching(with: imagesToPrefetch)
 
-        self.posts += filteredNewPosts
+        if isRefreshing {
+          self.posts = fetchedPosts
+//          self.posts.insert(contentsOf: filteredNewPosts, at: 0)
+        } else {
+          /// Removing duplicates
+          let filteredPosts = fetchedPosts.filter { post in
+            !self.posts.contains { $0.post.id == post.post.id }
+          }
+          self.posts += filteredPosts
+          self.currentPage += 1
+        }
         self.isLoading = false
-        self.currentPage += 1
-
       case let .failure(error):
         DispatchQueue.main.async {
           let log = "PostsFetcher ERROR: \(error): \(error.errorDescription ?? "")"
@@ -160,3 +131,5 @@ import SwiftUI
     }
   }
 }
+
+
