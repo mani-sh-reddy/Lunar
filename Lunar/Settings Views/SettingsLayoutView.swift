@@ -22,6 +22,8 @@ struct SettingsLayoutView: View {
         }
       } header: {
         Text("Posts")
+      } footer: {
+        Text("Note that the compact posts view is still buggy, but an update for it is in the works.")
       }
 
       // MARK: - Labels Section

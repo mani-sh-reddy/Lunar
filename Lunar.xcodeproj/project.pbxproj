@@ -58,7 +58,6 @@
 		3C6BBF7A2A91255D00312E2B /* DownvoteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BBF792A91255D00312E2B /* DownvoteButtonView.swift */; };
 		3C6BBF7C2A91256900312E2B /* UpvoteButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BBF7B2A91256900312E2B /* UpvoteButtonView.swift */; };
 		3C6BBF7E2A91257A00312E2B /* GoIntoButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BBF7D2A91257A00312E2B /* GoIntoButtonView.swift */; };
-		3C6BBF802A9125F500312E2B /* PostActionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BBF7F2A9125F500312E2B /* PostActionsManager.swift */; };
 		3C6D29652A793878007AFD99 /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D29642A793878007AFD99 /* DictionaryExtension.swift */; };
 		3C6D29672A795141007AFD99 /* DebugSettingsPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D29662A795141007AFD99 /* DebugSettingsPropertiesView.swift */; };
 		3C6D29692A797D6E007AFD99 /* UserRowSettingsBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D29682A797D6E007AFD99 /* UserRowSettingsBannerView.swift */; };
@@ -249,7 +248,6 @@
 		3C6BBF792A91255D00312E2B /* DownvoteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownvoteButtonView.swift; sourceTree = "<group>"; };
 		3C6BBF7B2A91256900312E2B /* UpvoteButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpvoteButtonView.swift; sourceTree = "<group>"; };
 		3C6BBF7D2A91257A00312E2B /* GoIntoButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoIntoButtonView.swift; sourceTree = "<group>"; };
-		3C6BBF7F2A9125F500312E2B /* PostActionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostActionsManager.swift; sourceTree = "<group>"; };
 		3C6D29642A793878007AFD99 /* DictionaryExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
 		3C6D29662A795141007AFD99 /* DebugSettingsPropertiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugSettingsPropertiesView.swift; sourceTree = "<group>"; };
 		3C6D29682A797D6E007AFD99 /* UserRowSettingsBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRowSettingsBannerView.swift; sourceTree = "<group>"; };
@@ -746,7 +744,6 @@
 				3CA5C40D2A57525500BF8F1B /* PostsView.swift */,
 				3C0E2DCF2AA909BB00095FA5 /* PostsSectionView.swift */,
 				3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */,
-				3C6BBF7F2A9125F500312E2B /* PostActionsManager.swift */,
 				3C6BBF7D2A91257A00312E2B /* GoIntoButtonView.swift */,
 				3C6BBF7B2A91256900312E2B /* UpvoteButtonView.swift */,
 				3C6BBF792A91255D00312E2B /* DownvoteButtonView.swift */,
@@ -1022,7 +1019,6 @@
 				3CCA7F772A956E6F00971BD1 /* CommentPopoverView.swift in Sources */,
 				3CFE04C92A7FF375007BAD81 /* KbinThreadsView.swift in Sources */,
 				3CB9C7242AA23FF400FB5A10 /* Comment.swift in Sources */,
-				3C6BBF802A9125F500312E2B /* PostActionsManager.swift in Sources */,
 				3CB9C71E2AA23F2600FB5A10 /* Counts.swift in Sources */,
 				3CCAA8BF2A65309E007CCEC2 /* NoInternetConnectionView.swift in Sources */,
 				3CAEDDE52A9E58DB001469AA /* ManageInstancesView.swift in Sources */,
