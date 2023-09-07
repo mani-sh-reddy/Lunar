@@ -18,7 +18,7 @@ struct LoginView: View {
   @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
   @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
+  @AppStorage("loggingEnabled") var loggingEnabled = Settings.loggingEnabled
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
   
   @Environment(\.dismiss) var dismiss

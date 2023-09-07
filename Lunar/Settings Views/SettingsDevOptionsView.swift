@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import Pulse
+import PulseUI
 
 struct SettingsDevOptionsView: View {
-  @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
+  @AppStorage("loggingEnabled") var loggingEnabled = Settings.loggingEnabled
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
+  @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
 
   @State var refreshView: Bool = false
   @State var settingsViewOpacity: Double = 1
@@ -22,11 +25,14 @@ struct SettingsDevOptionsView: View {
         Toggle(isOn: $debugModeEnabled) {
           Text("Enable Debug Mode")
         }
-        //        SettingsHiddenOptionsView()
-        Toggle(isOn: $enableLogging) {
-          Text("Enable Logging")
+        Toggle(isOn: $networkInspectorEnabled) {
+          Text("Enable Pulse Network Inspector")
         }
-        if enableLogging {
+        //        SettingsHiddenOptionsView()
+        Toggle(isOn: $loggingEnabled) {
+          Text("Enable Basic Logging")
+        }
+        if loggingEnabled {
           NavigationLink {
             LogsView()
           } label: {

@@ -24,6 +24,8 @@
 		3C1A3F5B2A73B2B800898FC6 /* KeychainInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F5A2A73B2B800898FC6 /* KeychainInterface.swift */; };
 		3C1A3F5D2A73BC9F00898FC6 /* CredentialsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F5C2A73BC9F00898FC6 /* CredentialsModel.swift */; };
 		3C1A3F5F2A73D64C00898FC6 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F5E2A73D64C00898FC6 /* LoginHelper.swift */; };
+		3C23F03E2AAA66E000AACA46 /* Pulse in Frameworks */ = {isa = PBXBuildFile; productRef = 3C23F03D2AAA66E000AACA46 /* Pulse */; };
+		3C23F0402AAA66E000AACA46 /* PulseUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3C23F03F2AAA66E000AACA46 /* PulseUI */; };
 		3C29F5452A97D49C001563E7 /* LunarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C29F5442A97D49C001563E7 /* LunarUITests.swift */; };
 		3C29F5472A97D49C001563E7 /* LunarUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C29F5462A97D49C001563E7 /* LunarUITestsLaunchTests.swift */; };
 		3C29F54E2A97D4AE001563E7 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C29F54D2A97D4AE001563E7 /* SnapshotHelper.swift */; };
@@ -385,8 +387,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C23F0402AAA66E000AACA46 /* PulseUI in Frameworks */,
 				3CA95F082A7ACF3B00626353 /* Nuke in Frameworks */,
 				3C4B7DDB2A58AD23003C8192 /* Alamofire in Frameworks */,
+				3C23F03E2AAA66E000AACA46 /* Pulse in Frameworks */,
 				3CA95F0A2A7ACF3B00626353 /* NukeUI in Frameworks */,
 				3CFE04BF2A7FEA71007BAD81 /* SwiftSoup in Frameworks */,
 			);
@@ -882,6 +886,8 @@
 				3CA95F072A7ACF3B00626353 /* Nuke */,
 				3CA95F092A7ACF3B00626353 /* NukeUI */,
 				3CFE04BE2A7FEA71007BAD81 /* SwiftSoup */,
+				3C23F03D2AAA66E000AACA46 /* Pulse */,
+				3C23F03F2AAA66E000AACA46 /* PulseUI */,
 			);
 			productName = Lunar;
 			productReference = 3C4F09FC2A54399F009DF8AB /* Lunar.app */;
@@ -922,6 +928,7 @@
 				3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */,
 				3CFE04BD2A7FEA71007BAD81 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+				3C23F03C2AAA66E000AACA46 /* XCRemoteSwiftPackageReference "Pulse" */,
 			);
 			productRefGroup = 3C4F09FD2A54399F009DF8AB /* Products */;
 			projectDirPath = "";
@@ -1455,6 +1462,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3C23F03C2AAA66E000AACA46 /* XCRemoteSwiftPackageReference "Pulse" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Pulse";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.3;
+			};
+		};
 		3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -1482,6 +1497,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3C23F03D2AAA66E000AACA46 /* Pulse */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3C23F03C2AAA66E000AACA46 /* XCRemoteSwiftPackageReference "Pulse" */;
+			productName = Pulse;
+		};
+		3C23F03F2AAA66E000AACA46 /* PulseUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3C23F03C2AAA66E000AACA46 /* XCRemoteSwiftPackageReference "Pulse" */;
+			productName = PulseUI;
+		};
 		3C4B7DDA2A58AD23003C8192 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */;

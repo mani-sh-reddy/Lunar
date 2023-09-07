@@ -36,7 +36,7 @@ enum Settings {
   /// self.loggedInAccounts.append(loggedInAccount)
   static let loggedInAccounts: [AccountModel] = []
 
-  static let enableLogging: Bool = false
+  static let loggingEnabled: Bool = false
   static let logs: [String] = []
 
   /// selectedUser split up to store in appstorage
@@ -61,4 +61,5 @@ enum Settings {
   static let showWelcomeScreen: Bool = true
   static let detailedCommunityLabels: Bool = true
   static let compactViewEnabled: Bool = false
+  static let networkInspectorEnabled: Bool = false
 }

@@ -9,9 +9,11 @@ import Alamofire
 import Combine
 import Foundation
 import SwiftUI
+import Pulse
 
 @MainActor class SearchFetcher: ObservableObject {
   @AppStorage("logs") var logs = Settings.logs
+  @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
 
   @Published var comments = [CommentObject]()
   @Published var communities = [CommunityObject]()
@@ -41,6 +43,19 @@ import SwiftUI
       searchQuery: searchQuery
     ).buildURL()
   }
+  
+  private var endpointRedacted: URLComponents {
+    URLBuilder(
+      endpointPath: "/api/v3/search",
+      sortParameter: sortParameter,
+      typeParameter: typeParameter,
+      currentPage: currentPage,
+      limitParameter: limitParameter,
+      searchQuery: searchQuery
+    ).buildURL()
+  }
+  
+  let pulse = Pulse.LoggerStore.shared
 
   init(
     searchQuery: String,
@@ -86,6 +101,16 @@ import SwiftUI
     .cacheResponse(using: cacher)
     .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: SearchModel.self) { response in
+      
+      if self.networkInspectorEnabled {
+        self.pulse.storeRequest(
+          try! URLRequest(url: self.endpointRedacted, method: .get),
+          response: response.response,
+          error: response.error,
+          data: response.data
+        )
+      }
+      
       switch response.result {
       case let .success(result):
         self.appendToList(result)

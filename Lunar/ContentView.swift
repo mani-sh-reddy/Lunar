@@ -6,8 +6,13 @@
 //
 
 import SwiftUI
+import PulseUI
 
 struct ContentView: View {
+  @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
+  
+  @State private var networkInspectorPopover: Bool = false
+
   init() {
     if #available(iOS 15, *) {
       let tabBarAppearance: UITabBarAppearance = .init()
@@ -39,6 +44,29 @@ struct ContentView: View {
         .tabItem {
           Label("Settings", systemImage: "gearshape.fill")
         }
+    }
+    .overlay(alignment: .bottomTrailing) {
+      if networkInspectorEnabled {
+        Button {
+          networkInspectorPopover = true
+        } label: {
+          Label ("Inspector", systemImage: "rectangle.and.text.magnifyingglass")
+            .padding(.vertical, 12)
+            .padding(.horizontal, 24)
+            .background(.orange)
+            .foregroundColor(.white)
+            .mask {
+              RoundedRectangle(cornerRadius: 16, style: .continuous)
+            }
+        }
+        .padding(20)
+        .padding(.bottom, 40)
+      }
+    }
+    .popover(isPresented: $networkInspectorPopover) {
+      NavigationView{
+          ConsoleView()
+      }
     }
   }
 }

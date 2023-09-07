@@ -9,6 +9,7 @@ import Alamofire
 import Combine
 import Foundation
 import SwiftUI
+import Pulse
 
 @MainActor class CommentsFetcher: ObservableObject {
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
@@ -16,6 +17,7 @@ import SwiftUI
   @AppStorage("commentSort") var commentSort = Settings.commentSort
   @AppStorage("commentType") var commentType = Settings.commentType
   @AppStorage("logs") var logs = Settings.logs
+  @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
   @Published var comments = [CommentObject]()
   @Published var isLoading = false
 
@@ -36,6 +38,20 @@ import SwiftUI
       jwt: getJWTFromKeychain()
     ).buildURL()
   }
+  
+  private var endpointRedacted: URLComponents {
+    URLBuilder(
+      endpointPath: "/api/v3/comment/list",
+      sortParameter: commentSort,
+      typeParameter: commentType,
+      currentPage: currentPage,
+      limitParameter: limitParameter,
+      postID: postID,
+      maxDepth: maxDepth
+    ).buildURL()
+  }
+  
+  let pulse = Pulse.LoggerStore.shared
 
   init(postID: Int) {
     self.postID = postID
@@ -59,6 +75,16 @@ import SwiftUI
     .cacheResponse(using: cacher)
     .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: CommentModel.self) { response in
+      
+      if self.networkInspectorEnabled {
+        self.pulse.storeRequest(
+          try! URLRequest(url: self.endpointRedacted, method: .get),
+          response: response.response,
+          error: response.error,
+          data: response.data
+        )
+      }
+      
       switch response.result {
       case let .success(result):
 

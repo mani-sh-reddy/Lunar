@@ -24,7 +24,7 @@ class LoginHelper: ObservableObject {
   @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
   @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
+  @AppStorage("loggingEnabled") var loggingEnabled = Settings.loggingEnabled
   
   @Published var usernameEmail: String
   @Published var password: String

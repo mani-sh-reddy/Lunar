@@ -8,9 +8,11 @@
 import Alamofire
 import Foundation
 import SwiftUI
+import Pulse
 
 class SiteInfoFetcher: ObservableObject {
   private var endpoint: URLComponents
+  private var endpointRedacted: URLComponents
   private var jwt: String
 
   /// Adding info about the user to **@AppsStorage** loggedInAccounts
@@ -20,19 +22,33 @@ class SiteInfoFetcher: ObservableObject {
   @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
   @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  @AppStorage("enableLogging") var enableLogging = Settings.enableLogging
+  @AppStorage("loggingEnabled") var loggingEnabled = Settings.loggingEnabled
+  @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
 
   @AppStorage("logs") var logs = Settings.logs
+  
+  let pulse = Pulse.LoggerStore.shared
 
   init(jwt: String) {
     self.jwt = jwt
     endpoint = URLBuilder(endpointPath: "/api/v3/site", jwt: jwt).buildURL()
+    endpointRedacted = URLBuilder(endpointPath: "/api/v3/site").buildURL()
   }
 
   func fetchSiteInfo(completion: @escaping (String?, String?, String?, String?) -> Void) {
     AF.request(endpoint)
       .validate(statusCode: 200 ..< 300)
       .responseDecodable(of: SiteModel.self) { response in
+        
+        if self.networkInspectorEnabled {
+          self.pulse.storeRequest(
+            try! URLRequest(url: self.endpointRedacted, method: .get),
+            response: response.response,
+            error: response.error,
+            data: response.data
+          )
+        }
+        
         switch response.result {
         case let .success(result):
           let userID = result.myUser.localUserView.person.id
