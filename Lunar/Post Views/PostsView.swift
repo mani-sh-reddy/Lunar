@@ -57,10 +57,9 @@ struct PostsView: View {
             postsFetcher.loadMoreContentIfNeeded(currentItem: post)
           }
       }
-//      if postsFetcher.isLoading {
-//        ProgressView().id(UUID())
-//      }
-      Divider()
+      if postsFetcher.isLoading {
+        ProgressView().id(UUID())
+      }
     }
     .refreshable {
       postsFetcher.loadContent(isRefreshing: true)

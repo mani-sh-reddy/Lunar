@@ -42,17 +42,18 @@ import SwiftUI
     typeParameter: String? = nil,
     communityID: Int? = 0
   ) {
+
     self.sortParameter = sortParameter ?? postSort
     self.typeParameter = typeParameter ?? postType
 
     self.communityID = (communityID == 0) ? nil : communityID
-    if communityID == 99_999_999_999_999 { // TODO: just a placeholder to prevent running when user posts
+    if communityID == 99999999999999 { // TODO: just a placeholder to prevent running when user posts
       return
     }
 
     loadContent()
   }
-  
+
   func loadMoreContentIfNeeded(currentItem: PostObject) {
 //    print("\(posts.last?.post.id ?? 0) -> \(currentItem.post.id)")
     guard currentItem.post.id == posts.last?.post.id else {
@@ -60,31 +61,21 @@ import SwiftUI
     }
     loadContent()
   }
-  
-//  func loadMoreContentIfNeeded(currentItem item: PostObject?) {
-//    guard let item else { return }
-//    let thresholdIndex = posts.index(before: posts.endIndex)
-//    if posts.firstIndex(where: { $0.post.id == item.post.id }) == thresholdIndex {
-//      loadContent()
-//    }
-//  }
 
   func loadContent(isRefreshing: Bool = false) {
-    if isRefreshing {
-      Task {
-        try await Task.sleep(nanoseconds: 1_000_000_000)
-      }
-      currentPage = 1
-    }
 
     guard !isLoading else { return }
 
-    isLoading = true
+    if isRefreshing {
+      currentPage = 1
+    } else {
+      isLoading = true
+    }
 
     let cacher = ResponseCacher(behavior: .cache)
     AF.request(endpoint) { urlRequest in
-//      urlRequest.timeoutInterval = 5
-      print(urlRequest.url ?? "" )
+      urlRequest.timeoutInterval = 5
+      print(urlRequest.url ?? "")
     }
     .cacheResponse(using: cacher)
     .validate(statusCode: 200 ..< 300)
@@ -108,13 +99,18 @@ import SwiftUI
           self.posts += filteredPosts
           self.currentPage += 1
         }
-        self.isLoading = false
+        if !isRefreshing{
+          self.isLoading = false
+        }
       case let .failure(error):
         DispatchQueue.main.async {
           let log = "PostsFetcher ERROR: \(error): \(error.errorDescription ?? "")"
           print(log)
           let currentDateTime = String(describing: Date())
           self.logs.append("\(currentDateTime) :: \(log)")
+        }
+        if !isRefreshing{
+          self.isLoading = false
         }
       }
     }
@@ -131,5 +127,3 @@ import SwiftUI
     }
   }
 }
-
-
