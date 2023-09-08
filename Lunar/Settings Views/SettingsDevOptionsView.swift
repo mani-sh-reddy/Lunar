@@ -10,7 +10,6 @@ import Pulse
 import PulseUI
 
 struct SettingsDevOptionsView: View {
-  @AppStorage("loggingEnabled") var loggingEnabled = Settings.loggingEnabled
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
 
@@ -27,17 +26,6 @@ struct SettingsDevOptionsView: View {
         }
         Toggle(isOn: $networkInspectorEnabled) {
           Text("Enable Pulse Network Inspector")
-        }
-        //        SettingsHiddenOptionsView()
-        Toggle(isOn: $loggingEnabled) {
-          Text("Enable Basic Logging")
-        }
-        if loggingEnabled {
-          NavigationLink {
-            LogsView()
-          } label: {
-            Text("Logs")
-          }
         }
         ShareLogsButton()
         ClearLogsButton()

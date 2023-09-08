@@ -12,7 +12,6 @@ struct DebugSettingsPropertiesView: View {
   @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
   @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
 
   var body: some View {
     Section {
@@ -37,6 +36,6 @@ struct DebugSettingsPropertiesView: View {
       }
     }
     .font(.caption)
-    .if(!debugModeEnabled) { _ in EmptyView() }
+//    .if(!debugModeEnabled) { _ in EmptyView() }
   }
 }

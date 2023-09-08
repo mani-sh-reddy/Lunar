@@ -34,8 +34,3 @@ struct InstanceSelectorView: View {
   }
 }
 
-struct SettingsServerSelectionSectionView_Previews: PreviewProvider {
-  static var previews: some View {
-    SettingsInfoSectionView()
-  }
-}
