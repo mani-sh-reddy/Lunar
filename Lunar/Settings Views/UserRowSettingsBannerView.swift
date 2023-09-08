@@ -31,8 +31,12 @@ struct UserRowSettingsBannerView: View {
               .clipShape(Circle())
               .padding(.trailing, 10)
           } else {
-            ProgressView()
+            Image(systemName: "person.crop.circle.fill")
+              .resizable()
               .frame(width: 50, height: 50)
+              .foregroundStyle(.blue)
+              .symbolRenderingMode(.hierarchical)
+              .padding(.trailing, 10)
           }
         }
       } else {
@@ -40,7 +44,7 @@ struct UserRowSettingsBannerView: View {
           .resizable()
           .frame(width: 50, height: 50)
           .padding(.trailing, 10)
-          .foregroundStyle(.blue)
+          .foregroundStyle(.gray)
           .symbolRenderingMode(.hierarchical)
       }
 

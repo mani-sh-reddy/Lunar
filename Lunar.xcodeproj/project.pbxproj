@@ -545,9 +545,9 @@
 		3C9E548F2A94C0870093DDC7 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				3C6D29682A797D6E007AFD99 /* UserRowSettingsBannerView.swift */,
 				3C113C422A6EA92600FDE5CE /* InstanceSelectorView.swift */,
 				3CAEDDE42A9E58DB001469AA /* ManageInstancesView.swift */,
-				3C6D29682A797D6E007AFD99 /* UserRowSettingsBannerView.swift */,
 				3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */,
 				3CF3B8F22A8FF7D4001C08B5 /* KbinSelectorView.swift */,
 			);
