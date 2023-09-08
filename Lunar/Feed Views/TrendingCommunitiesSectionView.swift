@@ -25,20 +25,6 @@ struct TrendingCommunitiesSectionView: View {
       } label: {
         CommunityRowView(community: community)
       }
-
-      //      NavigationLink(
-      //        destination: CommunitySpecificPostsListView(
-      //          communitySpecificPostsFetcher: CommunitySpecificPostsFetcher(
-      //            communityID: community.community.id,
-      //            sortParameter: "Hot",
-      //            typeParameter: "Local"
-      //          ),
-      //          communityID: community.community.id,
-      //          title: community.community.title
-      //        )
-      //      ) {
-      //        CommunityRowView(community: community)
-      //      }
     }
     .onChange(of: selectedInstance) { _ in
       Task {

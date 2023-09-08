@@ -21,14 +21,6 @@ struct FeedView: View {
     }
   }
 
-  //  var feedTabHeading: String {
-//    if kbinActive {
-//      return "\(selectedInstance) & \(kbinHostURL)"
-//    } else {
-//      return "\(selectedInstance)"
-//    }
-  //  }
-
   var body: some View {
     NavigationView {
       List {

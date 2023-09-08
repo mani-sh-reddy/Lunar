@@ -27,8 +27,6 @@ struct SettingsDevOptionsView: View {
         Toggle(isOn: $networkInspectorEnabled) {
           Text("Enable Pulse Network Inspector")
         }
-        ShareLogsButton()
-        ClearLogsButton()
       }
       Section {
         SettingsClearCacheButtonView()
