@@ -7,15 +7,14 @@
 
 import Alamofire
 import Nuke
-import SwiftUI
 import Pulse
+import SwiftUI
 
 @MainActor class PostsFetcher: ObservableObject {
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
   @AppStorage("postSort") var postSort = Settings.postSort
   @AppStorage("postType") var postType = Settings.postType
-  @AppStorage("logs") var logs = Settings.logs
   @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
 
   @Published var posts = [PostObject]()
@@ -39,7 +38,7 @@ import Pulse
       jwt: getJWTFromKeychain()
     ).buildURL()
   }
-  
+
   private var endpointRedacted: URLComponents {
     URLBuilder(
       endpointPath: "/api/v3/post/list",
@@ -56,7 +55,6 @@ import Pulse
     typeParameter: String? = nil,
     communityID: Int? = 0
   ) {
-
     self.sortParameter = sortParameter ?? postSort
     self.typeParameter = typeParameter ?? postType
 
@@ -69,7 +67,6 @@ import Pulse
   }
 
   func loadMoreContentIfNeeded(currentItem: PostObject) {
-//    print("\(posts.last?.post.id ?? 0) -> \(currentItem.post.id)")
     guard currentItem.post.id == posts.last?.post.id else {
       return
     }
@@ -77,7 +74,6 @@ import Pulse
   }
 
   func loadContent(isRefreshing: Bool = false) {
-
     guard !isLoading else { return }
 
     if isRefreshing {
@@ -87,14 +83,18 @@ import Pulse
     }
 
     let cacher = ResponseCacher(behavior: .cache)
+    
     AF.request(endpoint) { urlRequest in
-      urlRequest.timeoutInterval = 5
-      print(urlRequest.url ?? "")
+      if isRefreshing {
+        urlRequest.cachePolicy = .reloadRevalidatingCacheData
+      } else {
+        urlRequest.cachePolicy = .returnCacheDataElseLoad
+      }
     }
     .cacheResponse(using: cacher)
     .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: PostModel.self) { response in
-      
+
       if self.networkInspectorEnabled {
         self.pulse.storeRequest(
           try! URLRequest(url: self.endpointRedacted, method: .get),
@@ -103,7 +103,7 @@ import Pulse
           data: response.data
         )
       }
-      
+
       switch response.result {
       case let .success(result):
 
@@ -114,7 +114,6 @@ import Pulse
 
         if isRefreshing {
           self.posts = fetchedPosts
-//          self.posts.insert(contentsOf: filteredNewPosts, at: 0)
         } else {
           /// Removing duplicates
           let filteredPosts = fetchedPosts.filter { post in
@@ -123,17 +122,12 @@ import Pulse
           self.posts += filteredPosts
           self.currentPage += 1
         }
-        if !isRefreshing{
+        if !isRefreshing {
           self.isLoading = false
         }
       case let .failure(error):
-        DispatchQueue.main.async {
-          let log = "PostsFetcher ERROR: \(error): \(error.errorDescription ?? "")"
-          print(log)
-          let currentDateTime = String(describing: Date())
-          self.logs.append("\(currentDateTime) :: \(log)")
-        }
-        if !isRefreshing{
+        print("PostsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
+        if !isRefreshing {
           self.isLoading = false
         }
       }

@@ -49,7 +49,7 @@ struct FeedView: View {
           KbinMagazinesSectionView()
         }
         Section(header: Text("Trending")) {
-          TrendingCommunitiesSectionView(trendingCommunitiesFetcher: TrendingCommunitiesFetcher())
+          TrendingCommunitiesSectionView(communitiesFetcher: CommunitiesFetcher(limitParameter: 5))
           MoreCommunitiesButtonView()
         }
         Section(header: Text(subscribedCommunityListHeading)) {

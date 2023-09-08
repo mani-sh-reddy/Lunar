@@ -12,7 +12,6 @@ struct ManageInstancesView: View {
   @AppStorage("lemmyInstances") var lemmyInstances = Settings.lemmyInstances
   @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-  @AppStorage("logs") var logs = Settings.logs
 
   @State var enteredCustomInstance = ""
   @State var showingAddInstanceAlert = false
@@ -118,7 +117,6 @@ struct ManageInstancesView: View {
         }
       }
     } else {
-      logs.append("instance \(enteredCustomInstance) already exists in list \(lemmyInstances)")
       showingAlreadyExistsError = true
     }
   }

@@ -12,7 +12,6 @@ import SwiftUI
 import Pulse
 
 @MainActor class SearchFetcher: ObservableObject {
-  @AppStorage("logs") var logs = Settings.logs
   @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
 
   @Published var comments = [CommentObject]()
@@ -34,17 +33,6 @@ import Pulse
   private var limitParameter: Int
 
   private var endpoint: URLComponents {
-    URLBuilder(
-      endpointPath: "/api/v3/search",
-      sortParameter: sortParameter,
-      typeParameter: typeParameter,
-      currentPage: currentPage,
-      limitParameter: limitParameter,
-      searchQuery: searchQuery
-    ).buildURL()
-  }
-  
-  private var endpointRedacted: URLComponents {
     URLBuilder(
       endpointPath: "/api/v3/search",
       sortParameter: sortParameter,
@@ -104,7 +92,7 @@ import Pulse
       
       if self.networkInspectorEnabled {
         self.pulse.storeRequest(
-          try! URLRequest(url: self.endpointRedacted, method: .get),
+          try! URLRequest(url: self.endpoint, method: .get),
           response: response.response,
           error: response.error,
           data: response.data
@@ -124,7 +112,6 @@ import Pulse
           let log = "SearchFetcher ERROR: \(error): \(error.errorDescription ?? "")"
           print(log)
           let currentDateTime = String(describing: Date())
-          self.logs.append("\(currentDateTime) :: \(log)")
         }
 
         self.isLoading = false // Set isLoading to false on failure as well

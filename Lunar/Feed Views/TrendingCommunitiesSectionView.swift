@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct TrendingCommunitiesSectionView: View {
-  @StateObject var trendingCommunitiesFetcher: TrendingCommunitiesFetcher
+  @StateObject var communitiesFetcher: CommunitiesFetcher
   @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
 
   var body: some View {
-    ForEach(trendingCommunitiesFetcher.communities, id: \.community.id) { community in
+    ForEach(communitiesFetcher.communities, id: \.community.id) { community in
 
       // TODO: -
       NavigationLink {
@@ -28,10 +28,10 @@ struct TrendingCommunitiesSectionView: View {
     }
     .onChange(of: selectedInstance) { _ in
       Task {
-        await trendingCommunitiesFetcher.refreshContent()
+        communitiesFetcher.loadContent(isRefreshing: true)
       }
     }
-    if trendingCommunitiesFetcher.isLoading {
+    if communitiesFetcher.isLoading {
       ProgressView()
     }
   }

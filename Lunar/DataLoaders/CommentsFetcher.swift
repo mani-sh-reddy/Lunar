@@ -8,15 +8,14 @@
 import Alamofire
 import Combine
 import Foundation
-import SwiftUI
 import Pulse
+import SwiftUI
 
 @MainActor class CommentsFetcher: ObservableObject {
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
   @AppStorage("commentSort") var commentSort = Settings.commentSort
   @AppStorage("commentType") var commentType = Settings.commentType
-  @AppStorage("logs") var logs = Settings.logs
   @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
   @Published var comments = [CommentObject]()
   @Published var isLoading = false
@@ -55,23 +54,29 @@ import Pulse
 
   init(postID: Int) {
     self.postID = postID
-    loadMoreContent()
+    loadContent()
   }
 
-  func refreshContent() async {
-    comments.removeAll()
-    guard !isLoading else { return }
-
-    isLoading = true
-
-    currentPage = 1
-
-    let cacher = ResponseCacher(behavior: .cache)
-
-    AF.request(endpoint) { urlRequest in
-      //      print("CommentsFetcher REF \(urlRequest.url as Any)")
-      urlRequest.cachePolicy = .reloadRevalidatingCacheData
+  func loadContent(isRefreshing: Bool = false) {
+    if isRefreshing {
+      comments.removeAll()
+      currentPage = 1
     }
+    
+    guard !isLoading else { return }
+    
+    isLoading = true
+    
+    let cacher = ResponseCacher(behavior: .cache)
+    
+    AF.request(endpoint) { urlRequest in
+      if isRefreshing {
+        urlRequest.cachePolicy = .reloadRevalidatingCacheData
+      } else {
+        urlRequest.cachePolicy = .returnCacheDataElseLoad
+      }
+    }
+    
     .cacheResponse(using: cacher)
     .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: CommentModel.self) { response in
@@ -87,13 +92,12 @@ import Pulse
       
       switch response.result {
       case let .success(result):
-
         let newComments = result.comments
-
+        
         let filteredNewComments = newComments.filter { newComments in
           !self.comments.contains { $0.comment.id == newComments.comment.id }
         }
-
+        
         if !filteredNewComments.isEmpty {
           DispatchQueue.main.async {
             let sortedFilteredComments = filteredNewComments.sorted { sorted, newSorted in
@@ -104,69 +108,17 @@ import Pulse
             }
             self.isLoading = false
           }
-
+          
         } else {
           self.isLoading = false
         }
-
+        
+        if !isRefreshing {
+          self.currentPage += 1
+        }
+        
       case let .failure(error):
-        DispatchQueue.main.async {
-          let log = "CommentsFetcher ERROR: \(error): \(error.errorDescription ?? "")"
-          print(log)
-          let currentDateTime = String(describing: Date())
-          self.logs.append("\(currentDateTime) :: \(log)")
-        }
-      }
-    }
-  }
-
-  private func loadMoreContent() {
-    guard !isLoading else { return }
-
-    isLoading = true
-
-    let cacher = ResponseCacher(behavior: .cache)
-
-    AF.request(endpoint) { urlRequest in
-      //      print("CommentsFetcher LOAD \(urlRequest.url as Any)")
-      urlRequest.cachePolicy = .returnCacheDataElseLoad
-    }
-    .cacheResponse(using: cacher)
-    .validate(statusCode: 200 ..< 300)
-    .responseDecodable(of: CommentModel.self) { response in
-      switch response.result {
-      case let .success(result):
-
-        let newComments = result.comments
-
-        let filteredNewComments = newComments.filter { newComments in
-          !self.comments.contains { $0.comment.id == newComments.comment.id }
-        }
-
-        if !filteredNewComments.isEmpty {
-          DispatchQueue.main.async {
-            let sortedFilteredComments = filteredNewComments.sorted { sorted, newSorted in
-              sorted.comment.path < newSorted.comment.path
-            }
-            for newComment in sortedFilteredComments {
-              InsertSorter.sortComments(newComment, into: &self.comments)
-            }
-            self.isLoading = false
-          }
-
-        } else {
-          self.isLoading = false
-        }
-
-        self.currentPage += 1
-
-      case let .failure(error):
-        DispatchQueue.main.async {
-          let log = "CommentsFetcher ERROR: \(error): \(error.errorDescription ?? "")"
-          print(log)
-          let currentDateTime = String(describing: Date())
-          self.logs.append("\(currentDateTime) :: \(log)")
-        }
+        print("CommentsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
       }
     }
   }

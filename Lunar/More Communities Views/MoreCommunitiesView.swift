@@ -26,27 +26,27 @@ struct MoreCommunitiesView: View {
           } label: {
             CommunityRowView(community: community)
           }
-          .task {
+          .onAppear {
             communitiesFetcher.loadMoreContentIfNeeded(currentItem: community)
           }
         }
       } header: {
         Text("Sorted by New")
       }
-
       .accentColor(Color.primary)
-      if communitiesFetcher.isLoading {
-        ProgressView()
-      }
-    }.listStyle(.insetGrouped)
-      .navigationTitle(title)
-      .navigationBarTitleDisplayMode(.inline)
-      .toolbar {
-        ToolbarItem(placement: .navigationBarTrailing) { Image(systemName: "sparkles") }
-      }
-      .refreshable {
-        await communitiesFetcher.refreshContent()
-      }
+//      if communitiesFetcher.isLoading {
+//        ProgressView()
+//      }
+    }
+    .refreshable {
+      communitiesFetcher.loadContent(isRefreshing: true)
+    }
+    .listStyle(.insetGrouped)
+    .navigationTitle(title)
+    .navigationBarTitleDisplayMode(.inline)
+    .toolbar {
+      ToolbarItem(placement: .navigationBarTrailing) { Image(systemName: "sparkles") }
+    }
   }
 }
 

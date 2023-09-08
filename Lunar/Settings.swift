@@ -29,17 +29,9 @@ enum Settings {
 
   /// **USAGE**
   /// @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
-  /// **to get**
-  /// initialise object
-  /// var loggedInAccount = LoggedInAccount()
-  /// loggedInAccount.actorID = "123"
-  /// self.loggedInAccounts.append(loggedInAccount)
+
   static let loggedInAccounts: [AccountModel] = []
 
-  static let loggingEnabled: Bool = false
-  static let logs: [String] = []
-
-  /// selectedUser split up to store in appstorage
   static let selectedName: String = ""
   static let selectedEmail: String = ""
   static let selectedAvatarURL: String = ""

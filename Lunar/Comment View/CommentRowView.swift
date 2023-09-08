@@ -85,7 +85,7 @@ struct CommentRowView: View {
         onDismiss: {
           Task {
             print("COMMENT SHEET DISMISSED")
-            await commentsFetcher.refreshContent()
+            commentsFetcher.loadContent(isRefreshing: true)
           }
         }
       ) {

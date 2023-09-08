@@ -7,8 +7,8 @@
 
 import Alamofire
 import Foundation
-import SwiftUI
 import Pulse
+import SwiftUI
 
 class SiteInfoFetcher: ObservableObject {
   private var endpoint: URLComponents
@@ -22,11 +22,8 @@ class SiteInfoFetcher: ObservableObject {
   @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
   @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  @AppStorage("loggingEnabled") var loggingEnabled = Settings.loggingEnabled
   @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
 
-  @AppStorage("logs") var logs = Settings.logs
-  
   let pulse = Pulse.LoggerStore.shared
 
   init(jwt: String) {
@@ -39,7 +36,7 @@ class SiteInfoFetcher: ObservableObject {
     AF.request(endpoint)
       .validate(statusCode: 200 ..< 300)
       .responseDecodable(of: SiteModel.self) { response in
-        
+
         if self.networkInspectorEnabled {
           self.pulse.storeRequest(
             try! URLRequest(url: self.endpointRedacted, method: .get),
@@ -48,7 +45,7 @@ class SiteInfoFetcher: ObservableObject {
             data: response.data
           )
         }
-        
+
         switch response.result {
         case let .success(result):
           let userID = result.myUser.localUserView.person.id
@@ -64,7 +61,7 @@ class SiteInfoFetcher: ObservableObject {
           self.loggedInAccount.actorID = actorID
           /// adding to the list of already logged in accounts
           self.loggedInAccounts.append(self.loggedInAccount)
-          
+
           /// Selecting and setting the latest logged in account as active
           self.selectedName = username
           self.selectedEmail = email ?? ""
@@ -81,21 +78,10 @@ class SiteInfoFetcher: ObservableObject {
           if let data = response.data,
              let fetchError = try? JSONDecoder().decode(ErrorResponseModel.self, from: data)
           {
-            DispatchQueue.main.async {
-              let log = "fetchUsernameAndEmail ERROR: \(fetchError.error)"
-              print(log)
-              let currentDateTime = String(describing: Date())
-              self.logs.append("\(currentDateTime) :: \(log)")
-            }
+            print("fetchUsernameAndEmail ERROR: \(fetchError.error)")
             completion(nil, nil, nil, fetchError.error)
           } else {
-            DispatchQueue.main.async {
-              let errorDescription = String(describing: error.errorDescription)
-              let log = "fetchUsernameAndEmail JSON DECODE ERROR: \(error): \(errorDescription)"
-              print(log)
-              let currentDateTime = String(describing: Date())
-              self.logs.append("\(currentDateTime) :: \(log)")
-            }
+            print("fetchUsernameAndEmail JSON DECODE ERROR: \(error): \(String(describing: error.errorDescription))")
             completion(nil, nil, nil, error.errorDescription)
           }
         }

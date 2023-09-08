@@ -35,7 +35,6 @@
 		3C4D42AA2A8D12B8003B6F1D /* VoteResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4D42A92A8D12B8003B6F1D /* VoteResponseModel.swift */; };
 		3C4EE4B92A8006D0009EE4A8 /* KbinPostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4EE4B82A8006D0009EE4A8 /* KbinPostRowView.swift */; };
 		3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F09FF2A54399F009DF8AB /* LunarApp.swift */; };
-		3C522F3B2A63241900129CAC /* TrendingCommunitiesFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C522F3A2A63241900129CAC /* TrendingCommunitiesFetcher.swift */; };
 		3C5ECB1F2A75ABFE002BA561 /* SiteInfoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB1E2A75ABFE002BA561 /* SiteInfoFetcher.swift */; };
 		3C5ECB242A766D64002BA561 /* DebugLoginPagePropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB232A766D64002BA561 /* DebugLoginPagePropertiesView.swift */; };
 		3C5ECB262A766E31002BA561 /* DebugAccountsPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB252A766E31002BA561 /* DebugAccountsPropertiesView.swift */; };
@@ -193,7 +192,6 @@
 		3C4EE4B82A8006D0009EE4A8 /* KbinPostRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KbinPostRowView.swift; sourceTree = "<group>"; };
 		3C4F09FC2A54399F009DF8AB /* Lunar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lunar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4F09FF2A54399F009DF8AB /* LunarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarApp.swift; sourceTree = "<group>"; };
-		3C522F3A2A63241900129CAC /* TrendingCommunitiesFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingCommunitiesFetcher.swift; sourceTree = "<group>"; };
 		3C5ECB1E2A75ABFE002BA561 /* SiteInfoFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteInfoFetcher.swift; sourceTree = "<group>"; };
 		3C5ECB232A766D64002BA561 /* DebugLoginPagePropertiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLoginPagePropertiesView.swift; sourceTree = "<group>"; };
 		3C5ECB252A766E31002BA561 /* DebugAccountsPropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugAccountsPropertiesView.swift; sourceTree = "<group>"; };
@@ -520,7 +518,6 @@
 				3CEACBC62A88020700260A01 /* PostsFetcher.swift */,
 				3C65885C2A6189AF00A46DA3 /* CommentsFetcher.swift */,
 				3CB408B32A5C558B00B7C983 /* CommunitiesFetcher.swift */,
-				3C522F3A2A63241900129CAC /* TrendingCommunitiesFetcher.swift */,
 				3C5ECB1E2A75ABFE002BA561 /* SiteInfoFetcher.swift */,
 				3CC178942A7DAAE300C208D0 /* SearchFetcher.swift */,
 			);
@@ -959,7 +956,6 @@
 				3CB9C7352AA2461700FB5A10 /* PersonObject.swift in Sources */,
 				3C5ECB242A766D64002BA561 /* DebugLoginPagePropertiesView.swift in Sources */,
 				3CC734A62A6D591A007523B5 /* URLComponentsExtension.swift in Sources */,
-				3C522F3B2A63241900129CAC /* TrendingCommunitiesFetcher.swift in Sources */,
 				3C9E54982A953FB60093DDC7 /* SettingsSplashScreenView.swift in Sources */,
 				3CEF4CD52A69B798002B83C0 /* URLParser.swift in Sources */,
 				3CB9C7222AA23F7400FB5A10 /* CommunityObject.swift in Sources */,

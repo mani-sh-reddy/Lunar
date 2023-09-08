@@ -33,19 +33,19 @@ struct SubscribedCommunitiesSectionView: View {
     .onChange(of: selectedInstance) { _ in
       Task {
         try await Task.sleep(nanoseconds: UInt64(2 * Double(NSEC_PER_SEC)))
-        await communitiesFetcher.refreshContent()
+        communitiesFetcher.loadContent()
       }
     }
     .onChange(of: selectedActorID) { _ in
       Task {
         try await Task.sleep(nanoseconds: UInt64(2 * Double(NSEC_PER_SEC)))
-        await communitiesFetcher.refreshContent()
+        communitiesFetcher.loadContent(isRefreshing: true)
       }
     }
     .onChange(of: subscribedCommunityIDs) { _ in
       Task {
         try await Task.sleep(nanoseconds: UInt64(2 * Double(NSEC_PER_SEC)))
-        await communitiesFetcher.refreshContent()
+        communitiesFetcher.loadContent(isRefreshing: true)
       }
     }
 
