@@ -492,9 +492,9 @@
 		3C9E54952A94C3170093DDC7 /* Developer Options */ = {
 			isa = PBXGroup;
 			children = (
+				3C808E232A9B6DAD008FA62E /* SettingsDevOptionsView.swift */,
 				3CED897C2A71DCFF00BD9086 /* SettingsHiddenOptionsView.swift */,
 				3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheButtonView.swift */,
-				3C808E232A9B6DAD008FA62E /* SettingsDevOptionsView.swift */,
 				3C2C45492AA648A000727DD5 /* UserDefaultsExplorerView.swift */,
 				3C6D296A2A7986AE007AFD99 /* AppResetButton.swift */,
 			);

@@ -82,8 +82,7 @@ import Pulse
     let cacher = ResponseCacher(behavior: .cache)
 
     AF.request(endpoint) { urlRequest in
-      let log = "SearchFetcher LOAD \(urlRequest.url as Any)"
-      print(log)
+      print("SearchFetcher LOAD \(urlRequest.url as Any)")
       urlRequest.cachePolicy = .returnCacheDataElseLoad
     }
     .cacheResponse(using: cacher)
@@ -108,11 +107,7 @@ import Pulse
         completion(true, nil)
 
       case let .failure(error):
-        DispatchQueue.main.async {
-          let log = "SearchFetcher ERROR: \(error): \(error.errorDescription ?? "")"
-          print(log)
-          let currentDateTime = String(describing: Date())
-        }
+          print("SearchFetcher ERROR: \(error): \(error.errorDescription ?? "")")
 
         self.isLoading = false // Set isLoading to false on failure as well
         completion(true, error)

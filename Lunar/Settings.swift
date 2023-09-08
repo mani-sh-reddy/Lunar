@@ -54,4 +54,5 @@ enum Settings {
   static let detailedCommunityLabels: Bool = true
   static let compactViewEnabled: Bool = false
   static let networkInspectorEnabled: Bool = false
+  static let prominentInspectorButton: Bool = true
 }

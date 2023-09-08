@@ -21,12 +21,14 @@ import SwiftUI
   @Published var isLoading = false
 
   let imagePrefetcher = ImagePrefetcher()
+  
   let pulse = Pulse.LoggerStore.shared
 
   private var currentPage = 1
   private var sortParameter: String?
   private var typeParameter: String?
   private var communityID: Int?
+  
   private var endpoint: URLComponents {
     URLBuilder(
       endpointPath: "/api/v3/post/list",

@@ -5,13 +5,14 @@
 //  Created by Mani on 24/07/2023.
 //
 
-import SwiftUI
 import Pulse
 import PulseUI
+import SwiftUI
 
 struct SettingsDevOptionsView: View {
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
+  @AppStorage("prominentInspectorButton") var prominentInspectorButton = Settings.prominentInspectorButton
 
   @State var refreshView: Bool = false
   @State var settingsViewOpacity: Double = 1
@@ -22,10 +23,27 @@ struct SettingsDevOptionsView: View {
     List {
       Section {
         Toggle(isOn: $debugModeEnabled) {
-          Text("Enable Debug Mode")
+          Text("Debug Mode")
         }
         Toggle(isOn: $networkInspectorEnabled) {
-          Text("Enable Pulse Network Inspector")
+          Text("Pulse Network Inspector")
+        }
+        .animation(.smooth, value: networkInspectorEnabled)
+
+        if networkInspectorEnabled {
+          
+          Toggle(isOn: $prominentInspectorButton) {
+            Text("Network Inspector Button")
+          }
+          .animation(.smooth, value: prominentInspectorButton)
+          
+          if !prominentInspectorButton {
+            NavigationLink {
+              ConsoleView().closeButtonHidden()
+            } label: {
+              Text("Network Inspector Console")
+            }
+          }
         }
       }
       Section {

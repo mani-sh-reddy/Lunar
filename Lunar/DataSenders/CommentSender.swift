@@ -8,6 +8,7 @@
 import Alamofire
 import Foundation
 import SwiftUI
+import Pulse
 
 class CommentSender: ObservableObject {
   private var content: String
@@ -17,6 +18,9 @@ class CommentSender: ObservableObject {
 
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
+  @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
+  
+  let pulse = Pulse.LoggerStore.shared
 
   init(
     content: String,
@@ -37,15 +41,28 @@ class CommentSender: ObservableObject {
         "parent_id": parentID as Any,
         "auth": jwt.replacingOccurrences(of: "\"", with: ""),
       ] as [String: Any]
+    
+    let endpoint = "https://\(URLParser.extractDomain(from: selectedActorID))/api/v3/comment"
 
     AF.request(
-      "https://\(URLParser.extractDomain(from: selectedActorID))/api/v3/comment",
+      endpoint,
       method: .post,
       parameters: parameters,
       encoding: JSONEncoding.default
     )
     .validate(statusCode: 200 ..< 300)
+    // URLRequest(url: endpoint, method: .post)
     .responseDecodable(of: CommentResponseModel.self) { response in
+      
+      if self.networkInspectorEnabled {
+        self.pulse.storeRequest(
+          response.request ?? URLRequest(url: URL(string: endpoint)!),
+          response: response.response,
+          error: response.error,
+          data: response.data
+        )
+      }
+      
       switch response.result {
       case let .success(result):
         print(result.comment.creator.name as Any)

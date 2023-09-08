@@ -8,6 +8,7 @@
 import Alamofire
 import Foundation
 import SwiftUI
+import Pulse
 
 class SubscriptionActionSender: ObservableObject {
   private var communityID: Int
@@ -16,6 +17,9 @@ class SubscriptionActionSender: ObservableObject {
 
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
+  @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
+  
+  let pulse = Pulse.LoggerStore.shared
 
   init(
     communityID: Int,
@@ -34,15 +38,27 @@ class SubscriptionActionSender: ObservableObject {
         "community_id": communityID,
         "auth": jwt.replacingOccurrences(of: "\"", with: ""),
       ] as [String: Any]
+    
+    let endpoint = "https://\(URLParser.extractDomain(from: selectedActorID))/api/v3/community/follow"
 
     AF.request(
-      "https://\(URLParser.extractDomain(from: selectedActorID))/api/v3/community/follow",
+      endpoint,
       method: .post,
       parameters: parameters,
       encoding: JSONEncoding.default
     )
     .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: SubscribeResponseModel.self) { response in
+      
+      if self.networkInspectorEnabled {
+        self.pulse.storeRequest(
+          response.request ?? URLRequest(url: URL(string: endpoint)!),
+          response: response.response,
+          error: response.error,
+          data: response.data
+        )
+      }
+      
       print(response.request ?? "")
       switch response.result {
       case let .success(result):

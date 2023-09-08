@@ -8,6 +8,7 @@
 import Alamofire
 import Foundation
 import SwiftUI
+import Pulse
 
 class VoteSender: ObservableObject {
   private var voteType: Int
@@ -18,6 +19,9 @@ class VoteSender: ObservableObject {
 
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
+  @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
+  
+  let pulse = Pulse.LoggerStore.shared
 
   init(
     asActorID: String,
@@ -41,17 +45,27 @@ class VoteSender: ObservableObject {
         "comment_id": commentID,
         "auth": jwt.replacingOccurrences(of: "\"", with: ""),
       ] as [String: Any]
+    
+    let endpoint = "https://\(URLParser.extractDomain(from: selectedActorID))/api/v3/\(elementType)/like"
 
     AF.request(
-      "https://\(URLParser.extractDomain(from: selectedActorID))/api/v3/\(elementType)/like",
+      endpoint,
       method: .post,
       parameters: parameters,
       encoding: JSONEncoding.default
     )
     .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: VoteResponseModel.self) { response in
-      print(response.request ?? "")
-      print(response.request?.headers as Any)
+      
+      if self.networkInspectorEnabled {
+        self.pulse.storeRequest(
+          response.request ?? URLRequest(url: URL(string: endpoint)!),
+          response: response.response,
+          error: response.error,
+          data: response.data
+        )
+      }
+      
       switch response.result {
       case let .success(result):
         let response = String(response.response?.statusCode ?? 0)
@@ -81,22 +95,6 @@ class VoteSender: ObservableObject {
       }
     }
   }
-
-  //  func splitURL(_ url: String) -> (String?, String?, String?, String?) {
-//    guard let urlComponents = URLComponents(string: url),
-//      let host = urlComponents.host,
-//      let pathComponents = urlComponents.path.split(separator: "/").map(String.init) as? [String]
-//    else {
-//      return (nil, nil, nil, nil)
-//    }
-//
-//    let scheme = urlComponents.scheme
-//    let domain = host
-//    let pathPart1 = pathComponents.count > 1 ? pathComponents[1] : nil
-//    let pathPart2 = pathComponents.count > 2 ? pathComponents[2] : nil
-//
-//    return (scheme, domain, pathPart1, pathPart2)
-  //  }
 
   func getJWTFromKeychain(actorID: String) -> String? {
     if let keychainObject = KeychainHelper.standard.read(

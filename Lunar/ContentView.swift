@@ -5,12 +5,13 @@
 //  Created by Mani on 03/07/2023.
 //
 
-import SwiftUI
 import PulseUI
+import SwiftUI
 
 struct ContentView: View {
   @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
-  
+  @AppStorage("prominentInspectorButton") var prominentInspectorButton = Settings.prominentInspectorButton
+
   @State private var networkInspectorPopover: Bool = false
 
   init() {
@@ -46,11 +47,11 @@ struct ContentView: View {
         }
     }
     .overlay(alignment: .bottomTrailing) {
-      if networkInspectorEnabled {
+      if networkInspectorEnabled && prominentInspectorButton {
         Button {
           networkInspectorPopover = true
         } label: {
-          Label ("Inspector", systemImage: "rectangle.and.text.magnifyingglass")
+          Label("Inspector", systemImage: "rectangle.and.text.magnifyingglass")
             .padding(.vertical, 12)
             .padding(.horizontal, 24)
             .background(.orange)
@@ -64,8 +65,8 @@ struct ContentView: View {
       }
     }
     .popover(isPresented: $networkInspectorPopover) {
-      NavigationView{
-          ConsoleView()
+      NavigationView {
+        ConsoleView()
       }
     }
   }
