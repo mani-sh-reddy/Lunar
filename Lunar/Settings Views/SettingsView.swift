@@ -56,7 +56,7 @@ struct SettingsView: View {
                 .symbolRenderingMode(.hierarchical)
                 .foregroundStyle(.red)
             }
-          }
+          }.disabled(true)
 
           // MARK: - GESTURES
 
@@ -70,7 +70,7 @@ struct SettingsView: View {
                 .symbolRenderingMode(.hierarchical)
                 .foregroundStyle(.cyan)
             }
-          }
+          }.disabled(true)
 
           // MARK: - SOUND AND HAPTICS
 
@@ -84,7 +84,7 @@ struct SettingsView: View {
                 .symbolRenderingMode(.hierarchical)
                 .foregroundStyle(.green)
             }
-          }
+          }.disabled(true)
 
           // MARK: - COMPOSER
 
@@ -98,7 +98,7 @@ struct SettingsView: View {
                 .symbolRenderingMode(.hierarchical)
                 .foregroundStyle(.indigo)
             }
-          }
+          }.disabled(true)
 
           // MARK: - SEARCH
 
@@ -112,12 +112,12 @@ struct SettingsView: View {
                 .symbolRenderingMode(.hierarchical)
                 .foregroundStyle(.teal)
             }
-          }
+          }.disabled(true)
 
           // MARK: - FEED
 
           NavigationLink {
-            PlaceholderView()
+            SettingsFeedView()
           } label: {
             Label {
               Text("Feed Options")
@@ -126,7 +126,20 @@ struct SettingsView: View {
                 .symbolRenderingMode(.hierarchical)
                 .foregroundStyle(.brown)
             }
+          }.disabled(true)
+          
+          NavigationLink {
+            CustomiseFeedQuicklinksView()
+          } label: {
+            Label {
+              Text("Quicklinks")
+            } icon: {
+              Image(systemName: "link")
+                .symbolRenderingMode(.hierarchical)
+                .foregroundStyle(.blue)
+            }
           }
+          
         } header: {
           Text("General")
         }

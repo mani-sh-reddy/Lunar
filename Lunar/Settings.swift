@@ -48,6 +48,25 @@ enum Settings {
 
   static let subscribedCommunityIDs: [Int] = []
 
+  static let quicklinks: [Quicklink] = [
+    Quicklink(
+      title: "Local", type: "Local", sort: "Active", icon: "house.circle.fill", iconColor: "green"
+    ),
+    Quicklink(
+      title: "All", type: "All", sort: "Active", icon: "building.2.crop.circle.fill",
+      iconColor: "cyan"
+    ),
+    Quicklink(
+      title: "Top", type: "All", sort: "TopWeek", icon: "chart.line.uptrend.xyaxis.circle.fill",
+      iconColor: "pink"
+    ),
+    Quicklink(
+      title: "New", type: "All", sort: "New", icon: "star.circle.fill", iconColor: "yellow"
+    ),
+  ]
+  
+  static var quicklinkColor: Color = .primary
+
   static let selectedSearchSortType: String = "Active"
   static let showLaunchSplashScreen: Bool = true
   static let showWelcomeScreen: Bool = true

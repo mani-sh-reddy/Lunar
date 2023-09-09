@@ -15,7 +15,7 @@ struct SubscribedCommunitiesSectionView: View {
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
 
   var body: some View {
-    SubscribedFeedButton()
+    SubscribedFeedQuicklink()
 
     ForEach(communitiesFetcher.communities, id: \.community.id) { community in
       NavigationLink {
@@ -64,16 +64,16 @@ struct SubscribedCommunitiesSectionView: View {
   }
 }
 
-struct SubscribedFeedButton: View {
+struct SubscribedFeedQuicklink: View {
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
 
-  var subscribedPostsButton: CommunityButton {
-    CommunityButton(
+  var subscribedPostsQuicklink: Quicklink {
+    Quicklink(
       title: "Subscribed Feed",
       type: "Subscribed",
       sort: "Active",
       icon: "pin.circle.fill",
-      iconColor: .purple
+      iconColor: "purple"
     )
   }
 
@@ -93,12 +93,12 @@ struct SubscribedFeedButton: View {
       NavigationLink {
         PostsView(
           postsFetcher: PostsFetcher(
-            sortParameter: subscribedPostsButton.sort,
-            typeParameter: subscribedPostsButton.type
-          ), title: subscribedPostsButton.title
+            sortParameter: subscribedPostsQuicklink.sort,
+            typeParameter: subscribedPostsQuicklink.type
+          ), title: subscribedPostsQuicklink.title
         )
       } label: {
-        GeneralCommunityButtonView(button: subscribedPostsButton)
+        GeneralCommunityButtonView(quicklink: subscribedPostsQuicklink)
       }
     }
   }
