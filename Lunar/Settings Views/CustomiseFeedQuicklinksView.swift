@@ -89,15 +89,6 @@ struct CustomiseFeedQuicklinksView: View {
       Section {
         ForEach(quicklinks, id: \.self) { quicklink in
             GeneralCommunityQuicklinkButton(image: quicklink.icon, hexColor: quicklink.iconColor, title: quicklink.title)
-//            Image(systemName: quicklink.icon)
-//              .resizable()
-//              .frame(width: 30, height: 30)
-//              .symbolRenderingMode(.hierarchical)
-//              .foregroundStyle(Color(hex: quicklink.iconColor) ?? .gray)
-//              .brightness(colorScheme == .light ? -0.3 : 0.3)
-//              .saturation(colorScheme == .light ? 2 : 2)
-//            Text(quicklink.title)
-//              .padding(.horizontal, 10)
         }
         .onDelete(perform: delete)
         Button {
@@ -218,21 +209,12 @@ struct CustomiseFeedQuicklinksView: View {
           Text("New Comments").tag("NewComments")
         }
         .pickerStyle(.menu)
-      }header: {
+      } header: {
         Text("Type")
       }
       
       Section {
-        HStack {
-          Image(
-            systemName: quicklinkIcon ?? "")
-            .resizable()
-            .frame(width: 30, height: 30)
-            .symbolRenderingMode(.hierarchical)
-            .foregroundStyle(Color(hex: quicklinkColorString) ?? .gray)
-          Text(quicklinkTitle.isEmpty ? "Title" : quicklinkTitle)
-            .padding(.horizontal, 10)
-        }
+        GeneralCommunityQuicklinkButton(image: quicklinkIcon ?? "", hexColor: quicklinkColorString, title: quicklinkTitle.isEmpty ? "Title" : quicklinkTitle)
       } header: {
         Text("Quicklink Preview")
       }
@@ -298,7 +280,7 @@ struct CustomiseFeedQuicklinksView: View {
 
 struct CustomiseFeedQuicklinksView_Previews: PreviewProvider {
   static var previews: some View {
-    CustomiseFeedQuicklinksView()
-//    CustomiseFeedQuicklinksView(showingAddQuicklinkPopover: true)
+//    CustomiseFeedQuicklinksView()
+    CustomiseFeedQuicklinksView(showingAddQuicklinkPopover: true)
   }
 }
