@@ -98,7 +98,7 @@ struct SubscribedFeedQuicklink: View {
           ), title: subscribedPostsQuicklink.title
         )
       } label: {
-        GeneralCommunityButtonView(quicklink: subscribedPostsQuicklink)
+        GeneralCommunityQuicklinkButton(image: subscribedPostsQuicklink.icon, hexColor: subscribedPostsQuicklink.iconColor, title: subscribedPostsQuicklink.title)
       }
     }
   }

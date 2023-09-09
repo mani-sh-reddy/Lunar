@@ -50,8 +50,8 @@ class ColorConverter {
 import UIKit
 import SwiftUI
 
-let systemColor = Color.red
-let color = Color(red: 0.3, green: 0.5, blue: 1)
+//let systemColor = Color.red
+//let color = Color(red: 0.3, green: 0.5, blue: 1)
 
 extension Color {
   init?(hex: String) {

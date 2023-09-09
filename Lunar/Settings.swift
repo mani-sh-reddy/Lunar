@@ -50,18 +50,18 @@ enum Settings {
 
   static let quicklinks: [Quicklink] = [
     Quicklink(
-      title: "Local", type: "Local", sort: "Active", icon: "house.circle.fill", iconColor: "green"
+      title: "Local", type: "Local", sort: "Active", icon: "house.circle.fill", iconColor: "34C759"
     ),
     Quicklink(
       title: "All", type: "All", sort: "Active", icon: "building.2.crop.circle.fill",
-      iconColor: "cyan"
+      iconColor: "31ADE6"
     ),
     Quicklink(
       title: "Top", type: "All", sort: "TopWeek", icon: "chart.line.uptrend.xyaxis.circle.fill",
-      iconColor: "pink"
+      iconColor: "FF2D55"
     ),
     Quicklink(
-      title: "New", type: "All", sort: "New", icon: "star.circle.fill", iconColor: "yellow"
+      title: "New", type: "All", sort: "New", icon: "star.circle.fill", iconColor: "FFCC00"
     ),
   ]
   

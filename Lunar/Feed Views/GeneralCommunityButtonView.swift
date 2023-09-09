@@ -8,19 +8,22 @@
 import Foundation
 import SwiftUI
 
-struct GeneralCommunityButtonView: View {
-  var quicklink: Quicklink
-  
-  let colorConverter = ColorConverter()
+struct GeneralCommunityQuicklinkButton: View {
+  @Environment(\.colorScheme) var colorScheme
+  let image: String
+  let hexColor : String
+  let title: String
   
   var body: some View {
     HStack {
-      Image(systemName: quicklink.icon)
+      Image(systemName: image)
         .resizable()
         .frame(width: 30, height: 30)
         .symbolRenderingMode(.hierarchical)
-        .foregroundStyle(colorConverter.convertStringToColor(quicklink.iconColor))
-      Text(quicklink.title)
+        .foregroundStyle(Color(hex: hexColor) ?? .gray)
+        .brightness(colorScheme == .light ? -0.3 : 0.3)
+        .saturation(colorScheme == .light ? 2 : 2)
+      Text(title)
         .padding(.horizontal, 10)
     }
   }
