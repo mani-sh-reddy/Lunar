@@ -12,6 +12,7 @@ struct FeedView: View {
   @AppStorage("kbinActive") var kbinActive = Settings.kbinActive
   @AppStorage("kbinHostURL") var kbinHostURL = Settings.kbinHostURL
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
+  @AppStorage("quicklinks") var quicklinks = Settings.quicklinks
 
   var subscribedCommunityListHeading: String {
     if !selectedActorID.isEmpty {
@@ -44,10 +45,18 @@ struct FeedView: View {
           .font(.largeTitle)
           .padding(0)
 
-        Section(header: Text("Feed")) {
-          GeneralCommunitiesView()
-          KbinMagazinesSectionView()
+        if !quicklinks.isEmpty {
+          Section(header: Text("Quicklinks")) {
+            GeneralCommunitiesView()
+          }
         }
+        
+        if kbinActive {
+          Section(header: Text("Kbin")) {
+            KbinMagazinesSectionView()
+          }
+        }
+        
         Section(header: Text("Trending")) {
           TrendingCommunitiesSectionView(communitiesFetcher: CommunitiesFetcher(limitParameter: 5))
           MoreCommunitiesButtonView()
