@@ -138,6 +138,7 @@
 		3CECCE192AACFA4B0017A605 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CECCE182AACFA4B0017A605 /* AccountView.swift */; };
 		3CECCE1C2AADBFFA0017A605 /* ColorTesterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CECCE1B2AADBFFA0017A605 /* ColorTesterView.swift */; };
 		3CECCE1E2AADDBBA0017A605 /* CircleFillIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CECCE1D2AADDBBA0017A605 /* CircleFillIcons.swift */; };
+		3CECCE202AADEB1E0017A605 /* DefaultQuicklinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CECCE1F2AADEB1E0017A605 /* DefaultQuicklinks.swift */; };
 		3CED897B2A71A5CF00BD9086 /* ImagePopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CED897A2A71A5CF00BD9086 /* ImagePopoverView.swift */; };
 		3CED897D2A71DCFF00BD9086 /* SettingsHiddenOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CED897C2A71DCFF00BD9086 /* SettingsHiddenOptionsView.swift */; };
 		3CEF4CC22A69B38B002B83C0 /* SubscribedCommunitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CC12A69B38B002B83C0 /* SubscribedCommunitiesView.swift */; };
@@ -308,6 +309,7 @@
 		3CECCE182AACFA4B0017A605 /* AccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		3CECCE1B2AADBFFA0017A605 /* ColorTesterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTesterView.swift; sourceTree = "<group>"; };
 		3CECCE1D2AADDBBA0017A605 /* CircleFillIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleFillIcons.swift; sourceTree = "<group>"; };
+		3CECCE1F2AADEB1E0017A605 /* DefaultQuicklinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultQuicklinks.swift; sourceTree = "<group>"; };
 		3CED897A2A71A5CF00BD9086 /* ImagePopoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePopoverView.swift; sourceTree = "<group>"; };
 		3CED897C2A71DCFF00BD9086 /* SettingsHiddenOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsHiddenOptionsView.swift; sourceTree = "<group>"; };
 		3CEF4CC12A69B38B002B83C0 /* SubscribedCommunitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedCommunitiesView.swift; sourceTree = "<group>"; };
@@ -559,6 +561,7 @@
 				3C87A3672A9F999D0029C18F /* SettingsThemeView.swift */,
 				3C9E54972A953FB60093DDC7 /* SettingsSplashScreenView.swift */,
 				3C2B14742AABC7CB0028E05A /* CustomiseFeedQuicklinksView.swift */,
+				3CECCE1F2AADEB1E0017A605 /* DefaultQuicklinks.swift */,
 				3CECCE1D2AADDBBA0017A605 /* CircleFillIcons.swift */,
 				3C2B14782AABD1290028E05A /* SettingsFeedView.swift */,
 			);
@@ -985,6 +988,7 @@
 				3C87A3682A9F999D0029C18F /* SettingsThemeView.swift in Sources */,
 				3CF3B8FF2A9018B9001C08B5 /* CommentRowView.swift in Sources */,
 				3CFE04C32A7FF0EB007BAD81 /* KbinThreadsModel.swift in Sources */,
+				3CECCE202AADEB1E0017A605 /* DefaultQuicklinks.swift in Sources */,
 				3CB8D2682A55F45900EE615A /* FeedView.swift in Sources */,
 				3C5ECB1F2A75ABFE002BA561 /* SiteInfoFetcher.swift in Sources */,
 				3C9E548C2A94A3DC0093DDC7 /* CommentSender.swift in Sources */,

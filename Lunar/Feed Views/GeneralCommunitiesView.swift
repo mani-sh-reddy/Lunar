@@ -21,7 +21,13 @@ struct GeneralCommunitiesView: View {
           title: quicklink.title
         )
       } label: {
-        GeneralCommunityQuicklinkButton(image: quicklink.icon, hexColor: quicklink.iconColor, title: quicklink.title)
+        GeneralCommunityQuicklinkButton(
+          image: quicklink.icon,
+          hexColor: quicklink.iconColor,
+          title: quicklink.title,
+          brightness: 0.3,
+          saturation: 2
+        )
       }
     }
   }

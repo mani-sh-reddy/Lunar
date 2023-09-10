@@ -32,22 +32,7 @@ struct CustomiseFeedQuicklinksView: View {
 
   let colorConverter = ColorConverter()
   
-  var defaultQuicklinks: [Quicklink] = [
-    Quicklink(
-      title: "Local", type: "Local", sort: "Active", icon: "house.circle.fill", iconColor: "34C759"
-    ),
-    Quicklink(
-      title: "All", type: "All", sort: "Active", icon: "building.2.crop.circle.fill",
-      iconColor: "31ADE6"
-    ),
-    Quicklink(
-      title: "Top", type: "All", sort: "TopWeek", icon: "chart.line.uptrend.xyaxis.circle.fill",
-      iconColor: "FF2D55"
-    ),
-    Quicklink(
-      title: "New", type: "All", sort: "New", icon: "star.circle.fill", iconColor: "FFCC00"
-    ),
-  ]
+  var defaultQuicklinks: [Quicklink] = DefaultQuicklinks().getDefaultQuicklinks()
   
   var iconList: [String] = CircleFillIcons().iconsList()
   
@@ -65,7 +50,7 @@ struct CustomiseFeedQuicklinksView: View {
     List {
       Section {
         ForEach(quicklinks, id: \.self) { quicklink in
-            GeneralCommunityQuicklinkButton(image: quicklink.icon, hexColor: quicklink.iconColor, title: quicklink.title)
+          GeneralCommunityQuicklinkButton(image: quicklink.icon, hexColor: quicklink.iconColor, title: quicklink.title, brightness: quicklink.brightness, saturation: quicklink.saturation)
         }
         .onDelete(perform: delete)
         Button {
@@ -102,7 +87,6 @@ struct CustomiseFeedQuicklinksView: View {
   }
   
   var popover: some View {
-    //  title: "Local", type: "Local", sort: "Active", icon: "house.circle.fill", iconColor: "green"
     List {
       Section {
         TextField("Enter Quicklink Name", text: $quicklinkTitle)
@@ -191,7 +175,7 @@ struct CustomiseFeedQuicklinksView: View {
       }
       
       Section {
-        GeneralCommunityQuicklinkButton(image: quicklinkIcon ?? "", hexColor: quicklinkColorString, title: quicklinkTitle.isEmpty ? "Title" : quicklinkTitle)
+        GeneralCommunityQuicklinkButton(image: quicklinkIcon ?? "", hexColor: quicklinkColorString, title: quicklinkTitle.isEmpty ? "Title" : quicklinkTitle, brightness: 0.3, saturation: 2)
       } header: {
         Text("Quicklink Preview")
       }

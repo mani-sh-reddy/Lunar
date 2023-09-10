@@ -48,23 +48,6 @@ enum Settings {
 
   static let subscribedCommunityIDs: [Int] = []
   static let savedColors: [customColor] = []
-
-  static let quicklinks: [Quicklink] = [
-    Quicklink(
-      title: "Local", type: "Local", sort: "Active", icon: "house.circle.fill", iconColor: "34C759"
-    ),
-    Quicklink(
-      title: "All", type: "All", sort: "Active", icon: "building.2.crop.circle.fill",
-      iconColor: "31ADE6"
-    ),
-    Quicklink(
-      title: "Top", type: "All", sort: "TopWeek", icon: "chart.line.uptrend.xyaxis.circle.fill",
-      iconColor: "FF2D55"
-    ),
-    Quicklink(
-      title: "New", type: "All", sort: "New", icon: "star.circle.fill", iconColor: "FFCC00"
-    ),
-  ]
   
   static var quicklinkColor: Color = .primary
 
@@ -75,4 +58,6 @@ enum Settings {
   static let compactViewEnabled: Bool = false
   static let networkInspectorEnabled: Bool = false
   static let prominentInspectorButton: Bool = true
+  
+  static let quicklinks: [Quicklink] = DefaultQuicklinks().getDefaultQuicklinks()
 }

@@ -31,12 +31,11 @@ struct SettingsDevOptionsView: View {
         .animation(.smooth, value: networkInspectorEnabled)
 
         if networkInspectorEnabled {
-          
           Toggle(isOn: $prominentInspectorButton) {
             Text("Network Inspector Button")
           }
           .animation(.smooth, value: prominentInspectorButton)
-          
+
           if !prominentInspectorButton {
             NavigationLink {
               ConsoleView().closeButtonHidden()
@@ -63,7 +62,7 @@ struct SettingsDevOptionsView: View {
         } label: {
           Text("UserDefaults Explorer")
         }
-        
+
         NavigationLink {
           PlaceholderView()
         } label: {

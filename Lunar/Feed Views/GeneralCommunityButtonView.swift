@@ -13,6 +13,8 @@ struct GeneralCommunityQuicklinkButton: View {
   let image: String
   let hexColor : String
   let title: String
+  let brightness: Double
+  let saturation: Double
   
   var body: some View {
     HStack {
@@ -21,8 +23,8 @@ struct GeneralCommunityQuicklinkButton: View {
         .frame(width: 30, height: 30)
         .symbolRenderingMode(.hierarchical)
         .foregroundStyle(Color(hex: hexColor) ?? .gray)
-        .brightness(colorScheme == .light ? -0.3 : 0.3)
-        .saturation(colorScheme == .light ? 2 : 2)
+        .brightness(colorScheme == .light ? -brightness : brightness)
+        .saturation(saturation)
       Text(title)
         .padding(.horizontal, 10)
     }

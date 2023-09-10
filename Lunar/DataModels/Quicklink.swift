@@ -14,4 +14,6 @@ struct Quicklink: Codable, Hashable {
   var sort: String = ""
   var icon: String = ""
   var iconColor: String = ""
+  var brightness: Double = 0.3
+  var saturation: Double = 2
 }

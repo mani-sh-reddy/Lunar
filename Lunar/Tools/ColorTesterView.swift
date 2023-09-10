@@ -15,12 +15,14 @@ struct customColor: Codable, Hashable {
 }
 
 struct ColorTesterView: View {
+  @Environment(\.colorScheme) var colorScheme
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @AppStorage("savedColors") var savedColors = Settings.savedColors
 
   @State var quicklinkColor: Color = .blue
   @State var brightness: Double = 0.3
   @State var saturation: Double = 2
+  @State var isListDarkMode: Bool = true
 
   var body: some View {
     VStack(alignment: .leading) {
@@ -30,6 +32,7 @@ struct ColorTesterView: View {
           .font(.largeTitle)
           .padding(0)
         Spacer()
+        AppearanceSwitcherButton(isListDarkMode: $isListDarkMode)
         ColorPicker("Icon Color", selection: $quicklinkColor, supportsOpacity: false)
           .scaleEffect(2)
           .labelsHidden()
@@ -37,18 +40,25 @@ struct ColorTesterView: View {
       .padding(.horizontal, 30)
       VStack {
         HStack {
-          Image(systemName: "command.circle.fill")
-            .resizable()
-            .frame(width: 60, height: 60)
-            .foregroundStyle(quicklinkColor)
-            .symbolRenderingMode(.hierarchical)
-            .brightness(brightness)
-            .saturation(saturation)
+          ZStack {
+            Rectangle()
+              .frame(width: 100, height: 100)
+              .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+              .foregroundStyle(.white)
+            Image(systemName: "command.circle.fill")
+              .resizable()
+              .frame(width: 60, height: 60)
+              .foregroundStyle(quicklinkColor)
+              .symbolRenderingMode(.hierarchical)
+              .brightness(-brightness)
+              .saturation(saturation)
+          }
           Spacer()
           ZStack {
             Rectangle()
               .frame(width: 100, height: 100)
               .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+              .foregroundStyle(.black)
             Image(systemName: "command.circle.fill")
               .resizable()
               .frame(width: 60, height: 60)
@@ -59,27 +69,14 @@ struct ColorTesterView: View {
           }
         }
         Spacer()
-        List {
-          ForEach(savedColors, id: \.self) { color in
-            HStack{
-              Text(color.colorHex)
-              Text("B: " + String(color.brightness).prefix(4)).lineLimit(1)
-              Text("S: " + String(color.saturation).prefix(4)).lineLimit(1)
-            Spacer()
-              Image(systemName: CircleFillIcons().iconsList()[Int.random(in: 1..<CircleFillIcons().iconsList().count-1)])
-                .resizable()
-                .frame(width: 30, height: 30)
-                .foregroundStyle(Color(hex: color.colorHex) ?? .clear)
-                .symbolRenderingMode(.hierarchical)
-                .brightness(color.brightness)
-                .saturation(color.saturation)
-            }
-          }
+        SavedColorsListView()
+        Group{
+          Text("brightness: " + String(brightness).prefix(4)).lineLimit(1)
+          Slider(value: $brightness, in: -3...3, step: 0.1)
+          Text("saturation: " + String(saturation).prefix(4)).lineLimit(1)
+          Slider(value: $saturation, in: 0...10, step: 0.1)
         }
-        Text("brightness: " + String(brightness).prefix(4)).lineLimit(1)
-        Slider(value: $brightness, in: -2...2, step: 0.1)
-        Text("saturation: " + String(saturation).prefix(4)).lineLimit(1)
-        Slider(value: $saturation, in: 0...20, step: 0.1)
+        .padding(.horizontal, 20)
         HStack {
           SmallNavButton(systemImage: "slider.horizontal.2.gobackward", text: "Reset Sliders", color: .red, symbolLocation: .left)
             .onTapGesture {
@@ -87,10 +84,9 @@ struct ColorTesterView: View {
               saturation = 2
             }
             .padding(10)
-          LargeNavButton(text: "Reset Color List", color: .red)
+          LargeNavButton(text: "Clear Color List", color: .red)
             .onTapGesture {
-              brightness = 0.3
-              saturation = 2
+              resetColorList()
             }
         }
         
@@ -104,15 +100,64 @@ struct ColorTesterView: View {
       }
       .padding(.horizontal, 10)
     }
+          .preferredColorScheme(isListDarkMode ? .dark : .light)
   }
 
   func saveColor() {
     savedColors.append(customColor(colorHex: quicklinkColor.toHex() ?? "", brightness: brightness, saturation: saturation))
   }
+  func resetColorList() {
+    savedColors.removeAll()
+  }
+  
 }
 
 struct ColorTesterView_Previews: PreviewProvider {
   static var previews: some View {
     ColorTesterView()
+  }
+}
+
+struct SavedColorsListView: View {
+  @AppStorage("savedColors") var savedColors = Settings.savedColors
+  @Environment(\.colorScheme) var colorScheme
+//  @Binding var isListDarkMode: Bool
+  
+  var body: some View {
+    List {
+      ForEach(savedColors, id: \.self) { color in
+        HStack{
+          Text(color.colorHex)
+          Text("B: " + String(color.brightness).prefix(4)).lineLimit(1)
+          Text("S: " + String(color.saturation).prefix(4)).lineLimit(1)
+          Spacer()
+          Image(systemName: CircleFillIcons().iconsList()[Int.random(in: 1..<CircleFillIcons().iconsList().count-1)])
+            .resizable()
+            .frame(width: 30, height: 30)
+            .foregroundStyle(Color(hex: color.colorHex) ?? .clear)
+            .symbolRenderingMode(.hierarchical)
+            .brightness(colorScheme == .light ? -color.brightness : color.brightness)
+            .saturation(color.saturation)
+        }
+      }
+    }
+  }
+}
+
+
+struct AppearanceSwitcherButton: View {
+  @AppStorage("savedColors") var savedColors = Settings.savedColors
+  @Environment(\.colorScheme) var colorScheme
+  @Binding var isListDarkMode: Bool
+  
+  var body: some View {
+    Button{
+      isListDarkMode.toggle()
+    } label: {
+      Image(systemName: isListDarkMode ? "lightbulb.slash" : "lightbulb.fill")
+        .font(.largeTitle)
+        .foregroundStyle(.yellow)
+        .padding(.trailing, 40)
+    }
   }
 }
