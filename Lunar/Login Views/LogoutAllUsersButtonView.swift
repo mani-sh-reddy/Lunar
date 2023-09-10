@@ -16,6 +16,7 @@ struct LogoutAllUsersButtonView: View {
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
+  @AppStorage("selectedUser") var selectedUser = Settings.selectedUser
 
   @Binding var showingPopover: Bool
   @Binding var isPresentingConfirm: Bool
@@ -75,20 +76,20 @@ struct LogoutAllUsersButtonView: View {
       Button(role: .destructive) {
         isPresentingConfirm = true
         if !loggedInAccounts.isEmpty {
-        selectedAccount = AccountModel(
-          userID: "", name: "", email: "", avatarURL: "", actorID: ""
-        )
-        loggedInAccounts.removeAll()
-        selectedName = ""
-        selectedEmail = ""
-        selectedAvatarURL = ""
-        selectedActorID = ""
+          selectedAccount = AccountModel(
+            userID: "", name: "", email: "", avatarURL: "", actorID: ""
+          )
+          loggedInAccounts.removeAll()
+          selectedName = ""
+          selectedEmail = ""
+          selectedAvatarURL = ""
+          selectedActorID = ""
+          selectedUser = []
 
-        
           isLoadingDeleteButton = true
           haptic.notificationOccurred(.success)
           logoutAllUsersButtonClicked = true
-          
+
           KeychainHelper.standard.clearKeychain()
           UserDefaults.standard.synchronize()
           print("REMOVED ALL JWT from Keychain")

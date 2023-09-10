@@ -15,8 +15,6 @@ struct LoggedInUsersListView: View {
   @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
   @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
 
-
-
   @Binding var selectedAccount: AccountModel?
 
   var body: some View {
@@ -34,6 +32,7 @@ struct AccountSelectionItem: View {
   @AppStorage("selectedName") var selectedName = Settings.selectedName
   @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
   @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
+  @AppStorage("selectedUser") var selectedUser = Settings.selectedUser
 
 
   @Binding var selectedAccount: AccountModel?
@@ -67,7 +66,8 @@ struct AccountSelectionItem: View {
       selectedName = account.name
       selectedEmail = account.email
       selectedAvatarURL = account.avatarURL
-
+      selectedUser = [account]
+      /// select the correct
       print("\(String(describing: selectedAccount?.name)) = \(account.name)")
     }
   }

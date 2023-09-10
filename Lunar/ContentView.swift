@@ -33,7 +33,7 @@ struct ContentView: View {
         .tabItem {
           Label("Inbox", systemImage: "tray")
         }
-      AccountTabView()
+      MyUserView()
         .tabItem {
           Label("Account", systemImage: "person")
         }

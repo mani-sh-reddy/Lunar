@@ -22,6 +22,7 @@ class SiteInfoFetcher: ObservableObject {
   @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
   @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
+  @AppStorage("selectedUser") var selectedUser = Settings.selectedUser
   @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
 
   let pulse = Pulse.LoggerStore.shared
@@ -67,6 +68,7 @@ class SiteInfoFetcher: ObservableObject {
           self.selectedEmail = email ?? ""
           self.selectedAvatarURL = avatarURL ?? ""
           self.selectedActorID = actorID
+          self.selectedUser = [self.loggedInAccount]
 
           let response = String(response.response?.statusCode ?? 0)
 
