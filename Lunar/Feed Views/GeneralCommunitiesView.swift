@@ -25,8 +25,8 @@ struct GeneralCommunitiesView: View {
           image: quicklink.icon,
           hexColor: quicklink.iconColor,
           title: quicklink.title,
-          brightness: 0.3,
-          saturation: 2
+          brightness: quicklink.brightness,
+          saturation: quicklink.saturation
         )
       }
     }

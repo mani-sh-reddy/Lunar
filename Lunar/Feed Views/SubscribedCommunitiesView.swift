@@ -67,15 +67,7 @@ struct SubscribedCommunitiesSectionView: View {
 struct SubscribedFeedQuicklink: View {
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
 
-  var subscribedPostsQuicklink: Quicklink {
-    Quicklink(
-      title: "Subscribed Feed",
-      type: "Subscribed",
-      sort: "Active",
-      icon: "pin.circle.fill",
-      iconColor: "purple"
-    )
-  }
+  var subscribedPostsQuicklink: Quicklink = DefaultQuicklinks().getSubscribedQuicklink()
 
   var body: some View {
     if selectedActorID.isEmpty {
@@ -102,8 +94,8 @@ struct SubscribedFeedQuicklink: View {
           image: subscribedPostsQuicklink.icon,
           hexColor: subscribedPostsQuicklink.iconColor,
           title: subscribedPostsQuicklink.title,
-          brightness: 0.3,
-          saturation: 2
+          brightness: subscribedPostsQuicklink.brightness,
+          saturation: subscribedPostsQuicklink.saturation
         )
       }
     }
