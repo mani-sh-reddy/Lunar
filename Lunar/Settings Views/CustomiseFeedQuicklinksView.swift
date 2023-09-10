@@ -49,30 +49,7 @@ struct CustomiseFeedQuicklinksView: View {
     ),
   ]
   
-  var iconList: [String] = [
-    "mountain.2.circle.fill",
-    "camera.macro.circle.fill",
-    "book.circle.fill",
-    "newspaper.circle.fill",
-    "graduationcap.circle.fill",
-    "bookmark.circle.fill",
-    "sportscourt.circle.fill",
-    "trophy.circle.fill",
-    "flame.circle.fill",
-    "tag.circle.fill",
-    "camera.circle.fill",
-    "cart.circle.fill",
-    "hammer.circle.fill",
-    "briefcase.circle.fill",
-    "stethoscope.circle.fill",
-    "popcorn.circle.fill",
-    "tram.circle.fill",
-    "fish.circle.fill",
-    "pawprint.circle.fill",
-    "leaf.circle.fill",
-    "tree.circle.fill",
-    "gift.circle.fill"
-  ]
+  var iconList: [String] = CircleFillIcons().iconsList()
   
   var body: some View {
     /// **Future implementation**
