@@ -27,13 +27,11 @@ struct LocalUser: Codable {
   let acceptedApplication: Bool?
   let totp2FaURL: String?
   let openLinksInNewTab: Bool?
-  let person: Person
 
   enum CodingKeys: String, CodingKey {
     case id
     case personID = "person_id"
     case email
-    case person
     case showNsfw = "show_nsfw"
     case theme
     case defaultSortType = "default_sort_type"

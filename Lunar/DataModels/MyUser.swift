@@ -8,7 +8,7 @@
 import Foundation
 
 struct MyUser: Codable {
-  let localUserView: LocalUser
+  let localUserView: LocalUserProperties
   let follows: [JSONAny]?
   let moderates: [JSONAny]?
   let communityBlocks: [JSONAny]?

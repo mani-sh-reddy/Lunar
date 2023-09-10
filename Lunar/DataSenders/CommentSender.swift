@@ -39,7 +39,7 @@ class CommentSender: ObservableObject {
         "content": content,
         "post_id": postID,
         "parent_id": parentID as Any,
-        "auth": jwt.replacingOccurrences(of: "\"", with: ""),
+        "auth": jwt,
       ] as [String: Any]
     
     let endpoint = "https://\(URLParser.extractDomain(from: selectedActorID))/api/v3/comment"
@@ -88,7 +88,7 @@ class CommentSender: ObservableObject {
       service: appBundleID, account: actorID
     ) {
       let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
-      return jwt
+      return jwt.replacingOccurrences(of: "\"", with: "")
     } else {
       return nil
     }

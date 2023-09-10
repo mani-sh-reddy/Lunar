@@ -54,7 +54,18 @@ struct MyUserView: View {
   var avatar: String { return myAccount.avatarURL }
   var actorID: String { return myAccount.actorID }
   var name: String { return myAccount.name }
-  var userInstance: String { "@\(URLParser.extractDomain(from: actorID))" }
+  var postScore: String { return String(myAccount.postScore) }
+  var commentScore: String { return String(myAccount.commentScore) }
+  var postCount: String { return String(myAccount.postCount) }
+  var commentCount: String { return String(myAccount.commentCount) }
+
+  var userInstance: String {
+    if !actorID.isEmpty {
+      return "@\(URLParser.extractDomain(from: actorID))"
+    } else {
+      return "Login to view"
+    }
+  }
 
   var body: some View {
     List {
@@ -67,14 +78,15 @@ struct MyUserView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .clipShape(Circle())
-            }else {
-                Image(systemName: "person.crop.circle.fill")
-                  .resizable()
-                  .symbolRenderingMode(.hierarchical)
-              }
+            } else {
+              Image(systemName: "person.circle.fill")
+                .resizable()
+                .symbolRenderingMode(.hierarchical)
+            }
           }
+          .processors([.resize(width: 100)])
           .frame(width: 150, height: 150)
-          .padding(.top, 20)
+//          .padding(.top, 10)
           .padding(.bottom, 10)
           Spacer()
         }
@@ -86,8 +98,65 @@ struct MyUserView: View {
       }
       .listRowSeparator(.hidden)
       .listRowBackground(Color.clear)
+      Section {
+        HStack {
+          AccountScoreView(
+            title: "Post Score",
+            score: postScore,
+            isOnLeft: true
+          )
+          Divider()
+          AccountScoreView(
+            title: "Comment Score",
+            score: commentScore,
+            isOnLeft: false
+          )
+        }
+      }
+      Section {
+        HStack {
+          GeneralCommunityQuicklinkButton(
+            image: "list.bullet.circle",
+            hexColor: "FFFFFF",
+            title: "Posts",
+            brightness: 0,
+            saturation: 0
+          )
+          Spacer()
+          Text(postCount)
+            .font(.headline)
+            .foregroundStyle(.gray)
+        }
+
+        HStack {
+          GeneralCommunityQuicklinkButton(
+            image: "bubble.left.circle",
+            hexColor: "FFFFFF",
+            title: "Comments",
+            brightness: 0,
+            saturation: 0
+          )
+          Spacer()
+          Text(commentCount)
+            .font(.headline)
+            .foregroundStyle(.gray)
+        }
+
+        GeneralCommunityQuicklinkButton(
+          image: "folder.circle",
+          hexColor: "FFFFFF",
+          title: "Saved",
+          brightness: 0,
+          saturation: 0
+        )
+      }
     }
     .listStyle(.insetGrouped)
+    .onAppear {
+      if let jwt = JWT().getJWTFromKeychain(actorID: selectedActorID) {
+        SiteInfoFetcher(jwt: jwt).fetchSiteInfo { _, _, _, _ in }
+      }
+    }
   }
 
   var userInfo: some View {
@@ -106,5 +175,37 @@ struct MyUserView: View {
 struct AccountTabView_Previews: PreviewProvider {
   static var previews: some View {
     MyUserView()
+  }
+}
+
+struct AccountScoreView: View {
+  var title: String
+  var score: String
+  var isOnLeft: Bool
+
+  var body: some View {
+    HStack {
+      Spacer()
+      if !isOnLeft {
+        Rectangle()
+          .foregroundStyle(.clear)
+          .frame(width: 5)
+      }
+      VStack(alignment: .center) {
+        Text(title)
+          .textCase(.uppercase)
+          .font(.caption)
+          .foregroundStyle(.gray)
+          .padding(.bottom, 1)
+        Text(score)
+          .font(.title)
+      }
+      if isOnLeft {
+        Rectangle()
+          .foregroundStyle(.clear)
+          .frame(width: 5)
+      }
+      Spacer()
+    }
   }
 }

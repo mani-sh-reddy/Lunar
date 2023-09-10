@@ -43,7 +43,7 @@ class VoteSender: ObservableObject {
         "score": voteType,
         "post_id": postID,
         "comment_id": commentID,
-        "auth": jwt.replacingOccurrences(of: "\"", with: ""),
+        "auth": jwt,
       ] as [String: Any]
     
     let endpoint = "https://\(URLParser.extractDomain(from: selectedActorID))/api/v3/\(elementType)/like"
@@ -101,7 +101,7 @@ class VoteSender: ObservableObject {
       service: appBundleID, account: actorID
     ) {
       let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
-      return jwt
+      return jwt.replacingOccurrences(of: "\"", with: "")
     } else {
       return nil
     }

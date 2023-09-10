@@ -36,7 +36,7 @@ class SubscriptionActionSender: ObservableObject {
       [
         "follow": subscribeAction,
         "community_id": communityID,
-        "auth": jwt.replacingOccurrences(of: "\"", with: ""),
+        "auth": jwt,
       ] as [String: Any]
     
     let endpoint = "https://\(URLParser.extractDomain(from: selectedActorID))/api/v3/community/follow"
@@ -89,7 +89,7 @@ class SubscriptionActionSender: ObservableObject {
       service: appBundleID, account: actorID
     ) {
       let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
-      return jwt
+      return jwt.replacingOccurrences(of: "\"", with: "")
     } else {
       return nil
     }

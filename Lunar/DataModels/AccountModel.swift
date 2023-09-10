@@ -13,4 +13,9 @@ struct AccountModel: Codable, Hashable {
   var email: String = ""
   var avatarURL: String = ""
   var actorID: String = ""
+  var displayName: String = ""
+  var postScore: Int = 0
+  var postCount: Int = 0
+  var commentScore: Int = 0
+  var commentCount: Int = 0
 }

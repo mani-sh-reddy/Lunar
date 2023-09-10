@@ -16,7 +16,7 @@ class JWT {
       service: appBundleID, account: actorID
     ) {
       let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
-      return jwt
+      return jwt.replacingOccurrences(of: "\"", with: "")
     } else {
       return nil
     }
