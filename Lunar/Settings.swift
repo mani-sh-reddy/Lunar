@@ -47,6 +47,7 @@ enum Settings {
   static let commentMetadataPosition = "Bottom"
 
   static let subscribedCommunityIDs: [Int] = []
+  static let savedColors: [customColor] = []
 
   static let quicklinks: [Quicklink] = [
     Quicklink(

@@ -135,6 +135,9 @@
 		3CE237372AA4D188000F1D20 /* SmallNavButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE237362AA4D188000F1D20 /* SmallNavButton.swift */; };
 		3CEA54462A59E6FB009E4FB3 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEA54452A59E6FB009E4FB3 /* MockData.swift */; };
 		3CEACBC72A88020700260A01 /* PostsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEACBC62A88020700260A01 /* PostsFetcher.swift */; };
+		3CECCE192AACFA4B0017A605 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CECCE182AACFA4B0017A605 /* AccountView.swift */; };
+		3CECCE1C2AADBFFA0017A605 /* ColorTesterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CECCE1B2AADBFFA0017A605 /* ColorTesterView.swift */; };
+		3CECCE1E2AADDBBA0017A605 /* CircleFillIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CECCE1D2AADDBBA0017A605 /* CircleFillIcons.swift */; };
 		3CED897B2A71A5CF00BD9086 /* ImagePopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CED897A2A71A5CF00BD9086 /* ImagePopoverView.swift */; };
 		3CED897D2A71DCFF00BD9086 /* SettingsHiddenOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CED897C2A71DCFF00BD9086 /* SettingsHiddenOptionsView.swift */; };
 		3CEF4CC22A69B38B002B83C0 /* SubscribedCommunitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CC12A69B38B002B83C0 /* SubscribedCommunitiesView.swift */; };
@@ -302,6 +305,9 @@
 		3CE237362AA4D188000F1D20 /* SmallNavButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallNavButton.swift; sourceTree = "<group>"; };
 		3CEA54452A59E6FB009E4FB3 /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		3CEACBC62A88020700260A01 /* PostsFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsFetcher.swift; sourceTree = "<group>"; };
+		3CECCE182AACFA4B0017A605 /* AccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		3CECCE1B2AADBFFA0017A605 /* ColorTesterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTesterView.swift; sourceTree = "<group>"; };
+		3CECCE1D2AADDBBA0017A605 /* CircleFillIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleFillIcons.swift; sourceTree = "<group>"; };
 		3CED897A2A71A5CF00BD9086 /* ImagePopoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePopoverView.swift; sourceTree = "<group>"; };
 		3CED897C2A71DCFF00BD9086 /* SettingsHiddenOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsHiddenOptionsView.swift; sourceTree = "<group>"; };
 		3CEF4CC12A69B38B002B83C0 /* SubscribedCommunitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedCommunitiesView.swift; sourceTree = "<group>"; };
@@ -363,6 +369,7 @@
 		3C15DFEC2A6D8C5A0038EFCD /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				3CECCE1B2AADBFFA0017A605 /* ColorTesterView.swift */,
 				3CC734A92A6D697C007523B5 /* InsertSorter.swift */,
 				3C17DE032A92D4D6008EEB10 /* IntExtension.swift */,
 				3C130F6F2A8AD2920060B6E4 /* SafariView.swift */,
@@ -468,6 +475,7 @@
 				3CAB24AE2AA400550002AC4B /* WelcomeView.swift */,
 				3CE237312AA48E7C000F1D20 /* WelcomeScreenInfo.swift */,
 				3CA92E372A543BF000688DEB /* ContentView.swift */,
+				3CECCE182AACFA4B0017A605 /* AccountView.swift */,
 				3C62C2542A72F4BC003BAC5B /* SplashScreenView.swift */,
 				3CB9C40B2A95F4D30022EA64 /* WelcomeScreenView.swift */,
 				3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */,
@@ -551,6 +559,7 @@
 				3C87A3672A9F999D0029C18F /* SettingsThemeView.swift */,
 				3C9E54972A953FB60093DDC7 /* SettingsSplashScreenView.swift */,
 				3C2B14742AABC7CB0028E05A /* CustomiseFeedQuicklinksView.swift */,
+				3CECCE1D2AADDBBA0017A605 /* CircleFillIcons.swift */,
 				3C2B14782AABD1290028E05A /* SettingsFeedView.swift */,
 			);
 			name = Appearance;
@@ -982,6 +991,7 @@
 				3CE237352AA4D171000F1D20 /* LargeNavButton.swift in Sources */,
 				3C62C2552A72F4BC003BAC5B /* SplashScreenView.swift in Sources */,
 				3C6D29652A793878007AFD99 /* DictionaryExtension.swift in Sources */,
+				3CECCE1C2AADBFFA0017A605 /* ColorTesterView.swift in Sources */,
 				3C808E242A9B6DAD008FA62E /* SettingsDevOptionsView.swift in Sources */,
 				3CB9C7422AA24B1800FB5A10 /* LocalSite.swift in Sources */,
 				3C42AD1A2A8038300056AFBC /* KbinCommentsView.swift in Sources */,
@@ -999,6 +1009,7 @@
 				3C2B147B2AABDFD90028E05A /* SFSymbols.swift in Sources */,
 				3C72E21B2A71735E00C794C6 /* InPostThumbnailImageView.swift in Sources */,
 				3C4EE4B92A8006D0009EE4A8 /* KbinPostRowView.swift in Sources */,
+				3CECCE1E2AADDBBA0017A605 /* CircleFillIcons.swift in Sources */,
 				3CEA54462A59E6FB009E4FB3 /* MockData.swift in Sources */,
 				3C42AD1C2A803AE50056AFBC /* KbinCommentsFetcher.swift in Sources */,
 				3CEF4CC82A69B3C3002B83C0 /* GeneralCommunitiesView.swift in Sources */,
@@ -1039,6 +1050,7 @@
 				3C1A3F552A731C3F00898FC6 /* ImageExtension.swift in Sources */,
 				3CF3B8F12A8F797D001C08B5 /* SettingsLayoutView.swift in Sources */,
 				3C65885D2A6189AF00A46DA3 /* CommentsFetcher.swift in Sources */,
+				3CECCE192AACFA4B0017A605 /* AccountView.swift in Sources */,
 				3CD4DA212A7EF3AE00BC374A /* SearchCommunitiesRowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

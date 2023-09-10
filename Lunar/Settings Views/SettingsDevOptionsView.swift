@@ -54,10 +54,16 @@ struct SettingsDevOptionsView: View {
       }
       Section {
         NavigationLink {
+          ColorTesterView()
+        } label: {
+          Text("Color Tester")
+        }
+        NavigationLink {
           UserDefaultsExplorerView()
         } label: {
           Text("UserDefaults Explorer")
         }
+        
         NavigationLink {
           PlaceholderView()
         } label: {
