@@ -14,6 +14,7 @@ struct AppResetButton: View {
   @State private var isLoading: Bool = false
   @State private var isClicked: Bool = false
   @State private var confirmationOpacity: Double = 0
+  @State private var closeAppAlertPresented: Bool = false
   @Binding var refreshView: Bool
 
   var notificationHaptics = UINotificationFeedbackGenerator()
@@ -68,6 +69,11 @@ struct AppResetButton: View {
         }
       }
     }
+    .alert("Close Lunar from the app switcher to complete the reset", isPresented: $closeAppAlertPresented) {
+        Button("OK", role: .cancel) {
+          closeAppAlertPresented = false
+      }
+    }
   }
 
   private func resetApp() {
@@ -85,6 +91,7 @@ struct AppResetButton: View {
     }
 
     refreshView.toggle()
+    closeAppAlertPresented = true
 
     isLoading = false
     showConfirmation = false

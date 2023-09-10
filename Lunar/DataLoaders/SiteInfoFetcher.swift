@@ -82,20 +82,26 @@ class SiteInfoFetcher: ObservableObject {
           
           let response = String(response.response?.statusCode ?? 0)
           
+          var foundMatch = false
+          
           for account in self.loggedInAccounts {
             if actorID == account.actorID {
-              completion(nil, nil, nil, nil)
+              foundMatch = true
+//              completion(nil, nil, nil, nil)
+              break  // Exit the loop early since a match was found
             }
           }
           
-          self.loggedInAccounts.append(self.loggedInAccount)
-          self.selectedUser = [self.loggedInAccount]
-          self.selectedActorID = actorID
-          self.selectedAvatarURL = avatarURL ?? ""
-          self.selectedEmail = email ?? ""
-          self.selectedName = username
-              
-          completion(username, email, actorID, response)
+          if !foundMatch {
+            self.loggedInAccounts.append(self.loggedInAccount)
+            self.selectedUser = [self.loggedInAccount]
+            self.selectedActorID = actorID
+            self.selectedAvatarURL = avatarURL ?? ""
+            self.selectedEmail = email ?? ""
+            self.selectedName = username
+            
+            completion(username, email, actorID, response)
+          }
 
         /// This function would only trigger if login was a success,
         /// so here you only really need to return api, internet, and json decode errors
