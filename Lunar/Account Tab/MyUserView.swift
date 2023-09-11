@@ -117,9 +117,9 @@ struct MyUserView: View {
         HStack {
           GeneralCommunityQuicklinkButton(
             image: "list.bullet.circle.fill",
-            hexColor: "FFFFFF",
+            hexColor: "bbbbbb",
             title: "Posts",
-            brightness: 0,
+            brightness: 0.2,
             saturation: 0
           )
           Spacer()
@@ -131,9 +131,9 @@ struct MyUserView: View {
         HStack {
           GeneralCommunityQuicklinkButton(
             image: "bubble.left.circle.fill",
-            hexColor: "FFFFFF",
+            hexColor: "bbbbbb",
             title: "Comments",
-            brightness: 0,
+            brightness: 0.2,
             saturation: 0
           )
           Spacer()
@@ -144,9 +144,9 @@ struct MyUserView: View {
 
         GeneralCommunityQuicklinkButton(
           image: "folder.circle.fill",
-          hexColor: "FFFFFF",
+          hexColor: "bbbbbb",
           title: "Saved",
-          brightness: 0,
+          brightness: 0.2,
           saturation: 0
         )
       }
