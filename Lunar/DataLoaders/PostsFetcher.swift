@@ -92,11 +92,11 @@ import SwiftUI
       } else {
         urlRequest.cachePolicy = .returnCacheDataElseLoad
       }
+      urlRequest.networkServiceType = .responsiveData
     }
     .cacheResponse(using: cacher)
     .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: PostModel.self) { response in
-
       if self.networkInspectorEnabled {
         self.pulse.storeRequest(
           try! URLRequest(url: self.endpointRedacted, method: .get),

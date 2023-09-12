@@ -11,7 +11,7 @@ struct PostsView: View {
   @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
   @AppStorage("compactViewEnabled") var compactViewEnabled = Settings.compactViewEnabled
   
-  @StateObject var postsFetcher: PostsFetcher
+  @ObservedObject var postsFetcher: PostsFetcher
   
   var title: String?
   var community: CommunityObject?
@@ -22,8 +22,8 @@ struct PostsView: View {
   
   var navigationHeading: String {
     isCommunitySpecific ? (community?.community.name ?? "") :
-    isUserSpecific ? (user?.person.name ?? "") :
-    (title ?? "")
+      isUserSpecific ? (user?.person.name ?? "") :
+      (title ?? "")
   }
   
   var communityDescription: String? { community?.community.description }
@@ -54,10 +54,22 @@ struct PostsView: View {
       ForEach(postsFetcher.posts, id: \.post.id) { post in
         PostSectionView(post: post)
           .onAppear {
-            postsFetcher.loadMoreContentIfNeeded(currentItem: post)
+            print(post.creator.name)
+//            print("comparing CURRENT: \(post.post.id) with LAST: \(String(describing: postsFetcher.posts.last?.post.id))")
+            if post.post.id == postsFetcher.posts.last?.post.id {
+              print("LOAD MORE HERE -----------------------------------")
+              postsFetcher.loadContent()
+            }
           }
           .environmentObject(postsFetcher)
       }
+//      ForEach(postsFetcher.posts, id: \.post.id) { post in
+//        PostSectionView(post: post)
+//          .onAppear {
+//            postsFetcher.loadMoreContentIfNeeded(currentItem: post)
+//          }
+//          .environmentObject(postsFetcher)
+//      }
       if postsFetcher.isLoading {
         ProgressView().id(UUID())
       }
