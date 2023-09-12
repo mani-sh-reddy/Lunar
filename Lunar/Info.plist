@@ -4,5 +4,11 @@
 <dict>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Local Network permission used to connect to Pulse on macOS for debugging, please click Don&apos;t Allow</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_pulse._tcp</string>
+	</array>
 </dict>
 </plist>
