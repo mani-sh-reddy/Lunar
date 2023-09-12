@@ -52,10 +52,11 @@ struct PostsView: View {
         )
       }
       ForEach(postsFetcher.posts, id: \.post.id) { post in
-        PostSectionView(post: post).environmentObject(postsFetcher)
+        PostSectionView(post: post)
           .onAppear {
             postsFetcher.loadMoreContentIfNeeded(currentItem: post)
           }
+          .environmentObject(postsFetcher)
       }
       if postsFetcher.isLoading {
         ProgressView().id(UUID())

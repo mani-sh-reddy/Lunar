@@ -110,9 +110,14 @@ import SwiftUI
       case let .success(result):
 
         let fetchedPosts = result.posts
+        
+        let imageRequestList = result.imageURLs.compactMap {
+          ImageRequest(url: URL(string: $0), processors: [.resize(width: 250)])
+        }
+        self.imagePrefetcher.startPrefetching(with: imageRequestList)
 
-        let imagesToPrefetch = result.imageURLs.compactMap { URL(string: $0) }
-        self.imagePrefetcher.startPrefetching(with: imagesToPrefetch)
+//        let imagesToPrefetch = result.imageURLs.compactMap { URL(string: $0) }
+//        self.imagePrefetcher.startPrefetching(with: imagesToPrefetch)
 
         if isRefreshing {
           self.posts = fetchedPosts
