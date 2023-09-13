@@ -11,7 +11,7 @@ struct PostsView: View {
   @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
   @AppStorage("compactViewEnabled") var compactViewEnabled = Settings.compactViewEnabled
   
-  @ObservedObject var postsFetcher: PostsFetcher
+  @StateObject var postsFetcher: PostsFetcher
   
   var title: String?
   var community: CommunityObject?

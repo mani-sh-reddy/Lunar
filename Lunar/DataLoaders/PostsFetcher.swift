@@ -9,6 +9,7 @@ import Alamofire
 import Nuke
 import Pulse
 import SwiftUI
+import Combine
 
 @MainActor class PostsFetcher: ObservableObject {
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
