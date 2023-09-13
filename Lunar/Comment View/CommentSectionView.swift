@@ -29,7 +29,45 @@ struct CommentSectionView: View {
   }
 
   var body: some View {
+    let nestedComments = comments.nestedComment
+
     List {
+      /// nested comment + recursion
+
+      ForEach(nestedComments, id: \.id) { comment in
+        RecursiveComments(comment: comment)
+      }
+
+//      ForEach(nestedComments, id: \.id) { comment in
+      ////        DisclosureGroup(comment.commentViewData.comment.content) {
+//        Text(String(comment.commentViewData.comment.content))
+//
+//        ForEach(comment.subComments, id: \.id) { comment in
+      ////            DisclosureGroup(comment.commentViewData.comment.content) {
+//          Text(String(comment.commentViewData.comment.content))
+//          ForEach(comment.subComments, id: \.id) { comment in
+//            Text(String(comment.commentViewData.comment.content))
+//          }
+//        }
+      ////          }
+      ////        }
+//      }
+
+//        DisclosureGroup("Section 3") {
+//          ForEach(comment.subComments, id: \.id) { comment in
+//            Text(comment.commentViewData.comment.path)
+//          }
+//        }
+//        ForEach(comment.subComments, id: \.id) { comment in
+//          Text(String(comment.commentViewData.comment.path))
+//        }
+//      }
+//      for comment in nestedComments {
+//        print("Parent Comment ID: \(comment.commentData.comment.id)")
+//        for subComment in comment.subComments {
+//          print("Sub-comment ID: \(subComment.commentData.comment.id)")
+//        }
+//      }
       Section {
         PostRowView(
           upvoted: $upvoted, downvoted: $downvoted, isSubscribed: communityIsSubscribed, post: post, insideCommentsView: true
@@ -91,5 +129,24 @@ struct CommentSectionView: View {
         }
       }
     }
+  }
+}
+
+struct RecursiveComments: View {
+  let comment: NestedComment
+  @State private var isExpanded = true
+
+  var body: some View {
+    DisclosureGroup(
+      isExpanded: $isExpanded,
+      content: {
+        ForEach(comment.subComments, id: \.id) { subComment in
+          RecursiveComments(comment: subComment)
+        }
+      },
+      label: {
+        Text(comment.commentViewData.comment.content)
+      }
+    )
   }
 }
