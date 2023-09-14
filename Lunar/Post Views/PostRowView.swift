@@ -5,7 +5,8 @@
 //  Created by Mani on 04/07/2023.
 //
 
-import SafariServices
+
+import BetterSafariView
 import SwiftUI
 
 struct PostRowView: View {
@@ -203,12 +204,18 @@ struct PostRowView: View {
                     showSafari.toggle()
                   }
                 )
-                .fullScreenCover(
-                  isPresented: $showSafari,
-                  content: {
-                    SFSafariViewWrapper(url: URL(string: post.post.url ?? "")!).ignoresSafeArea()
-                  }
-                )
+                .safariView(isPresented: $showSafari) {
+                  BetterSafariView.SafariView(
+                    url: URL(string: post.post.url ?? "https://github.com/mani-sh-reddy/Lunar")!,
+                    configuration:  BetterSafariView.SafariView.Configuration(
+                      entersReaderIfAvailable: false,
+                      barCollapsingEnabled: true
+                    )
+                  )
+                  .preferredBarAccentColor(.clear)
+                  .preferredControlAccentColor(.accentColor)
+                  .dismissButtonStyle(.done)
+                }
               }
             }
           }
@@ -289,12 +296,18 @@ struct PostRowView: View {
                 showSafari.toggle()
               }
             )
-            .fullScreenCover(
-              isPresented: $showSafari,
-              content: {
-                SFSafariViewWrapper(url: URL(string: post.post.url ?? "")!).ignoresSafeArea()
-              }
-            )
+            .safariView(isPresented: $showSafari) {
+              BetterSafariView.SafariView(
+                url: URL(string: post.post.url ?? "https://github.com/mani-sh-reddy/Lunar")!,
+                configuration:  BetterSafariView.SafariView.Configuration(
+                  entersReaderIfAvailable: false,
+                  barCollapsingEnabled: true
+                )
+              )
+              .preferredBarAccentColor(.clear)
+              .preferredControlAccentColor(.accentColor)
+              .dismissButtonStyle(.done)
+            }
           }
         }
       }
