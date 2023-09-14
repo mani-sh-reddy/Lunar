@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 enum URLParser {
+  
+  /// "https://lemmy.world/c/mani" ==> _lemmy.world_
   static func extractDomain(from url: String) -> String {
     guard let urlComponents = URLComponents(string: url),
           let host = urlComponents.host
@@ -36,6 +38,7 @@ enum URLParser {
     return path
   }
 
+  /// "https://lemmy.world/c/mani" ==> _mani_
   static func extractUsername(from url: String) -> String {
     let path = extractPath(from: url)
     if let range = path.range(of: "/u/", options: .regularExpression) {
@@ -44,6 +47,7 @@ enum URLParser {
     return ""
   }
 
+  /// https://lemmy.world/other_information ==> _lemmy_
   static func extractBaseDomain(from url: String) -> String {
     let domain = extractDomain(from: url)
 

@@ -29,6 +29,7 @@ import Combine
   private var sortParameter: String?
   private var typeParameter: String?
   private var communityID: Int?
+  private var instance: String?
   
   private var endpoint: URLComponents {
     URLBuilder(
@@ -38,7 +39,8 @@ import Combine
       currentPage: currentPage,
       limitParameter: 50,
       communityID: communityID,
-      jwt: getJWTFromKeychain()
+      jwt: getJWTFromKeychain(),
+      instance: instance
     ).buildURL()
   }
 
@@ -49,22 +51,28 @@ import Combine
       typeParameter: typeParameter,
       currentPage: currentPage,
       limitParameter: 50,
-      communityID: communityID
+      communityID: communityID,
+      instance: instance
     ).buildURL()
   }
 
   init(
     sortParameter: String? = nil,
     typeParameter: String? = nil,
-    communityID: Int? = 0
+    communityID: Int? = 0,
+    instance: String? = nil
   ) {
+    if communityID == 99999999999999 { // TODO: just a placeholder to prevent running when user posts
+      return
+    }
+    
     self.sortParameter = sortParameter ?? postSort
     self.typeParameter = typeParameter ?? postType
 
     self.communityID = (communityID == 0) ? nil : communityID
-    if communityID == 99999999999999 { // TODO: just a placeholder to prevent running when user posts
-      return
-    }
+    
+    /// Can explicitly pass in an instance if it's different to the currently selected instance
+    self.instance = instance
 
     loadContent()
   }

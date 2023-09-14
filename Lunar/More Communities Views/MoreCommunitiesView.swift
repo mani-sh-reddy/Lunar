@@ -16,11 +16,14 @@ struct MoreCommunitiesView: View {
     List {
       Section {
         ForEach(communitiesFetcher.communities, id: \.community.id) { community in
+//          let _ = print(URLParser.extractDomain(from: community.community.actorID))
           NavigationLink {
             PostsView(
               postsFetcher: PostsFetcher(
-                communityID: community.community.id
-              ), title: community.community.name,
+                communityID: community.community.id,
+                instance: URLParser.extractDomain(from: community.community.actorID)
+              ),
+              title: community.community.name,
               community: community
             )
           } label: {
