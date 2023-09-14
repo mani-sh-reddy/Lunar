@@ -20,6 +20,7 @@
 		3C1A3F5B2A73B2B800898FC6 /* KeychainInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F5A2A73B2B800898FC6 /* KeychainInterface.swift */; };
 		3C1A3F5D2A73BC9F00898FC6 /* CredentialsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F5C2A73BC9F00898FC6 /* CredentialsModel.swift */; };
 		3C1A3F5F2A73D64C00898FC6 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F5E2A73D64C00898FC6 /* LoginHelper.swift */; };
+		3C1AF0A82AB3B91300763602 /* WhatsNewInitialInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1AF0A72AB3B91300763602 /* WhatsNewInitialInfo.swift */; };
 		3C23F03E2AAA66E000AACA46 /* Pulse in Frameworks */ = {isa = PBXBuildFile; productRef = 3C23F03D2AAA66E000AACA46 /* Pulse */; };
 		3C23F0402AAA66E000AACA46 /* PulseUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3C23F03F2AAA66E000AACA46 /* PulseUI */; };
 		3C29F5452A97D49C001563E7 /* LunarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C29F5442A97D49C001563E7 /* LunarUITests.swift */; };
@@ -201,6 +202,7 @@
 		3C1A3F5A2A73B2B800898FC6 /* KeychainInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainInterface.swift; sourceTree = "<group>"; };
 		3C1A3F5C2A73BC9F00898FC6 /* CredentialsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialsModel.swift; sourceTree = "<group>"; };
 		3C1A3F5E2A73D64C00898FC6 /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
+		3C1AF0A72AB3B91300763602 /* WhatsNewInitialInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewInitialInfo.swift; sourceTree = "<group>"; };
 		3C29F5422A97D49C001563E7 /* LunarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LunarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C29F5442A97D49C001563E7 /* LunarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarUITests.swift; sourceTree = "<group>"; };
 		3C29F5462A97D49C001563E7 /* LunarUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -498,6 +500,7 @@
 				3C62C23E2A72AA4D003BAC5B /* Lunar.entitlements */,
 				3C4F09FF2A54399F009DF8AB /* LunarApp.swift */,
 				3C87A3632A9F97B80029C18F /* EntryView.swift */,
+				3C1AF0A72AB3B91300763602 /* WhatsNewInitialInfo.swift */,
 				3CAB24AE2AA400550002AC4B /* WelcomeView.swift */,
 				3CE237312AA48E7C000F1D20 /* WelcomeScreenInfo.swift */,
 				3CA92E372A543BF000688DEB /* ContentView.swift */,
@@ -1078,6 +1081,7 @@
 				3C5ECB242A766D64002BA561 /* DebugLoginPagePropertiesView.swift in Sources */,
 				3CC734A62A6D591A007523B5 /* URLComponentsExtension.swift in Sources */,
 				3CEB2C1D2AB33B3E0013609E /* ObservedPostsView.swift in Sources */,
+				3C1AF0A82AB3B91300763602 /* WhatsNewInitialInfo.swift in Sources */,
 				3C9E54982A953FB60093DDC7 /* SettingsSplashScreenView.swift in Sources */,
 				3CEF4CD52A69B798002B83C0 /* URLParser.swift in Sources */,
 				3CB9C7222AA23F7400FB5A10 /* CommunityObject.swift in Sources */,

@@ -60,5 +60,8 @@ enum Settings {
   static let networkInspectorEnabled: Bool = false
   static let prominentInspectorButton: Bool = true
   
+  static let clearWhatsNewDefaults: Bool = false
+  static let clearInitialWhatsNewDefault: Bool = false
+  
   static let quicklinks: [Quicklink] = DefaultQuicklinks().getDefaultQuicklinks()
 }
