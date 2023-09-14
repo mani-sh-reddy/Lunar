@@ -1,5 +1,5 @@
 //
-//  PostsView.swift
+//  ObservedPostsView.swift
 //  Lunar
 //
 //  Created by Mani on 05/07/2023.
@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct PostsView: View {
+struct ObservedPostsView: View {
   @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
   @AppStorage("compactViewEnabled") var compactViewEnabled = Settings.compactViewEnabled
   
-  @StateObject var postsFetcher: PostsFetcher
+  @ObservedObject var postsFetcher: ObservablePostsFetcher
   
   var title: String?
   var community: CommunityObject?
@@ -54,22 +54,12 @@ struct PostsView: View {
       ForEach(postsFetcher.posts, id: \.post.id) { post in
         PostSectionView(post: post)
           .onAppear {
-            print(post.creator.name)
-//            print("comparing CURRENT: \(post.post.id) with LAST: \(String(describing: postsFetcher.posts.last?.post.id))")
             if post.post.id == postsFetcher.posts.last?.post.id {
-              print("LOAD MORE HERE -----------------------------------")
               postsFetcher.loadContent()
             }
           }
 //          .environmentObject(postsFetcher)
       }
-//      ForEach(postsFetcher.posts, id: \.post.id) { post in
-//        PostSectionView(post: post)
-//          .onAppear {
-//            postsFetcher.loadMoreContentIfNeeded(currentItem: post)
-//          }
-//          .environmentObject(postsFetcher)
-//      }
       if postsFetcher.isLoading {
         ProgressView().id(UUID())
       }
@@ -89,21 +79,8 @@ struct PostsView: View {
   }
 }
 
-// struct PostsView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    /// need to set showing popover to a constant value
-//    PostsView(
-//      postsFetcher: PostsFetcher(
-//        sortParameter: "Hot",
-//        typeParameter: "All",
-//        communityID: 234
-//      ), title: "Title"
-//    )
-//  }
-// }
-
-struct PostsView_Previews: PreviewProvider {
+struct ObservedPostsView_Previews: PreviewProvider {
   static var previews: some View {
-    PostsView(postsFetcher: PostsFetcher())
+    ObservedPostsView(postsFetcher: ObservablePostsFetcher())
   }
 }

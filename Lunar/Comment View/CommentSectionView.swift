@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CommentSectionView: View {
-  @EnvironmentObject var postsFetcher: PostsFetcher
+//  @EnvironmentObject var postsFetcher: PostsFetcher
   @EnvironmentObject var commentsFetcher: CommentsFetcher
   var post: PostObject
   var comments: [CommentObject]
@@ -71,7 +71,8 @@ struct CommentSectionView: View {
       Section {
         PostRowView(
           upvoted: $upvoted, downvoted: $downvoted, isSubscribed: communityIsSubscribed, post: post, insideCommentsView: true
-        ).environmentObject(postsFetcher)
+        )
+//        .environmentObject(postsFetcher)
         InPostActionsView(post: post)
         if !postBody.isEmpty {
           VStack(alignment: .trailing) {
