@@ -21,6 +21,7 @@
 		3C1A3F5D2A73BC9F00898FC6 /* CredentialsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F5C2A73BC9F00898FC6 /* CredentialsModel.swift */; };
 		3C1A3F5F2A73D64C00898FC6 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F5E2A73D64C00898FC6 /* LoginHelper.swift */; };
 		3C1AF0A82AB3B91300763602 /* WhatsNewInitialInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1AF0A72AB3B91300763602 /* WhatsNewInitialInfo.swift */; };
+		3C1AF0AA2AB4BDA000763602 /* CommentLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1AF0A92AB4BDA000763602 /* CommentLogic.swift */; };
 		3C23F03E2AAA66E000AACA46 /* Pulse in Frameworks */ = {isa = PBXBuildFile; productRef = 3C23F03D2AAA66E000AACA46 /* Pulse */; };
 		3C23F0402AAA66E000AACA46 /* PulseUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3C23F03F2AAA66E000AACA46 /* PulseUI */; };
 		3C29F5452A97D49C001563E7 /* LunarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C29F5442A97D49C001563E7 /* LunarUITests.swift */; };
@@ -203,6 +204,7 @@
 		3C1A3F5C2A73BC9F00898FC6 /* CredentialsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialsModel.swift; sourceTree = "<group>"; };
 		3C1A3F5E2A73D64C00898FC6 /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
 		3C1AF0A72AB3B91300763602 /* WhatsNewInitialInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewInitialInfo.swift; sourceTree = "<group>"; };
+		3C1AF0A92AB4BDA000763602 /* CommentLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentLogic.swift; sourceTree = "<group>"; };
 		3C29F5422A97D49C001563E7 /* LunarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LunarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C29F5442A97D49C001563E7 /* LunarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarUITests.swift; sourceTree = "<group>"; };
 		3C29F5462A97D49C001563E7 /* LunarUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -423,6 +425,7 @@
 				3C2B14762AABCCA50028E05A /* ColorConverter.swift */,
 				3C2B147A2AABDFD90028E05A /* SFSymbols.swift */,
 				3C2B147C2AABE17C0028E05A /* SymbolPicker.swift */,
+				3C1AF0A92AB4BDA000763602 /* CommentLogic.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -1098,6 +1101,7 @@
 				3C113C432A6EA92600FDE5CE /* InstanceSelectorView.swift in Sources */,
 				3C8709322A747B91004999CE /* SiteModel.swift in Sources */,
 				3C2B14772AABCCA50028E05A /* ColorConverter.swift in Sources */,
+				3C1AF0AA2AB4BDA000763602 /* CommentLogic.swift in Sources */,
 				3CB9C7372AA2461C00FB5A10 /* Person.swift in Sources */,
 				3C5ECB2E2A767957002BA561 /* TwoFactorFieldView.swift in Sources */,
 				3C7B7DC92A89485000A02A43 /* DateTimeParser.swift in Sources */,

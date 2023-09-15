@@ -32,42 +32,10 @@ struct CommentSectionView: View {
     let nestedComments = comments.nestedComment
 
     List {
-      /// nested comment + recursion
-
       ForEach(nestedComments, id: \.id) { comment in
         RecursiveComments(comment: comment)
       }
 
-//      ForEach(nestedComments, id: \.id) { comment in
-      ////        DisclosureGroup(comment.commentViewData.comment.content) {
-//        Text(String(comment.commentViewData.comment.content))
-//
-//        ForEach(comment.subComments, id: \.id) { comment in
-      ////            DisclosureGroup(comment.commentViewData.comment.content) {
-//          Text(String(comment.commentViewData.comment.content))
-//          ForEach(comment.subComments, id: \.id) { comment in
-//            Text(String(comment.commentViewData.comment.content))
-//          }
-//        }
-      ////          }
-      ////        }
-//      }
-
-//        DisclosureGroup("Section 3") {
-//          ForEach(comment.subComments, id: \.id) { comment in
-//            Text(comment.commentViewData.comment.path)
-//          }
-//        }
-//        ForEach(comment.subComments, id: \.id) { comment in
-//          Text(String(comment.commentViewData.comment.path))
-//        }
-//      }
-//      for comment in nestedComments {
-//        print("Parent Comment ID: \(comment.commentData.comment.id)")
-//        for subComment in comment.subComments {
-//          print("Sub-comment ID: \(subComment.commentData.comment.id)")
-//        }
-//      }
       Section {
         PostRowView(
           upvoted: $upvoted, downvoted: $downvoted, isSubscribed: communityIsSubscribed, post: post, insideCommentsView: true
