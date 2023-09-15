@@ -127,7 +127,7 @@ struct SettingsView: View {
                 .foregroundStyle(.brown)
             }
           }.disabled(true)
-          
+
           NavigationLink {
             CustomiseFeedQuicklinksView()
           } label: {
@@ -139,7 +139,7 @@ struct SettingsView: View {
                 .foregroundStyle(.blue)
             }
           }
-          
+
         } header: {
           Text("General")
         }
@@ -187,19 +187,19 @@ struct SettingsView: View {
             }
           }
 
-          // MARK: - SPLASH SCREEN
+          // MARK: - [DEPRECATED] SPLASH SCREEN
 
-          NavigationLink {
-            SettingsSplashScreenView()
-          } label: {
-            Label {
-              Text("Splash Screen")
-            } icon: {
-              Image(systemName: "moonphase.waning.gibbous")
-                .symbolRenderingMode(.hierarchical)
-                .foregroundStyle(.yellow)
-            }
-          }
+//          NavigationLink {
+//            SettingsSplashScreenView()
+//          } label: {
+//            Label {
+//              Text("Splash Screen")
+//            } icon: {
+//              Image(systemName: "moonphase.waning.gibbous")
+//                .symbolRenderingMode(.hierarchical)
+//                .foregroundStyle(.yellow)
+//            }
+//          }
 
         } header: {
           Text("Appearance")

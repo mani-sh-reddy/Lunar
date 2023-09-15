@@ -13,11 +13,18 @@ struct SettingsDevOptionsView: View {
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
   @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
   @AppStorage("prominentInspectorButton") var prominentInspectorButton = Settings.prominentInspectorButton
+  @AppStorage("showLaunchSplashScreen") var showLaunchSplashScreen = Settings.showLaunchSplashScreen
+  @AppStorage("clearWhatsNewDefaults") var clearWhatsNewDefaults = Settings.clearWhatsNewDefaults
+  @AppStorage("clearInitialWhatsNewDefault") var clearInitialWhatsNewDefault = Settings.clearInitialWhatsNewDefault
+  
+  @State var clearedAlertPresented: Bool = false
 
   @State var refreshView: Bool = false
   @State var settingsViewOpacity: Double = 1
   @State private var logoScale: CGFloat = 0.1
   @State private var logoOpacity: Double = 0
+  
+  let notificationHaptics = UINotificationFeedbackGenerator()
 
   var body: some View {
     List {
@@ -43,6 +50,22 @@ struct SettingsDevOptionsView: View {
               Text("Network Inspector Console")
             }
           }
+        }
+      }
+      Section {
+        Button {
+          clearWhatsNewDefaults.toggle()
+          notificationHaptics.notificationOccurred(.success)
+          clearedAlertPresented = true
+        } label: {
+          Text("Clear All WhatsNewKit List")
+        }
+        Button {
+          clearInitialWhatsNewDefault.toggle()
+          notificationHaptics.notificationOccurred(.success)
+          clearedAlertPresented = true
+        } label: {
+          Text("Clear WhatsNewKit Initial Launch")
         }
       }
       Section {
@@ -85,6 +108,9 @@ struct SettingsDevOptionsView: View {
         .opacity(logoOpacity)
     }
     .navigationTitle("Developer Options")
+    .alert(isPresented: $clearedAlertPresented) {
+      Alert(title: Text("Cleared"))
+    }
   }
 
   func refresh() {

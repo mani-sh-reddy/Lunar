@@ -33,16 +33,6 @@ struct EntryView: View {
   )
 
   var body: some View {
-    /// Prsenting First Launch Popover
-    if showLaunchSplashScreen {
-      SplashScreen()
-      whatsNewSheet
-    } else {
-      whatsNewSheet
-    }
-  }
-
-  var whatsNewSheet: some View {
     ContentView()
       .sheet(whatsNew: $whatsNewFirstLaunch, versionStore: userDefaultsWhatsNewVersionStore)
       .whatsNewSheet(
