@@ -9,9 +9,9 @@ import Foundation
 
 extension CommentObject {
   var parentID: Int? {
-    let pathComponents = self.comment.path.components(separatedBy: ".")
+    let pathComponents = comment.path.components(separatedBy: ".")
     
-    if comment.path != "0" && pathComponents.count != 2 {
+    if comment.path != "0", pathComponents.count != 2 {
       if let lastID = pathComponents.dropLast().last {
         return Int(lastID)
       }
@@ -24,10 +24,18 @@ extension CommentObject {
 class NestedComment: ObservableObject {
   let commentViewData: CommentObject
   var subComments: [NestedComment]
+  var indentLevel: Int
   
   init(commentData: CommentObject, subComments: [NestedComment]) {
     self.commentViewData = commentData
     self.subComments = subComments
+    
+    /// Calculating indent level
+    let elements = commentData.comment.path.split(separator: ".").map { String($0) }
+    let elementCount = elements.isEmpty ? 1 : elements.count - 1
+    let indentLevel = elementCount >= 1 ? elementCount : 1
+     
+    self.indentLevel = indentLevel
   }
 }
 
@@ -36,7 +44,6 @@ extension NestedComment: Identifiable {
 }
 
 extension Array where Element == CommentObject {
-  
   /// Convert a flat array of `APICommentView` into a hierarchical representation for UI rendering with parent-child relationships.
   var nestedComment: [NestedComment] {
     var comments = self

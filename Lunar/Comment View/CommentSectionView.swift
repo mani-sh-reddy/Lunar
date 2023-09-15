@@ -33,7 +33,7 @@ struct CommentSectionView: View {
 
     List {
       ForEach(nestedComments, id: \.id) { comment in
-        RecursiveComments(comment: comment)
+        RecursiveComment(nestedComment: comment)
       }
 
       Section {
@@ -87,35 +87,125 @@ struct CommentSectionView: View {
   }
 
   func commentExpandAction(comment: CommentObject) {
-    withAnimation(.easeInOut) {
-      for commentOnMainList in comments {
-        if commentOnMainList.comment.path.contains(comment.comment.path) {
-          if commentOnMainList.comment.path != comment.comment.path {
-            commentsFetcher.updateCommentCollapseState(commentOnMainList, isCollapsed: false)
-          } else {
-            commentsFetcher.updateCommentShrinkState(commentOnMainList, isShrunk: false)
-          }
+    for commentOnMainList in comments {
+      if commentOnMainList.comment.path.contains(comment.comment.path) {
+        if commentOnMainList.comment.path != comment.comment.path {
+          commentsFetcher.updateCommentCollapseState(commentOnMainList, isCollapsed: false)
+        } else {
+          commentsFetcher.updateCommentShrinkState(commentOnMainList, isShrunk: false)
         }
       }
     }
   }
 }
 
-struct RecursiveComments: View {
-  let comment: NestedComment
+struct RecursiveComment: View {
   @State private var isExpanded = true
-
+  
+  let commentHierarchyColors: [Color] = [
+    .clear,
+    .red,
+    .orange,
+    .yellow,
+    .green,
+    .cyan,
+    .blue,
+    .indigo,
+    .purple,
+  ]
+  
+  let nestedComment: NestedComment
+  
+  let haptics = UIImpactFeedbackGenerator(style: .soft)
+  
   var body: some View {
-    DisclosureGroup(
-      isExpanded: $isExpanded,
-      content: {
-        ForEach(comment.subComments, id: \.id) { subComment in
-          RecursiveComments(comment: subComment)
+    if isExpanded {
+      let indentLevel = min(nestedComment.indentLevel, commentHierarchyColors.count - 1)
+      let color = commentHierarchyColors[indentLevel]
+      
+      HStack {
+        if nestedComment.indentLevel > 1 {
+          Rectangle()
+            .foregroundColor(color)
+            .frame(width: 2)
+            .padding(.vertical, 5)
         }
-      },
-      label: {
-        Text(comment.commentViewData.comment.content)
+        Text(try! AttributedString(markdown: nestedComment.commentViewData.comment.content))
       }
-    )
+      .onTapGesture {
+        isExpanded.toggle()
+      }
+      .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+        swipeActions
+      }
+      
+      ForEach(nestedComment.subComments, id: \.id) { subComment in
+        RecursiveComment(nestedComment: subComment)
+          .padding(.leading, 10) // Add indentation
+      }
+    } else {
+      ZStack{
+        Text(try! AttributedString(markdown: "_Collapsed_"))
+          .foregroundStyle(.gray)
+          .font(.caption)
+        Rectangle().foregroundStyle(.clear).ignoresSafeArea()
+          .onTapGesture {
+            isExpanded.toggle()
+            haptics.impactOccurred(intensity: 0.5)
+          }
+      }
+    }
   }
+  var swipeActions: some View {
+    return Group {
+      Button {
+        isExpanded.toggle()
+      } label: {
+        Label("collapse", systemImage: "arrow.up.to.line.circle.fill")
+      }
+      .tint(.blue)
+      Button {
+        //        showCommentPopover = true
+      } label: {
+        Label("reply", systemImage: "arrowshape.turn.up.left.circle.fill")
+      }.tint(.orange)
+    }
+  }
+  
 }
+
+//    DisclosureGroup(
+//      isExpanded: $isExpanded,
+//      content: {
+//        ForEach(comment.subComments, id: \.id) { subComment in
+//          if isExpanded {
+//            RecursiveComment(comment: subComment)
+//          } else {
+//            EmptyView()
+//          }
+//        }
+//      },
+//      label: {
+//        if isExpanded {
+//          Text(try! AttributedString(markdown: comment.commentViewData.comment.content))
+//            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+//              Button {
+//                isExpanded.toggle()
+//              } label: {
+//                Label("collapse", systemImage: "arrow.up.to.line.circle.fill")
+//              }
+//              .tint(.blue)
+//              Button {
+//                //        showCommentPopover = true
+//              } label: {
+//                Label("reply", systemImage: "arrowshape.turn.up.left.circle.fill")
+//              }.tint(.orange)
+//            }
+//        } else {
+//          Text(try! AttributedString(markdown: "_Collapsed_"))
+//            .foregroundStyle(.gray)
+//        }
+//      }
+//    )
+//  }
+//}

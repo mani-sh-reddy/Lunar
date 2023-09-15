@@ -76,7 +76,8 @@ struct CommentRowView: View {
           Text(LocalizedStringKey(comment.comment.content))
         }
       }
-    }.contentShape(Rectangle())
+    }
+    .contentShape(Rectangle())
       .onTapGesture {
         commentCollapseAction()
       }
