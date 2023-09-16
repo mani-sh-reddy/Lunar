@@ -6,11 +6,13 @@
 //
 
 import PulseUI
+import SFSafeSymbols
 import SwiftUI
 
 struct ContentView: View {
   @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
   @AppStorage("prominentInspectorButton") var prominentInspectorButton = Settings.prominentInspectorButton
+  let haptics = UIImpactFeedbackGenerator(style: .soft)
 
   @State private var networkInspectorPopover: Bool = false
 
@@ -50,18 +52,19 @@ struct ContentView: View {
       if networkInspectorEnabled && prominentInspectorButton {
         Button {
           networkInspectorPopover = true
+          haptics.impactOccurred()
+
         } label: {
-          Label("Inspector", systemImage: "rectangle.and.text.magnifyingglass")
-            .padding(.vertical, 12)
-            .padding(.horizontal, 24)
-            .background(.orange)
+          Image(systemSymbol: .mailAndTextMagnifyingglass)
+            .font(.title2)
+            .padding(15)
             .foregroundColor(.white)
-            .mask {
-              RoundedRectangle(cornerRadius: 16, style: .continuous)
-            }
+            .background(Color.orange)
+            .clipShape(Circle())
         }
         .padding(20)
-        .padding(.bottom, 40)
+        .padding(.bottom, 50)
+        .shadow(radius: 5)
       }
     }
     .popover(isPresented: $networkInspectorPopover) {
