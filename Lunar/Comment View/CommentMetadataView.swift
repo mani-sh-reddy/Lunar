@@ -28,47 +28,10 @@ struct CommentMetadataView: View {
       .font(.caption)
       .foregroundStyle(.secondary)
       Spacer()
-      ReactionButton(
-        text: String(
-          (commentUpvoted ? (comment.counts.upvotes ?? 0) + 1 : comment.counts.upvotes) ?? 0
-        ),
-        icon: "arrow.up.circle.fill",
-        color: Color.green,
-        active: $commentUpvoted,
-        opposite: $commentDownvoted
-      )
-      .highPriorityGesture(
-        TapGesture().onEnded {
-          haptics.impactOccurred()
-          commentUpvoted.toggle()
-          commentDownvoted = false
-          if commentUpvoted {
-            sendReaction(voteType: 1)
-          } else {
-            sendReaction(voteType: 0)
-          }
-        }
-      )
-      ReactionButton(
-        text: String((commentDownvoted ? (comment.counts.downvotes ?? 0) + 1 : comment.counts.downvotes) ?? 0),
-        icon: "arrow.down.circle.fill",
-        color: Color.red,
-        active: $commentDownvoted,
-        opposite: $commentUpvoted
-      )
-      .highPriorityGesture(
-        TapGesture().onEnded {
-          haptics.impactOccurred()
-          commentDownvoted.toggle()
-          commentUpvoted = false
-          if commentDownvoted {
-            sendReaction(voteType: -1)
-          } else {
-            sendReaction(voteType: 0)
-          }
-        }
-      )
+      upvoteButton
+      downvoteButton
     }
+
     .onAppear {
       if let voteType = comment.myVote {
         switch voteType {
@@ -84,6 +47,52 @@ struct CommentMetadataView: View {
         }
       }
     }
+  }
+
+  var upvoteButton: some View {
+    ReactionButton(
+      text: String(
+        (commentUpvoted ? (comment.counts.upvotes ?? 0) + 1 : comment.counts.upvotes) ?? 0
+      ),
+      icon: "arrow.up.circle.fill",
+      color: Color.green,
+      active: $commentUpvoted,
+      opposite: $commentDownvoted
+    )
+    .highPriorityGesture(
+      TapGesture().onEnded {
+        haptics.impactOccurred()
+        commentUpvoted.toggle()
+        commentDownvoted = false
+        if commentUpvoted {
+          sendReaction(voteType: 1)
+        } else {
+          sendReaction(voteType: 0)
+        }
+      }
+    )
+  }
+
+  var downvoteButton: some View {
+    ReactionButton(
+      text: String((commentDownvoted ? (comment.counts.downvotes ?? 0) + 1 : comment.counts.downvotes) ?? 0),
+      icon: "arrow.down.circle.fill",
+      color: Color.red,
+      active: $commentDownvoted,
+      opposite: $commentUpvoted
+    )
+    .highPriorityGesture(
+      TapGesture().onEnded {
+        haptics.impactOccurred()
+        commentDownvoted.toggle()
+        commentUpvoted = false
+        if commentDownvoted {
+          sendReaction(voteType: -1)
+        } else {
+          sendReaction(voteType: 0)
+        }
+      }
+    )
   }
 
   func sendReaction(voteType: Int) {

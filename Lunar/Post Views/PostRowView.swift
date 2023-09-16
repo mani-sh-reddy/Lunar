@@ -5,7 +5,6 @@
 //  Created by Mani on 04/07/2023.
 //
 
-
 import BetterSafariView
 import SwiftUI
 
@@ -207,7 +206,7 @@ struct PostRowView: View {
                 .safariView(isPresented: $showSafari) {
                   BetterSafariView.SafariView(
                     url: URL(string: post.post.url ?? "https://github.com/mani-sh-reddy/Lunar")!,
-                    configuration:  BetterSafariView.SafariView.Configuration(
+                    configuration: BetterSafariView.SafariView.Configuration(
                       entersReaderIfAvailable: false,
                       barCollapsingEnabled: true
                     )
@@ -226,51 +225,8 @@ struct PostRowView: View {
       }
       if !compactViewEnabled {
         HStack {
-          ReactionButton(
-            text: String(upvotes + upvoteState),
-            icon: "arrow.up.circle.fill",
-            color: Color.green,
-            active: $upvoted,
-            opposite: .constant(false)
-          )
-          .highPriorityGesture(
-            TapGesture().onEnded {
-              haptics.impactOccurred()
-              if !upvoted {
-                print("SENT /post/like \(String(describing: postID)):upvote(+1)")
-                sendReaction(
-                  voteType: 1, postID: post.post.id
-                )
-              } else {
-                print("SENT /post/like \(String(describing: postID)):un-upvote(0)")
-                sendReaction(
-                  voteType: 0, postID: post.post.id
-                )
-              }
-            }
-          )
-
-          ReactionButton(
-            text: String(downvotes + downvoteState),
-            icon: "arrow.down.circle.fill",
-            color: Color.red,
-            active: $downvoted,
-            opposite: .constant(false)
-          )
-          .highPriorityGesture(
-            TapGesture().onEnded {
-              haptics.impactOccurred()
-              if !downvoted {
-                sendReaction(
-                  voteType: -1, postID: post.post.id
-                )
-              } else {
-                sendReaction(
-                  voteType: 0, postID: post.post.id
-                )
-              }
-            }
-          )
+          upvoteButton
+          downvoteButton
 
           ReactionButton(
             text: String(commentCount),
@@ -299,7 +255,7 @@ struct PostRowView: View {
             .safariView(isPresented: $showSafari) {
               BetterSafariView.SafariView(
                 url: URL(string: post.post.url ?? "https://github.com/mani-sh-reddy/Lunar")!,
-                configuration:  BetterSafariView.SafariView.Configuration(
+                configuration: BetterSafariView.SafariView.Configuration(
                   entersReaderIfAvailable: false,
                   barCollapsingEnabled: true
                 )
@@ -350,6 +306,56 @@ struct PostRowView: View {
         }
       }
     }
+  }
+
+  var upvoteButton: some View {
+    ReactionButton(
+      text: String(upvotes + upvoteState),
+      icon: "arrow.up.circle.fill",
+      color: Color.green,
+      active: $upvoted,
+      opposite: .constant(false)
+    )
+    .highPriorityGesture(
+      TapGesture().onEnded {
+        haptics.impactOccurred()
+        if !upvoted {
+          print("SENT /post/like \(String(describing: postID)):upvote(+1)")
+          sendReaction(
+            voteType: 1, postID: post.post.id
+          )
+        } else {
+          print("SENT /post/like \(String(describing: postID)):un-upvote(0)")
+          sendReaction(
+            voteType: 0, postID: post.post.id
+          )
+        }
+      }
+    )
+  }
+
+  var downvoteButton: some View {
+    ReactionButton(
+      text: String(downvotes + downvoteState),
+      icon: "arrow.down.circle.fill",
+      color: Color.red,
+      active: $downvoted,
+      opposite: .constant(false)
+    )
+    .highPriorityGesture(
+      TapGesture().onEnded {
+        haptics.impactOccurred()
+        if !downvoted {
+          sendReaction(
+            voteType: -1, postID: post.post.id
+          )
+        } else {
+          sendReaction(
+            voteType: 0, postID: post.post.id
+          )
+        }
+      }
+    )
   }
 
   func sendSubscribeAction(subscribeAction: Bool) {

@@ -61,53 +61,60 @@ struct CommentRowView: View {
       }
       VStack(alignment: .leading, spacing: 3) {
         if commentMetadataPosition == "Bottom" {
-          Text(LocalizedStringKey(comment.comment.content))
-          CommentMetadataView(
-            comment: comment, commentUpvoted: $commentUpvoted, commentDownvoted: $commentDownvoted
-          )
-          .environmentObject(commentsFetcher)
+          commentBody
+          commentMetadata
         } else if commentMetadataPosition == "Top" {
-          CommentMetadataView(
-            comment: comment, commentUpvoted: $commentUpvoted, commentDownvoted: $commentDownvoted
-          )
-          .environmentObject(commentsFetcher)
-          Text(LocalizedStringKey(comment.comment.content))
+          commentMetadata
+          commentBody
         } else {
-          Text(LocalizedStringKey(comment.comment.content))
+          commentBody
         }
       }
     }
     .contentShape(Rectangle())
-      .onTapGesture {
+    .onTapGesture {
+      commentCollapseAction()
+    }
+    .sheet(
+      isPresented: $showCommentPopover,
+      onDismiss: {
+        Task {
+          print("COMMENT SHEET DISMISSED")
+          commentsFetcher.loadContent(isRefreshing: true)
+        }
+      }
+    ) {
+      CommentPopoverView(
+        showCommentPopover: $showCommentPopover,
+        post: comment.post
+      )
+    }
+    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+      Button {
         commentCollapseAction()
+      } label: {
+        Label("collapse", systemImage: "arrow.up.to.line.circle.fill")
       }
-      .sheet(
-        isPresented: $showCommentPopover,
-        onDismiss: {
-          Task {
-            print("COMMENT SHEET DISMISSED")
-            commentsFetcher.loadContent(isRefreshing: true)
-          }
-        }
-      ) {
-        CommentPopoverView(
-          showCommentPopover: $showCommentPopover,
-          post: comment.post
-        )
-      }
-      .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-        Button {
-          commentCollapseAction()
-        } label: {
-          Label("collapse", systemImage: "arrow.up.to.line.circle.fill")
-        }
-        .tint(.blue)
-        Button {
-          showCommentPopover = true
-        } label: {
-          Label("reply", systemImage: "arrowshape.turn.up.left.circle.fill")
-        }.tint(.orange)
-      }
+      .tint(.blue)
+      Button {
+        showCommentPopover = true
+      } label: {
+        Label("reply", systemImage: "arrowshape.turn.up.left.circle.fill")
+      }.tint(.orange)
+    }
+  }
+
+  var commentMetadata: some View {
+    CommentMetadataView(
+      comment: comment, commentUpvoted: $commentUpvoted, commentDownvoted: $commentDownvoted
+    )
+    .environmentObject(commentsFetcher)
+  }
+
+  var commentBody: some View {
+    Text(
+      try! AttributedString(styledMarkdown: comment.comment.content)
+    )
   }
 
   func commentCollapseAction() {

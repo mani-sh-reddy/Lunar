@@ -131,6 +131,7 @@
 		3CC734AA2A6D697C007523B5 /* InsertSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC734A92A6D697C007523B5 /* InsertSorter.swift */; };
 		3CCA7F772A956E6F00971BD1 /* CommentPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCA7F762A956E6F00971BD1 /* CommentPopoverView.swift */; };
 		3CCAA8BF2A65309E007CCEC2 /* NoInternetConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA8BE2A65309E007CCEC2 /* NoInternetConnectionView.swift */; };
+		3CCE1D1B2AB5F13000357DFA /* AttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCE1D1A2AB5F13000357DFA /* AttributedStringExtension.swift */; };
 		3CD3F5672A8014B900D284D0 /* KbinMagazinesSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD3F5662A8014B900D284D0 /* KbinMagazinesSectionView.swift */; };
 		3CD4DA212A7EF3AE00BC374A /* SearchCommunitiesRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD4DA202A7EF3AE00BC374A /* SearchCommunitiesRowView.swift */; };
 		3CD4DA232A7EF3C200BC374A /* SearchUsersRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD4DA222A7EF3C200BC374A /* SearchUsersRowView.swift */; };
@@ -313,6 +314,7 @@
 		3CC734A92A6D697C007523B5 /* InsertSorter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertSorter.swift; sourceTree = "<group>"; };
 		3CCA7F762A956E6F00971BD1 /* CommentPopoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentPopoverView.swift; sourceTree = "<group>"; };
 		3CCAA8BE2A65309E007CCEC2 /* NoInternetConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoInternetConnectionView.swift; sourceTree = "<group>"; };
+		3CCE1D1A2AB5F13000357DFA /* AttributedStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedStringExtension.swift; sourceTree = "<group>"; };
 		3CD3F5662A8014B900D284D0 /* KbinMagazinesSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinMagazinesSectionView.swift; sourceTree = "<group>"; };
 		3CD4DA202A7EF3AE00BC374A /* SearchCommunitiesRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCommunitiesRowView.swift; sourceTree = "<group>"; };
 		3CD4DA222A7EF3C200BC374A /* SearchUsersRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersRowView.swift; sourceTree = "<group>"; };
@@ -424,6 +426,7 @@
 				3C2B147A2AABDFD90028E05A /* SFSymbols.swift */,
 				3C2B147C2AABE17C0028E05A /* SymbolPicker.swift */,
 				3C1AF0A92AB4BDA000763602 /* CommentLogic.swift */,
+				3CCE1D1A2AB5F13000357DFA /* AttributedStringExtension.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -983,6 +986,7 @@
 				3CA95F052A7ACBD500626353 /* PhotoDetailView.swift in Sources */,
 				3CC178912A7DA6A200C208D0 /* SearchView.swift in Sources */,
 				3C113C392A6E71E100FDE5CE /* SettingsAccountView.swift in Sources */,
+				3CCE1D1B2AB5F13000357DFA /* AttributedStringExtension.swift in Sources */,
 				3C2C454A2AA648A000727DD5 /* UserDefaultsExplorerView.swift in Sources */,
 				3C6BBF722A910F6100312E2B /* SubscriptionActionSender.swift in Sources */,
 				3C87A36E2A9FBDE70029C18F /* SettingsAppIconPickerView.swift in Sources */,
