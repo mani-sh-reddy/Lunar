@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct CommentPopoverView: View {
-  @Binding var showCommentPopover: Bool
+  @Binding var showingCommentPopover: Bool
   @State private var commentString: String = ""
   @State private var commentStringUnsent: String = ""
+  @EnvironmentObject var commentsFetcher: CommentsFetcher
 
   var post: Post
+  var comment: Comment?
   var parentID: Int?
 
   var body: some View {
@@ -20,7 +22,11 @@ struct CommentPopoverView: View {
       // MARK: - Post Title
 
       Section {
-        Text(post.name)
+        if let comment = comment {
+          Text(comment.content)
+        } else {
+          Text(post.name)
+        }
       } header: {
         Text("Replying to:")
           .textCase(.none)
@@ -49,10 +55,11 @@ struct CommentPopoverView: View {
             CommentSender(
               content: commentString,
               postID: post.id,
-              parentID: parentID
+              parentID: comment?.id
             ).fetchCommentResponse { response in
               if response == "success" {
-                showCommentPopover = false
+                showingCommentPopover = false
+                commentsFetcher.loadContent(isRefreshing: true)
               } else {
                 print("ERROR SENDING COMMENT")
               }
@@ -62,7 +69,7 @@ struct CommentPopoverView: View {
         } label: {
           HStack {
             Spacer()
-            Text("Post")
+            Text("Submit")
             Spacer()
           }
         }
@@ -74,6 +81,6 @@ struct CommentPopoverView: View {
 
 // struct CommentPopoverView_Previews: PreviewProvider {
 //  static var previews: some View {
-//    CommentPopoverView(showCommentPopover: .constant(false), post: MockData.postElement.post)
+//    CommentPopoverView(showingCommentPopover: .constant(false), post: MockData.postElement.post)
 //  }
 // }

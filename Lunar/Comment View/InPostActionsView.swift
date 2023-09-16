@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct InPostActionsView: View {
-  @State var showCommentPopover: Bool = false
+  @State var showingCommentPopover: Bool = false
 
   var post: PostObject
 
@@ -19,11 +19,11 @@ struct InPostActionsView: View {
     )
     .highPriorityGesture(
       TapGesture().onEnded {
-        showCommentPopover = true
+        showingCommentPopover = true
       }
     )
-    .sheet(isPresented: $showCommentPopover) {
-      CommentPopoverView(showCommentPopover: $showCommentPopover, post: post.post)
+    .sheet(isPresented: $showingCommentPopover) {
+      CommentPopoverView(showingCommentPopover: $showingCommentPopover, post: post.post)
     }
   }
 }

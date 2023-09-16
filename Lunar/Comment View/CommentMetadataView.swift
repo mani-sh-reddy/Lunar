@@ -12,8 +12,8 @@ struct CommentMetadataView: View {
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   var comment: CommentObject
   let dateTimeParser = DateTimeParser()
-  @Binding var commentUpvoted: Bool
-  @Binding var commentDownvoted: Bool
+  @State var commentUpvoted: Bool = false
+  @State var commentDownvoted: Bool = false
 
   let haptics = UIImpactFeedbackGenerator(style: .rigid)
 

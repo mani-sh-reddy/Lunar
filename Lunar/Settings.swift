@@ -45,7 +45,7 @@ enum Settings {
   static let communitiesSort: String = "New"
   static let communitiesType: String = "All"
 
-  static let commentMetadataPosition = "Bottom"
+  static let commentMetadataPosition = "Top"
 
   static let subscribedCommunityIDs: [Int] = []
   static let savedColors: [customColor] = []
