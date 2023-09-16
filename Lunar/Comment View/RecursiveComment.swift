@@ -18,6 +18,10 @@ struct RecursiveComment: View {
 //  @State var commentText: String = ""
   @EnvironmentObject var commentsFetcher: CommentsFetcher
   
+  let nestedComment: NestedComment
+  let post: Post
+  let dateTimeParser = DateTimeParser()
+  
   let commentHierarchyColors: [Color] = [
     .clear,
     .red,
@@ -30,14 +34,10 @@ struct RecursiveComment: View {
     .purple,
   ]
   
-  let nestedComment: NestedComment
-  let post: Post
-  let dateTimeParser = DateTimeParser()
-  
   let haptics = UIImpactFeedbackGenerator(style: .soft)
   
   var body: some View {
-    if isExpanded {
+    if !nestedComment.commentViewData.isCollapsed {
       let indentLevel = min(nestedComment.indentLevel, commentHierarchyColors.count - 1)
       let color = commentHierarchyColors[indentLevel]
       HStack {
@@ -54,6 +54,8 @@ struct RecursiveComment: View {
       .onTapGesture {
         isExpanded.toggle()
         haptics.impactOccurred(intensity: 0.5)
+        commentsFetcher.updateCommentCollapseState(nestedComment.commentViewData, isCollapsed: true)
+        print("tapped to collapse")
       }
       .swipeActions(edge: .trailing, allowsFullSwipe: true) {
         swipeActions
@@ -102,6 +104,8 @@ struct RecursiveComment: View {
       .onTapGesture {
         isExpanded.toggle()
         haptics.impactOccurred(intensity: 0.5)
+        commentsFetcher.updateCommentCollapseState(nestedComment.commentViewData, isCollapsed: false)
+        print("tapped to expand")
       }
     }
   }
@@ -143,6 +147,8 @@ struct RecursiveComment: View {
       Button {
         isExpanded.toggle()
         haptics.impactOccurred(intensity: 0.5)
+        commentsFetcher.updateCommentCollapseState(nestedComment.commentViewData, isCollapsed: true)
+        print("swipe action collapse clicked")
       } label: {
         Label("collapse", systemImage: "arrow.up.to.line.circle.fill")
       }

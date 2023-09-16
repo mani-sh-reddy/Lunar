@@ -119,17 +119,19 @@ struct CommentSectionView: View {
     .listRowBackground(Color.clear)
   }
 
-  func commentExpandAction(comment: CommentObject) {
-    withAnimation(.linear(duration: 0.3)) {
-      for commentOnMainList in comments {
-        if commentOnMainList.comment.path.contains(comment.comment.path) {
-          if commentOnMainList.comment.path != comment.comment.path {
-            commentsFetcher.updateCommentCollapseState(commentOnMainList, isCollapsed: false)
-          } else {
-            commentsFetcher.updateCommentShrinkState(commentOnMainList, isShrunk: false)
-          }
-        }
-      }
-    }
-  }
+//  func commentExpandAction(comment: CommentObject) {
+//    withAnimation(.linear(duration: 0.3)) {
+//      for commentOnMainList in comments {
+//        if commentOnMainList.comment.path.contains(comment.comment.path) {
+//          if commentOnMainList.comment.path != comment.comment.path {
+//            // Expand or collapse other comments as needed
+//            commentsFetcher.updateCommentCollapseState(commentOnMainList, isCollapsed: false)
+//          } else {
+//            // Toggle the collapse state of the clicked comment
+//            commentsFetcher.updateCommentCollapseState(commentOnMainList, isCollapsed: !commentOnMainList.isCollapsed)
+//          }
+//        }
+//      }
+//    }
+//  }
 }
