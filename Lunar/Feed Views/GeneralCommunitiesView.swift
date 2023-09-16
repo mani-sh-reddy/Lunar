@@ -13,8 +13,8 @@ struct GeneralCommunitiesView: View {
   var body: some View {
     ForEach(quicklinks, id: \.self) { quicklink in
       NavigationLink {
-        ObservedPostsView(
-          postsFetcher: ObservablePostsFetcher(
+        PostsView(
+          postsFetcher: PostsFetcher(
             sortParameter: quicklink.sort,
             typeParameter: quicklink.type
           ),

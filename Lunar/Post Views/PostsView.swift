@@ -61,7 +61,7 @@ struct PostsView: View {
               postsFetcher.loadContent()
             }
           }
-//          .environmentObject(postsFetcher)
+          .environmentObject(postsFetcher)
       }
 //      ForEach(postsFetcher.posts, id: \.post.id) { post in
 //        PostSectionView(post: post)

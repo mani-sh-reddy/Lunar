@@ -10,7 +10,7 @@ import BetterSafariView
 import SwiftUI
 
 struct PostRowView: View {
-//  @EnvironmentObject var postsFetcher: PostsFetcher
+  @EnvironmentObject var postsFetcher: PostsFetcher
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @AppStorage("subscribedCommunityIDs") var subscribedCommunityIDs = Settings.subscribedCommunityIDs
   @AppStorage("compactViewEnabled") var compactViewEnabled = Settings.compactViewEnabled
@@ -121,22 +121,22 @@ struct PostRowView: View {
                 }
                 .lineLimit(1)
                 .foregroundStyle(.green)
-//                .highPriorityGesture(
-//                  TapGesture().onEnded {
-//                    haptics.impactOccurred()
-//                    if !upvoted {
-//                      print("SENT /post/like \(String(describing: postID)):upvote(+1)")
-//                      sendReaction(
-//                        voteType: 1, postID: post.post.id
-//                      )
-//                    } else {
-//                      print("SENT /post/like \(String(describing: postID)):un-upvote(0)")
-//                      sendReaction(
-//                        voteType: 0, postID: post.post.id
-//                      )
-//                    }
-//                  }
-//                )
+                .highPriorityGesture(
+                  TapGesture().onEnded {
+                    haptics.impactOccurred()
+                    if !upvoted {
+                      print("SENT /post/like \(String(describing: postID)):upvote(+1)")
+                      sendReaction(
+                        voteType: 1, postID: post.post.id
+                      )
+                    } else {
+                      print("SENT /post/like \(String(describing: postID)):un-upvote(0)")
+                      sendReaction(
+                        voteType: 0, postID: post.post.id
+                      )
+                    }
+                  }
+                )
 
                 HStack(spacing: 1) {
                   Image(systemName: "arrow.down")
@@ -145,20 +145,20 @@ struct PostRowView: View {
                 }
                 .lineLimit(1)
                 .foregroundStyle(.red)
-//                .highPriorityGesture(
-//                  TapGesture().onEnded {
-//                    haptics.impactOccurred()
-//                    if !downvoted {
-//                      sendReaction(
-//                        voteType: -1, postID: post.post.id
-//                      )
-//                    } else {
-//                      sendReaction(
-//                        voteType: 0, postID: post.post.id
-//                      )
-//                    }
-//                  }
-//                )
+                .highPriorityGesture(
+                  TapGesture().onEnded {
+                    haptics.impactOccurred()
+                    if !downvoted {
+                      sendReaction(
+                        voteType: -1, postID: post.post.id
+                      )
+                    } else {
+                      sendReaction(
+                        voteType: 0, postID: post.post.id
+                      )
+                    }
+                  }
+                )
 
                 HStack(spacing: 2) {
                   Image(systemName: "bubble.left")
@@ -176,7 +176,7 @@ struct PostRowView: View {
             titleVisibility: .visible
           ) {
             Button {
-//              sendSubscribeAction(subscribeAction: !isSubscribed)
+              sendSubscribeAction(subscribeAction: !isSubscribed)
               isSubscribed.toggle()
             } label: {
               Text(isSubscribed ? "Unsubscribe" : "Subscribe")
@@ -233,22 +233,22 @@ struct PostRowView: View {
             active: $upvoted,
             opposite: .constant(false)
           )
-//          .highPriorityGesture(
-//            TapGesture().onEnded {
-//              haptics.impactOccurred()
-//              if !upvoted {
-//                print("SENT /post/like \(String(describing: postID)):upvote(+1)")
-//                sendReaction(
-//                  voteType: 1, postID: post.post.id
-//                )
-//              } else {
-//                print("SENT /post/like \(String(describing: postID)):un-upvote(0)")
-//                sendReaction(
-//                  voteType: 0, postID: post.post.id
-//                )
-//              }
-//            }
-//          )
+          .highPriorityGesture(
+            TapGesture().onEnded {
+              haptics.impactOccurred()
+              if !upvoted {
+                print("SENT /post/like \(String(describing: postID)):upvote(+1)")
+                sendReaction(
+                  voteType: 1, postID: post.post.id
+                )
+              } else {
+                print("SENT /post/like \(String(describing: postID)):un-upvote(0)")
+                sendReaction(
+                  voteType: 0, postID: post.post.id
+                )
+              }
+            }
+          )
 
           ReactionButton(
             text: String(downvotes + downvoteState),
@@ -257,20 +257,20 @@ struct PostRowView: View {
             active: $downvoted,
             opposite: .constant(false)
           )
-//          .highPriorityGesture(
-//            TapGesture().onEnded {
-//              haptics.impactOccurred()
-//              if !downvoted {
-//                sendReaction(
-//                  voteType: -1, postID: post.post.id
-//                )
-//              } else {
-//                sendReaction(
-//                  voteType: 0, postID: post.post.id
-//                )
-//              }
-//            }
-//          )
+          .highPriorityGesture(
+            TapGesture().onEnded {
+              haptics.impactOccurred()
+              if !downvoted {
+                sendReaction(
+                  voteType: -1, postID: post.post.id
+                )
+              } else {
+                sendReaction(
+                  voteType: 0, postID: post.post.id
+                )
+              }
+            }
+          )
 
           ReactionButton(
             text: String(commentCount),
@@ -352,69 +352,69 @@ struct PostRowView: View {
     }
   }
 
-//  func sendSubscribeAction(subscribeAction: Bool) {
-//    let notificationHaptics = UINotificationFeedbackGenerator()
-//    SubscriptionActionSender(
-//      communityID: post.community.id,
-//      asActorID: selectedActorID,
-//      subscribeAction: subscribeAction
-//    ).fetchSubscribeInfo { _, subscribeResponse, _ in
-//      if subscribeResponse != nil {
-//        notificationHaptics.notificationOccurred(.success)
-//        if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == post.post.id }) {
-//          var updatedPost = postsFetcher.posts[index]
-//          updatedPost.subscribed = subscribeAction ? .subscribed : .notSubscribed
-//          postsFetcher.posts[index] = updatedPost
-//          subscribeState = subscribeAction ? .subscribed : .notSubscribed // Update the local subscription status
-//        }
-//        if subscribeResponse == .subscribed {
-//          subscribedCommunityIDs.append(post.community.id)
-//        } else if subscribeResponse == .notSubscribed {
-//          if let index = subscribedCommunityIDs.firstIndex(of: post.community.id) {
-//            subscribedCommunityIDs.remove(at: index)
-//          }
-//        }
-//      }
-//    }
-//  }
+  func sendSubscribeAction(subscribeAction: Bool) {
+    let notificationHaptics = UINotificationFeedbackGenerator()
+    SubscriptionActionSender(
+      communityID: post.community.id,
+      asActorID: selectedActorID,
+      subscribeAction: subscribeAction
+    ).fetchSubscribeInfo { _, subscribeResponse, _ in
+      if subscribeResponse != nil {
+        notificationHaptics.notificationOccurred(.success)
+        if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == post.post.id }) {
+          var updatedPost = postsFetcher.posts[index]
+          updatedPost.subscribed = subscribeAction ? .subscribed : .notSubscribed
+          postsFetcher.posts[index] = updatedPost
+          subscribeState = subscribeAction ? .subscribed : .notSubscribed // Update the local subscription status
+        }
+        if subscribeResponse == .subscribed {
+          subscribedCommunityIDs.append(post.community.id)
+        } else if subscribeResponse == .notSubscribed {
+          if let index = subscribedCommunityIDs.firstIndex(of: post.community.id) {
+            subscribedCommunityIDs.remove(at: index)
+          }
+        }
+      }
+    }
+  }
 
-//  func sendReaction(voteType: Int, postID: Int) {
-//    VoteSender(
-//      asActorID: selectedActorID,
-//      voteType: voteType,
-//      postID: postID,
-//      commentID: 0,
-//      elementType: "post"
-//    ).fetchVoteInfo { postID, voteSubmittedSuccessfully, _ in
-//      print("RETURNED /post/like \(String(describing: postID)):\(voteSubmittedSuccessfully)")
-//      if voteSubmittedSuccessfully {
-//        switch voteType {
-//        case 1:
-//          upvoted = true
-//          downvoted = false
-//          upvoteState = 1
-//          downvoteState = 0
-//        case -1:
-//          upvoted = false
-//          downvoted = true
-//          upvoteState = 0
-//          downvoteState = 1
-//        default:
-//          upvoted = false
-//          downvoted = false
-//          upvoteState = 0
-//          downvoteState = 0
-//        }
-//
-//        // Update the corresponding post in the postsFetcher.posts array
-//        if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == postID }) {
-//          var updatedPost = postsFetcher.posts[index]
-//          updatedPost.myVote = voteType
-//          postsFetcher.posts[index] = updatedPost
-//        }
-//      }
-//    }
-//  }
+  func sendReaction(voteType: Int, postID: Int) {
+    VoteSender(
+      asActorID: selectedActorID,
+      voteType: voteType,
+      postID: postID,
+      commentID: 0,
+      elementType: "post"
+    ).fetchVoteInfo { postID, voteSubmittedSuccessfully, _ in
+      print("RETURNED /post/like \(String(describing: postID)):\(voteSubmittedSuccessfully)")
+      if voteSubmittedSuccessfully {
+        switch voteType {
+        case 1:
+          upvoted = true
+          downvoted = false
+          upvoteState = 1
+          downvoteState = 0
+        case -1:
+          upvoted = false
+          downvoted = true
+          upvoteState = 0
+          downvoteState = 1
+        default:
+          upvoted = false
+          downvoted = false
+          upvoteState = 0
+          downvoteState = 0
+        }
+
+        // Update the corresponding post in the postsFetcher.posts array
+        if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == postID }) {
+          var updatedPost = postsFetcher.posts[index]
+          updatedPost.myVote = voteType
+          postsFetcher.posts[index] = updatedPost
+        }
+      }
+    }
+  }
 }
 
 // struct PostRowView_Previews: PreviewProvider {

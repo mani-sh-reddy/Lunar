@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CommentsView: View {
-//  @EnvironmentObject var postsFetcher: PostsFetcher
+  @EnvironmentObject var postsFetcher: PostsFetcher
   @StateObject var commentsFetcher: CommentsFetcher
   @Binding var upvoted: Bool
   @Binding var downvoted: Bool
@@ -26,7 +26,7 @@ struct CommentsView: View {
         upvoted: $upvoted,
         downvoted: $downvoted
       )
-//      .environmentObject(postsFetcher)
+      .environmentObject(postsFetcher)
       .environmentObject(commentsFetcher)
     }
   }

@@ -146,8 +146,6 @@
 		3CEB2C132AB2F45F0013609E /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEB2C122AB2F45F0013609E /* SFSafeSymbols */; };
 		3CEB2C162AB2F4710013609E /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEB2C152AB2F4710013609E /* Shimmer */; };
 		3CEB2C192AB2F4AB0013609E /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEB2C182AB2F4AB0013609E /* Shiny */; };
-		3CEB2C1B2AB33AE40013609E /* ObservablePostsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEB2C1A2AB33AE40013609E /* ObservablePostsFetcher.swift */; };
-		3CEB2C1D2AB33B3E0013609E /* ObservedPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEB2C1C2AB33B3E0013609E /* ObservedPostsView.swift */; };
 		3CECCE192AACFA4B0017A605 /* MyUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CECCE182AACFA4B0017A605 /* MyUserView.swift */; };
 		3CECCE1C2AADBFFA0017A605 /* ColorTesterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CECCE1B2AADBFFA0017A605 /* ColorTesterView.swift */; };
 		3CECCE1E2AADDBBA0017A605 /* CircleFillIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CECCE1D2AADDBBA0017A605 /* CircleFillIcons.swift */; };
@@ -324,8 +322,6 @@
 		3CE237342AA4D171000F1D20 /* LargeNavButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeNavButton.swift; sourceTree = "<group>"; };
 		3CE237362AA4D188000F1D20 /* SmallNavButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallNavButton.swift; sourceTree = "<group>"; };
 		3CEACBC62A88020700260A01 /* PostsFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsFetcher.swift; sourceTree = "<group>"; };
-		3CEB2C1A2AB33AE40013609E /* ObservablePostsFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservablePostsFetcher.swift; sourceTree = "<group>"; };
-		3CEB2C1C2AB33B3E0013609E /* ObservedPostsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservedPostsView.swift; sourceTree = "<group>"; };
 		3CECCE182AACFA4B0017A605 /* MyUserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUserView.swift; sourceTree = "<group>"; };
 		3CECCE1B2AADBFFA0017A605 /* ColorTesterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTesterView.swift; sourceTree = "<group>"; };
 		3CECCE1D2AADDBBA0017A605 /* CircleFillIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleFillIcons.swift; sourceTree = "<group>"; };
@@ -602,7 +598,6 @@
 			isa = PBXGroup;
 			children = (
 				3CEACBC62A88020700260A01 /* PostsFetcher.swift */,
-				3CEB2C1A2AB33AE40013609E /* ObservablePostsFetcher.swift */,
 				3C65885C2A6189AF00A46DA3 /* CommentsFetcher.swift */,
 				3CB408B32A5C558B00B7C983 /* CommunitiesFetcher.swift */,
 				3C5ECB1E2A75ABFE002BA561 /* SiteInfoFetcher.swift */,
@@ -737,7 +732,6 @@
 			isa = PBXGroup;
 			children = (
 				3CA5C40D2A57525500BF8F1B /* PostsView.swift */,
-				3CEB2C1C2AB33B3E0013609E /* ObservedPostsView.swift */,
 				3C0E2DCF2AA909BB00095FA5 /* PostsSectionView.swift */,
 				3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */,
 				3CEF4CCF2A69B738002B83C0 /* InPostMetadataView.swift */,
@@ -1023,7 +1017,6 @@
 				3CB9C71E2AA23F2600FB5A10 /* Counts.swift in Sources */,
 				3CCAA8BF2A65309E007CCEC2 /* NoInternetConnectionView.swift in Sources */,
 				3CAEDDE52A9E58DB001469AA /* ManageInstancesView.swift in Sources */,
-				3CEB2C1B2AB33AE40013609E /* ObservablePostsFetcher.swift in Sources */,
 				3CA5C40E2A57525500BF8F1B /* PostsView.swift in Sources */,
 				3CEF4CCC2A69B70C002B83C0 /* InPostThumbnailView.swift in Sources */,
 				3C9E549A2A954C060093DDC7 /* CommentResponseModel.swift in Sources */,
@@ -1086,7 +1079,6 @@
 				3CB9C7352AA2461700FB5A10 /* PersonObject.swift in Sources */,
 				3C5ECB242A766D64002BA561 /* DebugLoginPagePropertiesView.swift in Sources */,
 				3CC734A62A6D591A007523B5 /* URLComponentsExtension.swift in Sources */,
-				3CEB2C1D2AB33B3E0013609E /* ObservedPostsView.swift in Sources */,
 				3C1AF0A82AB3B91300763602 /* WhatsNewInitialInfo.swift in Sources */,
 				3C9E54982A953FB60093DDC7 /* SettingsSplashScreenView.swift in Sources */,
 				3CEF4CD52A69B798002B83C0 /* URLParser.swift in Sources */,
