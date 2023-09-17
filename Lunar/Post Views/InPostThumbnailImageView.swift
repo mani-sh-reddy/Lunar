@@ -17,12 +17,12 @@ struct InPostThumbnailImageView: View {
 
   var body: some View {
 //    let imageRequest = ImageRequest(url: URL(string: thumbnailURL), processors: [.resize(width: 250)])
-    
+
     LazyImage(url: URL(string: thumbnailURL)) { state in
       if let image = state.image {
-          image
-            .resizable()
-            .aspectRatio(contentMode: .fit)
+        image
+          .resizable()
+          .aspectRatio(contentMode: .fit)
       } else if state.error != nil {
         Color.clear // Indicates an error
       } else {

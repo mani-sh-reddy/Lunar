@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import SwiftUI
 import SFSafeSymbols
+import SwiftUI
 
 struct InPostMetadataView: View {
   var bodyText: String

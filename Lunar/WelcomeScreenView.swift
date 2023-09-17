@@ -5,17 +5,17 @@
 ////  Created by Mani on 27/07/2023.
 ////
 //
-//import SwiftUI
+// import SwiftUI
 //
-//struct OnboardingCard: Identifiable, Hashable {
+// struct OnboardingCard: Identifiable, Hashable {
 //  var id = UUID()
 //  var title: String
 //  var description: String
 //  var image: String
 //  var imageColor: Color
-//}
+// }
 //
-//struct WelcomeScreenView: View {
+// struct WelcomeScreenView: View {
 //  var onboardingCards: [OnboardingCard] = [
 //    OnboardingCard(
 //      title: "Welcome to Lunar",
@@ -91,9 +91,9 @@
 //      .padding(.vertical, 20)
 //    }
 //  }
-//}
+// }
 //
-//struct OnboardingCardView: View {
+// struct OnboardingCardView: View {
 //  var card: OnboardingCard
 //  let haptics = UIImpactFeedbackGenerator(style: .soft)
 //
@@ -195,9 +195,9 @@
 //      }
 //    }
 //  }
-//}
+// }
 //
-//struct InstanceRowView: View {
+// struct InstanceRowView: View {
 //  var instanceURL: String
 //  var flag: String
 //
@@ -225,10 +225,10 @@
 //    .padding(.horizontal, 20)
 //    .padding(.top, 2)
 //  }
-//}
+// }
 //
-//struct WelcomeScreenView_Previews: PreviewProvider {
+// struct WelcomeScreenView_Previews: PreviewProvider {
 //  static var previews: some View {
 //    WelcomeScreenView()
 //  }
-//}
+// }

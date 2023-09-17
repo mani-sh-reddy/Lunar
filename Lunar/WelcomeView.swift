@@ -5,9 +5,9 @@
 ////  Created by Mani on 03/09/2023.
 ////
 //
-//import SwiftUI
+// import SwiftUI
 //
-//struct WelcomeView: View {
+// struct WelcomeView: View {
 //  @AppStorage("showWelcomeScreen") var showWelcomeScreen = Settings.showWelcomeScreen
 //
 //  @State var currentPage = 0
@@ -70,9 +70,9 @@
 //      .padding(.bottom, 80)
 //    }
 //  }
-//}
+// }
 //
-//struct WelcomeScreenCard: View {
+// struct WelcomeScreenCard: View {
 //  @AppStorage("showWelcomeScreen") var showWelcomeScreen = Settings.showWelcomeScreen
 //
 //  @Binding var currentPage: Int
@@ -120,10 +120,10 @@
 //    .padding(.bottom, 0)
 //    .padding(.horizontal, 29)
 //  }
-//}
+// }
 //
-//struct WelcomeView_Previews: PreviewProvider {
+// struct WelcomeView_Previews: PreviewProvider {
 //  static var previews: some View {
 //    WelcomeView()
 //  }
-//}
+// }

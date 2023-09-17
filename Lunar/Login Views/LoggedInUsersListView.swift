@@ -34,7 +34,6 @@ struct AccountSelectionItem: View {
   @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
   @AppStorage("selectedUser") var selectedUser = Settings.selectedUser
 
-
   @Binding var selectedAccount: AccountModel?
 
   let account: AccountModel

@@ -6,10 +6,10 @@
 //
 
 import Alamofire
+import Combine
 import Nuke
 import Pulse
 import SwiftUI
-import Combine
 
 @MainActor class PostsFetcher: ObservableObject {
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
@@ -20,7 +20,7 @@ import Combine
 
   @Published var posts = [PostObject]()
   @Published var isLoading = false
-  
+
   let pulse = Pulse.LoggerStore.shared
   let imagePrefetcher = ImagePrefetcher(
     pipeline: ImagePipeline.shared,
@@ -33,7 +33,7 @@ import Combine
   private var typeParameter: String?
   private var communityID: Int?
   private var instance: String?
-  
+
   private var endpoint: URLComponents {
     URLBuilder(
       endpointPath: "/api/v3/post/list",
@@ -65,15 +65,15 @@ import Combine
     communityID: Int? = 0,
     instance: String? = nil
   ) {
-    if communityID == 99999999999999 { // TODO: just a placeholder to prevent running when user posts
+    if communityID == 99_999_999_999_999 { // TODO: just a placeholder to prevent running when user posts
       return
     }
-    
+
     self.sortParameter = sortParameter ?? postSort
     self.typeParameter = typeParameter ?? postType
 
     self.communityID = (communityID == 0) ? nil : communityID
-    
+
     /// Can explicitly pass in an instance if it's different to the currently selected instance
     self.instance = instance
 
@@ -97,7 +97,7 @@ import Combine
     }
 
     let cacher = ResponseCacher(behavior: .cache)
-    
+
     AF.request(endpoint) { urlRequest in
       if isRefreshing {
         urlRequest.cachePolicy = .reloadRevalidatingCacheData

@@ -45,7 +45,6 @@ struct SettingsDevOptionsView: View {
               .foregroundStyle(.purple)
               .symbolRenderingMode(.hierarchical)
           }
-
         }
         .animation(.smooth, value: networkInspectorEnabled)
 
@@ -70,7 +69,6 @@ struct SettingsDevOptionsView: View {
                 Image(systemSymbol: .textAndCommandMacwindow)
                   .foregroundStyle(.foreground)
               }
-
             }
           }
         }

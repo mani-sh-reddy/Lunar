@@ -22,7 +22,7 @@ struct CommentPopoverView: View {
       // MARK: - Post Title
 
       Section {
-        if let comment = comment {
+        if let comment {
           Text(comment.content)
         } else {
           Text(post.name)

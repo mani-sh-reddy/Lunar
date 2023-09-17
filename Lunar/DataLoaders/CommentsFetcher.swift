@@ -37,7 +37,7 @@ import SwiftUI
       jwt: getJWTFromKeychain()
     ).buildURL()
   }
-  
+
   private var endpointRedacted: URLComponents {
     URLBuilder(
       endpointPath: "/api/v3/comment/list",
@@ -49,7 +49,7 @@ import SwiftUI
       maxDepth: maxDepth
     ).buildURL()
   }
-  
+
   let pulse = Pulse.LoggerStore.shared
 
   init(postID: Int) {
@@ -62,13 +62,13 @@ import SwiftUI
       comments.removeAll()
       currentPage = 1
     }
-    
+
     guard !isLoading else { return }
-    
+
     isLoading = true
-    
+
     let cacher = ResponseCacher(behavior: .cache)
-    
+
     AF.request(endpoint) { urlRequest in
       if isRefreshing {
         urlRequest.cachePolicy = .reloadRevalidatingCacheData
@@ -76,11 +76,11 @@ import SwiftUI
         urlRequest.cachePolicy = .returnCacheDataElseLoad
       }
     }
-    
+
     .cacheResponse(using: cacher)
     .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: CommentModel.self) { response in
-      
+
       if self.networkInspectorEnabled {
         self.pulse.storeRequest(
           try! URLRequest(url: self.endpointRedacted, method: .get),
@@ -89,15 +89,15 @@ import SwiftUI
           data: response.data
         )
       }
-      
+
       switch response.result {
       case let .success(result):
         let newComments = result.comments
-        
+
         let filteredNewComments = newComments.filter { newComments in
           !self.comments.contains { $0.comment.id == newComments.comment.id }
         }
-        
+
         if !filteredNewComments.isEmpty {
           DispatchQueue.main.async {
             let sortedFilteredComments = filteredNewComments.sorted { sorted, newSorted in
@@ -108,15 +108,15 @@ import SwiftUI
             }
             self.isLoading = false
           }
-          
+
         } else {
           self.isLoading = false
         }
-        
+
         if !isRefreshing {
           self.currentPage += 1
         }
-        
+
       case let .failure(error):
         print("CommentsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
       }

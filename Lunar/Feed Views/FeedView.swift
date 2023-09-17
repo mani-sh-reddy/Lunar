@@ -50,13 +50,13 @@ struct FeedView: View {
             GeneralCommunitiesView()
           }
         }
-        
+
         if kbinActive {
           Section(header: Text("Kbin")) {
             KbinMagazinesSectionView()
           }
         }
-        
+
         Section(header: Text("Trending")) {
           TrendingCommunitiesSectionView(communitiesFetcher: CommunitiesFetcher(limitParameter: 5))
           MoreCommunitiesButtonView()

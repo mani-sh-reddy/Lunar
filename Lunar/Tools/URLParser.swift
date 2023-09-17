@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 enum URLParser {
-  
   /// "https://lemmy.world/c/mani" ==> _lemmy.world_
   static func extractDomain(from url: String) -> String {
     guard let urlComponents = URLComponents(string: url),

@@ -14,7 +14,7 @@ struct EntryView: View {
   @AppStorage("clearWhatsNewDefaults") var clearWhatsNewDefaults = Settings.clearWhatsNewDefaults
   @AppStorage("clearInitialWhatsNewDefault") var clearInitialWhatsNewDefault = Settings.clearInitialWhatsNewDefault
 
-   let userDefaultsWhatsNewVersionStore = UserDefaultsWhatsNewVersionStore()
+  let userDefaultsWhatsNewVersionStore = UserDefaultsWhatsNewVersionStore()
   /// Uncomment for Testing
 //  let userDefaultsWhatsNewVersionStore = InMemoryWhatsNewVersionStore()
 
@@ -28,7 +28,7 @@ struct EntryView: View {
       WhatsNewInitialInfo().auth,
       WhatsNewInitialInfo().open,
       WhatsNewInitialInfo().updates,
-      WhatsNewInitialInfo().contribute
+      WhatsNewInitialInfo().contribute,
     ]
   )
 

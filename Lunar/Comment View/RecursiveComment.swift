@@ -6,22 +6,22 @@
 //
 
 import Foundation
-import SwiftUI
 import SFSafeSymbols
+import SwiftUI
 
 struct RecursiveComment: View {
   @AppStorage("commentMetadataPosition")
   var commentMetadataPosition = Settings.commentMetadataPosition
-  
+
   @State private var isExpanded = true
   @State var showingCommentPopover = false
 //  @State var commentText: String = ""
   @EnvironmentObject var commentsFetcher: CommentsFetcher
-  
+
   let nestedComment: NestedComment
   let post: Post
   let dateTimeParser = DateTimeParser()
-  
+
   let commentHierarchyColors: [Color] = [
     .clear,
     .red,
@@ -33,9 +33,9 @@ struct RecursiveComment: View {
     .indigo,
     .purple,
   ]
-  
+
   let haptics = UIImpactFeedbackGenerator(style: .soft)
-  
+
   var body: some View {
     if !nestedComment.commentViewData.isCollapsed {
       let indentLevel = min(nestedComment.indentLevel, commentHierarchyColors.count - 1)
@@ -60,7 +60,7 @@ struct RecursiveComment: View {
       .swipeActions(edge: .trailing, allowsFullSwipe: true) {
         swipeActions
       }
-      
+
       ForEach(nestedComment.subComments, id: \.id) { subComment in
         RecursiveComment(nestedComment: subComment, post: post)
           .id(UUID())
@@ -109,13 +109,13 @@ struct RecursiveComment: View {
       }
     }
   }
-  
+
   var commentRow: some View {
     VStack(alignment: .leading) {
       if commentMetadataPosition == "Top" {
         commentMetadata
       }
-      
+
 //      HStack {
 //        Text(nestedComment.commentViewData.creator.name.uppercased())
 //          .bold()
@@ -123,11 +123,11 @@ struct RecursiveComment: View {
 //        Text(dateTimeParser.timeAgoString(from: nestedComment.commentViewData.comment.published))
 //          .foregroundStyle(.gray)
 //        Spacer()
-//        
-////        Label(String(nestedComment.commentViewData.counts.upvotes ?? 0), systemSymbol: .arrowUp)
-////          .foregroundStyle(.green)
-////        Label(String(nestedComment.commentViewData.counts.downvotes ?? 0), systemSymbol: .arrowUp)
-////          .foregroundStyle(.red)
+//
+      ////        Label(String(nestedComment.commentViewData.counts.upvotes ?? 0), systemSymbol: .arrowUp)
+      ////          .foregroundStyle(.green)
+      ////        Label(String(nestedComment.commentViewData.counts.downvotes ?? 0), systemSymbol: .arrowUp)
+      ////          .foregroundStyle(.red)
 //      }
 //      .font(.caption)
       Text(try! AttributedString(markdown: nestedComment.commentViewData.comment.content))
@@ -136,14 +136,14 @@ struct RecursiveComment: View {
       }
     }
   }
-  
-    var commentMetadata: some View {
-      CommentMetadataView(comment: nestedComment.commentViewData)
+
+  var commentMetadata: some View {
+    CommentMetadataView(comment: nestedComment.commentViewData)
       .environmentObject(commentsFetcher)
-    }
-  
+  }
+
   var swipeActions: some View {
-    return Group {
+    Group {
       Button {
         isExpanded.toggle()
         haptics.impactOccurred(intensity: 0.5)
@@ -161,15 +161,15 @@ struct RecursiveComment: View {
       .tint(.orange)
     }
   }
-  
+
   func countSubcomments(_ nestedComments: [NestedComment]) -> Int {
     var count = 0
-    
+
     for comment in nestedComments {
       count += 1 // Count the current comment
       count += countSubcomments(comment.subComments)
     }
-    
+
     return count
   }
 }

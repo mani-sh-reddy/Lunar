@@ -1,5 +1,5 @@
 //
-//  SettingsClearCacheButtonView.swift
+//  SettingsClearCacheView.swift
 //  Lunar
 //
 //  Created by Mani on 24/07/2023.
@@ -63,7 +63,7 @@ struct SettingsClearCacheView: View {
           dataCache.removeAll()
           haptics.notificationOccurred(.success)
 //          let cacheTotal = cacheInfo(cacheInfoType: .total)
-          self.cacheTotal = "0 B"
+          cacheTotal = "0 B"
           alertPresented = false
         }
       }

@@ -10,22 +10,22 @@ import SwiftUI
 struct PostsView: View {
   @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
   @AppStorage("compactViewEnabled") var compactViewEnabled = Settings.compactViewEnabled
-  
+
   @StateObject var postsFetcher: PostsFetcher
-  
+
   var title: String?
   var community: CommunityObject?
   var user: PersonObject?
-  
+
   var isCommunitySpecific: Bool { community != nil }
   var isUserSpecific: Bool { user != nil }
-  
+
   var navigationHeading: String {
     isCommunitySpecific ? (community?.community.name ?? "") :
       isUserSpecific ? (user?.person.name ?? "") :
       (title ?? "")
   }
-  
+
   var communityDescription: String? { community?.community.description }
   var communityActorID: String { community?.community.actorID ?? "" }
   var communityBanner: String? { community?.community.banner }
@@ -34,7 +34,7 @@ struct PostsView: View {
   var userActorID: String { user?.person.actorID ?? "" }
   var userBanner: String? { user?.person.banner }
   var userIcon: String? { user?.person.avatar }
-  
+
   var body: some View {
     List {
       if isCommunitySpecific || isUserSpecific {
@@ -67,7 +67,7 @@ struct PostsView: View {
         postsFetcher.loadContent(isRefreshing: true)
       }
     }
-    
+
     .navigationTitle(navigationHeading)
     .navigationBarTitleDisplayMode(.inline)
     .listStyle(.insetGrouped)

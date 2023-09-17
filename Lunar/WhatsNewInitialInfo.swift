@@ -21,7 +21,7 @@ class WhatsNewInitialInfo {
 //      )
 //    )
 //  )
-  
+
   let intro = WhatsNew.Feature(
     image: .init(
       systemName: "moonphase.waxing.crescent.inverse",
@@ -61,7 +61,7 @@ class WhatsNewInitialInfo {
     title: "Community Discovery",
     subtitle: "Discover interesting and trending communities on the Explore Communities page."
   )
-  
+
   let open = WhatsNew.Feature(
     image: .init(
       systemName: "door.left.hand.open",

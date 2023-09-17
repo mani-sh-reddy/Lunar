@@ -5,8 +5,8 @@
 //  Created by Mani on 04/07/2023.
 //
 
-import SwiftUI
 import SFSafeSymbols
+import SwiftUI
 
 struct KbinPostRowView: View {
   var post: KbinPost

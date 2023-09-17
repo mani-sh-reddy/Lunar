@@ -6,8 +6,8 @@
 //
 
 import BetterSafariView
-import SwiftUI
 import SFSafeSymbols
+import SwiftUI
 
 struct PostRowView: View {
   @EnvironmentObject var postsFetcher: PostsFetcher

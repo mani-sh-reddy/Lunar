@@ -5,8 +5,8 @@
 //  Created by Mani on 03/07/2023.
 //
 
-import SwiftUI
 import SFSafeSymbols
+import SwiftUI
 
 struct NoInternetConnectionView: View {
   var body: some View {

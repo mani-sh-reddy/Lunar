@@ -6,8 +6,8 @@
 //
 
 import NukeUI
-import SwiftUI
 import SFSafeSymbols
+import SwiftUI
 
 struct MyUserView: View {
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
@@ -28,13 +28,13 @@ struct MyUserView: View {
     )
   }
 
-  var avatar: String { return myAccount.avatarURL }
-  var actorID: String { return myAccount.actorID }
-  var name: String { return myAccount.name }
-  var postScore: String { return String(myAccount.postScore) }
-  var commentScore: String { return String(myAccount.commentScore) }
-  var postCount: String { return String(myAccount.postCount) }
-  var commentCount: String { return String(myAccount.commentCount) }
+  var avatar: String { myAccount.avatarURL }
+  var actorID: String { myAccount.actorID }
+  var name: String { myAccount.name }
+  var postScore: String { String(myAccount.postScore) }
+  var commentScore: String { String(myAccount.commentScore) }
+  var postCount: String { String(myAccount.postCount) }
+  var commentCount: String { String(myAccount.commentCount) }
 
   var userInstance: String {
     if !actorID.isEmpty {

@@ -8,8 +8,8 @@
 import Alamofire
 import Combine
 import Foundation
-import SwiftUI
 import Pulse
+import SwiftUI
 
 @MainActor class SearchFetcher: ObservableObject {
   @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
@@ -42,7 +42,7 @@ import Pulse
       searchQuery: searchQuery
     ).buildURL()
   }
-  
+
   let pulse = Pulse.LoggerStore.shared
 
   init(
@@ -88,7 +88,7 @@ import Pulse
     .cacheResponse(using: cacher)
     .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: SearchModel.self) { response in
-      
+
       if self.networkInspectorEnabled {
         self.pulse.storeRequest(
           try! URLRequest(url: self.endpoint, method: .get),
@@ -97,7 +97,7 @@ import Pulse
           data: response.data
         )
       }
-      
+
       switch response.result {
       case let .success(result):
         self.appendToList(result)
@@ -107,7 +107,7 @@ import Pulse
         completion(true, nil)
 
       case let .failure(error):
-          print("SearchFetcher ERROR: \(error): \(error.errorDescription ?? "")")
+        print("SearchFetcher ERROR: \(error): \(error.errorDescription ?? "")")
 
         self.isLoading = false // Set isLoading to false on failure as well
         completion(true, error)

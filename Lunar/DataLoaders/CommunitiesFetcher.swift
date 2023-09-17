@@ -20,7 +20,7 @@ import SwiftUI
 
   @Published var communities = [CommunityObject]()
   @Published var isLoading = false
-  
+
   let imagePrefetcher = ImagePrefetcher()
 
   private var currentPage = 1
@@ -49,7 +49,7 @@ import SwiftUI
       jwt: jwt
     ).buildURL()
   }
-  
+
   private var endpointRedacted: URLComponents {
     URLBuilder(
       endpointPath: endpointPath,
@@ -60,7 +60,7 @@ import SwiftUI
       communityID: communityID
     ).buildURL()
   }
-  
+
   let pulse = Pulse.LoggerStore.shared
 
   init(
@@ -81,18 +81,18 @@ import SwiftUI
     }
     loadContent()
   }
-  
+
   func loadContent(isRefreshing: Bool = false) {
     guard !isLoading else { return }
-    
+
     if isRefreshing {
       currentPage = 1
     } else {
       isLoading = true
     }
-    
+
     let cacher = ResponseCacher(behavior: .cache)
-    
+
     AF.request(endpoint) { urlRequest in
       if isRefreshing {
         urlRequest.cachePolicy = .reloadRevalidatingCacheData
@@ -103,7 +103,7 @@ import SwiftUI
     .cacheResponse(using: cacher)
     .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: CommunityModel.self) { response in
-      
+
       if self.networkInspectorEnabled {
         self.pulse.storeRequest(
           try! URLRequest(url: self.endpointRedacted, method: .get),
@@ -112,15 +112,15 @@ import SwiftUI
           data: response.data
         )
       }
-      
+
       switch response.result {
       case let .success(result):
-        
+
         let fetchedCommunities = result.communities
-        
+
         let imagesToPrefetch = result.iconURLs.compactMap { URL(string: $0) }
         self.imagePrefetcher.startPrefetching(with: imagesToPrefetch)
-        
+
         if isRefreshing {
           self.communities = fetchedCommunities
         } else {
@@ -134,7 +134,7 @@ import SwiftUI
         if !isRefreshing {
           self.isLoading = false
         }
-        
+
       case let .failure(error):
         print("CommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")")
         if !isRefreshing {

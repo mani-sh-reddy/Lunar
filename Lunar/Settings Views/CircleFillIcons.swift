@@ -10,7 +10,7 @@ import SFSafeSymbols
 
 class CircleFillIcons {
   func iconsList() -> [String] {
-    return [
+    [
       "pencil.circle.fill",
       "trash.circle.fill",
       "folder.circle.fill",

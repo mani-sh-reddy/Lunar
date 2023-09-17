@@ -11,7 +11,7 @@ import SwiftUI
 struct LunarApp: App {
   @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
   @StateObject var dataCacheHolder = DataCacheHolder(appBundleID: Settings.appBundleID)
-  
+
   var body: some Scene {
     WindowGroup {
       EntryView()

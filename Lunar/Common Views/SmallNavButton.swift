@@ -1,12 +1,12 @@
 //
-//  LargeNavButton.swift
+//  SmallNavButton.swift
 //  Lunar
 //
 //  Created by Mani on 03/09/2023.
 //
 
-import SwiftUI
 import SFSafeSymbols
+import SwiftUI
 
 enum SymbolLocation {
   case left

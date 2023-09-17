@@ -24,7 +24,7 @@ class LoginHelper: ObservableObject {
   @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
   @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  
+
   @Published var usernameEmail: String
   @Published var password: String
   @Published var twoFactor: String?
@@ -87,7 +87,7 @@ class LoginHelper: ObservableObject {
   func handleLoginSuccess(fetchedData: CredentialsResponseModel) {
     print("login successful inside handleLoginSuccess()")
     let jwt = fetchedData.jwt
-    SiteInfoFetcher(jwt: jwt).fetchSiteInfo { username, email, actorID, _ in
+    SiteInfoFetcher(jwt: jwt).fetchSiteInfo { _, _, actorID, _ in
 
       if let validActorID = actorID {
         KeychainHelper.standard.save(jwt, service: self.appBundleID, account: validActorID)

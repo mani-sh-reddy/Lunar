@@ -18,12 +18,12 @@ extension AttributedString {
       ),
       baseURL: nil
     )
-    
+
     for (intentBlock, intentRange) in output.runs[AttributeScopes.FoundationAttributes.PresentationIntentAttribute.self].reversed() {
-      guard let intentBlock = intentBlock else { continue }
+      guard let intentBlock else { continue }
       for intent in intentBlock.components {
         switch intent.kind {
-        case .header(level: let level):
+        case let .header(level: level):
           switch level {
           case 1:
             output[intentRange].font = .system(.title).bold()
@@ -38,12 +38,12 @@ extension AttributedString {
           break
         }
       }
-      
+
       if intentRange.lowerBound != output.startIndex {
         output.characters.insert(contentsOf: "\n", at: intentRange.lowerBound)
       }
     }
-    
+
     self = output
   }
 }

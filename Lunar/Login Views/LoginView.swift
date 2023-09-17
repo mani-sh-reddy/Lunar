@@ -19,9 +19,8 @@ struct LoginView: View {
   @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
-  
-  @Environment(\.dismiss) var dismiss
 
+  @Environment(\.dismiss) var dismiss
 
   @State private var isTryingLogin: Bool = false
   @State private var usernameEmailInput: String = ""

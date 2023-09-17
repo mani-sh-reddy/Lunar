@@ -1,5 +1,5 @@
 //
-//  SettingsClearCacheButtonView.swift
+//  SettingsAppResetView.swift
 //  Lunar
 //
 //  Created by Mani on 24/07/2023.
@@ -41,33 +41,33 @@ struct SettingsAppResetView: View {
       }
     }
   }
-  
+
   func refreshAnimation() {
-    self.settingsViewOpacity = 0
-    self.logoScale = 1.0
-    self.logoOpacity = 1.0
+    settingsViewOpacity = 0
+    logoScale = 1.0
+    logoOpacity = 1.0
     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
       withAnimation(.easeIn) {
-        self.settingsViewOpacity = 1
+        settingsViewOpacity = 1
       }
       withAnimation(.easeInOut(duration: 1)) {
-        self.logoScale = 0.8
+        logoScale = 0.8
       }
       withAnimation(Animation.easeInOut(duration: 1.0).delay(0)) {
-        self.logoOpacity = 0
+        logoOpacity = 0
       }
     }
   }
 
   private func resetApp() {
     loggedInAccounts.removeAll()
-    
+
     KeychainHelper.standard.clearKeychain()
     if let bundleID = Bundle.main.bundleIdentifier {
       UserDefaults.standard.removePersistentDomain(forName: bundleID)
       UserDefaults.standard.synchronize()
     }
-    
+
     do {
       let dataCache = try DataCache(name: "\(appBundleID)")
       dataCache.removeAll()
@@ -87,6 +87,6 @@ struct SettingsAppResetView_Previews: PreviewProvider {
       logoScale: .constant(0),
       logoOpacity: .constant(0)
     )
-      .previewLayout(.sizeThatFits)
+    .previewLayout(.sizeThatFits)
   }
 }

@@ -9,14 +9,11 @@ import Foundation
 import SwiftUI
 
 struct SettingsFeedView: View {
-  
   var body: some View {
     List {
       // MARK: - Posts Section
-      
-      Section {
-        
-      } header: {
+
+      Section {} header: {
         Text("Feed Options")
       }
     }

@@ -9,7 +9,7 @@ import Foundation
 
 class DefaultQuicklinks {
   func getSubscribedQuicklink() -> Quicklink {
-    return Quicklink(
+    Quicklink(
       title: "Subscribed Feed",
       type: "Subscribed",
       sort: "Active",
@@ -18,9 +18,10 @@ class DefaultQuicklinks {
       brightness: 0.2,
       saturation: 1.9
     )
-      }
+  }
+
   func getDefaultQuicklinks() -> [Quicklink] {
-    return [
+    [
       Quicklink(
         title: "Local",
         type: "Local",

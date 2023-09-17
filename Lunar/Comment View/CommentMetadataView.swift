@@ -5,8 +5,8 @@
 //  Created by Mani on 18/08/2023.
 //
 
-import SwiftUI
 import SFSafeSymbols
+import SwiftUI
 
 struct CommentMetadataView: View {
   @EnvironmentObject var commentsFetcher: CommentsFetcher

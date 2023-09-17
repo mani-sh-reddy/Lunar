@@ -5,8 +5,8 @@
 //  Created by Mani on 05/08/2023.
 //
 
-import SwiftUI
 import SFSafeSymbols
+import SwiftUI
 
 struct SearchResultsList: View {
   @StateObject var searchFetcher: SearchFetcher

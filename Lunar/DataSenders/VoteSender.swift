@@ -7,8 +7,8 @@
 
 import Alamofire
 import Foundation
-import SwiftUI
 import Pulse
+import SwiftUI
 
 class VoteSender: ObservableObject {
   private var voteType: Int
@@ -20,7 +20,7 @@ class VoteSender: ObservableObject {
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
   @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
-  
+
   let pulse = Pulse.LoggerStore.shared
 
   init(
@@ -45,7 +45,7 @@ class VoteSender: ObservableObject {
         "comment_id": commentID,
         "auth": jwt,
       ] as [String: Any]
-    
+
     let endpoint = "https://\(URLParser.extractDomain(from: selectedActorID))/api/v3/\(elementType)/like"
 
     AF.request(
@@ -56,7 +56,7 @@ class VoteSender: ObservableObject {
     )
     .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: VoteResponseModel.self) { response in
-      
+
       if self.networkInspectorEnabled {
         self.pulse.storeRequest(
           response.request ?? URLRequest(url: URL(string: endpoint)!),
@@ -65,7 +65,7 @@ class VoteSender: ObservableObject {
           data: response.data
         )
       }
-      
+
       switch response.result {
       case let .success(result):
         let response = String(response.response?.statusCode ?? 0)

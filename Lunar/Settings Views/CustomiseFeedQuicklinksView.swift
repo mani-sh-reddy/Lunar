@@ -10,32 +10,32 @@ import SwiftUI
 
 struct CustomiseFeedQuicklinksView: View {
   @Environment(\.colorScheme) var colorScheme
-  
+
   @AppStorage("quicklinks") var quicklinks = Settings.quicklinks
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-  
+
   @State var showingAddQuicklinkPopover = false
   @State var showingResetConfirmation = false
-  
+
   @State var quicklinkTitle: String = ""
   @State var quicklinkSort: String = "Active"
   @State var quicklinkType: String = "All"
   @State var quicklinkIcon: String? = "circle.dashed"
   @State var quicklinkColorString: String = "007AFF"
   @State var quicklinkColor: Color = .blue
-  
+
   @State var addQuicklinkErrorMessage: String = ""
   @State var showingAddQuicklinkErrorAlert: Bool = false
-  
+
   let notificationHaptics = UINotificationFeedbackGenerator()
   let haptics = UIImpactFeedbackGenerator(style: .soft)
 
   let colorConverter = ColorConverter()
-  
+
   var defaultQuicklinks: [Quicklink] = DefaultQuicklinks().getDefaultQuicklinks()
-  
+
   var iconList: [String] = CircleFillIcons().iconsList()
-  
+
   var body: some View {
     /// **Future implementation**
     //    DroppableList("Users 1", users: $users1) { dropped, index in
@@ -46,7 +46,7 @@ struct CustomiseFeedQuicklinksView: View {
     //      users2.insert(dropped, at: index)
     //      users1.removeAll { $0 == dropped }
     //    }
-    
+
     List {
       Section {
         ForEach(quicklinks, id: \.self) { quicklink in
@@ -71,21 +71,21 @@ struct CustomiseFeedQuicklinksView: View {
       }
       .confirmationDialog("Confirm Quicklinks List Reset", isPresented: $showingResetConfirmation) {
         Button("Reset", role: .destructive) {
-          self.quicklinks = defaultQuicklinks
+          quicklinks = defaultQuicklinks
         }
-        
+
         Button("Cancel", role: .cancel) {}
       }
     }
     .toolbar {
       EditButton()
     }
-    
+
     .sheet(isPresented: $showingAddQuicklinkPopover) {
       popover
     }
   }
-  
+
   var popover: some View {
     List {
       Section {
@@ -98,8 +98,7 @@ struct CustomiseFeedQuicklinksView: View {
         }
         .padding(.bottom, 10)
       }
-      
-      
+
       Section {
         ScrollView(.horizontal) {
           HStack(spacing: 10) {
@@ -141,14 +140,12 @@ struct CustomiseFeedQuicklinksView: View {
       } header: {
         Text("Icon")
       }
-      
-      Section {
-        
-      }
-      .onDebouncedChange(of: $quicklinkColor, debounceFor: 0.3) { _ in
-        quicklinkColorString = quicklinkColor.toHex() ?? "007AFF"
-      }
-      
+
+      Section {}
+        .onDebouncedChange(of: $quicklinkColor, debounceFor: 0.3) { _ in
+          quicklinkColorString = quicklinkColor.toHex() ?? "007AFF"
+        }
+
       Section {
         Picker("Post Type", selection: $quicklinkType) {
           Text("All").tag("All")
@@ -156,7 +153,7 @@ struct CustomiseFeedQuicklinksView: View {
           Text("Subscribed").tag("Subscribed")
         }
         .pickerStyle(.menu)
-        
+
         Picker("Post Sort", selection: $quicklinkSort) {
           Text("Active").tag("Active")
           Text("Hot").tag("Hot")
@@ -173,14 +170,14 @@ struct CustomiseFeedQuicklinksView: View {
       } header: {
         Text("Type")
       }
-      
+
       Section {
         GeneralCommunityQuicklinkButton(image: quicklinkIcon ?? "", hexColor: quicklinkColorString, title: quicklinkTitle.isEmpty ? "Title" : quicklinkTitle, brightness: 0.3, saturation: 2)
       } header: {
         Text("Quicklink Preview")
       }
       .listRowBackground(Color(hex: quicklinkColorString)?.opacity(0.1))
-      
+
       Section {
         Button {
           saveQuicklink()
@@ -204,22 +201,22 @@ struct CustomiseFeedQuicklinksView: View {
       .listRowBackground(Color.clear)
     }
   }
-  
+
   func saveQuicklink() {
-    guard let quicklinkIcon = quicklinkIcon, !quicklinkIcon.isEmpty, quicklinkIcon != "circle.dashed" else {
+    guard let quicklinkIcon, !quicklinkIcon.isEmpty, quicklinkIcon != "circle.dashed" else {
       addQuicklinkErrorMessage = "Select an Icon"
       showingAddQuicklinkErrorAlert = true
       notificationHaptics.notificationOccurred(.error)
       return
     }
-    
+
     guard !quicklinkTitle.isEmpty else {
       addQuicklinkErrorMessage = "Enter a Name"
       showingAddQuicklinkErrorAlert = true
       notificationHaptics.notificationOccurred(.error)
       return
     }
-    
+
     quicklinks.append(
       Quicklink(
         title: quicklinkTitle,
@@ -229,11 +226,11 @@ struct CustomiseFeedQuicklinksView: View {
         iconColor: quicklinkColorString
       )
     )
-    
+
     showingAddQuicklinkPopover = false
     notificationHaptics.notificationOccurred(.success)
   }
-    
+
   func delete(at offsets: IndexSet) {
     quicklinks.remove(atOffsets: offsets)
   }

@@ -7,8 +7,8 @@
 
 import Nuke
 import NukeUI
-import SwiftUI
 import SFSafeSymbols
+import SwiftUI
 
 struct SearchUsersRowView: View {
   @State var showingPlaceholderAlert = false

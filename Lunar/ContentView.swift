@@ -48,7 +48,7 @@ struct ContentView: View {
         }
     }
     .overlay(alignment: .bottomTrailing) {
-      if networkInspectorEnabled && prominentInspectorButton {
+      if networkInspectorEnabled, prominentInspectorButton {
         Button {
           networkInspectorPopover = true
 

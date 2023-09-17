@@ -10,16 +10,16 @@ import SwiftUI
 
 struct PostSectionView: View {
   @EnvironmentObject var postsFetcher: PostsFetcher
-  
+
   @State var upvoted: Bool = false
   @State var downvoted: Bool = false
-  
+
   var post: PostObject
-  
+
   var communityIsSubscribed: Bool {
     post.subscribed == .subscribed
   }
-  
+
   var body: some View {
     Section {
       ZStack {

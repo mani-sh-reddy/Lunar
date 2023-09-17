@@ -7,8 +7,8 @@
 
 import Nuke
 import NukeUI
-import SwiftUI
 import SFSafeSymbols
+import SwiftUI
 
 struct CommunityRowView: View {
   @AppStorage("detailedCommunityLabels") var detailedCommunityLabels = Settings.detailedCommunityLabels

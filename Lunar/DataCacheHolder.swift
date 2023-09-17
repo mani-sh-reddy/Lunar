@@ -10,9 +10,9 @@ import Nuke
 
 class DataCacheHolder: ObservableObject {
   @Published var dataCache: DataCache?
-  
+
   init(appBundleID: String) {
-    self.dataCache = try? DataCache(name: appBundleID)
-    self.dataCache?.sizeLimit = 4000 * 1024 * 1024
+    dataCache = try? DataCache(name: appBundleID)
+    dataCache?.sizeLimit = 4000 * 1024 * 1024
   }
 }

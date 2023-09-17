@@ -12,12 +12,12 @@ struct SymbolPickerView: View {
   @Binding var selectedSymbol: String?
   @Binding var selectedColor: Color
   @Binding var isPopoverPresented: Bool
-  
+
   var body: some View {
     NavigationView {
       VStack {
         ColorSelectionView(selectedColor: $selectedColor)
-        
+
         ScrollView {
           LazyVGrid(columns: [GridItem(.adaptive(minimum: 50))], spacing: 10) {
             ForEach(SFSymbol.allCases, id: \.self) { symbol in
@@ -56,13 +56,13 @@ struct SymbolButtonStyle: ButtonStyle {
 
 struct ColorSelectionView: View {
   @Binding var selectedColor: Color
-  
+
   var body: some View {
     HStack {
       Text("Select a Color:")
         .font(.headline)
         .padding(.leading)
-      
+
       ColorPicker("Color", selection: $selectedColor)
         .padding()
     }
@@ -73,20 +73,20 @@ struct SymbolPickerPopover: View {
   @Binding var selectedSymbol: String?
   @Binding var selectedColor: Color
   @Binding var isPopoverPresented: Bool
-  
+
   var body: some View {
     ZStack {
       Color.black.opacity(0.3)
         .edgesIgnoringSafeArea(.all)
-      
+
       VStack {
         Spacer()
-        
+
         SymbolPickerView(selectedSymbol: $selectedSymbol, selectedColor: $selectedColor, isPopoverPresented: $isPopoverPresented)
           .background(Color.white)
           .cornerRadius(10)
           .padding()
-        
+
         Spacer()
       }
     }
@@ -97,7 +97,7 @@ struct SymbolPicker: View {
   @State private var selectedSymbol: String?
   @State private var selectedColor = Color.blue
   @State private var isPopoverPresented = false
-  
+
   var body: some View {
     VStack {
       Button(action: {
@@ -108,8 +108,8 @@ struct SymbolPicker: View {
       .popover(isPresented: $isPopoverPresented, content: {
         SymbolPickerPopover(selectedSymbol: $selectedSymbol, selectedColor: $selectedColor, isPopoverPresented: $isPopoverPresented)
       })
-      
-      if let selectedSymbol = selectedSymbol {
+
+      if let selectedSymbol {
         Image(systemName: selectedSymbol)
           .font(.largeTitle)
           .foregroundColor(selectedColor)
@@ -119,7 +119,7 @@ struct SymbolPicker: View {
 }
 
 enum SFSymbol: String, CaseIterable {
-  case heart = "heart"
-  case star = "star"
-  case moon = "moon"
+  case heart
+  case star
+  case moon
 }

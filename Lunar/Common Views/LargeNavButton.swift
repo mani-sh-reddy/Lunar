@@ -10,7 +10,7 @@ import SwiftUI
 struct LargeNavButton: View {
   var text: String
   var color: Color
-  
+
   var body: some View {
     Text(text)
       .font(.callout.bold())

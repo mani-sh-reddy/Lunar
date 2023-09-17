@@ -5,8 +5,8 @@
 //  Created by Mani on 04/08/2023.
 //
 
-import SwiftUI
 import SFSafeSymbols
+import SwiftUI
 
 struct SearchView: View {
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled

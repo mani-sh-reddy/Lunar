@@ -5,8 +5,8 @@
 //  Created by Mani on 05/07/2023.
 //
 
-import SwiftUI
 import BetterSafariView
+import SwiftUI
 
 struct PlaceholderView: View {
   @State var showingSafari: Bool = false

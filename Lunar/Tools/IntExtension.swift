@@ -19,5 +19,4 @@ extension Int {
       return String(self)
     }
   }
-  
 }

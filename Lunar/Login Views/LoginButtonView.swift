@@ -48,10 +48,10 @@ struct LoginButtonView: View {
       let instanceBaseDomain = URLParser.extractBaseDomain(from: account.actorID)
       print("selected instance:\(selectedInstance) \n instancebasedomain: \(instanceBaseDomain) ")
       if (account.email.contains(usernameEmailInput) && selectedInstance == instanceBaseDomain) ||
-          (account.userID.contains(usernameEmailInput) && selectedInstance == instanceBaseDomain)
-       {
+        (account.userID.contains(usernameEmailInput) && selectedInstance == instanceBaseDomain)
+      {
         return true
-      } else{
+      } else {
         return false
       }
     }

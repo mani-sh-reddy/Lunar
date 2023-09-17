@@ -5,18 +5,18 @@
 ////  Created by Mani on 03/09/2023.
 ////
 //
-//import SwiftUI
+// import SwiftUI
 //
-//struct OnboardingInfo: Identifiable, Hashable {
+// struct OnboardingInfo: Identifiable, Hashable {
 //  var id = UUID()
 //  var group: Int
 //  var heading: String
 //  var body: String
 //  var systemImage: String
 //  var color: Color? = Color.blue
-//}
+// }
 //
-//class WelcomeScreenInfo {
+// class WelcomeScreenInfo {
 //  var info: [[OnboardingInfo]] {
 //    return [
 //      introduction,
@@ -212,4 +212,4 @@
 //      color: .brown
 //    )
 //  ]
-//}
+// }

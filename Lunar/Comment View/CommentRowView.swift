@@ -5,9 +5,9 @@
 ////  Created by Mani on 18/08/2023.
 ////
 //
-//import SwiftUI
+// import SwiftUI
 //
-//struct CommentRowView: View {
+// struct CommentRowView: View {
 //  @EnvironmentObject var commentsFetcher: CommentsFetcher
 //  @AppStorage("commentMetadataPosition") var commentMetadataPosition = Settings
 //    .commentMetadataPosition
@@ -122,4 +122,4 @@
 //      }
 //    }
 //  }
-//}
+// }

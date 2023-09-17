@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import SwiftUI
 import SFSafeSymbols
+import SwiftUI
 
 struct ExpandableTextBox: View {
   @State private var expanded: Bool = false
@@ -55,7 +55,7 @@ struct ExpandableTextBox: View {
         text: expanded ? "Show less" : "Show more",
         icon: expanded
           ? SFSafeSymbols.SFSymbol.arrowTurnLeftUp
-        : SFSafeSymbols.SFSymbol.arrowTurnLeftDown,
+          : SFSafeSymbols.SFSymbol.arrowTurnLeftDown,
         color: Color.blue,
         textSize: Font.caption,
         iconSize: Font.caption,

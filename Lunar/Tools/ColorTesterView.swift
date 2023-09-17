@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import SwiftUI
 import SFSafeSymbols
+import SwiftUI
 
 struct customColor: Codable, Hashable {
   var colorHex: String
@@ -71,11 +71,11 @@ struct ColorTesterView: View {
         }
         Spacer()
         SavedColorsListView()
-        Group{
+        Group {
           Text("brightness: " + String(brightness).prefix(4)).lineLimit(1)
-          Slider(value: $brightness, in: -3...3, step: 0.1)
+          Slider(value: $brightness, in: -3 ... 3, step: 0.1)
           Text("saturation: " + String(saturation).prefix(4)).lineLimit(1)
-          Slider(value: $saturation, in: 0...10, step: 0.1)
+          Slider(value: $saturation, in: 0 ... 10, step: 0.1)
         }
         .padding(.horizontal, 20)
         HStack {
@@ -90,8 +90,8 @@ struct ColorTesterView: View {
               resetColorList()
             }
         }
-        
-          .padding(10)
+
+        .padding(10)
 
         LargeNavButton(text: "Save Color", color: .blue)
           .onTapGesture {
@@ -101,16 +101,16 @@ struct ColorTesterView: View {
       }
       .padding(.horizontal, 10)
     }
-          .preferredColorScheme(isListDarkMode ? .dark : .light)
+    .preferredColorScheme(isListDarkMode ? .dark : .light)
   }
 
   func saveColor() {
     savedColors.append(customColor(colorHex: quicklinkColor.toHex() ?? "", brightness: brightness, saturation: saturation))
   }
+
   func resetColorList() {
     savedColors.removeAll()
   }
-  
 }
 
 struct ColorTesterView_Previews: PreviewProvider {
@@ -123,16 +123,16 @@ struct SavedColorsListView: View {
   @AppStorage("savedColors") var savedColors = Settings.savedColors
   @Environment(\.colorScheme) var colorScheme
 //  @Binding var isListDarkMode: Bool
-  
+
   var body: some View {
     List {
       ForEach(savedColors, id: \.self) { color in
-        HStack{
+        HStack {
           Text(color.colorHex)
           Text("B: " + String(color.brightness).prefix(4)).lineLimit(1)
           Text("S: " + String(color.saturation).prefix(4)).lineLimit(1)
           Spacer()
-          Image(systemName: CircleFillIcons().iconsList()[Int.random(in: 1..<CircleFillIcons().iconsList().count-1)])
+          Image(systemName: CircleFillIcons().iconsList()[Int.random(in: 1 ..< CircleFillIcons().iconsList().count - 1)])
             .resizable()
             .frame(width: 30, height: 30)
             .foregroundStyle(Color(hex: color.colorHex) ?? .clear)
@@ -145,14 +145,13 @@ struct SavedColorsListView: View {
   }
 }
 
-
 struct AppearanceSwitcherButton: View {
   @AppStorage("savedColors") var savedColors = Settings.savedColors
   @Environment(\.colorScheme) var colorScheme
   @Binding var isListDarkMode: Bool
-  
+
   var body: some View {
-    Button{
+    Button {
       isListDarkMode.toggle()
     } label: {
       Image(systemSymbol: isListDarkMode ? .lightbulbSlash : .lightbulbFill)

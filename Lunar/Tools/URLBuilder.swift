@@ -83,13 +83,13 @@ class URLBuilder {
     if let voteType { queryParams["score"] = String(voteType) }
 
     endpoint.scheme = "https"
-    
-    if let instance = instance {
+
+    if let instance {
       endpoint.host = instance
     } else {
       endpoint.host = selectedInstance
     }
-    
+
     endpoint.path = endpointPath
     endpoint.setQueryItems(with: queryParams)
 

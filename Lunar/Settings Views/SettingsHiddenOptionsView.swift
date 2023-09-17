@@ -5,8 +5,8 @@
 //  Created by Mani on 27/07/2023.
 //
 
-import SwiftUI
 import SFSafeSymbols
+import SwiftUI
 
 struct SettingsHiddenOptionsView: View {
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled

@@ -5,10 +5,10 @@
 ////  Created by Mani on 01/08/2023.
 ////
 //
-//import SwiftUI
-//import
+// import SwiftUI
+// import
 //
-//struct AppResetButton: View {
+// struct AppResetButton: View {
 //  @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
 //
 //  @State private var showConfirmation: Bool = false
@@ -97,4 +97,4 @@
 //    isLoading = false
 //    showConfirmation = false
 //  }
-//}
+// }

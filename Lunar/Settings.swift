@@ -49,7 +49,7 @@ enum Settings {
 
   static let subscribedCommunityIDs: [Int] = []
   static let savedColors: [customColor] = []
-  
+
   static var quicklinkColor: Color = .primary
 
   static let selectedSearchSortType: String = "Active"
@@ -59,9 +59,9 @@ enum Settings {
   static let compactViewEnabled: Bool = false
   static let networkInspectorEnabled: Bool = false
   static let prominentInspectorButton: Bool = true
-  
+
   static let clearWhatsNewDefaults: Bool = false
   static let clearInitialWhatsNewDefault: Bool = false
-  
+
   static let quicklinks: [Quicklink] = DefaultQuicklinks().getDefaultQuicklinks()
 }

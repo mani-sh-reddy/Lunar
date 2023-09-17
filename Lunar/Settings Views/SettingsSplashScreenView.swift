@@ -12,11 +12,11 @@ struct SettingsSplashScreenView: View {
   @AppStorage("showLaunchSplashScreen") var showLaunchSplashScreen = Settings.showLaunchSplashScreen
   @AppStorage("clearWhatsNewDefaults") var clearWhatsNewDefaults = Settings.clearWhatsNewDefaults
   @AppStorage("clearInitialWhatsNewDefault") var clearInitialWhatsNewDefault = Settings.clearInitialWhatsNewDefault
-  
+
   @State var alertPresented: Bool = false
-  
+
   let notificationHaptics = UINotificationFeedbackGenerator()
-  
+
   var body: some View {
     List {
       Section {

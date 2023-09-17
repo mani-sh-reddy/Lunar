@@ -6,17 +6,17 @@
 //
 
 import Foundation
-import SwiftUI
 import SFSafeSymbols
+import SwiftUI
 
 struct GeneralCommunityQuicklinkButton: View {
   @Environment(\.colorScheme) var colorScheme
   let image: String
-  let hexColor : String
+  let hexColor: String
   let title: String
   let brightness: Double
   let saturation: Double
-  
+
   var body: some View {
     HStack {
       Image(systemName: image) /// Cannot use SFSafeSymbols due to @AppStorage
