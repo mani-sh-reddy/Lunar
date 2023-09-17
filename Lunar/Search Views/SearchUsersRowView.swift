@@ -89,6 +89,7 @@ struct UserRowDetailView: View {
             .foregroundStyle(.blue)
         }
       }
+      .pipeline(ImagePipeline.shared)
       .processors([.resize(width: 30)])
 
       VStack(alignment: .leading, spacing: 2) {

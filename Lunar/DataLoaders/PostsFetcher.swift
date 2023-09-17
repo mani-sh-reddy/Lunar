@@ -22,11 +22,7 @@ import SwiftUI
   @Published var isLoading = false
 
   let pulse = Pulse.LoggerStore.shared
-  let imagePrefetcher = ImagePrefetcher(
-    pipeline: ImagePipeline.shared,
-    destination: .diskCache,
-    maxConcurrentRequestCount: 5
-  )
+  let imagePrefetcher = ImagePrefetcher(pipeline: ImagePipeline.shared)
 
   private var currentPage = 1
   private var sortParameter: String?

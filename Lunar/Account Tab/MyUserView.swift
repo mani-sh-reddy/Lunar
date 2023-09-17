@@ -5,6 +5,7 @@
 //  Created by Mani on 03/07/2023.
 //
 
+import Nuke
 import NukeUI
 import SFSafeSymbols
 import SwiftUI
@@ -61,7 +62,7 @@ struct MyUserView: View {
                 .symbolRenderingMode(.hierarchical)
             }
           }
-          .processors([.resize(width: 100)])
+          .pipeline(ImagePipeline.shared)
           .frame(width: 150, height: 150)
 //          .padding(.top, 10)
           .padding(.bottom, 10)

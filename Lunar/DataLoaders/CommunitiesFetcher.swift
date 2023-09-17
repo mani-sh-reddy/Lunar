@@ -21,7 +21,7 @@ import SwiftUI
   @Published var communities = [CommunityObject]()
   @Published var isLoading = false
 
-  let imagePrefetcher = ImagePrefetcher()
+  let imagePrefetcher = ImagePrefetcher(pipeline: ImagePipeline.shared)
 
   private var currentPage = 1
   private var sortParameter: String?

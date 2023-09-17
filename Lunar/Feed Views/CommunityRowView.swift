@@ -33,6 +33,7 @@ struct CommunityRowView: View {
               .foregroundStyle(.teal)
           }
         }
+        .pipeline(ImagePipeline.shared)
         .processors([.resize(width: 60)])
 
         VStack(alignment: .leading, spacing: 2) {
@@ -141,6 +142,7 @@ struct CommunityRowView: View {
               .foregroundStyle(.teal)
           }
         }
+        .pipeline(ImagePipeline.shared)
         .processors([.resize(width: 60)])
         Text(community.community.title)
           .padding(.horizontal, 10)

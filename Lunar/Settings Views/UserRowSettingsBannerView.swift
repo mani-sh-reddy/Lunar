@@ -39,6 +39,7 @@ struct UserRowSettingsBannerView: View {
               .padding(.trailing, 10)
           }
         }
+        .pipeline(ImagePipeline.shared)
       } else {
         Image(systemSymbol: .personCropCircleFill)
           .resizable()

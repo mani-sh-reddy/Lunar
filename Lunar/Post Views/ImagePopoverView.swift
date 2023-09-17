@@ -30,13 +30,7 @@ struct ImagePopoverView: View {
           ProgressView()
         }
       }
-      //      AsyncImage(url: URL(string: thumbnailURL)) { state in
-      //        if let image = state.image {
-      //          PhotoDetailView(image: image.asUIImage())
-      //        } else {
-      //          ProgressView()
-      //        }
-      //      }
+      .pipeline(ImagePipeline.shared)
       .edgesIgnoringSafeArea(.all)
     }
   }

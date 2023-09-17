@@ -39,6 +39,7 @@ struct SearchCommunitiesRowView: View {
                 .foregroundStyle(.teal)
             }
           }
+          .pipeline(ImagePipeline.shared)
           .processors([.resize(width: 30)])
 
           VStack(alignment: .leading, spacing: 2) {

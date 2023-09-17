@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Nuke
 import NukeUI
 import SwiftUI
 
@@ -38,6 +39,7 @@ struct HeaderView: View {
             Color.clear.frame(width: 60, height: 60)
           }
         }
+        .pipeline(ImagePipeline.shared)
         .padding(5)
 
         VStack(alignment: .leading) {
