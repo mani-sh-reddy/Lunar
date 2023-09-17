@@ -13,30 +13,6 @@ struct MyUserView: View {
   @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
   @AppStorage("selectedUser") var selectedUser = Settings.selectedUser
 
-//  var selectedAccount: AccountModel {
-//    print("loggedInAccounts \(loggedInAccounts)")
-//    for account in loggedInAccounts {
-//      if account.actorID == selectedActorID {
-//        return account
-//      } else {
-//        return AccountModel(
-//          userID: "",
-//          name: "",
-//          email: "",
-//          avatarURL: "",
-//          actorID: ""
-//        )
-//      }
-//    }
-//    return AccountModel(
-//      userID: "",
-//      name: "",
-//      email: "",
-//      avatarURL: "",
-//      actorID: ""
-//    )
-//  }
-
   var myAccount: AccountModel {
     if !selectedUser.isEmpty {
       print(selectedUser)

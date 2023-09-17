@@ -44,6 +44,8 @@
 		3C4B7DDB2A58AD23003C8192 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 3C4B7DDA2A58AD23003C8192 /* Alamofire */; };
 		3C4D42A82A8D0FD1003B6F1D /* VoteSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4D42A72A8D0FD1003B6F1D /* VoteSender.swift */; };
 		3C4D42AA2A8D12B8003B6F1D /* VoteResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4D42A92A8D12B8003B6F1D /* VoteResponseModel.swift */; };
+		3C4DB8BE2AB701B2000137CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4DB8BD2AB701B2000137CF /* AppDelegate.swift */; };
+		3C4DB8C22AB70856000137CF /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 3C4DB8C12AB70856000137CF /* NukeExtensions */; };
 		3C4EE4B92A8006D0009EE4A8 /* KbinPostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4EE4B82A8006D0009EE4A8 /* KbinPostRowView.swift */; };
 		3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F09FF2A54399F009DF8AB /* LunarApp.swift */; };
 		3C5ECB1F2A75ABFE002BA561 /* SiteInfoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB1E2A75ABFE002BA561 /* SiteInfoFetcher.swift */; };
@@ -226,6 +228,7 @@
 		3C4B7DD72A58A741003C8192 /* CommentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
 		3C4D42A72A8D0FD1003B6F1D /* VoteSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteSender.swift; sourceTree = "<group>"; };
 		3C4D42A92A8D12B8003B6F1D /* VoteResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteResponseModel.swift; sourceTree = "<group>"; };
+		3C4DB8BD2AB701B2000137CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C4EE4B82A8006D0009EE4A8 /* KbinPostRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KbinPostRowView.swift; sourceTree = "<group>"; };
 		3C4F09FC2A54399F009DF8AB /* Lunar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lunar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4F09FF2A54399F009DF8AB /* LunarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarApp.swift; sourceTree = "<group>"; };
@@ -382,6 +385,7 @@
 				3CFE04BF2A7FEA71007BAD81 /* SwiftSoup in Frameworks */,
 				3CEB2C0A2AB2F3A50013609E /* Defaults in Frameworks */,
 				3CEB2C162AB2F4710013609E /* Shimmer in Frameworks */,
+				3C4DB8C22AB70856000137CF /* NukeExtensions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,6 +508,7 @@
 				3C808E222A9A8C95008FA62E /* LunarDebug.entitlements */,
 				3C62C23F2A72AABD003BAC5B /* Info.plist */,
 				3C62C23E2A72AA4D003BAC5B /* Lunar.entitlements */,
+				3C4DB8BD2AB701B2000137CF /* AppDelegate.swift */,
 				3C4F09FF2A54399F009DF8AB /* LunarApp.swift */,
 				3C87A3632A9F97B80029C18F /* EntryView.swift */,
 				3C1AF0A72AB3B91300763602 /* WhatsNewInitialInfo.swift */,
@@ -879,6 +884,7 @@
 				3CEB2C182AB2F4AB0013609E /* Shiny */,
 				3CC420092AB37BCB00BE1612 /* WhatsNewKit */,
 				3CC4200C2AB37DDA00BE1612 /* BetterSafariView */,
+				3C4DB8C12AB70856000137CF /* NukeExtensions */,
 			);
 			productName = Lunar;
 			productReference = 3C4F09FC2A54399F009DF8AB /* Lunar.app */;
@@ -1038,6 +1044,7 @@
 				3CEF4CC22A69B38B002B83C0 /* SubscribedCommunitiesView.swift in Sources */,
 				3CF3B8FB2A901847001C08B5 /* CommentSectionView.swift in Sources */,
 				3C2B147D2AABE17C0028E05A /* SymbolPicker.swift in Sources */,
+				3C4DB8BE2AB701B2000137CF /* AppDelegate.swift in Sources */,
 				3CDF229D2A6D436B009281F2 /* Settings.swift in Sources */,
 				3CADB5732A7E6D5400095839 /* SearchResultsList.swift in Sources */,
 				3C6D29672A795141007AFD99 /* DebugSettingsPropertiesView.swift in Sources */,
@@ -1561,6 +1568,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		3C4DB8C12AB70856000137CF /* NukeExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NukeExtensions;
 		};
 		3CA95F072A7ACF3B00626353 /* Nuke */ = {
 			isa = XCSwiftPackageProductDependency;

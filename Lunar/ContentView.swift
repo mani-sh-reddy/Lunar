@@ -16,14 +16,14 @@ struct ContentView: View {
 
   @State private var networkInspectorPopover: Bool = false
 
-  init() {
-    if #available(iOS 15, *) {
-      let tabBarAppearance: UITabBarAppearance = .init()
-      tabBarAppearance.configureWithDefaultBackground()
-      UITabBar.appearance().standardAppearance = tabBarAppearance
-      UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
-    }
-  }
+//  init() {
+//    if #available(iOS 15, *) {
+//      let tabBarAppearance: UITabBarAppearance = .init()
+//      tabBarAppearance.configureWithDefaultBackground()
+//      UITabBar.appearance().standardAppearance = tabBarAppearance
+//      UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+//    }
+//  }
 
   var body: some View {
     TabView {

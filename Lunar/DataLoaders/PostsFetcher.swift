@@ -20,10 +20,13 @@ import Combine
 
   @Published var posts = [PostObject]()
   @Published var isLoading = false
-
-  let imagePrefetcher = ImagePrefetcher()
   
   let pulse = Pulse.LoggerStore.shared
+  let imagePrefetcher = ImagePrefetcher(
+    pipeline: ImagePipeline.shared,
+    destination: .diskCache,
+    maxConcurrentRequestCount: 5
+  )
 
   private var currentPage = 1
   private var sortParameter: String?
@@ -119,14 +122,13 @@ import Combine
       case let .success(result):
 
         let fetchedPosts = result.posts
-        
-        let imageRequestList = result.imageURLs.compactMap {
-          ImageRequest(url: URL(string: $0), processors: [.resize(width: 250)])
-        }
-        self.imagePrefetcher.startPrefetching(with: imageRequestList)
+//        let imageRequestList = result.imageURLs.compactMap {
+//          ImageRequest(url: URL(string: $0), processors: [.resize(width: 250)])
+//        }
+//        self.imagePrefetcher.startPrefetching(with: imageRequestList)
 
-//        let imagesToPrefetch = result.imageURLs.compactMap { URL(string: $0) }
-//        self.imagePrefetcher.startPrefetching(with: imagesToPrefetch)
+        let imagesToPrefetch = result.imageURLs.compactMap { URL(string: $0) }
+        self.imagePrefetcher.startPrefetching(with: imagesToPrefetch)
 
         if isRefreshing {
           self.posts = fetchedPosts
