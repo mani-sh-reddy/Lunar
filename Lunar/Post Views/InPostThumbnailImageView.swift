@@ -14,11 +14,6 @@ import UIKit
 struct InPostThumbnailImageView: View {
   var thumbnailURL: String
   var imageRadius: CGFloat = 10
-  
-//  let imagePipeline = ImagePipeline {
-//    $0 = .withDataCache(sizeLimit: 1024 * 1024 * 2000)
-//    $0.dataCachePolicy = .storeAll
-//  }
 
   var body: some View {
 //    let imageRequest = ImageRequest(url: URL(string: thumbnailURL), processors: [.resize(width: 250)])
