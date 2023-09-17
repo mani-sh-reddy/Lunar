@@ -211,8 +211,6 @@ struct PostRowView: View {
                       barCollapsingEnabled: true
                     )
                   )
-                  .preferredBarAccentColor(.clear)
-                  .preferredControlAccentColor(.accentColor)
                   .dismissButtonStyle(.done)
                 }
               }
@@ -260,8 +258,6 @@ struct PostRowView: View {
                   barCollapsingEnabled: true
                 )
               )
-              .preferredBarAccentColor(.clear)
-              .preferredControlAccentColor(.accentColor)
               .dismissButtonStyle(.done)
             }
           }
