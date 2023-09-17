@@ -19,7 +19,7 @@ struct SettingsView: View {
   var body: some View {
     NavigationView {
       List {
-        // MARK: - SEBUG PROPERTIES
+        // MARK: - DEBUG PROPERTIES
 
         if debugModeEnabled {
           DebugSettingsPropertiesView()
