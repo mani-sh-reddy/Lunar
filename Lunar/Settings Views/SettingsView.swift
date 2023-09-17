@@ -220,12 +220,16 @@ struct SettingsView: View {
             }
           }
           .foregroundStyle(.foreground)
-          .fullScreenCover(
-            isPresented: $showSafariPrivacyPolicy,
-            content: {
-              SFSafariViewWrapper(url: URL(string: "https://github.com/mani-sh-reddy/Lunar/wiki/Privacy-Policy")!).ignoresSafeArea()
+          .safariView(isPresented: $showSafariPrivacyPolicy) {
+            BetterSafariView.SafariView(
+              url: URL(string: "https://github.com/mani-sh-reddy/Lunar/wiki/Privacy-Policy")!,
+              configuration: BetterSafariView.SafariView.Configuration(
+                entersReaderIfAvailable: false,
+                barCollapsingEnabled: true
+              )
+            )
+            .dismissButtonStyle(.done)
             }
-          )
 
           // MARK: - LEMMY COMMUNITY LINK
 
@@ -242,12 +246,16 @@ struct SettingsView: View {
             }
           }
           .foregroundStyle(.foreground)
-          .fullScreenCover(
-            isPresented: $showSafariLemmy,
-            content: {
-              SFSafariViewWrapper(url: URL(string: "https://lemmy.world/c/lunar")!).ignoresSafeArea()
+          .safariView(isPresented: $showSafariLemmy) {
+            BetterSafariView.SafariView(
+              url: URL(string: "https://lemmy.world/c/lunar")!,
+              configuration: BetterSafariView.SafariView.Configuration(
+                entersReaderIfAvailable: false,
+                barCollapsingEnabled: true
+              )
+            )
+            .dismissButtonStyle(.done)
             }
-          )
 
           // MARK: - GITHUB LINK
 
@@ -262,13 +270,16 @@ struct SettingsView: View {
             }
           }
           .foregroundStyle(.foreground)
-          .fullScreenCover(
-            isPresented: $showSafariGithub,
-            content: {
-              SFSafariViewWrapper(url: URL(string: "https://github.com/mani-sh-reddy/Lunar")!)
-                .ignoresSafeArea()
+          .safariView(isPresented: $showSafariGithub) {
+            BetterSafariView.SafariView(
+              url: URL(string: "https://github.com/mani-sh-reddy/Lunar")!,
+              configuration: BetterSafariView.SafariView.Configuration(
+                entersReaderIfAvailable: false,
+                barCollapsingEnabled: true
+              )
+            )
+            .dismissButtonStyle(.done)
             }
-          )
         } header: {
           Text("Info")
         }
