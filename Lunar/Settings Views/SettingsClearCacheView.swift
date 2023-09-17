@@ -21,16 +21,20 @@ struct SettingsClearCacheView: View {
   
   @State var alertPresented: Bool = false
   @State var cacheClearButtonOpacity: Double = 1
+  @State var cacheTotal: String = "0 B"
   
   let haptics = UINotificationFeedbackGenerator()
   
   var body: some View {
     Label {
-      Text("Total Size: \(cacheInfo(cacheInfoType: .total))")
+      Text("Total Size: \(cacheTotal)")
     } icon: {
       Image(systemSymbol: .externaldrive)
         .symbolRenderingMode(.multicolor)
         .foregroundStyle(.gray)
+    }
+    .onAppear{
+      cacheTotal = cacheInfo(cacheInfoType: .total)
     }
     Label {
       Text("Limit: \(cacheInfo(cacheInfoType: .limit))")
@@ -58,7 +62,8 @@ struct SettingsClearCacheView: View {
         if let dataCache = dataCacheHolder.dataCache {
           dataCache.removeAll()
           haptics.notificationOccurred(.success)
-          let _ = cacheInfo(cacheInfoType: .total)
+//          let cacheTotal = cacheInfo(cacheInfoType: .total)
+          self.cacheTotal = "0 B"
           alertPresented = false
         }
       }
