@@ -46,6 +46,8 @@
 		3C4D42AA2A8D12B8003B6F1D /* VoteResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4D42A92A8D12B8003B6F1D /* VoteResponseModel.swift */; };
 		3C4DB8BE2AB701B2000137CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4DB8BD2AB701B2000137CF /* AppDelegate.swift */; };
 		3C4DB8C22AB70856000137CF /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 3C4DB8C12AB70856000137CF /* NukeExtensions */; };
+		3C4DB8C62AB72145000137CF /* SettingsAppResetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4DB8C52AB72145000137CF /* SettingsAppResetView.swift */; };
+		3C4DB8C82AB725FB000137CF /* DataCacheHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4DB8C72AB725FB000137CF /* DataCacheHolder.swift */; };
 		3C4EE4B92A8006D0009EE4A8 /* KbinPostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4EE4B82A8006D0009EE4A8 /* KbinPostRowView.swift */; };
 		3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F09FF2A54399F009DF8AB /* LunarApp.swift */; };
 		3C5ECB1F2A75ABFE002BA561 /* SiteInfoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB1E2A75ABFE002BA561 /* SiteInfoFetcher.swift */; };
@@ -173,7 +175,7 @@
 		3CF3B8FD2A90188D001C08B5 /* CommentMetadataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3B8FC2A90188D001C08B5 /* CommentMetadataView.swift */; };
 		3CF3B8FF2A9018B9001C08B5 /* CommentRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3B8FE2A9018B9001C08B5 /* CommentRowView.swift */; };
 		3CF3B9042A90C0ED001C08B5 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3B9032A90C0ED001C08B5 /* HeaderView.swift */; };
-		3CF3F9C02A6EE0390051E725 /* SettingsClearCacheButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheButtonView.swift */; };
+		3CF3F9C02A6EE0390051E725 /* SettingsClearCacheView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheView.swift */; };
 		3CF3F9C22A6EE20C0051E725 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3F9C12A6EE20C0051E725 /* ViewExtension.swift */; };
 		3CFE04BF2A7FEA71007BAD81 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 3CFE04BE2A7FEA71007BAD81 /* SwiftSoup */; };
 		3CFE04C32A7FF0EB007BAD81 /* KbinThreadsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE04C22A7FF0EB007BAD81 /* KbinThreadsModel.swift */; };
@@ -229,6 +231,8 @@
 		3C4D42A72A8D0FD1003B6F1D /* VoteSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteSender.swift; sourceTree = "<group>"; };
 		3C4D42A92A8D12B8003B6F1D /* VoteResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteResponseModel.swift; sourceTree = "<group>"; };
 		3C4DB8BD2AB701B2000137CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3C4DB8C52AB72145000137CF /* SettingsAppResetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAppResetView.swift; sourceTree = "<group>"; };
+		3C4DB8C72AB725FB000137CF /* DataCacheHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCacheHolder.swift; sourceTree = "<group>"; };
 		3C4EE4B82A8006D0009EE4A8 /* KbinPostRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KbinPostRowView.swift; sourceTree = "<group>"; };
 		3C4F09FC2A54399F009DF8AB /* Lunar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lunar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4F09FF2A54399F009DF8AB /* LunarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarApp.swift; sourceTree = "<group>"; };
@@ -352,7 +356,7 @@
 		3CF3B8FC2A90188D001C08B5 /* CommentMetadataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentMetadataView.swift; sourceTree = "<group>"; };
 		3CF3B8FE2A9018B9001C08B5 /* CommentRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRowView.swift; sourceTree = "<group>"; };
 		3CF3B9032A90C0ED001C08B5 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
-		3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsClearCacheButtonView.swift; sourceTree = "<group>"; };
+		3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsClearCacheView.swift; sourceTree = "<group>"; };
 		3CF3F9C12A6EE20C0051E725 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		3CFE04C22A7FF0EB007BAD81 /* KbinThreadsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinThreadsModel.swift; sourceTree = "<group>"; };
 		3CFE04C62A7FF270007BAD81 /* KbinThreadsFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinThreadsFetcher.swift; sourceTree = "<group>"; };
@@ -509,6 +513,7 @@
 				3C62C23F2A72AABD003BAC5B /* Info.plist */,
 				3C62C23E2A72AA4D003BAC5B /* Lunar.entitlements */,
 				3C4DB8BD2AB701B2000137CF /* AppDelegate.swift */,
+				3C4DB8C72AB725FB000137CF /* DataCacheHolder.swift */,
 				3C4F09FF2A54399F009DF8AB /* LunarApp.swift */,
 				3C87A3632A9F97B80029C18F /* EntryView.swift */,
 				3C1AF0A72AB3B91300763602 /* WhatsNewInitialInfo.swift */,
@@ -583,7 +588,8 @@
 			children = (
 				3C808E232A9B6DAD008FA62E /* SettingsDevOptionsView.swift */,
 				3CED897C2A71DCFF00BD9086 /* SettingsHiddenOptionsView.swift */,
-				3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheButtonView.swift */,
+				3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheView.swift */,
+				3C4DB8C52AB72145000137CF /* SettingsAppResetView.swift */,
 				3C2C45492AA648A000727DD5 /* UserDefaultsExplorerView.swift */,
 				3C6D296A2A7986AE007AFD99 /* AppResetButton.swift */,
 			);
@@ -1035,7 +1041,7 @@
 				3CEF4CCC2A69B70C002B83C0 /* InPostThumbnailView.swift in Sources */,
 				3C9E549A2A954C060093DDC7 /* CommentResponseModel.swift in Sources */,
 				3CC178952A7DAAE300C208D0 /* SearchFetcher.swift in Sources */,
-				3CF3F9C02A6EE0390051E725 /* SettingsClearCacheButtonView.swift in Sources */,
+				3CF3F9C02A6EE0390051E725 /* SettingsClearCacheView.swift in Sources */,
 				3CFE04C72A7FF270007BAD81 /* KbinThreadsFetcher.swift in Sources */,
 				3C96EA502A7843EC00753199 /* AddNewUserButtonView.swift in Sources */,
 				3C96EA3E2A76FC1200753199 /* LoginButtonView.swift in Sources */,
@@ -1076,6 +1082,7 @@
 				3CF3B8FD2A90188D001C08B5 /* CommentMetadataView.swift in Sources */,
 				3C130F772A8C0CB90060B6E4 /* ReactionButton.swift in Sources */,
 				3CE0A7942A8551CD008A782A /* EncodeDecodeHelpers.swift in Sources */,
+				3C4DB8C82AB725FB000137CF /* DataCacheHolder.swift in Sources */,
 				3CD4DA232A7EF3C200BC374A /* SearchUsersRowView.swift in Sources */,
 				3CED897D2A71DCFF00BD9086 /* SettingsHiddenOptionsView.swift in Sources */,
 				3C96EA4A2A78390F00753199 /* LogoutAllUsersButtonView.swift in Sources */,
@@ -1105,6 +1112,7 @@
 				3C1AF0AE2AB4CAE200763602 /* MockPostObject.swift in Sources */,
 				3CE237322AA48E7C000F1D20 /* WelcomeScreenInfo.swift in Sources */,
 				3CA92E3A2A543BF000688DEB /* ContentView.swift in Sources */,
+				3C4DB8C62AB72145000137CF /* SettingsAppResetView.swift in Sources */,
 				3CB408B42A5C558B00B7C983 /* CommunitiesFetcher.swift in Sources */,
 				3C808E2E2A9B87FA008FA62E /* ShareSheet.swift in Sources */,
 				3C96EA422A77225E00753199 /* ValidationUtils.swift in Sources */,

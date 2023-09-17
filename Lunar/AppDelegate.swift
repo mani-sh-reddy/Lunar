@@ -10,25 +10,27 @@ import SwiftUI
 import Nuke
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
+  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
+  
+  var dataCacheHolder: DataCacheHolder?
+  
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     print("App Started")
     
-    // 1 Disable URL cache
     DataLoader.sharedUrlCache.diskCapacity = 0
     
     let pipeline = ImagePipeline {
-      // 2
-      let dataCache = try? DataCache(name: "io.github.mani-sh-reddy.Lunar")
+      self.dataCacheHolder = DataCacheHolder(appBundleID: self.appBundleID)
+//      let dataCache = try? DataCache(name: "\(self.appBundleID)")
+//
+//      dataCache?.sizeLimit = 4000 * 1024 * 1024
       
-      // 3
-      dataCache?.sizeLimit = 4000 * 1024 * 1024
-      
-      // 4
-      $0.dataCache = dataCache
+//      $0.dataCache = dataCache
+//      $0.dataCachePolicy = .storeAll
+      $0.dataCache = self.dataCacheHolder?.dataCache
       $0.dataCachePolicy = .storeAll
     }
     
-    // 5
     ImagePipeline.shared = pipeline
     
     return true
