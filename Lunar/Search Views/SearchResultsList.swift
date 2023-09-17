@@ -53,7 +53,8 @@ struct SearchResultsList: View {
       }
       NavigationLink(
         destination: {
-          SearchUsersListAll()
+//          SearchUsersListAll()
+          PlaceholderView()
         },
         label: {
           Label {

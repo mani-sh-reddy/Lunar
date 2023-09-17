@@ -20,7 +20,7 @@ struct PlaceholderView: View {
           .clipped()
           .font(.title3)
           .padding(.bottom)
-        Text("Hocus pocus, this text's a joke-us! Placeholder view, it's all folks! Lorem ipsum, just for fun, sum-dolorum, no harm done! Chuckles here, laughs galore, until the real view takes the floor!")
+        Text("Hocus pocus, this text's a jokeus. Placeholder view, it's all folks. Lorem ipsum, just for fun, sum-dolorum, no harm done. Chuckles here, laughs galore, until the real view takes the floor.")
           .font(.subheadline)
           .fixedSize(horizontal: false, vertical: true)
           .lineSpacing(1)
