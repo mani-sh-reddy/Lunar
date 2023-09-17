@@ -8,6 +8,7 @@
 import Nuke
 import NukeUI
 import SwiftUI
+import SFSafeSymbols
 
 struct CommunityRowView: View {
   @AppStorage("detailedCommunityLabels") var detailedCommunityLabels = Settings.detailedCommunityLabels
@@ -25,7 +26,7 @@ struct CommunityRowView: View {
               .frame(width: 30, height: 30)
               .clipShape(Circle())
           } else {
-            Image(systemName: "books.vertical.circle.fill")
+            Image(systemSymbol: .booksVerticalCircleFill)
               .resizable()
               .frame(width: 30, height: 30)
               .symbolRenderingMode(.hierarchical)
@@ -40,38 +41,38 @@ struct CommunityRowView: View {
               .foregroundStyle(community.community.id == 201_716 ? Color.purple : Color.primary)
 
             if community.community.postingRestrictedToMods {
-              Image(systemName: "exclamationmark.octagon.fill")
+              Image(systemSymbol: .exclamationmarkOctagonFill)
                 .font(.caption)
                 .foregroundStyle(.yellow)
             }
             if community.subscribed == .subscribed {
-              Image(systemName: "plus.circle.fill")
+              Image(systemSymbol: .plusCircleFill)
                 .font(.caption)
                 .foregroundStyle(.green)
             }
             if community.subscribed == .pending {
-              Image(systemName: "arrow.triangle.2.circlepath.circle")
+              Image(systemSymbol: .arrowTriangle2CirclepathCircle)
                 .font(.caption)
                 .foregroundStyle(.yellow)
             }
             if community.community.nsfw {
-              Image(systemName: "18.square.fill")
+              Image(systemSymbol: ._18SquareFill)
                 .font(.caption)
                 .foregroundStyle(.pink)
             }
           }
           HStack(spacing: 10) {
             HStack(spacing: 1) {
-              Image(systemName: "person.2")
+              Image(systemSymbol: .person2)
               Text((community.counts.subscribers)?.convertToShortString() ?? "0")
             }.foregroundStyle(
               community.counts.subscribers ?? 0 >= 10000 ? Color.yellow : Color.secondary)
             HStack(spacing: 1) {
-              Image(systemName: "signpost.right")
+              Image(systemSymbol: .signpostRight)
               Text((community.counts.posts)?.convertToShortString() ?? "0")
             }
             HStack(spacing: 1) {
-              Image(systemName: "quote.bubble")
+              Image(systemSymbol: .quoteBubble)
               Text((community.counts.comments)?.convertToShortString() ?? "0")
             }
           }.lineLimit(1)
@@ -89,12 +90,12 @@ struct CommunityRowView: View {
         Button {
           showingPlaceholderAlert = true
         } label: {
-          Label("go", systemImage: "chevron.forward.circle.fill")
+          Label("go", systemSymbol: .chevronForwardCircleFill)
         }.tint(.blue)
         Button {
           showingPlaceholderAlert = true
         } label: {
-          Label("Hide", systemImage: "eye.slash.circle.fill")
+          Label("Hide", systemSymbol: .eyeSlashCircleFill)
         }.tint(.orange)
       }
 
@@ -133,7 +134,7 @@ struct CommunityRowView: View {
               .frame(width: 30, height: 30)
               .clipShape(Circle())
           } else {
-            Image(systemName: "books.vertical.circle.fill")
+            Image(systemSymbol: .booksVerticalCircleFill)
               .resizable()
               .frame(width: 30, height: 30)
               .symbolRenderingMode(.hierarchical)
@@ -149,12 +150,12 @@ struct CommunityRowView: View {
         Button {
           showingPlaceholderAlert = true
         } label: {
-          Label("go", systemImage: "chevron.forward.circle.fill")
+          Label("go", systemSymbol: .chevronForwardCircleFill)
         }.tint(.blue)
         Button {
           showingPlaceholderAlert = true
         } label: {
-          Label("Hide", systemImage: "eye.slash.circle.fill")
+          Label("Hide", systemSymbol: .eyeSlashCircleFill)
         }.tint(.orange)
       }
 
@@ -178,7 +179,7 @@ struct CommunityRowView: View {
         Button(role: .destructive) {
           showingPlaceholderAlert = true
         } label: {
-          Label("Delete", systemImage: "trash")
+          Label("Delete", systemSymbol: .trash)
         }
       }
       .alert("Coming soon", isPresented: $showingPlaceholderAlert) {

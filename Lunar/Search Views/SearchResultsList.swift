@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SFSafeSymbols
 
 struct SearchResultsList: View {
   @StateObject var searchFetcher: SearchFetcher
@@ -17,16 +18,16 @@ struct SearchResultsList: View {
   //  @Binding var selectedSortType: String
   @AppStorage("selectedSearchSortType") var selectedSearchSortType = Settings.selectedSearchSortType
 
-  var selectedSearchTypeIcon: (String, Color) {
+  var selectedSearchTypeIcon: (SFSafeSymbols.SFSymbol, Color) {
     switch selectedSearchType {
     case "Users":
-      return ("person.circle.fill", Color.blue)
+      return (.personCircleFill, Color.blue)
     case "Communities":
-      return ("books.vertical.circle.fill", Color.teal)
+      return (.booksVerticalCircleFill, Color.teal)
     case "Posts":
-      return ("signpost.right.circle.fill", Color.purple)
+      return (.rectangleOnRectangleCircleFill, Color.purple)
     default:
-      return ("magnifyingglass.circle.fill", Color.gray)
+      return (.magnifyingglassCircleFill, Color.gray)
     }
   }
 
@@ -62,7 +63,7 @@ struct SearchResultsList: View {
               Text("Trending \(selectedSearchType)")
             }
           } icon: {
-            Image(systemName: selectedSearchTypeIcon.0)
+            Image(systemSymbol: selectedSearchTypeIcon.0)
               .resizable()
               .frame(width: 30, height: 30)
               .symbolRenderingMode(.hierarchical)

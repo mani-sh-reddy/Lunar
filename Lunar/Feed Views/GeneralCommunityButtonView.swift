@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import SFSafeSymbols
 
 struct GeneralCommunityQuicklinkButton: View {
   @Environment(\.colorScheme) var colorScheme
@@ -18,7 +19,7 @@ struct GeneralCommunityQuicklinkButton: View {
   
   var body: some View {
     HStack {
-      Image(systemName: image)
+      Image(systemName: image) /// Cannot use SFSafeSymbols due to @AppStorage
         .resizable()
         .frame(width: 30, height: 30)
         .symbolRenderingMode(.hierarchical)

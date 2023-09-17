@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SFSafeSymbols
 
 struct InPostActionsView: View {
   @State var showingCommentPopover: Bool = false
@@ -14,7 +15,7 @@ struct InPostActionsView: View {
 
   var body: some View {
     ReactionButton(
-      text: "Comment", icon: "bubble.left.circle.fill", color: .blue, active: .constant(false),
+      text: "Comment", icon: SFSafeSymbols.SFSymbol.bubbleLeftCircleFill, color: .blue, active: .constant(false),
       opposite: .constant(false)
     )
     .highPriorityGesture(

@@ -5,6 +5,8 @@
 //  Created by Mani on 14/07/2023.
 //
 
+import BetterSafariView
+import SFSafeSymbols
 import SwiftUI
 
 struct SettingsView: View {
@@ -52,11 +54,11 @@ struct SettingsView: View {
             Label {
               Text("Notifications")
             } icon: {
-              Image(systemName: "bell.badge.fill")
-                .symbolRenderingMode(.hierarchical)
-                .foregroundStyle(.red)
+              Image(systemSymbol: .bellBadgeFill)
+                .symbolRenderingMode(.palette)
+                .foregroundStyle(.pink, .red)
             }
-          }.disabled(true)
+          }
 
           // MARK: - GESTURES
 
@@ -66,11 +68,11 @@ struct SettingsView: View {
             Label {
               Text("Gestures")
             } icon: {
-              Image(systemName: "hand.draw.fill")
-                .symbolRenderingMode(.hierarchical)
-                .foregroundStyle(.cyan)
+              Image(systemSymbol: .handDrawFill)
+                .symbolRenderingMode(.palette)
+                .foregroundStyle(.mint, .blue)
             }
-          }.disabled(true)
+          }
 
           // MARK: - SOUND AND HAPTICS
 
@@ -80,11 +82,11 @@ struct SettingsView: View {
             Label {
               Text("Sounds and Haptics")
             } icon: {
-              Image(systemName: "speaker.wave.2.fill")
-                .symbolRenderingMode(.hierarchical)
-                .foregroundStyle(.green)
+              Image(systemSymbol: .speakerWave2Fill)
+                .symbolRenderingMode(.palette)
+                .foregroundStyle(.orange, .yellow)
             }
-          }.disabled(true)
+          }
 
           // MARK: - COMPOSER
 
@@ -94,11 +96,11 @@ struct SettingsView: View {
             Label {
               Text("Composer")
             } icon: {
-              Image(systemName: "pencil.line")
-                .symbolRenderingMode(.hierarchical)
-                .foregroundStyle(.indigo)
+              Image(systemSymbol: .textBubbleFill)
+                .symbolRenderingMode(.palette)
+                .foregroundStyle(.white, .indigo)
             }
-          }.disabled(true)
+          }
 
           // MARK: - SEARCH
 
@@ -108,11 +110,10 @@ struct SettingsView: View {
             Label {
               Text("Search")
             } icon: {
-              Image(systemName: "magnifyingglass")
-                .symbolRenderingMode(.hierarchical)
+              Image(systemSymbol: .magnifyingglass)
                 .foregroundStyle(.teal)
             }
-          }.disabled(true)
+          }
 
           // MARK: - FEED
 
@@ -122,11 +123,10 @@ struct SettingsView: View {
             Label {
               Text("Feed Options")
             } icon: {
-              Image(systemName: "checklist")
-                .symbolRenderingMode(.hierarchical)
+              Image(systemSymbol: .listBulletRectanglePortraitFill)
                 .foregroundStyle(.brown)
             }
-          }.disabled(true)
+          }
 
           NavigationLink {
             CustomiseFeedQuicklinksView()
@@ -134,7 +134,7 @@ struct SettingsView: View {
             Label {
               Text("Quicklinks")
             } icon: {
-              Image(systemName: "link")
+              Image(systemSymbol: .link)
                 .symbolRenderingMode(.hierarchical)
                 .foregroundStyle(.blue)
             }
@@ -153,9 +153,8 @@ struct SettingsView: View {
             Label {
               Text("App Icon")
             } icon: {
-              Image(systemName: "app.dashed")
-                .symbolRenderingMode(.hierarchical)
-                .foregroundStyle(.gray)
+              Image(systemSymbol: .appDashed)
+                .foregroundStyle(.indigo)
             }
           }
 
@@ -167,9 +166,8 @@ struct SettingsView: View {
             Label {
               Text("Theme")
             } icon: {
-              Image(systemName: "paintbrush")
-                .symbolRenderingMode(.hierarchical)
-                .foregroundStyle(.indigo)
+              Image(systemSymbol: .paintpaletteFill)
+                .symbolRenderingMode(.multicolor)
             }
           }
 
@@ -182,24 +180,9 @@ struct SettingsView: View {
               Text("Layout")
             } icon: {
               Image(systemName: "square.on.square.squareshape.controlhandles")
-                .symbolRenderingMode(.hierarchical)
                 .foregroundStyle(.mint)
             }
           }
-
-          // MARK: - [DEPRECATED] SPLASH SCREEN
-
-//          NavigationLink {
-//            SettingsSplashScreenView()
-//          } label: {
-//            Label {
-//              Text("Splash Screen")
-//            } icon: {
-//              Image(systemName: "moonphase.waning.gibbous")
-//                .symbolRenderingMode(.hierarchical)
-//                .foregroundStyle(.yellow)
-//            }
-//          }
 
         } header: {
           Text("Appearance")
@@ -214,8 +197,7 @@ struct SettingsView: View {
               Text("Privacy Policy")
                 .foregroundStyle(.foreground)
             } icon: {
-              Image(systemName: "shield.lefthalf.filled")
-                .symbolRenderingMode(.hierarchical)
+              Image(systemSymbol: .lockDocFill)
                 .foregroundStyle(.red)
             }
           }
@@ -229,7 +211,7 @@ struct SettingsView: View {
               )
             )
             .dismissButtonStyle(.done)
-            }
+          }
 
           // MARK: - LEMMY COMMUNITY LINK
 
@@ -240,7 +222,7 @@ struct SettingsView: View {
               Text("Contact")
                 .foregroundStyle(.foreground)
             } icon: {
-              Image(systemName: "paperplane.fill")
+              Image(systemSymbol: .paperplaneFill)
                 .symbolRenderingMode(.hierarchical)
                 .foregroundStyle(.blue)
             }
@@ -255,7 +237,7 @@ struct SettingsView: View {
               )
             )
             .dismissButtonStyle(.done)
-            }
+          }
 
           // MARK: - GITHUB LINK
 
@@ -265,7 +247,11 @@ struct SettingsView: View {
             Label {
               Text("Github")
             } icon: {
-              Image(systemName: "ellipsis.curlybraces")
+              Image(asset: "GithubLogo")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 25, height: 25)
+                .clipped()
                 .symbolRenderingMode(.hierarchical)
             }
           }
@@ -279,7 +265,7 @@ struct SettingsView: View {
               )
             )
             .dismissButtonStyle(.done)
-            }
+          }
         } header: {
           Text("Info")
         }
@@ -293,8 +279,7 @@ struct SettingsView: View {
             Label {
               Text("Developer Options")
             } icon: {
-              Image(systemName: "wrench.and.screwdriver.fill")
-                .symbolRenderingMode(.hierarchical)
+              Image(systemSymbol: .wrenchAndScrewdriverFill)
                 .foregroundStyle(.red)
             }
           }
@@ -307,11 +292,11 @@ struct SettingsView: View {
             Spacer()
             VStack(alignment: .center) {
               Text("~ made by mani ~")
-                .padding(.bottom, 3)
+                .padding(.bottom, 2)
               Text(LocalizedStringKey("[mani-sh-reddy.github.io](http://mani-sh-reddy.github.io/)"))
             }
             Spacer()
-          }.padding(.vertical, 40)
+          }.padding(.vertical, 20)
         }
       }
       .navigationTitle("Settings")

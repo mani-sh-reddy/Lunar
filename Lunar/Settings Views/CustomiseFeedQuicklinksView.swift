@@ -106,12 +106,12 @@ struct CustomiseFeedQuicklinksView: View {
             ForEach(iconList, id: \.self) { icon in
               ZStack {
                 if icon == quicklinkIcon {
-                  Image(systemName: "circle")
+                  Image(systemName: "circle") /// Cannot use SFSafeSymbols due to @AppStorage
                     .resizable()
                     .frame(width: 60, height: 60)
                     .foregroundStyle(quicklinkColor)
                 }
-                Image(systemName: icon)
+                Image(systemName: icon) /// Cannot use SFSafeSymbols due to @AppStorage
                   .resizable()
                   .frame(width: 60, height: 60)
                   .foregroundStyle(quicklinkColor)
@@ -194,7 +194,7 @@ struct CustomiseFeedQuicklinksView: View {
       Section {
         HStack {
           Spacer()
-          SmallNavButton(systemImage: "arrow.down.to.line", text: "Dismiss", color: .red, symbolLocation: .left)
+          SmallNavButton(systemSymbol: .arrowDownToLine, text: "Dismiss", color: .red, symbolLocation: .left)
             .onTapGesture {
               showingAddQuicklinkPopover = false
             }

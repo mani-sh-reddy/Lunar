@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SFSafeSymbols
 
 struct MoreCommunitiesButtonView: View {
   var body: some View {
@@ -18,7 +19,7 @@ struct MoreCommunitiesButtonView: View {
       )
     } label: {
       HStack {
-        Image(systemName: "sailboat.circle.fill")
+        Image(systemSymbol: .locationCircleFill)
           .resizable()
           .frame(width: 30, height: 30)
           .symbolRenderingMode(.hierarchical)

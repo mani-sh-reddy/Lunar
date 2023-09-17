@@ -72,7 +72,7 @@ struct SubscribedFeedQuicklink: View {
   var body: some View {
     if selectedActorID.isEmpty {
       HStack {
-        Image(systemName: "lock.circle.fill")
+        Image(systemSymbol: .lockCircleFill)
           .resizable()
           .frame(width: 30, height: 30)
           .symbolRenderingMode(.monochrome)

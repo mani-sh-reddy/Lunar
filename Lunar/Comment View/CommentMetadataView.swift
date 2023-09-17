@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SFSafeSymbols
 
 struct CommentMetadataView: View {
   @EnvironmentObject var commentsFetcher: CommentsFetcher
@@ -54,7 +55,7 @@ struct CommentMetadataView: View {
       text: String(
         (commentUpvoted ? (comment.counts.upvotes ?? 0) + 1 : comment.counts.upvotes) ?? 0
       ),
-      icon: "arrow.up.circle.fill",
+      icon: SFSafeSymbols.SFSymbol.arrowUpCircleFill,
       color: Color.green,
       active: $commentUpvoted,
       opposite: $commentDownvoted
@@ -76,7 +77,7 @@ struct CommentMetadataView: View {
   var downvoteButton: some View {
     ReactionButton(
       text: String((commentDownvoted ? (comment.counts.downvotes ?? 0) + 1 : comment.counts.downvotes) ?? 0),
-      icon: "arrow.down.circle.fill",
+      icon: SFSafeSymbols.SFSymbol.arrowDownCircleFill,
       color: Color.red,
       active: $commentDownvoted,
       opposite: $commentUpvoted

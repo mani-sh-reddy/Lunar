@@ -47,7 +47,7 @@ struct LogoutAllUsersButtonView: View {
         ZStack(alignment: .trailing) {
           if logoutAllUsersButtonClicked {
             Group {
-              Image(systemName: "checkmark.circle.fill")
+              Image(systemSymbol: .checkmarkCircleFill)
                 .font(.title2).opacity(logoutAllUsersButtonOpacity)
                 .symbolRenderingMode(.hierarchical)
                 .foregroundStyle(.green)
@@ -64,7 +64,7 @@ struct LogoutAllUsersButtonView: View {
           }
         }
       } icon: {
-        Image(systemName: "xmark.circle.fill")
+        Image(systemSymbol: .xmarkCircleFill)
           .font(.title2)
           .foregroundStyle(.red)
           .symbolRenderingMode(.hierarchical)

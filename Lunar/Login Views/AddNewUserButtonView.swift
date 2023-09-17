@@ -14,7 +14,7 @@ struct AddNewUserButtonView: View {
       Label {
         Text("Add User").foregroundStyle(.blue)
       } icon: {
-        Image(systemName: "plus.circle.fill")
+        Image(systemSymbol: .plusCircleFill)
           .font(.title2)
           .foregroundStyle(.blue)
           .symbolRenderingMode(.hierarchical)

@@ -22,7 +22,7 @@ struct UsernameFieldView: View {
         .autocorrectionDisabled()
         .textContentType(.emailAddress)
     } icon: {
-      Image(systemName: "person")
+      Image(systemSymbol: .person)
         .foregroundStyle(.foreground)
     }
     .onAppear {

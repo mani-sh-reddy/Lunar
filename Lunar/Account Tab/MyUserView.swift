@@ -7,6 +7,7 @@
 
 import NukeUI
 import SwiftUI
+import SFSafeSymbols
 
 struct MyUserView: View {
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
@@ -55,7 +56,7 @@ struct MyUserView: View {
                 .aspectRatio(contentMode: .fit)
                 .clipShape(Circle())
             } else {
-              Image(systemName: "person.circle.fill")
+              Image(systemSymbol: .personCircleFill)
                 .resizable()
                 .symbolRenderingMode(.hierarchical)
             }

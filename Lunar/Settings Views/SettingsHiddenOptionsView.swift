@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SFSafeSymbols
 
 struct SettingsHiddenOptionsView: View {
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
@@ -16,7 +17,7 @@ struct SettingsHiddenOptionsView: View {
         Label {
           Text("Debug Mode")
         } icon: {
-          Image(systemName: "desktopcomputer.trianglebadge.exclamationmark")
+          Image(systemSymbol: .desktopcomputerTrianglebadgeExclamationmark)
             .symbolRenderingMode(.hierarchical)
             .foregroundStyle(.red)
         }

@@ -29,7 +29,7 @@ struct HeaderView: View {
               .clipShape(Circle())
               .frame(width: 60, height: 60)
           } else if state.error != nil {
-            Image(systemName: "person.circle.fill")
+            Image(systemSymbol: .personCircleFill)
               .resizable()
               .frame(width: 60, height: 60)
               .foregroundStyle(.secondary)

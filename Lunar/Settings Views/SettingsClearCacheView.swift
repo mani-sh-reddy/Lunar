@@ -6,9 +6,9 @@
 //
 
 import Nuke
+import SFSafeSymbols
 import SwiftUI
 import UIKit
-import SFSafeSymbols
 
 enum CacheInfoType {
   case total
@@ -18,13 +18,13 @@ enum CacheInfoType {
 struct SettingsClearCacheView: View {
   @EnvironmentObject var dataCacheHolder: DataCacheHolder
   @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
-  
+
   @State var alertPresented: Bool = false
   @State var cacheClearButtonOpacity: Double = 1
   @State var cacheTotal: String = "0 B"
-  
+
   let haptics = UINotificationFeedbackGenerator()
-  
+
   var body: some View {
     Label {
       Text("Total Size: \(cacheTotal)")
@@ -33,7 +33,7 @@ struct SettingsClearCacheView: View {
         .symbolRenderingMode(.multicolor)
         .foregroundStyle(.gray)
     }
-    .onAppear{
+    .onAppear {
       cacheTotal = cacheInfo(cacheInfoType: .total)
     }
     Label {
@@ -69,7 +69,7 @@ struct SettingsClearCacheView: View {
       }
     }
   }
-  
+
   func cacheInfo(cacheInfoType: CacheInfoType) -> String {
     if let dataCache = dataCacheHolder.dataCache {
       if cacheInfoType == .total {
@@ -81,7 +81,7 @@ struct SettingsClearCacheView: View {
       return ""
     }
   }
-  
+
   func humanReadableByteCount(bytes: Int) -> String {
     if bytes < 1000 { return "\(bytes) B" }
     let exp = Int(log2(Double(bytes)) / log2(1000.0))

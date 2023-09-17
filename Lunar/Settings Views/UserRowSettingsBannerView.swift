@@ -31,7 +31,7 @@ struct UserRowSettingsBannerView: View {
               .clipShape(Circle())
               .padding(.trailing, 10)
           } else {
-            Image(systemName: "person.crop.circle.fill")
+            Image(systemSymbol: .personCropCircleFill)
               .resizable()
               .frame(width: 50, height: 50)
               .foregroundStyle(.blue)
@@ -40,7 +40,7 @@ struct UserRowSettingsBannerView: View {
           }
         }
       } else {
-        Image(systemName: "person.crop.circle.fill")
+        Image(systemSymbol: .personCropCircleFill)
           .resizable()
           .frame(width: 50, height: 50)
           .padding(.trailing, 10)

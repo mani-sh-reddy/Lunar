@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import SFSafeSymbols
 
 struct customColor: Codable, Hashable {
   var colorHex: String
@@ -45,7 +46,7 @@ struct ColorTesterView: View {
               .frame(width: 100, height: 100)
               .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
               .foregroundStyle(.white)
-            Image(systemName: "command.circle.fill")
+            Image(systemSymbol: .commandCircleFill)
               .resizable()
               .frame(width: 60, height: 60)
               .foregroundStyle(quicklinkColor)
@@ -59,7 +60,7 @@ struct ColorTesterView: View {
               .frame(width: 100, height: 100)
               .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
               .foregroundStyle(.black)
-            Image(systemName: "command.circle.fill")
+            Image(systemSymbol: .commandCircleFill)
               .resizable()
               .frame(width: 60, height: 60)
               .foregroundStyle(quicklinkColor)
@@ -78,7 +79,7 @@ struct ColorTesterView: View {
         }
         .padding(.horizontal, 20)
         HStack {
-          SmallNavButton(systemImage: "slider.horizontal.2.gobackward", text: "Reset Sliders", color: .red, symbolLocation: .left)
+          SmallNavButton(systemSymbol: .sliderHorizontal2RectangleAndArrowTriangle2Circlepath, text: "Reset Sliders", color: .red, symbolLocation: .left)
             .onTapGesture {
               brightness = 0.3
               saturation = 2
@@ -154,7 +155,7 @@ struct AppearanceSwitcherButton: View {
     Button{
       isListDarkMode.toggle()
     } label: {
-      Image(systemName: isListDarkMode ? "lightbulb.slash" : "lightbulb.fill")
+      Image(systemSymbol: isListDarkMode ? .lightbulbSlash : .lightbulbFill)
         .font(.largeTitle)
         .foregroundStyle(.yellow)
         .padding(.trailing, 40)

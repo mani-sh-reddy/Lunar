@@ -83,7 +83,7 @@ struct LoginButtonView: View {
               .opacity(isTryingLogin ? 1 : 0)
             if showingLoginButtonWarning {
               Group {
-                Image(systemName: "lock.trianglebadge.exclamationmark.fill")
+                Image(systemSymbol: .exclamationmarkTriangleFill)
                   .font(.title2).opacity(loginButtonWarningOpacity)
                   .symbolRenderingMode(.hierarchical)
                   .foregroundStyle(.red)

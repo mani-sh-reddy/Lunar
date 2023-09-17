@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SFSafeSymbols
 
 struct KbinPostRowView: View {
   var post: KbinPost
@@ -48,7 +49,7 @@ struct KbinPostRowView: View {
       HStack {
         ReactionButton(
           text: String(post.upvotes),
-          icon: "arrow.up.circle.fill",
+          icon: SFSafeSymbols.SFSymbol.arrowUpCircleFill,
           color: Color.green,
           active: $upvoted,
           opposite: $downvoted
@@ -59,7 +60,7 @@ struct KbinPostRowView: View {
         }
         ReactionButton(
           text: String(post.downvotes),
-          icon: "arrow.down.circle.fill",
+          icon: SFSafeSymbols.SFSymbol.arrowDownCircleFill,
           color: Color.red,
           active: $downvoted,
           opposite: $upvoted
@@ -70,7 +71,7 @@ struct KbinPostRowView: View {
         }
         ReactionButton(
           text: String(post.commentsCount),
-          icon: "bubble.left.circle.fill",
+          icon: SFSafeSymbols.SFSymbol.bubbleLeftCircleFill,
           color: Color.gray,
           active: .constant(false),
           opposite: .constant(false)
@@ -111,7 +112,7 @@ struct GoIntotSwipeAction: View {
     Button {
       isClicked = true
     } label: {
-      Image(systemName: "chevron.forward.circle.fill")
+      Image(systemSymbol: .chevronForwardCircleFill)
     }
     .tint(.blue)
   }
@@ -124,7 +125,7 @@ struct UpvoteSwipeAction: View {
     Button {
       isClicked = true
     } label: {
-      Image(systemName: "arrow.up.circle")
+      Image(systemSymbol: .arrowUpCircle)
     }
     .tint(.green)
   }
@@ -137,7 +138,7 @@ struct DownvoteSwipeAction: View {
     Button {
       isClicked = true
     } label: {
-      Image(systemName: "arrow.down.circle")
+      Image(systemSymbol: .arrowDownCircle)
     }
     .tint(.red)
   }
@@ -165,7 +166,7 @@ struct PostContextMenu: View {
     Button(role: .destructive) {
       showingPlaceholderAlert = true
     } label: {
-      Label("Delete", systemImage: "trash")
+      Label("Delete", systemSymbol: .trash)
     }
   }
 }

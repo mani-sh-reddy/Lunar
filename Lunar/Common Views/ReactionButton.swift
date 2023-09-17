@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import SFSafeSymbols
 
 struct ReactionButton: View {
   var text: String = ""
-  var icon: String
+  var icon: SFSafeSymbols.SFSymbol
   var color: Color
   var textSize: Font = .subheadline
   var iconSize: Font = .body
@@ -25,7 +26,7 @@ struct ReactionButton: View {
       //      haptics.impactOccurred()
     } label: {
       HStack {
-        Image(systemName: icon)
+        Image(systemSymbol: icon)
           .font(iconSize)
         if !text.isEmpty {
           Text(text)

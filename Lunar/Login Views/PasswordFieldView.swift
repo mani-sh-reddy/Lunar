@@ -33,7 +33,7 @@ struct PasswordFieldView: View {
             .textContentType(.password)
         }
       } icon: {
-        Image(systemName: "key")
+        Image(systemSymbol: .key)
           .foregroundStyle(.foreground)
       }
       Button(
@@ -41,7 +41,7 @@ struct PasswordFieldView: View {
           uncoverPassword.toggle()
         },
         label: {
-          Image(systemName: uncoverPassword ? "eye.circle.fill" : "eye.slash.circle")
+          Image(systemSymbol: uncoverPassword ? .eyeCircleFill : .eyeSlashCircleFill)
             .font(.title2)
             .symbolRenderingMode(.hierarchical)
             .foregroundStyle(.foreground)

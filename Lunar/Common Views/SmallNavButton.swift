@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SFSafeSymbols
 
 enum SymbolLocation {
   case left
@@ -13,7 +14,7 @@ enum SymbolLocation {
 }
 
 struct SmallNavButton: View {
-  var systemImage: String
+  var systemSymbol: SFSafeSymbols.SFSymbol
   var text: String
   var color: Color
   var symbolLocation: SymbolLocation
@@ -23,7 +24,7 @@ struct SmallNavButton: View {
       if symbolLocation == .right {
         Text(text)
       }
-      Image(systemName: systemImage)
+      Image(systemSymbol: systemSymbol)
         .imageScale(.small)
       if symbolLocation == .left {
         Text(text)

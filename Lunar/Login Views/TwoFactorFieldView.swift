@@ -24,7 +24,7 @@ struct TwoFactorFieldView: View {
           .autocorrectionDisabled()
           .textContentType(.oneTimeCode)
       } icon: {
-        Image(systemName: "shield")
+        Image(systemSymbol: .shield)
           .foregroundStyle(.foreground)
       }
       .onDebouncedChange(of: $twoFactor, debounceFor: 0.25) { newValue in
@@ -34,7 +34,7 @@ struct TwoFactorFieldView: View {
       Spacer()
       if showingTwoFactorWarning {
         Group {
-          Image(systemName: "exclamationmark.triangle.fill")
+          Image(systemSymbol: .exclamationmarkTriangleFill)
             .font(.title2).opacity(twoFactorWarningOpacity)
             .symbolRenderingMode(.hierarchical)
             .foregroundStyle(.red)

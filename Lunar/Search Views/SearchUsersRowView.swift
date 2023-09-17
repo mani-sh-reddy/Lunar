@@ -8,6 +8,7 @@
 import Nuke
 import NukeUI
 import SwiftUI
+import SFSafeSymbols
 
 struct SearchUsersRowView: View {
   @State var showingPlaceholderAlert = false
@@ -81,7 +82,7 @@ struct UserRowDetailView: View {
             .frame(width: 30, height: 30)
             .clipShape(Circle())
         } else {
-          Image(systemName: "person.circle.fill")
+          Image(systemSymbol: .personCircleFill)
             .resizable()
             .frame(width: 30, height: 30)
             .symbolRenderingMode(.hierarchical)
@@ -96,31 +97,31 @@ struct UserRowDetailView: View {
             .foregroundStyle(person.person.id == 35253 ? Color.purple : Color.primary)
 
           if person.person.banned {
-            Image(systemName: "exclamationmark.triangle.fill")
+            Image(systemSymbol: .exclamationmarkTriangleFill)
               .font(.caption)
               .foregroundStyle(.secondary)
           }
           if person.person.botAccount {
-            Image(systemName: "desktopcomputer")
+            Image(systemSymbol: .desktopcomputer)
               .font(.caption)
               .foregroundStyle(.blue)
           }
           if person.person.admin {
-            Image(systemName: "checkmark.shield.fill")
+            Image(systemSymbol: .checkmarkShieldFill)
               .font(.caption)
               .foregroundStyle(.yellow)
           }
         }
         HStack(spacing: 10) {
           HStack(spacing: 1) {
-            Image(systemName: "arrow.up")
+            Image(systemSymbol: .arrowUp)
             Text(((person.counts.postScore ?? 0) + (person.counts.commentScore ?? 0)).convertToShortString())
           }.foregroundStyle(
             ((person.counts.postScore ?? 0) + (person.counts.commentScore ?? 0)) >= 100_000
               ? Color.yellow : Color.secondary)
 
           HStack(spacing: 1) {
-            Image(systemName: "list.bullet.below.rectangle")
+            Image(systemSymbol: .listBulletBelowRectangle)
             Text(((person.counts.postCount ?? 0) + (person.counts.commentCount ?? 0)).convertToShortString())
           }
         }.lineLimit(1)

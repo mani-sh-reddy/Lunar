@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SFSafeSymbols
 
 struct SearchView: View {
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
@@ -38,9 +39,9 @@ struct SearchView: View {
             Picker(
               "Search Type", selection: $selectedSearchType,
               content: {
-                Image(systemName: "person.fill").tag("Users")
-                Image(systemName: "books.vertical.fill").tag("Communities")
-                Image(systemName: "signpost.right.fill").tag("Posts")
+                Image(systemSymbol: .personFill).tag("Users")
+                Image(systemSymbol: .booksVerticalFill).tag("Communities")
+                Image(systemSymbol: .signpostRightFill).tag("Posts")
               }
             )
             .textCase(.none)
@@ -53,47 +54,47 @@ struct SearchView: View {
                   Label {
                     Text("Active")
                   } icon: {
-                    Image(systemName: "chart.line.uptrend.xyaxis")
+                    Image(systemSymbol: .chartLineUptrendXyaxis)
                   }.tag("Active")
                   Label {
                     Text("Hot")
                   } icon: {
-                    Image(systemName: "flame.fill")
+                    Image(systemSymbol: .flameFill)
                   }.tag("Hot")
                   Label {
                     Text("New")
                   } icon: {
-                    Image(systemName: "sparkles")
+                    Image(systemSymbol: .sparkles)
                   }.tag("New")
                   Label {
                     Text("Top Day")
                   } icon: {
-                    Image(systemName: "d.circle")
+                    Image(systemSymbol: .dCircle)
                   }.tag("TopDay")
                   Label {
                     Text("Top Week")
                   } icon: {
-                    Image(systemName: "w.circle")
+                    Image(systemSymbol: .wCircle)
                   }.tag("TopWeek")
                   Label {
                     Text("Top Month")
                   } icon: {
-                    Image(systemName: "m.circle")
+                    Image(systemSymbol: .mCircle)
                   }.tag("TopMonth")
                   Label {
                     Text("Top Year")
                   } icon: {
-                    Image(systemName: "y.circle")
+                    Image(systemSymbol: .yCircle)
                   }.tag("TopYear")
                   Label {
                     Text("Top All")
                   } icon: {
-                    Image(systemName: "text.line.first.and.arrowtriangle.forward")
+                    Image(systemSymbol: .arrowUpCircle)
                   }.tag("TopAll")
                   Label {
                     Text("Most Comments")
                   } icon: {
-                    Image(systemName: "star.bubble")
+                    Image(systemSymbol: .starBubble)
                   }.tag("MostComments")
                 }
                 .textCase(.none)

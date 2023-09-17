@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import SFSafeSymbols
 
 struct ExpandableTextBox: View {
   @State private var expanded: Bool = false
@@ -53,8 +54,8 @@ struct ExpandableTextBox: View {
       ReactionButton(
         text: expanded ? "Show less" : "Show more",
         icon: expanded
-          ? "arrow.down.and.line.horizontal.and.arrow.up"
-          : "arrow.up.and.line.horizontal.and.arrow.down",
+          ? SFSafeSymbols.SFSymbol.arrowTurnLeftUp
+        : SFSafeSymbols.SFSymbol.arrowTurnLeftDown,
         color: Color.blue,
         textSize: Font.caption,
         iconSize: Font.caption,

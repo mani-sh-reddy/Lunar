@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import SFSafeSymbols
 
 struct NoInternetConnectionView: View {
   var body: some View {
     ZStack(alignment: .leading) {
       HStack {
-        Image(systemName: "wifi.exclamationmark")
+        Image(systemSymbol: .wifiExclamationmark)
           .imageScale(.medium)
           .symbolRenderingMode(.hierarchical)
           .foregroundColor(.white)

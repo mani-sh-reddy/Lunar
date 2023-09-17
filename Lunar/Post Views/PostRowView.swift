@@ -7,6 +7,7 @@
 
 import BetterSafariView
 import SwiftUI
+import SFSafeSymbols
 
 struct PostRowView: View {
   @EnvironmentObject var postsFetcher: PostsFetcher
@@ -106,15 +107,15 @@ struct PostRowView: View {
             case .notSubscribed:
               EmptyView()
             case .pending:
-              Image(systemName: "clock.arrow.2.circlepath")
+              Image(systemSymbol: .clockArrow2Circlepath)
             case .subscribed:
-              Image(systemName: "checkmark.circle")
+              Image(systemSymbol: .checkmarkCircle)
             }
             Spacer()
             if compactViewEnabled {
               HStack {
                 HStack(spacing: 1) {
-                  Image(systemName: "arrow.up")
+                  Image(systemSymbol: .arrowUp)
                   Text(String(upvotes + upvoteState))
                     .fixedSize()
                 }
@@ -138,7 +139,7 @@ struct PostRowView: View {
                 )
 
                 HStack(spacing: 1) {
-                  Image(systemName: "arrow.down")
+                  Image(systemSymbol: .arrowDown)
                   Text(String(downvotes + downvoteState))
                     .fixedSize()
                 }
@@ -160,7 +161,7 @@ struct PostRowView: View {
                 )
 
                 HStack(spacing: 2) {
-                  Image(systemName: "bubble.left")
+                  Image(systemSymbol: .bubbleLeft)
                   Text(String(commentCount))
                     .fixedSize()
                 }
@@ -192,7 +193,7 @@ struct PostRowView: View {
               Spacer()
               if post.post.url != post.post.thumbnailURL {
                 HStack(spacing: 2) {
-                  Image(systemName: "safari")
+                  Image(systemSymbol: .globe)
                   Text("\(URLParser.extractBaseDomain(from: post.post.url ?? "")) ")
                     .fixedSize()
                 }
@@ -228,7 +229,7 @@ struct PostRowView: View {
 
           ReactionButton(
             text: String(commentCount),
-            icon: "bubble.left.circle.fill",
+            icon: SFSafeSymbols.SFSymbol.bubbleLeftCircleFill,
             color: Color.gray,
             active: .constant(false),
             opposite: .constant(false)
@@ -238,7 +239,7 @@ struct PostRowView: View {
           if post.post.url != post.post.thumbnailURL {
             ReactionButton(
               text: "\(URLParser.extractBaseDomain(from: post.post.url ?? "")) ",
-              icon: "safari.fill",
+              icon: SFSafeSymbols.SFSymbol.globe,
               color: Color.blue,
               //            iconSize: Font.title2,
               //            padding: 1,
@@ -307,7 +308,7 @@ struct PostRowView: View {
   var upvoteButton: some View {
     ReactionButton(
       text: String(upvotes + upvoteState),
-      icon: "arrow.up.circle.fill",
+      icon: SFSafeSymbols.SFSymbol.arrowUpCircleFill,
       color: Color.green,
       active: $upvoted,
       opposite: .constant(false)
@@ -333,7 +334,7 @@ struct PostRowView: View {
   var downvoteButton: some View {
     ReactionButton(
       text: String(downvotes + downvoteState),
-      icon: "arrow.down.circle.fill",
+      icon: SFSafeSymbols.SFSymbol.arrowDownCircleFill,
       color: Color.red,
       active: $downvoted,
       opposite: .constant(false)

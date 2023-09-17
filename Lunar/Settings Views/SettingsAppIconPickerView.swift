@@ -37,7 +37,7 @@ struct SettingsAppIconPickerView: View {
               .padding(.trailing, 10)
             Text(iconName).tag("AppIcon\(iconName)")
             Spacer()
-            Image(systemName: selectedAppIcon == "AppIcon\(iconName)" ? "checkmark.circle.fill" : "circle")
+            Image(systemSymbol: selectedAppIcon == "AppIcon\(iconName)" ? .checkmarkCircleFill : .circle)
               .resizable()
               .frame(width: 20, height: 20)
               .foregroundStyle(.indigo)
