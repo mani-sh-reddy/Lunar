@@ -16,30 +16,47 @@ struct SettingsDevOptionsView: View {
   @AppStorage("showLaunchSplashScreen") var showLaunchSplashScreen = Settings.showLaunchSplashScreen
   @AppStorage("clearWhatsNewDefaults") var clearWhatsNewDefaults = Settings.clearWhatsNewDefaults
   @AppStorage("clearInitialWhatsNewDefault") var clearInitialWhatsNewDefault = Settings.clearInitialWhatsNewDefault
-  
-  @State var clearedAlertPresented: Bool = false
 
-  @State var refreshView: Bool = false
+  @State var clearedAlertPresented: Bool = false
   @State var settingsViewOpacity: Double = 1
   @State private var logoScale: CGFloat = 0.1
   @State private var logoOpacity: Double = 0
-  
+
   let notificationHaptics = UINotificationFeedbackGenerator()
 
   var body: some View {
     List {
+      // MARK: - DEBUG AND PULSE
+
       Section {
         Toggle(isOn: $debugModeEnabled) {
-          Text("Debug Mode")
+          Label {
+            Text("Debug Mode")
+          } icon: {
+            Image(systemSymbol: .ladybugFill)
+              .symbolRenderingMode(.multicolor)
+          }
         }
         Toggle(isOn: $networkInspectorEnabled) {
-          Text("Pulse Network Inspector")
+          Label {
+            Text("Pulse Network Inspector")
+          } icon: {
+            Image(systemSymbol: .infoCircleFill)
+              .foregroundStyle(.purple)
+              .symbolRenderingMode(.hierarchical)
+          }
+
         }
         .animation(.smooth, value: networkInspectorEnabled)
 
         if networkInspectorEnabled {
           Toggle(isOn: $prominentInspectorButton) {
-            Text("Network Inspector Button")
+            Label {
+              Text("Network Inspector Button")
+            } icon: {
+              Image(systemSymbol: .rectangleAndTextMagnifyingglass)
+                .foregroundStyle(.orange)
+            }
           }
           .animation(.smooth, value: prominentInspectorButton)
 
@@ -47,58 +64,128 @@ struct SettingsDevOptionsView: View {
             NavigationLink {
               ConsoleView().closeButtonHidden()
             } label: {
-              Text("Network Inspector Console")
+              Label {
+                Text("Network Inspector Console")
+              } icon: {
+                Image(systemSymbol: .textAndCommandMacwindow)
+                  .foregroundStyle(.foreground)
+              }
+
             }
           }
         }
+      } header: {
+        Text("Debug and Pulse Logger")
       }
+
+      // MARK: - WHATSNEWKIT
+
       Section {
         Button {
           clearWhatsNewDefaults.toggle()
           notificationHaptics.notificationOccurred(.success)
           clearedAlertPresented = true
         } label: {
-          Text("Clear All WhatsNewKit List")
+          Label {
+            Text("Clear All WhatsNewKit List")
+              .foregroundStyle(.foreground)
+          } icon: {
+            Image(systemSymbol: .rectangleStackFillBadgeMinus)
+              .foregroundStyle(.gray)
+              .symbolRenderingMode(.multicolor)
+          }
         }
         Button {
           clearInitialWhatsNewDefault.toggle()
           notificationHaptics.notificationOccurred(.success)
           clearedAlertPresented = true
         } label: {
-          Text("Clear WhatsNewKit Initial Launch")
+          Label {
+            Text("Clear WhatsNewKit Initial Launch")
+              .foregroundStyle(.foreground)
+          } icon: {
+            Image(systemSymbol: .rectangleFillBadgeMinus)
+              .foregroundStyle(.gray)
+              .symbolRenderingMode(.multicolor)
+          }
         }
+      } header: {
+        Text("WhatsNewKit")
+          .textCase(nil)
       }
+
+      // MARK: - CLEAR CACHE
+
       Section {
-        SettingsClearCacheButtonView()
+        SettingsClearCacheView()
+      } header: {
+        Text("App Cache")
       }
-      Section {
-        AppResetButton(refreshView: $refreshView)
-      }
+
+      // MARK: - UNRELEASED VIEWS
+
       Section {
         NavigationLink {
           ColorTesterView()
         } label: {
-          Text("Color Tester")
+          Label {
+            Text("Color Tester")
+          } icon: {
+            Image(systemSymbol: .paintpaletteFill)
+              .symbolRenderingMode(.multicolor)
+          }
         }
         NavigationLink {
           UserDefaultsExplorerView()
         } label: {
-          Text("UserDefaults Explorer")
+          Label {
+            Text("UserDefaults Explorer")
+          } icon: {
+            Image(systemSymbol: .locationCircleFill)
+              .foregroundStyle(.orange)
+          }
         }
-
         NavigationLink {
           PlaceholderView()
         } label: {
-          Text("Placeholder")
+          Label {
+            Text("Placeholder View")
+          } icon: {
+            Image(systemSymbol: .squareSplitDiagonal2x2Fill)
+              .foregroundStyle(.gray)
+          }
         }
       } header: {
         Text("Unreleased views")
       }
-    }
-    .onChange(of: refreshView) { _ in
-      refresh()
+
+      // MARK: - APP RESET
+
+      Section {
+        SettingsAppResetView(
+          settingsViewOpacity: $settingsViewOpacity,
+          logoScale: $logoScale,
+          logoOpacity: $logoOpacity
+        )
+      } header: {
+        Text("Reset")
+      }
+
+      // MARK: - APP BUNDLE ID
+
+      Section {
+        Text(Bundle.main.bundleIdentifier ?? "UNDEFINED")
+      } header: {
+        Text("App Bundle ID")
+      }
+
+      // MARK: - //
     }
     .opacity(settingsViewOpacity)
+    .navigationTitle("Developer Options")
+    .alert(isPresented: $clearedAlertPresented) {
+      Alert(title: Text("Cleared"))
+    }
     .overlay {
       Image("LunarLogo")
         .resizable()
@@ -106,27 +193,6 @@ struct SettingsDevOptionsView: View {
         .padding(50)
         .scaleEffect(logoScale)
         .opacity(logoOpacity)
-    }
-    .navigationTitle("Developer Options")
-    .alert(isPresented: $clearedAlertPresented) {
-      Alert(title: Text("Cleared"))
-    }
-  }
-
-  func refresh() {
-    settingsViewOpacity = 0
-    logoScale = 1.0
-    logoOpacity = 1.0
-    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-      withAnimation(.easeIn) {
-        settingsViewOpacity = 1
-      }
-      withAnimation(.easeInOut(duration: 1)) {
-        logoScale = 0.8
-      }
-      withAnimation(Animation.easeInOut(duration: 1.0).delay(0)) {
-        logoOpacity = 0
-      }
     }
   }
 }

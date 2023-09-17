@@ -12,7 +12,6 @@ import SwiftUI
 struct ContentView: View {
   @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
   @AppStorage("prominentInspectorButton") var prominentInspectorButton = Settings.prominentInspectorButton
-  let haptics = UIImpactFeedbackGenerator(style: .soft)
 
   @State private var networkInspectorPopover: Bool = false
 
@@ -52,7 +51,6 @@ struct ContentView: View {
       if networkInspectorEnabled && prominentInspectorButton {
         Button {
           networkInspectorPopover = true
-          haptics.impactOccurred()
 
         } label: {
           Image(systemSymbol: .mailAndTextMagnifyingglass)
