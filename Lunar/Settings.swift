@@ -62,6 +62,8 @@ enum Settings {
 
   static let clearWhatsNewDefaults: Bool = false
   static let clearInitialWhatsNewDefault: Bool = false
+  
+  static let autoCollapseBots: Bool = true
 
   static let quicklinks: [Quicklink] = DefaultQuicklinks().getDefaultQuicklinks()
 }

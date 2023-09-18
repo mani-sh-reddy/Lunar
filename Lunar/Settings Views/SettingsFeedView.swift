@@ -9,12 +9,18 @@ import Foundation
 import SwiftUI
 
 struct SettingsFeedView: View {
+  @AppStorage("autoCollapseBots") var autoCollapseBots = Settings.autoCollapseBots
+  
   var body: some View {
     List {
       // MARK: - Posts Section
 
-      Section {} header: {
-        Text("Feed Options")
+      Section {
+        Toggle(isOn: $autoCollapseBots) {
+          Text("Auto-collapse Bots")
+        }
+      } header: {
+        Text("Comments")
       }
     }
     .navigationTitle("Feed Options")
