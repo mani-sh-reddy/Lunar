@@ -5,9 +5,9 @@
 //  Created by Mani on 18/09/2023.
 //
 
+import BetterSafariView
 import Foundation
 import SwiftUI
-import BetterSafariView
 
 extension View {
   func inAppSafari(isPresented: Binding<Bool>, stringURL: String) -> some View {
@@ -17,10 +17,10 @@ extension View {
 
 struct InAppSafariModifier: ViewModifier {
   @Binding var isPresented: Bool
-  
+
   let stringURL: String
   let defaultURL = "https://github.com/mani-sh-reddy/Lunar"
-  
+
   func body(content: Content) -> some View {
     content
       .safariView(isPresented: $isPresented) {

@@ -11,6 +11,7 @@ import SwiftUI
 
 struct SettingsView: View {
   @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
+
   @State var selectedAccount: AccountModel?
   @State private var showSafariGithub: Bool = false
   @State private var showSafariLemmy: Bool = false

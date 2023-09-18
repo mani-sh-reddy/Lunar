@@ -47,6 +47,7 @@ struct PostRowView: View {
   var downvotes: Int { post.counts.downvotes ?? 0 }
   var commentCount: Int { post.counts.comments ?? 0 }
   var postID: Int { post.post.id }
+
   var instanceTag: String {
     let tag = post.community.actorID
     if !tag.isEmpty {
@@ -113,61 +114,7 @@ struct PostRowView: View {
             }
             Spacer()
             if compactViewEnabled {
-              HStack {
-                HStack(spacing: 1) {
-                  Image(systemSymbol: .arrowUp)
-                  Text(String(upvotes + upvoteState))
-                    .fixedSize()
-                }
-                .lineLimit(1)
-                .foregroundStyle(.green)
-                .highPriorityGesture(
-                  TapGesture().onEnded {
-                    haptics.impactOccurred()
-                    if !upvoted {
-                      print("SENT /post/like \(String(describing: postID)):upvote(+1)")
-                      sendReaction(
-                        voteType: 1, postID: post.post.id
-                      )
-                    } else {
-                      print("SENT /post/like \(String(describing: postID)):un-upvote(0)")
-                      sendReaction(
-                        voteType: 0, postID: post.post.id
-                      )
-                    }
-                  }
-                )
-
-                HStack(spacing: 1) {
-                  Image(systemSymbol: .arrowDown)
-                  Text(String(downvotes + downvoteState))
-                    .fixedSize()
-                }
-                .lineLimit(1)
-                .foregroundStyle(.red)
-                .highPriorityGesture(
-                  TapGesture().onEnded {
-                    haptics.impactOccurred()
-                    if !downvoted {
-                      sendReaction(
-                        voteType: -1, postID: post.post.id
-                      )
-                    } else {
-                      sendReaction(
-                        voteType: 0, postID: post.post.id
-                      )
-                    }
-                  }
-                )
-
-                HStack(spacing: 2) {
-                  Image(systemSymbol: .bubbleLeft)
-                  Text(String(commentCount))
-                    .fixedSize()
-                }
-                .lineLimit(1)
-                .foregroundStyle(.gray)
-              }
+              compactViewReactionButtons
             }
           }
           .font(.caption)
@@ -189,22 +136,11 @@ struct PostRowView: View {
           HStack {
             Text("\(creator.uppercased())\(timeAgo)")
               .foregroundColor(.secondary)
+
             if compactViewEnabled {
               Spacer()
               if post.post.url != post.post.thumbnailURL {
-                HStack(spacing: 2) {
-                  Image(systemSymbol: .globe)
-                  Text("\(URLParser.extractBaseDomain(from: post.post.url ?? "")) ")
-                    .fixedSize()
-                }
-                .lineLimit(1)
-                .foregroundStyle(.blue)
-                .highPriorityGesture(
-                  TapGesture().onEnded {
-                    showSafari.toggle()
-                  }
-                )
-                .inAppSafari(isPresented: $showSafari, stringURL: post.post.url ?? "")
+                compactSafariButton
               }
             }
           }
@@ -217,30 +153,10 @@ struct PostRowView: View {
         HStack {
           upvoteButton
           downvoteButton
-
-          ReactionButton(
-            text: String(commentCount),
-            icon: SFSafeSymbols.SFSymbol.bubbleLeftCircleFill,
-            color: Color.gray,
-            active: .constant(false),
-            opposite: .constant(false)
-          )
-
+          commentButton
           Spacer()
           if post.post.url != post.post.thumbnailURL {
-            ReactionButton(
-              text: "\(URLParser.extractBaseDomain(from: post.post.url ?? "")) ",
-              icon: SFSafeSymbols.SFSymbol.globe,
-              color: Color.blue,
-              active: .constant(false),
-              opposite: .constant(false)
-            )
-            .highPriorityGesture(
-              TapGesture().onEnded {
-                showSafari.toggle()
-              }
-            )
-            .inAppSafari(isPresented: $showSafari, stringURL: post.post.url ?? "")
+            safariButton
           }
         }
       }
@@ -263,6 +179,90 @@ struct PostRowView: View {
       }
     }
     .onAppear { updateVotesOnAppear() }
+  }
+
+  var compactViewReactionButtons: some View {
+    HStack {
+      HStack(spacing: 1) {
+        Image(systemSymbol: .arrowUp)
+        Text(String(upvotes + upvoteState))
+          .fixedSize()
+      }
+      .lineLimit(1)
+      .foregroundStyle(.green)
+      .highPriorityGesture(
+        TapGesture().onEnded {
+          haptics.impactOccurred()
+          if !upvoted {
+            print("SENT /post/like \(String(describing: postID)):upvote(+1)")
+            sendReaction(
+              voteType: 1, postID: post.post.id
+            )
+          } else {
+            print("SENT /post/like \(String(describing: postID)):un-upvote(0)")
+            sendReaction(
+              voteType: 0, postID: post.post.id
+            )
+          }
+        }
+      )
+
+      HStack(spacing: 1) {
+        Image(systemSymbol: .arrowDown)
+        Text(String(downvotes + downvoteState))
+          .fixedSize()
+      }
+      .lineLimit(1)
+      .foregroundStyle(.red)
+      .highPriorityGesture(
+        TapGesture().onEnded {
+          haptics.impactOccurred()
+          if !downvoted {
+            sendReaction(
+              voteType: -1, postID: post.post.id
+            )
+          } else {
+            sendReaction(
+              voteType: 0, postID: post.post.id
+            )
+          }
+        }
+      )
+
+      HStack(spacing: 2) {
+        Image(systemSymbol: .bubbleLeft)
+        Text(String(commentCount))
+          .fixedSize()
+      }
+      .lineLimit(1)
+      .foregroundStyle(.gray)
+    }
+  }
+
+  var commentButton: some View {
+    ReactionButton(
+      text: String(commentCount),
+      icon: SFSafeSymbols.SFSymbol.bubbleLeftCircleFill,
+      color: Color.gray,
+      active: .constant(false),
+      opposite: .constant(false)
+    )
+  }
+
+  var safariButton: some View {
+    ReactionButton(
+      text: "\(URLParser.extractBaseDomain(from: post.post.url ?? "")) ",
+      icon: SFSafeSymbols.SFSymbol.globe,
+      color: Color.blue,
+      active: .constant(false),
+      opposite: .constant(false)
+    )
+    .highPriorityGesture(
+      TapGesture().onEnded {
+        showSafari.toggle()
+      }
+    )
+    .inAppSafari(isPresented: $showSafari, stringURL: post.post.url ?? "")
   }
 
   var upvoteButton: some View {
@@ -313,6 +313,22 @@ struct PostRowView: View {
         }
       }
     )
+  }
+
+  var compactSafariButton: some View {
+    HStack(spacing: 2) {
+      Image(systemSymbol: .globe)
+      Text("\(URLParser.extractBaseDomain(from: post.post.url ?? "")) ")
+        .fixedSize()
+    }
+    .lineLimit(1)
+    .foregroundStyle(.blue)
+    .highPriorityGesture(
+      TapGesture().onEnded {
+        showSafari.toggle()
+      }
+    )
+    .inAppSafari(isPresented: $showSafari, stringURL: post.post.url ?? "")
   }
 
   func sendSubscribeAction(subscribeAction: Bool) {

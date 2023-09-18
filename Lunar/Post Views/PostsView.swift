@@ -70,7 +70,7 @@ struct PostsView: View {
 
     .navigationTitle(navigationHeading)
     .navigationBarTitleDisplayMode(.inline)
-    .listStyle(.insetGrouped)
+    .modifier(ConditionalListStyleModifier(listStyle: compactViewEnabled ? "plain" : "insetGrouped"))
   }
 }
 

@@ -51,6 +51,7 @@
 		3C4EE4B92A8006D0009EE4A8 /* KbinPostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4EE4B82A8006D0009EE4A8 /* KbinPostRowView.swift */; };
 		3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F09FF2A54399F009DF8AB /* LunarApp.swift */; };
 		3C54C0962AB8E62C00F1BADE /* InAppSafariModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C54C0952AB8E62C00F1BADE /* InAppSafariModifier.swift */; };
+		3C54C0992AB8F40800F1BADE /* ConditionalListStyleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C54C0982AB8F40800F1BADE /* ConditionalListStyleModifier.swift */; };
 		3C5ECB1F2A75ABFE002BA561 /* SiteInfoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB1E2A75ABFE002BA561 /* SiteInfoFetcher.swift */; };
 		3C5ECB242A766D64002BA561 /* DebugLoginPagePropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB232A766D64002BA561 /* DebugLoginPagePropertiesView.swift */; };
 		3C5ECB262A766E31002BA561 /* DebugAccountsPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB252A766E31002BA561 /* DebugAccountsPropertiesView.swift */; };
@@ -238,6 +239,7 @@
 		3C4F09FC2A54399F009DF8AB /* Lunar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lunar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4F09FF2A54399F009DF8AB /* LunarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarApp.swift; sourceTree = "<group>"; };
 		3C54C0952AB8E62C00F1BADE /* InAppSafariModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppSafariModifier.swift; sourceTree = "<group>"; };
+		3C54C0982AB8F40800F1BADE /* ConditionalListStyleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalListStyleModifier.swift; sourceTree = "<group>"; };
 		3C5ECB1E2A75ABFE002BA561 /* SiteInfoFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteInfoFetcher.swift; sourceTree = "<group>"; };
 		3C5ECB232A766D64002BA561 /* DebugLoginPagePropertiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLoginPagePropertiesView.swift; sourceTree = "<group>"; };
 		3C5ECB252A766E31002BA561 /* DebugAccountsPropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugAccountsPropertiesView.swift; sourceTree = "<group>"; };
@@ -440,7 +442,6 @@
 				3C2B147C2AABE17C0028E05A /* SymbolPicker.swift */,
 				3C1AF0A92AB4BDA000763602 /* CommentLogic.swift */,
 				3CCE1D1A2AB5F13000357DFA /* AttributedStringExtension.swift */,
-				3C54C0952AB8E62C00F1BADE /* InAppSafariModifier.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -552,6 +553,8 @@
 		3C54C0972AB8E63900F1BADE /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
+				3C54C0952AB8E62C00F1BADE /* InAppSafariModifier.swift */,
+				3C54C0982AB8F40800F1BADE /* ConditionalListStyleModifier.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -1091,6 +1094,7 @@
 				3CB9C7422AA24B1800FB5A10 /* LocalSite.swift in Sources */,
 				3C42AD1A2A8038300056AFBC /* KbinCommentsView.swift in Sources */,
 				3C6299D12A751A5900BE2A9F /* TextExtension.swift in Sources */,
+				3C54C0992AB8F40800F1BADE /* ConditionalListStyleModifier.swift in Sources */,
 				3CF3B8FD2A90188D001C08B5 /* CommentMetadataView.swift in Sources */,
 				3C130F772A8C0CB90060B6E4 /* ReactionButton.swift in Sources */,
 				3CE0A7942A8551CD008A782A /* EncodeDecodeHelpers.swift in Sources */,
