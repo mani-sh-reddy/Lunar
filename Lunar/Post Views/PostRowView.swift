@@ -11,6 +11,7 @@ import SwiftUI
 
 struct PostRowView: View {
   @EnvironmentObject var postsFetcher: PostsFetcher
+
   @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
   @AppStorage("subscribedCommunityIDs") var subscribedCommunityIDs = Settings.subscribedCommunityIDs
   @AppStorage("compactViewEnabled") var compactViewEnabled = Settings.compactViewEnabled
@@ -20,12 +21,12 @@ struct PostRowView: View {
 
   @State var upvoteState: Int = 0
   @State var downvoteState: Int = 0
-
   @State var goInto: Bool = false
   @State var showingPlaceholderAlert = false
-  @State private var showSafari: Bool = false
   @State var subscribeState: SubscribedState = .notSubscribed
   @State var isSubscribed: Bool
+  @State private var showSafari: Bool = false
+  @State private var showCommunityActions: Bool = false
 
   var post: PostObject
   var insideCommentsView: Bool = false
@@ -62,7 +63,6 @@ struct PostRowView: View {
   }
 
   let haptics = UIImpactFeedbackGenerator(style: .rigid)
-  @State private var showCommunityActions: Bool = false
 
   var body: some View {
     if compactViewEnabled, !insideCommentsView {
@@ -204,16 +204,7 @@ struct PostRowView: View {
                     showSafari.toggle()
                   }
                 )
-                .safariView(isPresented: $showSafari) {
-                  BetterSafariView.SafariView(
-                    url: URL(string: post.post.url ?? "https://github.com/mani-sh-reddy/Lunar")!,
-                    configuration: BetterSafariView.SafariView.Configuration(
-                      entersReaderIfAvailable: false,
-                      barCollapsingEnabled: true
-                    )
-                  )
-                  .dismissButtonStyle(.done)
-                }
+                .inAppSafari(isPresented: $showSafari, stringURL: post.post.url ?? "")
               }
             }
           }
@@ -241,8 +232,6 @@ struct PostRowView: View {
               text: "\(URLParser.extractBaseDomain(from: post.post.url ?? "")) ",
               icon: SFSafeSymbols.SFSymbol.globe,
               color: Color.blue,
-              //            iconSize: Font.title2,
-              //            padding: 1,
               active: .constant(false),
               opposite: .constant(false)
             )
@@ -251,16 +240,7 @@ struct PostRowView: View {
                 showSafari.toggle()
               }
             )
-            .safariView(isPresented: $showSafari) {
-              BetterSafariView.SafariView(
-                url: URL(string: post.post.url ?? "https://github.com/mani-sh-reddy/Lunar")!,
-                configuration: BetterSafariView.SafariView.Configuration(
-                  entersReaderIfAvailable: false,
-                  barCollapsingEnabled: true
-                )
-              )
-              .dismissButtonStyle(.done)
-            }
+            .inAppSafari(isPresented: $showSafari, stringURL: post.post.url ?? "")
           }
         }
       }
@@ -282,27 +262,7 @@ struct PostRowView: View {
         showingPlaceholderAlert = false
       }
     }
-    .onAppear {
-      if let voteType = post.myVote {
-        switch voteType {
-        case 1:
-          upvoted = true
-          downvoted = false
-          upvoteState = 1
-          downvoteState = 0
-        case -1:
-          upvoted = false
-          downvoted = true
-          upvoteState = 0
-          downvoteState = 1
-        default:
-          upvoted = false
-          downvoted = false
-          upvoteState = 0
-          downvoteState = 0
-        }
-      }
-    }
+    .onAppear { updateVotesOnAppear() }
   }
 
   var upvoteButton: some View {
@@ -418,15 +378,26 @@ struct PostRowView: View {
       }
     }
   }
-}
 
-// struct PostRowView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    PostRowView(
-//      upvoted: .constant(false),
-//      downvoted: .constant(false),
-//      isSubscribed: false, post: MockData.postElement
-//    )
-//    .previewLayout(.sizeThatFits).frame(height: 300)
-//  }
-// }
+  func updateVotesOnAppear() {
+    if let voteType = post.myVote {
+      switch voteType {
+      case 1:
+        upvoted = true
+        downvoted = false
+        upvoteState = 1
+        downvoteState = 0
+      case -1:
+        upvoted = false
+        downvoted = true
+        upvoteState = 0
+        downvoteState = 1
+      default:
+        upvoted = false
+        downvoted = false
+        upvoteState = 0
+        downvoteState = 0
+      }
+    }
+  }
+}

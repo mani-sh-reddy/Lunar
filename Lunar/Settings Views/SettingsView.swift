@@ -202,16 +202,10 @@ struct SettingsView: View {
             }
           }
           .foregroundStyle(.foreground)
-          .safariView(isPresented: $showSafariPrivacyPolicy) {
-            BetterSafariView.SafariView(
-              url: URL(string: "https://github.com/mani-sh-reddy/Lunar/wiki/Privacy-Policy")!,
-              configuration: BetterSafariView.SafariView.Configuration(
-                entersReaderIfAvailable: false,
-                barCollapsingEnabled: true
-              )
-            )
-            .dismissButtonStyle(.done)
-          }
+          .inAppSafari(
+            isPresented: $showSafariPrivacyPolicy,
+            stringURL: "https://github.com/mani-sh-reddy/Lunar/wiki/Privacy-Policy"
+          )
 
           // MARK: - LEMMY COMMUNITY LINK
 
@@ -228,16 +222,10 @@ struct SettingsView: View {
             }
           }
           .foregroundStyle(.foreground)
-          .safariView(isPresented: $showSafariLemmy) {
-            BetterSafariView.SafariView(
-              url: URL(string: "https://lemmy.world/c/lunar")!,
-              configuration: BetterSafariView.SafariView.Configuration(
-                entersReaderIfAvailable: false,
-                barCollapsingEnabled: true
-              )
-            )
-            .dismissButtonStyle(.done)
-          }
+          .inAppSafari(
+            isPresented: $showSafariLemmy,
+            stringURL: "https://lemmy.world/c/lunar"
+          )
 
           // MARK: - GITHUB LINK
 
@@ -256,16 +244,10 @@ struct SettingsView: View {
             }
           }
           .foregroundStyle(.foreground)
-          .safariView(isPresented: $showSafariGithub) {
-            BetterSafariView.SafariView(
-              url: URL(string: "https://github.com/mani-sh-reddy/Lunar")!,
-              configuration: BetterSafariView.SafariView.Configuration(
-                entersReaderIfAvailable: false,
-                barCollapsingEnabled: true
-              )
-            )
-            .dismissButtonStyle(.done)
-          }
+          .inAppSafari(
+            isPresented: $showSafariGithub,
+            stringURL: "https://github.com/mani-sh-reddy/Lunar"
+          )
         } header: {
           Text("Info")
         }

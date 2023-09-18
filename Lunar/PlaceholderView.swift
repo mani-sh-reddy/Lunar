@@ -9,7 +9,8 @@ import BetterSafariView
 import SwiftUI
 
 struct PlaceholderView: View {
-  @State var showingSafari: Bool = false
+  @State var showSafari: Bool = false
+
   var body: some View {
     VStack(spacing: 0) {
       VStack(spacing: 0) {
@@ -56,27 +57,12 @@ struct PlaceholderView: View {
     }
     .frame(width: 300)
     .clipped()
-    .background {
-      Rectangle()
-        .fill(Color(.systemGray6))
-    }
-    .mask {
-      RoundedRectangle(cornerRadius: 16, style: .continuous)
-    }
-    .onTapGesture {
-      showingSafari.toggle()
-    }
-    .safariView(isPresented: $showingSafari) {
-      BetterSafariView.SafariView(
-        url: URL(string: "https://github.com/users/mani-sh-reddy/projects/3/views/5")!,
-        configuration: BetterSafariView.SafariView.Configuration(
-          entersReaderIfAvailable: false,
-          barCollapsingEnabled: true
-        )
-      )
-//      .preferredBarAccentColor(.clear)
-//      .preferredControlAccentColor(.accentColor)
-      .dismissButtonStyle(.done)
-    }
+    .background { Rectangle().fill(Color(.systemGray6)) }
+    .mask { RoundedRectangle(cornerRadius: 16, style: .continuous) }
+    .onTapGesture { showSafari.toggle() }
+    .inAppSafari(
+      isPresented: $showSafari,
+      stringURL: "https://github.com/users/mani-sh-reddy/projects/3/views/5"
+    )
   }
 }
