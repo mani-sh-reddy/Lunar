@@ -25,7 +25,7 @@ import SwiftUI
   let imagePrefetcher = ImagePrefetcher(pipeline: ImagePipeline.shared)
 
   private var currentPage = 1
-  private var sortParameter: String?
+  var sortParameter: String?
   private var typeParameter: String?
   private var communityID: Int?
   private var instance: String?

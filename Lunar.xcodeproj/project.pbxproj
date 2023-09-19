@@ -52,6 +52,8 @@
 		3C4F0A002A54399F009DF8AB /* LunarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F09FF2A54399F009DF8AB /* LunarApp.swift */; };
 		3C54C0962AB8E62C00F1BADE /* InAppSafariModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C54C0952AB8E62C00F1BADE /* InAppSafariModifier.swift */; };
 		3C54C0992AB8F40800F1BADE /* ConditionalListStyleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C54C0982AB8F40800F1BADE /* ConditionalListStyleModifier.swift */; };
+		3C54C09B2ABA1CCA00F1BADE /* SortTypePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C54C09A2ABA1CCA00F1BADE /* SortTypePickerView.swift */; };
+		3C54C09D2ABA1ECE00F1BADE /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C54C09C2ABA1ECD00F1BADE /* Defaults.swift */; };
 		3C5ECB1F2A75ABFE002BA561 /* SiteInfoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB1E2A75ABFE002BA561 /* SiteInfoFetcher.swift */; };
 		3C5ECB242A766D64002BA561 /* DebugLoginPagePropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB232A766D64002BA561 /* DebugLoginPagePropertiesView.swift */; };
 		3C5ECB262A766E31002BA561 /* DebugAccountsPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB252A766E31002BA561 /* DebugAccountsPropertiesView.swift */; };
@@ -240,6 +242,8 @@
 		3C4F09FF2A54399F009DF8AB /* LunarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarApp.swift; sourceTree = "<group>"; };
 		3C54C0952AB8E62C00F1BADE /* InAppSafariModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppSafariModifier.swift; sourceTree = "<group>"; };
 		3C54C0982AB8F40800F1BADE /* ConditionalListStyleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalListStyleModifier.swift; sourceTree = "<group>"; };
+		3C54C09A2ABA1CCA00F1BADE /* SortTypePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortTypePickerView.swift; sourceTree = "<group>"; };
+		3C54C09C2ABA1ECD00F1BADE /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		3C5ECB1E2A75ABFE002BA561 /* SiteInfoFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteInfoFetcher.swift; sourceTree = "<group>"; };
 		3C5ECB232A766D64002BA561 /* DebugLoginPagePropertiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLoginPagePropertiesView.swift; sourceTree = "<group>"; };
 		3C5ECB252A766E31002BA561 /* DebugAccountsPropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugAccountsPropertiesView.swift; sourceTree = "<group>"; };
@@ -529,6 +533,7 @@
 				3CB9C40B2A95F4D30022EA64 /* WelcomeScreenView.swift */,
 				3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */,
 				3CDF229C2A6D436B009281F2 /* Settings.swift */,
+				3C54C09C2ABA1ECD00F1BADE /* Defaults.swift */,
 				3CECCE1F2AADEB1E0017A605 /* DefaultQuicklinks.swift */,
 				3CECCE212AAE14140017A605 /* Account Tab */,
 				3CE237332AA4D157000F1D20 /* Common Views */,
@@ -819,6 +824,7 @@
 				3CCAA8BE2A65309E007CCEC2 /* NoInternetConnectionView.swift */,
 				3CE237342AA4D171000F1D20 /* LargeNavButton.swift */,
 				3CE237362AA4D188000F1D20 /* SmallNavButton.swift */,
+				3C54C09A2ABA1CCA00F1BADE /* SortTypePickerView.swift */,
 			);
 			path = "Common Views";
 			sourceTree = "<group>";
@@ -1040,6 +1046,7 @@
 				3C87092C2A745CE2004999CE /* ArrayExtension.swift in Sources */,
 				3C4D42AA2A8D12B8003B6F1D /* VoteResponseModel.swift in Sources */,
 				3CC734A42A6D58C6007523B5 /* URLBuilder.swift in Sources */,
+				3C54C09D2ABA1ECE00F1BADE /* Defaults.swift in Sources */,
 				3C2B14712AABC66E0028E05A /* Quicklink.swift in Sources */,
 				3CEF4CD92A69B80A002B83C0 /* CommentIndentGuideView.swift in Sources */,
 				3CB9C71C2AA23EF000FB5A10 /* Community.swift in Sources */,
@@ -1154,6 +1161,7 @@
 				3CF3B8F12A8F797D001C08B5 /* SettingsLayoutView.swift in Sources */,
 				3C65885D2A6189AF00A46DA3 /* CommentsFetcher.swift in Sources */,
 				3CECCE192AACFA4B0017A605 /* MyUserView.swift in Sources */,
+				3C54C09B2ABA1CCA00F1BADE /* SortTypePickerView.swift in Sources */,
 				3CD4DA212A7EF3AE00BC374A /* SearchCommunitiesRowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -48,7 +48,7 @@ struct MoreCommunitiesView: View {
     .navigationTitle(title)
     .navigationBarTitleDisplayMode(.inline)
     .toolbar {
-      ToolbarItem(placement: .navigationBarTrailing) { Image(systemSymbol: .sparkles) }
+      ToolbarItem(placement: .topBarTrailing) { Image(systemSymbol: .sparkles) }
     }
   }
 }

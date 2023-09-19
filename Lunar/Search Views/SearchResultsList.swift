@@ -7,8 +7,10 @@
 
 import SFSafeSymbols
 import SwiftUI
+import Defaults
 
 struct SearchResultsList: View {
+  @Default(.searchSortType) var searchSortType
   @StateObject var searchFetcher: SearchFetcher
 
   @State var isLoading: Bool = false
@@ -16,7 +18,7 @@ struct SearchResultsList: View {
   @Binding var searchText: String
   @Binding var selectedSearchType: String
   //  @Binding var selectedSortType: String
-  @AppStorage("selectedSearchSortType") var selectedSearchSortType = Settings.selectedSearchSortType
+//  @AppStorage("selectedSearchSortType") var selectedSearchSortType = Settings.selectedSearchSortType
 
   var selectedSearchTypeIcon: (SFSafeSymbols.SFSymbol, Color) {
     switch selectedSearchType {
@@ -73,15 +75,15 @@ struct SearchResultsList: View {
         }
       )
     }
-    .onChange(of: selectedSearchSortType) { query in
+    .onChange(of: searchSortType) { query in
       withAnimation {
-        searchFetcher.sortParameter = query
+        searchFetcher.sortParameter = searchSortType.rawValue
         searchFetcher.loadMoreContent { completed, _ in
           isLoading = !completed
         }
       }
     }
-    .onDebouncedChange(of: $searchText, debounceFor: 0) { newValue in
+    .onDebouncedChange(of: $searchText, debounceFor: 0.1) { newValue in
       if newValue.isEmpty {
         withAnimation {
           isLoading = false
@@ -100,7 +102,7 @@ struct SearchResultsList: View {
         }
       }
     }
-    .onDebouncedChange(of: $selectedSearchType, debounceFor: 0) { _ in
+    .onDebouncedChange(of: $selectedSearchType, debounceFor: 0.1) { _ in
       withAnimation {
         if !$searchText.wrappedValue.isEmpty {
           isLoading = true

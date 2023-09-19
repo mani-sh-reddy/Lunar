@@ -6,8 +6,10 @@
 //
 
 import SwiftUI
+import Defaults
 
 struct PostsView: View {
+  @Default(.postSortType) var postSortType
   @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
   @AppStorage("compactViewEnabled") var compactViewEnabled = Settings.compactViewEnabled
 
@@ -67,7 +69,17 @@ struct PostsView: View {
         postsFetcher.loadContent(isRefreshing: true)
       }
     }
-
+    .onChange(of: postSortType) { query in
+      withAnimation {
+        postsFetcher.sortParameter = postSortType.rawValue
+        postsFetcher.loadContent(isRefreshing: true)
+        }
+      }
+//    .toolbar {
+//      ToolbarItem(placement: .topBarTrailing) {
+//        SortTypePickerView(sortType: $postSortType)
+//      }
+//    }
     .navigationTitle(navigationHeading)
     .navigationBarTitleDisplayMode(.inline)
     .modifier(ConditionalListStyleModifier(listStyle: compactViewEnabled ? "plain" : "insetGrouped"))
