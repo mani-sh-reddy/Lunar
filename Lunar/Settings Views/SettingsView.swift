@@ -16,6 +16,8 @@ struct SettingsView: View {
   @State private var showSafariGithub: Bool = false
   @State private var showSafariLemmy: Bool = false
   @State private var showSafariPrivacyPolicy: Bool = false
+  
+  let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
 
   var body: some View {
     NavigationView {
@@ -56,8 +58,7 @@ struct SettingsView: View {
               Text("Notifications")
             } icon: {
               Image(systemSymbol: .bellBadgeFill)
-                .symbolRenderingMode(.palette)
-                .foregroundStyle(.pink, .red)
+                .symbolRenderingMode(.multicolor)
             }
           }
 
@@ -70,8 +71,8 @@ struct SettingsView: View {
               Text("Gestures")
             } icon: {
               Image(systemSymbol: .handDrawFill)
-                .symbolRenderingMode(.palette)
-                .foregroundStyle(.mint, .blue)
+                .symbolRenderingMode(.hierarchical)
+                .foregroundStyle(.blue)
             }
           }
 
@@ -84,8 +85,8 @@ struct SettingsView: View {
               Text("Sounds and Haptics")
             } icon: {
               Image(systemSymbol: .speakerWave2Fill)
-                .symbolRenderingMode(.palette)
-                .foregroundStyle(.orange, .yellow)
+                .symbolRenderingMode(.hierarchical)
+                .foregroundStyle(.pink)
             }
           }
 
@@ -98,8 +99,8 @@ struct SettingsView: View {
               Text("Composer")
             } icon: {
               Image(systemSymbol: .textBubbleFill)
-                .symbolRenderingMode(.palette)
-                .foregroundStyle(.white, .indigo)
+                .symbolRenderingMode(.hierarchical)
+                .foregroundStyle(.gray)
             }
           }
 
@@ -111,7 +112,7 @@ struct SettingsView: View {
             Label {
               Text("Search")
             } icon: {
-              Image(systemSymbol: .magnifyingglass)
+              Image(systemSymbol: .textMagnifyingglass)
                 .foregroundStyle(.teal)
             }
           }
@@ -124,7 +125,7 @@ struct SettingsView: View {
             Label {
               Text("Feed Options")
             } icon: {
-              Image(systemSymbol: .listBulletRectanglePortraitFill)
+              Image(systemSymbol: .sliderHorizontal3)
                 .foregroundStyle(.brown)
             }
           }
@@ -136,8 +137,7 @@ struct SettingsView: View {
               Text("Quicklinks")
             } icon: {
               Image(systemSymbol: .link)
-                .symbolRenderingMode(.hierarchical)
-                .foregroundStyle(.blue)
+                .symbolRenderingMode(.multicolor)
             }
           }
 
@@ -155,7 +155,7 @@ struct SettingsView: View {
               Text("App Icon")
             } icon: {
               Image(systemSymbol: .appDashed)
-                .foregroundStyle(.indigo)
+                .foregroundStyle(.purple)
             }
           }
 
@@ -167,8 +167,8 @@ struct SettingsView: View {
             Label {
               Text("Theme")
             } icon: {
-              Image(systemSymbol: .paintpaletteFill)
-                .symbolRenderingMode(.multicolor)
+              Image(systemSymbol: .paintbrush)
+                .foregroundStyle(.indigo)
             }
           }
 
@@ -180,7 +180,7 @@ struct SettingsView: View {
             Label {
               Text("Layout")
             } icon: {
-              Image(systemName: "square.on.square.squareshape.controlhandles")
+              Image(systemSymbol: .squareshapeControlhandlesOnSquareshapeControlhandles)
                 .foregroundStyle(.mint)
             }
           }
@@ -199,7 +199,7 @@ struct SettingsView: View {
                 .foregroundStyle(.foreground)
             } icon: {
               Image(systemSymbol: .lockDocFill)
-                .foregroundStyle(.red)
+                .foregroundStyle(.green)
             }
           }
           .foregroundStyle(.foreground)
@@ -218,7 +218,6 @@ struct SettingsView: View {
                 .foregroundStyle(.foreground)
             } icon: {
               Image(systemSymbol: .paperplaneFill)
-                .symbolRenderingMode(.hierarchical)
                 .foregroundStyle(.blue)
             }
           }
@@ -273,10 +272,9 @@ struct SettingsView: View {
 
           HStack {
             Spacer()
-            VStack(alignment: .center) {
-              Text("~ made by mani ~")
-                .padding(.bottom, 2)
-              Text(LocalizedStringKey("[mani-sh-reddy.github.io](http://mani-sh-reddy.github.io/)"))
+            VStack(alignment: .center, spacing: 2) {
+              Text("Lunar for Lemmy v\(appVersion)")
+              Text(LocalizedStringKey("~ by [mani](http://mani-sh-reddy.github.io/) ~"))
             }
             Spacer()
           }.padding(.vertical, 20)

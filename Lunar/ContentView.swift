@@ -15,36 +15,36 @@ struct ContentView: View {
 
   @State private var networkInspectorPopover: Bool = false
 
-//  init() {
-//    if #available(iOS 15, *) {
-//      let tabBarAppearance: UITabBarAppearance = .init()
-//      tabBarAppearance.configureWithDefaultBackground()
-//      UITabBar.appearance().standardAppearance = tabBarAppearance
-//      UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
-//    }
-//  }
+  init() {
+    if #available(iOS 15, *) {
+      let tabBarAppearance: UITabBarAppearance = .init()
+      tabBarAppearance.configureWithDefaultBackground()
+      UITabBar.appearance().standardAppearance = tabBarAppearance
+      UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+    }
+  }
 
   var body: some View {
     TabView {
       FeedView()
         .tabItem {
-          Label("Feed", systemImage: "mail.stack")
+          Label("Feed", systemSymbol: .mailStack)
         }
       PlaceholderView()
         .tabItem {
-          Label("Inbox", systemImage: "tray")
+          Label("Inbox", systemSymbol: .tray)
         }
       MyUserView()
         .tabItem {
-          Label("Account", systemImage: "person")
+          Label("Account", systemSymbol: .person)
         }
       SearchView()
         .tabItem {
-          Label("Search", systemImage: "magnifyingglass")
+          Label("Search", systemSymbol: .magnifyingglass)
         }
       SettingsView()
         .tabItem {
-          Label("Settings", systemImage: "gearshape.fill")
+          Label("Settings", systemSymbol: .gearshape)
         }
     }
     .overlay(alignment: .bottomTrailing) {
@@ -53,7 +53,7 @@ struct ContentView: View {
           networkInspectorPopover = true
 
         } label: {
-          Image(systemSymbol: .mailAndTextMagnifyingglass)
+          Image(systemSymbol: .rectangleAndTextMagnifyingglass)
             .font(.title2)
             .padding(15)
             .foregroundColor(.white)
