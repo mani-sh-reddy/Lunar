@@ -120,7 +120,7 @@ struct CommunityRowView: View {
         Button(role: .destructive) {
           showingPlaceholderAlert = true
         } label: {
-          Label("Delete", systemImage: "trash")
+          Label("Delete", systemSymbol: .trash)
         }
       }
       .alert("Coming soon", isPresented: $showingPlaceholderAlert) {

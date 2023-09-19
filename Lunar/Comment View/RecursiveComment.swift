@@ -150,13 +150,13 @@ struct RecursiveComment: View {
         commentsFetcher.updateCommentCollapseState(nestedComment.commentViewData, isCollapsed: true)
         print("swipe action collapse clicked")
       } label: {
-        Label("collapse", systemImage: "arrow.up.to.line.circle.fill")
+        Label("collapse", systemSymbol: .arrowUpToLineCircleFill)
       }
       .tint(.blue)
       Button {
         showingCommentPopover = true
       } label: {
-        Label("reply", systemImage: "arrowshape.turn.up.left.circle.fill")
+        Label("reply", systemSymbol: .arrowshapeTurnUpLeftCircleFill)
       }
       .tint(.orange)
     }

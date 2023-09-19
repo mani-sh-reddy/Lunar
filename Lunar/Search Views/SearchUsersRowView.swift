@@ -31,12 +31,12 @@ struct SearchUsersRowView: View {
         Button {
           showingPlaceholderAlert = true
         } label: {
-          Label("go", systemImage: "chevron.forward.circle.fill")
+          Label("go", systemSymbol: .chevronForwardCircleFill)
         }.tint(.blue)
         Button {
           showingPlaceholderAlert = true
         } label: {
-          Label("Hide", systemImage: "eye.slash.circle.fill")
+          Label("Hide", systemSymbol: .eyeSlashCircleFill)
         }.tint(.orange)
       }
 
@@ -60,7 +60,7 @@ struct SearchUsersRowView: View {
         Button(role: .destructive) {
           showingPlaceholderAlert = true
         } label: {
-          Label("Delete", systemImage: "trash")
+          Label("Delete", systemSymbol: .trash)
         }
       }
       .alert("Coming soon", isPresented: $showingPlaceholderAlert) {
