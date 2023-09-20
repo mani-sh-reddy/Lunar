@@ -6,6 +6,7 @@
 //
 
 import Alamofire
+import Defaults
 import SwiftUI
 
 enum FocusedField {
@@ -14,11 +15,11 @@ enum FocusedField {
 }
 
 struct LoginView: View {
-  @AppStorage("selectedName") var selectedName = Settings.selectedName
-  @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
-  @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
-  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
+  @Default(.selectedName) var selectedName
+  @Default(.selectedActorID) var selectedEmail
+  @Default(.selectedAvatarURL) var selectedAvatarURL
+  @Default(.selectedActorID) var selectedActorID
+  @Default(.selectedActorID) var appBundleID
 
   @Environment(\.dismiss) var dismiss
 

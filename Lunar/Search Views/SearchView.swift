@@ -11,12 +11,10 @@ import SwiftUI
 
 struct SearchView: View {
   @Default(.searchSortType) var searchSortType
-  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-//  @AppStorage("selectedSearchSortType") var selectedSearchSortType = Settings.selectedSearchSortType
+  @Default(.debugModeEnabled) var debugModeEnabled
 
   @State var searchText: String = ""
   @State var selectedSearchType: String = "Users"
-  //  @State var selectedSortType: String = "Active"
 
   var body: some View {
     NavigationView {

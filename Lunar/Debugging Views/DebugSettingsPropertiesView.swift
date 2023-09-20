@@ -5,13 +5,14 @@
 //  Created by Mani on 01/08/2023.
 //
 
+import Defaults
 import SwiftUI
 
 struct DebugSettingsPropertiesView: View {
-  @AppStorage("selectedName") var selectedName = Settings.selectedName
-  @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
-  @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
-  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
+  @Default(.selectedName) var selectedName
+  @Default(.selectedActorID) var selectedEmail
+  @Default(.selectedAvatarURL) var selectedAvatarURL
+  @Default(.selectedActorID) var selectedActorID
 
   var body: some View {
     Section {

@@ -7,12 +7,13 @@
 
 import Alamofire
 import Combine
+import Defaults
 import Foundation
 import Pulse
 import SwiftUI
 
 @MainActor class SearchFetcher: ObservableObject {
-  @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
+  @Default(.networkInspectorEnabled) var networkInspectorEnabled
 
   @Published var comments = [CommentObject]()
   @Published var communities = [CommunityObject]()

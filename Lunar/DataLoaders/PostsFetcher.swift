@@ -7,16 +7,18 @@
 
 import Alamofire
 import Combine
+import Defaults
 import Nuke
 import Pulse
 import SwiftUI
 
 @MainActor class PostsFetcher: ObservableObject {
-  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
-  @AppStorage("postSort") var postSort = Settings.postSort
-  @AppStorage("postType") var postType = Settings.postType
-  @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
+  @Default(.selectedActorID) var selectedActorID
+  @Default(.appBundleID) var appBundleID
+  @Default(.postSort) var postSort
+  @Default(.postType) var postType
+
+  @Default(.networkInspectorEnabled) var networkInspectorEnabled
 
   @Published var posts = [PostObject]()
   @Published var isLoading = false

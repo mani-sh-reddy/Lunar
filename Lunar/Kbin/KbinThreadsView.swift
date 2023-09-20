@@ -5,10 +5,12 @@
 //  Created by Mani on 06/08/2023.
 //
 
+import Defaults
 import SwiftUI
 
 struct KbinThreadsView: View {
-  @AppStorage("kbinHostURL") var kbinHostURL = Settings.kbinHostURL
+  @Default(.kbinHostURL) var kbinHostURL
+
   @StateObject var kbinThreadsFetcher: KbinThreadsFetcher
 
   var body: some View {

@@ -5,20 +5,21 @@
 //  Created by Mani on 05/07/2023.
 //
 
+import Defaults
 import SwiftUI
 
 struct FeedView: View {
-  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
-  @AppStorage("kbinActive") var kbinActive = Settings.kbinActive
-  @AppStorage("kbinHostURL") var kbinHostURL = Settings.kbinHostURL
-  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  @AppStorage("quicklinks") var quicklinks = Settings.quicklinks
+  @Default(.selectedInstance) var selectedInstance
+  @Default(.kbinActive) var kbinActive
+  @Default(.kbinHostURL) var kbinHostURL
+  @Default(.selectedActorID) var selectedActorID
+  @Default(.quicklinks) var quicklinks
 
   var subscribedCommunityListHeading: String {
     if !selectedActorID.isEmpty {
-      return "\(URLParser.extractUsername(from: selectedActorID))'s Subscribed Communities"
+      "\(URLParser.extractUsername(from: selectedActorID))'s Subscribed Communities"
     } else {
-      return "Subscribed Communities"
+      "Subscribed Communities"
     }
   }
 

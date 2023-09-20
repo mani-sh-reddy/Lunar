@@ -5,11 +5,12 @@
 //  Created by Mani on 27/07/2023.
 //
 
+import Defaults
 import SFSafeSymbols
 import SwiftUI
 
 struct SettingsHiddenOptionsView: View {
-  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
+  @Default(.debugModeEnabled) var debugModeEnabled
 
   var body: some View {
     Section {

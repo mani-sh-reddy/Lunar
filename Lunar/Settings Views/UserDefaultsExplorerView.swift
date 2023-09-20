@@ -5,11 +5,12 @@
 //  Created by Mani on 04/09/2023.
 //
 
+import Defaults
 import Foundation
 import SwiftUI
 
 struct UserDefaultsExplorerView: View {
-  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
+  @Default(.debugModeEnabled) var debugModeEnabled
 
   var contents: [String: Any] {
     if Bundle.main.bundleIdentifier != nil {

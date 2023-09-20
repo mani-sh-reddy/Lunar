@@ -5,13 +5,14 @@
 //  Created by Mani on 19/08/2023.
 //
 
+import Defaults
 import Foundation
 import Nuke
 import NukeUI
 import SwiftUI
 
 struct HeaderView: View {
-  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
+  @Default(.debugModeEnabled) var debugModeEnabled
 
   var navigationHeading: String
   var description: String?

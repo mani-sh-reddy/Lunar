@@ -5,14 +5,14 @@
 //  Created by Mani on 04/07/2023.
 //
 
+import Defaults
 import SwiftUI
 import WhatsNewKit
 
 struct EntryView: View {
-  @AppStorage("showLaunchSplashScreen") var showLaunchSplashScreen = Settings.showLaunchSplashScreen
-//  @AppStorage("showWelcomeScreen") var showWelcomeScreen = Settings.showWelcomeScreen
-  @AppStorage("clearWhatsNewDefaults") var clearWhatsNewDefaults = Settings.clearWhatsNewDefaults
-  @AppStorage("clearInitialWhatsNewDefault") var clearInitialWhatsNewDefault = Settings.clearInitialWhatsNewDefault
+  @Default(.showLaunchSplashScreen) var showLaunchSplashScreen
+  @Default(.clearWhatsNewDefaults) var clearWhatsNewDefaults
+  @Default(.clearInitialWhatsNewDefault) var clearInitialWhatsNewDefault
 
   let userDefaultsWhatsNewVersionStore = UserDefaultsWhatsNewVersionStore()
   /// Uncomment for Testing

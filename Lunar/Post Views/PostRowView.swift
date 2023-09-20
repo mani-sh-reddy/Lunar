@@ -6,15 +6,16 @@
 //
 
 import BetterSafariView
+import Defaults
 import SFSafeSymbols
 import SwiftUI
 
 struct PostRowView: View {
   @EnvironmentObject var postsFetcher: PostsFetcher
 
-  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  @AppStorage("subscribedCommunityIDs") var subscribedCommunityIDs = Settings.subscribedCommunityIDs
-  @AppStorage("compactViewEnabled") var compactViewEnabled = Settings.compactViewEnabled
+  @Default(.selectedActorID) var selectedActorID
+  @Default(.subscribedCommunityIDs) var subscribedCommunityIDs
+  @Default(.compactViewEnabled) var compactViewEnabled
 
   @Binding var upvoted: Bool
   @Binding var downvoted: Bool

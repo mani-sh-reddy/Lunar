@@ -6,12 +6,13 @@
 //
 
 import Alamofire
+import Defaults
 import SwiftUI
 
 struct InstanceSelectorView: View {
-  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
-  @AppStorage("lemmyInstances") var lemmyInstances = Settings.lemmyInstances
-  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
+  @Default(.selectedInstance) var selectedInstance
+  @Default(.lemmyInstances) var lemmyInstances
+  @Default(.debugModeEnabled) var debugModeEnabled
 
   var body: some View {
     if debugModeEnabled {

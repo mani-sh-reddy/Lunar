@@ -5,12 +5,14 @@
 //  Created by Mani on 30/07/2023.
 //
 
+import Defaults
 import Foundation
 import SwiftUI
 
 struct LoginButtonView: View {
-  @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
-  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
+  @Default(.loggedInAccounts) var loggedInAccounts
+  @Default(.selectedInstance) var selectedInstance
+
   @Binding var isTryingLogin: Bool
   @Binding var usernameEmailInput: String
   @Binding var password: String

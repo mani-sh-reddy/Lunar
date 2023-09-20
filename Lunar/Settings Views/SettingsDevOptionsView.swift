@@ -5,17 +5,18 @@
 //  Created by Mani on 24/07/2023.
 //
 
+import Defaults
 import Pulse
 import PulseUI
 import SwiftUI
 
 struct SettingsDevOptionsView: View {
-  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-  @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
-  @AppStorage("prominentInspectorButton") var prominentInspectorButton = Settings.prominentInspectorButton
-  @AppStorage("showLaunchSplashScreen") var showLaunchSplashScreen = Settings.showLaunchSplashScreen
-  @AppStorage("clearWhatsNewDefaults") var clearWhatsNewDefaults = Settings.clearWhatsNewDefaults
-  @AppStorage("clearInitialWhatsNewDefault") var clearInitialWhatsNewDefault = Settings.clearInitialWhatsNewDefault
+  @Default(.debugModeEnabled) var debugModeEnabled
+  @Default(.networkInspectorEnabled) var networkInspectorEnabled
+  @Default(.prominentInspectorButton) var prominentInspectorButton
+  @Default(.showLaunchSplashScreen) var showLaunchSplashScreen
+  @Default(.clearWhatsNewDefaults) var clearWhatsNewDefaults
+  @Default(.clearInitialWhatsNewDefault) var clearInitialWhatsNewDefault
 
   @State var clearedAlertPresented: Bool = false
   @State var settingsViewOpacity: Double = 1

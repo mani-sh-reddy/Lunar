@@ -5,12 +5,13 @@
 //  Created by Mani on 17/09/2023.
 //
 
+import Defaults
 import Foundation
 import Nuke
 import SwiftUI
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
-  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
+  @Default(.appBundleID) var appBundleID
 
   var dataCacheHolder: DataCacheHolder?
 

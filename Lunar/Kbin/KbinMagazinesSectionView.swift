@@ -5,10 +5,11 @@
 //  Created by Mani on 06/08/2023.
 //
 
+import Defaults
 import SwiftUI
 
 struct KbinMagazinesSectionView: View {
-  @AppStorage("kbinActive") var kbinActive = Settings.kbinActive
+  @Default(.kbinActive) var kbinActive
 
   var body: some View {
     if kbinActive {

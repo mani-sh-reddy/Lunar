@@ -15,7 +15,7 @@ enum ConditionalListStyle: String, CaseIterable {
 
 struct ConditionalListStyleModifier: ViewModifier {
   let listStyle: String
-  
+
   func body(content: Content) -> some View {
     if listStyle == "insetGrouped" {
       return AnyView(content.listStyle(.insetGrouped))

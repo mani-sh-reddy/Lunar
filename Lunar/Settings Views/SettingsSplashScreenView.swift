@@ -5,13 +5,14 @@
 //  Created by Mani on 22/08/2023.
 //
 
+import Defaults
 import SwiftUI
 import WhatsNewKit
 
 struct SettingsSplashScreenView: View {
-  @AppStorage("showLaunchSplashScreen") var showLaunchSplashScreen = Settings.showLaunchSplashScreen
-  @AppStorage("clearWhatsNewDefaults") var clearWhatsNewDefaults = Settings.clearWhatsNewDefaults
-  @AppStorage("clearInitialWhatsNewDefault") var clearInitialWhatsNewDefault = Settings.clearInitialWhatsNewDefault
+  @Default(.showLaunchSplashScreen) var showLaunchSplashScreen
+  @Default(.clearWhatsNewDefaults) var clearWhatsNewDefaults
+  @Default(.clearInitialWhatsNewDefault) var clearInitialWhatsNewDefault
 
   @State var alertPresented: Bool = false
 

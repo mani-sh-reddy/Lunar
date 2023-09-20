@@ -6,17 +6,18 @@
 //
 
 import BetterSafariView
+import Defaults
 import SFSafeSymbols
 import SwiftUI
 
 struct SettingsView: View {
-  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
+  @Default(.debugModeEnabled) var debugModeEnabled
 
   @State var selectedAccount: AccountModel?
   @State private var showSafariGithub: Bool = false
   @State private var showSafariLemmy: Bool = false
   @State private var showSafariPrivacyPolicy: Bool = false
-  
+
   let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
 
   var body: some View {

@@ -5,15 +5,17 @@
 //  Created by Mani on 24/07/2023.
 //
 
+import Defaults
 import Nuke
 import SwiftUI
 import UIKit
 
 struct SettingsAppResetView: View {
-  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
-  @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
+  @Default(.appBundleID) var appBundleID
+  @Default(.loggedInAccounts) var loggedInAccounts
 
   @State var alertPresented: Bool = false
+
   @Binding var settingsViewOpacity: Double
   @Binding var logoScale: CGFloat
   @Binding var logoOpacity: Double

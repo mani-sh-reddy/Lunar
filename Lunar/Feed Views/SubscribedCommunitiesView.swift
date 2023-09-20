@@ -5,14 +5,16 @@
 //  Created by Mani on 20/07/2023.
 //
 
+import Defaults
 import SwiftUI
 
 struct SubscribedCommunitiesSectionView: View {
+  @Default(.debugModeEnabled) var debugModeEnabled
+  @Default(.selectedInstance) var selectedInstance
+  @Default(.selectedActorID) var selectedActorID
+  @Default(.subscribedCommunityIDs) var subscribedCommunityIDs
+
   @StateObject var communitiesFetcher: CommunitiesFetcher
-  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
-  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  @AppStorage("subscribedCommunityIDs") var subscribedCommunityIDs = Settings.subscribedCommunityIDs
-  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
 
   var body: some View {
     SubscribedFeedQuicklink()
@@ -59,44 +61,6 @@ struct SubscribedCommunitiesSectionView: View {
         subscribedCommunityIDs.removeAll()
       } label: {
         Text("Clear subscribedCommunityIDs Array")
-      }
-    }
-  }
-}
-
-struct SubscribedFeedQuicklink: View {
-  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-
-  var subscribedPostsQuicklink: Quicklink = DefaultQuicklinks().getSubscribedQuicklink()
-
-  var body: some View {
-    if selectedActorID.isEmpty {
-      HStack {
-        Image(systemSymbol: .lockCircleFill)
-          .resizable()
-          .frame(width: 30, height: 30)
-          .symbolRenderingMode(.monochrome)
-          .foregroundColor(.blue)
-        Text("Login to view subscriptions")
-          .foregroundColor(.blue)
-          .padding(.horizontal, 10)
-      }
-    } else {
-      NavigationLink {
-        PostsView(
-          postsFetcher: PostsFetcher(
-            sortParameter: subscribedPostsQuicklink.sort,
-            typeParameter: subscribedPostsQuicklink.type
-          ), title: subscribedPostsQuicklink.title
-        )
-      } label: {
-        GeneralCommunityQuicklinkButton(
-          image: subscribedPostsQuicklink.icon,
-          hexColor: subscribedPostsQuicklink.iconColor,
-          title: subscribedPostsQuicklink.title,
-          brightness: subscribedPostsQuicklink.brightness,
-          saturation: subscribedPostsQuicklink.saturation
-        )
       }
     }
   }

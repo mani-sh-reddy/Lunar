@@ -5,20 +5,22 @@
 //  Created by Mani on 10/09/2023.
 //
 
+import Defaults
 import Foundation
 import SFSafeSymbols
 import SwiftUI
 
-struct customColor: Codable, Hashable {
+struct customColor: Codable, Hashable, Defaults.Serializable {
   var colorHex: String
   var brightness: Double
   var saturation: Double
 }
 
 struct ColorTesterView: View {
+  @Default(.savedColors) var savedColors
+  @Default(.debugModeEnabled) var debugModeEnabled
+
   @Environment(\.colorScheme) var colorScheme
-  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-  @AppStorage("savedColors") var savedColors = Settings.savedColors
 
   @State var quicklinkColor: Color = .blue
   @State var brightness: Double = 0.3
@@ -120,7 +122,8 @@ struct ColorTesterView_Previews: PreviewProvider {
 }
 
 struct SavedColorsListView: View {
-  @AppStorage("savedColors") var savedColors = Settings.savedColors
+  @Default(.savedColors) var savedColors
+
   @Environment(\.colorScheme) var colorScheme
 //  @Binding var isListDarkMode: Bool
 
@@ -146,8 +149,10 @@ struct SavedColorsListView: View {
 }
 
 struct AppearanceSwitcherButton: View {
-  @AppStorage("savedColors") var savedColors = Settings.savedColors
+  @Default(.savedColors) var savedColors
+
   @Environment(\.colorScheme) var colorScheme
+
   @Binding var isListDarkMode: Bool
 
   var body: some View {

@@ -5,13 +5,14 @@
 //  Created by Mani on 04/07/2023.
 //
 
+import Defaults
 import Nuke
 import NukeUI
 import SFSafeSymbols
 import SwiftUI
 
 struct CommunityRowView: View {
-  @AppStorage("detailedCommunityLabels") var detailedCommunityLabels = Settings.detailedCommunityLabels
+  @Default(.detailedCommunityLabels) var detailedCommunityLabels
   var community: CommunityObject
 
   @State var showingPlaceholderAlert = false

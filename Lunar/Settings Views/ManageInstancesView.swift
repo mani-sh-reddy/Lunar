@@ -6,12 +6,13 @@
 //
 
 import Alamofire
+import Defaults
 import SwiftUI
 
 struct ManageInstancesView: View {
-  @AppStorage("lemmyInstances") var lemmyInstances = Settings.lemmyInstances
-  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
-  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
+  @Default(.lemmyInstances) var lemmyInstances
+  @Default(.selectedInstance) var selectedInstance
+  @Default(.debugModeEnabled) var debugModeEnabled
 
   @State var enteredCustomInstance = ""
   @State var showingAddInstanceAlert = false

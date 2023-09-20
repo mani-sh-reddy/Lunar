@@ -5,13 +5,13 @@
 //  Created by Mani on 16/09/2023.
 //
 
+import Defaults
 import Foundation
 import SFSafeSymbols
 import SwiftUI
 
 struct RecursiveComment: View {
-  @AppStorage("commentMetadataPosition")
-  var commentMetadataPosition = Settings.commentMetadataPosition
+  @Default(.commentMetadataPosition) var commentMetadataPosition
 
   @State private var isExpanded = true
   @State var showingCommentPopover = false

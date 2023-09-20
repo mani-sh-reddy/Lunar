@@ -6,25 +6,25 @@
 //
 
 import Alamofire
+import Defaults
 import Foundation
 import Pulse
 import SwiftUI
 
 class SiteInfoFetcher: ObservableObject {
+  @Default(.networkInspectorEnabled) var networkInspectorEnabled
+  @Default(.loggedInAccounts) var loggedInAccounts
+  @Default(.selectedName) var selectedName
+  @Default(.selectedEmail) var selectedEmail
+  @Default(.selectedAvatarURL) var selectedAvatarURL
+  @Default(.selectedActorID) var selectedActorID
+  @Default(.selectedUser) var selectedUser
+
   private var endpoint: URLComponents
   private var endpointRedacted: URLComponents
   private var jwt: String
 
-  /// Adding info about the user to **@AppsStorage** loggedInAccounts
   var loggedInAccount = AccountModel()
-  @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
-  @AppStorage("selectedName") var selectedName = Settings.selectedName
-  @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
-  @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
-  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  @AppStorage("selectedUser") var selectedUser = Settings.selectedUser
-  @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
-
   let pulse = Pulse.LoggerStore.shared
 
   init(jwt: String) {

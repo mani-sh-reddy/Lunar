@@ -5,6 +5,7 @@
 //  Created by Mani on 23/07/2023.
 //
 
+import Defaults
 import Foundation
 import SwiftUI
 
@@ -20,7 +21,7 @@ import SwiftUI
 /// comment/list?type_=Local&sort=Top&max_depth=2&page=1&limit=10&post_id=2021423
 
 class URLBuilder {
-  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
+  @Default(.selectedInstance) var selectedInstance
 
   private let endpointPath: String
   private let sortParameter: String?

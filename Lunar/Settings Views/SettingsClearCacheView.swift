@@ -5,6 +5,7 @@
 //  Created by Mani on 24/07/2023.
 //
 
+import Defaults
 import Nuke
 import SFSafeSymbols
 import SwiftUI
@@ -16,8 +17,9 @@ enum CacheInfoType {
 }
 
 struct SettingsClearCacheView: View {
+  @Default(.appBundleID) var appBundleID
+
   @EnvironmentObject var dataCacheHolder: DataCacheHolder
-  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
 
   @State var alertPresented: Bool = false
   @State var cacheClearButtonOpacity: Double = 1
@@ -73,12 +75,12 @@ struct SettingsClearCacheView: View {
   func cacheInfo(cacheInfoType: CacheInfoType) -> String {
     if let dataCache = dataCacheHolder.dataCache {
       if cacheInfoType == .total {
-        return humanReadableByteCount(bytes: dataCache.totalSize)
+        humanReadableByteCount(bytes: dataCache.totalSize)
       } else {
-        return humanReadableByteCount(bytes: dataCache.sizeLimit)
+        humanReadableByteCount(bytes: dataCache.sizeLimit)
       }
     } else {
-      return ""
+      ""
     }
   }
 

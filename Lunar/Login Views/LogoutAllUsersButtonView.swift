@@ -5,18 +5,19 @@
 //  Created by Mani on 31/07/2023.
 //
 
+import Defaults
 import Foundation
 import SwiftUI
 
 struct LogoutAllUsersButtonView: View {
-  @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
-  @AppStorage("selectedName") var selectedName = Settings.selectedName
-  @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
-  @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
-  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
-  @AppStorage("selectedUser") var selectedUser = Settings.selectedUser
+  @Default(.loggedInAccounts) var loggedInAccounts
+  @Default(.selectedName) var selectedName
+  @Default(.selectedEmail) var selectedEmail
+  @Default(.selectedAvatarURL) var selectedAvatarURL
+  @Default(.selectedActorID) var selectedActorID
+  @Default(.debugModeEnabled) var debugModeEnabled
+  @Default(.appBundleID) var appBundleID
+  @Default(.selectedUser) var selectedUser
 
   @Binding var showingPopover: Bool
   @Binding var isPresentingConfirm: Bool

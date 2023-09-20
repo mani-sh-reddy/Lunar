@@ -5,13 +5,14 @@
 //  Created by Mani on 30/07/2023.
 //
 
+import Defaults
 import Foundation
 import SwiftUI
 
 struct DebugLoginPagePropertiesView: View {
-  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
-  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
+  @Default(.debugModeEnabled) var debugModeEnabled
+  @Default(.selectedActorID) var selectedActorID
+  @Default(.loggedInAccounts) var loggedInAccounts
 
   var isTryingLogin: Bool
   var loggedIn: Bool

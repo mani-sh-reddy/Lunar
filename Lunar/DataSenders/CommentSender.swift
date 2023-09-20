@@ -6,19 +6,20 @@
 //
 
 import Alamofire
+import Defaults
 import Foundation
 import Pulse
 import SwiftUI
 
 class CommentSender: ObservableObject {
+  @Default(.selectedActorID) var selectedActorID
+  @Default(.appBundleID) var appBundleID
+  @Default(.networkInspectorEnabled) var networkInspectorEnabled
+
   private var content: String
   private var postID: Int
   private var parentID: Int?
   private var jwt: String = ""
-
-  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
-  @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
 
   let pulse = Pulse.LoggerStore.shared
 

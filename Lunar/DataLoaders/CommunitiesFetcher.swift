@@ -6,17 +6,18 @@
 //
 
 import Alamofire
+import Defaults
 import Foundation
 import Nuke
 import Pulse
 import SwiftUI
 
 @MainActor class CommunitiesFetcher: ObservableObject {
-  @AppStorage("communitiesSort") var communitiesSort = Settings.communitiesSort
-  @AppStorage("communitiesType") var communitiesType = Settings.communitiesType
-  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
-  @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
+  @Default(.communitiesSort) var communitiesSort
+  @Default(.communitiesType) var communitiesType
+  @Default(.selectedActorID) var selectedActorID
+  @Default(.appBundleID) var appBundleID
+  @Default(.networkInspectorEnabled) var networkInspectorEnabled
 
   @Published var communities = [CommunityObject]()
   @Published var isLoading = false
@@ -32,9 +33,9 @@ import SwiftUI
 
   private var endpointPath: String {
     if communityID != nil {
-      return "/api/v3/community"
+      "/api/v3/community"
     } else {
-      return "/api/v3/community/list"
+      "/api/v3/community/list"
     }
   }
 

@@ -6,20 +6,21 @@
 //
 
 import Alamofire
+import Defaults
 import Foundation
 import Pulse
 import SwiftUI
 
 class VoteSender: ObservableObject {
+  @Default(.networkInspectorEnabled) var networkInspectorEnabled
+  @Default(.selectedActorID) var selectedActorID
+  @Default(.appBundleID) var appBundleID
+
   private var voteType: Int
   private var postID: Int
   private var commentID: Int
   private var jwt: String = ""
   private var elementType: String = ""
-
-  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
-  @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
 
   let pulse = Pulse.LoggerStore.shared
 

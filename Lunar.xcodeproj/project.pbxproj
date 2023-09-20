@@ -54,6 +54,9 @@
 		3C54C0992AB8F40800F1BADE /* ConditionalListStyleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C54C0982AB8F40800F1BADE /* ConditionalListStyleModifier.swift */; };
 		3C54C09B2ABA1CCA00F1BADE /* SortTypePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C54C09A2ABA1CCA00F1BADE /* SortTypePickerView.swift */; };
 		3C54C09D2ABA1ECE00F1BADE /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C54C09C2ABA1ECD00F1BADE /* Defaults.swift */; };
+		3C54C0A12ABB995E00F1BADE /* DefaultValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C54C0A02ABB995E00F1BADE /* DefaultValues.swift */; };
+		3C54C0A32ABB9F9500F1BADE /* AccountSelectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C54C0A22ABB9F9500F1BADE /* AccountSelectionItem.swift */; };
+		3C54C0A52ABBA42300F1BADE /* SubscribedFeedQuicklink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C54C0A42ABBA42300F1BADE /* SubscribedFeedQuicklink.swift */; };
 		3C5ECB1F2A75ABFE002BA561 /* SiteInfoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB1E2A75ABFE002BA561 /* SiteInfoFetcher.swift */; };
 		3C5ECB242A766D64002BA561 /* DebugLoginPagePropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB232A766D64002BA561 /* DebugLoginPagePropertiesView.swift */; };
 		3C5ECB262A766E31002BA561 /* DebugAccountsPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB252A766E31002BA561 /* DebugAccountsPropertiesView.swift */; };
@@ -244,6 +247,9 @@
 		3C54C0982AB8F40800F1BADE /* ConditionalListStyleModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalListStyleModifier.swift; sourceTree = "<group>"; };
 		3C54C09A2ABA1CCA00F1BADE /* SortTypePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortTypePickerView.swift; sourceTree = "<group>"; };
 		3C54C09C2ABA1ECD00F1BADE /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		3C54C0A02ABB995E00F1BADE /* DefaultValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultValues.swift; sourceTree = "<group>"; };
+		3C54C0A22ABB9F9500F1BADE /* AccountSelectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSelectionItem.swift; sourceTree = "<group>"; };
+		3C54C0A42ABBA42300F1BADE /* SubscribedFeedQuicklink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedFeedQuicklink.swift; sourceTree = "<group>"; };
 		3C5ECB1E2A75ABFE002BA561 /* SiteInfoFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteInfoFetcher.swift; sourceTree = "<group>"; };
 		3C5ECB232A766D64002BA561 /* DebugLoginPagePropertiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLoginPagePropertiesView.swift; sourceTree = "<group>"; };
 		3C5ECB252A766E31002BA561 /* DebugAccountsPropertiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugAccountsPropertiesView.swift; sourceTree = "<group>"; };
@@ -472,6 +478,7 @@
 		3C2B146E2AABC63D0028E05A /* Subscribed Communities */ = {
 			isa = PBXGroup;
 			children = (
+				3C54C0A42ABBA42300F1BADE /* SubscribedFeedQuicklink.swift */,
 				3CEF4CC12A69B38B002B83C0 /* SubscribedCommunitiesView.swift */,
 			);
 			name = "Subscribed Communities";
@@ -534,6 +541,7 @@
 				3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */,
 				3CDF229C2A6D436B009281F2 /* Settings.swift */,
 				3C54C09C2ABA1ECD00F1BADE /* Defaults.swift */,
+				3C54C0A02ABB995E00F1BADE /* DefaultValues.swift */,
 				3CECCE1F2AADEB1E0017A605 /* DefaultQuicklinks.swift */,
 				3CECCE212AAE14140017A605 /* Account Tab */,
 				3CE237332AA4D157000F1D20 /* Common Views */,
@@ -576,6 +584,7 @@
 				3C96EA4D2A783FF100753199 /* LoggedInUsersListView.swift */,
 				3C96EA492A78390F00753199 /* LogoutAllUsersButtonView.swift */,
 				3C96EA4F2A7843EC00753199 /* AddNewUserButtonView.swift */,
+				3C54C0A22ABB9F9500F1BADE /* AccountSelectionItem.swift */,
 			);
 			path = "Login Views";
 			sourceTree = "<group>";
@@ -1047,6 +1056,7 @@
 				3C4D42AA2A8D12B8003B6F1D /* VoteResponseModel.swift in Sources */,
 				3CC734A42A6D58C6007523B5 /* URLBuilder.swift in Sources */,
 				3C54C09D2ABA1ECE00F1BADE /* Defaults.swift in Sources */,
+				3C54C0A52ABBA42300F1BADE /* SubscribedFeedQuicklink.swift in Sources */,
 				3C2B14712AABC66E0028E05A /* Quicklink.swift in Sources */,
 				3CEF4CD92A69B80A002B83C0 /* CommentIndentGuideView.swift in Sources */,
 				3CB9C71C2AA23EF000FB5A10 /* Community.swift in Sources */,
@@ -1091,6 +1101,7 @@
 				3CFE04C32A7FF0EB007BAD81 /* KbinThreadsModel.swift in Sources */,
 				3CECCE202AADEB1E0017A605 /* DefaultQuicklinks.swift in Sources */,
 				3CB8D2682A55F45900EE615A /* FeedView.swift in Sources */,
+				3C54C0A12ABB995E00F1BADE /* DefaultValues.swift in Sources */,
 				3C5ECB1F2A75ABFE002BA561 /* SiteInfoFetcher.swift in Sources */,
 				3C9E548C2A94A3DC0093DDC7 /* CommentSender.swift in Sources */,
 				3CE237352AA4D171000F1D20 /* LargeNavButton.swift in Sources */,
@@ -1144,6 +1155,7 @@
 				3C8709322A747B91004999CE /* SiteModel.swift in Sources */,
 				3C2B14772AABCCA50028E05A /* ColorConverter.swift in Sources */,
 				3C1AF0AA2AB4BDA000763602 /* CommentLogic.swift in Sources */,
+				3C54C0A32ABB9F9500F1BADE /* AccountSelectionItem.swift in Sources */,
 				3CB9C7372AA2461C00FB5A10 /* Person.swift in Sources */,
 				3C5ECB2E2A767957002BA561 /* TwoFactorFieldView.swift in Sources */,
 				3C7B7DC92A89485000A02A43 /* DateTimeParser.swift in Sources */,

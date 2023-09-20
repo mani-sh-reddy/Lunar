@@ -6,6 +6,7 @@
 //
 
 import Alamofire
+import Defaults
 import SwiftUI
 
 /* **Retrieving JWT Token**
@@ -18,12 +19,12 @@ import SwiftUI
  */
 
 class LoginHelper: ObservableObject {
-  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
-  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
-  @AppStorage("selectedName") var selectedName = Settings.selectedName
-  @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
-  @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
-  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
+  @Default(.selectedName) var selectedName
+  @Default(.selectedActorID) var selectedEmail
+  @Default(.selectedAvatarURL) var selectedAvatarURL
+  @Default(.selectedActorID) var selectedActorID
+  @Default(.appBundleID) var appBundleID
+  @Default(.selectedInstance) var selectedInstance
 
   @Published var usernameEmail: String
   @Published var password: String

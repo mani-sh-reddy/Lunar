@@ -5,12 +5,13 @@
 //  Created by Mani on 27/07/2023.
 //
 
+import Defaults
 import SwiftUI
 
 struct SettingsLayoutView: View {
-  @AppStorage("commentMetadataPosition") var commentMetadataPosition = Settings.commentMetadataPosition
-  @AppStorage("detailedCommunityLabels") var detailedCommunityLabels = Settings.detailedCommunityLabels
-  @AppStorage("compactViewEnabled") var compactViewEnabled = Settings.compactViewEnabled
+  @Default(.commentMetadataPosition) var commentMetadataPosition
+  @Default(.detailedCommunityLabels) var detailedCommunityLabels
+  @Default(.compactViewEnabled) var compactViewEnabled
 
   var body: some View {
     List {

@@ -5,16 +5,17 @@
 //  Created by Mani on 28/07/2023.
 //
 
+import Defaults
 import Foundation
 import Nuke
 import NukeUI
 import SwiftUI
 
 struct UserRowSettingsBannerView: View {
-  @AppStorage("selectedName") var selectedName = Settings.selectedName
-  @AppStorage("selectedAvatarURL") var selectedAvatarURL = Settings.selectedAvatarURL
-  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  @AppStorage("selectedEmail") var selectedEmail = Settings.selectedEmail
+  @Default(.selectedName) var selectedName
+  @Default(.selectedAvatarURL) var selectedAvatarURL
+  @Default(.selectedActorID) var selectedActorID
+  @Default(.selectedEmail) var selectedEmail
 
   @Binding var selectedAccount: AccountModel?
 

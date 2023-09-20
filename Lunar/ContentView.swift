@@ -5,13 +5,14 @@
 //  Created by Mani on 03/07/2023.
 //
 
+import Defaults
 import PulseUI
 import SFSafeSymbols
 import SwiftUI
 
 struct ContentView: View {
-  @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
-  @AppStorage("prominentInspectorButton") var prominentInspectorButton = Settings.prominentInspectorButton
+  @Default(.networkInspectorEnabled) var networkInspectorEnabled
+  @Default(.prominentInspectorButton) var prominentInspectorButton
 
   @State private var networkInspectorPopover: Bool = false
 

@@ -5,10 +5,11 @@
 //  Created by Mani on 20/07/2023.
 //
 
+import Defaults
 import SwiftUI
 
 struct GeneralCommunitiesView: View {
-  @AppStorage("quicklinks") var quicklinks = Settings.quicklinks
+  @Default(.quicklinks) var quicklinks
 
   var body: some View {
     ForEach(quicklinks, id: \.self) { quicklink in

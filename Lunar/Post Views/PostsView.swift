@@ -5,13 +5,13 @@
 //  Created by Mani on 05/07/2023.
 //
 
-import SwiftUI
 import Defaults
+import SwiftUI
 
 struct PostsView: View {
   @Default(.postSortType) var postSortType
-  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
-  @AppStorage("compactViewEnabled") var compactViewEnabled = Settings.compactViewEnabled
+  @Default(.selectedInstance) var selectedInstance
+  @Default(.compactViewEnabled) var compactViewEnabled
 
   @StateObject var postsFetcher: PostsFetcher
 
@@ -69,12 +69,12 @@ struct PostsView: View {
         postsFetcher.loadContent(isRefreshing: true)
       }
     }
-    .onChange(of: postSortType) { query in
+    .onChange(of: postSortType) { _ in
       withAnimation {
         postsFetcher.sortParameter = postSortType.rawValue
         postsFetcher.loadContent(isRefreshing: true)
-        }
       }
+    }
 //    .toolbar {
 //      ToolbarItem(placement: .topBarTrailing) {
 //        SortTypePickerView(sortType: $postSortType)

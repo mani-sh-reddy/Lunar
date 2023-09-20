@@ -5,12 +5,13 @@
 //  Created by Mani on 27/07/2023.
 //
 
+import Defaults
 import Foundation
 import SwiftUI
 
 struct SettingsAppIconPickerView: View {
-  @AppStorage("selectedAppIcon") var selectedAppIcon = Settings.selectedAppIcon
-  //
+  @Default(.selectedAppIcon) var selectedAppIcon
+
   private var appIconNames = [ /// **Prepended with 'AppIcon'**
     "Light", "Dark", "Purple", "Night", "LemmY", "Kbin",
   ]

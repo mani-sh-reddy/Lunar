@@ -5,9 +5,9 @@
 //  Created by Mani on 05/08/2023.
 //
 
+import Defaults
 import SFSafeSymbols
 import SwiftUI
-import Defaults
 
 struct SearchResultsList: View {
   @Default(.searchSortType) var searchSortType
@@ -23,13 +23,13 @@ struct SearchResultsList: View {
   var selectedSearchTypeIcon: (SFSafeSymbols.SFSymbol, Color) {
     switch selectedSearchType {
     case "Users":
-      return (.personCircleFill, Color.blue)
+      (.personCircleFill, Color.blue)
     case "Communities":
-      return (.booksVerticalCircleFill, Color.teal)
+      (.booksVerticalCircleFill, Color.teal)
     case "Posts":
-      return (.rectangleOnRectangleCircleFill, Color.purple)
+      (.rectangleOnRectangleCircleFill, Color.purple)
     default:
-      return (.magnifyingglassCircleFill, Color.gray)
+      (.magnifyingglassCircleFill, Color.gray)
     }
   }
 
@@ -75,7 +75,7 @@ struct SearchResultsList: View {
         }
       )
     }
-    .onChange(of: searchSortType) { query in
+    .onChange(of: searchSortType) { _ in
       withAnimation {
         searchFetcher.sortParameter = searchSortType.rawValue
         searchFetcher.loadMoreContent { completed, _ in

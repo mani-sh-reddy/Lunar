@@ -5,11 +5,12 @@
 //  Created by Mani on 10/09/2023.
 //
 
+import Defaults
 import Foundation
 import SwiftUI
 
 class JWT {
-  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
+  @Default(.appBundleID) var appBundleID
 
   func getJWTFromKeychain(actorID: String) -> String? {
     if let keychainObject = KeychainHelper.standard.read(

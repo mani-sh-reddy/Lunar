@@ -7,16 +7,18 @@
 
 import Alamofire
 import Combine
+import Defaults
 import Foundation
 import Pulse
 import SwiftUI
 
 @MainActor class CommentsFetcher: ObservableObject {
-  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  @AppStorage("appBundleID") var appBundleID = Settings.appBundleID
-  @AppStorage("commentSort") var commentSort = Settings.commentSort
-  @AppStorage("commentType") var commentType = Settings.commentType
-  @AppStorage("networkInspectorEnabled") var networkInspectorEnabled = Settings.networkInspectorEnabled
+  @Default(.selectedActorID) var selectedActorID
+  @Default(.appBundleID) var appBundleID
+  @Default(.commentSort) var commentSort
+  @Default(.commentType) var commentType
+  @Default(.networkInspectorEnabled) var networkInspectorEnabled
+
   @Published var comments = [CommentObject]()
   @Published var isLoading = false
 

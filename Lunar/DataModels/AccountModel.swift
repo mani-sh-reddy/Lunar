@@ -5,9 +5,10 @@
 //  Created by Mani on 31/07/2023.
 //
 
+import Defaults
 import Foundation
 
-struct AccountModel: Codable, Hashable {
+struct AccountModel: Codable, Hashable, Defaults.Serializable {
   var userID: String = ""
   var name: String = ""
   var email: String = ""

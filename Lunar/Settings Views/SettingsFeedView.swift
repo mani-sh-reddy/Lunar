@@ -5,12 +5,13 @@
 //  Created by Mani on 08/09/2023.
 //
 
+import Defaults
 import Foundation
 import SwiftUI
 
 struct SettingsFeedView: View {
-  @AppStorage("autoCollapseBots") var autoCollapseBots = Settings.autoCollapseBots
-  
+  @Default(.autoCollapseBots) var autoCollapseBots
+
   var body: some View {
     List {
       // MARK: - Posts Section

@@ -12,37 +12,37 @@ class ColorConverter {
   public func convertStringToColor(_ colorString: String) -> Color {
     switch colorString {
     case "black":
-      return Color.black
+      Color.black
     case "blue":
-      return Color.blue
+      Color.blue
     case "brown":
-      return Color.brown
+      Color.brown
     case "cyan":
-      return Color.cyan
+      Color.cyan
     case "gray":
-      return Color.gray
+      Color.gray
     case "green":
-      return Color.green
+      Color.green
     case "indigo":
-      return Color.indigo
+      Color.indigo
     case "mint":
-      return Color.mint
+      Color.mint
     case "orange":
-      return Color.orange
+      Color.orange
     case "pink":
-      return Color.pink
+      Color.pink
     case "purple":
-      return Color.purple
+      Color.purple
     case "red":
-      return Color.red
+      Color.red
     case "teal":
-      return Color.teal
+      Color.teal
     case "white":
-      return Color.white
+      Color.white
     case "yellow":
-      return Color.yellow
+      Color.yellow
     default:
-      return Color.clear
+      Color.clear
     }
   }
 }

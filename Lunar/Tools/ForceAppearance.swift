@@ -19,11 +19,11 @@ class AppearanceController {
   var appearance: UIUserInterfaceStyle {
     switch appAppearance {
     case .system:
-      return .unspecified // Uses appearance set by user in Settings
+      .unspecified // Uses appearance set by user in Settings
     case .light:
-      return .light
+      .light
     case .dark:
-      return .dark
+      .dark
     }
   }
 

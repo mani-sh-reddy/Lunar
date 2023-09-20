@@ -5,15 +5,16 @@
 //  Created by Mani on 03/07/2023.
 //
 
+import Defaults
 import Nuke
 import NukeUI
 import SFSafeSymbols
 import SwiftUI
 
 struct MyUserView: View {
-  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  @AppStorage("loggedInAccounts") var loggedInAccounts = Settings.loggedInAccounts
-  @AppStorage("selectedUser") var selectedUser = Settings.selectedUser
+  @Default(.selectedActorID) var selectedActorID
+  @Default(.loggedInAccounts) var loggedInAccounts
+  @Default(.selectedUser) var selectedUser
 
   var myAccount: AccountModel {
     if !selectedUser.isEmpty {
@@ -39,9 +40,9 @@ struct MyUserView: View {
 
   var userInstance: String {
     if !actorID.isEmpty {
-      return "@\(URLParser.extractDomain(from: actorID))"
+      "@\(URLParser.extractDomain(from: actorID))"
     } else {
-      return "Login to view"
+      "Login to view"
     }
   }
 

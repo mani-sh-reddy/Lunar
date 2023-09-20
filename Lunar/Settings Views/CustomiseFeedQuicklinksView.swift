@@ -5,35 +5,31 @@
 //  Created by Mani on 08/09/2023.
 //
 
+import Defaults
 import Foundation
 import SwiftUI
 
 struct CustomiseFeedQuicklinksView: View {
-  @Environment(\.colorScheme) var colorScheme
+  @Default(.quicklinks) var quicklinks
+  @Default(.debugModeEnabled) var debugModeEnabled
 
-  @AppStorage("quicklinks") var quicklinks = Settings.quicklinks
-  @AppStorage("debugModeEnabled") var debugModeEnabled = Settings.debugModeEnabled
+  @Environment(\.colorScheme) var colorScheme
 
   @State var showingAddQuicklinkPopover = false
   @State var showingResetConfirmation = false
-
   @State var quicklinkTitle: String = ""
   @State var quicklinkSort: String = "Active"
   @State var quicklinkType: String = "All"
   @State var quicklinkIcon: String? = "circle.dashed"
   @State var quicklinkColorString: String = "007AFF"
   @State var quicklinkColor: Color = .blue
-
   @State var addQuicklinkErrorMessage: String = ""
   @State var showingAddQuicklinkErrorAlert: Bool = false
 
   let notificationHaptics = UINotificationFeedbackGenerator()
   let haptics = UIImpactFeedbackGenerator(style: .soft)
-
   let colorConverter = ColorConverter()
-
   var defaultQuicklinks: [Quicklink] = DefaultQuicklinks().getDefaultQuicklinks()
-
   var iconList: [String] = CircleFillIcons().iconsList()
 
   var body: some View {

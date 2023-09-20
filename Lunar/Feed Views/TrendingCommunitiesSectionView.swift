@@ -5,11 +5,13 @@
 //  Created by Mani on 20/07/2023.
 //
 
+import Defaults
 import SwiftUI
 
 struct TrendingCommunitiesSectionView: View {
+  @Default(.selectedInstance) var selectedInstance
+
   @StateObject var communitiesFetcher: CommunitiesFetcher
-  @AppStorage("selectedInstance") var selectedInstance = Settings.selectedInstance
 
   var body: some View {
     ForEach(communitiesFetcher.communities, id: \.community.id) { community in

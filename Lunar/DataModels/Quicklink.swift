@@ -5,10 +5,11 @@
 //  Created by Mani on 08/09/2023.
 //
 
+import Defaults
 import Foundation
 import SwiftUI
 
-struct Quicklink: Codable, Hashable {
+struct Quicklink: Codable, Hashable, Defaults.Serializable {
   var title: String = ""
   var type: String = ""
   var sort: String = ""

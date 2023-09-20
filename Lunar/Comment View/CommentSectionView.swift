@@ -23,9 +23,9 @@ struct CommentSectionView: View {
 
   var communityIsSubscribed: Bool {
     if post.subscribed == .subscribed {
-      return true
+      true
     } else {
-      return false
+      false
     }
   }
 

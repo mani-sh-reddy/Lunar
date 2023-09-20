@@ -5,16 +5,19 @@
 //  Created by Mani on 18/08/2023.
 //
 
+import Defaults
 import SFSafeSymbols
 import SwiftUI
 
 struct CommentMetadataView: View {
+  @Default(.selectedActorID) var selectedActorID
+
   @EnvironmentObject var commentsFetcher: CommentsFetcher
-  @AppStorage("selectedActorID") var selectedActorID = Settings.selectedActorID
-  var comment: CommentObject
-  let dateTimeParser = DateTimeParser()
   @State var commentUpvoted: Bool = false
   @State var commentDownvoted: Bool = false
+
+  var comment: CommentObject
+  let dateTimeParser = DateTimeParser()
 
   let haptics = UIImpactFeedbackGenerator(style: .rigid)
 
