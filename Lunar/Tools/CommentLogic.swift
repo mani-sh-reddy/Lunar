@@ -68,7 +68,7 @@ extension [CommentObject] {
         return .init(commentData: comment, subComments: [])
       }
 
-      var nestedComment = NestedComment(commentData: comment, subComments: [])
+      let nestedComment = NestedComment(commentData: comment, subComments: [])
       nestedComment.subComments = childIDs.compactMap { id -> NestedComment? in
         guard let childComment = commentsByID[id] else { return nil }
         return buildHierarchicalComment(childComment)

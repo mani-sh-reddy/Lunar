@@ -60,4 +60,27 @@ class DefaultQuicklinks {
       ),
     ]
   }
+
+  func getLockedQuicklinks() -> [Quicklink] {
+    [
+      Quicklink(
+        title: "Local",
+        type: "Local",
+        sort: "Active",
+        icon: "mappin.circle",
+        iconColor: "669D34", /// **green**
+        brightness: 0.0,
+        saturation: 3
+      ),
+      Quicklink(
+        title: "All",
+        type: "All",
+        sort: "Active",
+        icon: "globe.europe.africa",
+        iconColor: "016E8F", /// **blue**
+        brightness: 0.0,
+        saturation: 3
+      ),
+    ]
+  }
 }

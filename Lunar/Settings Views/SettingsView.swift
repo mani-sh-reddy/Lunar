@@ -12,6 +12,7 @@ import SwiftUI
 
 struct SettingsView: View {
   @Default(.debugModeEnabled) var debugModeEnabled
+  @Default(.enableQuicklinks) var enableQuicklinks
 
   @State var selectedAccount: AccountModel?
   @State private var showSafariGithub: Bool = false
@@ -134,13 +135,24 @@ struct SettingsView: View {
           NavigationLink {
             CustomiseFeedQuicklinksView()
           } label: {
-            Label {
-              Text("Quicklinks")
-            } icon: {
-              Image(systemSymbol: .link)
-                .symbolRenderingMode(.multicolor)
+            if enableQuicklinks {
+              Label {
+                Text("Quicklinks")
+              } icon: {
+                Image(systemSymbol: .link)
+                  .symbolRenderingMode(.multicolor)
+              }
+            } else {
+              Label {
+                Text("Quicklinks disabled in Feed Options")
+                  .italic()
+                  .font(.caption)
+              } icon: {
+                Image(systemSymbol: .link)
+                  .foregroundStyle(.gray)
+              }
             }
-          }
+          }.disabled(!enableQuicklinks)
 
         } header: {
           Text("General")

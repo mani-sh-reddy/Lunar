@@ -11,10 +11,20 @@ import SwiftUI
 
 struct SettingsFeedView: View {
   @Default(.autoCollapseBots) var autoCollapseBots
+  @Default(.enableQuicklinks) var enableQuicklinks
 
   var body: some View {
     List {
-      // MARK: - Posts Section
+      Section {
+        Toggle(isOn: $enableQuicklinks) {
+          Text("Enable Quicklinks")
+        }
+      } header: {
+        Text("Quicklinks")
+      }
+      footer: {
+        Text("With QuickLinks off, you'll only see Local and Federated links. Use the picker in the toolbar to sort posts.")
+      }
 
       Section {
         Toggle(isOn: $autoCollapseBots) {

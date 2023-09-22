@@ -23,7 +23,7 @@ extension Defaults.Keys {
 
   static let selectedAppIcon = Key<String>("selectedAppIcon", default: "AppIconLight")
   static let kbinActive = Key<Bool>("kbinActive", default: false)
-  static let postSortType = Key<SortType>("postsSortType", default: .active)
+  static let forcedPostSort = Key<SortType>("forcedPostSort", default: .active)
   static let searchSortType = Key<SortType>("searchSortType", default: .topYear)
   static let showLaunchSplashScreen = Key<Bool>("showLaunchSplashScreen", default: true)
   static let showWelcomeScreen = Key<Bool>("showWelcomeScreen", default: true)
@@ -41,6 +41,7 @@ extension Defaults.Keys {
   static let communitiesType = Key<String>("communitiesType", default: "All")
   static let commentMetadataPosition = Key<String>("commentMetadataPosition", default: "Top")
   static let selectedSearchSortType = Key<String>("selectedSearchSortType", default: "Active")
+  static let enableQuicklinks = Key<Bool>("enableQuicklinks", default: true)
 
   // MARK: - Other
 
@@ -59,4 +60,5 @@ extension Defaults.Keys {
   static let subscribedCommunityIDs = Key<[Int]>("subscribedCommunityIDs", default: [])
   static let savedColors = Key<[customColor]>("savedColors", default: [])
   static let quicklinks = Key<[Quicklink]>("quicklinks", default: DefaultQuicklinks().getDefaultQuicklinks())
+  static let lockedQuicklinks = Key<[Quicklink]>("lockedQuicklinks", default: DefaultQuicklinks().getLockedQuicklinks())
 }

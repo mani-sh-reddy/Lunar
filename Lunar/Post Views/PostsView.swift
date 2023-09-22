@@ -9,9 +9,10 @@ import Defaults
 import SwiftUI
 
 struct PostsView: View {
-  @Default(.postSortType) var postSortType
+  @Default(.forcedPostSort) var forcedPostSort
   @Default(.selectedInstance) var selectedInstance
   @Default(.compactViewEnabled) var compactViewEnabled
+  @Default(.enableQuicklinks) var enableQuicklinks
 
   @StateObject var postsFetcher: PostsFetcher
 
@@ -69,17 +70,25 @@ struct PostsView: View {
         postsFetcher.loadContent(isRefreshing: true)
       }
     }
-    .onChange(of: postSortType) { _ in
+    .onChange(of: forcedPostSort) { _ in
       withAnimation {
-        postsFetcher.sortParameter = postSortType.rawValue
+        postsFetcher.sortParameter = forcedPostSort.rawValue
         postsFetcher.loadContent(isRefreshing: true)
       }
     }
-//    .toolbar {
+    .toolbar {
+      ToolbarItemGroup(placement: .navigationBarTrailing) {
+        switch enableQuicklinks {
+        case false:
+          SortTypePickerView(sortType: $forcedPostSort)
+        case true:
+          EmptyView()
+        }
+      }
+    }
 //      ToolbarItem(placement: .topBarTrailing) {
 //        SortTypePickerView(sortType: $postSortType)
 //      }
-//    }
     .navigationTitle(navigationHeading)
     .navigationBarTitleDisplayMode(.inline)
     .modifier(ConditionalListStyleModifier(listStyle: compactViewEnabled ? "plain" : "insetGrouped"))

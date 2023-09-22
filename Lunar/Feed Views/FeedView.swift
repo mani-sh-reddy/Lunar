@@ -14,6 +14,7 @@ struct FeedView: View {
   @Default(.kbinHostURL) var kbinHostURL
   @Default(.selectedActorID) var selectedActorID
   @Default(.quicklinks) var quicklinks
+  @Default(.enableQuicklinks) var enableQuicklinks
 
   var subscribedCommunityListHeading: String {
     if !selectedActorID.isEmpty {
@@ -47,7 +48,7 @@ struct FeedView: View {
           .padding(0)
 
         if !quicklinks.isEmpty {
-          Section(header: Text("Quicklinks")) {
+          Section(header: Text(enableQuicklinks ? "Quicklinks" : "Feed")) {
             GeneralCommunitiesView()
           }
         }

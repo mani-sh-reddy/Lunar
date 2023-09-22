@@ -9,14 +9,17 @@ import Defaults
 import SwiftUI
 
 struct GeneralCommunitiesView: View {
+  @Default(.enableQuicklinks) var enableQuicklinks
   @Default(.quicklinks) var quicklinks
+  @Default(.lockedQuicklinks) var lockedQuicklinks
+  @Default(.forcedPostSort) var forcedPostSort
 
   var body: some View {
-    ForEach(quicklinks, id: \.self) { quicklink in
+    ForEach(enableQuicklinks ? quicklinks : lockedQuicklinks, id: \.self) { quicklink in
       NavigationLink {
         PostsView(
           postsFetcher: PostsFetcher(
-            sortParameter: quicklink.sort,
+            sortParameter: enableQuicklinks ? quicklink.sort : forcedPostSort.rawValue,
             typeParameter: quicklink.type
           ),
           title: quicklink.title
