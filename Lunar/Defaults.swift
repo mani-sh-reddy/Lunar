@@ -48,6 +48,7 @@ extension Defaults.Keys {
   static let debugModeEnabled = Key<Bool>("debugModeEnabled", default: false)
   static let networkInspectorEnabled = Key<Bool>("networkInspectorEnabled", default: false)
   static let quicklinkColor = Key<Color>("quicklinkColor", default: .primary)
+  static let lastDownloadedPage = Key<Int>("lastDownloadedPage", default: 1)
 
   // MARK: - User
 

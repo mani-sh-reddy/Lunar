@@ -9,6 +9,8 @@ import Defaults
 import Nuke
 import SwiftUI
 import UIKit
+import RealmSwift
+import SFSafeSymbols
 
 struct SettingsAppResetView: View {
   @Default(.appBundleID) var appBundleID
@@ -21,6 +23,7 @@ struct SettingsAppResetView: View {
   @Binding var logoOpacity: Double
 
   let haptics = UINotificationFeedbackGenerator()
+  let realm = try! Realm()
 
   var body: some View {
     Button {
@@ -62,6 +65,10 @@ struct SettingsAppResetView: View {
   }
 
   private func resetApp() {
+    try! realm.write {
+      // Delete all objects from the realm.
+      realm.deleteAll()
+    }
     loggedInAccounts.removeAll()
 
     KeychainHelper.standard.clearKeychain()

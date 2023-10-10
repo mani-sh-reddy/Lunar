@@ -9,6 +9,7 @@ import Defaults
 import Pulse
 import PulseUI
 import SwiftUI
+import SFSafeSymbols
 
 struct SettingsDevOptionsView: View {
   @Default(.debugModeEnabled) var debugModeEnabled
@@ -124,6 +125,18 @@ struct SettingsDevOptionsView: View {
       // MARK: - UNRELEASED VIEWS
 
       Section {
+        NavigationLink {
+          OfflineDownloaderView()
+        } label: {
+          Label {
+            Text("Realm Database Test")
+          } icon: {
+            Image(systemSymbol: .squareAndArrowDownFill)
+              .foregroundStyle(.cyan)
+              .brightness(-0.2)
+              .symbolRenderingMode(.hierarchical)
+          }
+        }
         NavigationLink {
           ColorTesterView()
         } label: {
