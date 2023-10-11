@@ -16,21 +16,23 @@ struct InPostThumbnailImageView: View {
   var imageRadius: CGFloat = 10
 
   var body: some View {
-//    let imageRequest = ImageRequest(url: URL(string: thumbnailURL), processors: [.resize(width: 250)])
+    let imageRequest = ImageRequest(url: URL(string: thumbnailURL), processors: [.resize(width: 200)])
 
-    LazyImage(url: URL(string: thumbnailURL)) { state in
+//    LazyImage(url: URL(string: thumbnailURL)) { state in
+    LazyImage(request: imageRequest) { state in
       if let image = state.image {
         image
           .resizable()
           .aspectRatio(contentMode: .fit)
+          .clipShape(RoundedRectangle(cornerRadius: imageRadius, style: .continuous))
       } else if state.error != nil {
         Color.clear // Indicates an error
       } else {
         Color.clear // Acts as a placeholder
       }
     }
-//    .processors([.resize(width: 250)])
-    .pipeline(ImagePipeline.shared)
-    .clipShape(RoundedRectangle(cornerRadius: imageRadius, style: .continuous))
+//    .processors([.resize(width: 200)])
+//    .pipeline(ImagePipeline.shared)
+//    .clipShape(RoundedRectangle(cornerRadius: imageRadius, style: .continuous))
   }
 }

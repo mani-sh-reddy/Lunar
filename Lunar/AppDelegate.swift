@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       self.dataCacheHolder = DataCacheHolder(appBundleID: self.appBundleID)
       $0.dataCache = self.dataCacheHolder?.dataCache
       $0.dataCachePolicy = .storeAll
+      $0.isProgressiveDecodingEnabled = true
     }
     
     ImagePipeline.shared = pipeline
