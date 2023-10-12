@@ -7,10 +7,10 @@
 
 import Defaults
 import Nuke
-import SwiftUI
-import UIKit
 import RealmSwift
 import SFSafeSymbols
+import SwiftUI
+import UIKit
 
 struct SettingsAppResetView: View {
   @Default(.appBundleID) var appBundleID

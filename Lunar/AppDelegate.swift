@@ -13,25 +13,25 @@ import SwiftUI
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
   @Default(.appBundleID) var appBundleID
-  
+
   var dataCacheHolder: DataCacheHolder?
-  
+
   func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
     print("App Started")
-    
+
     // MARK: - NukeUI
 
     DataLoader.sharedUrlCache.diskCapacity = 0
-    
+
     let pipeline = ImagePipeline {
       self.dataCacheHolder = DataCacheHolder(appBundleID: self.appBundleID)
       $0.dataCache = self.dataCacheHolder?.dataCache
       $0.dataCachePolicy = .storeAll
       $0.isProgressiveDecodingEnabled = true
     }
-    
+
     ImagePipeline.shared = pipeline
-    
+
     // MARK: - Realm
 
     let config = Realm.Configuration(
@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       deleteRealmIfMigrationNeeded: true
     )
     Realm.Configuration.defaultConfiguration = config
-    
+
     return true
   }
 }

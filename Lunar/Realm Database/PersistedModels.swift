@@ -13,7 +13,7 @@ import RealmSwift
 class PersistedObject: Object, Identifiable {
   @Persisted(primaryKey: true) var label: String
   @Persisted var posts: List<PersistedPostModel>
-  
+
   convenience init(
     label: String,
     posts: List<PersistedPostModel>
@@ -22,7 +22,6 @@ class PersistedObject: Object, Identifiable {
     self.label = label
     self.posts = posts
   }
-  
 }
 
 // MARK: - PersistedPostModel

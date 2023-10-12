@@ -31,7 +31,7 @@ struct PostRowView: View {
 
   var post: PostObject
   var insideCommentsView: Bool = false
-  
+
   var compactViewEnabled: Bool {
     postsViewStyle == "compactPlain"
   }

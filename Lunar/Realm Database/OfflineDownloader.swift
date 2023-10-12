@@ -21,23 +21,23 @@ import RealmSwift
   @Default(.commentSort) var commentSort
   @Default(.commentType) var commentType
   @Default(.lastDownloadedPage) var lastDownloadedPage
-  
+
   @Published var posts = [PostObject]()
   @Published var comments = [CommentObject]()
   @Published var isLoading = false
-  
+
   let pulse = Pulse.LoggerStore.shared
   let imagePrefetcher = ImagePrefetcher(pipeline: ImagePipeline.shared)
   let realm = try! Realm()
-  
+
   var sortParameter: String?
   var typeParameter: String?
   private var communityID: Int?
   private var instance: String?
   var page: Int = 1
-  
+
   var postID: Int?
-  
+
   private var postsEndpoint: URLComponents {
     URLBuilder(
       endpointPath: "/api/v3/post/list",
@@ -49,7 +49,7 @@ import RealmSwift
       instance: instance
     ).buildURL()
   }
-  
+
   init(
     sortParameter: String,
     typeParameter: String,
@@ -67,11 +67,11 @@ import RealmSwift
     self.page = page
     loadPosts()
   }
-  
+
   func loadPosts() {
     guard !isLoading else { return }
     isLoading = true
-    
+
     AF.request(postsEndpoint)
       .validate(statusCode: 200 ..< 300)
       .responseDecodable(of: PostModel.self) { response in
@@ -83,22 +83,22 @@ import RealmSwift
             data: response.data
           )
         }
-      
+
         switch response.result {
         case let .success(result):
-        
+
           let fetchedPosts = result.posts
-        
+
           let imagesToPrefetch = result.imageURLs.compactMap { URL(string: $0) }
           self.imagePrefetcher.startPrefetching(with: imagesToPrefetch)
-        
+
           /// Removing duplicates
           let filteredPosts = fetchedPosts.filter { post in
             !self.posts.contains { $0.post.id == post.post.id }
           }
           self.posts += filteredPosts
-          
-          let existingPrimaryKeys = Set(self.realm.objects(PersistedPostModel.self).map { $0.id })
+
+          let existingPrimaryKeys = Set(self.realm.objects(PersistedPostModel.self).map(\.id))
 
           var persistedPosts = filteredPosts
             .filter { !existingPrimaryKeys.contains($0.post.id) }
@@ -117,9 +117,9 @@ import RealmSwift
                 communityName: post.community.name
               )
             }
-          
+
           let label = "\(self.sortParameter ?? "")\(self.typeParameter ?? "")"
-          
+
           if let existingObject = self.realm.objects(PersistedObject.self).filter("label == %@", label).first {
             try! self.realm.write {
               existingObject.posts.append(objectsIn: persistedPosts)
@@ -128,7 +128,7 @@ import RealmSwift
             try! self.realm.write {
               let postsList = List<PersistedPostModel>()
               postsList.append(objectsIn: persistedPosts)
-              
+
               let persistedObject = PersistedObject(
                 label: label,
                 posts: postsList
@@ -136,16 +136,16 @@ import RealmSwift
               self.realm.add(persistedObject, update: .modified)
             }
           }
-          
+
           self.isLoading = false
-          
+
         case let .failure(error):
           print("PostsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
           self.isLoading = false
         }
       }
   }
-  
+
   func persistComments(_ comments: [CommentObject]) -> List<PersistedCommentsModel> {
     let commentsList = List<PersistedCommentsModel>()
     let persistedComments = comments.map { comment in
@@ -161,7 +161,7 @@ import RealmSwift
     commentsList.append(objectsIn: persistedComments)
     return commentsList
   }
-  
+
   func loadComments(postID: Int) {
     var commentsEndpoint: URLComponents {
       URLBuilder(
@@ -174,14 +174,14 @@ import RealmSwift
         maxDepth: 50
       ).buildURL()
     }
-    
+
     guard !isLoading else { return }
     isLoading = true
-    
+
     AF.request(commentsEndpoint)
       .validate(statusCode: 200 ..< 300)
       .responseDecodable(of: CommentModel.self) { response in
-      
+
         if self.networkInspectorEnabled {
           self.pulse.storeRequest(
             try! URLRequest(url: commentsEndpoint, method: .get),
@@ -190,15 +190,15 @@ import RealmSwift
             data: response.data
           )
         }
-      
+
         switch response.result {
         case let .success(result):
           let newComments = result.comments
-        
+
           let filteredNewComments = newComments.filter { newComments in
             !self.comments.contains { $0.comment.id == newComments.comment.id }
           }
-        
+
           if !filteredNewComments.isEmpty {
             DispatchQueue.main.sync {
               let sortedFilteredComments = filteredNewComments.sorted { sorted, newSorted in
@@ -207,13 +207,13 @@ import RealmSwift
               for newComment in sortedFilteredComments {
                 InsertSorter.sortComments(newComment, into: &self.comments)
               }
-              
+
               self.isLoading = false
             }
           } else {
             self.isLoading = false
           }
-        
+
         case let .failure(error):
           print("CommentsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
           self.isLoading = false

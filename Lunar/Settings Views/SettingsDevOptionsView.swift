@@ -8,8 +8,8 @@
 import Defaults
 import Pulse
 import PulseUI
-import SwiftUI
 import SFSafeSymbols
+import SwiftUI
 
 struct SettingsDevOptionsView: View {
   @Default(.debugModeEnabled) var debugModeEnabled
