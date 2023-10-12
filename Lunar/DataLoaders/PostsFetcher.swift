@@ -127,8 +127,8 @@ import SwiftUI
         }
         self.imagePrefetcher.startPrefetching(with: imageRequestList)
 
-        let imagesToPrefetch = result.imageURLs.compactMap { URL(string: $0) }
-        self.imagePrefetcher.startPrefetching(with: imagesToPrefetch)
+//        let imagesToPrefetch = result.imageURLs.compactMap { URL(string: $0) }
+//        self.imagePrefetcher.startPrefetching(with: imagesToPrefetch)
 
         if isRefreshing {
           self.posts = fetchedPosts

@@ -11,7 +11,7 @@ import SwiftUI
 struct PostsView: View {
   @Default(.forcedPostSort) var forcedPostSort
   @Default(.selectedInstance) var selectedInstance
-  @Default(.compactViewEnabled) var compactViewEnabled
+  @Default(.postsViewStyle) var postsViewStyle
   @Default(.enableQuicklinks) var enableQuicklinks
 
   @StateObject var postsFetcher: PostsFetcher
@@ -37,6 +37,14 @@ struct PostsView: View {
   var userActorID: String { user?.person.actorID ?? "" }
   var userBanner: String? { user?.person.banner }
   var userIcon: String? { user?.person.avatar }
+
+  var listStyle: String {
+    if postsViewStyle == "compactPlain" {
+      return "plain"
+    } else {
+      return postsViewStyle
+    }
+  }
 
   var body: some View {
     List {
@@ -91,7 +99,7 @@ struct PostsView: View {
 //      }
     .navigationTitle(navigationHeading)
     .navigationBarTitleDisplayMode(.inline)
-    .modifier(ConditionalListStyleModifier(listStyle: compactViewEnabled ? "plain" : "insetGrouped"))
+    .modifier(ConditionalListStyleModifier(listStyle: listStyle))
   }
 }
 

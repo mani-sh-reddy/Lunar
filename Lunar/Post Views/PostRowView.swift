@@ -15,7 +15,7 @@ struct PostRowView: View {
 
   @Default(.selectedActorID) var selectedActorID
   @Default(.subscribedCommunityIDs) var subscribedCommunityIDs
-  @Default(.compactViewEnabled) var compactViewEnabled
+  @Default(.postsViewStyle) var postsViewStyle
 
   @Binding var upvoted: Bool
   @Binding var downvoted: Bool
@@ -31,6 +31,10 @@ struct PostRowView: View {
 
   var post: PostObject
   var insideCommentsView: Bool = false
+  
+  var compactViewEnabled: Bool {
+    postsViewStyle == "compactPlain"
+  }
 
   var imageURL: String {
     if let thumbnailURL = post.post.thumbnailURL, !thumbnailURL.isEmpty {

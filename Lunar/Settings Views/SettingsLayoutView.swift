@@ -11,30 +11,24 @@ import SwiftUI
 struct SettingsLayoutView: View {
   @Default(.commentMetadataPosition) var commentMetadataPosition
   @Default(.detailedCommunityLabels) var detailedCommunityLabels
-  @Default(.compactViewEnabled) var compactViewEnabled
+  @Default(.postsViewStyle) var postsViewStyle
 
   var body: some View {
     List {
       // MARK: - Posts Section
 
       Section {
-        Toggle(isOn: $compactViewEnabled) {
-          Text("Compact Posts")
+        Picker("Posts Style", selection: $postsViewStyle) {
+          Text("Sparse").tag("insetGrouped")
+          Text("Cosy").tag("plain")
+          Text("Compact").tag("compactPlain")
         }
+        .pickerStyle(.menu)
+
       } header: {
         Text("Posts")
       } footer: {
-        Text("Note that the compact posts view is still buggy, but an update for it is in the works.")
-      }
-
-      // MARK: - Labels Section
-
-      Section {
-        Toggle(isOn: $detailedCommunityLabels) {
-          Text("Detailed Community Labels")
-        }
-      } header: {
-        Text("Labels")
+        Text("Note that the compact posts view is currently buggy. An update is coming soon.")
       }
 
       // MARK: - Comments Section
@@ -45,8 +39,21 @@ struct SettingsLayoutView: View {
           Text("Top").tag("Top")
           Text("None").tag("None")
         }
+        .pickerStyle(.menu)
       } header: {
         Text("Comments")
+      } footer: {
+        Text("Changes the position of upvotes, downvotes, username, and time posted to either above or below the comment text.")
+      }
+
+      // MARK: - Labels Section
+
+      Section {
+        Toggle(isOn: $detailedCommunityLabels) {
+          Text("Detailed Community Labels")
+        }
+      } header: {
+        Text("Labels")
       }
     }
     .navigationTitle("Layout")
