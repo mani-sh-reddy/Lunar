@@ -14,10 +14,11 @@ struct RecursiveComment: View {
   @Default(.commentMetadataPosition) var commentMetadataPosition
 
   @State private var isExpanded = true
-  @State var showingCommentPopover = false
+  @Binding var showingCommentPopover: Bool
+  @Binding var replyingTo: Comment
 //  @State var commentText: String = ""
   @EnvironmentObject var commentsFetcher: CommentsFetcher
-
+  
   let nestedComment: NestedComment
   let post: Post
   let dateTimeParser = DateTimeParser()
@@ -58,28 +59,45 @@ struct RecursiveComment: View {
         print("tapped to collapse")
       }
       .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-        swipeActions
+        Group {
+          Button {
+            isExpanded.toggle()
+            haptics.impactOccurred(intensity: 0.5)
+            commentsFetcher.updateCommentCollapseState(nestedComment.commentViewData, isCollapsed: true)
+            print("swipe action collapse clicked")
+          } label: {
+            Label("collapse", systemSymbol: .arrowUpToLineCircleFill)
+          }
+          .tint(.blue)
+          Button {
+            replyingTo = nestedComment.commentViewData.comment
+            showingCommentPopover = true
+          } label: {
+            Label("reply", systemSymbol: .arrowshapeTurnUpLeftCircleFill)
+          }
+          .tint(.orange)
+        }
       }
 
       ForEach(nestedComment.subComments, id: \.id) { subComment in
-        RecursiveComment(nestedComment: subComment, post: post)
-          .id(UUID())
-          .padding(.leading, 10) // Add indentation
-      }
-      .sheet(
-        isPresented: $showingCommentPopover,
-        onDismiss: {
-          Task {
-            print("COMMENT SHEET DISMISSED")
-            showingCommentPopover = false
-          }
-        }
-      ) {
-        CommentPopoverView(
+        RecursiveComment(
           showingCommentPopover: $showingCommentPopover,
-          post: post,
-          comment: nestedComment.commentViewData.comment
-        ).environmentObject(commentsFetcher)
+          replyingTo: $replyingTo,
+          nestedComment: subComment,
+          post: post
+        )
+        .id(UUID())
+        .padding(.leading, 10) // Add indentation
+
+//          .sheet(isPresented: $showingCommentPopover) {
+//            let _ = print("POPOVER CLICKED")
+//            CommentPopoverView(
+//              showingCommentPopover: $showingCommentPopover,
+//              post: post,
+//              comment: nestedComment.commentViewData.comment
+//            )
+//            .environmentObject(commentsFetcher)
+//          }
       }
     } else {
       HStack {
@@ -142,25 +160,9 @@ struct RecursiveComment: View {
       .environmentObject(commentsFetcher)
   }
 
-  var swipeActions: some View {
-    Group {
-      Button {
-        isExpanded.toggle()
-        haptics.impactOccurred(intensity: 0.5)
-        commentsFetcher.updateCommentCollapseState(nestedComment.commentViewData, isCollapsed: true)
-        print("swipe action collapse clicked")
-      } label: {
-        Label("collapse", systemSymbol: .arrowUpToLineCircleFill)
-      }
-      .tint(.blue)
-      Button {
-        showingCommentPopover = true
-      } label: {
-        Label("reply", systemSymbol: .arrowshapeTurnUpLeftCircleFill)
-      }
-      .tint(.orange)
-    }
-  }
+//  var swipeActions: some View {
+//
+//  }
 
   func countSubcomments(_ nestedComments: [NestedComment]) -> Int {
     var count = 0

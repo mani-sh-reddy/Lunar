@@ -100,7 +100,7 @@ import RealmSwift
 
           let existingPrimaryKeys = Set(self.realm.objects(PersistedPostModel.self).map(\.id))
 
-          var persistedPosts = filteredPosts
+          let persistedPosts = filteredPosts
             .filter { !existingPrimaryKeys.contains($0.post.id) }
             .map { post in
               PersistedPostModel(

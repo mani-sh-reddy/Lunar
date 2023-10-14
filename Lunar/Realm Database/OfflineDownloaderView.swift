@@ -37,14 +37,14 @@ struct OfflineDownloaderView: View {
               Text(post.postBody)
             }
             Section {
-              let offlineDownloader = OfflineDownloader(
-                sortParameter: "Active",
-                typeParameter: "All",
-                communityID: 0,
-                instance: nil,
-                postID: 0,
-                page: lastDownloadedPage
-              )
+//              let offlineDownloader = OfflineDownloader(
+//                sortParameter: "Active",
+//                typeParameter: "All",
+//                communityID: 0,
+//                instance: nil,
+//                postID: 0,
+//                page: lastDownloadedPage
+//              )
 //              let getComments = offlineDownloader.loadComments(postID: post.id)
 //              ForEach(getComments, id: \.self) { comment in
 //                Text(comment.commentBody)
