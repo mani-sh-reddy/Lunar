@@ -18,7 +18,7 @@ struct MyUserView: View {
 
   var myAccount: AccountModel {
     if !selectedUser.isEmpty {
-      print(selectedUser)
+//      print(selectedUser)
       return selectedUser[0]
     }
     return AccountModel(
@@ -48,87 +48,9 @@ struct MyUserView: View {
 
   var body: some View {
     List {
-      Section {
-        HStack {
-          Spacer()
-          LazyImage(url: URL(string: avatar)) { state in
-            if let image = state.image {
-              image
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .clipShape(Circle())
-            } else {
-              Image(systemSymbol: .personCircleFill)
-                .resizable()
-                .symbolRenderingMode(.hierarchical)
-            }
-          }
-          .pipeline(ImagePipeline.shared)
-          .frame(width: 150, height: 150)
-//          .padding(.top, 10)
-          .padding(.bottom, 10)
-          Spacer()
-        }
-        HStack {
-          Spacer()
-          userInfo
-          Spacer()
-        }
-      }
-      .listRowSeparator(.hidden)
-      .listRowBackground(Color.clear)
-      Section {
-        HStack {
-          AccountScoreView(
-            title: "Post Score",
-            score: postScore,
-            isOnLeft: true
-          )
-          Divider()
-          AccountScoreView(
-            title: "Comment Score",
-            score: commentScore,
-            isOnLeft: false
-          )
-        }
-      }
-      Section {
-        HStack {
-          GeneralCommunityQuicklinkButton(
-            image: "list.bullet.circle.fill",
-            hexColor: "bbbbbb",
-            title: "Posts",
-            brightness: 0.2,
-            saturation: 0
-          )
-          Spacer()
-          Text(postCount)
-            .font(.headline)
-            .foregroundStyle(.gray)
-        }
-
-        HStack {
-          GeneralCommunityQuicklinkButton(
-            image: "bubble.left.circle.fill",
-            hexColor: "bbbbbb",
-            title: "Comments",
-            brightness: 0.2,
-            saturation: 0
-          )
-          Spacer()
-          Text(commentCount)
-            .font(.headline)
-            .foregroundStyle(.gray)
-        }
-
-        GeneralCommunityQuicklinkButton(
-          image: "folder.circle.fill",
-          hexColor: "bbbbbb",
-          title: "Saved",
-          brightness: 0.2,
-          saturation: 0
-        )
-      }
+      userDetailsSection
+      scoreSection
+      quicklinksSection
     }
     .listStyle(.insetGrouped)
     .onAppear {
@@ -138,15 +60,103 @@ struct MyUserView: View {
     }
   }
 
-  var userInfo: some View {
-    VStack {
-      Text(name)
-        .font(.largeTitle).bold()
-        .padding(2)
-      Text(userInstance)
-        .font(.title2).bold()
-        .foregroundStyle(.secondary)
-        .padding(2)
+  var userDetailsSection: some View {
+    Section {
+      HStack {
+        Spacer()
+        LazyImage(url: URL(string: avatar)) { state in
+          if let image = state.image {
+            image
+              .resizable()
+              .aspectRatio(contentMode: .fit)
+              .clipShape(Circle())
+          } else {
+            Image(systemSymbol: .personCircleFill)
+              .resizable()
+              .symbolRenderingMode(.hierarchical)
+          }
+        }
+        .pipeline(ImagePipeline.shared)
+        .processors([.resize(width: 100)])
+
+        .frame(width: 150, height: 150)
+        .transition(.opacity)
+        .padding(.bottom, 10)
+
+        Spacer()
+      }
+      HStack {
+        Spacer()
+        VStack {
+          Text(name)
+            .font(.largeTitle).bold()
+            .padding(1)
+          Text(userInstance)
+            .font(.title2).bold()
+            .foregroundStyle(.secondary)
+        }
+        Spacer()
+      }
+    }
+    .listRowSeparator(.hidden)
+    .listRowBackground(Color.clear)
+  }
+
+  var quicklinksSection: some View {
+    Section {
+      HStack {
+        GeneralCommunityQuicklinkButton(
+          image: "list.bullet.circle.fill",
+          hexColor: "bbbbbb",
+          title: "Posts",
+          brightness: 0.2,
+          saturation: 0
+        )
+        Spacer()
+        Text(postCount)
+          .font(.headline)
+          .foregroundStyle(.gray)
+      }
+
+      HStack {
+        GeneralCommunityQuicklinkButton(
+          image: "bubble.left.circle.fill",
+          hexColor: "bbbbbb",
+          title: "Comments",
+          brightness: 0.2,
+          saturation: 0
+        )
+        Spacer()
+        Text(commentCount)
+          .font(.headline)
+          .foregroundStyle(.gray)
+      }
+
+      GeneralCommunityQuicklinkButton(
+        image: "folder.circle.fill",
+        hexColor: "bbbbbb",
+        title: "Saved",
+        brightness: 0.2,
+        saturation: 0
+      )
+    }
+  }
+
+  var scoreSection: some View {
+    Section {
+      HStack {
+        AccountScoreView(
+          title: "Post Score",
+          score: postScore,
+          isOnLeft: true
+        )
+        Divider()
+        AccountScoreView(
+          title: "Comment Score",
+          score: commentScore,
+          isOnLeft: false
+        )
+      }
     }
   }
 }

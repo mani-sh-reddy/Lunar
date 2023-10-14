@@ -164,7 +164,6 @@
 		3CEB2C102AB2F4520013609E /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEB2C0F2AB2F4520013609E /* KeychainAccess */; };
 		3CEB2C132AB2F45F0013609E /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEB2C122AB2F45F0013609E /* SFSafeSymbols */; };
 		3CEB2C162AB2F4710013609E /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEB2C152AB2F4710013609E /* Shimmer */; };
-		3CEB2C192AB2F4AB0013609E /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEB2C182AB2F4AB0013609E /* Shiny */; };
 		3CECCE192AACFA4B0017A605 /* MyUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CECCE182AACFA4B0017A605 /* MyUserView.swift */; };
 		3CECCE1C2AADBFFA0017A605 /* ColorTesterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CECCE1B2AADBFFA0017A605 /* ColorTesterView.swift */; };
 		3CECCE1E2AADDBBA0017A605 /* CircleFillIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CECCE1D2AADDBBA0017A605 /* CircleFillIcons.swift */; };
@@ -399,7 +398,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CEB2C192AB2F4AB0013609E /* Shiny in Frameworks */,
 				3CEB2C132AB2F45F0013609E /* SFSafeSymbols in Frameworks */,
 				3CEB2C0D2AB2F43F0013609E /* PopupView in Frameworks */,
 				3C23F0402AAA66E000AACA46 /* PulseUI in Frameworks */,
@@ -940,7 +938,6 @@
 				3CEB2C0F2AB2F4520013609E /* KeychainAccess */,
 				3CEB2C122AB2F45F0013609E /* SFSafeSymbols */,
 				3CEB2C152AB2F4710013609E /* Shimmer */,
-				3CEB2C182AB2F4AB0013609E /* Shiny */,
 				3CC420092AB37BCB00BE1612 /* WhatsNewKit */,
 				3CC4200C2AB37DDA00BE1612 /* BetterSafariView */,
 				3C4DB8C12AB70856000137CF /* NukeExtensions */,
@@ -992,7 +989,6 @@
 				3CEB2C0E2AB2F4520013609E /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
 				3CEB2C142AB2F4710013609E /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
-				3CEB2C172AB2F4AB0013609E /* XCRemoteSwiftPackageReference "shiny" */,
 				3CC420082AB37BCB00BE1612 /* XCRemoteSwiftPackageReference "WhatsNewKit" */,
 				3CC4200B2AB37DDA00BE1612 /* XCRemoteSwiftPackageReference "BetterSafariView" */,
 				3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */,
@@ -1618,14 +1614,6 @@
 				minimumVersion = 1.4.0;
 			};
 		};
-		3CEB2C172AB2F4AB0013609E /* XCRemoteSwiftPackageReference "shiny" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/maustinstar/shiny";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		3CFE04BD2A7FEA71007BAD81 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scinfu/SwiftSoup";
@@ -1710,11 +1698,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3CEB2C142AB2F4710013609E /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
 			productName = Shimmer;
-		};
-		3CEB2C182AB2F4AB0013609E /* Shiny */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3CEB2C172AB2F4AB0013609E /* XCRemoteSwiftPackageReference "shiny" */;
-			productName = Shiny;
 		};
 		3CFE04BE2A7FEA71007BAD81 /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;

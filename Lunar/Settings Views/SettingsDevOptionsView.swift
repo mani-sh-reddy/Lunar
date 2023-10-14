@@ -129,7 +129,7 @@ struct SettingsDevOptionsView: View {
           OfflineDownloaderView()
         } label: {
           Label {
-            Text("Realm Database Test")
+            Text("Realm Database")
           } icon: {
             Image(systemSymbol: .squareAndArrowDownFill)
               .foregroundStyle(.cyan)
@@ -212,6 +212,5 @@ struct SettingsDevOptionsView: View {
 struct SettingsDevOptionsView_Previews: PreviewProvider {
   static var previews: some View {
     SettingsDevOptionsView()
-      .previewLayout(.sizeThatFits)
   }
 }
