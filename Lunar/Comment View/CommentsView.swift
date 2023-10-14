@@ -5,6 +5,7 @@
 //  Created by Mani on 07/07/2023.
 //
 
+import SFSafeSymbols
 import SwiftUI
 
 struct CommentsView: View {
@@ -31,12 +32,16 @@ struct CommentsView: View {
         showingCommentPopover: $showingCommentPopover
       )
       .popover(isPresented: $showingCommentPopover) {
-        CommentPopoverView(
-          showingCommentPopover: $showingCommentPopover,
-          post: post.post,
-          comment: replyingTo
-        )
-        .environmentObject(commentsFetcher)
+        if replyingTo.id == 0 {
+            CommentsViewWorkaroundWarning()
+        } else {
+          CommentPopoverView(
+            showingCommentPopover: $showingCommentPopover,
+            post: post.post,
+            comment: replyingTo
+          )
+          .environmentObject(commentsFetcher)
+        }
       }
       .environmentObject(postsFetcher)
       .environmentObject(commentsFetcher)
