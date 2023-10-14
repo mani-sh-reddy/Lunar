@@ -8,6 +8,7 @@
 import Foundation
 import SFSafeSymbols
 import SwiftUI
+import Defaults
 
 struct ExpandableTextBox: View {
   @State private var expanded: Bool = false

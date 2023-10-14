@@ -59,7 +59,8 @@ struct CommentSectionView: View {
       InPostActionsView(post: post)
       if !postBody.isEmpty {
         VStack(alignment: .trailing) {
-          Text(try! AttributedString(styledMarkdown: postBody)).font(.body)
+//          Text(try! AttributedString(styledMarkdown: postBody)).font(.body)
+          ExpandableTextBox(LocalizedStringKey(postBody))
         }
       }
     }

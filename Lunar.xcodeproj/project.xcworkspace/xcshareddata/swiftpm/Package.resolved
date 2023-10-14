@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Alamofire/Alamofire.git",
       "state" : {
-        "revision" : "bc268c28fb170f494de9e9927c371b8342979ece",
-        "version" : "5.7.1"
+        "revision" : "b2fa556e4e48cbf06cf8c63def138c98f4b811fa",
+        "version" : "5.8.0"
       }
     },
     {
@@ -24,7 +24,7 @@
       "location" : "https://github.com/sindresorhus/Defaults",
       "state" : {
         "branch" : "main",
-        "revision" : "11b6adbfcb784a71bc9076c0e83ecd67952060e8"
+        "revision" : "d8a9f5105607c85b544558e7f5b51d6c360ba88b"
       }
     },
     {
@@ -41,8 +41,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kean/Nuke.git",
       "state" : {
-        "revision" : "29d3a7e0c687f97fe35b584f60b93fc547d3dade",
-        "version" : "12.1.5"
+        "revision" : "3f666f120b63ea7de57d42e9a7c9b47f8e7a290b",
+        "version" : "12.1.6"
       }
     },
     {
@@ -50,8 +50,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/exyte/PopupView",
       "state" : {
-        "revision" : "5724e89ce2e81f79ccfc1fabaaf5c42473234aef",
-        "version" : "2.6.3"
+        "revision" : "7cfd26db6cc8a4aedb1a80a5df669019a417bfd2",
+        "version" : "2.7.0"
       }
     },
     {
@@ -68,8 +68,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/realm/realm-core.git",
       "state" : {
-        "revision" : "1eb93c9619f6a05b5a91c2719690606016802e0b",
-        "version" : "13.20.1"
+        "revision" : "f8604b9fd3d2982008a1d3f5ff35e52ee9098d5b",
+        "version" : "13.23.0"
       }
     },
     {
@@ -78,7 +78,7 @@
       "location" : "https://github.com/realm/realm-swift.git",
       "state" : {
         "branch" : "master",
-        "revision" : "987523254e28254652cab86b4e558a96231bbfe3"
+        "revision" : "becc93324f6a6a5ccc7a2ea3f3f40f94fa57ce49"
       }
     },
     {
