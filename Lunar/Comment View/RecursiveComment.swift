@@ -18,7 +18,7 @@ struct RecursiveComment: View {
   @Binding var replyingTo: Comment
 //  @State var commentText: String = ""
   @EnvironmentObject var commentsFetcher: CommentsFetcher
-  
+
   let nestedComment: NestedComment
   let post: Post
   let dateTimeParser = DateTimeParser()

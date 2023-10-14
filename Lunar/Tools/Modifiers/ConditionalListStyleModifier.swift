@@ -18,13 +18,13 @@ struct ConditionalListStyleModifier: ViewModifier {
 
   func body(content: Content) -> some View {
     if listStyle == "insetGrouped" {
-      return AnyView(content.listStyle(.insetGrouped))
+      AnyView(content.listStyle(.insetGrouped))
     } else if listStyle == "grouped" {
-      return AnyView(content.listStyle(.grouped))
+      AnyView(content.listStyle(.grouped))
     } else if listStyle == "plain" {
-      return AnyView(content.listStyle(.plain))
+      AnyView(content.listStyle(.plain))
     } else {
-      return AnyView(content.listStyle(.automatic))
+      AnyView(content.listStyle(.automatic))
     }
   }
 }

@@ -33,7 +33,7 @@ struct CommentsView: View {
       )
       .popover(isPresented: $showingCommentPopover) {
         if replyingTo.id == 0 {
-            CommentsViewWorkaroundWarning()
+          CommentsViewWorkaroundWarning()
         } else {
           CommentPopoverView(
             showingCommentPopover: $showingCommentPopover,

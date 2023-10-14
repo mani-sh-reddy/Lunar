@@ -18,9 +18,9 @@ struct KbinPostRowView: View {
 
   var magazine: String {
     if post.instanceLink != nil, post.instanceLink != "" { // skipcq: SW-P1006
-      return "\(post.magazine)@\(post.instanceLink ?? "")"
+      "\(post.magazine)@\(post.instanceLink ?? "")"
     } else {
-      return "\(post.magazine)"
+      "\(post.magazine)"
     }
   }
 

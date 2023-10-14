@@ -63,7 +63,7 @@ struct PlaceholderView: View {
     .onTapGesture { showSafari.toggle() }
     .onAppear {
       // Change the displayed sentence every time the view appears
-      self.currentPlaceholderSentence = PlaceholderSentences.shared.getPlaceholderSentence()
+      currentPlaceholderSentence = PlaceholderSentences.shared.getPlaceholderSentence()
     }
     .inAppSafari(
       isPresented: $showSafari,
@@ -175,14 +175,14 @@ class PlaceholderSentences {
     "Get ready for excitement.",
     "Big things are coming.",
     "New experiences on the horizon.",
-    "Stay with us for updates."
+    "Stay with us for updates.",
   ]
 
   func getPlaceholderSentence() -> String {
     if let randomSentence = sentences.randomElement() {
-      return randomSentence
+      randomSentence
     } else {
-      return "No placeholder sentences available."
+      "No placeholder sentences available."
     }
   }
 }

@@ -40,9 +40,9 @@ struct PostsView: View {
 
   var listStyle: String {
     if postsViewStyle == "compactPlain" {
-      return "plain"
+      "plain"
     } else {
-      return postsViewStyle
+      postsViewStyle
     }
   }
 
