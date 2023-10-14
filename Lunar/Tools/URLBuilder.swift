@@ -29,6 +29,7 @@ class URLBuilder {
   private let currentPage: Int?
   private let limitParameter: Int?
   private let communityID: Int?
+  private let personID: Int?
   private let postID: Int?
   private let maxDepth: Int?
   private let jwt: String?
@@ -44,6 +45,7 @@ class URLBuilder {
     currentPage: Int? = 1,
     limitParameter: Int? = nil,
     communityID: Int? = nil,
+    personID: Int? = nil,
     postID: Int? = nil,
     maxDepth: Int? = nil,
     jwt: String? = nil,
@@ -58,6 +60,7 @@ class URLBuilder {
     self.currentPage = currentPage
     self.limitParameter = limitParameter
     self.communityID = communityID
+    self.personID = personID
     self.postID = postID
     self.maxDepth = maxDepth
     self.jwt = jwt
@@ -76,6 +79,7 @@ class URLBuilder {
     if let currentPage { queryParams["page"] = String(currentPage) }
     if let limitParameter { queryParams["limit"] = String(limitParameter) }
     if let communityID { queryParams["community_id"] = String(communityID) }
+    if let personID { queryParams["person_id"] = String(personID) }
     if let postID { queryParams["post_id"] = String(postID) }
     if let maxDepth { queryParams["max_depth"] = String(maxDepth) }
     if let jwt { queryParams["auth"] = jwt }

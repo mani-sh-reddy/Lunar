@@ -110,6 +110,10 @@
 		3CADB5752A7EA03000095839 /* SearchUsersListAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CADB5742A7EA03000095839 /* SearchUsersListAll.swift */; };
 		3CAEDDE52A9E58DB001469AA /* ManageInstancesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAEDDE42A9E58DB001469AA /* ManageInstancesView.swift */; };
 		3CB046F22ADAF3C00011BFEC /* CommentsViewWorkaroundWarning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB046F12ADAF3C00011BFEC /* CommentsViewWorkaroundWarning.swift */; };
+		3CB046F62ADB28850011BFEC /* PersonFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB046F52ADB28850011BFEC /* PersonFetcher.swift */; };
+		3CB046F82ADB2A220011BFEC /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB046F72ADB2A220011BFEC /* PersonModel.swift */; };
+		3CB046FA2ADB2B6E0011BFEC /* Moderates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB046F92ADB2B6E0011BFEC /* Moderates.swift */; };
+		3CB046FC2ADB336A0011BFEC /* PersonPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB046FB2ADB336A0011BFEC /* PersonPostsView.swift */; };
 		3CB408B42A5C558B00B7C983 /* CommunitiesFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB408B32A5C558B00B7C983 /* CommunitiesFetcher.swift */; };
 		3CB8D2662A55EFF900EE615A /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */; };
 		3CB8D2682A55F45900EE615A /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2672A55F45900EE615A /* FeedView.swift */; };
@@ -311,6 +315,10 @@
 		3CAEDE332A9F3EDF001469AA /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		3CAEDE352A9F3EDF001469AA /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		3CB046F12ADAF3C00011BFEC /* CommentsViewWorkaroundWarning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsViewWorkaroundWarning.swift; sourceTree = "<group>"; };
+		3CB046F52ADB28850011BFEC /* PersonFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonFetcher.swift; sourceTree = "<group>"; };
+		3CB046F72ADB2A220011BFEC /* PersonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonModel.swift; sourceTree = "<group>"; };
+		3CB046F92ADB2B6E0011BFEC /* Moderates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Moderates.swift; sourceTree = "<group>"; };
+		3CB046FB2ADB336A0011BFEC /* PersonPostsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonPostsView.swift; sourceTree = "<group>"; };
 		3CB408B32A5C558B00B7C983 /* CommunitiesFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunitiesFetcher.swift; sourceTree = "<group>"; };
 		3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		3CB8D2672A55F45900EE615A /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
@@ -556,13 +564,13 @@
 				3C892D292AD5C99800426B72 /* Realm Database */,
 				3CECCE212AAE14140017A605 /* Account Tab */,
 				3CE237332AA4D157000F1D20 /* Common Views */,
+				3CCAE1852A6ADE5F0040EE12 /* Feed Views */,
 				3CFE04C42A7FF1E7007BAD81 /* Kbin */,
 				3CCAE1832A6ADDBA0040EE12 /* Post Views */,
 				3CC1788F2A7DA68C00C208D0 /* Search Views */,
 				3C96EA582A79147C00753199 /* Debugging Views */,
 				3C5ECB222A766D27002BA561 /* Login Views */,
 				3CDF22992A6D3FEF009281F2 /* Settings Views */,
-				3CCAE1852A6ADE5F0040EE12 /* Feed Views */,
 				3CCAE1822A6ADD9B0040EE12 /* More Communities Views */,
 				3CCAE1842A6ADDE20040EE12 /* Comment View */,
 				3C4D42A62A8D0FB3003B6F1D /* DataSenders */,
@@ -654,6 +662,7 @@
 			isa = PBXGroup;
 			children = (
 				3CEACBC62A88020700260A01 /* PostsFetcher.swift */,
+				3CB046F52ADB28850011BFEC /* PersonFetcher.swift */,
 				3C65885C2A6189AF00A46DA3 /* CommentsFetcher.swift */,
 				3CB408B32A5C558B00B7C983 /* CommunitiesFetcher.swift */,
 				3C5ECB1E2A75ABFE002BA561 /* SiteInfoFetcher.swift */,
@@ -743,6 +752,8 @@
 		3CB9C7332AA245C900FB5A10 /* Person */ = {
 			isa = PBXGroup;
 			children = (
+				3CB046F72ADB2A220011BFEC /* PersonModel.swift */,
+				3CB046F92ADB2B6E0011BFEC /* Moderates.swift */,
 				3CB9C7342AA2461700FB5A10 /* PersonObject.swift */,
 				3CB9C7362AA2461C00FB5A10 /* Person.swift */,
 				3CB9C73D2AA24A8800FB5A10 /* LocalUser.swift */,
@@ -872,6 +883,7 @@
 		3CECCE212AAE14140017A605 /* Account Tab */ = {
 			isa = PBXGroup;
 			children = (
+				3CB046FB2ADB336A0011BFEC /* PersonPostsView.swift */,
 				3CECCE182AACFA4B0017A605 /* MyUserView.swift */,
 			);
 			path = "Account Tab";
@@ -1063,15 +1075,18 @@
 				3C9E548A2A940F9B0093DDC7 /* TextBox.swift in Sources */,
 				3C5ECB262A766E31002BA561 /* DebugAccountsPropertiesView.swift in Sources */,
 				3CB9C73E2AA24A8800FB5A10 /* LocalUser.swift in Sources */,
+				3CB046FC2ADB336A0011BFEC /* PersonPostsView.swift in Sources */,
 				3CA5C4102A5753AC00BF8F1B /* PostRowView.swift in Sources */,
 				3C96EA4E2A783FF100753199 /* LoggedInUsersListView.swift in Sources */,
 				3CCE1D1D2AB6050E00357DFA /* RecursiveComment.swift in Sources */,
 				3C54C0962AB8E62C00F1BADE /* InAppSafariModifier.swift in Sources */,
 				3C0E2DD02AA909BB00095FA5 /* PostsSectionView.swift in Sources */,
 				3CF3F9C22A6EE20C0051E725 /* ViewExtension.swift in Sources */,
+				3CB046FA2ADB2B6E0011BFEC /* Moderates.swift in Sources */,
 				3CECCE252AAE68E80017A605 /* LocalUserProperties.swift in Sources */,
 				3C87A36A2A9F9C4E0029C18F /* ForceAppearance.swift in Sources */,
 				3C5ECB2C2A7676B5002BA561 /* PasswordFieldView.swift in Sources */,
+				3CB046F82ADB2A220011BFEC /* PersonModel.swift in Sources */,
 				3C87A3642A9F97B80029C18F /* EntryView.swift in Sources */,
 				3CA5C40A2A574FF500BF8F1B /* PostModel.swift in Sources */,
 				3CB9C72B2AA2423400FB5A10 /* CommentObject.swift in Sources */,
@@ -1176,6 +1191,7 @@
 				3C4DB8C62AB72145000137CF /* SettingsAppResetView.swift in Sources */,
 				3CB408B42A5C558B00B7C983 /* CommunitiesFetcher.swift in Sources */,
 				3C808E2E2A9B87FA008FA62E /* ShareSheet.swift in Sources */,
+				3CB046F62ADB28850011BFEC /* PersonFetcher.swift in Sources */,
 				3C96EA422A77225E00753199 /* ValidationUtils.swift in Sources */,
 				3C432F5C2A819E54000D5321 /* KbinThreadBodyFetcher.swift in Sources */,
 				3C113C432A6EA92600FDE5CE /* InstanceSelectorView.swift in Sources */,

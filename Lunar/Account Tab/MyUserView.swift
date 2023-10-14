@@ -32,6 +32,7 @@ struct MyUserView: View {
 
   var avatar: String { myAccount.avatarURL }
   var actorID: String { myAccount.actorID }
+  var userID: Int { Int(myAccount.userID) ?? 0 }
   var name: String { myAccount.name }
   var postScore: String { String(myAccount.postScore) }
   var commentScore: String { String(myAccount.commentScore) }
@@ -47,15 +48,17 @@ struct MyUserView: View {
   }
 
   var body: some View {
-    List {
-      userDetailsSection
-      scoreSection
-      quicklinksSection
-    }
-    .listStyle(.insetGrouped)
-    .onAppear {
-      if let jwt = JWT().getJWTFromKeychain(actorID: selectedActorID) {
-        SiteInfoFetcher(jwt: jwt).fetchSiteInfo { _, _, _, _ in }
+    NavigationView {
+      List {
+        userDetailsSection
+        scoreSection
+        navigationSection
+      }
+      .listStyle(.insetGrouped)
+      .onAppear {
+        if let jwt = JWT().getJWTFromKeychain(actorID: selectedActorID) {
+          SiteInfoFetcher(jwt: jwt).fetchSiteInfo { _, _, _, _ in }
+        }
       }
     }
   }
@@ -102,43 +105,57 @@ struct MyUserView: View {
     .listRowBackground(Color.clear)
   }
 
-  var quicklinksSection: some View {
+  var navigationSection: some View {
     Section {
-      HStack {
-        GeneralCommunityQuicklinkButton(
-          image: "list.bullet.circle.fill",
-          hexColor: "bbbbbb",
-          title: "Posts",
-          brightness: 0.2,
-          saturation: 0
+      NavigationLink {
+        let _ = print(userID)
+        PersonPostsView(
+          personFetcher: PersonFetcher(
+            sortParameter: "New",
+            typeParameter: "All",
+            personID: userID
+          ),
+          title: "\(name)'s Posts"
         )
-        Spacer()
-        Text(postCount)
-          .font(.headline)
-          .foregroundStyle(.gray)
+
+      } label: {
+        Label {
+          HStack {
+            Text("Posts")
+            Spacer()
+            Text(postCount).bold().foregroundStyle(.gray)
+          }
+        } icon: {
+          Image(systemSymbol: .signpostRight)
+            .foregroundStyle(.purple)
+        }
       }
 
-      HStack {
-        GeneralCommunityQuicklinkButton(
-          image: "bubble.left.circle.fill",
-          hexColor: "bbbbbb",
-          title: "Comments",
-          brightness: 0.2,
-          saturation: 0
-        )
-        Spacer()
-        Text(commentCount)
-          .font(.headline)
-          .foregroundStyle(.gray)
+      NavigationLink {
+        PlaceholderView()
+      } label: {
+        Label {
+          Text("Comments")
+          Spacer()
+          Text(commentCount).bold().foregroundStyle(.gray)
+        } icon: {
+          Image(systemSymbol: .textBubble)
+            .foregroundStyle(.cyan)
+        }
       }
 
-      GeneralCommunityQuicklinkButton(
-        image: "folder.circle.fill",
-        hexColor: "bbbbbb",
-        title: "Saved",
-        brightness: 0.2,
-        saturation: 0
-      )
+      NavigationLink {
+        PlaceholderView()
+      } label: {
+        Label {
+          Text("Saved")
+          Spacer()
+          Text("").bold().foregroundStyle(.gray)
+        } icon: {
+          Image(systemSymbol: .star)
+            .foregroundStyle(.orange)
+        }
+      }
     }
   }
 
