@@ -18,15 +18,6 @@ extension View {
     }
   }
 
-  //  func hapticNotificationFeedbackOnTap(style: UINotificationFeedbackGenerator.FeedbackType)
-//    -> some View
-  //  {
-//    onTapGesture {
-//      let haptic = UINotificationFeedbackGenerator()
-//      haptic.notificationOccurred(style)
-//    }
-  //  }
-
   func onDebouncedChange<V>(
     of binding: Binding<V>,
     debounceFor dueTime: TimeInterval,

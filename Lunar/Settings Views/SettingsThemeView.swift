@@ -33,16 +33,6 @@ struct SettingsThemeView: View {
         .tint(.indigo)
       }
       .modifier(ConditionalListRowBackgroundModifier(background: iridescenceEnabled ? .iridescent : .defaultBackground))
-//      .listRowBackground(
-//          ZStack {
-//            if iridescenceEnabled {
-//            Color.gray.opacity(0.1)
-//            Rectangle().shiny(.iridescent)
-//            } else {
-//              Color.gray.opacity(0.2)
-//            }
-//        }
-//      )
     }
     .navigationTitle("Theme")
   }

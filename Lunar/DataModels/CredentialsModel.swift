@@ -22,8 +22,3 @@ struct CredentialsRequestModel: Encodable {
 struct ErrorResponseModel: Codable {
   let error: String
 }
-
-// struct UserInfoResponseModel: Codable {
-//  let username: String
-//  let email: String
-// }

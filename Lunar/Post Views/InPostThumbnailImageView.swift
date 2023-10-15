@@ -18,7 +18,6 @@ struct InPostThumbnailImageView: View {
   var body: some View {
     let imageRequest = ImageRequest(url: URL(string: thumbnailURL), processors: [.resize(width: 200)])
 
-//    LazyImage(url: URL(string: thumbnailURL)) { state in
     LazyImage(request: imageRequest) { state in
       if let image = state.image {
         image
@@ -31,8 +30,5 @@ struct InPostThumbnailImageView: View {
         Color.clear // Acts as a placeholder
       }
     }
-//    .processors([.resize(width: 200)])
-//    .pipeline(ImagePipeline.shared)
-//    .clipShape(RoundedRectangle(cornerRadius: imageRadius, style: .continuous))
   }
 }

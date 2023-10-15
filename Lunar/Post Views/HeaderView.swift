@@ -54,7 +54,6 @@ struct HeaderView: View {
       .border(debugModeEnabled ? Color.purple : Color.clear)
 
       if let description {
-//        Text(try! AttributedString(styledMarkdown: description))
         ExpandableTextBox(LocalizedStringKey(description))
       }
     }

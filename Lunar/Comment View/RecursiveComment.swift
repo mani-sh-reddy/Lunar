@@ -160,10 +160,6 @@ struct RecursiveComment: View {
       .environmentObject(commentsFetcher)
   }
 
-//  var swipeActions: some View {
-//
-//  }
-
   func countSubcomments(_ nestedComments: [NestedComment]) -> Int {
     var count = 0
 
