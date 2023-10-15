@@ -126,13 +126,13 @@ struct MyUserView: View {
             Text(postCount).bold().foregroundStyle(.gray)
           }
         } icon: {
-          Image(systemSymbol: .rectangleOnRectangle)
+          Image(systemSymbol: .rectangleOnRectangleAngled)
             .foregroundStyle(.purple)
         }
       }
 
       NavigationLink {
-        PlaceholderView()
+//        MyUserCommentsView()
       } label: {
         Label {
           Text("Comments")
