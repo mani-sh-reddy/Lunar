@@ -108,7 +108,7 @@ struct SortTypePickerView: View {
             Text("New Comments")
           } icon: {
             Image(systemSymbol: .starBubble)
-          }.tag(SortType.new)
+          }.tag(SortType.newComments)
 
           // MARK: -
         }

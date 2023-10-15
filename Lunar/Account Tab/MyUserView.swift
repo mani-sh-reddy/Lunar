@@ -126,7 +126,7 @@ struct MyUserView: View {
             Text(postCount).bold().foregroundStyle(.gray)
           }
         } icon: {
-          Image(systemSymbol: .signpostRight)
+          Image(systemSymbol: .rectangleOnRectangle)
             .foregroundStyle(.purple)
         }
       }

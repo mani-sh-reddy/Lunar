@@ -75,7 +75,7 @@ struct SearchCommunitiesRowView: View {
               }.foregroundStyle(
                 community.counts.subscribers ?? 0 >= 10000 ? Color.yellow : Color.secondary)
               HStack(spacing: 1) {
-                Image(systemSymbol: .signpostRight)
+                Image(systemSymbol: .rectangleOnRectangle)
                 Text((community.counts.posts)?.convertToShortString() ?? "0")
               }
               HStack(spacing: 1) {

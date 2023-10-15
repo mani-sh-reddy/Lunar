@@ -41,7 +41,7 @@ struct SearchView: View {
               content: {
                 Image(systemSymbol: .personFill).tag("Users")
                 Image(systemSymbol: .booksVerticalFill).tag("Communities")
-                Image(systemSymbol: .signpostRightFill).tag("Posts")
+                Image(systemSymbol: .rectangleFillOnRectangleFill).tag("Posts")
               }
             )
             .textCase(.none)
