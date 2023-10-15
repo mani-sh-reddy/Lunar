@@ -9,6 +9,7 @@ import Defaults
 import Nuke
 import NukeUI
 import SFSafeSymbols
+import Shiny
 import SwiftUI
 
 struct MyUserView: View {
@@ -215,6 +216,7 @@ struct MyUserView: View {
         )
       }
     }
+    .listRowBackground(Rectangle().shiny(.iridescent))
   }
 }
 
