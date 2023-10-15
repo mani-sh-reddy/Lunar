@@ -65,7 +65,6 @@ struct PersonPostsView: View {
               personFetcher.loadContent()
             }
           }
-          .environmentObject(PostsFetcher())
       }
       if personFetcher.isLoading {
         ProgressView().id(UUID())

@@ -9,8 +9,6 @@ import Foundation
 import SwiftUI
 
 struct PostSectionView: View {
-  @EnvironmentObject var postsFetcher: PostsFetcher
-
   @State var upvoted: Bool = false
   @State var downvoted: Bool = false
 
@@ -28,14 +26,13 @@ struct PostSectionView: View {
           downvoted: $downvoted,
           isSubscribed: communityIsSubscribed, post: post
         )
-        .environmentObject(postsFetcher)
         NavigationLink {
           CommentsView(
             commentsFetcher: CommentsFetcher(postID: post.post.id),
             upvoted: $upvoted,
             downvoted: $downvoted,
             post: post
-          ).environmentObject(postsFetcher)
+          )
         } label: {
           EmptyView()
         }

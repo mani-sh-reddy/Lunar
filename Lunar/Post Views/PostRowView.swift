@@ -11,8 +11,6 @@ import SFSafeSymbols
 import SwiftUI
 
 struct PostRowView: View {
-  @EnvironmentObject var postsFetcher: PostsFetcher
-
   @Default(.selectedActorID) var selectedActorID
   @Default(.subscribedCommunityIDs) var subscribedCommunityIDs
   @Default(.postsViewStyle) var postsViewStyle
@@ -345,12 +343,15 @@ struct PostRowView: View {
     ).fetchSubscribeInfo { _, subscribeResponse, _ in
       if subscribeResponse != nil {
         notificationHaptics.notificationOccurred(.success)
-        if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == post.post.id }) {
-          var updatedPost = postsFetcher.posts[index]
-          updatedPost.subscribed = subscribeAction ? .subscribed : .notSubscribed
-          postsFetcher.posts[index] = updatedPost
-          subscribeState = subscribeAction ? .subscribed : .notSubscribed // Update the local subscription status
-        }
+
+        // MARK: - TODO: Find an alternate to updating the state after subscribe action without using Env Object
+
+//        if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == post.post.id }) {
+//          var updatedPost = postsFetcher.posts[index]
+//          updatedPost.subscribed = subscribeAction ? .subscribed : .notSubscribed
+//          postsFetcher.posts[index] = updatedPost
+//          subscribeState = subscribeAction ? .subscribed : .notSubscribed // Update the local subscription status
+//        }
         if subscribeResponse == .subscribed {
           subscribedCommunityIDs.append(post.community.id)
         } else if subscribeResponse == .notSubscribed {
@@ -390,12 +391,14 @@ struct PostRowView: View {
           downvoteState = 0
         }
 
-        // Update the corresponding post in the postsFetcher.posts array
-        if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == postID }) {
-          var updatedPost = postsFetcher.posts[index]
-          updatedPost.myVote = voteType
-          postsFetcher.posts[index] = updatedPost
-        }
+        // MARK: - TODO: Find an alternate to updating the state after subscribe action without using Env Object
+
+//        // Update the corresponding post in the postsFetcher.posts array
+//        if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == postID }) {
+//          var updatedPost = postsFetcher.posts[index]
+//          updatedPost.myVote = voteType
+//          postsFetcher.posts[index] = updatedPost
+//        }
       }
     }
   }

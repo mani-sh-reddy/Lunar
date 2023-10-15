@@ -9,7 +9,6 @@ import SFSafeSymbols
 import SwiftUI
 
 struct CommentsView: View {
-  @EnvironmentObject var postsFetcher: PostsFetcher
   @StateObject var commentsFetcher: CommentsFetcher
   @Binding var upvoted: Bool
   @Binding var downvoted: Bool
@@ -43,7 +42,6 @@ struct CommentsView: View {
           .environmentObject(commentsFetcher)
         }
       }
-      .environmentObject(postsFetcher)
       .environmentObject(commentsFetcher)
     }
   }
