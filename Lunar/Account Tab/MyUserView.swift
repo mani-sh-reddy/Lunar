@@ -52,7 +52,8 @@ struct MyUserView: View {
       List {
         userDetailsSection
         scoreSection
-        navigationSection
+        postsAndCommentsSection
+        savedPostsAndCommentsSection
       }
       .listStyle(.insetGrouped)
       .onAppear {
@@ -105,19 +106,18 @@ struct MyUserView: View {
     .listRowBackground(Color.clear)
   }
 
-  var navigationSection: some View {
+  var postsAndCommentsSection: some View {
     Section {
       NavigationLink {
-        let _ = print(userID)
-        PersonPostsView(
+        MyUserObserver(
           personFetcher: PersonFetcher(
             sortParameter: "New",
             typeParameter: "All",
             personID: userID
           ),
-          title: "\(name)'s Posts"
+          userName: name,
+          viewType: "Posts"
         )
-
       } label: {
         Label {
           HStack {
@@ -132,7 +132,15 @@ struct MyUserView: View {
       }
 
       NavigationLink {
-//        MyUserCommentsView()
+        MyUserObserver(
+          personFetcher: PersonFetcher(
+            sortParameter: "New",
+            typeParameter: "All",
+            personID: userID
+          ),
+          userName: name,
+          viewType: "Comments"
+        )
       } label: {
         Label {
           Text("Comments")
@@ -143,16 +151,48 @@ struct MyUserView: View {
             .foregroundStyle(.cyan)
         }
       }
+    }
+  }
 
+  var savedPostsAndCommentsSection: some View {
+    Section {
       NavigationLink {
-        PlaceholderView()
+        MyUserObserver(
+          personFetcher: PersonFetcher(
+            sortParameter: "New",
+            typeParameter: "All",
+            savedOnly: true,
+            personID: userID
+          ),
+          userName: name,
+          viewType: "Saved Posts"
+        )
       } label: {
         Label {
-          Text("Saved")
-          Spacer()
-          Text("").bold().foregroundStyle(.gray)
+          Text("Saved Posts")
+
         } icon: {
           Image(systemSymbol: .star)
+            .foregroundStyle(.yellow)
+        }
+      }
+      NavigationLink {
+        MyUserObserver(
+          personFetcher: PersonFetcher(
+            sortParameter: "New",
+            typeParameter: "All",
+            savedOnly: true,
+            personID: userID
+          ),
+          userName: name,
+          viewType: "Saved Comments"
+        )
+      } label: {
+        Label {
+          Text("Saved Comments")
+
+        } icon: {
+          Image(systemSymbol: .starBubble)
             .foregroundStyle(.orange)
         }
       }

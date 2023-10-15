@@ -22,6 +22,7 @@ import SwiftUI
 
   @Published var personModel = [PersonModel]()
   @Published var posts = [PostObject]()
+  @Published var comments = [CommentObject]()
   @Published var isLoading = false
 
   let pulse = Pulse.LoggerStore.shared
@@ -30,6 +31,7 @@ import SwiftUI
   private var currentPage = 1
   var sortParameter: String?
   var typeParameter: String?
+  var savedOnly: Bool?
   private var personID: Int
   private var instance: String?
 
@@ -40,6 +42,7 @@ import SwiftUI
       typeParameter: typeParameter,
       currentPage: currentPage,
       limitParameter: 50,
+      savedOnly: savedOnly,
       personID: personID,
       jwt: getJWTFromKeychain(),
       instance: instance
@@ -53,6 +56,7 @@ import SwiftUI
       typeParameter: typeParameter,
       currentPage: currentPage,
       limitParameter: 50,
+      savedOnly: savedOnly,
       personID: personID,
       instance: instance
     ).buildURL()
@@ -61,11 +65,13 @@ import SwiftUI
   init(
     sortParameter: String? = nil,
     typeParameter: String? = nil,
+    savedOnly: Bool? = nil,
     personID: Int,
     instance: String? = nil
   ) {
     self.sortParameter = sortParameter
     self.typeParameter = typeParameter
+    self.savedOnly = savedOnly
 
     self.personID = personID
 
@@ -117,6 +123,7 @@ import SwiftUI
       case let .success(result):
 
         let fetchedPosts = result.posts
+        let fetchedComments = result.comments
         self.personModel = [result]
 
         let imageRequestList = result.imageURLs.compactMap {
@@ -129,12 +136,17 @@ import SwiftUI
 
         if isRefreshing {
           self.posts = fetchedPosts
+          self.comments = fetchedComments
         } else {
           /// Removing duplicates
           let filteredPosts = fetchedPosts.filter { post in
             !self.posts.contains { $0.post.id == post.post.id }
           }
+          let filteredComments = fetchedComments.filter { post in
+            !self.comments.contains { $0.comment.id == post.comment.id }
+          }
           self.posts += filteredPosts
+          self.comments += filteredComments
           self.currentPage += 1
         }
         if !isRefreshing {

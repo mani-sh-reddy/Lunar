@@ -28,6 +28,7 @@ class URLBuilder {
   private let typeParameter: String?
   private let currentPage: Int?
   private let limitParameter: Int?
+  private let savedOnly: Bool?
   private let communityID: Int?
   private let personID: Int?
   private let postID: Int?
@@ -44,6 +45,7 @@ class URLBuilder {
     typeParameter: String? = "",
     currentPage: Int? = 1,
     limitParameter: Int? = nil,
+    savedOnly: Bool? = nil,
     communityID: Int? = nil,
     personID: Int? = nil,
     postID: Int? = nil,
@@ -59,6 +61,7 @@ class URLBuilder {
     self.typeParameter = typeParameter
     self.currentPage = currentPage
     self.limitParameter = limitParameter
+    self.savedOnly = savedOnly
     self.communityID = communityID
     self.personID = personID
     self.postID = postID
@@ -78,6 +81,7 @@ class URLBuilder {
     if let typeParameter { queryParams["type_"] = String(typeParameter) }
     if let currentPage { queryParams["page"] = String(currentPage) }
     if let limitParameter { queryParams["limit"] = String(limitParameter) }
+    if let savedOnly { queryParams["saved_only"] = String(savedOnly) }
     if let communityID { queryParams["community_id"] = String(communityID) }
     if let personID { queryParams["person_id"] = String(personID) }
     if let postID { queryParams["post_id"] = String(postID) }

@@ -109,7 +109,7 @@
 		3CB046F62ADB28850011BFEC /* PersonFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB046F52ADB28850011BFEC /* PersonFetcher.swift */; };
 		3CB046F82ADB2A220011BFEC /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB046F72ADB2A220011BFEC /* PersonModel.swift */; };
 		3CB046FA2ADB2B6E0011BFEC /* Moderates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB046F92ADB2B6E0011BFEC /* Moderates.swift */; };
-		3CB046FC2ADB336A0011BFEC /* PersonPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB046FB2ADB336A0011BFEC /* PersonPostsView.swift */; };
+		3CB046FC2ADB336A0011BFEC /* MyUserObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB046FB2ADB336A0011BFEC /* MyUserObserver.swift */; };
 		3CB408B42A5C558B00B7C983 /* CommunitiesFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB408B32A5C558B00B7C983 /* CommunitiesFetcher.swift */; };
 		3CB8D2662A55EFF900EE615A /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */; };
 		3CB8D2682A55F45900EE615A /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CB8D2672A55F45900EE615A /* FeedView.swift */; };
@@ -135,6 +135,9 @@
 		3CC178912A7DA6A200C208D0 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC178902A7DA6A200C208D0 /* SearchView.swift */; };
 		3CC178932A7DA9FE00C208D0 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC178922A7DA9FE00C208D0 /* SearchModel.swift */; };
 		3CC178952A7DAAE300C208D0 /* SearchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC178942A7DAAE300C208D0 /* SearchFetcher.swift */; };
+		3CC3E4162ADBFCBA00F7F9A9 /* MyUserPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3E4152ADBFCBA00F7F9A9 /* MyUserPostsView.swift */; };
+		3CC3E4182ADBFFEF00F7F9A9 /* MyUserCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3E4172ADBFFEF00F7F9A9 /* MyUserCommentsView.swift */; };
+		3CC3E41B2ADC054000F7F9A9 /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = 3CC3E41A2ADC054000F7F9A9 /* Shiny */; };
 		3CC4200A2AB37BCB00BE1612 /* WhatsNewKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3CC420092AB37BCB00BE1612 /* WhatsNewKit */; };
 		3CC4200D2AB37DDA00BE1612 /* BetterSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = 3CC4200C2AB37DDA00BE1612 /* BetterSafariView */; };
 		3CC734A42A6D58C6007523B5 /* URLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC734A32A6D58C6007523B5 /* URLBuilder.swift */; };
@@ -308,7 +311,7 @@
 		3CB046F52ADB28850011BFEC /* PersonFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonFetcher.swift; sourceTree = "<group>"; };
 		3CB046F72ADB2A220011BFEC /* PersonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonModel.swift; sourceTree = "<group>"; };
 		3CB046F92ADB2B6E0011BFEC /* Moderates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Moderates.swift; sourceTree = "<group>"; };
-		3CB046FB2ADB336A0011BFEC /* PersonPostsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonPostsView.swift; sourceTree = "<group>"; };
+		3CB046FB2ADB336A0011BFEC /* MyUserObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUserObserver.swift; sourceTree = "<group>"; };
 		3CB408B32A5C558B00B7C983 /* CommunitiesFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunitiesFetcher.swift; sourceTree = "<group>"; };
 		3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		3CB8D2672A55F45900EE615A /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
@@ -334,6 +337,8 @@
 		3CC178902A7DA6A200C208D0 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		3CC178922A7DA9FE00C208D0 /* SearchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		3CC178942A7DAAE300C208D0 /* SearchFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFetcher.swift; sourceTree = "<group>"; };
+		3CC3E4152ADBFCBA00F7F9A9 /* MyUserPostsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUserPostsView.swift; sourceTree = "<group>"; };
+		3CC3E4172ADBFFEF00F7F9A9 /* MyUserCommentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUserCommentsView.swift; sourceTree = "<group>"; };
 		3CC734A32A6D58C6007523B5 /* URLBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLBuilder.swift; sourceTree = "<group>"; };
 		3CC734A52A6D591A007523B5 /* URLComponentsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLComponentsExtension.swift; sourceTree = "<group>"; };
 		3CC734A92A6D697C007523B5 /* InsertSorter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertSorter.swift; sourceTree = "<group>"; };
@@ -400,6 +405,7 @@
 				3CEB2C102AB2F4520013609E /* KeychainAccess in Frameworks */,
 				3CC4200D2AB37DDA00BE1612 /* BetterSafariView in Frameworks */,
 				3CE69E962ABDCA8A00E2821E /* Realm in Frameworks */,
+				3CC3E41B2ADC054000F7F9A9 /* Shiny in Frameworks */,
 				3CA95F082A7ACF3B00626353 /* Nuke in Frameworks */,
 				3C4B7DDB2A58AD23003C8192 /* Alamofire in Frameworks */,
 				3CE69E982ABDCA8A00E2821E /* RealmSwift in Frameworks */,
@@ -865,7 +871,9 @@
 		3CECCE212AAE14140017A605 /* Account Tab */ = {
 			isa = PBXGroup;
 			children = (
-				3CB046FB2ADB336A0011BFEC /* PersonPostsView.swift */,
+				3CB046FB2ADB336A0011BFEC /* MyUserObserver.swift */,
+				3CC3E4152ADBFCBA00F7F9A9 /* MyUserPostsView.swift */,
+				3CC3E4172ADBFFEF00F7F9A9 /* MyUserCommentsView.swift */,
 				3CECCE182AACFA4B0017A605 /* MyUserView.swift */,
 			);
 			path = "Account Tab";
@@ -937,6 +945,7 @@
 				3C4DB8C12AB70856000137CF /* NukeExtensions */,
 				3CE69E952ABDCA8A00E2821E /* Realm */,
 				3CE69E972ABDCA8A00E2821E /* RealmSwift */,
+				3CC3E41A2ADC054000F7F9A9 /* Shiny */,
 			);
 			productName = Lunar;
 			productReference = 3C4F09FC2A54399F009DF8AB /* Lunar.app */;
@@ -986,6 +995,7 @@
 				3CC420082AB37BCB00BE1612 /* XCRemoteSwiftPackageReference "WhatsNewKit" */,
 				3CC4200B2AB37DDA00BE1612 /* XCRemoteSwiftPackageReference "BetterSafariView" */,
 				3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */,
+				3CC3E4192ADC054000F7F9A9 /* XCRemoteSwiftPackageReference "shiny" */,
 			);
 			productRefGroup = 3C4F09FD2A54399F009DF8AB /* Products */;
 			projectDirPath = "";
@@ -1031,6 +1041,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C1A3F5D2A73BC9F00898FC6 /* CredentialsModel.swift in Sources */,
+				3CC3E4182ADBFFEF00F7F9A9 /* MyUserCommentsView.swift in Sources */,
 				3C4B7DD82A58A741003C8192 /* CommentModel.swift in Sources */,
 				3CB9C7272AA2404C00FB5A10 /* CommentCollapseState.swift in Sources */,
 				3CEF4CC62A69B3AD002B83C0 /* MoreCommunitiesButtonView.swift in Sources */,
@@ -1055,7 +1066,7 @@
 				3C9E548A2A940F9B0093DDC7 /* UITextViewExtension.swift in Sources */,
 				3C5ECB262A766E31002BA561 /* DebugAccountsPropertiesView.swift in Sources */,
 				3CB9C73E2AA24A8800FB5A10 /* LocalUser.swift in Sources */,
-				3CB046FC2ADB336A0011BFEC /* PersonPostsView.swift in Sources */,
+				3CB046FC2ADB336A0011BFEC /* MyUserObserver.swift in Sources */,
 				3CA5C4102A5753AC00BF8F1B /* PostRowView.swift in Sources */,
 				3C96EA4E2A783FF100753199 /* LoggedInUsersListView.swift in Sources */,
 				3CCE1D1D2AB6050E00357DFA /* RecursiveComment.swift in Sources */,
@@ -1070,6 +1081,7 @@
 				3C87A3642A9F97B80029C18F /* EntryView.swift in Sources */,
 				3CA5C40A2A574FF500BF8F1B /* PostModel.swift in Sources */,
 				3CB9C72B2AA2423400FB5A10 /* CommentObject.swift in Sources */,
+				3CC3E4162ADBFCBA00F7F9A9 /* MyUserPostsView.swift in Sources */,
 				3C87092C2A745CE2004999CE /* ArrayExtension.swift in Sources */,
 				3C4D42AA2A8D12B8003B6F1D /* VoteResponseModel.swift in Sources */,
 				3CC734A42A6D58C6007523B5 /* URLBuilder.swift in Sources */,
@@ -1542,6 +1554,14 @@
 				minimumVersion = 12.1.5;
 			};
 		};
+		3CC3E4192ADC054000F7F9A9 /* XCRemoteSwiftPackageReference "shiny" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maustinstar/shiny";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		3CC420082AB37BCB00BE1612 /* XCRemoteSwiftPackageReference "WhatsNewKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SvenTiigi/WhatsNewKit";
@@ -1645,6 +1665,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = NukeUI;
+		};
+		3CC3E41A2ADC054000F7F9A9 /* Shiny */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3CC3E4192ADC054000F7F9A9 /* XCRemoteSwiftPackageReference "shiny" */;
+			productName = Shiny;
 		};
 		3CC420092AB37BCB00BE1612 /* WhatsNewKit */ = {
 			isa = XCSwiftPackageProductDependency;
