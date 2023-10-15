@@ -19,6 +19,7 @@ struct HeaderView: View {
   var actorID: String
   var banner: String?
   var icon: String?
+  var isCommunitySpecific: Bool
 
   var body: some View {
     Section {
@@ -31,7 +32,7 @@ struct HeaderView: View {
               .clipShape(Circle())
               .frame(width: 60, height: 60)
           } else if state.error != nil {
-            Image(systemSymbol: .personCircleFill)
+            Image(systemSymbol: isCommunitySpecific ? .booksVerticalCircleFill : .personCircleFill)
               .resizable()
               .frame(width: 60, height: 60)
               .foregroundStyle(.secondary)
@@ -53,7 +54,8 @@ struct HeaderView: View {
       .border(debugModeEnabled ? Color.purple : Color.clear)
 
       if let description {
-        Text(try! AttributedString(styledMarkdown: description))
+//        Text(try! AttributedString(styledMarkdown: description))
+        ExpandableTextBox(LocalizedStringKey(description))
       }
     }
     .listRowSeparator(.hidden)

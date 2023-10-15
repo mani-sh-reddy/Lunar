@@ -54,7 +54,8 @@ struct PostsView: View {
           description: isCommunitySpecific ? communityDescription : userDescription,
           actorID: isCommunitySpecific ? communityActorID : userActorID,
           banner: isCommunitySpecific ? communityBanner : userBanner,
-          icon: isCommunitySpecific ? communityIcon : userIcon
+          icon: isCommunitySpecific ? communityIcon : userIcon,
+          isCommunitySpecific: isCommunitySpecific
         )
       }
       ForEach(postsFetcher.posts, id: \.post.id) { post in
