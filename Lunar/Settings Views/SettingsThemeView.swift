@@ -5,10 +5,13 @@
 //  Created by Mani on 27/07/2023.
 //
 
+import Defaults
+import Shiny
 import SwiftUI
 
 struct SettingsThemeView: View {
   @AppStorage("appAppearance") var appAppearance: AppearanceOptions = .system
+  @Default(.iridescenceEnabled) var iridescenceEnabled
 
   var body: some View {
     List {
@@ -23,6 +26,23 @@ struct SettingsThemeView: View {
           AppearanceController.shared.setAppearance()
         }
       }
+      Section {
+        Toggle(isOn: $iridescenceEnabled) {
+          Text("Iridescent Effects")
+        }
+        .tint(.indigo)
+      }
+      .modifier(ConditionalListRowBackgroundModifier(background: iridescenceEnabled ? .iridescent : .defaultBackground))
+//      .listRowBackground(
+//          ZStack {
+//            if iridescenceEnabled {
+//            Color.gray.opacity(0.1)
+//            Rectangle().shiny(.iridescent)
+//            } else {
+//              Color.gray.opacity(0.2)
+//            }
+//        }
+//      )
     }
     .navigationTitle("Theme")
   }

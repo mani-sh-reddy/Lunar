@@ -16,6 +16,7 @@ struct MyUserView: View {
   @Default(.selectedActorID) var selectedActorID
   @Default(.loggedInAccounts) var loggedInAccounts
   @Default(.selectedUser) var selectedUser
+  @Default(.iridescenceEnabled) var iridescenceEnabled
 
   var myAccount: AccountModel {
     if !selectedUser.isEmpty {
@@ -216,7 +217,7 @@ struct MyUserView: View {
         )
       }
     }
-    .listRowBackground(Rectangle().shiny(.iridescent))
+    .modifier(ConditionalListRowBackgroundModifier(background: iridescenceEnabled ? .iridescent : .defaultBackground))
   }
 }
 
@@ -243,7 +244,7 @@ struct AccountScoreView: View {
         Text(title)
           .textCase(.uppercase)
           .font(.caption)
-          .foregroundStyle(.gray)
+          .foregroundStyle(.secondary)
           .padding(.bottom, 1)
         Text(score)
           .font(.title)

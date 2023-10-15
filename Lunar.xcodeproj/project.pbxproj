@@ -138,6 +138,7 @@
 		3CC3E4162ADBFCBA00F7F9A9 /* MyUserPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3E4152ADBFCBA00F7F9A9 /* MyUserPostsView.swift */; };
 		3CC3E4182ADBFFEF00F7F9A9 /* MyUserCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3E4172ADBFFEF00F7F9A9 /* MyUserCommentsView.swift */; };
 		3CC3E41B2ADC054000F7F9A9 /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = 3CC3E41A2ADC054000F7F9A9 /* Shiny */; };
+		3CC3E41D2ADC286E00F7F9A9 /* ConditionalListRowBackgroundModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3E41C2ADC286E00F7F9A9 /* ConditionalListRowBackgroundModifier.swift */; };
 		3CC4200A2AB37BCB00BE1612 /* WhatsNewKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3CC420092AB37BCB00BE1612 /* WhatsNewKit */; };
 		3CC4200D2AB37DDA00BE1612 /* BetterSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = 3CC4200C2AB37DDA00BE1612 /* BetterSafariView */; };
 		3CC734A42A6D58C6007523B5 /* URLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC734A32A6D58C6007523B5 /* URLBuilder.swift */; };
@@ -339,6 +340,7 @@
 		3CC178942A7DAAE300C208D0 /* SearchFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFetcher.swift; sourceTree = "<group>"; };
 		3CC3E4152ADBFCBA00F7F9A9 /* MyUserPostsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUserPostsView.swift; sourceTree = "<group>"; };
 		3CC3E4172ADBFFEF00F7F9A9 /* MyUserCommentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUserCommentsView.swift; sourceTree = "<group>"; };
+		3CC3E41C2ADC286E00F7F9A9 /* ConditionalListRowBackgroundModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionalListRowBackgroundModifier.swift; sourceTree = "<group>"; };
 		3CC734A32A6D58C6007523B5 /* URLBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLBuilder.swift; sourceTree = "<group>"; };
 		3CC734A52A6D591A007523B5 /* URLComponentsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLComponentsExtension.swift; sourceTree = "<group>"; };
 		3CC734A92A6D697C007523B5 /* InsertSorter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertSorter.swift; sourceTree = "<group>"; };
@@ -523,6 +525,7 @@
 			children = (
 				3C54C0952AB8E62C00F1BADE /* InAppSafariModifier.swift */,
 				3C54C0982AB8F40800F1BADE /* ConditionalListStyleModifier.swift */,
+				3CC3E41C2ADC286E00F7F9A9 /* ConditionalListRowBackgroundModifier.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -1071,6 +1074,7 @@
 				3C96EA4E2A783FF100753199 /* LoggedInUsersListView.swift in Sources */,
 				3CCE1D1D2AB6050E00357DFA /* RecursiveComment.swift in Sources */,
 				3C54C0962AB8E62C00F1BADE /* InAppSafariModifier.swift in Sources */,
+				3CC3E41D2ADC286E00F7F9A9 /* ConditionalListRowBackgroundModifier.swift in Sources */,
 				3C0E2DD02AA909BB00095FA5 /* PostsSectionView.swift in Sources */,
 				3CF3F9C22A6EE20C0051E725 /* ViewExtension.swift in Sources */,
 				3CB046FA2ADB2B6E0011BFEC /* Moderates.swift in Sources */,
