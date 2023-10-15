@@ -22,7 +22,18 @@ struct ImagePopoverView: View {
         .ignoresSafeArea()
       LazyImage(url: URL(string: thumbnailURL)) { state in
         if let image = state.image {
-          PhotoDetailView(image: image.asUIImage())
+          ZStack {
+            Rectangle().foregroundStyle(.black)
+              .ignoresSafeArea()
+            PhotoDetailView(image: image.asUIImage())
+            VStack {
+              DismissButtonView(dismisser: $showingPopover).saturation(0).opacity(0.8)
+                .padding(.vertical, 30)
+              Spacer()
+            }
+            .edgesIgnoringSafeArea(.all)
+          }
+
         } else if state.error != nil {
           Color.clear // Indicates an error
         } else {

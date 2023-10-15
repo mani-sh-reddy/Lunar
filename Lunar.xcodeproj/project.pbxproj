@@ -135,6 +135,11 @@
 		3CC3E41B2ADC054000F7F9A9 /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = 3CC3E41A2ADC054000F7F9A9 /* Shiny */; };
 		3CC3E41D2ADC286E00F7F9A9 /* ConditionalListRowBackgroundModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3E41C2ADC286E00F7F9A9 /* ConditionalListRowBackgroundModifier.swift */; };
 		3CC3E41F2ADC36D900F7F9A9 /* DismissButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3E41E2ADC36D900F7F9A9 /* DismissButtonView.swift */; };
+		3CC3E4212ADC3FD600F7F9A9 /* CreatePostPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3E4202ADC3FD600F7F9A9 /* CreatePostPopoverView.swift */; };
+		3CC3E4232ADC4A2600F7F9A9 /* ImageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3E4222ADC4A2600F7F9A9 /* ImageSender.swift */; };
+		3CC3E4252ADC556300F7F9A9 /* ImageUploadResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3E4242ADC556300F7F9A9 /* ImageUploadResponseModel.swift */; };
+		3CC3E4272ADC589B00F7F9A9 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3E4262ADC589B00F7F9A9 /* PhotoPicker.swift */; };
+		3CC3E4292ADC7B7A00F7F9A9 /* LocalImagePopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3E4282ADC7B7A00F7F9A9 /* LocalImagePopoverView.swift */; };
 		3CC4200A2AB37BCB00BE1612 /* WhatsNewKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3CC420092AB37BCB00BE1612 /* WhatsNewKit */; };
 		3CC4200D2AB37DDA00BE1612 /* BetterSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = 3CC4200C2AB37DDA00BE1612 /* BetterSafariView */; };
 		3CC734A42A6D58C6007523B5 /* URLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC734A32A6D58C6007523B5 /* URLBuilder.swift */; };
@@ -331,6 +336,11 @@
 		3CC3E4172ADBFFEF00F7F9A9 /* MyUserCommentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUserCommentsView.swift; sourceTree = "<group>"; };
 		3CC3E41C2ADC286E00F7F9A9 /* ConditionalListRowBackgroundModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionalListRowBackgroundModifier.swift; sourceTree = "<group>"; };
 		3CC3E41E2ADC36D900F7F9A9 /* DismissButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButtonView.swift; sourceTree = "<group>"; };
+		3CC3E4202ADC3FD600F7F9A9 /* CreatePostPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostPopoverView.swift; sourceTree = "<group>"; };
+		3CC3E4222ADC4A2600F7F9A9 /* ImageSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSender.swift; sourceTree = "<group>"; };
+		3CC3E4242ADC556300F7F9A9 /* ImageUploadResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUploadResponseModel.swift; sourceTree = "<group>"; };
+		3CC3E4262ADC589B00F7F9A9 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
+		3CC3E4282ADC7B7A00F7F9A9 /* LocalImagePopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalImagePopoverView.swift; sourceTree = "<group>"; };
 		3CC734A32A6D58C6007523B5 /* URLBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLBuilder.swift; sourceTree = "<group>"; };
 		3CC734A52A6D591A007523B5 /* URLComponentsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLComponentsExtension.swift; sourceTree = "<group>"; };
 		3CC734A92A6D697C007523B5 /* InsertSorter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertSorter.swift; sourceTree = "<group>"; };
@@ -448,6 +458,7 @@
 			isa = PBXGroup;
 			children = (
 				3C4D42A72A8D0FD1003B6F1D /* VoteSender.swift */,
+				3CC3E4222ADC4A2600F7F9A9 /* ImageSender.swift */,
 				3C6BBF712A910F6100312E2B /* SubscriptionActionSender.swift */,
 				3C9E548B2A94A3DC0093DDC7 /* CommentSender.swift */,
 			);
@@ -660,6 +671,7 @@
 			isa = PBXGroup;
 			children = (
 				3C4D42A92A8D12B8003B6F1D /* VoteResponseModel.swift */,
+				3CC3E4242ADC556300F7F9A9 /* ImageUploadResponseModel.swift */,
 				3C6BBF732A91108A00312E2B /* SubscribeResponseModel.swift */,
 				3C9E54992A954C060093DDC7 /* CommentResponseModel.swift */,
 				3C1A3F5C2A73BC9F00898FC6 /* CredentialsModel.swift */,
@@ -740,6 +752,7 @@
 				3C1A3F5A2A73B2B800898FC6 /* KeychainInterface.swift */,
 				3CE0A7932A8551CD008A782A /* EncodeDecodeHelpers.swift */,
 				3C7B7DC82A89485000A02A43 /* DateTimeParser.swift */,
+				3CC3E4262ADC589B00F7F9A9 /* PhotoPicker.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -768,13 +781,13 @@
 		3CCAE1832A6ADDBA0040EE12 /* Post Views */ = {
 			isa = PBXGroup;
 			children = (
+				3CC3E4202ADC3FD600F7F9A9 /* CreatePostPopoverView.swift */,
 				3CA5C40D2A57525500BF8F1B /* PostsView.swift */,
 				3C0E2DCF2AA909BB00095FA5 /* PostsSectionView.swift */,
 				3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */,
 				3CEF4CCF2A69B738002B83C0 /* InPostMetadataView.swift */,
 				3CEF4CCB2A69B70C002B83C0 /* InPostThumbnailView.swift */,
 				3C72E21A2A71735E00C794C6 /* InPostThumbnailImageView.swift */,
-				3CED897A2A71A5CF00BD9086 /* ImagePopoverView.swift */,
 				3CF3B9032A90C0ED001C08B5 /* HeaderView.swift */,
 			);
 			path = "Post Views";
@@ -832,6 +845,8 @@
 		3CE237332AA4D157000F1D20 /* Common Views */ = {
 			isa = PBXGroup;
 			children = (
+				3CC3E4282ADC7B7A00F7F9A9 /* LocalImagePopoverView.swift */,
+				3CED897A2A71A5CF00BD9086 /* ImagePopoverView.swift */,
 				3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */,
 				3C130F762A8C0CB90060B6E4 /* ReactionButton.swift */,
 				3CECCE222AAE1B1B0017A605 /* JWT.swift */,
@@ -1048,6 +1063,7 @@
 				3C9E548A2A940F9B0093DDC7 /* UITextViewExtension.swift in Sources */,
 				3C5ECB262A766E31002BA561 /* DebugAccountsPropertiesView.swift in Sources */,
 				3CB9C73E2AA24A8800FB5A10 /* LocalUser.swift in Sources */,
+				3CC3E4272ADC589B00F7F9A9 /* PhotoPicker.swift in Sources */,
 				3CB046FC2ADB336A0011BFEC /* MyUserObserver.swift in Sources */,
 				3CA5C4102A5753AC00BF8F1B /* PostRowView.swift in Sources */,
 				3C96EA4E2A783FF100753199 /* LoggedInUsersListView.swift in Sources */,
@@ -1089,6 +1105,7 @@
 				3CFE04C72A7FF270007BAD81 /* KbinThreadsFetcher.swift in Sources */,
 				3C96EA502A7843EC00753199 /* AddNewUserButtonView.swift in Sources */,
 				3C96EA3E2A76FC1200753199 /* LoginButtonView.swift in Sources */,
+				3CC3E4212ADC3FD600F7F9A9 /* CreatePostPopoverView.swift in Sources */,
 				3CE237372AA4D188000F1D20 /* SmallNavButton.swift in Sources */,
 				3CEF4CC22A69B38B002B83C0 /* SubscribedCommunitiesView.swift in Sources */,
 				3CF3B8FB2A901847001C08B5 /* CommentSectionView.swift in Sources */,
@@ -1119,6 +1136,7 @@
 				3C62C2552A72F4BC003BAC5B /* SplashScreenView.swift in Sources */,
 				3C6D29652A793878007AFD99 /* DictionaryExtension.swift in Sources */,
 				3CECCE1C2AADBFFA0017A605 /* ColorTesterView.swift in Sources */,
+				3CC3E4232ADC4A2600F7F9A9 /* ImageSender.swift in Sources */,
 				3C808E242A9B6DAD008FA62E /* SettingsDevOptionsView.swift in Sources */,
 				3C42AD1A2A8038300056AFBC /* KbinCommentsView.swift in Sources */,
 				3C6299D12A751A5900BE2A9F /* TextExtension.swift in Sources */,
@@ -1140,6 +1158,7 @@
 				3C42AD1C2A803AE50056AFBC /* KbinCommentsFetcher.swift in Sources */,
 				3CEF4CC82A69B3C3002B83C0 /* GeneralCommunitiesView.swift in Sources */,
 				3C1A3F5B2A73B2B800898FC6 /* KeychainInterface.swift in Sources */,
+				3CC3E4252ADC556300F7F9A9 /* ImageUploadResponseModel.swift in Sources */,
 				3CF3B9042A90C0ED001C08B5 /* HeaderView.swift in Sources */,
 				3CB9C7352AA2461700FB5A10 /* PersonObject.swift in Sources */,
 				3C5ECB242A766D64002BA561 /* DebugLoginPagePropertiesView.swift in Sources */,
@@ -1147,6 +1166,7 @@
 				3C1AF0A82AB3B91300763602 /* WhatsNewInitialInfo.swift in Sources */,
 				3C9E54982A953FB60093DDC7 /* SettingsSplashScreenView.swift in Sources */,
 				3CEF4CD52A69B798002B83C0 /* URLParser.swift in Sources */,
+				3CC3E4292ADC7B7A00F7F9A9 /* LocalImagePopoverView.swift in Sources */,
 				3CB9C7222AA23F7400FB5A10 /* CommunityObject.swift in Sources */,
 				3C9E54882A93F4740093DDC7 /* InPostActionsView.swift in Sources */,
 				3CA92E3B2A543BF000688DEB /* CommunityModel.swift in Sources */,

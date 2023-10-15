@@ -6,6 +6,7 @@
 //
 
 import Defaults
+import SFSafeSymbols
 import SwiftUI
 
 struct PostsView: View {
@@ -15,6 +16,8 @@ struct PostsView: View {
   @Default(.enableQuicklinks) var enableQuicklinks
 
   @StateObject var postsFetcher: PostsFetcher
+
+  @State var showingCreatePostPopover: Bool = false
 
   var title: String?
   var community: CommunityObject?
@@ -30,7 +33,9 @@ struct PostsView: View {
   }
 
   var communityDescription: String? { community?.community.description }
+  var communityID: Int { community?.community.id ?? 0 }
   var communityActorID: String { community?.community.actorID ?? "" }
+  var communityName: String { community?.community.name ?? "" }
   var communityBanner: String? { community?.community.banner }
   var communityIcon: String? { community?.community.icon }
   var userDescription: String? { user?.person.bio }
@@ -86,6 +91,15 @@ struct PostsView: View {
     }
     .toolbar {
       ToolbarItemGroup(placement: .navigationBarTrailing) {
+        if isCommunitySpecific {
+          Button {
+            showingCreatePostPopover = true
+          } label: {
+            Image(systemSymbol: .rectangleStackBadgePlus)
+          }
+        }
+      }
+      ToolbarItemGroup(placement: .navigationBarTrailing) {
         switch enableQuicklinks {
         case false:
           SortTypePickerView(sortType: $forcedPostSort)
@@ -94,9 +108,14 @@ struct PostsView: View {
         }
       }
     }
-//      ToolbarItem(placement: .topBarTrailing) {
-//        SortTypePickerView(sortType: $postSortType)
-//      }
+    .popover(isPresented: $showingCreatePostPopover) {
+      CreatePostPopoverView(
+        showingCreatePostPopover: $showingCreatePostPopover,
+        communityID: communityID,
+        communityName: communityName,
+        communityActorID: communityActorID
+      )
+    }
     .navigationTitle(navigationHeading)
     .navigationBarTitleDisplayMode(.inline)
     .modifier(ConditionalListStyleModifier(listStyle: listStyle))
