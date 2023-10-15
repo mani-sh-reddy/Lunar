@@ -1,5 +1,5 @@
 //
-//  TextBox.swift
+//  UITextViewExtension.swift
 //  Lunar
 //
 //  Created by Mani on 21/08/2023.
@@ -8,20 +8,6 @@
 import Foundation
 import SwiftUI
 import UIKit
-
-// struct TextBox: UIViewRepresentable {
-//
-//  typealias UIViewType = UITextView
-//  var configuration = { (view: UIViewType) in }
-//
-//  func makeUIView(context: UIViewRepresentableContext<Self>) -> UIViewType {
-//    UIViewType()
-//  }
-//
-//  func updateUIView(_ uiView: UIViewType, context: UIViewRepresentableContext<Self>) {
-//    configuration(uiView)
-//  }
-// }
 
 public extension UITextView {
   func setupPlaceholder(text: String) {

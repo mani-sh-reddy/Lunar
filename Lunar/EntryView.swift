@@ -23,7 +23,6 @@ struct EntryView: View {
     title: "Welcome to Lunar",
     features: [
       WhatsNewInitialInfo().intro,
-      WhatsNewInitialInfo().keyFeatures,
       WhatsNewInitialInfo().discover,
       WhatsNewInitialInfo().auth,
       WhatsNewInitialInfo().open,

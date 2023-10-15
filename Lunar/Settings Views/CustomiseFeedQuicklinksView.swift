@@ -7,6 +7,7 @@
 
 import Defaults
 import Foundation
+import SFSafeSymbols
 import SwiftUI
 
 struct CustomiseFeedQuicklinksView: View {
@@ -101,7 +102,7 @@ struct CustomiseFeedQuicklinksView: View {
             ForEach(iconList, id: \.self) { icon in
               ZStack {
                 if icon == quicklinkIcon {
-                  Image(systemName: "circle") /// Cannot use SFSafeSymbols due to @AppStorage
+                  Image(systemSymbol: .circle) /// Cannot use SFSafeSymbols due to @AppStorage
                     .resizable()
                     .frame(width: 60, height: 60)
                     .foregroundStyle(quicklinkColor)

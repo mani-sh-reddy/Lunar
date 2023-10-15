@@ -6,22 +6,11 @@
 //
 
 import Foundation
+import SFSafeSymbols
 import SwiftUI
 import WhatsNewKit
 
 class WhatsNewInitialInfo {
-//  let template = WhatsNew.Feature(
-//    image: .init(
-//      image: Image(systemSymbol: .sparkle)
-//    ),
-//    title: "New Design",
-//    subtitle: .init(
-//      try! AttributedString(
-//        markdown: "An awesome new _Design_"
-//      )
-//    )
-//  )
-
   let intro = WhatsNew.Feature(
     image: .init(
       systemName: "moonphase.waxing.crescent.inverse",
@@ -35,31 +24,22 @@ class WhatsNewInitialInfo {
     )
   )
 
-  let keyFeatures = WhatsNew.Feature(
-    image: .init(
-      systemName: "star.fill",
-      foregroundColor: .orange
-    ),
-    title: "Here are some of Lunar's key features:",
-    subtitle: ""
-  )
-
-  let auth = WhatsNew.Feature(
-    image: .init(
-      systemName: "lock.fill",
-      foregroundColor: .red
-    ),
-    title: "Secure Authentication",
-    subtitle: "Login to the Fediverse securely using Apple Keychain."
-  )
-
   let discover = WhatsNew.Feature(
     image: .init(
       systemName: "rectangle.and.text.magnifyingglass",
       foregroundColor: .blue
     ),
-    title: "Community Discovery",
+    title: "Discover Communities",
     subtitle: "Discover interesting and trending communities on the Explore Communities page."
+  )
+
+  let auth = WhatsNew.Feature(
+    image: .init(
+      systemName: "lock.fill",
+      foregroundColor: .gray
+    ),
+    title: "Securely Authenticate",
+    subtitle: "Login to the Fediverse securely using Apple Keychain."
   )
 
   let open = WhatsNew.Feature(
@@ -78,9 +58,9 @@ class WhatsNewInitialInfo {
   let updates = WhatsNew.Feature(
     image: .init(
       systemName: "app.badge.fill",
-      foregroundColor: .brown
+      foregroundColor: .red
     ),
-    title: "Regular Updates",
+    title: "Updated Regularly",
     subtitle: .init(
       try! AttributedString(
         markdown: "Lunar is still in early development but I'm committed to improving the app and adding new features regularly."
@@ -90,7 +70,7 @@ class WhatsNewInitialInfo {
   let contribute = WhatsNew.Feature(
     image: .init(
       systemName: "pencil.line",
-      foregroundColor: .purple
+      foregroundColor: .primary
     ),
     title: "Contribute",
     subtitle: .init(
