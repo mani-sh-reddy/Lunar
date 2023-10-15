@@ -74,6 +74,7 @@ struct CommentPopoverView: View {
           }
         }
       }
+      DismissButtonView(dismisser: $showingCommentPopover)
     }
     .listStyle(.insetGrouped)
   }

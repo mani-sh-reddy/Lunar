@@ -95,6 +95,8 @@ struct LoginView: View {
         )
       }
 
+      DismissButtonView(dismisser: $showingPopover)
+
       DebugLoginPagePropertiesView(
         isTryingLogin: isTryingLogin,
         loggedIn: loggedIn,

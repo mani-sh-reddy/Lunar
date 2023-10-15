@@ -134,6 +134,7 @@
 		3CC3E4182ADBFFEF00F7F9A9 /* MyUserCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3E4172ADBFFEF00F7F9A9 /* MyUserCommentsView.swift */; };
 		3CC3E41B2ADC054000F7F9A9 /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = 3CC3E41A2ADC054000F7F9A9 /* Shiny */; };
 		3CC3E41D2ADC286E00F7F9A9 /* ConditionalListRowBackgroundModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3E41C2ADC286E00F7F9A9 /* ConditionalListRowBackgroundModifier.swift */; };
+		3CC3E41F2ADC36D900F7F9A9 /* DismissButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3E41E2ADC36D900F7F9A9 /* DismissButtonView.swift */; };
 		3CC4200A2AB37BCB00BE1612 /* WhatsNewKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3CC420092AB37BCB00BE1612 /* WhatsNewKit */; };
 		3CC4200D2AB37DDA00BE1612 /* BetterSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = 3CC4200C2AB37DDA00BE1612 /* BetterSafariView */; };
 		3CC734A42A6D58C6007523B5 /* URLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC734A32A6D58C6007523B5 /* URLBuilder.swift */; };
@@ -329,6 +330,7 @@
 		3CC3E4152ADBFCBA00F7F9A9 /* MyUserPostsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUserPostsView.swift; sourceTree = "<group>"; };
 		3CC3E4172ADBFFEF00F7F9A9 /* MyUserCommentsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUserCommentsView.swift; sourceTree = "<group>"; };
 		3CC3E41C2ADC286E00F7F9A9 /* ConditionalListRowBackgroundModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionalListRowBackgroundModifier.swift; sourceTree = "<group>"; };
+		3CC3E41E2ADC36D900F7F9A9 /* DismissButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButtonView.swift; sourceTree = "<group>"; };
 		3CC734A32A6D58C6007523B5 /* URLBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLBuilder.swift; sourceTree = "<group>"; };
 		3CC734A52A6D591A007523B5 /* URLComponentsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLComponentsExtension.swift; sourceTree = "<group>"; };
 		3CC734A92A6D697C007523B5 /* InsertSorter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertSorter.swift; sourceTree = "<group>"; };
@@ -837,6 +839,7 @@
 				3CE237342AA4D171000F1D20 /* LargeNavButton.swift */,
 				3CE237362AA4D188000F1D20 /* SmallNavButton.swift */,
 				3C54C09A2ABA1CCA00F1BADE /* SortTypePickerView.swift */,
+				3CC3E41E2ADC36D900F7F9A9 /* DismissButtonView.swift */,
 			);
 			path = "Common Views";
 			sourceTree = "<group>";
@@ -1149,6 +1152,7 @@
 				3CA92E3B2A543BF000688DEB /* CommunityModel.swift in Sources */,
 				3CEACBC72A88020700260A01 /* PostsFetcher.swift in Sources */,
 				3CF3B8F32A8FF7D4001C08B5 /* KbinSelectorView.swift in Sources */,
+				3CC3E41F2ADC36D900F7F9A9 /* DismissButtonView.swift in Sources */,
 				3C1AF0AE2AB4CAE200763602 /* MockPostObject.swift in Sources */,
 				3CE237322AA48E7C000F1D20 /* WelcomeScreenInfo.swift in Sources */,
 				3CA92E3A2A543BF000688DEB /* ContentView.swift in Sources */,

@@ -185,17 +185,7 @@ struct CustomiseFeedQuicklinksView: View {
       .alert(addQuicklinkErrorMessage, isPresented: $showingAddQuicklinkErrorAlert) {
         Button("OK", role: .cancel) {}
       }
-      Section {
-        HStack {
-          Spacer()
-          SmallNavButton(systemSymbol: .arrowDownToLine, text: "Dismiss", color: .red, symbolLocation: .left)
-            .onTapGesture {
-              showingAddQuicklinkPopover = false
-            }
-          Spacer()
-        }
-      }
-      .listRowBackground(Color.clear)
+      DismissButtonView(dismisser: $showingAddQuicklinkPopover)
     }
   }
 
