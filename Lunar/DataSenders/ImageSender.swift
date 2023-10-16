@@ -13,7 +13,7 @@ import SwiftUI
 
 class ImageSender: ObservableObject {
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
-  @Default(.selectedActorID) var selectedActorID
+  @Default(.activeAccount) var activeAccount
   @Default(.appBundleID) var appBundleID
 
   private var jwt: String = ""
@@ -25,7 +25,7 @@ class ImageSender: ObservableObject {
     image: UIImage?
   ) {
     imageData = image?.pngData() ?? Data() // Convert UIImage to Data
-    jwt = getJWTFromKeychain(actorID: selectedActorID) ?? ""
+    jwt = getJWTFromKeychain(actorID: activeAccount.actorID) ?? ""
   }
 
   fileprivate func multipartProcessor(_ multipartFormData: MultipartFormData) {
@@ -55,9 +55,10 @@ class ImageSender: ObservableObject {
   }
 
   func uploadImage(completion: @escaping (String, String?, String?) -> Void) {
-    let endpoint = "https://\(URLParser.extractDomain(from: selectedActorID))/api/v3/pictrs/image"
+    let endpoint = "https://lemmy.world/api/v3/pictrs/image"
+//    let endpoint = "https://\(URLParser.extractDomain(from: selectedActorID))/api/v3/pictrs/image"
     let headers: HTTPHeaders = [
-      "Accept": "application/json", // Removed Content-type
+      "Accept": "*/*", // Removed Content-type
     ]
 
     AF.upload(
@@ -68,7 +69,7 @@ class ImageSender: ObservableObject {
             self.imageData,
             withName: "file",
             fileName: "\(Date().timeIntervalSince1970).png",
-            mimeType: "image/png"
+            mimeType: "multipart/form-data"
           )
         }
       },
@@ -77,6 +78,7 @@ class ImageSender: ObservableObject {
       headers: headers
     )
     .responseDecodable(of: ImageUploadResponseModel.self) { response in
+      let _ = print("RESPONSE: \(response)")
       switch response.result {
       case let .success(result):
 

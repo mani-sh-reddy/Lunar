@@ -19,10 +19,6 @@ import SwiftUI
  */
 
 class LoginHelper: ObservableObject {
-  @Default(.selectedName) var selectedName
-  @Default(.selectedActorID) var selectedEmail
-  @Default(.selectedAvatarURL) var selectedAvatarURL
-  @Default(.selectedActorID) var selectedActorID
   @Default(.appBundleID) var appBundleID
   @Default(.selectedInstance) var selectedInstance
 

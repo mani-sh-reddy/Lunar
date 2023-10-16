@@ -15,12 +15,6 @@ enum FocusedField {
 }
 
 struct LoginView: View {
-  @Default(.selectedName) var selectedName
-  @Default(.selectedActorID) var selectedEmail
-  @Default(.selectedAvatarURL) var selectedAvatarURL
-  @Default(.selectedActorID) var selectedActorID
-  @Default(.selectedActorID) var appBundleID
-
   @Environment(\.dismiss) var dismiss
 
   @State private var isTryingLogin: Bool = false

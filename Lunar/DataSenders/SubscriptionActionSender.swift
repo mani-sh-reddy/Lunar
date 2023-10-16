@@ -12,7 +12,7 @@ import Pulse
 import SwiftUI
 
 class SubscriptionActionSender: ObservableObject {
-  @Default(.selectedActorID) var selectedActorID
+  @Default(.activeAccount) var activeAccount
   @Default(.appBundleID) var appBundleID
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
 
@@ -40,7 +40,7 @@ class SubscriptionActionSender: ObservableObject {
         "auth": jwt,
       ] as [String: Any]
 
-    let endpoint = "https://\(URLParser.extractDomain(from: selectedActorID))/api/v3/community/follow"
+    let endpoint = "https://\(URLParser.extractDomain(from: activeAccount.actorID))/api/v3/community/follow"
 
     AF.request(
       endpoint,

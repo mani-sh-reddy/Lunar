@@ -11,7 +11,7 @@ import SFSafeSymbols
 import SwiftUI
 
 struct PostRowView: View {
-  @Default(.selectedActorID) var selectedActorID
+  @Default(.activeAccount) var activeAccount
   @Default(.subscribedCommunityIDs) var subscribedCommunityIDs
   @Default(.postsViewStyle) var postsViewStyle
 
@@ -338,7 +338,7 @@ struct PostRowView: View {
     let notificationHaptics = UINotificationFeedbackGenerator()
     SubscriptionActionSender(
       communityID: post.community.id,
-      asActorID: selectedActorID,
+      asActorID: activeAccount.actorID,
       subscribeAction: subscribeAction
     ).fetchSubscribeInfo { _, subscribeResponse, _ in
       if subscribeResponse != nil {
@@ -365,7 +365,7 @@ struct PostRowView: View {
 
   func sendReaction(voteType: Int, postID: Int) {
     VoteSender(
-      asActorID: selectedActorID,
+      asActorID: activeAccount.actorID,
       voteType: voteType,
       postID: postID,
       commentID: 0,

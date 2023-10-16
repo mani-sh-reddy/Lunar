@@ -13,8 +13,8 @@ import Pulse
 import SwiftUI
 
 @MainActor class PersonFetcher: ObservableObject {
-  @Default(.selectedActorID) var selectedActorID
   @Default(.appBundleID) var appBundleID
+  @Default(.activeAccount) var activeAccount
 //  @Default(.postSort) var postSort
 //  @Default(.postType) var postType
 
@@ -163,7 +163,7 @@ import SwiftUI
 
   func getJWTFromKeychain() -> String? {
     if let keychainObject = KeychainHelper.standard.read(
-      service: appBundleID, account: selectedActorID
+      service: appBundleID, account: activeAccount.actorID
     ) {
       let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
       return jwt.replacingOccurrences(of: "\"", with: "")

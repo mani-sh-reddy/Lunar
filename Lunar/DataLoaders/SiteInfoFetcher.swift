@@ -12,13 +12,9 @@ import Pulse
 import SwiftUI
 
 class SiteInfoFetcher: ObservableObject {
+  @Default(.activeAccount) var activeAccount
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
   @Default(.loggedInAccounts) var loggedInAccounts
-  @Default(.selectedName) var selectedName
-  @Default(.selectedEmail) var selectedEmail
-  @Default(.selectedAvatarURL) var selectedAvatarURL
-  @Default(.selectedActorID) var selectedActorID
-  @Default(.selectedUser) var selectedUser
 
   private var endpoint: URLComponents
   private var endpointRedacted: URLComponents
@@ -94,11 +90,7 @@ class SiteInfoFetcher: ObservableObject {
 
           if !foundMatch {
             self.loggedInAccounts.append(self.loggedInAccount)
-            self.selectedUser = [self.loggedInAccount]
-            self.selectedActorID = actorID
-            self.selectedAvatarURL = avatarURL ?? ""
-            self.selectedEmail = email ?? ""
-            self.selectedName = username
+            self.activeAccount = self.loggedInAccount
 
             completion(username, email, actorID, response)
           }

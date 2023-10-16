@@ -10,7 +10,7 @@ import SFSafeSymbols
 import SwiftUI
 
 struct CommentMetadataView: View {
-  @Default(.selectedActorID) var selectedActorID
+  @Default(.activeAccount) var activeAccount
 
   @EnvironmentObject var commentsFetcher: CommentsFetcher
   @State var commentUpvoted: Bool = false
@@ -101,7 +101,7 @@ struct CommentMetadataView: View {
 
   func sendReaction(voteType: Int) {
     VoteSender(
-      asActorID: selectedActorID,
+      asActorID: activeAccount.actorID,
       voteType: voteType,
       postID: 0,
       commentID: comment.comment.id,

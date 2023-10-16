@@ -13,7 +13,6 @@ import Pulse
 import RealmSwift
 
 @MainActor class OfflineDownloader: ObservableObject {
-  @Default(.selectedActorID) var selectedActorID
   @Default(.appBundleID) var appBundleID
   @Default(.postSort) var postSort
   @Default(.postType) var postType

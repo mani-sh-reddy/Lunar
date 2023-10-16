@@ -10,14 +10,10 @@ import Foundation
 import SwiftUI
 
 struct LogoutAllUsersButtonView: View {
+  @Default(.activeAccount) var activeAccount
   @Default(.loggedInAccounts) var loggedInAccounts
-  @Default(.selectedName) var selectedName
-  @Default(.selectedEmail) var selectedEmail
-  @Default(.selectedAvatarURL) var selectedAvatarURL
-  @Default(.selectedActorID) var selectedActorID
   @Default(.debugModeEnabled) var debugModeEnabled
   @Default(.appBundleID) var appBundleID
-  @Default(.selectedUser) var selectedUser
 
   @Binding var showingPopover: Bool
   @Binding var isPresentingConfirm: Bool
@@ -81,11 +77,7 @@ struct LogoutAllUsersButtonView: View {
             userID: "", name: "", email: "", avatarURL: "", actorID: ""
           )
           loggedInAccounts.removeAll()
-          selectedName = ""
-          selectedEmail = ""
-          selectedAvatarURL = ""
-          selectedActorID = ""
-          selectedUser = []
+          activeAccount = AccountModel()
 
           isLoadingDeleteButton = true
           haptic.notificationOccurred(.success)

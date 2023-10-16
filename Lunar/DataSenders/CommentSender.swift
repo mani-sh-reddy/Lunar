@@ -12,7 +12,7 @@ import Pulse
 import SwiftUI
 
 class CommentSender: ObservableObject {
-  @Default(.selectedActorID) var selectedActorID
+  @Default(.activeAccount) var activeAccount
   @Default(.appBundleID) var appBundleID
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
 
@@ -31,7 +31,7 @@ class CommentSender: ObservableObject {
     self.content = content
     self.postID = postID
     self.parentID = parentID
-    jwt = getJWTFromKeychain(actorID: selectedActorID) ?? ""
+    jwt = getJWTFromKeychain(actorID: activeAccount.actorID) ?? ""
   }
 
   func fetchCommentResponse(completion: @escaping (String?) -> Void) {
@@ -43,7 +43,7 @@ class CommentSender: ObservableObject {
         "auth": jwt,
       ] as [String: Any]
 
-    let endpoint = "https://\(URLParser.extractDomain(from: selectedActorID))/api/v3/comment"
+    let endpoint = "https://\(URLParser.extractDomain(from: activeAccount.actorID))/api/v3/comment"
 
     AF.request(
       endpoint,

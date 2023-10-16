@@ -12,8 +12,8 @@ import Pulse
 import SwiftUI
 
 class VoteSender: ObservableObject {
+  @Default(.activeAccount) var activeAccount
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
-  @Default(.selectedActorID) var selectedActorID
   @Default(.appBundleID) var appBundleID
 
   private var voteType: Int
@@ -47,7 +47,7 @@ class VoteSender: ObservableObject {
         "auth": jwt,
       ] as [String: Any]
 
-    let endpoint = "https://\(URLParser.extractDomain(from: selectedActorID))/api/v3/\(elementType)/like"
+    let endpoint = "https://\(URLParser.extractDomain(from: activeAccount.actorID))/api/v3/\(elementType)/like"
 
     AF.request(
       endpoint,

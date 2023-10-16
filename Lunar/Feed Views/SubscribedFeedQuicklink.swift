@@ -10,12 +10,12 @@ import Foundation
 import SwiftUI
 
 struct SubscribedFeedQuicklink: View {
-  @Default(.selectedActorID) var selectedActorID
+  @Default(.activeAccount) var activeAccount
 
   var subscribedPostsQuicklink: Quicklink = DefaultQuicklinks().getSubscribedQuicklink()
 
   var body: some View {
-    if selectedActorID.isEmpty {
+    if activeAccount.actorID.isEmpty {
       HStack {
         Image(systemSymbol: .lockCircleFill)
           .resizable()

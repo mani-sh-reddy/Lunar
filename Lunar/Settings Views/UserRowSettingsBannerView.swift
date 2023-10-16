@@ -12,17 +12,14 @@ import NukeUI
 import SwiftUI
 
 struct UserRowSettingsBannerView: View {
-  @Default(.selectedName) var selectedName
-  @Default(.selectedAvatarURL) var selectedAvatarURL
-  @Default(.selectedActorID) var selectedActorID
-  @Default(.selectedEmail) var selectedEmail
+  @Default(.activeAccount) var activeAccount
 
   @Binding var selectedAccount: AccountModel?
 
   var body: some View {
     HStack {
-      if !selectedAvatarURL.isEmpty {
-        LazyImage(url: URL(string: selectedAvatarURL)) { state in
+      if !activeAccount.avatarURL.isEmpty {
+        LazyImage(url: URL(string: activeAccount.avatarURL)) { state in
           if let image = state.image {
             image
               .resizable()
@@ -50,12 +47,12 @@ struct UserRowSettingsBannerView: View {
           .symbolRenderingMode(.hierarchical)
       }
 
-      if selectedActorID.isEmpty {
+      if activeAccount.actorID.isEmpty {
         Text("Sign In").font(.title2).bold()
       } else {
         VStack(alignment: .leading, spacing: 3) {
-          Text(selectedName).font(.title2).bold()
-          Text("@\(URLParser.extractDomain(from: selectedActorID))")
+          Text(activeAccount.name).font(.title2).bold()
+          Text("@\(URLParser.extractDomain(from: activeAccount.actorID))")
             .font(.caption)
             .foregroundStyle(.secondary)
         }

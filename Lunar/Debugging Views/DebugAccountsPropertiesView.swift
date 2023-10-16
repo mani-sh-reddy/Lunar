@@ -11,7 +11,7 @@ import SwiftUI
 
 struct DebugAccountsPropertiesView: View {
   @Default(.debugModeEnabled) var debugModeEnabled
-  @Default(.selectedActorID) var selectedActorID
+  @Default(.activeAccount) var activeAccount
   @Default(.loggedInAccounts) var loggedInAccounts
   @Default(.appBundleID) var appBundleID
 
@@ -71,7 +71,7 @@ struct DebugAccountsPropertiesView: View {
         VStack(alignment: .leading) {
           VStack(alignment: .leading) {
             Text("@AppStorage selectedActorID:").bold()
-            Text("\(selectedActorID)")
+            Text("\(activeAccount.actorID)")
           }.padding(.vertical, 10)
           VStack(alignment: .leading) {
             Text("@AppStorage loggedInUsersList:").bold()

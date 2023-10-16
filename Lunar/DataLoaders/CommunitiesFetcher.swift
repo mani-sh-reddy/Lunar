@@ -15,7 +15,7 @@ import SwiftUI
 @MainActor class CommunitiesFetcher: ObservableObject {
   @Default(.communitiesSort) var communitiesSort
   @Default(.communitiesType) var communitiesType
-  @Default(.selectedActorID) var selectedActorID
+  @Default(.activeAccount) var activeAccount
   @Default(.appBundleID) var appBundleID
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
 
@@ -72,7 +72,7 @@ import SwiftUI
     self.sortParameter = sortParameter ?? communitiesSort
     self.typeParameter = typeParameter ?? communitiesType
     self.limitParameter = limitParameter
-    jwt = getJWTFromKeychain(actorID: selectedActorID) ?? ""
+    jwt = getJWTFromKeychain(actorID: activeAccount.actorID) ?? ""
     loadContent()
   }
 

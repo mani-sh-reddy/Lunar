@@ -9,9 +9,9 @@ import Defaults
 import SwiftUI
 
 struct SubscribedCommunitiesSectionView: View {
+  @Default(.activeAccount) var activeAccount
   @Default(.debugModeEnabled) var debugModeEnabled
   @Default(.selectedInstance) var selectedInstance
-  @Default(.selectedActorID) var selectedActorID
   @Default(.subscribedCommunityIDs) var subscribedCommunityIDs
 
   @StateObject var communitiesFetcher: CommunitiesFetcher
@@ -38,7 +38,7 @@ struct SubscribedCommunitiesSectionView: View {
         communitiesFetcher.loadContent()
       }
     }
-    .onChange(of: selectedActorID) { _ in
+    .onChange(of: activeAccount) { _ in
       Task {
         try await Task.sleep(nanoseconds: UInt64(2 * Double(NSEC_PER_SEC)))
         communitiesFetcher.loadContent(isRefreshing: true)

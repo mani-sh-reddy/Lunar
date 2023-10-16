@@ -13,33 +13,27 @@ import Shiny
 import SwiftUI
 
 struct MyUserView: View {
-  @Default(.selectedActorID) var selectedActorID
+  @Default(.activeAccount) var activeAccount
   @Default(.loggedInAccounts) var loggedInAccounts
-  @Default(.selectedUser) var selectedUser
   @Default(.iridescenceEnabled) var iridescenceEnabled
 
-  var myAccount: AccountModel {
-    if !selectedUser.isEmpty {
-//      print(selectedUser)
-      return selectedUser[0]
-    }
-    return AccountModel(
-      userID: "",
-      name: "",
-      email: "",
-      avatarURL: "",
-      actorID: ""
-    )
-  }
+//  var myAccount: AccountModel {
+//    if !activeAccount.userID.isEmpty {
+  ////      print(selectedUser)
+//      return activeAccount
+//    } else {
+//      return AccountModel()
+//    }
+//  }
 
-  var avatar: String { myAccount.avatarURL }
-  var actorID: String { myAccount.actorID }
-  var userID: Int { Int(myAccount.userID) ?? 0 }
-  var name: String { myAccount.name }
-  var postScore: String { String(myAccount.postScore) }
-  var commentScore: String { String(myAccount.commentScore) }
-  var postCount: String { String(myAccount.postCount) }
-  var commentCount: String { String(myAccount.commentCount) }
+  var avatar: String { activeAccount.avatarURL }
+  var actorID: String { activeAccount.actorID }
+  var userID: Int { Int(activeAccount.userID) ?? 0 }
+  var name: String { activeAccount.name }
+  var postScore: String { String(activeAccount.postScore) }
+  var commentScore: String { String(activeAccount.commentScore) }
+  var postCount: String { String(activeAccount.postCount) }
+  var commentCount: String { String(activeAccount.commentCount) }
 
   var userInstance: String {
     if !actorID.isEmpty {
@@ -59,7 +53,7 @@ struct MyUserView: View {
       }
       .listStyle(.insetGrouped)
       .onAppear {
-        if let jwt = JWT().getJWTFromKeychain(actorID: selectedActorID) {
+        if let jwt = JWT().getJWTFromKeychain(actorID: activeAccount.actorID) {
           SiteInfoFetcher(jwt: jwt).fetchSiteInfo { _, _, _, _ in }
         }
       }

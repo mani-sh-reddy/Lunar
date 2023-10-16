@@ -12,13 +12,13 @@ struct FeedView: View {
   @Default(.selectedInstance) var selectedInstance
   @Default(.kbinActive) var kbinActive
   @Default(.kbinHostURL) var kbinHostURL
-  @Default(.selectedActorID) var selectedActorID
+  @Default(.activeAccount) var activeAccount
   @Default(.quicklinks) var quicklinks
   @Default(.enableQuicklinks) var enableQuicklinks
 
   var subscribedCommunityListHeading: String {
-    if !selectedActorID.isEmpty {
-      "\(URLParser.extractUsername(from: selectedActorID))'s Subscribed Communities"
+    if !activeAccount.actorID.isEmpty {
+      "\(URLParser.extractUsername(from: activeAccount.actorID))'s Subscribed Communities"
     } else {
       "Subscribed Communities"
     }

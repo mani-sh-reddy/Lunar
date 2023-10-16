@@ -44,21 +44,17 @@ extension Defaults.Keys {
   static let selectedSearchSortType = Key<String>("selectedSearchSortType", default: "Active")
   static let enableQuicklinks = Key<Bool>("enableQuicklinks", default: true)
 
+  // MARK: - Account
+
+  static let loggedInAccounts = Key<[AccountModel]>("loggedInAccounts", default: [])
+  static let activeAccount = Key<AccountModel>("selectedUser", default: AccountModel())
+
   // MARK: - Other
 
   static let debugModeEnabled = Key<Bool>("debugModeEnabled", default: false)
   static let networkInspectorEnabled = Key<Bool>("networkInspectorEnabled", default: false)
   static let quicklinkColor = Key<Color>("quicklinkColor", default: .primary)
   static let lastDownloadedPage = Key<Int>("lastDownloadedPage", default: 1)
-
-  // MARK: - User
-
-  static let loggedInAccounts = Key<[AccountModel]>("loggedInAccounts", default: [])
-  static let selectedName = Key<String>("selectedName", default: "")
-  static let selectedEmail = Key<String>("selectedEmail", default: "")
-  static let selectedAvatarURL = Key<String>("selectedAvatarURL", default: "")
-  static let selectedActorID = Key<String>("selectedActorID", default: "")
-  static let selectedUser = Key<[AccountModel]>("selectedUser", default: [])
   static let subscribedCommunityIDs = Key<[Int]>("subscribedCommunityIDs", default: [])
   static let savedColors = Key<[customColor]>("savedColors", default: [])
   static let quicklinks = Key<[Quicklink]>("quicklinks", default: DefaultQuicklinks().getDefaultQuicklinks())

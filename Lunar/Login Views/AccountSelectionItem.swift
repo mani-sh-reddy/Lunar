@@ -10,13 +10,7 @@ import Foundation
 import SwiftUI
 
 struct AccountSelectionItem: View {
-  @Default(.selectedName) var selectedName
-  @Default(.selectedActorID) var selectedEmail
-  @Default(.selectedAvatarURL) var selectedAvatarURL
-  @Default(.selectedActorID) var selectedActorID
-  @Default(.selectedUser) var selectedUser
-
-  @Binding var selectedAccount: AccountModel?
+  @Default(.activeAccount) var activeAccount
 
   let account: AccountModel
 
@@ -31,9 +25,7 @@ struct AccountSelectionItem: View {
           .foregroundStyle(.secondary)
       }
       Spacer()
-      let _ = print(
-        "\(account.actorID) == \(selectedActorID) : \(account.actorID == selectedActorID)")
-      Image(systemSymbol: account.actorID == selectedActorID ? .checkmarkCircleFill : .circle)
+      Image(systemSymbol: account.actorID == activeAccount.actorID ? .checkmarkCircleFill : .circle)
         .font(.title2)
         .symbolRenderingMode(.hierarchical)
         .foregroundStyle(.indigo)
@@ -42,14 +34,7 @@ struct AccountSelectionItem: View {
 
     .onTapGesture {
       haptics.impactOccurred()
-      selectedAccount = account
-      selectedActorID = account.actorID
-      selectedName = account.name
-      selectedEmail = account.email
-      selectedAvatarURL = account.avatarURL
-      selectedUser = [account]
-      /// select the correct
-      print("\(String(describing: selectedAccount?.name)) = \(account.name)")
+      activeAccount = account
     }
   }
 }
