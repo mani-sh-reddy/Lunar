@@ -18,7 +18,3 @@ struct CredentialsRequestModel: Encodable {
   let password: String
   let totp_2fa_token: String?
 }
-
-struct ErrorResponseModel: Codable {
-  let error: String
-}

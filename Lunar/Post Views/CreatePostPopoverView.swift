@@ -5,35 +5,50 @@
 //  Created by Mani on 21/08/2023.
 //
 
-import NukeUI
 import SFSafeSymbols
 import SwiftUI
 
 struct CreatePostPopoverView: View {
   @Binding var showingCreatePostPopover: Bool
-  @State private var bodyString: String = ""
-  @State private var bodyStringUnsent: String = ""
+  @State private var postBody: String = ""
+  @State private var userInputBody: String = ""
 
-  @State var userInputURL: String = ""
+  @State var postName: String = ""
   @State var userInputTitle: String = ""
 
-  @State private var photoPickerIsPresented = false
+  @State var postURL: String = ""
+  @State var userInputURL: String = ""
+
+  @State var photoPickerIsPresented = false
   @State var pickerResult: [UIImage] = []
-  @State private var showingImagePopover: Bool = false
-  @State private var showingImageUploadResult: Bool = false
+  @State var showingImagePopover: Bool = false
+  @State var showingImageUploadResult: Bool = false
 
-  @State private var responseMessage: String = ""
-  @State private var fileToken: String = ""
-  @State private var deleteToken: String = ""
+  @State var responseMessage: String = ""
+  @State var fileToken: String = ""
+  @State var deleteToken: String = ""
 
-  @State private var imageIsUploading: Bool = false
+  @State var siteMetadata = SiteMetadataObject(
+    title: nil,
+    description: nil,
+    image: nil
+  )
 
-  let haptics = UIImpactFeedbackGenerator(style: .rigid)
-  let notificationHaptics = UINotificationFeedbackGenerator()
+  @State var expandSiteMetadata: Bool = false
+
+  @State var imageIsUploading: Bool = false
+
+  @State var urlProtocolPrependTextColor: Color = .gray
 
   var communityID: Int
   var communityName: String
   var communityActorID: String
+
+  var submittable: Bool {
+    !userInputTitle.isEmpty && communityID != 0
+  }
+
+  let notificationHaptics = UINotificationFeedbackGenerator()
 
   var body: some View {
     List {
@@ -69,108 +84,47 @@ struct CreatePostPopoverView: View {
       // MARK: - URL
 
       Section {
-        TextField(text: $userInputURL) {
-          Text("optional").italic()
-        }
-        .keyboardType(.URL)
-        .font(.body)
+        URLInputView(siteMetadata: $siteMetadata, userInputURL: $userInputURL)
       } header: {
         Text("URL:")
+          .textCase(.none)
+      } footer: {
+        URLInputFooterView(
+          siteMetadata: $siteMetadata,
+          expandSiteMetadata: $expandSiteMetadata
+        )
+      }
+      .onDebouncedChange(of: $userInputURL, debounceFor: 1) { newValue in
+        URLInputDebounceLogic(siteMetadata: $siteMetadata, userInputURL: $userInputURL, newValue: newValue).run()
+      }
+
+      // MARK: - Text Field
+
+      Section {
+        TextEditor(text: $userInputBody)
+          .background(Color.clear)
+          .font(.body)
+          .frame(height: 150)
+      } header: {
+        Text("Body:")
           .textCase(.none)
       }
 
       // MARK: - Image
 
       Section {
-        HStack {
-          Button {
-            photoPickerIsPresented = true
-          } label: {
-            if !pickerResult.isEmpty {
-              Label {
-                Text("Select New Image")
-                  .padding(.horizontal, 5)
-              } icon: {
-                Image(uiImage: pickerResult[0])
-                  .resizable()
-                  .aspectRatio(contentMode: .fill)
-                  .frame(width: 40, height: 40)
-                  .padding(.horizontal, 10)
-                  .clipShape(Circle())
-                  .highPriorityGesture(
-                    TapGesture().onEnded {
-                      showingImagePopover.toggle()
-                    }
-                  )
-              }
-            } else {
-              Label {
-                Text("Select Image")
-                  .padding(.horizontal, 5)
-              } icon: {
-                Image(systemSymbol: .photoCircleFill)
-                  .symbolRenderingMode(.hierarchical)
-                  .resizable()
-                  .frame(width: 40, height: 40)
-                  .padding(.horizontal, 10)
-              }
-            }
-          }
-          Spacer()
-          if imageIsUploading {
-            Image(systemSymbol: .ellipsis)
-              .font(.title2)
-              .foregroundStyle(.gray)
-          } else {
-            Text("Upload")
-              .font(.caption)
-              .foregroundStyle(.white)
-              .padding(5)
-              .padding(.horizontal, 4)
-              .background(!pickerResult.isEmpty ? Color.blue : Color.secondary.opacity(0.5))
-              .clipShape(Capsule())
-              .highPriorityGesture(
-                TapGesture().onEnded {
-                  guard !pickerResult.isEmpty else { return }
-                  haptics.impactOccurred(intensity: 0.5)
-                  withAnimation(.bouncy) {
-                    imageIsUploading = true
-                  }
-                  if !pickerResult.isEmpty {
-                    ImageSender(image: pickerResult[0]).uploadImage { responseMessage, fileToken, deleteToken in
-                      imageIsUploading = false
-                      self.responseMessage = responseMessage
-                      self.fileToken = fileToken ?? ""
-                      self.deleteToken = deleteToken ?? ""
-                      showingImageUploadResult = true
-                      if responseMessage == "ok" {
-                        notificationHaptics.notificationOccurred(.success)
-                      } else {
-                        notificationHaptics.notificationOccurred(.error)
-                      }
-                      print("responseMessage: \(responseMessage)")
-                      print("fileToken: \(String(describing: fileToken))")
-                      print("deleteToken: \(String(describing: deleteToken))")
-                    }
-                  }
-                }
-              )
-          }
-        }
+        ImageUploaderView(
+          photoPickerIsPresented: $photoPickerIsPresented,
+          pickerResult: $pickerResult,
+          showingImagePopover: $showingImagePopover,
+          showingImageUploadResult: $showingImageUploadResult,
+          imageIsUploading: $imageIsUploading,
+          responseMessage: $responseMessage,
+          fileToken: $fileToken,
+          deleteToken: $deleteToken
+        )
       } header: {
-        Text("Image:")
-          .textCase(.none)
-      }
-
-      // MARK: - Text Field
-
-      Section {
-        TextEditor(text: $bodyStringUnsent)
-          .background(Color.clear)
-          .font(.body)
-          .frame(height: 150)
-      } header: {
-        Text("Body:")
+        Text("Image Uploader Coming Soon:")
           .textCase(.none)
       }
 
@@ -180,21 +134,29 @@ struct CreatePostPopoverView: View {
         Button {
           // MARK: - keep this
 
-//          bodyString = bodyStringUnsent
-//          if !bodyString.isEmpty {
-//            CommentSender(
-//              content: commentString,
-//              postID: post.id,
-//              parentID: comment?.id
-//            ).fetchCommentResponse { response in
-//              if response == "success" {
-//                showingCommentPopover = false
-//                commentsFetcher.loadContent(isRefreshing: true)
-//              } else {
-//                print("ERROR SENDING COMMENT")
-//              }
-//            }
-//          }
+          postBody = userInputBody
+          postName = userInputTitle
+          postURL = userInputURL
+          if !postURL.isEmpty {
+            postURL = "https://\(postURL)"
+          }
+          if submittable {
+            PostSender(
+              communityID: communityID,
+              postName: postName,
+              postURL: postURL,
+              postBody: postBody
+            ).fetchPostSentResponse { response, postID in
+              if response == "success" {
+                notificationHaptics.notificationOccurred(.success)
+                showingCreatePostPopover = false
+                print("CREATED NEW POST: id=\(postID)")
+              } else {
+                notificationHaptics.notificationOccurred(.error)
+                print("ERROR SUBMITTING POST")
+              }
+            }
+          }
         } label: {
           HStack {
             Spacer()

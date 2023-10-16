@@ -95,7 +95,7 @@ struct PostsView: View {
           Button {
             showingCreatePostPopover = true
           } label: {
-            Image(systemSymbol: .rectangleStackBadgePlus)
+            Image(systemSymbol: .plusRectangleFillOnRectangleFill)
           }
         }
       }

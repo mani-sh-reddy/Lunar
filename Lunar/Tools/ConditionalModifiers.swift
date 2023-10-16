@@ -40,7 +40,7 @@ enum ConditionalListRowBackground: String, CaseIterable {
 
 struct ConditionalListRowBackgroundModifier: ViewModifier {
   let background: ConditionalListRowBackground
-  
+
   func body(content: Content) -> some View {
     if background == .iridescent {
       AnyView(content.listRowBackground(

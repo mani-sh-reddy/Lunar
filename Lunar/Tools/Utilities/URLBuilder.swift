@@ -38,6 +38,7 @@ class URLBuilder {
   private let listingType: String?
   private let voteType: Int?
   private let instance: String?
+  private let urlString: String?
 
   init(
     endpointPath: String,
@@ -54,7 +55,8 @@ class URLBuilder {
     searchQuery: String? = nil,
     listingType: String? = nil,
     voteType: Int? = nil,
-    instance: String? = nil
+    instance: String? = nil,
+    urlString: String? = nil
   ) {
     self.endpointPath = endpointPath
     self.sortParameter = sortParameter
@@ -71,6 +73,7 @@ class URLBuilder {
     self.listingType = listingType
     self.voteType = voteType
     self.instance = instance
+    self.urlString = urlString
   }
 
   func buildURL() -> URLComponents {
@@ -90,6 +93,7 @@ class URLBuilder {
     if let searchQuery { queryParams["q"] = String(searchQuery) }
     if let listingType { queryParams["listing_type"] = String(listingType) }
     if let voteType { queryParams["score"] = String(voteType) }
+    if let urlString { queryParams["url"] = String(urlString) }
 
     endpoint.scheme = "https"
 
