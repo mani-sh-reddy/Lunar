@@ -10,6 +10,7 @@ import Combine
 import Defaults
 import Nuke
 import Pulse
+import RealmSwift
 import SwiftUI
 
 @MainActor class PostsFetcher: ObservableObject {
@@ -17,8 +18,9 @@ import SwiftUI
   @Default(.appBundleID) var appBundleID
   @Default(.postSort) var postSort
   @Default(.postType) var postType
-
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
+
+  @ObservedResults(RealmPost.self) var realmPosts
 
   @Published var posts = [PostObject]()
   @Published var isLoading = false
@@ -119,6 +121,47 @@ import SwiftUI
 
       switch response.result {
       case let .success(result):
+
+        // MARK: - Realm
+
+        let realm = try! Realm()
+        try! realm.write {
+          for post in result.posts {
+            let fetchedPost = RealmPost(
+              postID: post.post.id,
+              postName: post.post.name,
+              postPublished: post.post.published,
+              postURL: post.post.url,
+              postBody: post.post.body,
+              postThumbnailURL: post.post.thumbnailURL,
+              personID: post.creator.id,
+              personName: post.creator.name,
+              personPublished: post.creator.published,
+              personActorID: post.creator.actorID,
+              personInstanceID: post.creator.instanceID,
+              personAvatar: post.creator.avatar,
+              personDisplayName: post.creator.displayName,
+              personBio: post.creator.bio,
+              personBanner: post.creator.banner,
+              communityID: post.community.id,
+              communityName: post.community.name,
+              communityTitle: post.community.title,
+              communityActorID: post.community.actorID,
+              communityInstanceID: post.community.instanceID,
+              communityDescription: post.community.description,
+              communityIcon: post.community.icon,
+              communityBanner: post.community.banner,
+              communityUpdated: post.community.updated,
+              postScore: post.counts.postScore,
+              postCommentCount: post.counts.commentCount,
+              upvotes: post.counts.upvotes,
+              downvotes: post.counts.downvotes
+            )
+            realm.add(fetchedPost, update: .modified)
+          }
+        }
+
+        // MARK: - General
 
         let fetchedPosts = result.posts
 

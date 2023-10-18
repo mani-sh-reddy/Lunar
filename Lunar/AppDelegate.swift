@@ -34,6 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Realm
 
+    print("Realm DB Path:")
+    print("\(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path)")
+
     let config = Realm.Configuration(
       schemaVersion: 3,
       migrationBlock: { _, oldSchemaVersion in

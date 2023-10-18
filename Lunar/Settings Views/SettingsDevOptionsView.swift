@@ -18,6 +18,7 @@ struct SettingsDevOptionsView: View {
   @Default(.showLaunchSplashScreen) var showLaunchSplashScreen
   @Default(.clearWhatsNewDefaults) var clearWhatsNewDefaults
   @Default(.clearInitialWhatsNewDefault) var clearInitialWhatsNewDefault
+  @Default(.realmExperimentalViewEnabled) var realmExperimentalViewEnabled
 
   @State var clearedAlertPresented: Bool = false
   @State var settingsViewOpacity: Double = 1
@@ -125,11 +126,21 @@ struct SettingsDevOptionsView: View {
       // MARK: - UNRELEASED VIEWS
 
       Section {
+        Toggle(isOn: $realmExperimentalViewEnabled) {
+          Label {
+            Text("Realm Experimental View")
+          } icon: {
+            Image(systemSymbol: .circleAndLineHorizontalFill)
+              .foregroundStyle(.pink)
+              .symbolRenderingMode(.hierarchical)
+          }
+        }
+
         NavigationLink {
           OfflineDownloaderView()
         } label: {
           Label {
-            Text("Realm Database")
+            Text("Offline Downloader")
           } icon: {
             Image(systemSymbol: .squareAndArrowDownFill)
               .foregroundStyle(.cyan)
@@ -206,11 +217,5 @@ struct SettingsDevOptionsView: View {
         .scaleEffect(logoScale)
         .opacity(logoOpacity)
     }
-  }
-}
-
-struct SettingsDevOptionsView_Previews: PreviewProvider {
-  static var previews: some View {
-    SettingsDevOptionsView()
   }
 }

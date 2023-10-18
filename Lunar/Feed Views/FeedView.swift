@@ -6,6 +6,8 @@
 //
 
 import Defaults
+import RealmSwift
+import SFSafeSymbols
 import SwiftUI
 
 struct FeedView: View {
@@ -15,6 +17,7 @@ struct FeedView: View {
   @Default(.activeAccount) var activeAccount
   @Default(.quicklinks) var quicklinks
   @Default(.enableQuicklinks) var enableQuicklinks
+  @Default(.realmExperimentalViewEnabled) var realmExperimentalViewEnabled
 
   var subscribedCommunityListHeading: String {
     if !activeAccount.actorID.isEmpty {
@@ -50,6 +53,14 @@ struct FeedView: View {
         if !quicklinks.isEmpty {
           Section(header: Text(enableQuicklinks ? "Quicklinks" : "Feed")) {
             GeneralCommunitiesView()
+          }
+        }
+
+        if realmExperimentalViewEnabled {
+          NavigationLink {
+            RealmPostsView()
+          } label: {
+            RealmPostsViewLabel()
           }
         }
 

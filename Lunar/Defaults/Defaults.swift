@@ -33,6 +33,7 @@ extension Defaults.Keys {
   static let prominentInspectorButton = Key<Bool>("prominentInspectorButton", default: true)
   static let clearWhatsNewDefaults = Key<Bool>("clearWhatsNewDefaults", default: false)
   static let clearInitialWhatsNewDefault = Key<Bool>("clearInitialWhatsNewDefault", default: false)
+  static let realmExperimentalViewEnabled = Key<Bool>("realmExperimentalViewEnabled", default: false)
   static let autoCollapseBots = Key<Bool>("autoCollapseBots", default: true)
   static let commentSort = Key<String>("commentSort", default: "Hot")
   static let commentType = Key<String>("commentType", default: "All")

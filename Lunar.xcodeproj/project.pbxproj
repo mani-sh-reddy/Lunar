@@ -12,6 +12,7 @@
 		3C113C432A6EA92600FDE5CE /* InstanceSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C422A6EA92600FDE5CE /* InstanceSelectorView.swift */; };
 		3C130F752A8C0A520060B6E4 /* ExpandableTextBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C130F742A8C0A520060B6E4 /* ExpandableTextBox.swift */; };
 		3C130F772A8C0CB90060B6E4 /* ReactionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C130F762A8C0CB90060B6E4 /* ReactionButton.swift */; };
+		3C13F8262AE084F80067D4CE /* RealmPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C13F8252AE084F80067D4CE /* RealmPostsView.swift */; };
 		3C17DE042A92D4D6008EEB10 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C17DE032A92D4D6008EEB10 /* IntExtension.swift */; };
 		3C1A3F552A731C3F00898FC6 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F542A731C3F00898FC6 /* ImageExtension.swift */; };
 		3C1A3F592A73B17E00898FC6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F582A73B17E00898FC6 /* LoginView.swift */; };
@@ -147,6 +148,8 @@
 		3CC3E4392ADDE2B500F7F9A9 /* ConditionalModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3E4382ADDE2B500F7F9A9 /* ConditionalModifiers.swift */; };
 		3CC3E43B2ADDE56300F7F9A9 /* RegexPatterns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3E43A2ADDE56300F7F9A9 /* RegexPatterns.swift */; };
 		3CC3E43D2ADDF69200F7F9A9 /* URLInputViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3E43C2ADDF69200F7F9A9 /* URLInputViews.swift */; };
+		3CC3E4412AE047FE00F7F9A9 /* RealmPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3E4402AE047FE00F7F9A9 /* RealmPost.swift */; };
+		3CC3E4432AE05AB900F7F9A9 /* JSONDecoderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3E4422AE05AB900F7F9A9 /* JSONDecoderExtension.swift */; };
 		3CC4200A2AB37BCB00BE1612 /* WhatsNewKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3CC420092AB37BCB00BE1612 /* WhatsNewKit */; };
 		3CC4200D2AB37DDA00BE1612 /* BetterSafariView in Frameworks */ = {isa = PBXBuildFile; productRef = 3CC4200C2AB37DDA00BE1612 /* BetterSafariView */; };
 		3CC734A42A6D58C6007523B5 /* URLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC734A32A6D58C6007523B5 /* URLBuilder.swift */; };
@@ -220,6 +223,7 @@
 		3C113C422A6EA92600FDE5CE /* InstanceSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstanceSelectorView.swift; sourceTree = "<group>"; };
 		3C130F742A8C0A520060B6E4 /* ExpandableTextBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableTextBox.swift; sourceTree = "<group>"; };
 		3C130F762A8C0CB90060B6E4 /* ReactionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionButton.swift; sourceTree = "<group>"; };
+		3C13F8252AE084F80067D4CE /* RealmPostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPostsView.swift; sourceTree = "<group>"; };
 		3C17DE032A92D4D6008EEB10 /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		3C1A3F542A731C3F00898FC6 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		3C1A3F582A73B17E00898FC6 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -355,6 +359,8 @@
 		3CC3E4382ADDE2B500F7F9A9 /* ConditionalModifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionalModifiers.swift; sourceTree = "<group>"; };
 		3CC3E43A2ADDE56300F7F9A9 /* RegexPatterns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexPatterns.swift; sourceTree = "<group>"; };
 		3CC3E43C2ADDF69200F7F9A9 /* URLInputViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLInputViews.swift; sourceTree = "<group>"; };
+		3CC3E4402AE047FE00F7F9A9 /* RealmPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmPost.swift; sourceTree = "<group>"; };
+		3CC3E4422AE05AB900F7F9A9 /* JSONDecoderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderExtension.swift; sourceTree = "<group>"; };
 		3CC734A32A6D58C6007523B5 /* URLBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLBuilder.swift; sourceTree = "<group>"; };
 		3CC734A52A6D591A007523B5 /* URLComponentsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLComponentsExtension.swift; sourceTree = "<group>"; };
 		3CC734A92A6D697C007523B5 /* InsertSorter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertSorter.swift; sourceTree = "<group>"; };
@@ -668,6 +674,7 @@
 		3CB9C72C2AA2439D00FB5A10 /* Post */ = {
 			isa = PBXGroup;
 			children = (
+				3CC3E4402AE047FE00F7F9A9 /* RealmPost.swift */,
 				3CA5C4092A574FF500BF8F1B /* PostModel.swift */,
 				3CB9C72D2AA243CB00FB5A10 /* PostObject.swift */,
 				3CB9C7302AA244CC00FB5A10 /* Post.swift */,
@@ -749,6 +756,7 @@
 				3C9E54892A940F9B0093DDC7 /* UITextViewExtension.swift */,
 				3C2B14762AABCCA50028E05A /* ColorConverter.swift */,
 				3C808E2D2A9B87FA008FA62E /* ShareSheet.swift */,
+				3CC3E4422AE05AB900F7F9A9 /* JSONDecoderExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -792,6 +800,7 @@
 		3CCAE1832A6ADDBA0040EE12 /* Post Views */ = {
 			isa = PBXGroup;
 			children = (
+				3C13F8252AE084F80067D4CE /* RealmPostsView.swift */,
 				3CC3E4202ADC3FD600F7F9A9 /* CreatePostPopoverView.swift */,
 				3CC3E42E2ADDC59400F7F9A9 /* ImageUploaderView.swift */,
 				3CC3E43C2ADDF69200F7F9A9 /* URLInputViews.swift */,
@@ -1071,6 +1080,7 @@
 				3CC3E4372ADDD8A900F7F9A9 /* PostSiteMetadataResponseModel.swift in Sources */,
 				3CCE1D1B2AB5F13000357DFA /* AttributedStringExtension.swift in Sources */,
 				3C2C454A2AA648A000727DD5 /* UserDefaultsExplorerView.swift in Sources */,
+				3CC3E4432AE05AB900F7F9A9 /* JSONDecoderExtension.swift in Sources */,
 				3C6BBF722A910F6100312E2B /* SubscriptionActionSender.swift in Sources */,
 				3C87A36E2A9FBDE70029C18F /* SettingsAppIconPickerView.swift in Sources */,
 				3C1A3F5F2A73D64C00898FC6 /* LoginHelper.swift in Sources */,
@@ -1120,6 +1130,7 @@
 				3CFE04C72A7FF270007BAD81 /* KbinThreadsFetcher.swift in Sources */,
 				3C96EA502A7843EC00753199 /* AddNewUserButtonView.swift in Sources */,
 				3C96EA3E2A76FC1200753199 /* LoginButtonView.swift in Sources */,
+				3C13F8262AE084F80067D4CE /* RealmPostsView.swift in Sources */,
 				3CC3E4212ADC3FD600F7F9A9 /* CreatePostPopoverView.swift in Sources */,
 				3CE237372AA4D188000F1D20 /* SmallNavButton.swift in Sources */,
 				3CEF4CC22A69B38B002B83C0 /* SubscribedCommunitiesView.swift in Sources */,
@@ -1127,6 +1138,7 @@
 				3CB046F22ADAF3C00011BFEC /* CommentsViewWorkaroundWarning.swift in Sources */,
 				3C2B147D2AABE17C0028E05A /* SymbolPicker.swift in Sources */,
 				3C4DB8BE2AB701B2000137CF /* AppDelegate.swift in Sources */,
+				3CC3E4412AE047FE00F7F9A9 /* RealmPost.swift in Sources */,
 				3CADB5732A7E6D5400095839 /* SearchResultsList.swift in Sources */,
 				3CE69E9C2ABDD0E100E2821E /* OfflineDownloaderView.swift in Sources */,
 				3C6D29672A795141007AFD99 /* DebugSettingsPropertiesView.swift in Sources */,
