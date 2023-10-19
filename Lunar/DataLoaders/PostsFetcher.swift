@@ -20,8 +20,6 @@ import SwiftUI
   @Default(.postType) var postType
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
 
-  @ObservedResults(RealmPost.self) var realmPosts
-
   @Published var posts = [PostObject]()
   @Published var isLoading = false
 

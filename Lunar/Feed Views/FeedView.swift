@@ -58,9 +58,9 @@ struct FeedView: View {
 
         if realmExperimentalViewEnabled {
           NavigationLink {
-            RealmPostsView()
+            RPostsView()
           } label: {
-            RealmPostsViewLabel()
+            RPostsViewLabel()
           }
         }
 

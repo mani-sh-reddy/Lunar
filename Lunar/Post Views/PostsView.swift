@@ -122,8 +122,8 @@ struct PostsView: View {
   }
 }
 
-struct PostsView_Previews: PreviewProvider {
-  static var previews: some View {
-    PostsView(postsFetcher: PostsFetcher())
-  }
-}
+// struct PostsView_Previews: PreviewProvider {
+//  static var previews: some View {
+//    PostsView(postsFetcher: PostsFetcher())
+//  }
+// }
