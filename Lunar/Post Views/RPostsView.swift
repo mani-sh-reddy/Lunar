@@ -28,7 +28,12 @@ struct RPostsView: View {
 struct RPostItem: View {
   var post: RealmPost
 
-  let haptics = UIImpactFeedbackGenerator(style: .soft)
+  @State var showSafari: Bool = false
+  @State var upvoted: Bool = false
+  @State var downvoted: Bool = false
+
+  let hapticsSoft = UIImpactFeedbackGenerator(style: .soft)
+  let hapticsLight = UIImpactFeedbackGenerator(style: .light)
   let notificationHaptics = UINotificationFeedbackGenerator()
 
   var image: String? {
@@ -63,14 +68,28 @@ struct RPostItem: View {
     return "\(creator)\(timeAgo)"
   }
 
+  var webLink: String {
+    let url = post.postURL ?? ""
+    return URLParser.extractBaseDomain(from: url)
+  }
+
   var body: some View {
     ZStack {
       postBackground
-      VStack(alignment: .leading, spacing: 5) {
+      VStack(alignment: .leading, spacing: 7) {
         postImage
-        postCommunityLabel
+        HStack {
+          postCommunityLabel
+        }
         postTitle
         postCreatorLabel
+        HStack(spacing: 15) {
+          postUpvotes
+          postDownvotes
+          postComments
+          Spacer()
+          postWebLink
+        }
       }
       .padding(.horizontal)
       .padding(.vertical, 5)
@@ -84,8 +103,7 @@ struct RPostItem: View {
       } label: {
         Image(systemSymbol: .chevronForwardCircleFill)
       }
-      .foregroundStyle(.blue)
-      .tint(Color("postListBackground"))
+      .tint(.blue)
     }
     .swipeActions(edge: .leading, allowsFullSwipe: false) {
       Button {
@@ -93,28 +111,22 @@ struct RPostItem: View {
       } label: {
         Image(systemSymbol: .arrowUpCircleFill)
       }
-      .tint(Color("postListBackground"))
+      .tint(.orange)
       Button {
         //              isClicked = true
       } label: {
         Image(systemSymbol: .arrowDownCircleFill)
       }
-      .tint(Color("postListBackground"))
+      .tint(.purple)
     }
     .contextMenu {
-      Button {
-        // Add this item to a list of favorites.
-      } label: {
+      Button {} label: {
         Label("Add to Favorites", systemImage: "heart")
       }
-      Button {
-        // Open Maps and center it on this item.
-      } label: {
+      Button {} label: {
         Label("Show in Maps", systemImage: "mappin")
       }
-      Button {
-        // Open Maps and center it on this item.
-      } label: {
+      Button {} label: {
         Label("Hide", systemImage: "eye.slash")
           .tint(.orange)
       }
@@ -141,9 +153,29 @@ struct RPostItem: View {
       .font(.caption)
       .highPriorityGesture(
         TapGesture().onEnded {
-          haptics.impactOccurred(intensity: 0.5)
+          hapticsLight.impactOccurred(intensity: 0.5)
         }
       )
+  }
+
+  @ViewBuilder
+  var postWebLink: some View {
+    if let url = post.postURL {
+      HStack(spacing: 3) {
+        Image(systemSymbol: .safari)
+        Text(webLink)
+      }
+      .font(.caption)
+      .textCase(.lowercase)
+      .foregroundColor(.blue)
+      .highPriorityGesture(
+        TapGesture().onEnded {
+          hapticsLight.impactOccurred(intensity: 0.5)
+          showSafari.toggle()
+        }
+      )
+      .inAppSafari(isPresented: $showSafari, stringURL: url)
+    }
   }
 
   var postTitle: some View {
@@ -156,6 +188,57 @@ struct RPostItem: View {
     Text(creatorLabel)
       .font(.caption)
       .foregroundColor(.secondary)
+  }
+
+  var postUpvotes: some View {
+    HStack {
+      Image(systemSymbol: .arrowUpSquare)
+      Text(String(post.upvotes ?? 0))
+    }
+    .lineLimit(1)
+    .foregroundStyle(upvoted ? .white : .green)
+    .padding(3)
+    .background(upvoted ? .green : .gray.opacity(0.05))
+    .symbolRenderingMode(upvoted ? .monochrome : .hierarchical)
+    .clipShape(RoundedRectangle(cornerRadius: 5.0, style: .continuous))
+    .highPriorityGesture(
+      TapGesture().onEnded {
+        upvoted.toggle()
+        hapticsLight.impactOccurred()
+      }
+    )
+  }
+
+  @ViewBuilder
+  var postDownvotes: some View {
+    if let downvotes = post.downvotes {
+      HStack {
+        Image(systemSymbol: .arrowDownSquare)
+        Text(String(downvotes))
+      }
+      .lineLimit(1)
+      .foregroundStyle(downvoted ? .white : .red)
+      .padding(3)
+      .background(downvoted ? .red : .gray.opacity(0.05))
+      .symbolRenderingMode(downvoted ? .monochrome : .hierarchical)
+      .clipShape(RoundedRectangle(cornerRadius: 5.0, style: .continuous))
+      .highPriorityGesture(
+        TapGesture().onEnded {
+          downvoted.toggle()
+          hapticsLight.impactOccurred()
+        }
+      )
+    }
+  }
+
+  var postComments: some View {
+    HStack {
+      Image(systemSymbol: .bubbleLeftAndBubbleRight)
+      Text(String(post.downvotes ?? 0))
+    }
+    .lineLimit(1)
+    .foregroundStyle(.gray)
+    .padding(3)
   }
 
   var commentsNavLink: some View {
