@@ -83,7 +83,7 @@ struct RPostItem: View {
         }
         postTitle
         postCreatorLabel
-        HStack(spacing: 15) {
+        HStack(spacing: 5) {
           postUpvotes
           postDownvotes
           postComments
@@ -158,26 +158,6 @@ struct RPostItem: View {
       )
   }
 
-  @ViewBuilder
-  var postWebLink: some View {
-    if let url = post.postURL {
-      HStack(spacing: 3) {
-        Image(systemSymbol: .safari)
-        Text(webLink)
-      }
-      .font(.caption)
-      .textCase(.lowercase)
-      .foregroundColor(.blue)
-      .highPriorityGesture(
-        TapGesture().onEnded {
-          hapticsLight.impactOccurred(intensity: 0.5)
-          showSafari.toggle()
-        }
-      )
-      .inAppSafari(isPresented: $showSafari, stringURL: url)
-    }
-  }
-
   var postTitle: some View {
     Text(post.postName)
       .fontWeight(.semibold)
@@ -191,54 +171,61 @@ struct RPostItem: View {
   }
 
   var postUpvotes: some View {
-    HStack {
-      Image(systemSymbol: .arrowUpSquare)
-      Text(String(post.upvotes ?? 0))
-    }
-    .lineLimit(1)
-    .foregroundStyle(upvoted ? .white : .green)
-    .padding(3)
-    .background(upvoted ? .green : .gray.opacity(0.05))
-    .symbolRenderingMode(upvoted ? .monochrome : .hierarchical)
-    .clipShape(RoundedRectangle(cornerRadius: 5.0, style: .continuous))
-    .highPriorityGesture(
-      TapGesture().onEnded {
-        upvoted.toggle()
-        hapticsLight.impactOccurred()
-      }
+    PostButtonItem(
+      text: String(post.upvotes ?? 0),
+      icon: .arrowUpCircleFill,
+      color: Color.green,
+      active: upvoted,
+      opposite: false
     )
+    .highPriorityGesture(TapGesture().onEnded {
+      downvoted = false
+      upvoted.toggle()
+      hapticsLight.impactOccurred()
+    })
   }
 
   @ViewBuilder
   var postDownvotes: some View {
     if let downvotes = post.downvotes {
-      HStack {
-        Image(systemSymbol: .arrowDownSquare)
-        Text(String(downvotes))
-      }
-      .lineLimit(1)
-      .foregroundStyle(downvoted ? .white : .red)
-      .padding(3)
-      .background(downvoted ? .red : .gray.opacity(0.05))
-      .symbolRenderingMode(downvoted ? .monochrome : .hierarchical)
-      .clipShape(RoundedRectangle(cornerRadius: 5.0, style: .continuous))
-      .highPriorityGesture(
-        TapGesture().onEnded {
-          downvoted.toggle()
-          hapticsLight.impactOccurred()
-        }
+      PostButtonItem(
+        text: String(downvotes),
+        icon: .arrowDownCircleFill,
+        color: Color.red,
+        active: downvoted,
+        opposite: false
       )
+      .highPriorityGesture(TapGesture().onEnded {
+        upvoted = false
+        downvoted.toggle()
+        hapticsLight.impactOccurred()
+      })
     }
   }
 
   var postComments: some View {
-    HStack {
-      Image(systemSymbol: .bubbleLeftAndBubbleRight)
-      Text(String(post.downvotes ?? 0))
+    PostButtonItem(
+      text: String(post.postCommentCount ?? 0),
+      icon: .bubbleLeftCircleFill,
+      color: Color.gray
+    )
+  }
+
+  @ViewBuilder
+  var postWebLink: some View {
+    if let url = post.postURL {
+      if post.postURL != post.postThumbnailURL {
+        PostButtonItem(
+          text: webLink,
+          icon: .safari,
+          color: Color.blue
+        )
+        .highPriorityGesture(TapGesture().onEnded {
+          showSafari.toggle()
+        })
+        .inAppSafari(isPresented: $showSafari, stringURL: url)
+      }
     }
-    .lineLimit(1)
-    .foregroundStyle(.gray)
-    .padding(3)
   }
 
   var commentsNavLink: some View {

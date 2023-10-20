@@ -168,6 +168,7 @@
 		3CE237372AA4D188000F1D20 /* SmallNavButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE237362AA4D188000F1D20 /* SmallNavButton.swift */; };
 		3CE35B142AE2AFD600263E13 /* MailtoUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B132AE2AFD600263E13 /* MailtoUtil.swift */; };
 		3CE35B162AE2D7CD00263E13 /* SettingsAdditionalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B152AE2D7CD00263E13 /* SettingsAdditionalView.swift */; };
+		3CE35B182AE2FF1B00263E13 /* PostButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B172AE2FF1B00263E13 /* PostButtonItem.swift */; };
 		3CE69E962ABDCA8A00E2821E /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 3CE69E952ABDCA8A00E2821E /* Realm */; };
 		3CE69E982ABDCA8A00E2821E /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3CE69E972ABDCA8A00E2821E /* RealmSwift */; };
 		3CE69E9A2ABDCBD200E2821E /* PersistedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE69E992ABDCBD200E2821E /* PersistedModels.swift */; };
@@ -380,6 +381,7 @@
 		3CE237362AA4D188000F1D20 /* SmallNavButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallNavButton.swift; sourceTree = "<group>"; };
 		3CE35B132AE2AFD600263E13 /* MailtoUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailtoUtil.swift; sourceTree = "<group>"; };
 		3CE35B152AE2D7CD00263E13 /* SettingsAdditionalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAdditionalView.swift; sourceTree = "<group>"; };
+		3CE35B172AE2FF1B00263E13 /* PostButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostButtonItem.swift; sourceTree = "<group>"; };
 		3CE69E992ABDCBD200E2821E /* PersistedModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistedModels.swift; sourceTree = "<group>"; };
 		3CE69E9B2ABDD0E100E2821E /* OfflineDownloaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineDownloaderView.swift; sourceTree = "<group>"; };
 		3CE69E9D2ABDD56300E2821E /* OfflineDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineDownloader.swift; sourceTree = "<group>"; };
@@ -880,6 +882,7 @@
 				3CED897A2A71A5CF00BD9086 /* ImagePopoverView.swift */,
 				3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */,
 				3C130F762A8C0CB90060B6E4 /* ReactionButton.swift */,
+				3CE35B172AE2FF1B00263E13 /* PostButtonItem.swift */,
 				3CECCE222AAE1B1B0017A605 /* JWT.swift */,
 				3CCAA8BE2A65309E007CCEC2 /* NoInternetConnectionView.swift */,
 				3CE237342AA4D171000F1D20 /* LargeNavButton.swift */,
@@ -1191,6 +1194,7 @@
 				3C4D42A82A8D0FD1003B6F1D /* VoteSender.swift in Sources */,
 				3C6D29692A797D6E007AFD99 /* UserRowSettingsBannerView.swift in Sources */,
 				3C72E21B2A71735E00C794C6 /* InPostThumbnailImageView.swift in Sources */,
+				3CE35B182AE2FF1B00263E13 /* PostButtonItem.swift in Sources */,
 				3C4EE4B92A8006D0009EE4A8 /* KbinPostRowView.swift in Sources */,
 				3CC3E42D2ADD6EBA00F7F9A9 /* PostSender.swift in Sources */,
 				3CECCE1E2AADDBBA0017A605 /* CircleFillIcons.swift in Sources */,
