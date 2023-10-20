@@ -153,7 +153,8 @@ import SwiftUI
               postScore: post.counts.postScore,
               postCommentCount: post.counts.commentCount,
               upvotes: post.counts.upvotes,
-              downvotes: post.counts.downvotes
+              downvotes: post.counts.downvotes,
+              postMyVote: post.myVote ?? 0
             )
             realm.add(fetchedPost, update: .modified)
           }

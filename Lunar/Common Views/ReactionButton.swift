@@ -38,10 +38,11 @@ struct ReactionButton: View {
       .symbolRenderingMode(
         active ? SymbolRenderingMode.monochrome : SymbolRenderingMode.hierarchical
       )
-    }.lineLimit(1)
-      .buttonStyle(BorderlessButtonStyle())
-      .padding(padding)
-      .background(active ? color.opacity(0.75) : .secondary.opacity(0.1), in: Capsule())
-      .padding(.top, 3)
+    }
+    .lineLimit(1)
+    .buttonStyle(BorderlessButtonStyle())
+    .padding(padding)
+    .background(active ? color.opacity(0.75) : .secondary.opacity(0.1), in: Capsule())
+    .padding(.top, 3)
   }
 }

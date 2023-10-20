@@ -49,6 +49,10 @@ class RealmPost: Object, ObjectKeyIdentifiable {
   @Persisted var upvotes: Int?
   @Persisted var downvotes: Int?
 
+  // MARK: - User Action
+
+  @Persisted var postMyVote: Int
+
   // MARK: - Convenience initializer
 
   convenience init(
@@ -79,7 +83,8 @@ class RealmPost: Object, ObjectKeyIdentifiable {
     postScore: Int?,
     postCommentCount: Int?,
     upvotes: Int?,
-    downvotes: Int?
+    downvotes: Int?,
+    postMyVote: Int
   ) {
     self.init()
     self.postID = postID
@@ -113,5 +118,7 @@ class RealmPost: Object, ObjectKeyIdentifiable {
     self.postCommentCount = postCommentCount
     self.upvotes = upvotes
     self.downvotes = downvotes
+
+    self.postMyVote = postMyVote
   }
 }
