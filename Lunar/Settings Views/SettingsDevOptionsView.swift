@@ -115,14 +115,6 @@ struct SettingsDevOptionsView: View {
           .textCase(nil)
       }
 
-      // MARK: - CLEAR CACHE
-
-      Section {
-        SettingsClearCacheView()
-      } header: {
-        Text("App Cache")
-      }
-
       // MARK: - UNRELEASED VIEWS
 
       Section {
@@ -182,18 +174,6 @@ struct SettingsDevOptionsView: View {
         Text("Unreleased views")
       }
 
-      // MARK: - APP RESET
-
-      Section {
-        SettingsAppResetView(
-          settingsViewOpacity: $settingsViewOpacity,
-          logoScale: $logoScale,
-          logoOpacity: $logoOpacity
-        )
-      } header: {
-        Text("Reset")
-      }
-
       // MARK: - APP BUNDLE ID
 
       Section {
@@ -201,21 +181,8 @@ struct SettingsDevOptionsView: View {
       } header: {
         Text("App Bundle ID")
       }
-
-      // MARK: - //
     }
     .opacity(settingsViewOpacity)
     .navigationTitle("Developer Options")
-    .alert(isPresented: $clearedAlertPresented) {
-      Alert(title: Text("Cleared"))
-    }
-    .overlay {
-      Image("LunarLogo")
-        .resizable()
-        .scaledToFit()
-        .padding(50)
-        .scaleEffect(logoScale)
-        .opacity(logoOpacity)
-    }
   }
 }

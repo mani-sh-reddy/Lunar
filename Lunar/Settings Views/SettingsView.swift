@@ -50,9 +50,11 @@ struct SettingsView: View {
           KbinSelectorView()
         }
 
-        // MARK: - NOTIFICATIONS
+        // MARK: - GENERAL SECTION
 
         Section {
+          // MARK: - NOTIFICATIONS
+
           NavigationLink {
             PlaceholderView()
           } label: {
@@ -158,9 +160,11 @@ struct SettingsView: View {
           Text("General")
         }
 
-        // MARK: - APP ICON
+        // MARK: - APPEARANCE SECTION
 
         Section {
+          // MARK: - APP ICON
+
           NavigationLink {
             SettingsAppIconPickerView()
           } label: {
@@ -201,6 +205,9 @@ struct SettingsView: View {
         } header: {
           Text("Appearance")
         }
+
+        // MARK: - INFO SECTION
+
         Section {
           // MARK: - PRIVACY POLICY
 
@@ -221,10 +228,10 @@ struct SettingsView: View {
             stringURL: "https://github.com/mani-sh-reddy/Lunar/wiki/Privacy-Policy"
           )
 
-          // MARK: - LEMMY COMMUNITY LINK
+          // MARK: - CONTACT
 
           Button {
-            showSafariLemmy = true
+            Mailto().mailto("lunarforlemmy@outlook.com")
           } label: {
             Label {
               Text("Contact")
@@ -235,10 +242,6 @@ struct SettingsView: View {
             }
           }
           .foregroundStyle(.foreground)
-          .inAppSafari(
-            isPresented: $showSafariLemmy,
-            stringURL: "https://lemmy.world/c/lunar"
-          )
 
           // MARK: - GITHUB LINK
 
@@ -261,18 +264,29 @@ struct SettingsView: View {
             isPresented: $showSafariGithub,
             stringURL: "https://github.com/mani-sh-reddy/Lunar"
           )
+
         } header: {
           Text("Info")
         }
 
-        // MARK: - DEV OPTIONS
+        // MARK: - EXTRA SETTINGS
 
         Section {
+          NavigationLink {
+            SettingsAdditionalView()
+          } label: {
+            Label {
+              Text("Additional Settings")
+            } icon: {
+              Image(systemSymbol: .shippingboxFill)
+                .foregroundStyle(.brown)
+            }
+          }
           NavigationLink {
             SettingsDevOptionsView()
           } label: {
             Label {
-              Text("Developer Options")
+              Text("Development")
             } icon: {
               Image(systemSymbol: .wrenchAndScrewdriverFill)
                 .foregroundStyle(.red)
@@ -280,17 +294,50 @@ struct SettingsView: View {
           }
         } header: {
           Text("Extras")
-        } footer: {
-          // MARK: - CREDITS
+        }
 
+        // MARK: - LEMMY COMMUNITY LINK
+
+        Button {
+          showSafariLemmy = true
+        } label: {
+          Label {
+            Text("lunar@lemmy.world")
+              .colorMultiply(.primary)
+            Spacer()
+            Image(systemSymbol: .safari)
+              .foregroundStyle(.secondary)
+          } icon: {
+            Image(asset: "LemmyWorldLogo")
+              .resizable()
+              .aspectRatio(contentMode: .fit)
+              .frame(width: 32, height: 32)
+              .clipped()
+              .symbolRenderingMode(.hierarchical)
+          }
+        }
+        .foregroundStyle(.foreground)
+        .inAppSafari(
+          isPresented: $showSafariLemmy,
+          stringURL: "https://lemmy.world/c/lunar"
+        )
+
+        // MARK: - CREDITS
+
+        Section {
           HStack {
             Spacer()
             VStack(alignment: .center, spacing: 2) {
-              Text("Lunar for Lemmy v\(appVersion)")
+              Text("Lunar v\(appVersion)")
               Text(LocalizedStringKey("~ by [mani](http://mani-sh-reddy.github.io/) ~"))
             }
+            .font(.caption)
+            .foregroundStyle(.secondary)
             Spacer()
-          }.padding(.vertical, 20)
+          }
+
+          .listRowSeparator(.hidden)
+          .listRowBackground(Color.clear)
         }
       }
       .navigationTitle("Settings")
