@@ -16,15 +16,14 @@ enum CacheInfoType {
   case limit
 }
 
+import SwiftUI
+
 struct SettingsClearCacheView: View {
   @Default(.appBundleID) var appBundleID
-
   @EnvironmentObject var dataCacheHolder: DataCacheHolder
 
   @State var alertPresented: Bool = false
-  @State var cacheClearButtonOpacity: Double = 1
   @State var cacheTotal: String = "0 B"
-
   let haptics = UINotificationFeedbackGenerator()
 
   var body: some View {
@@ -34,9 +33,6 @@ struct SettingsClearCacheView: View {
       Image(systemSymbol: .externaldrive)
         .symbolRenderingMode(.multicolor)
         .foregroundStyle(.gray)
-    }
-    .onAppear {
-      cacheTotal = cacheInfo(cacheInfoType: .total)
     }
     Label {
       Text("Limit: \(cacheInfo(cacheInfoType: .limit))")
@@ -61,14 +57,29 @@ struct SettingsClearCacheView: View {
     }
     .alert("Clear Cache", isPresented: $alertPresented) {
       Button("Clear", role: .destructive) {
-        if let dataCache = dataCacheHolder.dataCache {
-          dataCache.removeAll()
-          haptics.notificationOccurred(.success)
-//          let cacheTotal = cacheInfo(cacheInfoType: .total)
-          cacheTotal = "0 B"
-          alertPresented = false
-        }
+        clearCache()
       }
+    }
+    .onAppear {
+      updateCacheInfo()
+    }
+  }
+
+  func updateCacheInfo() {
+    DispatchQueue.global(qos: .background).async {
+      let totalCacheSize = cacheInfo(cacheInfoType: .total)
+      DispatchQueue.main.async {
+        cacheTotal = totalCacheSize
+      }
+    }
+  }
+
+  func clearCache() {
+    if let dataCache = dataCacheHolder.dataCache {
+      dataCache.removeAll()
+      haptics.notificationOccurred(.success)
+      cacheTotal = "0 B"
+      alertPresented = false
     }
   }
 
