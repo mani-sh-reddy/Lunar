@@ -65,6 +65,7 @@
 		3C6588592A6169EB00A46DA3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6588582A6169EB00A46DA3 /* SettingsView.swift */; };
 		3C65885D2A6189AF00A46DA3 /* CommentsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C65885C2A6189AF00A46DA3 /* CommentsFetcher.swift */; };
 		3C65885F2A621C6100A46DA3 /* MoreCommunitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C65885E2A621C6100A46DA3 /* MoreCommunitiesView.swift */; };
+		3C6ACC1E2AE426D40073288E /* AboutLemmyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6ACC1D2AE426D40073288E /* AboutLemmyInfo.swift */; };
 		3C6BBF722A910F6100312E2B /* SubscriptionActionSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BBF712A910F6100312E2B /* SubscriptionActionSender.swift */; };
 		3C6BBF742A91108A00312E2B /* SubscribeResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6BBF732A91108A00312E2B /* SubscribeResponseModel.swift */; };
 		3C6D29652A793878007AFD99 /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D29642A793878007AFD99 /* DictionaryExtension.swift */; };
@@ -172,6 +173,7 @@
 		3CE35B1A2AE3D03C00263E13 /* VoteActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B192AE3D03C00263E13 /* VoteActions.swift */; };
 		3CE35B1C2AE3D7D600263E13 /* AttributionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B1B2AE3D7D600263E13 /* AttributionsView.swift */; };
 		3CE35B1F2AE3DAF000263E13 /* AttributionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B1E2AE3DAF000263E13 /* AttributionInfo.swift */; };
+		3CE35B212AE4148A00263E13 /* AboutLemmyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B202AE4148A00263E13 /* AboutLemmyView.swift */; };
 		3CE69E962ABDCA8A00E2821E /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 3CE69E952ABDCA8A00E2821E /* Realm */; };
 		3CE69E982ABDCA8A00E2821E /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3CE69E972ABDCA8A00E2821E /* RealmSwift */; };
 		3CE69E9A2ABDCBD200E2821E /* PersistedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE69E992ABDCBD200E2821E /* PersistedModels.swift */; };
@@ -281,6 +283,7 @@
 		3C6588582A6169EB00A46DA3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3C65885C2A6189AF00A46DA3 /* CommentsFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsFetcher.swift; sourceTree = "<group>"; };
 		3C65885E2A621C6100A46DA3 /* MoreCommunitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreCommunitiesView.swift; sourceTree = "<group>"; };
+		3C6ACC1D2AE426D40073288E /* AboutLemmyInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutLemmyInfo.swift; sourceTree = "<group>"; };
 		3C6BBF712A910F6100312E2B /* SubscriptionActionSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionActionSender.swift; sourceTree = "<group>"; };
 		3C6BBF732A91108A00312E2B /* SubscribeResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscribeResponseModel.swift; sourceTree = "<group>"; };
 		3C6D29642A793878007AFD99 /* DictionaryExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
@@ -386,6 +389,7 @@
 		3CE35B192AE3D03C00263E13 /* VoteActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteActions.swift; sourceTree = "<group>"; };
 		3CE35B1B2AE3D7D600263E13 /* AttributionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributionsView.swift; sourceTree = "<group>"; };
 		3CE35B1E2AE3DAF000263E13 /* AttributionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributionInfo.swift; sourceTree = "<group>"; };
+		3CE35B202AE4148A00263E13 /* AboutLemmyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutLemmyView.swift; sourceTree = "<group>"; };
 		3CE69E992ABDCBD200E2821E /* PersistedModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistedModels.swift; sourceTree = "<group>"; };
 		3CE69E9B2ABDD0E100E2821E /* OfflineDownloaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineDownloaderView.swift; sourceTree = "<group>"; };
 		3CE69E9D2ABDD56300E2821E /* OfflineDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineDownloader.swift; sourceTree = "<group>"; };
@@ -527,6 +531,8 @@
 				3CECCE212AAE14140017A605 /* Account Tab */,
 				3C4DB8BD2AB701B2000137CF /* AppDelegate.swift */,
 				3C1AF0A72AB3B91300763602 /* WhatsNewInitialInfo.swift */,
+				3CE35B202AE4148A00263E13 /* AboutLemmyView.swift */,
+				3C6ACC1D2AE426D40073288E /* AboutLemmyInfo.swift */,
 				3CCAE1842A6ADDE20040EE12 /* Comment View */,
 				3CE237332AA4D157000F1D20 /* Common Views */,
 				3CA92E372A543BF000688DEB /* ContentView.swift */,
@@ -1252,9 +1258,11 @@
 				3CEF4CC42A69B39B002B83C0 /* TrendingCommunitiesSectionView.swift in Sources */,
 				3C6BBF742A91108A00312E2B /* SubscribeResponseModel.swift in Sources */,
 				3C130F752A8C0A520060B6E4 /* ExpandableTextBox.swift in Sources */,
+				3CE35B212AE4148A00263E13 /* AboutLemmyView.swift in Sources */,
 				3CBCCDF62A589F2C00307AC1 /* CommentsView.swift in Sources */,
 				3C65885F2A621C6100A46DA3 /* MoreCommunitiesView.swift in Sources */,
 				3CC3E4352ADDD74D00F7F9A9 /* PostSiteMetadataFetcher.swift in Sources */,
+				3C6ACC1E2AE426D40073288E /* AboutLemmyInfo.swift in Sources */,
 				3CC3E4312ADDCE1200F7F9A9 /* CreatePostResponseModel.swift in Sources */,
 				3CC734AA2A6D697C007523B5 /* InsertSorter.swift in Sources */,
 				3CB8D2662A55EFF900EE615A /* PlaceholderView.swift in Sources */,

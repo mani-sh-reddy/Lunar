@@ -20,6 +20,7 @@ struct SettingsView: View {
   @State private var showSafariPrivacyPolicy: Bool = false
 
   let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+  let haptics = UIImpactFeedbackGenerator(style: .soft)
 
   var body: some View {
     NavigationView {
@@ -298,29 +299,31 @@ struct SettingsView: View {
 
         // MARK: - LEMMY COMMUNITY LINK
 
-        Button {
-          showSafariLemmy = true
-        } label: {
-          Label {
-            Text("lunar@lemmy.world")
-              .colorMultiply(.primary)
-            Spacer()
-            Image(systemSymbol: .safari)
-              .foregroundStyle(.secondary)
-          } icon: {
-            Image(asset: "LemmyWorldLogo")
-              .resizable()
-              .aspectRatio(contentMode: .fit)
-              .frame(width: 32, height: 32)
-              .clipped()
-              .symbolRenderingMode(.hierarchical)
+        Section {
+          Button {
+            haptics.impactOccurred(intensity: 0.5)
+            showSafariLemmy = true
+          } label: {
+            Label {
+              Text("lunar@lemmy.world")
+              Spacer()
+              Image(systemSymbol: .safari)
+                .foregroundStyle(.secondary)
+            } icon: {
+              Image(asset: "LemmyWorldLogo")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 32, height: 32)
+                .clipped()
+                .symbolRenderingMode(.hierarchical)
+            }
           }
+          .inAppSafari(
+            isPresented: $showSafariLemmy,
+            stringURL: "https://lemmy.world/c/lunar"
+          )
+          .foregroundStyle(.foreground)
         }
-        .foregroundStyle(.foreground)
-        .inAppSafari(
-          isPresented: $showSafariLemmy,
-          stringURL: "https://lemmy.world/c/lunar"
-        )
 
         // MARK: - CREDITS
 

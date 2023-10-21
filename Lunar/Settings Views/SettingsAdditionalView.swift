@@ -15,15 +15,36 @@ struct SettingsAdditionalView: View {
   @Default(.debugModeEnabled) var debugModeEnabled
   @Default(.showLaunchSplashScreen) var showLaunchSplashScreen
 
+  @State private var showAboutLemmyPopover: Bool = false
   @State var clearedAlertPresented: Bool = false
   @State var settingsViewOpacity: Double = 1
   @State private var logoScale: CGFloat = 0.1
   @State private var logoOpacity: Double = 0
 
   let notificationHaptics = UINotificationFeedbackGenerator()
+  let haptics = UIImpactFeedbackGenerator(style: .soft)
 
   var body: some View {
     List {
+      // MARK: - ABOUT LEMMY POPOVER
+
+      Section {
+        Button {
+          haptics.impactOccurred(intensity: 0.5)
+          showAboutLemmyPopover = true
+        } label: {
+          Label {
+            Text("Lemmy Guide")
+              .foregroundStyle(.foreground)
+          } icon: {
+            Image(systemSymbol: .bookClosedFill)
+              .foregroundStyle(.green)
+          }
+        }
+      } header: {
+        Text("Docs")
+      }
+
       // MARK: - CLEAR CACHE
 
       Section {
@@ -64,6 +85,9 @@ struct SettingsAdditionalView: View {
         .padding(50)
         .scaleEffect(logoScale)
         .opacity(logoOpacity)
+    }
+    .popover(isPresented: $showAboutLemmyPopover) {
+      AboutLemmyView()
     }
   }
 }

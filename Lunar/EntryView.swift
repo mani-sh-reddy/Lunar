@@ -28,7 +28,20 @@ struct EntryView: View {
       WhatsNewInitialInfo().open,
       WhatsNewInitialInfo().updates,
       WhatsNewInitialInfo().contribute,
-    ]
+    ],
+    primaryAction: WhatsNew.PrimaryAction(
+      title: "Get Started",
+      backgroundColor: .accentColor,
+      foregroundColor: .white
+    ),
+    secondaryAction: WhatsNew.SecondaryAction(
+      title: "Learn more about Lemmy",
+      foregroundColor: .accentColor,
+      hapticFeedback: .selection,
+      action: .present {
+        AboutLemmyView()
+      }
+    )
   )
 
   var body: some View {
