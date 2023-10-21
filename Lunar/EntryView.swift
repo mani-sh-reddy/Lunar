@@ -35,7 +35,7 @@ struct EntryView: View {
       foregroundColor: .white
     ),
     secondaryAction: WhatsNew.SecondaryAction(
-      title: "Learn more about Lemmy",
+      title: "Learn More About Lemmy",
       foregroundColor: .accentColor,
       hapticFeedback: .selection,
       action: .present {

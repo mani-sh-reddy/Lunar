@@ -11,7 +11,10 @@ import SFSafeSymbols
 import SwiftUI
 
 struct RPostsView: View {
-  @ObservedResults(RealmPost.self) var realmPosts
+  @ObservedResults(
+    RealmPost.self,
+    where: ({ !$0.postHidden })
+  ) var realmPosts
 
   var body: some View {
     List {
@@ -74,48 +77,38 @@ struct RPostItem: View {
   var body: some View {
     ZStack {
       postBackground
-      VStack(alignment: .leading, spacing: 7) {
-        postImage
-        HStack {
-          postCommunityLabel
+      if post.postMinimised {
+        postMinimised
+      } else {
+        VStack(alignment: .leading, spacing: 7) {
+          postImage
+          HStack {
+            postCommunityLabel
+          }
+          postTitle
+          postCreatorLabel
+          HStack(spacing: 5) {
+            postUpvotes
+            postDownvotes
+            postComments
+            Spacer()
+            postWebLink
+          }
         }
-        postTitle
-        postCreatorLabel
-        HStack(spacing: 5) {
-          postUpvotes
-          postDownvotes
-          postComments
-          Spacer()
-          postWebLink
-        }
+        .padding(.horizontal)
+        .padding(.vertical, 5)
       }
-      .padding(.horizontal)
-      .padding(.vertical, 5)
       commentsNavLink
     }
     .listRowSeparator(.hidden)
     .padding(.vertical, 5)
     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-      Button {
-        //              isClicked = true
-      } label: {
-        Image(systemSymbol: .chevronForwardCircleFill)
-      }
-      .tint(.blue)
+      minimiseButton
+      hideButton
     }
     .swipeActions(edge: .leading, allowsFullSwipe: false) {
-      Button {
-        //              isClicked = true
-      } label: {
-        Image(systemSymbol: .arrowUpCircleFill)
-      }
-      .tint(.orange)
-      Button {
-        //              isClicked = true
-      } label: {
-        Image(systemSymbol: .arrowDownCircleFill)
-      }
-      .tint(.purple)
+      upvoteButton
+      downvoteButton
     }
     .contextMenu {
       Button {} label: {
@@ -129,6 +122,42 @@ struct RPostItem: View {
           .tint(.orange)
       }
     }
+  }
+
+  var hideButton: some View {
+    Button {
+      PostActions().hideAction(post: post)
+    } label: {
+      Image(systemSymbol: .eyeSlash)
+    }
+    .tint(.orange)
+  }
+
+  var minimiseButton: some View {
+    Button {
+      PostActions().minimiseToggleAction(post: post)
+    } label: {
+      Image(systemSymbol: .rectangleArrowtriangle2Inward)
+    }
+    .tint(.yellow)
+  }
+
+  var upvoteButton: some View {
+    Button {
+      PostActions().upvoteAction(post: post)
+    } label: {
+      Image(systemSymbol: .arrowUpCircleFill)
+    }
+    .tint(.green)
+  }
+
+  var downvoteButton: some View {
+    Button {
+      PostActions().downvoteAction(post: post)
+    } label: {
+      Image(systemSymbol: .arrowDownCircleFill)
+    }
+    .tint(.red)
   }
 
   var postBackground: some View {
@@ -162,6 +191,20 @@ struct RPostItem: View {
       .foregroundColor(.primary)
   }
 
+  var postMinimised: some View {
+    HStack {
+      Text(post.postName)
+        .italic()
+        .font(.caption)
+        .fontWeight(.semibold)
+        .foregroundColor(.secondary)
+        .lineLimit(1)
+        .padding(.horizontal)
+        .padding(.vertical, 5)
+      Spacer()
+    }
+  }
+
   var postCreatorLabel: some View {
     Text(creatorLabel)
       .font(.caption)
@@ -177,7 +220,7 @@ struct RPostItem: View {
       opposite: false
     )
     .highPriorityGesture(TapGesture().onEnded {
-      VoteActions().upvoteAction(post: post)
+      PostActions().upvoteAction(post: post)
     })
   }
 
@@ -192,7 +235,7 @@ struct RPostItem: View {
         opposite: false
       )
       .highPriorityGesture(TapGesture().onEnded {
-        VoteActions().downvoteAction(post: post)
+        PostActions().downvoteAction(post: post)
       })
     }
   }
@@ -236,7 +279,7 @@ struct RPostsView_Previews: PreviewProvider {
   static var previews: some View {
     let samplePost = RealmPost(
       postID: 1,
-      postName: "Sonoma",
+      postName: "Sonoma. This is the body of the sample post. It contains some information about the post.",
       postPublished: "2023-09-15T12:33:03.503139",
       postURL: "https://example.com/sample-post",
       postBody: "This is the body of the sample post. It contains some information about the post.",
@@ -263,7 +306,9 @@ struct RPostsView_Previews: PreviewProvider {
       postCommentCount: 10,
       upvotes: 30,
       downvotes: 12,
-      postMyVote: 1
+      postMyVote: 1,
+      postHidden: false,
+      postMinimised: true
     )
     return RPostItem(post: samplePost).previewLayout(.sizeThatFits)
   }

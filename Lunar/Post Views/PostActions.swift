@@ -1,5 +1,5 @@
 //
-//  VoteActions.swift
+//  PostActions.swift
 //  Lunar
 //
 //  Created by Mani on 21/10/2023.
@@ -9,8 +9,29 @@ import Foundation
 import RealmSwift
 import SwiftUI
 
-class VoteActions {
+class PostActions {
   let hapticsLight = UIImpactFeedbackGenerator(style: .light)
+  let hapticsSoft = UIImpactFeedbackGenerator(style: .soft)
+
+  func hideAction(post: RealmPost) {
+    let realm = try! Realm()
+    try! realm.write {
+      if let thawedPost = post.thaw() {
+        thawedPost.postHidden = true
+      }
+    }
+    hapticsSoft.impactOccurred(intensity: 0.5)
+  }
+
+  func minimiseToggleAction(post: RealmPost) {
+    let realm = try! Realm()
+    try! realm.write {
+      if let thawedPost = post.thaw() {
+        thawedPost.postMinimised.toggle()
+      }
+    }
+    hapticsSoft.impactOccurred(intensity: 0.5)
+  }
 
   func upvoteAction(post: RealmPost) {
     let realm = try! Realm()

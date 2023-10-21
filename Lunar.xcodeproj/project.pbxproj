@@ -170,7 +170,7 @@
 		3CE35B142AE2AFD600263E13 /* MailtoUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B132AE2AFD600263E13 /* MailtoUtil.swift */; };
 		3CE35B162AE2D7CD00263E13 /* SettingsAdditionalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B152AE2D7CD00263E13 /* SettingsAdditionalView.swift */; };
 		3CE35B182AE2FF1B00263E13 /* PostButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B172AE2FF1B00263E13 /* PostButtonItem.swift */; };
-		3CE35B1A2AE3D03C00263E13 /* VoteActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B192AE3D03C00263E13 /* VoteActions.swift */; };
+		3CE35B1A2AE3D03C00263E13 /* PostActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B192AE3D03C00263E13 /* PostActions.swift */; };
 		3CE35B1C2AE3D7D600263E13 /* AttributionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B1B2AE3D7D600263E13 /* AttributionsView.swift */; };
 		3CE35B1F2AE3DAF000263E13 /* AttributionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B1E2AE3DAF000263E13 /* AttributionInfo.swift */; };
 		3CE35B212AE4148A00263E13 /* AboutLemmyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B202AE4148A00263E13 /* AboutLemmyView.swift */; };
@@ -386,7 +386,7 @@
 		3CE35B132AE2AFD600263E13 /* MailtoUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailtoUtil.swift; sourceTree = "<group>"; };
 		3CE35B152AE2D7CD00263E13 /* SettingsAdditionalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAdditionalView.swift; sourceTree = "<group>"; };
 		3CE35B172AE2FF1B00263E13 /* PostButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostButtonItem.swift; sourceTree = "<group>"; };
-		3CE35B192AE3D03C00263E13 /* VoteActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteActions.swift; sourceTree = "<group>"; };
+		3CE35B192AE3D03C00263E13 /* PostActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostActions.swift; sourceTree = "<group>"; };
 		3CE35B1B2AE3D7D600263E13 /* AttributionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributionsView.swift; sourceTree = "<group>"; };
 		3CE35B1E2AE3DAF000263E13 /* AttributionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributionInfo.swift; sourceTree = "<group>"; };
 		3CE35B202AE4148A00263E13 /* AboutLemmyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutLemmyView.swift; sourceTree = "<group>"; };
@@ -817,7 +817,7 @@
 		3CCAE1832A6ADDBA0040EE12 /* Post Views */ = {
 			isa = PBXGroup;
 			children = (
-				3CE35B192AE3D03C00263E13 /* VoteActions.swift */,
+				3CE35B192AE3D03C00263E13 /* PostActions.swift */,
 				3CF43AA82AE1A42A006C8E84 /* RPostsView.swift */,
 				3C13F8252AE084F80067D4CE /* RPostsViewLabel.swift */,
 				3CC3E4202ADC3FD600F7F9A9 /* CreatePostPopoverView.swift */,
@@ -1144,7 +1144,7 @@
 				3CB9C73C2AA24A5B00FB5A10 /* Site.swift in Sources */,
 				3CCA7F772A956E6F00971BD1 /* CommentPopoverView.swift in Sources */,
 				3CFE04C92A7FF375007BAD81 /* KbinThreadsView.swift in Sources */,
-				3CE35B1A2AE3D03C00263E13 /* VoteActions.swift in Sources */,
+				3CE35B1A2AE3D03C00263E13 /* PostActions.swift in Sources */,
 				3CB9C7242AA23FF400FB5A10 /* Comment.swift in Sources */,
 				3C1AF0AC2AB4CABA00763602 /* MockCommentObject.swift in Sources */,
 				3CECCE232AAE1B1B0017A605 /* JWT.swift in Sources */,
