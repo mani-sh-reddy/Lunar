@@ -7,6 +7,7 @@
 
 import Alamofire
 import Defaults
+import SFSafeSymbols
 import SwiftUI
 
 enum FocusedField {
@@ -36,6 +37,23 @@ struct LoginView: View {
 
   var body: some View {
     List {
+      Section {
+        HStack {
+          Text("Login")
+            .font(.title)
+            .bold()
+          Spacer()
+          Button {
+            dismiss()
+          } label: {
+            Image(systemSymbol: .xmarkCircleFill)
+              .font(.largeTitle)
+              .foregroundStyle(.secondary)
+              .saturation(0)
+          }
+        }
+      }
+      .listRowBackground(Color.clear)
       InstanceSelectorView()
       Section {
         UsernameFieldView(
@@ -88,8 +106,6 @@ struct LoginView: View {
           isLoginFlowComplete: $isLoginFlowComplete
         )
       }
-
-      DismissButtonView(dismisser: $showingPopover)
 
       DebugLoginPagePropertiesView(
         isTryingLogin: isTryingLogin,

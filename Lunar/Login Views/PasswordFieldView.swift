@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SFSafeSymbols
 import SwiftUI
 
 struct PasswordFieldView: View {
@@ -36,22 +37,13 @@ struct PasswordFieldView: View {
         Image(systemSymbol: .key)
           .foregroundStyle(.foreground)
       }
-      Button(
-        action: {
-          uncoverPassword.toggle()
-        },
-        label: {
-          Image(systemSymbol: uncoverPassword ? .eyeCircleFill : .eyeSlashCircleFill)
-            .font(.title2)
-            .symbolRenderingMode(.hierarchical)
-            .foregroundStyle(.foreground)
-            .padding(.leading, 10)
-        }
-      )
-    }
-    .onAppear {
-      if let devPassword = ProcessInfo.processInfo.environment["LEMMY_TEST_ACC_PASS"] {
-        password = devPassword
+      Button {
+        uncoverPassword.toggle()
+      } label: {
+        Image(systemSymbol: uncoverPassword ? .eyesInverse : .eyeSlash)
+          .symbolRenderingMode(.hierarchical)
+          .foregroundStyle(.foreground)
+          .padding(.leading, 10)
       }
     }
     .onDebouncedChange(of: $password, debounceFor: 0.25) { newValue in
