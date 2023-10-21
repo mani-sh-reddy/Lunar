@@ -43,6 +43,14 @@ struct SettingsAdditionalView: View {
       } header: {
         Text("Reset")
       }
+
+      // MARK: - ATTRIBUTIONS
+
+      Section {
+        AttributionsView()
+      } header: {
+        Text("Attributions")
+      }
     }
     .opacity(settingsViewOpacity)
     .navigationTitle("Additional Settings")

@@ -169,6 +169,9 @@
 		3CE35B142AE2AFD600263E13 /* MailtoUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B132AE2AFD600263E13 /* MailtoUtil.swift */; };
 		3CE35B162AE2D7CD00263E13 /* SettingsAdditionalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B152AE2D7CD00263E13 /* SettingsAdditionalView.swift */; };
 		3CE35B182AE2FF1B00263E13 /* PostButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B172AE2FF1B00263E13 /* PostButtonItem.swift */; };
+		3CE35B1A2AE3D03C00263E13 /* VoteActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B192AE3D03C00263E13 /* VoteActions.swift */; };
+		3CE35B1C2AE3D7D600263E13 /* AttributionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B1B2AE3D7D600263E13 /* AttributionsView.swift */; };
+		3CE35B1F2AE3DAF000263E13 /* AttributionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B1E2AE3DAF000263E13 /* AttributionInfo.swift */; };
 		3CE69E962ABDCA8A00E2821E /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 3CE69E952ABDCA8A00E2821E /* Realm */; };
 		3CE69E982ABDCA8A00E2821E /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3CE69E972ABDCA8A00E2821E /* RealmSwift */; };
 		3CE69E9A2ABDCBD200E2821E /* PersistedModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE69E992ABDCBD200E2821E /* PersistedModels.swift */; };
@@ -176,10 +179,8 @@
 		3CE69E9E2ABDD56300E2821E /* OfflineDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE69E9D2ABDD56300E2821E /* OfflineDownloader.swift */; };
 		3CEACBC72A88020700260A01 /* PostsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEACBC62A88020700260A01 /* PostsFetcher.swift */; };
 		3CEB2C0A2AB2F3A50013609E /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEB2C092AB2F3A50013609E /* Defaults */; };
-		3CEB2C0D2AB2F43F0013609E /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEB2C0C2AB2F43F0013609E /* PopupView */; };
 		3CEB2C102AB2F4520013609E /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEB2C0F2AB2F4520013609E /* KeychainAccess */; };
 		3CEB2C132AB2F45F0013609E /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEB2C122AB2F45F0013609E /* SFSafeSymbols */; };
-		3CEB2C162AB2F4710013609E /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEB2C152AB2F4710013609E /* Shimmer */; };
 		3CECCE192AACFA4B0017A605 /* MyUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CECCE182AACFA4B0017A605 /* MyUserView.swift */; };
 		3CECCE1C2AADBFFA0017A605 /* ColorTesterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CECCE1B2AADBFFA0017A605 /* ColorTesterView.swift */; };
 		3CECCE1E2AADDBBA0017A605 /* CircleFillIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CECCE1D2AADDBBA0017A605 /* CircleFillIcons.swift */; };
@@ -382,6 +383,9 @@
 		3CE35B132AE2AFD600263E13 /* MailtoUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailtoUtil.swift; sourceTree = "<group>"; };
 		3CE35B152AE2D7CD00263E13 /* SettingsAdditionalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAdditionalView.swift; sourceTree = "<group>"; };
 		3CE35B172AE2FF1B00263E13 /* PostButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostButtonItem.swift; sourceTree = "<group>"; };
+		3CE35B192AE3D03C00263E13 /* VoteActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteActions.swift; sourceTree = "<group>"; };
+		3CE35B1B2AE3D7D600263E13 /* AttributionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributionsView.swift; sourceTree = "<group>"; };
+		3CE35B1E2AE3DAF000263E13 /* AttributionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributionInfo.swift; sourceTree = "<group>"; };
 		3CE69E992ABDCBD200E2821E /* PersistedModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistedModels.swift; sourceTree = "<group>"; };
 		3CE69E9B2ABDD0E100E2821E /* OfflineDownloaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineDownloaderView.swift; sourceTree = "<group>"; };
 		3CE69E9D2ABDD56300E2821E /* OfflineDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineDownloader.swift; sourceTree = "<group>"; };
@@ -428,7 +432,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CEB2C132AB2F45F0013609E /* SFSafeSymbols in Frameworks */,
-				3CEB2C0D2AB2F43F0013609E /* PopupView in Frameworks */,
 				3C23F0402AAA66E000AACA46 /* PulseUI in Frameworks */,
 				3CEB2C102AB2F4520013609E /* KeychainAccess in Frameworks */,
 				3CC4200D2AB37DDA00BE1612 /* BetterSafariView in Frameworks */,
@@ -442,7 +445,6 @@
 				3CA95F0A2A7ACF3B00626353 /* NukeUI in Frameworks */,
 				3CFE04BF2A7FEA71007BAD81 /* SwiftSoup in Frameworks */,
 				3CEB2C0A2AB2F3A50013609E /* Defaults in Frameworks */,
-				3CEB2C162AB2F4710013609E /* Shimmer in Frameworks */,
 				3C4DB8C22AB70856000137CF /* NukeExtensions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -809,6 +811,7 @@
 		3CCAE1832A6ADDBA0040EE12 /* Post Views */ = {
 			isa = PBXGroup;
 			children = (
+				3CE35B192AE3D03C00263E13 /* VoteActions.swift */,
 				3CF43AA82AE1A42A006C8E84 /* RPostsView.swift */,
 				3C13F8252AE084F80067D4CE /* RPostsViewLabel.swift */,
 				3CC3E4202ADC3FD600F7F9A9 /* CreatePostPopoverView.swift */,
@@ -870,6 +873,7 @@
 				3C4DB8C52AB72145000137CF /* SettingsAppResetView.swift */,
 				3C9E548F2A94C0870093DDC7 /* Account */,
 				3C9E54962A94C34D0093DDC7 /* Appearance */,
+				3CE35B1D2AE3D7E100263E13 /* Additional Options */,
 				3C9E54952A94C3170093DDC7 /* Developer Options */,
 			);
 			path = "Settings Views";
@@ -891,6 +895,15 @@
 				3CC3E41E2ADC36D900F7F9A9 /* DismissButtonView.swift */,
 			);
 			path = "Common Views";
+			sourceTree = "<group>";
+		};
+		3CE35B1D2AE3D7E100263E13 /* Additional Options */ = {
+			isa = PBXGroup;
+			children = (
+				3CE35B1B2AE3D7D600263E13 /* AttributionsView.swift */,
+				3CE35B1E2AE3DAF000263E13 /* AttributionInfo.swift */,
+			);
+			name = "Additional Options";
 			sourceTree = "<group>";
 		};
 		3CEA54442A59E633009E4FB3 /* MockData */ = {
@@ -970,10 +983,8 @@
 				3C23F03D2AAA66E000AACA46 /* Pulse */,
 				3C23F03F2AAA66E000AACA46 /* PulseUI */,
 				3CEB2C092AB2F3A50013609E /* Defaults */,
-				3CEB2C0C2AB2F43F0013609E /* PopupView */,
 				3CEB2C0F2AB2F4520013609E /* KeychainAccess */,
 				3CEB2C122AB2F45F0013609E /* SFSafeSymbols */,
-				3CEB2C152AB2F4710013609E /* Shimmer */,
 				3CC420092AB37BCB00BE1612 /* WhatsNewKit */,
 				3CC4200C2AB37DDA00BE1612 /* BetterSafariView */,
 				3C4DB8C12AB70856000137CF /* NukeExtensions */,
@@ -1022,10 +1033,8 @@
 				3CFE04BD2A7FEA71007BAD81 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				3C23F03C2AAA66E000AACA46 /* XCRemoteSwiftPackageReference "Pulse" */,
 				3CEB2C082AB2F3A50013609E /* XCRemoteSwiftPackageReference "Defaults" */,
-				3CEB2C0B2AB2F43F0013609E /* XCRemoteSwiftPackageReference "PopupView" */,
 				3CEB2C0E2AB2F4520013609E /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
-				3CEB2C142AB2F4710013609E /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
 				3CC420082AB37BCB00BE1612 /* XCRemoteSwiftPackageReference "WhatsNewKit" */,
 				3CC4200B2AB37DDA00BE1612 /* XCRemoteSwiftPackageReference "BetterSafariView" */,
 				3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */,
@@ -1129,11 +1138,13 @@
 				3CB9C73C2AA24A5B00FB5A10 /* Site.swift in Sources */,
 				3CCA7F772A956E6F00971BD1 /* CommentPopoverView.swift in Sources */,
 				3CFE04C92A7FF375007BAD81 /* KbinThreadsView.swift in Sources */,
+				3CE35B1A2AE3D03C00263E13 /* VoteActions.swift in Sources */,
 				3CB9C7242AA23FF400FB5A10 /* Comment.swift in Sources */,
 				3C1AF0AC2AB4CABA00763602 /* MockCommentObject.swift in Sources */,
 				3CECCE232AAE1B1B0017A605 /* JWT.swift in Sources */,
 				3CB9C71E2AA23F2600FB5A10 /* Counts.swift in Sources */,
 				3CCAA8BF2A65309E007CCEC2 /* NoInternetConnectionView.swift in Sources */,
+				3CE35B1C2AE3D7D600263E13 /* AttributionsView.swift in Sources */,
 				3CAEDDE52A9E58DB001469AA /* ManageInstancesView.swift in Sources */,
 				3CA5C40E2A57525500BF8F1B /* PostsView.swift in Sources */,
 				3CEF4CCC2A69B70C002B83C0 /* InPostThumbnailView.swift in Sources */,
@@ -1173,6 +1184,7 @@
 				3C5ECB1F2A75ABFE002BA561 /* SiteInfoFetcher.swift in Sources */,
 				3C9E548C2A94A3DC0093DDC7 /* CommentSender.swift in Sources */,
 				3CF43AA92AE1A42A006C8E84 /* RPostsView.swift in Sources */,
+				3CE35B1F2AE3DAF000263E13 /* AttributionInfo.swift in Sources */,
 				3CE237352AA4D171000F1D20 /* LargeNavButton.swift in Sources */,
 				3CE35B142AE2AFD600263E13 /* MailtoUtil.swift in Sources */,
 				3C62C2552A72F4BC003BAC5B /* SplashScreenView.swift in Sources */,
@@ -1642,14 +1654,6 @@
 				kind = branch;
 			};
 		};
-		3CEB2C0B2AB2F43F0013609E /* XCRemoteSwiftPackageReference "PopupView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/exyte/PopupView";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.6.3;
-			};
-		};
 		3CEB2C0E2AB2F4520013609E /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
@@ -1664,14 +1668,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.1.1;
-			};
-		};
-		3CEB2C142AB2F4710013609E /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/markiv/SwiftUI-Shimmer";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.4.0;
 			};
 		};
 		3CFE04BD2A7FEA71007BAD81 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
@@ -1744,11 +1740,6 @@
 			package = 3CEB2C082AB2F3A50013609E /* XCRemoteSwiftPackageReference "Defaults" */;
 			productName = Defaults;
 		};
-		3CEB2C0C2AB2F43F0013609E /* PopupView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3CEB2C0B2AB2F43F0013609E /* XCRemoteSwiftPackageReference "PopupView" */;
-			productName = PopupView;
-		};
 		3CEB2C0F2AB2F4520013609E /* KeychainAccess */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3CEB2C0E2AB2F4520013609E /* XCRemoteSwiftPackageReference "KeychainAccess" */;
@@ -1758,11 +1749,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
 			productName = SFSafeSymbols;
-		};
-		3CEB2C152AB2F4710013609E /* Shimmer */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3CEB2C142AB2F4710013609E /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
-			productName = Shimmer;
 		};
 		3CFE04BE2A7FEA71007BAD81 /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
