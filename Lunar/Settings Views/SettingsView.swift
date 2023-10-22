@@ -332,7 +332,7 @@ struct SettingsView: View {
             Spacer()
             VStack(alignment: .center, spacing: 2) {
               Text("Lunar v\(appVersion)")
-              Text(LocalizedStringKey("~ by [mani](http://mani-sh-reddy.github.io/) ~"))
+              Text(LocalizedStringKey("~ by [mani](https://github.com/mani-sh-reddy) ~"))
             }
             .font(.caption)
             .foregroundStyle(.secondary)
