@@ -55,6 +55,10 @@ class RealmPost: Object, ObjectKeyIdentifiable {
   @Persisted var postHidden: Bool
   @Persisted var postMinimised: Bool
 
+  // MARK: - Backlink to Fetcher Log
+
+  @Persisted(originProperty: "items") var parent: LinkingObjects<RealmDataState>
+
   // MARK: - Convenience initializer
 
   convenience init(

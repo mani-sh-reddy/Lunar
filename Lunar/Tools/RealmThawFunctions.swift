@@ -1,5 +1,5 @@
 //
-//  PostActions.swift
+//  RealmThawFunctions.swift
 //  Lunar
 //
 //  Created by Mani on 21/10/2023.
@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 import SwiftUI
 
-class PostActions {
+class RealmThawFunctions {
   let hapticsLight = UIImpactFeedbackGenerator(style: .light)
   let hapticsSoft = UIImpactFeedbackGenerator(style: .soft)
 

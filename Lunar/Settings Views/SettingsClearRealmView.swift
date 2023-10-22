@@ -73,7 +73,6 @@ struct SettingsClearRealmView: View {
     try! realm.write {
       realm.deleteAll()
     }
-    cacheTotal = "0 B"
     calculateCache()
     haptics.notificationOccurred(.success)
   }

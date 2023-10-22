@@ -27,6 +27,8 @@ struct FeedView: View {
     }
   }
 
+  @ObservedResults(RealmDataState.self) var realmDataState
+
   var body: some View {
     NavigationView {
       List {
@@ -58,7 +60,27 @@ struct FeedView: View {
 
         if realmExperimentalViewEnabled {
           NavigationLink {
-            RPostsView()
+            /// Checking if the realm data state object for the identifier (primary key) exists
+            /// the object will not exist on the first run
+            if let realmDataStateObject = realmDataState.where({
+              /// This identifier (aka the primary key) is generated automatically when creating the RealmDataState object
+              /// It uses the other variables passed in to generate it such as instance..etc
+              /// here it is being filtered based on identifier - there can only be one
+              /// so using .first
+              $0.identifier == "INSTANCE:lemmy.world_SORT:Active_TYPE:All_USER:_COMMUNITY:_PERSON:"
+            }).first {
+              RPostsView(realmDataState: realmDataStateObject)
+            } else {
+              let _ = print("FetchingFetchingFetchingFetching")
+              /// This is run if the object above is not found
+              /// It runs the postfetcher, which then creates a realmDataStateObject
+              /// subsequent runs will use the newly created realmDataStateObject
+              let _ = RPostsFetcher(
+                sortParameter: "Active",
+                typeParameter: "All",
+                currentPage: 1
+              )
+            }
           } label: {
             RPostsViewLabel()
           }

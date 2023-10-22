@@ -118,6 +118,18 @@ struct SettingsDevOptionsView: View {
       // MARK: - UNRELEASED VIEWS
 
       Section {
+        NavigationLink {
+          RealmBrowser()
+        } label: {
+          Label {
+            Text("Traverse Realm")
+          } icon: {
+            Image(systemSymbol: .line3CrossedSwirlCircleFill)
+              .foregroundStyle(.yellow)
+              .symbolRenderingMode(.hierarchical)
+          }
+        }
+
         Toggle(isOn: $realmExperimentalViewEnabled) {
           Label {
             Text("Realm Experimental View")
@@ -140,6 +152,7 @@ struct SettingsDevOptionsView: View {
               .symbolRenderingMode(.hierarchical)
           }
         }
+
         NavigationLink {
           ColorTesterView()
         } label: {

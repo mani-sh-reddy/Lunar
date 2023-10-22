@@ -11,22 +11,70 @@ import SFSafeSymbols
 import SwiftUI
 
 struct RPostsView: View {
-  @ObservedResults(
-    RealmPost.self,
-    where: ({ !$0.postHidden })
-  ) var realmPosts
+  /// Removes hidden posts
+  @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
+
+  /// Passed in the realmDataState
+  /// the maxPage can be read and incremented
+  @ObservedRealmObject var realmDataState: RealmDataState
 
   var body: some View {
     List {
+      /// Using the list retrieved from Realm
+      /// This list is updated in the realm specific postfetcher
       ForEach(realmPosts, id: \.postID) { post in
         RPostItem(post: post)
       }
       .listRowBackground(Color("postListBackground"))
       Rectangle()
-        .onAppear { print("Reached end of scroll view") }
+        .foregroundStyle(.gray)
+        /// Detects when at the end of the list
+        .onAppear {
+          print("Reached end of scroll view")
+          /// Incrementing the page number inside the realm object
+          /// Need to thaw the frozen property first
+          do {
+            try Realm().write {
+              guard let thawedDataState = realmDataState.thaw() else {
+                print("Unable to thaw!")
+                return
+              }
+              thawedDataState.maxPage += 1
+              print("thawed")
+            }
+          } catch {
+            print("Failed to save: \(error.localizedDescription)")
+          }
+          /// Runs postfetcher with the required sort and type
+          /// This should be expanded in the future to support community/person specific
+          /// As well as support passing in sort and type parameters from the feedview struct
+          RPostsFetcher(
+            sortParameter: "Active",
+            typeParameter: "All",
+            currentPage: realmDataState.maxPage
+          ).loadContent()
+        }
     }
     .background(Color("postListBackground"))
     .listStyle(.plain)
+    .toolbar {
+      ToolbarItemGroup(placement: .navigationBarTrailing) {
+        HStack(alignment: .lastTextBaseline) {
+          VStack {
+            Image(systemSymbol: .mailStack)
+            Text(String(realmPosts.count))
+              .fixedSize()
+          }
+          .padding(.trailing, 3)
+          VStack {
+            Image(systemSymbol: .number)
+            Text(String(realmDataState.maxPage))
+              .fixedSize()
+          }
+        }
+        .font(.caption)
+      }
+    }
   }
 }
 
@@ -128,7 +176,7 @@ struct RPostItem: View {
 
   var hideButton: some View {
     Button {
-      PostActions().hideAction(post: post)
+      RealmThawFunctions().hideAction(post: post)
     } label: {
       Image(systemSymbol: .eyeSlash)
     }
@@ -137,7 +185,7 @@ struct RPostItem: View {
 
   var minimiseButton: some View {
     Button {
-      PostActions().minimiseToggleAction(post: post)
+      RealmThawFunctions().minimiseToggleAction(post: post)
     } label: {
       Image(systemSymbol: .rectangleArrowtriangle2Inward)
     }
@@ -146,7 +194,7 @@ struct RPostItem: View {
 
   var upvoteButton: some View {
     Button {
-      PostActions().upvoteAction(post: post)
+      RealmThawFunctions().upvoteAction(post: post)
     } label: {
       Image(systemSymbol: .arrowUpCircleFill)
     }
@@ -155,7 +203,7 @@ struct RPostItem: View {
 
   var downvoteButton: some View {
     Button {
-      PostActions().downvoteAction(post: post)
+      RealmThawFunctions().downvoteAction(post: post)
     } label: {
       Image(systemSymbol: .arrowDownCircleFill)
     }
@@ -222,7 +270,7 @@ struct RPostItem: View {
       opposite: false
     )
     .highPriorityGesture(TapGesture().onEnded {
-      PostActions().upvoteAction(post: post)
+      RealmThawFunctions().upvoteAction(post: post)
     })
   }
 
@@ -237,7 +285,7 @@ struct RPostItem: View {
         opposite: false
       )
       .highPriorityGesture(TapGesture().onEnded {
-        PostActions().downvoteAction(post: post)
+        RealmThawFunctions().downvoteAction(post: post)
       })
     }
   }

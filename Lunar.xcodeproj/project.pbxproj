@@ -98,6 +98,10 @@
 		3CA5C40A2A574FF500BF8F1B /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C4092A574FF500BF8F1B /* PostModel.swift */; };
 		3CA5C40E2A57525500BF8F1B /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C40D2A57525500BF8F1B /* PostsView.swift */; };
 		3CA5C4102A5753AC00BF8F1B /* PostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */; };
+		3CA8A0C32AE570E200EEABD3 /* RPostsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA8A0C22AE570E200EEABD3 /* RPostsFetcher.swift */; };
+		3CA8A0C52AE57CA700EEABD3 /* RealmDataState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA8A0C42AE57CA700EEABD3 /* RealmDataState.swift */; };
+		3CA8A0C72AE5A38C00EEABD3 /* IdentifierGenerators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA8A0C62AE5A38C00EEABD3 /* IdentifierGenerators.swift */; };
+		3CA8A0C92AE5DBA900EEABD3 /* RealmBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA8A0C82AE5DBA900EEABD3 /* RealmBrowser.swift */; };
 		3CA92E3A2A543BF000688DEB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92E372A543BF000688DEB /* ContentView.swift */; };
 		3CA92E3B2A543BF000688DEB /* CommunityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92E382A543BF000688DEB /* CommunityModel.swift */; };
 		3CA92E432A549A7F00688DEB /* CommunityRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA92E422A549A7F00688DEB /* CommunityRowView.swift */; };
@@ -172,7 +176,7 @@
 		3CE35B142AE2AFD600263E13 /* MailtoUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B132AE2AFD600263E13 /* MailtoUtil.swift */; };
 		3CE35B162AE2D7CD00263E13 /* SettingsAdditionalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B152AE2D7CD00263E13 /* SettingsAdditionalView.swift */; };
 		3CE35B182AE2FF1B00263E13 /* PostButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B172AE2FF1B00263E13 /* PostButtonItem.swift */; };
-		3CE35B1A2AE3D03C00263E13 /* PostActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B192AE3D03C00263E13 /* PostActions.swift */; };
+		3CE35B1A2AE3D03C00263E13 /* RealmThawFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B192AE3D03C00263E13 /* RealmThawFunctions.swift */; };
 		3CE35B1C2AE3D7D600263E13 /* AttributionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B1B2AE3D7D600263E13 /* AttributionsView.swift */; };
 		3CE35B1F2AE3DAF000263E13 /* AttributionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B1E2AE3DAF000263E13 /* AttributionInfo.swift */; };
 		3CE35B212AE4148A00263E13 /* AboutLemmyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CE35B202AE4148A00263E13 /* AboutLemmyView.swift */; };
@@ -319,6 +323,10 @@
 		3CA5C4092A574FF500BF8F1B /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		3CA5C40D2A57525500BF8F1B /* PostsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
 		3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostRowView.swift; sourceTree = "<group>"; };
+		3CA8A0C22AE570E200EEABD3 /* RPostsFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPostsFetcher.swift; sourceTree = "<group>"; };
+		3CA8A0C42AE57CA700EEABD3 /* RealmDataState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDataState.swift; sourceTree = "<group>"; };
+		3CA8A0C62AE5A38C00EEABD3 /* IdentifierGenerators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifierGenerators.swift; sourceTree = "<group>"; };
+		3CA8A0C82AE5DBA900EEABD3 /* RealmBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBrowser.swift; sourceTree = "<group>"; };
 		3CA92E372A543BF000688DEB /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3CA92E382A543BF000688DEB /* CommunityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityModel.swift; sourceTree = "<group>"; };
 		3CA92E422A549A7F00688DEB /* CommunityRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityRowView.swift; sourceTree = "<group>"; };
@@ -390,7 +398,7 @@
 		3CE35B132AE2AFD600263E13 /* MailtoUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailtoUtil.swift; sourceTree = "<group>"; };
 		3CE35B152AE2D7CD00263E13 /* SettingsAdditionalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAdditionalView.swift; sourceTree = "<group>"; };
 		3CE35B172AE2FF1B00263E13 /* PostButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostButtonItem.swift; sourceTree = "<group>"; };
-		3CE35B192AE3D03C00263E13 /* PostActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostActions.swift; sourceTree = "<group>"; };
+		3CE35B192AE3D03C00263E13 /* RealmThawFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmThawFunctions.swift; sourceTree = "<group>"; };
 		3CE35B1B2AE3D7D600263E13 /* AttributionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributionsView.swift; sourceTree = "<group>"; };
 		3CE35B1E2AE3DAF000263E13 /* AttributionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributionInfo.swift; sourceTree = "<group>"; };
 		3CE35B202AE4148A00263E13 /* AboutLemmyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutLemmyView.swift; sourceTree = "<group>"; };
@@ -473,6 +481,7 @@
 		3C15DFEC2A6D8C5A0038EFCD /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				3CE35B192AE3D03C00263E13 /* RealmThawFunctions.swift */,
 				3C6ACC1F2AE52FD20073288E /* RichLinks.swift */,
 				3CC3E43A2ADDE56300F7F9A9 /* RegexPatterns.swift */,
 				3CC3E4382ADDE2B500F7F9A9 /* ConditionalModifiers.swift */,
@@ -481,6 +490,7 @@
 				3C130F742A8C0A520060B6E4 /* ExpandableTextBox.swift */,
 				3CC3E40E2ADBE24100F7F9A9 /* Utilities */,
 				3CC3E40D2ADBE14C00F7F9A9 /* Extensions */,
+				3CA8A0C62AE5A38C00EEABD3 /* IdentifierGenerators.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -617,6 +627,7 @@
 				3C2B147C2AABE17C0028E05A /* SymbolPicker.swift */,
 				3C2C45492AA648A000727DD5 /* UserDefaultsExplorerView.swift */,
 				3CECCE1B2AADBFFA0017A605 /* ColorTesterView.swift */,
+				3CA8A0C82AE5DBA900EEABD3 /* RealmBrowser.swift */,
 			);
 			name = "Developer Options";
 			sourceTree = "<group>";
@@ -636,6 +647,7 @@
 			isa = PBXGroup;
 			children = (
 				3CEACBC62A88020700260A01 /* PostsFetcher.swift */,
+				3CA8A0C22AE570E200EEABD3 /* RPostsFetcher.swift */,
 				3CB046F52ADB28850011BFEC /* PersonFetcher.swift */,
 				3C65885C2A6189AF00A46DA3 /* CommentsFetcher.swift */,
 				3CB408B32A5C558B00B7C983 /* CommunitiesFetcher.swift */,
@@ -649,6 +661,7 @@
 		3CA5C4082A57443200BF8F1B /* DataModels */ = {
 			isa = PBXGroup;
 			children = (
+				3CA8A0C42AE57CA700EEABD3 /* RealmDataState.swift */,
 				3C2B14702AABC66E0028E05A /* Quicklink.swift */,
 				3CB9C72F2AA2445B00FB5A10 /* ResponseModels */,
 				3CB9C7202AA23F6000FB5A10 /* Common */,
@@ -822,7 +835,6 @@
 		3CCAE1832A6ADDBA0040EE12 /* Post Views */ = {
 			isa = PBXGroup;
 			children = (
-				3CE35B192AE3D03C00263E13 /* PostActions.swift */,
 				3CF43AA82AE1A42A006C8E84 /* RPostsView.swift */,
 				3C13F8252AE084F80067D4CE /* RPostsViewLabel.swift */,
 				3CC3E4202ADC3FD600F7F9A9 /* CreatePostPopoverView.swift */,
@@ -1150,7 +1162,7 @@
 				3CB9C73C2AA24A5B00FB5A10 /* Site.swift in Sources */,
 				3CCA7F772A956E6F00971BD1 /* CommentPopoverView.swift in Sources */,
 				3CFE04C92A7FF375007BAD81 /* KbinThreadsView.swift in Sources */,
-				3CE35B1A2AE3D03C00263E13 /* PostActions.swift in Sources */,
+				3CE35B1A2AE3D03C00263E13 /* RealmThawFunctions.swift in Sources */,
 				3CB9C7242AA23FF400FB5A10 /* Comment.swift in Sources */,
 				3C1AF0AC2AB4CABA00763602 /* MockCommentObject.swift in Sources */,
 				3CECCE232AAE1B1B0017A605 /* JWT.swift in Sources */,
@@ -1172,6 +1184,7 @@
 				3CEF4CC22A69B38B002B83C0 /* SubscribedCommunitiesView.swift in Sources */,
 				3CF3B8FB2A901847001C08B5 /* CommentSectionView.swift in Sources */,
 				3CB046F22ADAF3C00011BFEC /* CommentsViewWorkaroundWarning.swift in Sources */,
+				3CA8A0C92AE5DBA900EEABD3 /* RealmBrowser.swift in Sources */,
 				3C2B147D2AABE17C0028E05A /* SymbolPicker.swift in Sources */,
 				3C4DB8BE2AB701B2000137CF /* AppDelegate.swift in Sources */,
 				3CC3E4412AE047FE00F7F9A9 /* RealmPost.swift in Sources */,
@@ -1185,6 +1198,7 @@
 				3C96EA552A7857D900753199 /* AccountModel.swift in Sources */,
 				3CADB5752A7EA03000095839 /* SearchUsersListAll.swift in Sources */,
 				3CB9C7462AA24B7600FB5A10 /* Language.swift in Sources */,
+				3CA8A0C52AE57CA700EEABD3 /* RealmDataState.swift in Sources */,
 				3C17DE042A92D4D6008EEB10 /* IntExtension.swift in Sources */,
 				3CB9C72E2AA243CB00FB5A10 /* PostObject.swift in Sources */,
 				3CED897B2A71A5CF00BD9086 /* ImagePopoverView.swift in Sources */,
@@ -1221,6 +1235,7 @@
 				3C6D29692A797D6E007AFD99 /* UserRowSettingsBannerView.swift in Sources */,
 				3C72E21B2A71735E00C794C6 /* InPostThumbnailImageView.swift in Sources */,
 				3CE35B182AE2FF1B00263E13 /* PostButtonItem.swift in Sources */,
+				3CA8A0C32AE570E200EEABD3 /* RPostsFetcher.swift in Sources */,
 				3C4EE4B92A8006D0009EE4A8 /* KbinPostRowView.swift in Sources */,
 				3CC3E42D2ADD6EBA00F7F9A9 /* PostSender.swift in Sources */,
 				3CECCE1E2AADDBBA0017A605 /* CircleFillIcons.swift in Sources */,
@@ -1245,6 +1260,7 @@
 				3C1AF0AE2AB4CAE200763602 /* MockPostObject.swift in Sources */,
 				3CC3E4392ADDE2B500F7F9A9 /* ConditionalModifiers.swift in Sources */,
 				3CE237322AA48E7C000F1D20 /* WelcomeScreenInfo.swift in Sources */,
+				3CA8A0C72AE5A38C00EEABD3 /* IdentifierGenerators.swift in Sources */,
 				3CC3E43D2ADDF69200F7F9A9 /* URLInputViews.swift in Sources */,
 				3CA92E3A2A543BF000688DEB /* ContentView.swift in Sources */,
 				3C4DB8C62AB72145000137CF /* SettingsAppResetView.swift in Sources */,
