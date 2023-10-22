@@ -46,12 +46,20 @@ struct SettingsAdditionalView: View {
         Text("Docs")
       }
 
-      // MARK: - CLEAR CACHE
+      // MARK: - DATA CACHE
 
       Section {
         SettingsClearCacheView()
       } header: {
         Text("App Cache")
+      }
+
+      // MARK: - DATA CACHE
+
+      Section {
+        SettingsClearRealmView()
+      } header: {
+        Text("Realm Database")
       }
 
       // MARK: - APP RESET
