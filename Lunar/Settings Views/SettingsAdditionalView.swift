@@ -20,6 +20,7 @@ struct SettingsAdditionalView: View {
   @State var settingsViewOpacity: Double = 1
   @State private var logoScale: CGFloat = 0.1
   @State private var logoOpacity: Double = 0
+//  @State private var attributionsExpanded: Bool = false
 
   let notificationHaptics = UINotificationFeedbackGenerator()
   let haptics = UIImpactFeedbackGenerator(style: .soft)
@@ -68,9 +69,18 @@ struct SettingsAdditionalView: View {
       // MARK: - ATTRIBUTIONS
 
       Section {
-        AttributionsView()
-      } header: {
-        Text("Attributions")
+        DisclosureGroup {
+          AttributionsView()
+        } label: {
+          Label {
+            Text("Attributions")
+          } icon: {
+            Image(systemSymbol: .heartTextSquareFill)
+              .symbolRenderingMode(.hierarchical)
+              .foregroundStyle(.indigo)
+          }
+        }
+        .tint(.indigo)
       }
     }
     .opacity(settingsViewOpacity)

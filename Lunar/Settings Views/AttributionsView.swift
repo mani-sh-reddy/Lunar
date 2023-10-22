@@ -21,6 +21,16 @@ struct AttributionsView: View {
       NavigationLink {
         List {
           Section {
+            ZStack {
+              HStack {
+                Spacer()
+                ProgressView()
+                Spacer()
+              }
+              MetadataView(vm: LinkViewModel(link: attribution.url))
+            }
+          }
+          Section {
             Text(attribution.license)
               .font(monospaced)
           }
@@ -43,6 +53,13 @@ struct AttributionsView: View {
 
 struct AttributionsView_Previews: PreviewProvider {
   static var previews: some View {
-    AttributionsView().previewLayout(.sizeThatFits)
+    List {
+      Section {
+        MetadataView(vm: LinkViewModel(link: "https://github.com/mani-sh-reddy"))
+      }
+      Section {
+        Text("None")
+      }
+    }
   }
 }

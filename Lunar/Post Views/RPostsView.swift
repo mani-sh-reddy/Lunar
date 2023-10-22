@@ -22,6 +22,8 @@ struct RPostsView: View {
         RPostItem(post: post)
       }
       .listRowBackground(Color("postListBackground"))
+      Rectangle()
+        .onAppear { print("Reached end of scroll view") }
     }
     .background(Color("postListBackground"))
     .listStyle(.plain)
