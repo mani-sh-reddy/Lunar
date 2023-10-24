@@ -15,18 +15,26 @@ struct TrendingCommunitiesSectionView: View {
 
   var body: some View {
     ForEach(communitiesFetcher.communities, id: \.community.id) { community in
-
-      // TODO: -
       NavigationLink {
-        PostsView(
-          postsFetcher: PostsFetcher(
-            communityID: community.community.id
-          ), title: community.community.name,
-          community: community
-        )
+        PostsViewLink(sort: "New", type: "Local")
       } label: {
         CommunityRowView(community: community)
       }
+//      PostsViewLink(
+//        content: CommunityRowView(community: community),
+//        sort: "New",
+//        type: <#String#>
+//      )
+//      NavigationLink {
+//        PostsView(
+//          postsFetcher: PostsFetcher(
+//            communityID: community.community.id
+//          ), title: community.community.name,
+//          community: community
+//        )
+//      } label: {
+//        CommunityRowView(community: community)
+//      }
     }
     .onChange(of: selectedInstance) { _ in
       Task {

@@ -17,13 +17,14 @@ struct GeneralCommunitiesView: View {
   var body: some View {
     ForEach(enableQuicklinks ? quicklinks : lockedQuicklinks, id: \.self) { quicklink in
       NavigationLink {
-        PostsView(
-          postsFetcher: PostsFetcher(
-            sortParameter: enableQuicklinks ? quicklink.sort : forcedPostSort.rawValue,
-            typeParameter: quicklink.type
-          ),
-          title: quicklink.title
-        )
+        PostsViewLink(sort: "Active", type: "All")
+//        PostsView(
+//          postsFetcher: PostsFetcher(
+//            sortParameter: enableQuicklinks ? quicklink.sort : forcedPostSort.rawValue,
+//            typeParameter: quicklink.type
+//          ),
+//          title: quicklink.title
+//        )
       } label: {
         GeneralCommunityQuicklinkButton(
           image: quicklink.icon,

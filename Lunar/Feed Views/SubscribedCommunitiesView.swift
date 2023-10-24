@@ -21,13 +21,14 @@ struct SubscribedCommunitiesSectionView: View {
 
     ForEach(communitiesFetcher.communities, id: \.community.id) { community in
       NavigationLink {
-        PostsView(
-          postsFetcher: PostsFetcher(
-            communityID: community.community.id
-          ),
-          title: community.community.name,
-          community: community
-        )
+        PostsViewLink(sort: "Active", type: "All")
+//        PostsView(
+//          postsFetcher: PostsFetcher(
+//            communityID: community.community.id
+//          ),
+//          title: community.community.name,
+//          community: community
+//        )
       } label: {
         CommunityRowView(community: community)
       }

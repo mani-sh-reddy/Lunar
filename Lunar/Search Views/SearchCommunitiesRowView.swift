@@ -17,12 +17,13 @@ struct SearchCommunitiesRowView: View {
   var body: some View {
     ForEach(searchCommunitiesResults, id: \.community.id) { community in
       NavigationLink {
-        PostsView(
-          postsFetcher: PostsFetcher(
-            communityID: community.community.id
-          ), title: community.community.name,
-          community: community
-        )
+        PostsViewLink(sort: "Active", type: "All")
+//        PostsView(
+//          postsFetcher: PostsFetcher(
+//            communityID: community.community.id
+//          ), title: community.community.name,
+//          community: community
+//        )
       } label: {
         HStack {
           LazyImage(url: URL(string: community.community.icon ?? "")) { state in

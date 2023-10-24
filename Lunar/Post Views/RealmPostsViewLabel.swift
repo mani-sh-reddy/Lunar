@@ -1,5 +1,5 @@
 //
-//  RPostsViewLabel.swift
+//  RealmPostsViewLabel.swift
 //  Lunar
 //
 //  Created by Mani on 18/10/2023.
@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 import SwiftUI
 
-struct RPostsViewLabel: View {
+struct RealmPostsViewLabel: View {
   var body: some View {
     HStack {
       LinearGradient(

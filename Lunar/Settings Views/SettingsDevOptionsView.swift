@@ -140,18 +140,18 @@ struct SettingsDevOptionsView: View {
           }
         }
 
-        NavigationLink {
-          OfflineDownloaderView()
-        } label: {
-          Label {
-            Text("Offline Downloader")
-          } icon: {
-            Image(systemSymbol: .squareAndArrowDownFill)
-              .foregroundStyle(.cyan)
-              .brightness(-0.2)
-              .symbolRenderingMode(.hierarchical)
-          }
-        }
+//        NavigationLink {
+//          OfflineDownloaderView()
+//        } label: {
+//          Label {
+//            Text("Offline Downloader")
+//          } icon: {
+//            Image(systemSymbol: .squareAndArrowDownFill)
+//              .foregroundStyle(.cyan)
+//              .brightness(-0.2)
+//              .symbolRenderingMode(.hierarchical)
+//          }
+//        }
 
         NavigationLink {
           ColorTesterView()

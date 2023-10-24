@@ -19,19 +19,20 @@ import SwiftUI
   @Default(.postSort) var postSort
   @Default(.postType) var postType
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
+  @Default(.selectedInstance) var selectedInstance
 
-  @Published var posts = [PostObject]()
   @Published var isLoading = false
 
+  @State var numberOfPosts = 0
+
   let pulse = Pulse.LoggerStore.shared
-//  let imageRequest = ImageRequest(url: URL(string: thumbnailURL), processors: [.resize(width: 250)])
   let imagePrefetcher = ImagePrefetcher(pipeline: ImagePipeline.shared)
 
-  private var currentPage = 1
+  var currentPage: Int = 1
   var sortParameter: String?
-  private var typeParameter: String?
-  private var communityID: Int?
-  private var instance: String?
+  var typeParameter: String?
+  var communityID: Int?
+  var instance: String?
 
   private var endpoint: URLComponents {
     URLBuilder(
@@ -62,11 +63,14 @@ import SwiftUI
     sortParameter: String? = nil,
     typeParameter: String? = nil,
     communityID: Int? = 0,
-    instance: String? = nil
+    instance: String? = nil,
+    currentPage: Int
   ) {
     if communityID == 99_999_999_999_999 { // TODO: just a placeholder to prevent running when user posts
       return
     }
+
+    self.currentPage = currentPage
 
     self.sortParameter = sortParameter ?? postSort
     self.typeParameter = typeParameter ?? postType
@@ -79,24 +83,13 @@ import SwiftUI
     loadContent()
   }
 
-  func loadMoreContentIfNeeded(currentItem: PostObject) {
-    guard currentItem.post.id == posts.last?.post.id else {
-      return
-    }
-    loadContent()
-  }
-
   func loadContent(isRefreshing: Bool = false) {
     guard !isLoading else { return }
 
-    if isRefreshing {
-      currentPage = 1
-    } else {
-      isLoading = true
-    }
+    isLoading = true
 
     let cacher = ResponseCacher(behavior: .cache)
-
+    print("_____________FETCH_TRIGGERED_____________")
     AF.request(endpoint) { urlRequest in
       if isRefreshing {
         urlRequest.cachePolicy = .reloadRevalidatingCacheData
@@ -120,8 +113,15 @@ import SwiftUI
       switch response.result {
       case let .success(result):
 
+        let imageRequestList = result.imageURLs.compactMap {
+          ImageRequest(url: URL(string: $0), processors: [.resize(width: 200)])
+        }
+        self.imagePrefetcher.startPrefetching(with: imageRequestList)
+
         // MARK: - Realm
 
+        /// Creating a realm post entry for each of the retreived posts
+        /// and writing to the realm database
         let realm = try! Realm()
         try! realm.write {
           for post in result.posts {
@@ -156,42 +156,34 @@ import SwiftUI
               downvotes: post.counts.downvotes,
               postMyVote: post.myVote ?? 0,
               postHidden: false,
-              postMinimised: false
+              postMinimised: false,
+              sort: self.sortParameter,
+              type: self.typeParameter
             )
             realm.add(fetchedPost, update: .modified)
+            self.numberOfPosts = realm.objects(RealmPost.self).count
           }
+          /// This object holds the data about what batch of posts were fetched
+          /// It saves the page number that the posts were fetched from so that duplicates are not fetched
+          /// Creates a new table if it doesn't exist
+          let realmDataState = RealmDataState(
+            instance: self.instance ?? self.selectedInstance,
+            sortParameter: self.sortParameter,
+            typeParameter: self.typeParameter,
+            numberOfPosts: self.numberOfPosts,
+            maxPage: self.currentPage,
+            latestTime: NSDate().timeIntervalSince1970, // is of type Double
+            userUsed: self.activeAccount.actorID,
+            communityID: nil,
+            personID: nil
+          )
+          realm.add(realmDataState, update: .modified)
         }
+        self.isLoading = false
 
-        // MARK: - General
-
-        let fetchedPosts = result.posts
-
-        let imageRequestList = result.imageURLs.compactMap {
-          ImageRequest(url: URL(string: $0), processors: [.resize(width: 200)])
-        }
-        self.imagePrefetcher.startPrefetching(with: imageRequestList)
-
-//        let imagesToPrefetch = result.imageURLs.compactMap { URL(string: $0) }
-//        self.imagePrefetcher.startPrefetching(with: imagesToPrefetch)
-
-        if isRefreshing {
-          self.posts = fetchedPosts
-        } else {
-          /// Removing duplicates
-          let filteredPosts = fetchedPosts.filter { post in
-            !self.posts.contains { $0.post.id == post.post.id }
-          }
-          self.posts += filteredPosts
-          self.currentPage += 1
-        }
-        if !isRefreshing {
-          self.isLoading = false
-        }
       case let .failure(error):
         print("PostsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
-        if !isRefreshing {
-          self.isLoading = false
-        }
+        self.isLoading = false
       }
     }
   }

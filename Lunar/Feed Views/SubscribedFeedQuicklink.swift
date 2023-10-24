@@ -28,12 +28,13 @@ struct SubscribedFeedQuicklink: View {
       }
     } else {
       NavigationLink {
-        PostsView(
-          postsFetcher: PostsFetcher(
-            sortParameter: subscribedPostsQuicklink.sort,
-            typeParameter: subscribedPostsQuicklink.type
-          ), title: subscribedPostsQuicklink.title
-        )
+        PostsViewLink(sort: "Active", type: "All")
+//        PostsView(
+//          postsFetcher: PostsFetcher(
+//            sortParameter: subscribedPostsQuicklink.sort,
+//            typeParameter: subscribedPostsQuicklink.type
+//          ), title: subscribedPostsQuicklink.title
+//        )
       } label: {
         GeneralCommunityQuicklinkButton(
           image: subscribedPostsQuicklink.icon,

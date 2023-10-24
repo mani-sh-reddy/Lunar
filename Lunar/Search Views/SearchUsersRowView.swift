@@ -17,12 +17,13 @@ struct SearchUsersRowView: View {
   var body: some View {
     ForEach(searchUsersResults, id: \.person.id) { person in
       NavigationLink {
-        PostsView(
-          postsFetcher: PostsFetcher(
-            communityID: 99_999_999_999_999 // TODO: change once implement user posts/comments fetcher
-          ), title: person.person.name,
-          user: person
-        )
+        PostsViewLink(sort: "Active", type: "All")
+//        PostsView(
+//          postsFetcher: PostsFetcher(
+//            communityID: 99_999_999_999_999 // TODO: change once implement user posts/comments fetcher
+//          ), title: person.person.name,
+//          user: person
+//        )
       } label: {
         UserRowDetailView(person: person)
       }

@@ -18,14 +18,15 @@ struct MoreCommunitiesView: View {
         ForEach(communitiesFetcher.communities, id: \.community.id) { community in
 //          let _ = print(URLParser.extractDomain(from: community.community.actorID))
           NavigationLink {
-            PostsView(
-              postsFetcher: PostsFetcher(
-                communityID: community.community.id,
-                instance: URLParser.extractDomain(from: community.community.actorID)
-              ),
-              title: community.community.name,
-              community: community
-            )
+            PostsViewLink(sort: "Active", type: "All")
+//            PostsView(
+//              postsFetcher: PostsFetcher(
+//                communityID: community.community.id,
+//                instance: URLParser.extractDomain(from: community.community.actorID)
+//              ),
+//              title: community.community.name,
+//              community: community
+//            )
           } label: {
             CommunityRowView(community: community)
           }

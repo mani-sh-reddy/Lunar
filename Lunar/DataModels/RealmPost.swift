@@ -55,6 +55,12 @@ class RealmPost: Object, ObjectKeyIdentifiable {
   @Persisted var postHidden: Bool
   @Persisted var postMinimised: Bool
 
+  // MARK: - Filters
+
+  @Persisted var sort: String?
+  @Persisted var type: String?
+  // community, person, etc...
+
   // MARK: - Backlink to Fetcher Log
 
   @Persisted(originProperty: "items") var parent: LinkingObjects<RealmDataState>
@@ -92,7 +98,9 @@ class RealmPost: Object, ObjectKeyIdentifiable {
     downvotes: Int?,
     postMyVote: Int,
     postHidden: Bool,
-    postMinimised: Bool
+    postMinimised: Bool,
+    sort: String?,
+    type: String?
   ) {
     self.init()
     self.postID = postID
@@ -130,5 +138,8 @@ class RealmPost: Object, ObjectKeyIdentifiable {
     self.postMyVote = postMyVote
     self.postHidden = postHidden
     self.postMinimised = postMinimised
+
+    self.sort = sort
+    self.type = type
   }
 }
