@@ -16,7 +16,12 @@ struct TrendingCommunitiesSectionView: View {
   var body: some View {
     ForEach(communitiesFetcher.communities, id: \.community.id) { community in
       NavigationLink {
-        PostsViewLink(sort: "New", type: "Local")
+        PostsView(
+          sort: "Active",
+          type: "All",
+          communityID: community.community.id
+        )
+//        PostsViewLink(sort: "Active", type: "All", communityID: community.community.id)
       } label: {
         CommunityRowView(community: community)
       }

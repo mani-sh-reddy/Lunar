@@ -14,21 +14,17 @@ struct PostsView: View {
   /// Removes hidden posts
   @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
 
-  /// Passed in the realmDataState
-  /// the maxPage can be read and incremented
-  @ObservedRealmObject var realmDataState: RealmDataState
-
   var sort: String
   var type: String
   var user: Int?
-  var community: Int?
-  var person: Int?
+  var communityID: Int?
+  var personID: Int?
 
   var realmPostsFiltered: Results<RealmPost> {
-    realmPosts.where {
-      $0.sort == sort && $0.type == type
-    }
+    realmPosts.where { $0.sort == sort && $0.type == type && $0.communityID == communityID ?? 0 }
   }
+
+  @State var runOnce: Bool = false
 
   var body: some View {
     List {
@@ -38,23 +34,20 @@ struct PostsView: View {
         PostItem(post: post)
       }
       .listRowBackground(Color("postListBackground"))
-      Rectangle()
-        .foregroundStyle(.gray)
-        /// Detects when at the end of the list
-        .onAppear {
-          print("Reached end of scroll view")
-          incrementRealmPageNumber()
-          /// Runs postfetcher with the required sort and type
-          /// This should be expanded in the future to support community/person specific
-          /// As well as support passing in sort and type parameters from the feedview struct
-          DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            PostsFetcher(
-              sortParameter: sort,
-              typeParameter: type,
-              currentPage: realmDataState.maxPage
-            ).loadContent()
+      if !runOnce {
+        Rectangle()
+          .foregroundStyle(.green)
+          /// Detects when at the end of the list
+          .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+              PostsFetcher(
+                sort: sort,
+                type: type,
+                communityID: communityID
+              ).loadContent()
+            }
           }
-        }
+      }
     }
     .background(Color("postListBackground"))
     .listStyle(.plain)
@@ -62,6 +55,9 @@ struct PostsView: View {
       ToolbarItemGroup(placement: .navigationBarTrailing) {
         infoToolbar
       }
+    }
+    .onChange(of: realmPostsFiltered.count) { _ in
+      runOnce = false
     }
   }
 
@@ -75,28 +71,11 @@ struct PostsView: View {
       .padding(.trailing, 3)
       VStack {
         Image(systemSymbol: .number)
-        Text(String(realmDataState.maxPage))
+        Text("<?>")
           .fixedSize()
       }
     }
     .font(.caption)
-  }
-
-  /// Incrementing the page number inside the realm object.
-  /// Need to thaw the frozen property first
-  func incrementRealmPageNumber() {
-    do {
-      try Realm().write {
-        guard let thawedDataState = realmDataState.thaw() else {
-          print("Unable to thaw!")
-          return
-        }
-        thawedDataState.maxPage += 1
-        print("thawed")
-      }
-    } catch {
-      print("Failed to save: \(error.localizedDescription)")
-    }
   }
 }
 

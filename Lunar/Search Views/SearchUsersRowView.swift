@@ -17,7 +17,7 @@ struct SearchUsersRowView: View {
   var body: some View {
     ForEach(searchUsersResults, id: \.person.id) { person in
       NavigationLink {
-        PostsViewLink(sort: "Active", type: "All")
+        PostsView(sort: "Active", type: "All")
 //        PostsView(
 //          postsFetcher: PostsFetcher(
 //            communityID: 99_999_999_999_999 // TODO: change once implement user posts/comments fetcher

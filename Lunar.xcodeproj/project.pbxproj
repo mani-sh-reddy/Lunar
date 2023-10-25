@@ -35,6 +35,7 @@
 		3C2B14792AABD1290028E05A /* SettingsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2B14782AABD1290028E05A /* SettingsFeedView.swift */; };
 		3C2B147D2AABE17C0028E05A /* SymbolPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2B147C2AABE17C0028E05A /* SymbolPicker.swift */; };
 		3C2C454A2AA648A000727DD5 /* UserDefaultsExplorerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2C45492AA648A000727DD5 /* UserDefaultsExplorerView.swift */; };
+		3C3210E82AE9B6B100ACC7B7 /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3210E72AE9B6B100ACC7B7 /* PostsViewModel.swift */; };
 		3C42AD1A2A8038300056AFBC /* KbinCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42AD192A8038300056AFBC /* KbinCommentsView.swift */; };
 		3C42AD1C2A803AE50056AFBC /* KbinCommentsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42AD1B2A803AE50056AFBC /* KbinCommentsFetcher.swift */; };
 		3C432F5C2A819E54000D5321 /* KbinThreadBodyFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C432F5B2A819E54000D5321 /* KbinThreadBodyFetcher.swift */; };
@@ -257,6 +258,7 @@
 		3C2B14782AABD1290028E05A /* SettingsFeedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsFeedView.swift; sourceTree = "<group>"; };
 		3C2B147C2AABE17C0028E05A /* SymbolPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPicker.swift; sourceTree = "<group>"; };
 		3C2C45492AA648A000727DD5 /* UserDefaultsExplorerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExplorerView.swift; sourceTree = "<group>"; };
+		3C3210E72AE9B6B100ACC7B7 /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
 		3C42AD192A8038300056AFBC /* KbinCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinCommentsView.swift; sourceTree = "<group>"; };
 		3C42AD1B2A803AE50056AFBC /* KbinCommentsFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KbinCommentsFetcher.swift; sourceTree = "<group>"; };
 		3C432F5B2A819E54000D5321 /* KbinThreadBodyFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KbinThreadBodyFetcher.swift; sourceTree = "<group>"; };
@@ -635,6 +637,7 @@
 			children = (
 				3CEACBC62A88020700260A01 /* old_PostsFetcher.swift */,
 				3CA8A0C22AE570E200EEABD3 /* PostsFetcher.swift */,
+				3C3210E72AE9B6B100ACC7B7 /* PostsViewModel.swift */,
 				3CB046F52ADB28850011BFEC /* PersonFetcher.swift */,
 				3C65885C2A6189AF00A46DA3 /* CommentsFetcher.swift */,
 				3CB408B32A5C558B00B7C983 /* CommunitiesFetcher.swift */,
@@ -1102,6 +1105,7 @@
 				3CEF4CC62A69B3AD002B83C0 /* MoreCommunitiesButtonView.swift in Sources */,
 				3CEF4CD32A69B770002B83C0 /* StringExtension.swift in Sources */,
 				3CB9C7312AA244CC00FB5A10 /* Post.swift in Sources */,
+				3C3210E82AE9B6B100ACC7B7 /* PostsViewModel.swift in Sources */,
 				3CEF4CD02A69B738002B83C0 /* InPostMetadataView.swift in Sources */,
 				3CB9C7442AA24B4100FB5A10 /* MyUser.swift in Sources */,
 				3C2B14752AABC7CB0028E05A /* CustomiseFeedQuicklinksView.swift in Sources */,

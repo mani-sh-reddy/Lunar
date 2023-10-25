@@ -21,7 +21,7 @@ struct SubscribedCommunitiesSectionView: View {
 
     ForEach(communitiesFetcher.communities, id: \.community.id) { community in
       NavigationLink {
-        PostsViewLink(sort: "Active", type: "All")
+        PostsView(sort: "Active", type: "All")
 //        PostsView(
 //          postsFetcher: PostsFetcher(
 //            communityID: community.community.id

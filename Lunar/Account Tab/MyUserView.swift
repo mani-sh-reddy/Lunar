@@ -105,15 +105,17 @@ struct MyUserView: View {
   var postsAndCommentsSection: some View {
     Section {
       NavigationLink {
-        MyUserObserver(
-          personFetcher: PersonFetcher(
-            sortParameter: "New",
-            typeParameter: "All",
-            personID: userID
-          ),
-          userName: name,
-          viewType: "Posts"
-        )
+        if userID != 0 {
+          MyUserObserver(
+            personFetcher: PersonFetcher(
+              sortParameter: "New",
+              typeParameter: "All",
+              personID: userID
+            ),
+            userName: name,
+            viewType: "Posts"
+          )
+        }
       } label: {
         Label {
           HStack {
@@ -128,15 +130,17 @@ struct MyUserView: View {
       }
 
       NavigationLink {
-        MyUserObserver(
-          personFetcher: PersonFetcher(
-            sortParameter: "New",
-            typeParameter: "All",
-            personID: userID
-          ),
-          userName: name,
-          viewType: "Comments"
-        )
+        if userID != 0 {
+          MyUserObserver(
+            personFetcher: PersonFetcher(
+              sortParameter: "New",
+              typeParameter: "All",
+              personID: userID
+            ),
+            userName: name,
+            viewType: "Comments"
+          )
+        }
       } label: {
         Label {
           Text("Comments")
@@ -153,16 +157,18 @@ struct MyUserView: View {
   var savedPostsAndCommentsSection: some View {
     Section {
       NavigationLink {
-        MyUserObserver(
-          personFetcher: PersonFetcher(
-            sortParameter: "New",
-            typeParameter: "All",
-            savedOnly: true,
-            personID: userID
-          ),
-          userName: name,
-          viewType: "Saved Posts"
-        )
+        if userID != 0 {
+          MyUserObserver(
+            personFetcher: PersonFetcher(
+              sortParameter: "New",
+              typeParameter: "All",
+              savedOnly: true,
+              personID: userID
+            ),
+            userName: name,
+            viewType: "Saved Posts"
+          )
+        }
       } label: {
         Label {
           Text("Saved Posts")
@@ -173,16 +179,18 @@ struct MyUserView: View {
         }
       }
       NavigationLink {
-        MyUserObserver(
-          personFetcher: PersonFetcher(
-            sortParameter: "New",
-            typeParameter: "All",
-            savedOnly: true,
-            personID: userID
-          ),
-          userName: name,
-          viewType: "Saved Comments"
-        )
+        if userID != 0 {
+          MyUserObserver(
+            personFetcher: PersonFetcher(
+              sortParameter: "New",
+              typeParameter: "All",
+              savedOnly: true,
+              personID: userID
+            ),
+            userName: name,
+            viewType: "Saved Comments"
+          )
+        }
       } label: {
         Label {
           Text("Saved Comments")

@@ -13,7 +13,7 @@ import Pulse
 import RealmSwift
 import SwiftUI
 
-@MainActor class PostsFetcher: ObservableObject {
+class PostsFetcher: ObservableObject {
   @Default(.activeAccount) var activeAccount
   @Default(.appBundleID) var appBundleID
   @Default(.postSort) var postSort
@@ -23,23 +23,22 @@ import SwiftUI
 
   @Published var isLoading = false
 
-  @State var numberOfPosts = 0
+  @State var page = 1
 
   let pulse = Pulse.LoggerStore.shared
   let imagePrefetcher = ImagePrefetcher(pipeline: ImagePipeline.shared)
 
-  var currentPage: Int = 1
-  var sortParameter: String?
-  var typeParameter: String?
+  var sort: String?
+  var type: String?
   var communityID: Int?
   var instance: String?
 
   private var endpoint: URLComponents {
     URLBuilder(
       endpointPath: "/api/v3/post/list",
-      sortParameter: sortParameter,
-      typeParameter: typeParameter,
-      currentPage: currentPage,
+      sortParameter: sort,
+      typeParameter: type,
+      currentPage: page,
       limitParameter: 50,
       communityID: communityID,
       jwt: getJWTFromKeychain(),
@@ -50,9 +49,9 @@ import SwiftUI
   private var endpointRedacted: URLComponents {
     URLBuilder(
       endpointPath: "/api/v3/post/list",
-      sortParameter: sortParameter,
-      typeParameter: typeParameter,
-      currentPage: currentPage,
+      sortParameter: sort,
+      typeParameter: type,
+      currentPage: page,
       limitParameter: 50,
       communityID: communityID,
       instance: instance
@@ -60,27 +59,24 @@ import SwiftUI
   }
 
   init(
-    sortParameter: String? = nil,
-    typeParameter: String? = nil,
+    sort: String? = nil,
+    type: String? = nil,
     communityID: Int? = 0,
-    instance: String? = nil,
-    currentPage: Int
+    instance: String? = nil
   ) {
     if communityID == 99_999_999_999_999 { // TODO: just a placeholder to prevent running when user posts
       return
     }
 
-    self.currentPage = currentPage
+    self.sort = sort ?? postSort
+    self.type = type ?? postType
 
-    self.sortParameter = sortParameter ?? postSort
-    self.typeParameter = typeParameter ?? postType
-
-    self.communityID = (communityID == 0) ? nil : communityID
+    self.communityID = communityID
 
     /// Can explicitly pass in an instance if it's different to the currently selected instance
     self.instance = instance
 
-    loadContent()
+//    loadContent()
   }
 
   func loadContent(isRefreshing: Bool = false) {
@@ -157,27 +153,11 @@ import SwiftUI
               postMyVote: post.myVote ?? 0,
               postHidden: false,
               postMinimised: false,
-              sort: self.sortParameter,
-              type: self.typeParameter
+              sort: self.sort,
+              type: self.type
             )
             realm.add(fetchedPost, update: .modified)
-            self.numberOfPosts = realm.objects(RealmPost.self).count
           }
-          /// This object holds the data about what batch of posts were fetched
-          /// It saves the page number that the posts were fetched from so that duplicates are not fetched
-          /// Creates a new table if it doesn't exist
-          let realmDataState = RealmDataState(
-            instance: self.instance ?? self.selectedInstance,
-            sortParameter: self.sortParameter,
-            typeParameter: self.typeParameter,
-            numberOfPosts: self.numberOfPosts,
-            maxPage: self.currentPage,
-            latestTime: NSDate().timeIntervalSince1970, // is of type Double
-            userUsed: self.activeAccount.actorID,
-            communityID: nil,
-            personID: nil
-          )
-          realm.add(realmDataState, update: .modified)
         }
         self.isLoading = false
 

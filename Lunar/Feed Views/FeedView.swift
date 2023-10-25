@@ -40,7 +40,7 @@ struct FeedView: View {
 
         if realmExperimentalViewEnabled {
           NavigationLink {
-            PostsViewLink(sort: "Active", type: "All")
+            PostsView(sort: "Active", type: "All")
           } label: {
             RealmPostsViewLabel()
           }

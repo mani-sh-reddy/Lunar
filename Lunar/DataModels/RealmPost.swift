@@ -32,7 +32,7 @@ class RealmPost: Object, ObjectKeyIdentifiable {
 
   // MARK: - Community
 
-  @Persisted var communityID: Int
+  @Persisted var communityID: Int?
   @Persisted var communityName: String
   @Persisted var communityTitle: String
   @Persisted var communityActorID: String
@@ -61,10 +61,6 @@ class RealmPost: Object, ObjectKeyIdentifiable {
   @Persisted var type: String?
   // community, person, etc...
 
-  // MARK: - Backlink to Fetcher Log
-
-  @Persisted(originProperty: "items") var parent: LinkingObjects<RealmDataState>
-
   // MARK: - Convenience initializer
 
   convenience init(
@@ -83,7 +79,7 @@ class RealmPost: Object, ObjectKeyIdentifiable {
     personDisplayName: String?,
     personBio: String?,
     personBanner: String?,
-    communityID: Int,
+    communityID: Int?,
     communityName: String,
     communityTitle: String,
     communityActorID: String,

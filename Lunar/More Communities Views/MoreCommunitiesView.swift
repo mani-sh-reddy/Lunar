@@ -18,7 +18,11 @@ struct MoreCommunitiesView: View {
         ForEach(communitiesFetcher.communities, id: \.community.id) { community in
 //          let _ = print(URLParser.extractDomain(from: community.community.actorID))
           NavigationLink {
-            PostsViewLink(sort: "Active", type: "All")
+            PostsView(
+              sort: "Active",
+              type: "All",
+              communityID: community.community.id
+            )
 //            PostsView(
 //              postsFetcher: PostsFetcher(
 //                communityID: community.community.id,

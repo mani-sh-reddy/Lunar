@@ -28,7 +28,7 @@ struct SubscribedFeedQuicklink: View {
       }
     } else {
       NavigationLink {
-        PostsViewLink(sort: "Active", type: "All")
+        PostsView(sort: "Active", type: "All")
 //        PostsView(
 //          postsFetcher: PostsFetcher(
 //            sortParameter: subscribedPostsQuicklink.sort,
