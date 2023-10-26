@@ -20,18 +20,21 @@ class PostsFetcher: ObservableObject {
   @Default(.postType) var postType
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
   @Default(.selectedInstance) var selectedInstance
+  @ObservedResults(Batch.self) var batches
 
   @Published var isLoading = false
-
-  @State var page = 1
 
   let pulse = Pulse.LoggerStore.shared
   let imagePrefetcher = ImagePrefetcher(pipeline: ImagePipeline.shared)
 
-  var sort: String?
-  var type: String?
+  var sort: String
+  var type: String
   var communityID: Int?
+  var personID: Int?
   var instance: String?
+//  var page: Int
+
+  @State private var page: Int = 1
 
   private var endpoint: URLComponents {
     URLBuilder(
@@ -59,22 +62,40 @@ class PostsFetcher: ObservableObject {
   }
 
   init(
-    sort: String? = nil,
-    type: String? = nil,
+    sort: String,
+    type: String,
     communityID: Int? = 0,
-    instance: String? = nil
+    personID: Int? = 0,
+    instance: String? = nil,
+    page: Int
   ) {
+    self.page = page
+
     if communityID == 99_999_999_999_999 { // TODO: just a placeholder to prevent running when user posts
-      return
+      self.communityID = 0
     }
 
-    self.sort = sort ?? postSort
-    self.type = type ?? postType
+    /// Values that can be passed in explicitly. Reverts to default if not passed in.
+    self.sort = sort
+    self.type = type
+    /// Force an instance if it's different to the one you want
+    self.instance = instance
 
     self.communityID = communityID
+    self.personID = personID
 
-    /// Can explicitly pass in an instance if it's different to the currently selected instance
-    self.instance = instance
+    for batch in batches {
+      let batchID = "instance_\(self.instance ?? selectedInstance)" +
+        "__sort_\(self.sort)" +
+        "__type_\(self.type)" +
+        "__userUsed_\(Int(activeAccount.userID) ?? 0)" +
+        "__communityID_\(self.communityID ?? 0)" +
+        "__personID_\(self.personID ?? 0)"
+      if batch.batchID == batchID {
+        self.page = batch.page
+        print("real page => \(page)")
+      }
+    }
 
 //    loadContent()
   }
@@ -116,6 +137,7 @@ class PostsFetcher: ObservableObject {
 
         // MARK: - Realm
 
+        var realmPosts: [RealmPost] = []
         /// Creating a realm post entry for each of the retreived posts
         /// and writing to the realm database
         let realm = try! Realm()
@@ -156,8 +178,41 @@ class PostsFetcher: ObservableObject {
               sort: self.sort,
               type: self.type
             )
-            realm.add(fetchedPost, update: .modified)
+            realmPosts.append(fetchedPost)
+//            realm.add(fetchedPost, update: .modified)
           }
+
+          let batchID = "instance_\(self.instance ?? self.selectedInstance)" +
+            "__sort_\(self.sort)" +
+            "__type_\(self.type)" +
+            "__userUsed_\(Int(self.activeAccount.userID) ?? 0)" +
+            "__communityID_\(self.communityID ?? 0)" +
+            "__personID_\(self.personID ?? 0)"
+
+          let batch = Batch(
+            batchID: batchID,
+            instance: self.instance ?? self.selectedInstance,
+            sort: self.sort,
+            type: self.type,
+            numberOfPosts: 0,
+            page: self.page,
+            latestTime: NSDate().timeIntervalSince1970,
+            userUsed: Int(self.activeAccount.userID) ?? 0,
+            communityID: self.communityID ?? 0,
+            personID: self.personID ?? 0
+          )
+//          if realm.object(ofType: Batch.self, forPrimaryKey: batchID) == nil {
+          //            print("equals nil so updating realm batch")
+//          realm.add(batch, update: .modified)
+//          }
+          if let batch = realm.object(ofType: Batch.self, forPrimaryKey: batchID) {
+            batch.realmPosts.append(objectsIn: realmPosts)
+          } else {
+            print("Batch not found with the primary key specified, creating new batch")
+            realm.add(batch, update: .modified)
+            batch.realmPosts.append(objectsIn: realmPosts)
+          }
+          realmPosts = []
         }
         self.isLoading = false
 
@@ -177,5 +232,23 @@ class PostsFetcher: ObservableObject {
     } else {
       return nil
     }
+  }
+
+  // Function to determine if a batch should be displayed based on criteria
+  private func filterBatch(
+    batch: Batch,
+    sort: String,
+    type: String,
+    user: Int,
+    communityID: Int,
+    personID: Int
+  ) -> Bool {
+    let filterCriteria: Bool = batch.sort == sort &&
+      batch.type == type &&
+      batch.userUsed == user &&
+      batch.communityID == communityID &&
+      batch.personID == personID
+
+    return filterCriteria
   }
 }

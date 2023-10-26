@@ -5,6 +5,7 @@
 //  Created by Mani on 24/10/2023.
 //
 
+import Defaults
 import Foundation
 import RealmSwift
 import SFSafeSymbols
@@ -12,6 +13,7 @@ import SwiftUI
 
 struct PostItem: View {
   //  var post: RealmPost
+  @Default(.debugModeEnabled) var debugModeEnabled
   @ObservedRealmObject var post: RealmPost
   @State var showSafari: Bool = false
 
@@ -75,6 +77,9 @@ struct PostItem: View {
             postComments
             Spacer()
             postWebLink
+          }
+          if debugModeEnabled {
+            debugValues
           }
         }
         .padding(.horizontal)
@@ -247,5 +252,14 @@ struct PostItem: View {
       EmptyView()
     }
     .opacity(0)
+  }
+
+  var debugValues: some View {
+    VStack(alignment: .leading) {
+      DebugTextView(name: "communityID", value: String(describing: post.communityID))
+      DebugTextView(name: "communityActorID", value: post.communityActorID)
+      DebugTextView(name: "sort", value: post.sort)
+      DebugTextView(name: "type", value: post.type)
+    }
   }
 }

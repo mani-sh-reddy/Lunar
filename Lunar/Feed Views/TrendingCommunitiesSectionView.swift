@@ -19,7 +19,9 @@ struct TrendingCommunitiesSectionView: View {
         PostsView(
           sort: "Active",
           type: "All",
-          communityID: community.community.id
+          user: 0,
+          communityID: community.community.id,
+          personID: 0
         )
 //        PostsViewLink(sort: "Active", type: "All", communityID: community.community.id)
       } label: {

@@ -7,6 +7,7 @@
 
 import Defaults
 import Foundation
+import LocalConsole
 import Nuke
 import RealmSwift
 import SwiftUI
@@ -18,6 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
     print("App Started")
+
+    // MARK: - Local Console
+
+    let consoleManager = LCManager.shared
 
     // MARK: - NukeUI
 

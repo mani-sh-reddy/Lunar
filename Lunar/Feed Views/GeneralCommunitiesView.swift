@@ -17,7 +17,13 @@ struct GeneralCommunitiesView: View {
   var body: some View {
     ForEach(enableQuicklinks ? quicklinks : lockedQuicklinks, id: \.self) { quicklink in
       NavigationLink {
-        PostsView(sort: "Active", type: "All")
+        PostsView(
+          sort: "Active",
+          type: "All",
+          user: 0,
+          communityID: 0,
+          personID: 0
+        )
 //        PostsView(
 //          postsFetcher: PostsFetcher(
 //            sortParameter: enableQuicklinks ? quicklink.sort : forcedPostSort.rawValue,

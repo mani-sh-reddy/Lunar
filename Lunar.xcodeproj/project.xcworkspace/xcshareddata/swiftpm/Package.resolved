@@ -37,6 +37,15 @@
       }
     },
     {
+      "identity" : "localconsole",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/duraidabdul/LocalConsole/",
+      "state" : {
+        "revision" : "2c5d5e018acd4963fe6dfe858f6d6fecef7cbf2f",
+        "version" : "1.12.1"
+      }
+    },
+    {
       "identity" : "nuke",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kean/Nuke.git",

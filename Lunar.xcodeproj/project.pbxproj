@@ -23,6 +23,8 @@
 		3C1AF0AA2AB4BDA000763602 /* NestedCommentsLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1AF0A92AB4BDA000763602 /* NestedCommentsLogic.swift */; };
 		3C1AF0AC2AB4CABA00763602 /* MockCommentObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1AF0AB2AB4CABA00763602 /* MockCommentObject.swift */; };
 		3C1AF0AE2AB4CAE200763602 /* MockPostObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1AF0AD2AB4CAE200763602 /* MockPostObject.swift */; };
+		3C20B37C2AEAF645003F578F /* DebugTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C20B37B2AEAF645003F578F /* DebugTextView.swift */; };
+		3C20B37F2AEB27F9003F578F /* LocalConsole in Frameworks */ = {isa = PBXBuildFile; productRef = 3C20B37E2AEB27F9003F578F /* LocalConsole */; };
 		3C23F03E2AAA66E000AACA46 /* Pulse in Frameworks */ = {isa = PBXBuildFile; productRef = 3C23F03D2AAA66E000AACA46 /* Pulse */; };
 		3C23F0402AAA66E000AACA46 /* PulseUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3C23F03F2AAA66E000AACA46 /* PulseUI */; };
 		3C29F5452A97D49C001563E7 /* LunarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C29F5442A97D49C001563E7 /* LunarUITests.swift */; };
@@ -100,7 +102,7 @@
 		3CA5C40E2A57525500BF8F1B /* old_PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C40D2A57525500BF8F1B /* old_PostsView.swift */; };
 		3CA5C4102A5753AC00BF8F1B /* PostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */; };
 		3CA8A0C32AE570E200EEABD3 /* PostsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA8A0C22AE570E200EEABD3 /* PostsFetcher.swift */; };
-		3CA8A0C52AE57CA700EEABD3 /* RealmDataState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA8A0C42AE57CA700EEABD3 /* RealmDataState.swift */; };
+		3CA8A0C52AE57CA700EEABD3 /* Batch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA8A0C42AE57CA700EEABD3 /* Batch.swift */; };
 		3CA8A0C72AE5A38C00EEABD3 /* IdentifierGenerators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA8A0C62AE5A38C00EEABD3 /* IdentifierGenerators.swift */; };
 		3CA8A0C92AE5DBA900EEABD3 /* RealmBrowser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA8A0C82AE5DBA900EEABD3 /* RealmBrowser.swift */; };
 		3CA8A0CF2AE8541B00EEABD3 /* PostItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA8A0CE2AE8541B00EEABD3 /* PostItem.swift */; };
@@ -247,6 +249,7 @@
 		3C1AF0A92AB4BDA000763602 /* NestedCommentsLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NestedCommentsLogic.swift; sourceTree = "<group>"; };
 		3C1AF0AB2AB4CABA00763602 /* MockCommentObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCommentObject.swift; sourceTree = "<group>"; };
 		3C1AF0AD2AB4CAE200763602 /* MockPostObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockPostObject.swift; sourceTree = "<group>"; };
+		3C20B37B2AEAF645003F578F /* DebugTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugTextView.swift; sourceTree = "<group>"; };
 		3C29F5422A97D49C001563E7 /* LunarUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LunarUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C29F5442A97D49C001563E7 /* LunarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarUITests.swift; sourceTree = "<group>"; };
 		3C29F5462A97D49C001563E7 /* LunarUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -325,7 +328,7 @@
 		3CA5C40D2A57525500BF8F1B /* old_PostsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = old_PostsView.swift; sourceTree = "<group>"; };
 		3CA5C40F2A5753AC00BF8F1B /* PostRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostRowView.swift; sourceTree = "<group>"; };
 		3CA8A0C22AE570E200EEABD3 /* PostsFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsFetcher.swift; sourceTree = "<group>"; };
-		3CA8A0C42AE57CA700EEABD3 /* RealmDataState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDataState.swift; sourceTree = "<group>"; };
+		3CA8A0C42AE57CA700EEABD3 /* Batch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Batch.swift; sourceTree = "<group>"; };
 		3CA8A0C62AE5A38C00EEABD3 /* IdentifierGenerators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifierGenerators.swift; sourceTree = "<group>"; };
 		3CA8A0C82AE5DBA900EEABD3 /* RealmBrowser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmBrowser.swift; sourceTree = "<group>"; };
 		3CA8A0CE2AE8541B00EEABD3 /* PostItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostItem.swift; sourceTree = "<group>"; };
@@ -457,6 +460,7 @@
 				3C4B7DDB2A58AD23003C8192 /* Alamofire in Frameworks */,
 				3CE69E982ABDCA8A00E2821E /* RealmSwift in Frameworks */,
 				3CC4200A2AB37BCB00BE1612 /* WhatsNewKit in Frameworks */,
+				3C20B37F2AEB27F9003F578F /* LocalConsole in Frameworks */,
 				3C23F03E2AAA66E000AACA46 /* Pulse in Frameworks */,
 				3CA95F0A2A7ACF3B00626353 /* NukeUI in Frameworks */,
 				3CFE04BF2A7FEA71007BAD81 /* SwiftSoup in Frameworks */,
@@ -595,6 +599,7 @@
 				3C5ECB232A766D64002BA561 /* DebugLoginPagePropertiesView.swift */,
 				3C5ECB252A766E31002BA561 /* DebugAccountsPropertiesView.swift */,
 				3C6D29662A795141007AFD99 /* DebugSettingsPropertiesView.swift */,
+				3C20B37B2AEAF645003F578F /* DebugTextView.swift */,
 			);
 			path = "Debugging Views";
 			sourceTree = "<group>";
@@ -651,7 +656,7 @@
 		3CA5C4082A57443200BF8F1B /* DataModels */ = {
 			isa = PBXGroup;
 			children = (
-				3CA8A0C42AE57CA700EEABD3 /* RealmDataState.swift */,
+				3CA8A0C42AE57CA700EEABD3 /* Batch.swift */,
 				3C2B14702AABC66E0028E05A /* Quicklink.swift */,
 				3CB9C72F2AA2445B00FB5A10 /* ResponseModels */,
 				3CB9C7202AA23F6000FB5A10 /* Common */,
@@ -1007,6 +1012,7 @@
 				3CE69E952ABDCA8A00E2821E /* Realm */,
 				3CE69E972ABDCA8A00E2821E /* RealmSwift */,
 				3CC3E41A2ADC054000F7F9A9 /* Shiny */,
+				3C20B37E2AEB27F9003F578F /* LocalConsole */,
 			);
 			productName = Lunar;
 			productReference = 3C4F09FC2A54399F009DF8AB /* Lunar.app */;
@@ -1055,6 +1061,7 @@
 				3CC4200B2AB37DDA00BE1612 /* XCRemoteSwiftPackageReference "BetterSafariView" */,
 				3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */,
 				3CC3E4192ADC054000F7F9A9 /* XCRemoteSwiftPackageReference "shiny" */,
+				3C20B37D2AEB27F8003F578F /* XCRemoteSwiftPackageReference "LocalConsole" */,
 			);
 			productRefGroup = 3C4F09FD2A54399F009DF8AB /* Products */;
 			projectDirPath = "";
@@ -1190,7 +1197,7 @@
 				3C96EA552A7857D900753199 /* AccountModel.swift in Sources */,
 				3CADB5752A7EA03000095839 /* SearchUsersListAll.swift in Sources */,
 				3CB9C7462AA24B7600FB5A10 /* Language.swift in Sources */,
-				3CA8A0C52AE57CA700EEABD3 /* RealmDataState.swift in Sources */,
+				3CA8A0C52AE57CA700EEABD3 /* Batch.swift in Sources */,
 				3C17DE042A92D4D6008EEB10 /* IntExtension.swift in Sources */,
 				3CB9C72E2AA243CB00FB5A10 /* PostObject.swift in Sources */,
 				3CED897B2A71A5CF00BD9086 /* ImagePopoverView.swift in Sources */,
@@ -1248,6 +1255,7 @@
 				3CEACBC72A88020700260A01 /* old_PostsFetcher.swift in Sources */,
 				3CF3B8F32A8FF7D4001C08B5 /* KbinSelectorView.swift in Sources */,
 				3CC3E41F2ADC36D900F7F9A9 /* DismissButtonView.swift in Sources */,
+				3C20B37C2AEAF645003F578F /* DebugTextView.swift in Sources */,
 				3C1AF0AE2AB4CAE200763602 /* MockPostObject.swift in Sources */,
 				3CC3E4392ADDE2B500F7F9A9 /* ConditionalModifiers.swift in Sources */,
 				3CE237322AA48E7C000F1D20 /* WelcomeScreenInfo.swift in Sources */,
@@ -1614,6 +1622,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3C20B37D2AEB27F8003F578F /* XCRemoteSwiftPackageReference "LocalConsole" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/duraidabdul/LocalConsole/";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.12.1;
+			};
+		};
 		3C23F03C2AAA66E000AACA46 /* XCRemoteSwiftPackageReference "Pulse" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kean/Pulse";
@@ -1705,6 +1721,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3C20B37E2AEB27F9003F578F /* LocalConsole */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3C20B37D2AEB27F8003F578F /* XCRemoteSwiftPackageReference "LocalConsole" */;
+			productName = LocalConsole;
+		};
 		3C23F03D2AAA66E000AACA46 /* Pulse */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3C23F03C2AAA66E000AACA46 /* XCRemoteSwiftPackageReference "Pulse" */;

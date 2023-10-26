@@ -85,8 +85,8 @@ class URLBuilder {
     if let currentPage { queryParams["page"] = String(currentPage) }
     if let limitParameter { queryParams["limit"] = String(limitParameter) }
     if let savedOnly { queryParams["saved_only"] = String(savedOnly) }
-    if let communityID { queryParams["community_id"] = String(communityID) }
-    if let personID { queryParams["person_id"] = String(personID) }
+    if let communityID, communityID != 0 { queryParams["community_id"] = String(communityID) }
+    if let personID, personID != 0 { queryParams["person_id"] = String(personID) }
     if let postID { queryParams["post_id"] = String(postID) }
     if let maxDepth { queryParams["max_depth"] = String(maxDepth) }
     if let jwt { queryParams["auth"] = jwt }

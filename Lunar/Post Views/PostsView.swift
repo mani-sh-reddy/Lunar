@@ -13,25 +13,27 @@ import SwiftUI
 struct PostsView: View {
   /// Removes hidden posts
   @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
+  @ObservedResults(Batch.self) var batches
+//    where: ({ !$0.realmPosts.postHidden })
 
   var sort: String
   var type: String
-  var user: Int?
-  var communityID: Int?
-  var personID: Int?
-
-  var realmPostsFiltered: Results<RealmPost> {
-    realmPosts.where { $0.sort == sort && $0.type == type && $0.communityID == communityID ?? 0 }
-  }
+  var user: Int
+  var communityID: Int
+  var personID: Int
 
   @State var runOnce: Bool = false
+  @State var page: Int = 1
 
   var body: some View {
     List {
-      /// Using the list retrieved from Realm
-      /// This list is updated in the realm specific postfetcher
-      ForEach(realmPostsFiltered) { post in
-        PostItem(post: post)
+      ForEach(batches.filter { batch in
+        filterBatch(batch: batch, sort: sort, type: type, user: user, communityID: communityID, personID: personID)
+      }) { batch in
+//        let _ = self.page = batch.page + 1
+        ForEach(batch.realmPosts.filter { !$0.postHidden }) { post in
+          PostItem(post: post)
+        }
       }
       .listRowBackground(Color("postListBackground"))
       if !runOnce {
@@ -43,8 +45,24 @@ struct PostsView: View {
               PostsFetcher(
                 sort: sort,
                 type: type,
-                communityID: communityID
+                communityID: communityID,
+                page: page
+              ).loadContent() /// Setting the page number for the batch.
+              page += 1
+            }
+            runOnce = true
+          }
+      } else {
+        SmallNavButton(systemSymbol: .appBadgeCheckmarkFill, text: "Tap to load more", color: .gray, symbolLocation: .left)
+          .onTapGesture {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+              PostsFetcher(
+                sort: sort,
+                type: type,
+                communityID: communityID,
+                page: page
               ).loadContent()
+              page += 1
             }
           }
       }
@@ -56,7 +74,7 @@ struct PostsView: View {
         infoToolbar
       }
     }
-    .onChange(of: realmPostsFiltered.count) { _ in
+    .onChange(of: realmPosts.count) { _ in
       runOnce = false
     }
   }
@@ -64,18 +82,36 @@ struct PostsView: View {
   var infoToolbar: some View {
     HStack(alignment: .lastTextBaseline) {
       VStack {
-        Image(systemSymbol: .mailStack)
-        Text(String(realmPostsFiltered.count))
+        Image(systemSymbol: .signpostRight)
+        Text(String(realmPosts.count))
           .fixedSize()
       }
       .padding(.trailing, 3)
       VStack {
-        Image(systemSymbol: .number)
-        Text("<?>")
+        Image(systemSymbol: .doc)
+        Text(String(page))
           .fixedSize()
       }
     }
     .font(.caption)
+  }
+
+  // Function to determine if a batch should be displayed based on criteria
+  private func filterBatch(
+    batch: Batch,
+    sort: String,
+    type: String,
+    user: Int,
+    communityID: Int,
+    personID: Int
+  ) -> Bool {
+    let filterCriteria: Bool = batch.sort == sort &&
+      batch.type == type &&
+      batch.userUsed == user &&
+      batch.communityID == communityID &&
+      batch.personID == personID
+
+    return filterCriteria
   }
 }
 
