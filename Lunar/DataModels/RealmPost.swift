@@ -9,6 +9,8 @@ import Foundation
 import RealmSwift
 
 class RealmPost: Object, ObjectKeyIdentifiable {
+  @Persisted(originProperty: "realmPosts") var batch: LinkingObjects<Batch>
+
   // MARK: - Post
 
   @Persisted(primaryKey: true) var postID: Int
@@ -61,6 +63,12 @@ class RealmPost: Object, ObjectKeyIdentifiable {
   @Persisted var type: String?
   // community, person, etc...
 
+  /// ** Could be one of the below**
+  /// sortAndTypeOnly - used when posts are fetched from aggregate feed
+  /// communitySpecific - used when posts are fetched when a specific community is selected
+  /// personSpecific - used when a person specific set of posts are loaded
+  @Persisted var filterKey: String
+
   // MARK: - Convenience initializer
 
   convenience init(
@@ -96,7 +104,8 @@ class RealmPost: Object, ObjectKeyIdentifiable {
     postHidden: Bool,
     postMinimised: Bool,
     sort: String?,
-    type: String?
+    type: String?,
+    filterKey: String
   ) {
     self.init()
     self.postID = postID
@@ -137,5 +146,7 @@ class RealmPost: Object, ObjectKeyIdentifiable {
 
     self.sort = sort
     self.type = type
+
+    self.filterKey = filterKey
   }
 }

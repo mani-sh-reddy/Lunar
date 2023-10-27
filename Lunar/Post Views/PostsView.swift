@@ -14,53 +14,89 @@ struct PostsView: View {
   /// Removes hidden posts
   @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
   @ObservedResults(Batch.self) var batches
-//    where: ({ !$0.realmPosts.postHidden })
+//  var filteredBatches: [Batch] {
+//    batches.filter { batch in
+//      return batch.sort == sort &&
+//      batch.type == type &&
+//      batch.userUsed == user &&
+//      batch.communityID == communityID &&
+//      batch.personID == personID
+//    }
+//  }
+
+  var filteredPosts: [RealmPost]
+
+//  {
+//    realmPosts.filter { post in
+//      return post.sort == sort &&
+//      post.type == type
+//    }
+//  }
 
   var sort: String
   var type: String
   var user: Int
   var communityID: Int
   var personID: Int
+  var filterKey: String
 
   @State var runOnce: Bool = false
   @State var page: Int = 1
 
+  var heading: String
+
+  let hapticsRigid = UIImpactFeedbackGenerator(style: .rigid)
+  let hapticsSoft = UIImpactFeedbackGenerator(style: .soft)
+
   var body: some View {
     List {
-      ForEach(batches.filter { batch in
-        filterBatch(batch: batch, sort: sort, type: type, user: user, communityID: communityID, personID: personID)
-      }) { batch in
-//        let _ = self.page = batch.page + 1
-        ForEach(batch.realmPosts.filter { !$0.postHidden }) { post in
-          PostItem(post: post)
-        }
+      ForEach(filteredPosts /* { */
+//        !$0.postHidden &&
+//        $0.sort == sort &&
+//        $0.type == type &&
+//        $0.personID == personID &&
+//        $0.communityID == communityID
+      /* } */ ) { post in
+        PostItem(post: post)
       }
+//      ForEach(batches.filter { batch in
+//        filterBatch(batch: batch, sort: sort, type: type, user: user, communityID: communityID, personID: personID)
+//      }) { batch in
+//        let _ = self.page = batch.page
+//        ForEach(batch.realmPosts.filter { !$0.postHidden }) { post in
+//          PostItem(post: post)
+//        }
+//      }
       .listRowBackground(Color("postListBackground"))
       if !runOnce {
         Rectangle()
           .foregroundStyle(.green)
           /// Detects when at the end of the list
           .onAppear {
+            hapticsSoft.impactOccurred(intensity: 0.5)
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
               PostsFetcher(
                 sort: sort,
                 type: type,
                 communityID: communityID,
-                page: page
+                page: page,
+                filterKey: filterKey
               ).loadContent() /// Setting the page number for the batch.
               page += 1
             }
             runOnce = true
           }
       } else {
-        SmallNavButton(systemSymbol: .appBadgeCheckmarkFill, text: "Tap to load more", color: .gray, symbolLocation: .left)
+        SmallNavButton(systemSymbol: .handTapFill, text: "Load More Posts", color: .blue, symbolLocation: .left)
           .onTapGesture {
+            hapticsRigid.impactOccurred(intensity: 0.5)
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
               PostsFetcher(
                 sort: sort,
                 type: type,
                 communityID: communityID,
-                page: page
+                page: page,
+                filterKey: filterKey
               ).loadContent()
               page += 1
             }
@@ -69,21 +105,23 @@ struct PostsView: View {
     }
     .background(Color("postListBackground"))
     .listStyle(.plain)
+    .navigationTitle(heading)
+    .navigationBarTitleDisplayMode(.inline)
     .toolbar {
       ToolbarItemGroup(placement: .navigationBarTrailing) {
         infoToolbar
       }
     }
-    .onChange(of: realmPosts.count) { _ in
-      runOnce = false
-    }
+//    .onChange(of: realmPosts.count) { _ in
+//      runOnce = false
+//    }
   }
 
   var infoToolbar: some View {
     HStack(alignment: .lastTextBaseline) {
       VStack {
         Image(systemSymbol: .signpostRight)
-        Text(String(realmPosts.count))
+        Text(String(filteredPosts.count))
           .fixedSize()
       }
       .padding(.trailing, 3)
@@ -150,7 +188,8 @@ struct RPostsView_Previews: PreviewProvider {
       postHidden: false,
       postMinimised: true,
       sort: "Active",
-      type: "All"
+      type: "All",
+      filterKey: "sortAndTypeOnly"
     )
     return PostItem(post: samplePost).previewLayout(.sizeThatFits)
   }

@@ -7,9 +7,12 @@
 
 import Defaults
 import Foundation
+import RealmSwift
 import SwiftUI
 
 struct SubscribedFeedQuicklink: View {
+  @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
+
   @Default(.activeAccount) var activeAccount
 
   var subscribedPostsQuicklink: Quicklink = DefaultQuicklinks().getSubscribedQuicklink()
@@ -29,11 +32,18 @@ struct SubscribedFeedQuicklink: View {
     } else {
       NavigationLink {
         PostsView(
+          filteredPosts: realmPosts.filter { post in
+            post.sort == "Active" &&
+              post.type == "Subscribed" &&
+              post.filterKey == "sortAndTypeOnly"
+          },
           sort: "Active",
-          type: "All",
+          type: "Subscribed",
           user: 0,
           communityID: 0,
-          personID: 0
+          personID: 0,
+          filterKey: "sortAndTypeOnly",
+          heading: subscribedPostsQuicklink.title
         )
 //        PostsView(
 //          postsFetcher: PostsFetcher(

@@ -7,22 +7,42 @@
 
 import Nuke
 import NukeUI
+import RealmSwift
 import SFSafeSymbols
 import SwiftUI
 
 struct SearchCommunitiesRowView: View {
+  @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
+
   @State var showingPlaceholderAlert = false
+
   var searchCommunitiesResults: [CommunityObject]
 
   var body: some View {
     ForEach(searchCommunitiesResults, id: \.community.id) { community in
       NavigationLink {
+//        PostsView(
+//          sort: "Active",
+//          type: "All",
+//          user: 0,
+//          communityID: 0,
+//          personID: 0,
+//          heading: community.community.title
+//        )
         PostsView(
+          filteredPosts: realmPosts.filter { post in
+            post.sort == "Active" &&
+              post.type == "All" &&
+              post.communityID == community.community.id &&
+              post.filterKey == "communitySpecific"
+          },
           sort: "Active",
           type: "All",
           user: 0,
-          communityID: 0,
-          personID: 0
+          communityID: community.community.id,
+          personID: 0,
+          filterKey: "communitySpecific",
+          heading: community.community.title
         )
 //        PostsView(
 //          postsFetcher: PostsFetcher(

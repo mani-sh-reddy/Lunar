@@ -32,6 +32,7 @@ class PostsFetcher: ObservableObject {
   var communityID: Int?
   var personID: Int?
   var instance: String?
+  var filterKey: String
 //  var page: Int
 
   @State private var page: Int = 1
@@ -67,7 +68,8 @@ class PostsFetcher: ObservableObject {
     communityID: Int? = 0,
     personID: Int? = 0,
     instance: String? = nil,
-    page: Int
+    page: Int,
+    filterKey: String
   ) {
     self.page = page
 
@@ -84,18 +86,20 @@ class PostsFetcher: ObservableObject {
     self.communityID = communityID
     self.personID = personID
 
-    for batch in batches {
-      let batchID = "instance_\(self.instance ?? selectedInstance)" +
-        "__sort_\(self.sort)" +
-        "__type_\(self.type)" +
-        "__userUsed_\(Int(activeAccount.userID) ?? 0)" +
-        "__communityID_\(self.communityID ?? 0)" +
-        "__personID_\(self.personID ?? 0)"
-      if batch.batchID == batchID {
-        self.page = batch.page
-        print("real page => \(page)")
-      }
-    }
+    self.filterKey = filterKey
+
+//    for batch in batches {
+//      let batchID = "instance_\(self.instance ?? selectedInstance)" +
+//        "__sort_\(self.sort)" +
+//        "__type_\(self.type)" +
+//        "__userUsed_\(Int(activeAccount.userID) ?? 0)" +
+//        "__communityID_\(self.communityID ?? 0)" +
+//        "__personID_\(self.personID ?? 0)"
+//      if batch.batchID == batchID {
+//        self.page = batch.page
+//        print("real page => \(page)")
+//      }
+//    }
 
 //    loadContent()
   }
@@ -137,11 +141,39 @@ class PostsFetcher: ObservableObject {
 
         // MARK: - Realm
 
-        var realmPosts: [RealmPost] = []
-        /// Creating a realm post entry for each of the retreived posts
-        /// and writing to the realm database
         let realm = try! Realm()
+
+        let batchID = "instance_\(self.instance ?? self.selectedInstance)" +
+          "__sort_\(self.sort)" +
+          "__type_\(self.type)" +
+          "__userUsed_\(Int(self.activeAccount.userID) ?? 0)" +
+          "__communityID_\(self.communityID ?? 0)" +
+          "__personID_\(self.personID ?? 0)"
+
+        let batch = Batch(
+          batchID: batchID,
+          instance: self.instance ?? self.selectedInstance,
+          sort: self.sort,
+          type: self.type,
+          numberOfPosts: 0,
+          page: self.page,
+          latestTime: NSDate().timeIntervalSince1970,
+          userUsed: Int(self.activeAccount.userID) ?? 0,
+          communityID: self.communityID ?? 0,
+          personID: self.personID ?? 0
+        )
+
         try! realm.write {
+          if let batch = realm.object(ofType: Batch.self, forPrimaryKey: batchID) {
+            print("batch found")
+//           batch.realmPosts.append(objectsIn: realmPosts)
+            batch.page = self.page
+          } else {
+            print("Batch not found with the primary key specified, creating new batch")
+            realm.add(batch, update: .modified)
+            //            batch.realmPosts.append(objectsIn: realmPosts)
+          }
+
           for post in result.posts {
             let fetchedPost = RealmPost(
               postID: post.post.id,
@@ -176,43 +208,12 @@ class PostsFetcher: ObservableObject {
               postHidden: false,
               postMinimised: false,
               sort: self.sort,
-              type: self.type
+              type: self.type,
+              filterKey: self.filterKey
             )
-            realmPosts.append(fetchedPost)
-//            realm.add(fetchedPost, update: .modified)
+            realm.add(fetchedPost, update: .modified)
+//            batch.realmPosts.append(fetchedPost)
           }
-
-          let batchID = "instance_\(self.instance ?? self.selectedInstance)" +
-            "__sort_\(self.sort)" +
-            "__type_\(self.type)" +
-            "__userUsed_\(Int(self.activeAccount.userID) ?? 0)" +
-            "__communityID_\(self.communityID ?? 0)" +
-            "__personID_\(self.personID ?? 0)"
-
-          let batch = Batch(
-            batchID: batchID,
-            instance: self.instance ?? self.selectedInstance,
-            sort: self.sort,
-            type: self.type,
-            numberOfPosts: 0,
-            page: self.page,
-            latestTime: NSDate().timeIntervalSince1970,
-            userUsed: Int(self.activeAccount.userID) ?? 0,
-            communityID: self.communityID ?? 0,
-            personID: self.personID ?? 0
-          )
-//          if realm.object(ofType: Batch.self, forPrimaryKey: batchID) == nil {
-          //            print("equals nil so updating realm batch")
-//          realm.add(batch, update: .modified)
-//          }
-          if let batch = realm.object(ofType: Batch.self, forPrimaryKey: batchID) {
-            batch.realmPosts.append(objectsIn: realmPosts)
-          } else {
-            print("Batch not found with the primary key specified, creating new batch")
-            realm.add(batch, update: .modified)
-            batch.realmPosts.append(objectsIn: realmPosts)
-          }
-          realmPosts = []
         }
         self.isLoading = false
 

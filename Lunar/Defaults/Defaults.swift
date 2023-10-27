@@ -53,6 +53,7 @@ extension Defaults.Keys {
   // MARK: - Other
 
   static let debugModeEnabled = Key<Bool>("debugModeEnabled", default: false)
+  static let realmLastReset = Key<String>("realmLastReset", default: "Never")
   static let networkInspectorEnabled = Key<Bool>("networkInspectorEnabled", default: false)
   static let quicklinkColor = Key<Color>("quicklinkColor", default: .primary)
   static let lastDownloadedPage = Key<Int>("lastDownloadedPage", default: 1)

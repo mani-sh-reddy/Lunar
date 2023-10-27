@@ -11,6 +11,8 @@ import SFSafeSymbols
 import SwiftUI
 
 struct FeedView: View {
+  @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
+
   @Default(.selectedInstance) var selectedInstance
   @Default(.kbinActive) var kbinActive
   @Default(.kbinHostURL) var kbinHostURL
@@ -39,17 +41,7 @@ struct FeedView: View {
         }
 
         if realmExperimentalViewEnabled {
-          NavigationLink {
-            PostsView(
-              sort: "Active",
-              type: "All",
-              user: 0,
-              communityID: 0,
-              personID: 0
-            )
-          } label: {
-            RealmPostsViewLabel()
-          }
+          realmSection
         }
 
         kbinFeed
@@ -58,6 +50,27 @@ struct FeedView: View {
       }
       .navigationTitle("Home")
       .navigationBarTitleDisplayMode(.inline)
+    }
+  }
+
+  var realmSection: some View {
+    NavigationLink {
+      PostsView(
+        filteredPosts: realmPosts.filter { post in
+          post.sort == "Active" &&
+            post.type == "All" &&
+            post.filterKey == "sortAndTypeOnly"
+        },
+        sort: "Active",
+        type: "All",
+        user: 0,
+        communityID: 0,
+        personID: 0,
+        filterKey: "sortAndTypeOnly",
+        heading: "Realm Experiment"
+      )
+    } label: {
+      RealmPostsViewLabel()
     }
   }
 

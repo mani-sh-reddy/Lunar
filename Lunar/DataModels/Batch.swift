@@ -9,6 +9,8 @@ import Foundation
 import RealmSwift
 
 class Batch: Object, ObjectKeyIdentifiable {
+  @Persisted var realmPosts: List<RealmPost>
+
   // MARK: - Batch
 
   @Persisted(primaryKey: true) var batchID: String
@@ -23,13 +25,10 @@ class Batch: Object, ObjectKeyIdentifiable {
   @Persisted var communityID: Int /// If posts not community specific, = 0
   @Persisted var personID: Int /// If posts not person specific, = 0
 
-  /// One batch can have many posts (no back link)
-  @Persisted var realmPosts: List<RealmPost>
-
   // MARK: - Convenience initializer
 
   convenience init(
-    batchID _: String,
+    batchID: String,
     instance: String,
     sort: String,
     type: String,
@@ -43,13 +42,14 @@ class Batch: Object, ObjectKeyIdentifiable {
   ) {
     self.init()
 
-    batchID = "instance_\(instance)" +
-      "__sort_\(sort)" +
-      "__type_\(type)" +
-      "__userUsed_\(userUsed)" +
-      "__communityID_\(communityID)" +
-      "__personID_\(personID)"
+//    batchID = "instance_\(instance)" +
+//      "__sort_\(sort)" +
+//      "__type_\(type)" +
+//      "__userUsed_\(userUsed)" +
+//      "__communityID_\(communityID)" +
+//      "__personID_\(personID)"
 
+    self.batchID = batchID
     self.instance = instance
     self.sort = sort
     self.type = type

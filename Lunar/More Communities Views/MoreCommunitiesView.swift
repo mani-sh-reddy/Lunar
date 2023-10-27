@@ -5,9 +5,12 @@
 //  Created by Mani on 15/07/2023.
 //
 
+import RealmSwift
 import SwiftUI
 
 struct MoreCommunitiesView: View {
+  @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
+
   @StateObject var communitiesFetcher: CommunitiesFetcher
 
   var title: String
@@ -19,12 +22,28 @@ struct MoreCommunitiesView: View {
 //          let _ = print(URLParser.extractDomain(from: community.community.actorID))
           NavigationLink {
             PostsView(
+              filteredPosts: realmPosts.filter { post in
+                post.sort == "Active" &&
+                  post.type == "All" &&
+                  post.communityID == community.community.id &&
+                  post.filterKey == "communitySpecific"
+              },
               sort: "Active",
               type: "All",
               user: 0,
               communityID: community.community.id,
-              personID: 0
+              personID: 0,
+              filterKey: "communitySpecific",
+              heading: community.community.title
             )
+//            PostsView(
+//              sort: "Active",
+//              type: "All",
+//              user: 0,
+//              communityID: community.community.id,
+//              personID: 0,
+//              heading: community.community.title
+//            )
 //            PostsView(
 //              postsFetcher: PostsFetcher(
 //                communityID: community.community.id,
