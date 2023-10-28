@@ -48,9 +48,9 @@ struct FeedView: View {
           }
         }
 
-        if realmExperimentalViewEnabled {
-          realmSection
-        }
+//        if realmExperimentalViewEnabled {
+//          realmSection
+//        }
 
         kbinFeed
         trendingSection
@@ -135,26 +135,26 @@ struct FeedView: View {
     }
   }
 
-  var realmSection: some View {
-    NavigationLink {
-      PostsView(
-        filteredPosts: realmPosts.filter { post in
-          post.sort == "Active" &&
-            post.type == "All" &&
-            post.filterKey == "sortAndTypeOnly"
-        },
-        sort: "Active",
-        type: "All",
-        user: 0,
-        communityID: 0,
-        personID: 0,
-        filterKey: "sortAndTypeOnly",
-        heading: "Realm Experiment"
-      )
-    } label: {
-      RealmPostsViewLabel()
-    }
-  }
+//  var realmSection: some View {
+//    NavigationLink {
+//      PostsView(
+//        filteredPosts: realmPosts.filter { post in
+//          post.sort == "Active" &&
+//            post.type == "All" &&
+//            post.filterKey == "sortAndTypeOnly"
+//        },
+//        sort: "Active",
+//        type: "All",
+//        user: 0,
+//        communityID: 0,
+//        personID: 0,
+//        filterKey: "sortAndTypeOnly",
+//        heading: "Realm Experiment"
+//      )
+//    } label: {
+//      RealmPostsViewLabel()
+//    }
+//  }
 
   var title: some View {
     VStack(alignment: .leading, spacing: 10) {
@@ -181,7 +181,7 @@ struct FeedView: View {
   var trendingSection: some View {
     Section(header: Text("Trending")) {
       TrendingCommunitiesSectionView(communitiesFetcher: CommunitiesFetcher(limitParameter: 5))
-      MoreCommunitiesButtonView()
+      ExploreCommunitiesButton()
     }
   }
 

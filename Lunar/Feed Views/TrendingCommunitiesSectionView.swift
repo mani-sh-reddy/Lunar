@@ -19,14 +19,6 @@ struct TrendingCommunitiesSectionView: View {
   var body: some View {
     ForEach(communitiesFetcher.communities, id: \.community.id) { community in
       NavigationLink {
-//        PostsView(
-//          sort: "Active",
-//          type: "All",
-//          user: 0,
-//          communityID:
-//          personID: 0,
-//          heading:
-//        )
         PostsView(
           filteredPosts: realmPosts.filter { post in
             post.sort == "Active" &&
@@ -42,25 +34,9 @@ struct TrendingCommunitiesSectionView: View {
           filterKey: "communitySpecific",
           heading: community.community.title
         )
-//        PostsViewLink(sort: "Active", type: "All", communityID: community.community.id)
       } label: {
         CommunityRowView(community: community)
       }
-//      PostsViewLink(
-//        content: CommunityRowView(community: community),
-//        sort: "New",
-//        type: <#String#>
-//      )
-//      NavigationLink {
-//        PostsView(
-//          postsFetcher: PostsFetcher(
-//            communityID: community.community.id
-//          ), title: community.community.name,
-//          community: community
-//        )
-//      } label: {
-//        CommunityRowView(community: community)
-//      }
     }
     .onChange(of: selectedInstance) { _ in
       Task {

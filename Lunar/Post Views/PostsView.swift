@@ -50,23 +50,9 @@ struct PostsView: View {
 
   var body: some View {
     List {
-      ForEach(filteredPosts /* { */
-//        !$0.postHidden &&
-//        $0.sort == sort &&
-//        $0.type == type &&
-//        $0.personID == personID &&
-//        $0.communityID == communityID
-      /* } */ ) { post in
+      ForEach(filteredPosts) { post in
         PostItem(post: post)
       }
-//      ForEach(batches.filter { batch in
-//        filterBatch(batch: batch, sort: sort, type: type, user: user, communityID: communityID, personID: personID)
-//      }) { batch in
-//        let _ = self.page = batch.page
-//        ForEach(batch.realmPosts.filter { !$0.postHidden }) { post in
-//          PostItem(post: post)
-//        }
-//      }
       .listRowBackground(Color("postListBackground"))
       if !runOnce {
         Rectangle()

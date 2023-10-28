@@ -23,12 +23,12 @@ struct GeneralCommunitiesView: View {
       NavigationLink {
         PostsView(
           filteredPosts: realmPosts.filter { post in
-            post.sort == "Active" &&
-              post.type == "All" &&
+            post.sort == quicklink.sort &&
+            post.type == quicklink.type &&
               post.filterKey == "sortAndTypeOnly"
           },
-          sort: "Active",
-          type: "All",
+          sort: quicklink.sort,
+          type: quicklink.type,
           user: 0,
           communityID: 0,
           personID: 0,

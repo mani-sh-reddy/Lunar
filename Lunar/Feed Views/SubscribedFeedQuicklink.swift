@@ -33,24 +33,18 @@ struct SubscribedFeedQuicklink: View {
       NavigationLink {
         PostsView(
           filteredPosts: realmPosts.filter { post in
-            post.sort == "Active" &&
-              post.type == "Subscribed" &&
+            post.sort == subscribedPostsQuicklink.sort &&
+              post.type == subscribedPostsQuicklink.type &&
               post.filterKey == "sortAndTypeOnly"
           },
-          sort: "Active",
-          type: "Subscribed",
+          sort: subscribedPostsQuicklink.sort,
+          type: subscribedPostsQuicklink.type,
           user: 0,
           communityID: 0,
           personID: 0,
           filterKey: "sortAndTypeOnly",
           heading: subscribedPostsQuicklink.title
         )
-//        PostsView(
-//          postsFetcher: PostsFetcher(
-//            sortParameter: subscribedPostsQuicklink.sort,
-//            typeParameter: subscribedPostsQuicklink.type
-//          ), title: subscribedPostsQuicklink.title
-//        )
       } label: {
         GeneralCommunityQuicklinkButton(
           image: subscribedPostsQuicklink.icon,

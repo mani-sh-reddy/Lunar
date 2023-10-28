@@ -1,5 +1,5 @@
 //
-//  MoreCommunitiesView.swift
+//  ExploreCommunitiesView.swift
 //  Lunar
 //
 //  Created by Mani on 15/07/2023.
@@ -8,7 +8,7 @@
 import RealmSwift
 import SwiftUI
 
-struct MoreCommunitiesView: View {
+struct ExploreCommunitiesView: View {
   @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
 
   @StateObject var communitiesFetcher: CommunitiesFetcher
@@ -55,9 +55,9 @@ struct MoreCommunitiesView: View {
           } label: {
             CommunityRowView(community: community)
           }
-          .onAppear {
-            communitiesFetcher.loadMoreContentIfNeeded(currentItem: community)
-          }
+//          .onAppear {
+//            communitiesFetcher.loadMoreContentIfNeeded(currentItem: community)
+//          }
         }
       } header: {
         Text("Sorted by New")
@@ -86,7 +86,7 @@ struct MoreCommunitiesView_Previews: PreviewProvider {
       sortParameter: "Active",
       typeParameter: "All"
     )
-    MoreCommunitiesView(
+    ExploreCommunitiesView(
       communitiesFetcher: communitiesFetcher,
       title: "Explore Communities"
     )
