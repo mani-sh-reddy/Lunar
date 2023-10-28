@@ -46,7 +46,6 @@ struct PostsView: View {
   var heading: String
 
   let hapticsRigid = UIImpactFeedbackGenerator(style: .rigid)
-  let hapticsSoft = UIImpactFeedbackGenerator(style: .soft)
 
   var body: some View {
     List {
@@ -138,7 +137,7 @@ struct PostsView: View {
   }
 }
 
-struct RPostsView_Previews: PreviewProvider {
+struct PostsView_Previews: PreviewProvider {
   static var previews: some View {
     let samplePost = RealmPost(
       postID: 1,

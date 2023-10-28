@@ -18,31 +18,40 @@ struct CommentsView: View {
   var post: RealmPost
 
   var body: some View {
-    if commentsFetcher.isLoading {
-      ProgressView()
-    } else {
-      CommentSectionView(
-        post: post,
-        comments: commentsFetcher.comments,
-        postBody: post.postBody ?? "",
-        replyingTo: $replyingTo,
-        upvoted: $upvoted,
-        downvoted: $downvoted,
-        showingCommentPopover: $showingCommentPopover
-      )
-      .popover(isPresented: $showingCommentPopover) {
-        if replyingTo.id == 0 {
-          CommentsViewWorkaroundWarning()
+    List {
+      Section {
+        CompactPostItem(post: post)
+          .padding(.horizontal, -5)
+      }
+      Section {
+        if commentsFetcher.isLoading {
+          ProgressView()
         } else {
-          CommentPopoverView(
-            showingCommentPopover: $showingCommentPopover,
+          CommentSectionView(
             post: post,
-            comment: replyingTo
+            comments: commentsFetcher.comments,
+            postBody: post.postBody ?? "",
+            replyingTo: $replyingTo,
+            upvoted: $upvoted,
+            downvoted: $downvoted,
+            showingCommentPopover: $showingCommentPopover
           )
+          .popover(isPresented: $showingCommentPopover) {
+            if replyingTo.id == 0 {
+              CommentsViewWorkaroundWarning()
+            } else {
+              CommentPopoverView(
+                showingCommentPopover: $showingCommentPopover,
+                post: post,
+                comment: replyingTo
+              )
+              .environmentObject(commentsFetcher)
+            }
+          }
           .environmentObject(commentsFetcher)
         }
       }
-      .environmentObject(commentsFetcher)
     }
+    .listStyle(.grouped)
   }
 }

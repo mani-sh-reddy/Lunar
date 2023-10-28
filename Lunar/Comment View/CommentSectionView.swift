@@ -33,11 +33,8 @@ struct CommentSectionView: View {
   let haptics = UIImpactFeedbackGenerator(style: .soft)
 
   var body: some View {
-    List {
-//      postSection
-      recursiveCommentSection
-    }
-    .listStyle(.grouped)
+    recursiveCommentSection
+      .listStyle(.grouped)
   }
 
   var recursiveCommentSection: some View {
