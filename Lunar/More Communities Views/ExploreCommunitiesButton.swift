@@ -11,7 +11,6 @@ import SwiftUI
 struct ExploreCommunitiesButton: View {
   var body: some View {
     let communitiesFetcher = CommunitiesFetcher(limitParameter: 50)
-
     NavigationLink {
       ExploreCommunitiesView(
         communitiesFetcher: communitiesFetcher,

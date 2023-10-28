@@ -19,7 +19,6 @@ struct ExploreCommunitiesView: View {
     List {
       Section {
         ForEach(communitiesFetcher.communities, id: \.community.id) { community in
-//          let _ = print(URLParser.extractDomain(from: community.community.actorID))
           NavigationLink {
             PostsView(
               filteredPosts: realmPosts.filter { post in
@@ -36,36 +35,20 @@ struct ExploreCommunitiesView: View {
               filterKey: "communitySpecific",
               heading: community.community.title
             )
-//            PostsView(
-//              sort: "Active",
-//              type: "All",
-//              user: 0,
-//              communityID: community.community.id,
-//              personID: 0,
-//              heading: community.community.title
-//            )
-//            PostsView(
-//              postsFetcher: PostsFetcher(
-//                communityID: community.community.id,
-//                instance: URLParser.extractDomain(from: community.community.actorID)
-//              ),
-//              title: community.community.name,
-//              community: community
-//            )
           } label: {
             CommunityRowView(community: community)
           }
-//          .onAppear {
-//            communitiesFetcher.loadMoreContentIfNeeded(currentItem: community)
-//          }
+          .onAppear {
+            communitiesFetcher.loadMoreContentIfNeeded(currentItem: community)
+          }
         }
       } header: {
         Text("Sorted by New")
       }
       .accentColor(Color.primary)
-//      if communitiesFetcher.isLoading {
-//        ProgressView()
-//      }
+      if communitiesFetcher.isLoading {
+        ProgressView()
+      }
     }
     .refreshable {
       communitiesFetcher.loadContent(isRefreshing: true)

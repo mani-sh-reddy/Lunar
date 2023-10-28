@@ -47,15 +47,9 @@ struct FeedView: View {
             GeneralCommunitiesView()
           }
         }
-
-//        if realmExperimentalViewEnabled {
-//          realmSection
-//        }
-
         kbinFeed
         trendingSection
         subscribedSection
-
         downloaderButton
       }
       .navigationTitle("Home")
@@ -64,6 +58,7 @@ struct FeedView: View {
     .popover(isPresented: $showingOfflineDownloaderPopover) {
       downloaderPopover
     }
+    .navigationViewStyle(StackNavigationViewStyle())
   }
 
   var downloaderButton: some View {
