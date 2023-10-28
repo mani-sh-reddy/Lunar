@@ -247,7 +247,12 @@ struct PostItem: View {
 
   var commentsNavLink: some View {
     NavigationLink {
-      PlaceholderView() // Comments View
+      CommentsView(
+        commentsFetcher: CommentsFetcher(postID: post.postID),
+        upvoted: .constant(false),
+        downvoted: .constant(false),
+        post: post
+      )
     } label: {
       EmptyView()
     }

@@ -15,7 +15,7 @@ struct CommentsView: View {
   @State var showingCommentPopover = false
   @State var replyingTo = Comment(content: "", published: "", apID: "", path: "", id: 0, creatorID: 0, postID: 0, languageID: 0, removed: false, deleted: false, local: true, distinguished: false, updated: nil)
 
-  var post: PostObject
+  var post: RealmPost
 
   var body: some View {
     if commentsFetcher.isLoading {
@@ -24,7 +24,7 @@ struct CommentsView: View {
       CommentSectionView(
         post: post,
         comments: commentsFetcher.comments,
-        postBody: post.post.body ?? "",
+        postBody: post.postBody ?? "",
         replyingTo: $replyingTo,
         upvoted: $upvoted,
         downvoted: $downvoted,
@@ -36,7 +36,7 @@ struct CommentsView: View {
         } else {
           CommentPopoverView(
             showingCommentPopover: $showingCommentPopover,
-            post: post.post,
+            post: post,
             comment: replyingTo
           )
           .environmentObject(commentsFetcher)

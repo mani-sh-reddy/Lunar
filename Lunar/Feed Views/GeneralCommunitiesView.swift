@@ -24,7 +24,7 @@ struct GeneralCommunitiesView: View {
         PostsView(
           filteredPosts: realmPosts.filter { post in
             post.sort == quicklink.sort &&
-            post.type == quicklink.type &&
+              post.type == quicklink.type &&
               post.filterKey == "sortAndTypeOnly"
           },
           sort: quicklink.sort,
@@ -35,13 +35,6 @@ struct GeneralCommunitiesView: View {
           filterKey: "sortAndTypeOnly",
           heading: quicklink.title
         )
-//        PostsView(
-//          postsFetcher: PostsFetcher(
-//            sortParameter: enableQuicklinks ? quicklink.sort : forcedPostSort.rawValue,
-//            typeParameter: quicklink.type
-//          ),
-//          title: quicklink.title
-//        )
       } label: {
         GeneralCommunityQuicklinkButton(
           image: quicklink.icon,

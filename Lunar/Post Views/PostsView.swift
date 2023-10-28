@@ -59,7 +59,6 @@ struct PostsView: View {
           .foregroundStyle(.green)
           /// Detects when at the end of the list
           .onAppear {
-            hapticsSoft.impactOccurred(intensity: 0.5)
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
               PostsFetcher(
                 sort: sort,

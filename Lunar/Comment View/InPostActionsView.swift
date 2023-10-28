@@ -11,7 +11,7 @@ import SwiftUI
 struct InPostActionsView: View {
   @State var showingCommentPopover: Bool = false
 
-  var post: PostObject
+  var post: RealmPost
 
   var body: some View {
     ReactionButton(
@@ -24,7 +24,7 @@ struct InPostActionsView: View {
       }
     )
     .sheet(isPresented: $showingCommentPopover) {
-      CommentPopoverView(showingCommentPopover: $showingCommentPopover, post: post.post)
+      CommentPopoverView(showingCommentPopover: $showingCommentPopover, post: post)
     }
   }
 }

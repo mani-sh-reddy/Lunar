@@ -20,7 +20,7 @@ struct RecursiveComment: View {
   @EnvironmentObject var commentsFetcher: CommentsFetcher
 
   let nestedComment: NestedComment
-  let post: Post
+  let post: RealmPost
   let dateTimeParser = DateTimeParser()
 
   let commentHierarchyColors: [Color] = [
