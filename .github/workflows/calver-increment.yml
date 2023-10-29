@@ -15,6 +15,6 @@ jobs:
         fetch-depth: '0'
 
     - name: Increment and tag with CalVer
-      uses: mani-sh-reddy/calver-increment@v1.0.0
+      uses: mani-sh-reddy/calver-increment@v1.1.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

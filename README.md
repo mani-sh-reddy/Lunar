@@ -5,32 +5,47 @@
 [![GitHub release](https://img.shields.io/github/v/release/mani-sh-reddy/Lunar-Lemmy-iOS)](https://github.com/mani-sh-reddy/Lunar-Lemmy-iOS/releases)
 
 ![GitHub issues](https://img.shields.io/github/issues/mani-sh-reddy/Lunar-Lemmy-iOS?logo=github)
-![Static Badge](https://img.shields.io/badge/supports-iOS_15--17-lightgray)
-[![Static Badge](https://img.shields.io/badge/Swift-5.8-orange?logo=swift&logoColor=orange)](https://www.swift.org/about/)
+![Static Badge](https://img.shields.io/badge/supports-iOS_15+-lightgray)
 [![Static Badge](https://img.shields.io/badge/SwiftUI-3.0-blue?logo=swift&logoColor=blue)
 ](https://developer.apple.com/xcode/swiftui/)
 [![license: GPL v3](https://img.shields.io/badge/license-GPLv3-maroon.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 Lunar is an iOS app that serves as a client for [Lemmy](https://join-lemmy.org/instances) and [Kbin](https://kbin.pub/en), the open-source federated alternatives to Reddit
 
-![Lunar Github Screenshots](Images/LunarGithubScreenshots.png)
+![Lunar Github Screenshots](Images/LunarScreenshots.webp)
 
 </div>
 
 ## Getting Started
 
-**Lunar is now on [TestFlight](https://testflight.apple.com/join/GEFCCQTb)!**
+**Download Lunar beta on TestFlight - https://testflight.apple.com/join/GEFCCQTb**
 
 
 ## Package Dependencies
 
 [Alamofire](https://github.com/Alamofire/Alamofire)  - Elegant HTTP Networking in Swift
 
-[Kingfisher](https://github.com/onevcat/Kingfisher) - A lightweight, pure-Swift library for downloading and caching images from the web.
+[BetterSafariView](https://github.com/stleamist/BetterSafariView) - A better way to present a SFSafariViewController
 
 [SwiftSoup](https://github.com/scinfu/SwiftSoup) - Pure Swift HTML Parser
 
+[Defaults](https://github.com/sindresorhus/Defaults) - Swifty and modern UserDefaults
+
+[KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess) - Simple Swift wrapper for Keychain
+
+[LocalConsole](https://github.com/duraidabdul/LocalConsole) - In-app console and debug tools
+
 [Nuke](https://github.com/kean/Nuke) - Image loading system
+
+[Pulse](https://github.com/kean/Pulse) - Logging system
+
+[Realm](https://github.com/realm/realm-swift) - Mobile database replacement for Core Data & SQLite
+
+[SFSafeSymbols](https://github.com/SFSafeSymbols/SFSafeSymbols) - Access Apple's SF Symbols using static typing
+
+[Shiny](https://github.com/maustinstar/shiny) - Simulate lighting and motion effects on color
+
+[WhatsNewKit](https://github.com/SvenTiigi/WhatsNewKit) - Showcase your new app features
 
 
 ## Contributing
@@ -46,6 +61,3 @@ Lunar is released under the [GPL-3.0 license](https://choosealicense.com/license
 ## Contact
 
 If you would like to give feedback or any suggestions, please open a [discussion](https://github.com/mani-sh-reddy/Lunar-Lemmy-iOS/discussions).
-
-
-
