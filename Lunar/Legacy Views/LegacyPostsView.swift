@@ -27,9 +27,9 @@ struct old_PostsView: View {
   var isUserSpecific: Bool { user != nil }
 
   var navigationHeading: String {
-    isCommunitySpecific ? (community?.community.name ?? "") :
-      isUserSpecific ? (user?.person.name ?? "") :
-      (title ?? "")
+    isCommunitySpecific
+      ? (community?.community.name ?? "")
+      : isUserSpecific ? (user?.person.name ?? "") : (title ?? "")
   }
 
   var communityDescription: String? { community?.community.description }

@@ -26,10 +26,8 @@ struct SubscribedCommunitiesSectionView: View {
       NavigationLink {
         PostsView(
           filteredPosts: realmPosts.filter { post in
-            post.sort == "Active" &&
-              post.type == "All" &&
-              post.communityID == community.community.id &&
-              post.filterKey == "communitySpecific"
+            post.sort == "Active" && post.type == "All"
+              && post.communityID == community.community.id && post.filterKey == "communitySpecific"
           },
           sort: "Active",
           type: "All",
@@ -39,13 +37,13 @@ struct SubscribedCommunitiesSectionView: View {
           filterKey: "communitySpecific",
           heading: community.community.title
         )
-//        PostsView(
-//          postsFetcher: PostsFetcher(
-//            communityID: community.community.id
-//          ),
-//          title: community.community.name,
-//          community: community
-//        )
+        //        PostsView(
+        //          postsFetcher: PostsFetcher(
+        //            communityID: community.community.id
+        //          ),
+        //          title: community.community.name,
+        //          community: community
+        //        )
       } label: {
         CommunityRowView(community: community)
       }

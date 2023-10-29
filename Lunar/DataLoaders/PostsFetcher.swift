@@ -33,7 +33,7 @@ class PostsFetcher: ObservableObject {
   var personID: Int?
   var instance: String?
   var filterKey: String
-//  var page: Int
+  //  var page: Int
 
   @State private var page: Int = 1
 
@@ -73,7 +73,7 @@ class PostsFetcher: ObservableObject {
   ) {
     self.page = page
 
-    if communityID == 99_999_999_999_999 { // TODO: just a placeholder to prevent running when user posts
+    if communityID == 99_999_999_999_999 {  // TODO: just a placeholder to prevent running when user posts
       self.communityID = 0
     }
 
@@ -88,20 +88,20 @@ class PostsFetcher: ObservableObject {
 
     self.filterKey = filterKey
 
-//    for batch in batches {
-//      let batchID = "instance_\(self.instance ?? selectedInstance)" +
-//        "__sort_\(self.sort)" +
-//        "__type_\(self.type)" +
-//        "__userUsed_\(Int(activeAccount.userID) ?? 0)" +
-//        "__communityID_\(self.communityID ?? 0)" +
-//        "__personID_\(self.personID ?? 0)"
-//      if batch.batchID == batchID {
-//        self.page = batch.page
-//        print("real page => \(page)")
-//      }
-//    }
+    //    for batch in batches {
+    //      let batchID = "instance_\(self.instance ?? selectedInstance)" +
+    //        "__sort_\(self.sort)" +
+    //        "__type_\(self.type)" +
+    //        "__userUsed_\(Int(activeAccount.userID) ?? 0)" +
+    //        "__communityID_\(self.communityID ?? 0)" +
+    //        "__personID_\(self.personID ?? 0)"
+    //      if batch.batchID == batchID {
+    //        self.page = batch.page
+    //        print("real page => \(page)")
+    //      }
+    //    }
 
-//    loadContent()
+    //    loadContent()
   }
 
   func loadContent(isRefreshing: Bool = false) {
@@ -120,7 +120,7 @@ class PostsFetcher: ObservableObject {
       urlRequest.networkServiceType = .responsiveData
     }
     .cacheResponse(using: cacher)
-    .validate(statusCode: 200 ..< 300)
+    .validate(statusCode: 200..<300)
     .responseDecodable(of: PostModel.self) { response in
       if self.networkInspectorEnabled {
         self.pulse.storeRequest(
@@ -143,12 +143,10 @@ class PostsFetcher: ObservableObject {
 
         let realm = try! Realm()
 
-        let batchID = "instance_\(self.instance ?? self.selectedInstance)" +
-          "__sort_\(self.sort)" +
-          "__type_\(self.type)" +
-          "__userUsed_\(Int(self.activeAccount.userID) ?? 0)" +
-          "__communityID_\(self.communityID ?? 0)" +
-          "__personID_\(self.personID ?? 0)"
+        let batchID =
+          "instance_\(self.instance ?? self.selectedInstance)" + "__sort_\(self.sort)"
+          + "__type_\(self.type)" + "__userUsed_\(Int(self.activeAccount.userID) ?? 0)"
+          + "__communityID_\(self.communityID ?? 0)" + "__personID_\(self.personID ?? 0)"
 
         let batch = Batch(
           batchID: batchID,
@@ -166,7 +164,7 @@ class PostsFetcher: ObservableObject {
         try! realm.write {
           if let batch = realm.object(ofType: Batch.self, forPrimaryKey: batchID) {
             print("batch found")
-//           batch.realmPosts.append(objectsIn: realmPosts)
+            //           batch.realmPosts.append(objectsIn: realmPosts)
             batch.page = self.page
           } else {
             print("Batch not found with the primary key specified, creating new batch")
@@ -212,7 +210,7 @@ class PostsFetcher: ObservableObject {
               filterKey: self.filterKey
             )
             realm.add(fetchedPost, update: .modified)
-//            batch.realmPosts.append(fetchedPost)
+            //            batch.realmPosts.append(fetchedPost)
           }
         }
         self.isLoading = false
@@ -244,11 +242,9 @@ class PostsFetcher: ObservableObject {
     communityID: Int,
     personID: Int
   ) -> Bool {
-    let filterCriteria: Bool = batch.sort == sort &&
-      batch.type == type &&
-      batch.userUsed == user &&
-      batch.communityID == communityID &&
-      batch.personID == personID
+    let filterCriteria: Bool =
+      batch.sort == sort && batch.type == type && batch.userUsed == user
+      && batch.communityID == communityID && batch.personID == personID
 
     return filterCriteria
   }

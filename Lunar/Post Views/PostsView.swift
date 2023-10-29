@@ -14,24 +14,24 @@ struct PostsView: View {
   /// Removes hidden posts
   @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
   @ObservedResults(Batch.self) var batches
-//  var filteredBatches: [Batch] {
-//    batches.filter { batch in
-//      return batch.sort == sort &&
-//      batch.type == type &&
-//      batch.userUsed == user &&
-//      batch.communityID == communityID &&
-//      batch.personID == personID
-//    }
-//  }
+  //  var filteredBatches: [Batch] {
+  //    batches.filter { batch in
+  //      return batch.sort == sort &&
+  //      batch.type == type &&
+  //      batch.userUsed == user &&
+  //      batch.communityID == communityID &&
+  //      batch.personID == personID
+  //    }
+  //  }
 
   var filteredPosts: [RealmPost]
 
-//  {
-//    realmPosts.filter { post in
-//      return post.sort == sort &&
-//      post.type == type
-//    }
-//  }
+  //  {
+  //    realmPosts.filter { post in
+  //      return post.sort == sort &&
+  //      post.type == type
+  //    }
+  //  }
 
   var sort: String
   var type: String
@@ -65,26 +65,29 @@ struct PostsView: View {
                 communityID: communityID,
                 page: page,
                 filterKey: filterKey
-              ).loadContent() /// Setting the page number for the batch.
+              ).loadContent()
+              /// Setting the page number for the batch.
               page += 1
             }
             runOnce = true
           }
       } else {
-        SmallNavButton(systemSymbol: .handTapFill, text: "Load More Posts", color: .blue, symbolLocation: .left)
-          .onTapGesture {
-            hapticsRigid.impactOccurred(intensity: 0.5)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-              PostsFetcher(
-                sort: sort,
-                type: type,
-                communityID: communityID,
-                page: page,
-                filterKey: filterKey
-              ).loadContent()
-              page += 1
-            }
+        SmallNavButton(
+          systemSymbol: .handTapFill, text: "Load More Posts", color: .blue, symbolLocation: .left
+        )
+        .onTapGesture {
+          hapticsRigid.impactOccurred(intensity: 0.5)
+          DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            PostsFetcher(
+              sort: sort,
+              type: type,
+              communityID: communityID,
+              page: page,
+              filterKey: filterKey
+            ).loadContent()
+            page += 1
           }
+        }
       }
     }
     .background(Color("postListBackground"))
@@ -96,9 +99,9 @@ struct PostsView: View {
         infoToolbar
       }
     }
-//    .onChange(of: realmPosts.count) { _ in
-//      runOnce = false
-//    }
+    //    .onChange(of: realmPosts.count) { _ in
+    //      runOnce = false
+    //    }
   }
 
   var infoToolbar: some View {
@@ -127,11 +130,9 @@ struct PostsView: View {
     communityID: Int,
     personID: Int
   ) -> Bool {
-    let filterCriteria: Bool = batch.sort == sort &&
-      batch.type == type &&
-      batch.userUsed == user &&
-      batch.communityID == communityID &&
-      batch.personID == personID
+    let filterCriteria: Bool =
+      batch.sort == sort && batch.type == type && batch.userUsed == user
+      && batch.communityID == communityID && batch.personID == personID
 
     return filterCriteria
   }
@@ -141,7 +142,8 @@ struct PostsView_Previews: PreviewProvider {
   static var previews: some View {
     let samplePost = RealmPost(
       postID: 1,
-      postName: "Sonoma. This is the body of the sample post. It contains some information about the post.",
+      postName:
+        "Sonoma. This is the body of the sample post. It contains some information about the post.",
       postPublished: "2023-09-15T12:33:03.503139",
       postURL: "https://example.com/sample-post",
       postBody: "This is the body of the sample post. It contains some information about the post.",
@@ -160,7 +162,8 @@ struct PostsView_Previews: PreviewProvider {
       communityTitle: "Welcome to the Sample Community",
       communityActorID: "https://lemmy.world/c/worldnews",
       communityInstanceID: 456,
-      communityDescription: "This is a sample community description. It provides information about the community.",
+      communityDescription:
+        "This is a sample community description. It provides information about the community.",
       communityIcon: "https://example.com/community-icon.jpg",
       communityBanner: "https://example.com/community-banner.jpg",
       communityUpdated: "October 16, 2023",

@@ -17,14 +17,14 @@ struct MyUserView: View {
   @Default(.loggedInAccounts) var loggedInAccounts
   @Default(.iridescenceEnabled) var iridescenceEnabled
 
-//  var myAccount: AccountModel {
-//    if !activeAccount.userID.isEmpty {
+  //  var myAccount: AccountModel {
+  //    if !activeAccount.userID.isEmpty {
   ////      print(selectedUser)
-//      return activeAccount
-//    } else {
-//      return AccountModel()
-//    }
-//  }
+  //      return activeAccount
+  //    } else {
+  //      return AccountModel()
+  //    }
+  //  }
 
   var avatar: String { activeAccount.avatarURL }
   var actorID: String { activeAccount.actorID }
@@ -222,7 +222,9 @@ struct MyUserView: View {
       }
     }
     .modifier(BlurredAndDisabledModifier(style: actorID.isEmpty ? .disabled : .none))
-    .modifier(ConditionalListRowBackgroundModifier(background: iridescenceEnabled ? .iridescent : .defaultBackground))
+    .modifier(
+      ConditionalListRowBackgroundModifier(
+        background: iridescenceEnabled ? .iridescent : .defaultBackground))
   }
 }
 

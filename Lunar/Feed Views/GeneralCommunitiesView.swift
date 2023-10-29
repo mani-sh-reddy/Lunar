@@ -23,9 +23,8 @@ struct GeneralCommunitiesView: View {
       NavigationLink {
         PostsView(
           filteredPosts: realmPosts.filter { post in
-            post.sort == quicklink.sort &&
-              post.type == quicklink.type &&
-              post.filterKey == "sortAndTypeOnly"
+            post.sort == quicklink.sort && post.type == quicklink.type
+              && post.filterKey == "sortAndTypeOnly"
           },
           sort: quicklink.sort,
           type: quicklink.type,

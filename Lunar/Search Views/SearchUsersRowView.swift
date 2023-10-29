@@ -20,20 +20,18 @@ struct SearchUsersRowView: View {
   var body: some View {
     ForEach(searchUsersResults, id: \.person.id) { person in
       NavigationLink {
-//        PostsView(
-//          sort: "Active",
-//          type: "All",
-//          user: 0,
-//          communityID: 0,
-//          personID: 0,
-//          heading: person.person.name
-//        )
+        //        PostsView(
+        //          sort: "Active",
+        //          type: "All",
+        //          user: 0,
+        //          communityID: 0,
+        //          personID: 0,
+        //          heading: person.person.name
+        //        )
         PostsView(
           filteredPosts: realmPosts.filter { post in
-            post.sort == "Active" &&
-              post.type == "All" &&
-              post.personID == person.person.id &&
-              post.filterKey == "personSpecific"
+            post.sort == "Active" && post.type == "All" && post.personID == person.person.id
+              && post.filterKey == "personSpecific"
           },
           sort: "Active",
           type: "All",
@@ -43,12 +41,12 @@ struct SearchUsersRowView: View {
           filterKey: "personSpecific",
           heading: person.person.name
         )
-//        PostsView(
-//          postsFetcher: PostsFetcher(
-//            communityID: 99_999_999_999_999 // TODO: change once implement user posts/comments fetcher
-//          ), title: person.person.name,
-//          user: person
-//        )
+        //        PostsView(
+        //          postsFetcher: PostsFetcher(
+        //            communityID: 99_999_999_999_999 // TODO: change once implement user posts/comments fetcher
+        //          ), title: person.person.name,
+        //          user: person
+        //        )
       } label: {
         UserRowDetailView(person: person)
       }
@@ -142,14 +140,18 @@ struct UserRowDetailView: View {
         HStack(spacing: 10) {
           HStack(spacing: 1) {
             Image(systemSymbol: .arrowUp)
-            Text(((person.counts.postScore ?? 0) + (person.counts.commentScore ?? 0)).convertToShortString())
+            Text(
+              ((person.counts.postScore ?? 0) + (person.counts.commentScore ?? 0))
+                .convertToShortString())
           }.foregroundStyle(
             ((person.counts.postScore ?? 0) + (person.counts.commentScore ?? 0)) >= 100_000
               ? Color.yellow : Color.secondary)
 
           HStack(spacing: 1) {
             Image(systemSymbol: .listBulletBelowRectangle)
-            Text(((person.counts.postCount ?? 0) + (person.counts.commentCount ?? 0)).convertToShortString())
+            Text(
+              ((person.counts.postCount ?? 0) + (person.counts.commentCount ?? 0))
+                .convertToShortString())
           }
         }.lineLimit(1)
           .foregroundStyle(.secondary)

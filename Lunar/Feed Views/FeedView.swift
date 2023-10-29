@@ -115,7 +115,7 @@ struct FeedView: View {
         }
         .pickerStyle(.menu)
         Picker("Pages to Download", selection: $pagesToDownload) {
-          ForEach(1 ..< 100) {
+          ForEach(1..<100) {
             Text("\($0) pages")
           }
         }
@@ -130,26 +130,26 @@ struct FeedView: View {
     }
   }
 
-//  var realmSection: some View {
-//    NavigationLink {
-//      PostsView(
-//        filteredPosts: realmPosts.filter { post in
-//          post.sort == "Active" &&
-//            post.type == "All" &&
-//            post.filterKey == "sortAndTypeOnly"
-//        },
-//        sort: "Active",
-//        type: "All",
-//        user: 0,
-//        communityID: 0,
-//        personID: 0,
-//        filterKey: "sortAndTypeOnly",
-//        heading: "Realm Experiment"
-//      )
-//    } label: {
-//      RealmPostsViewLabel()
-//    }
-//  }
+  //  var realmSection: some View {
+  //    NavigationLink {
+  //      PostsView(
+  //        filteredPosts: realmPosts.filter { post in
+  //          post.sort == "Active" &&
+  //            post.type == "All" &&
+  //            post.filterKey == "sortAndTypeOnly"
+  //        },
+  //        sort: "Active",
+  //        type: "All",
+  //        user: 0,
+  //        communityID: 0,
+  //        personID: 0,
+  //        filterKey: "sortAndTypeOnly",
+  //        heading: "Realm Experiment"
+  //      )
+  //    } label: {
+  //      RealmPostsViewLabel()
+  //    }
+  //  }
 
   var title: some View {
     VStack(alignment: .leading, spacing: 10) {
@@ -199,7 +199,7 @@ struct FeedView: View {
   }
 
   func startDownload() {
-    for page in 1 ... pagesToDownload {
+    for page in 1...pagesToDownload {
       DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
         currentlyDownloadingPage = page
         PostsFetcher(

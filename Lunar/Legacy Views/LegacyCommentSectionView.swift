@@ -44,7 +44,10 @@ struct LegacyCommentSectionView: View {
     let nestedComments = comments.nestedComment
     return Section {
       ForEach(nestedComments, id: \.id) { comment in
-        LegacyRecursiveComment(showingCommentPopover: $showingCommentPopover, replyingTo: $replyingTo, nestedComment: comment, post: post.post).id(UUID())
+        LegacyRecursiveComment(
+          showingCommentPopover: $showingCommentPopover, replyingTo: $replyingTo,
+          nestedComment: comment, post: post.post
+        ).id(UUID())
       }
     }
   }
@@ -52,12 +55,13 @@ struct LegacyCommentSectionView: View {
   var postSection: some View {
     Section {
       LegacyPostRowView(
-        upvoted: $upvoted, downvoted: $downvoted, isSubscribed: communityIsSubscribed, post: post, insideCommentsView: true
+        upvoted: $upvoted, downvoted: $downvoted, isSubscribed: communityIsSubscribed, post: post,
+        insideCommentsView: true
       )
       LegacyInPostActionsView(post: post)
       if !postBody.isEmpty {
         VStack(alignment: .trailing) {
-//          Text(try! AttributedString(styledMarkdown: postBody)).font(.body)
+          //          Text(try! AttributedString(styledMarkdown: postBody)).font(.body)
           ExpandableTextBox(LocalizedStringKey(postBody))
         }
       }

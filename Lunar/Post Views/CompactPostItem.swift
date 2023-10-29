@@ -197,9 +197,10 @@ struct CompactPostItem: View {
       active: post.postMyVote == 1,
       opposite: false
     )
-    .highPriorityGesture(TapGesture().onEnded {
-      RealmThawFunctions().upvoteAction(post: post)
-    })
+    .highPriorityGesture(
+      TapGesture().onEnded {
+        RealmThawFunctions().upvoteAction(post: post)
+      })
   }
 
   @ViewBuilder
@@ -212,9 +213,10 @@ struct CompactPostItem: View {
         active: post.postMyVote == -1,
         opposite: false
       )
-      .highPriorityGesture(TapGesture().onEnded {
-        RealmThawFunctions().downvoteAction(post: post)
-      })
+      .highPriorityGesture(
+        TapGesture().onEnded {
+          RealmThawFunctions().downvoteAction(post: post)
+        })
     }
   }
 
@@ -235,9 +237,11 @@ struct CompactPostItem: View {
           icon: .safari,
           color: Color.blue
         )
-        .highPriorityGesture(TapGesture().onEnded {
-          showSafari.toggle()
-        })
+        .highPriorityGesture(
+          TapGesture().onEnded {
+            showSafari.toggle()
+          }
+        )
         .inAppSafari(isPresented: $showSafari, stringURL: url)
       }
     }
@@ -271,7 +275,8 @@ struct CompactPostsView_Previews: PreviewProvider {
   static var previews: some View {
     let samplePost = RealmPost(
       postID: 1,
-      postName: "Sonoma. This is the body of the sample post. It contains some information about the post.",
+      postName:
+        "Sonoma. This is the body of the sample post. It contains some information about the post.",
       postPublished: "2023-09-15T12:33:03.503139",
       postURL: "https://example.com/sample-post",
       postBody: "This is the body of the sample post. It contains some information about the post.",
@@ -290,7 +295,8 @@ struct CompactPostsView_Previews: PreviewProvider {
       communityTitle: "Welcome to the Sample Community",
       communityActorID: "https://lemmy.world/c/worldnews",
       communityInstanceID: 456,
-      communityDescription: "This is a sample community description. It provides information about the community.",
+      communityDescription:
+        "This is a sample community description. It provides information about the community.",
       communityIcon: "https://example.com/community-icon.jpg",
       communityBanner: "https://example.com/community-banner.jpg",
       communityUpdated: "October 16, 2023",

@@ -199,9 +199,10 @@ struct PostItem: View {
       active: post.postMyVote == 1,
       opposite: false
     )
-    .highPriorityGesture(TapGesture().onEnded {
-      RealmThawFunctions().upvoteAction(post: post)
-    })
+    .highPriorityGesture(
+      TapGesture().onEnded {
+        RealmThawFunctions().upvoteAction(post: post)
+      })
   }
 
   @ViewBuilder
@@ -214,9 +215,10 @@ struct PostItem: View {
         active: post.postMyVote == -1,
         opposite: false
       )
-      .highPriorityGesture(TapGesture().onEnded {
-        RealmThawFunctions().downvoteAction(post: post)
-      })
+      .highPriorityGesture(
+        TapGesture().onEnded {
+          RealmThawFunctions().downvoteAction(post: post)
+        })
     }
   }
 
@@ -237,9 +239,11 @@ struct PostItem: View {
           icon: .safari,
           color: Color.blue
         )
-        .highPriorityGesture(TapGesture().onEnded {
-          showSafari.toggle()
-        })
+        .highPriorityGesture(
+          TapGesture().onEnded {
+            showSafari.toggle()
+          }
+        )
         .inAppSafari(isPresented: $showSafari, stringURL: url)
       }
     }

@@ -38,7 +38,8 @@ struct SettingsDevOptionsView: View {
         Button {
           haptics.impactOccurred(intensity: 0.7)
           LCManager.shared.isVisible.toggle()
-          localConsoleButtonText = LCManager.shared.isVisible ? "Close Local Console" : "Enable Local Console"
+          localConsoleButtonText =
+            LCManager.shared.isVisible ? "Close Local Console" : "Enable Local Console"
 
         } label: {
           Label {
@@ -162,18 +163,18 @@ struct SettingsDevOptionsView: View {
           }
         }
 
-//        NavigationLink {
-//          OfflineDownloaderView()
-//        } label: {
-//          Label {
-//            Text("Offline Downloader")
-//          } icon: {
-//            Image(systemSymbol: .squareAndArrowDownFill)
-//              .foregroundStyle(.cyan)
-//              .brightness(-0.2)
-//              .symbolRenderingMode(.hierarchical)
-//          }
-//        }
+        //        NavigationLink {
+        //          OfflineDownloaderView()
+        //        } label: {
+        //          Label {
+        //            Text("Offline Downloader")
+        //          } icon: {
+        //            Image(systemSymbol: .squareAndArrowDownFill)
+        //              .foregroundStyle(.cyan)
+        //              .brightness(-0.2)
+        //              .symbolRenderingMode(.hierarchical)
+        //          }
+        //        }
 
         NavigationLink {
           ColorTesterView()

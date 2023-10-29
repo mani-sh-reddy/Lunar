@@ -21,9 +21,12 @@ class Batch: Object, ObjectKeyIdentifiable {
   @Persisted var numberOfPosts: Int?
   @Persisted var page: Int
   @Persisted var latestTime: Double
-  @Persisted var userUsed: Int /// If not logged in, = 0
-  @Persisted var communityID: Int /// If posts not community specific, = 0
-  @Persisted var personID: Int /// If posts not person specific, = 0
+  @Persisted var userUsed: Int
+  /// If not logged in, = 0
+  @Persisted var communityID: Int
+  /// If posts not community specific, = 0
+  @Persisted var personID: Int
+  /// If posts not person specific, = 0
 
   // MARK: - Convenience initializer
 
@@ -38,16 +41,16 @@ class Batch: Object, ObjectKeyIdentifiable {
     userUsed: Int,
     communityID: Int,
     personID: Int
-//    realmPosts: List<RealmPost>
+      //    realmPosts: List<RealmPost>
   ) {
     self.init()
 
-//    batchID = "instance_\(instance)" +
-//      "__sort_\(sort)" +
-//      "__type_\(type)" +
-//      "__userUsed_\(userUsed)" +
-//      "__communityID_\(communityID)" +
-//      "__personID_\(personID)"
+    //    batchID = "instance_\(instance)" +
+    //      "__sort_\(sort)" +
+    //      "__type_\(type)" +
+    //      "__userUsed_\(userUsed)" +
+    //      "__communityID_\(communityID)" +
+    //      "__personID_\(personID)"
 
     self.batchID = batchID
     self.instance = instance
@@ -59,6 +62,6 @@ class Batch: Object, ObjectKeyIdentifiable {
     self.userUsed = userUsed
     self.communityID = communityID
     self.personID = personID
-//    self.realmPosts = realmPosts
+    //    self.realmPosts = realmPosts
   }
 }

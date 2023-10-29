@@ -16,7 +16,7 @@ struct LegacyRecursiveComment: View {
   @State private var isExpanded = true
   @Binding var showingCommentPopover: Bool
   @Binding var replyingTo: Comment
-//  @State var commentText: String = ""
+  //  @State var commentText: String = ""
   @EnvironmentObject var commentsFetcher: CommentsFetcher
 
   let nestedComment: NestedComment
@@ -63,7 +63,8 @@ struct LegacyRecursiveComment: View {
           Button {
             isExpanded.toggle()
             haptics.impactOccurred(intensity: 0.5)
-            commentsFetcher.updateCommentCollapseState(nestedComment.commentViewData, isCollapsed: true)
+            commentsFetcher.updateCommentCollapseState(
+              nestedComment.commentViewData, isCollapsed: true)
             print("swipe action collapse clicked")
           } label: {
             Label("collapse", systemSymbol: .arrowUpToLineCircleFill)
@@ -87,17 +88,17 @@ struct LegacyRecursiveComment: View {
           post: post
         )
         .id(UUID())
-        .padding(.leading, 10) // Add indentation
+        .padding(.leading, 10)  // Add indentation
 
-//          .sheet(isPresented: $showingCommentPopover) {
-//            let _ = print("POPOVER CLICKED")
-//            CommentPopoverView(
-//              showingCommentPopover: $showingCommentPopover,
-//              post: post,
-//              comment: nestedComment.commentViewData.comment
-//            )
-//            .environmentObject(commentsFetcher)
-//          }
+        //          .sheet(isPresented: $showingCommentPopover) {
+        //            let _ = print("POPOVER CLICKED")
+        //            CommentPopoverView(
+        //              showingCommentPopover: $showingCommentPopover,
+        //              post: post,
+        //              comment: nestedComment.commentViewData.comment
+        //            )
+        //            .environmentObject(commentsFetcher)
+        //          }
       }
     } else {
       HStack {
@@ -122,7 +123,8 @@ struct LegacyRecursiveComment: View {
       .onTapGesture {
         isExpanded.toggle()
         haptics.impactOccurred(intensity: 0.5)
-        commentsFetcher.updateCommentCollapseState(nestedComment.commentViewData, isCollapsed: false)
+        commentsFetcher.updateCommentCollapseState(
+          nestedComment.commentViewData, isCollapsed: false)
         print("tapped to expand")
       }
     }
@@ -134,20 +136,20 @@ struct LegacyRecursiveComment: View {
         commentMetadata
       }
 
-//      HStack {
-//        Text(nestedComment.commentViewData.creator.name.uppercased())
-//          .bold()
-//          .foregroundStyle(.gray)
-//        Text(dateTimeParser.timeAgoString(from: nestedComment.commentViewData.comment.published))
-//          .foregroundStyle(.gray)
-//        Spacer()
-//
+      //      HStack {
+      //        Text(nestedComment.commentViewData.creator.name.uppercased())
+      //          .bold()
+      //          .foregroundStyle(.gray)
+      //        Text(dateTimeParser.timeAgoString(from: nestedComment.commentViewData.comment.published))
+      //          .foregroundStyle(.gray)
+      //        Spacer()
+      //
       ////        Label(String(nestedComment.commentViewData.counts.upvotes ?? 0), systemSymbol: .arrowUp)
       ////          .foregroundStyle(.green)
       ////        Label(String(nestedComment.commentViewData.counts.downvotes ?? 0), systemSymbol: .arrowUp)
       ////          .foregroundStyle(.red)
-//      }
-//      .font(.caption)
+      //      }
+      //      .font(.caption)
       Text(try! AttributedString(markdown: nestedComment.commentViewData.comment.content))
       if commentMetadataPosition == "Bottom" {
         commentMetadata
@@ -164,7 +166,7 @@ struct LegacyRecursiveComment: View {
     var count = 0
 
     for comment in nestedComments {
-      count += 1 // Count the current comment
+      count += 1  // Count the current comment
       count += countSubcomments(comment.subComments)
     }
 

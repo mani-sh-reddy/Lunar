@@ -346,12 +346,12 @@ struct LegacyPostRowView: View {
 
         // MARK: - TODO: Find an alternate to updating the state after subscribe action without using Env Object
 
-//        if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == post.post.id }) {
-//          var updatedPost = postsFetcher.posts[index]
-//          updatedPost.subscribed = subscribeAction ? .subscribed : .notSubscribed
-//          postsFetcher.posts[index] = updatedPost
-//          subscribeState = subscribeAction ? .subscribed : .notSubscribed // Update the local subscription status
-//        }
+        //        if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == post.post.id }) {
+        //          var updatedPost = postsFetcher.posts[index]
+        //          updatedPost.subscribed = subscribeAction ? .subscribed : .notSubscribed
+        //          postsFetcher.posts[index] = updatedPost
+        //          subscribeState = subscribeAction ? .subscribed : .notSubscribed // Update the local subscription status
+        //        }
         if subscribeResponse == .subscribed {
           subscribedCommunityIDs.append(post.community.id)
         } else if subscribeResponse == .notSubscribed {
@@ -393,12 +393,12 @@ struct LegacyPostRowView: View {
 
         // MARK: - TODO: Find an alternate to updating the state after subscribe action without using Env Object
 
-//        // Update the corresponding post in the postsFetcher.posts array
-//        if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == postID }) {
-//          var updatedPost = postsFetcher.posts[index]
-//          updatedPost.myVote = voteType
-//          postsFetcher.posts[index] = updatedPost
-//        }
+        //        // Update the corresponding post in the postsFetcher.posts array
+        //        if let index = postsFetcher.posts.firstIndex(where: { $0.post.id == postID }) {
+        //          var updatedPost = postsFetcher.posts[index]
+        //          updatedPost.myVote = voteType
+        //          postsFetcher.posts[index] = updatedPost
+        //        }
       }
     }
   }

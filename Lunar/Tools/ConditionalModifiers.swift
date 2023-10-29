@@ -43,12 +43,13 @@ struct ConditionalListRowBackgroundModifier: ViewModifier {
 
   func body(content: Content) -> some View {
     if background == .iridescent {
-      AnyView(content.listRowBackground(
-        ZStack {
-          Color.gray.opacity(0.1)
-          Rectangle().shiny(.iridescent)
-        }
-      ))
+      AnyView(
+        content.listRowBackground(
+          ZStack {
+            Color.gray.opacity(0.1)
+            Rectangle().shiny(.iridescent)
+          }
+        ))
     } else if background == .defaultBackground {
       AnyView(content)
     } else {

@@ -12,7 +12,8 @@ import SwiftUI
 struct SettingsAppIconPickerView: View {
   @Default(.selectedAppIcon) var selectedAppIcon
 
-  private var appIconNames = [ /// **Prepended with 'AppIcon'**
+  private var appIconNames = [
+    /// **Prepended with 'AppIcon'**
     "Light", "Dark", "Purple", "Night", "LemmY", "Kbin", "v0",
   ]
 
@@ -38,10 +39,12 @@ struct SettingsAppIconPickerView: View {
               .padding(.trailing, 10)
             Text(iconName).tag("AppIcon\(iconName)")
             Spacer()
-            Image(systemSymbol: selectedAppIcon == "AppIcon\(iconName)" ? .checkmarkCircleFill : .circle)
-              .resizable()
-              .frame(width: 20, height: 20)
-              .foregroundStyle(.indigo)
+            Image(
+              systemSymbol: selectedAppIcon == "AppIcon\(iconName)" ? .checkmarkCircleFill : .circle
+            )
+            .resizable()
+            .frame(width: 20, height: 20)
+            .foregroundStyle(.indigo)
           }
         }
       }.foregroundStyle(.foreground)

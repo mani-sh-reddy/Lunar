@@ -13,7 +13,9 @@ struct CommentsView: View {
   @Binding var upvoted: Bool
   @Binding var downvoted: Bool
   @State var showingCommentPopover = false
-  @State var replyingTo = Comment(content: "", published: "", apID: "", path: "", id: 0, creatorID: 0, postID: 0, languageID: 0, removed: false, deleted: false, local: true, distinguished: false, updated: nil)
+  @State var replyingTo = Comment(
+    content: "", published: "", apID: "", path: "", id: 0, creatorID: 0, postID: 0, languageID: 0,
+    removed: false, deleted: false, local: true, distinguished: false, updated: nil)
 
   var post: RealmPost
 
