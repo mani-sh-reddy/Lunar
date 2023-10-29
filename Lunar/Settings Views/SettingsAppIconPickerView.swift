@@ -13,7 +13,7 @@ struct SettingsAppIconPickerView: View {
   @Default(.selectedAppIcon) var selectedAppIcon
 
   private var appIconNames = [ /// **Prepended with 'AppIcon'**
-    "Light", "Dark", "Purple", "Night", "LemmY", "Kbin",
+    "Light", "Dark", "Purple", "Night", "LemmY", "Kbin", "v0"
   ]
 
   let haptics = UIImpactFeedbackGenerator(style: .soft)
