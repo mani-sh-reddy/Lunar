@@ -1,5 +1,5 @@
 //
-//  RPostsFetcher.swift
+//  LegacyPostsFetcher.swift
 //  Lunar
 //
 //  Created by Mani on 23/07/2023.
@@ -13,27 +13,25 @@ import Pulse
 import RealmSwift
 import SwiftUI
 
-@MainActor class RPostsFetcher: ObservableObject {
+@MainActor class LegacyPostsFetcher: ObservableObject {
   @Default(.activeAccount) var activeAccount
   @Default(.appBundleID) var appBundleID
   @Default(.postSort) var postSort
   @Default(.postType) var postType
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
-  @Default(.selectedInstance) var selectedInstance
 
+  @Published var posts = [PostObject]()
   @Published var isLoading = false
-
-  @State var numberOfPosts = 0
 
   let pulse = Pulse.LoggerStore.shared
   //  let imageRequest = ImageRequest(url: URL(string: thumbnailURL), processors: [.resize(width: 250)])
   let imagePrefetcher = ImagePrefetcher(pipeline: ImagePipeline.shared)
 
-  var currentPage: Int = 1
+  private var currentPage = 1
   var sortParameter: String?
-  var typeParameter: String?
-  var communityID: Int?
-  var instance: String?
+  private var typeParameter: String?
+  private var communityID: Int?
+  private var instance: String?
 
   private var endpoint: URLComponents {
     URLBuilder(
@@ -64,14 +62,11 @@ import SwiftUI
     sortParameter: String? = nil,
     typeParameter: String? = nil,
     communityID: Int? = 0,
-    instance: String? = nil,
-    currentPage: Int
+    instance: String? = nil
   ) {
-    if communityID == 99_999_999_999_999 { // TODO: just a placeholder to prevent running when user posts
+    if communityID == 99_999_999_999_999 {  // TODO: just a placeholder to prevent running when user posts
       return
     }
-
-    self.currentPage = currentPage
 
     self.sortParameter = sortParameter ?? postSort
     self.typeParameter = typeParameter ?? postType
@@ -84,10 +79,21 @@ import SwiftUI
     loadContent()
   }
 
+  func loadMoreContentIfNeeded(currentItem: PostObject) {
+    guard currentItem.post.id == posts.last?.post.id else {
+      return
+    }
+    loadContent()
+  }
+
   func loadContent(isRefreshing: Bool = false) {
     guard !isLoading else { return }
 
-    isLoading = true
+    if isRefreshing {
+      currentPage = 1
+    } else {
+      isLoading = true
+    }
 
     let cacher = ResponseCacher(behavior: .cache)
 
@@ -100,7 +106,7 @@ import SwiftUI
       urlRequest.networkServiceType = .responsiveData
     }
     .cacheResponse(using: cacher)
-    .validate(statusCode: 200 ..< 300)
+    .validate(statusCode: 200..<300)
     .responseDecodable(of: PostModel.self) { response in
       if self.networkInspectorEnabled {
         self.pulse.storeRequest(
@@ -114,75 +120,36 @@ import SwiftUI
       switch response.result {
       case let .success(result):
 
+        // MARK: - General
+
+        let fetchedPosts = result.posts
+
         let imageRequestList = result.imageURLs.compactMap {
           ImageRequest(url: URL(string: $0), processors: [.resize(width: 200)])
         }
         self.imagePrefetcher.startPrefetching(with: imageRequestList)
 
-        // MARK: - Realm
+        //        let imagesToPrefetch = result.imageURLs.compactMap { URL(string: $0) }
+        //        self.imagePrefetcher.startPrefetching(with: imagesToPrefetch)
 
-        /// Creating a realm post entry for each of the retreived posts
-        /// and writing to the realm database
-        let realm = try! Realm()
-        try! realm.write {
-          for post in result.posts {
-            let fetchedPost = RealmPost(
-              postID: post.post.id,
-              postName: post.post.name,
-              postPublished: post.post.published,
-              postURL: post.post.url,
-              postBody: post.post.body,
-              postThumbnailURL: post.post.thumbnailURL,
-              personID: post.creator.id,
-              personName: post.creator.name,
-              personPublished: post.creator.published,
-              personActorID: post.creator.actorID,
-              personInstanceID: post.creator.instanceID,
-              personAvatar: post.creator.avatar,
-              personDisplayName: post.creator.displayName,
-              personBio: post.creator.bio,
-              personBanner: post.creator.banner,
-              communityID: post.community.id,
-              communityName: post.community.name,
-              communityTitle: post.community.title,
-              communityActorID: post.community.actorID,
-              communityInstanceID: post.community.instanceID,
-              communityDescription: post.community.description,
-              communityIcon: post.community.icon,
-              communityBanner: post.community.banner,
-              communityUpdated: post.community.updated,
-              postScore: post.counts.postScore,
-              postCommentCount: post.counts.commentCount,
-              upvotes: post.counts.upvotes,
-              downvotes: post.counts.downvotes,
-              postMyVote: post.myVote ?? 0,
-              postHidden: false,
-              postMinimised: false
-            )
-            realm.add(fetchedPost, update: .modified)
-            self.numberOfPosts = realm.objects(RealmPost.self).count
+        if isRefreshing {
+          self.posts = fetchedPosts
+        } else {
+          /// Removing duplicates
+          let filteredPosts = fetchedPosts.filter { post in
+            !self.posts.contains { $0.post.id == post.post.id }
           }
-          /// This object holds the data about what batch of posts were fetched
-          /// It saves the page number that the posts were fetched from so that duplicates are not fetched
-          /// Creates a new table if it doesn't exist
-          let realmDataState = RealmDataState(
-            instance: self.instance ?? self.selectedInstance,
-            sortParameter: self.sortParameter,
-            typeParameter: self.typeParameter,
-            numberOfPosts: self.numberOfPosts,
-            maxPage: self.currentPage,
-            latestTime: NSDate().timeIntervalSince1970, // is of type Double
-            userUsed: self.activeAccount.actorID,
-            communityID: nil,
-            personID: nil
-          )
-          realm.add(realmDataState, update: .modified)
+          self.posts += filteredPosts
+          self.currentPage += 1
         }
-        self.isLoading = false
-
+        if !isRefreshing {
+          self.isLoading = false
+        }
       case let .failure(error):
         print("PostsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
-        self.isLoading = false
+        if !isRefreshing {
+          self.isLoading = false
+        }
       }
     }
   }

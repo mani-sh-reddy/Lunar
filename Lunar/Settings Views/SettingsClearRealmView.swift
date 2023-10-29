@@ -14,19 +14,20 @@ import UIKit
 
 struct SettingsClearRealmView: View {
   @Default(.appBundleID) var appBundleID
-  @EnvironmentObject var dataCacheHolder: DataCacheHolder
+  @Default(.realmLastReset) var realmLastReset
+
+  @State var lastReset: String = ""
 
   @State var alertPresented: Bool = false
-  @State var cacheTotal: String = "0 B"
   let haptics = UINotificationFeedbackGenerator()
 
   var body: some View {
     Label {
-      Text("Database Storage Used: \(cacheTotal)")
+      Text("Last Reset: \(realmLastReset)")
     } icon: {
-      Image(systemSymbol: .squareStack3dUpFill)
-        .foregroundStyle(.gray)
-        .symbolRenderingMode(.hierarchical)
+      Image(systemSymbol: .clockArrow2Circlepath)
+        .symbolRenderingMode(.palette)
+        .foregroundStyle(.red, .gray)
     }
     Button {
       alertPresented = true
@@ -43,27 +44,7 @@ struct SettingsClearRealmView: View {
     .alert("Reset Database", isPresented: $alertPresented) {
       Button("Reset", role: .destructive) {
         clearCache()
-      }
-    }
-    .onAppear {
-      calculateCache()
-    }
-  }
-
-  func calculateCache() {
-    DispatchQueue.global(qos: .background).async {
-      if let realmPath = Realm.Configuration.defaultConfiguration.fileURL?.relativePath {
-        do {
-          let attributes = try FileManager.default.attributesOfItem(atPath: realmPath)
-          if let fileSize = attributes[FileAttributeKey.size] as? Double {
-            let databaseSize = humanReadableByteCount(bytes: fileSize)
-            DispatchQueue.main.async {
-              cacheTotal = databaseSize
-            }
-          }
-        } catch {
-          print("?")
-        }
+        realmLastReset = currentDateAndTime()
       }
     }
   }
@@ -73,27 +54,14 @@ struct SettingsClearRealmView: View {
     try! realm.write {
       realm.deleteAll()
     }
-    calculateCache()
     haptics.notificationOccurred(.success)
   }
 
-  func humanReadableByteCount(bytes: Double) -> String {
-    if bytes < 1000 { return "\(bytes) B" }
-    let exp = Int(log2(Double(bytes)) / log2(1000.0))
-    let unit = ["KB", "MB", "GB", "TB", "PB", "EB"][exp - 1]
-    let number = Double(bytes) / pow(1000, Double(exp))
-    if exp <= 1 || number >= 100 {
-      return String(format: "%.0f %@", number, unit)
-    } else {
-      return String(format: "%.1f %@", number, unit)
-        .replacingOccurrences(of: ".0", with: "")
-    }
+  func currentDateAndTime() -> String {
+    let currentDate = Date()
+    let formatter = DateFormatter()
+    formatter.dateFormat = "h:mma d MMM yy"
+    let dateString = formatter.string(from: currentDate)
+    return dateString
   }
 }
-
-// struct SettingsClearCacheView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    SettingsClearCacheView()
-//      .previewLayout(.sizeThatFits)
-//  }
-// }

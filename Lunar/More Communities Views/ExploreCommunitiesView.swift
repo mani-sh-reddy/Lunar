@@ -1,13 +1,16 @@
 //
-//  MoreCommunitiesView.swift
+//  ExploreCommunitiesView.swift
 //  Lunar
 //
 //  Created by Mani on 15/07/2023.
 //
 
+import RealmSwift
 import SwiftUI
 
-struct MoreCommunitiesView: View {
+struct ExploreCommunitiesView: View {
+  @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
+
   @StateObject var communitiesFetcher: CommunitiesFetcher
 
   var title: String
@@ -16,15 +19,20 @@ struct MoreCommunitiesView: View {
     List {
       Section {
         ForEach(communitiesFetcher.communities, id: \.community.id) { community in
-//          let _ = print(URLParser.extractDomain(from: community.community.actorID))
           NavigationLink {
             PostsView(
-              postsFetcher: PostsFetcher(
-                communityID: community.community.id,
-                instance: URLParser.extractDomain(from: community.community.actorID)
-              ),
-              title: community.community.name,
-              community: community
+              filteredPosts: realmPosts.filter { post in
+                post.sort == "Active" && post.type == "All"
+                  && post.communityID == community.community.id
+                  && post.filterKey == "communitySpecific"
+              },
+              sort: "Active",
+              type: "All",
+              user: 0,
+              communityID: community.community.id,
+              personID: 0,
+              filterKey: "communitySpecific",
+              heading: community.community.title
             )
           } label: {
             CommunityRowView(community: community)
@@ -37,9 +45,9 @@ struct MoreCommunitiesView: View {
         Text("Sorted by New")
       }
       .accentColor(Color.primary)
-//      if communitiesFetcher.isLoading {
-//        ProgressView()
-//      }
+      if communitiesFetcher.isLoading {
+        ProgressView()
+      }
     }
     .refreshable {
       communitiesFetcher.loadContent(isRefreshing: true)
@@ -60,7 +68,7 @@ struct MoreCommunitiesView_Previews: PreviewProvider {
       sortParameter: "Active",
       typeParameter: "All"
     )
-    MoreCommunitiesView(
+    ExploreCommunitiesView(
       communitiesFetcher: communitiesFetcher,
       title: "Explore Communities"
     )

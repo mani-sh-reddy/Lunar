@@ -6,9 +6,12 @@
 //
 
 import Defaults
+import RealmSwift
 import SwiftUI
 
 struct GeneralCommunitiesView: View {
+  @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
+
   @Default(.enableQuicklinks) var enableQuicklinks
   @Default(.quicklinks) var quicklinks
   @Default(.lockedQuicklinks) var lockedQuicklinks
@@ -16,13 +19,20 @@ struct GeneralCommunitiesView: View {
 
   var body: some View {
     ForEach(enableQuicklinks ? quicklinks : lockedQuicklinks, id: \.self) { quicklink in
+
       NavigationLink {
         PostsView(
-          postsFetcher: PostsFetcher(
-            sortParameter: enableQuicklinks ? quicklink.sort : forcedPostSort.rawValue,
-            typeParameter: quicklink.type
-          ),
-          title: quicklink.title
+          filteredPosts: realmPosts.filter { post in
+            post.sort == quicklink.sort && post.type == quicklink.type
+              && post.filterKey == "sortAndTypeOnly"
+          },
+          sort: quicklink.sort,
+          type: quicklink.type,
+          user: 0,
+          communityID: 0,
+          personID: 0,
+          filterKey: "sortAndTypeOnly",
+          heading: quicklink.title
         )
       } label: {
         GeneralCommunityQuicklinkButton(

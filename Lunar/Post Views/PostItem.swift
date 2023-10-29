@@ -1,85 +1,19 @@
 //
-//  RPostsView.swift
+//  PostItem.swift
 //  Lunar
 //
-//  Created by Mani on 19/10/2023.
+//  Created by Mani on 24/10/2023.
 //
 
+import Defaults
 import Foundation
 import RealmSwift
 import SFSafeSymbols
 import SwiftUI
 
-struct RPostsView: View {
-  /// Removes hidden posts
-  @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
-
-  /// Passed in the realmDataState
-  /// the maxPage can be read and incremented
-  @ObservedRealmObject var realmDataState: RealmDataState
-
-  var body: some View {
-    List {
-      /// Using the list retrieved from Realm
-      /// This list is updated in the realm specific postfetcher
-      ForEach(realmPosts, id: \.postID) { post in
-        RPostItem(post: post)
-      }
-      .listRowBackground(Color("postListBackground"))
-      Rectangle()
-        .foregroundStyle(.gray)
-        /// Detects when at the end of the list
-        .onAppear {
-          print("Reached end of scroll view")
-          /// Incrementing the page number inside the realm object
-          /// Need to thaw the frozen property first
-          do {
-            try Realm().write {
-              guard let thawedDataState = realmDataState.thaw() else {
-                print("Unable to thaw!")
-                return
-              }
-              thawedDataState.maxPage += 1
-              print("thawed")
-            }
-          } catch {
-            print("Failed to save: \(error.localizedDescription)")
-          }
-          /// Runs postfetcher with the required sort and type
-          /// This should be expanded in the future to support community/person specific
-          /// As well as support passing in sort and type parameters from the feedview struct
-          RPostsFetcher(
-            sortParameter: "Active",
-            typeParameter: "All",
-            currentPage: realmDataState.maxPage
-          ).loadContent()
-        }
-    }
-    .background(Color("postListBackground"))
-    .listStyle(.plain)
-    .toolbar {
-      ToolbarItemGroup(placement: .navigationBarTrailing) {
-        HStack(alignment: .lastTextBaseline) {
-          VStack {
-            Image(systemSymbol: .mailStack)
-            Text(String(realmPosts.count))
-              .fixedSize()
-          }
-          .padding(.trailing, 3)
-          VStack {
-            Image(systemSymbol: .number)
-            Text(String(realmDataState.maxPage))
-              .fixedSize()
-          }
-        }
-        .font(.caption)
-      }
-    }
-  }
-}
-
-struct RPostItem: View {
-//  var post: RealmPost
+struct PostItem: View {
+  //  var post: RealmPost
+  @Default(.debugModeEnabled) var debugModeEnabled
   @ObservedRealmObject var post: RealmPost
   @State var showSafari: Bool = false
 
@@ -144,6 +78,9 @@ struct RPostItem: View {
             Spacer()
             postWebLink
           }
+          if debugModeEnabled {
+            debugValues
+          }
         }
         .padding(.horizontal)
         .padding(.vertical, 5)
@@ -153,24 +90,17 @@ struct RPostItem: View {
     .listRowSeparator(.hidden)
     .padding(.vertical, 5)
     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-      minimiseButton
-      hideButton
+      minimiseButton.labelsHidden()
+      hideButton.labelsHidden()
     }
     .swipeActions(edge: .leading, allowsFullSwipe: false) {
-      upvoteButton
-      downvoteButton
+      upvoteButton.labelsHidden()
+      downvoteButton.labelsHidden()
     }
     .contextMenu {
-      Button {} label: {
-        Label("Add to Favorites", systemImage: "heart")
-      }
-      Button {} label: {
-        Label("Show in Maps", systemImage: "mappin")
-      }
-      Button {} label: {
-        Label("Hide", systemImage: "eye.slash")
-          .tint(.orange)
-      }
+      upvoteButton
+      hideButton
+      minimiseButton
     }
   }
 
@@ -178,7 +108,7 @@ struct RPostItem: View {
     Button {
       RealmThawFunctions().hideAction(post: post)
     } label: {
-      Image(systemSymbol: .eyeSlash)
+      Label("Hide", systemSymbol: .eyeSlash)
     }
     .tint(.orange)
   }
@@ -187,7 +117,7 @@ struct RPostItem: View {
     Button {
       RealmThawFunctions().minimiseToggleAction(post: post)
     } label: {
-      Image(systemSymbol: .rectangleArrowtriangle2Inward)
+      Label("Minimise", systemSymbol: .rectangleArrowtriangle2Inward)
     }
     .tint(.yellow)
   }
@@ -196,7 +126,7 @@ struct RPostItem: View {
     Button {
       RealmThawFunctions().upvoteAction(post: post)
     } label: {
-      Image(systemSymbol: .arrowUpCircleFill)
+      Label("Upvote", systemSymbol: .arrowUpCircleFill)
     }
     .tint(.green)
   }
@@ -205,7 +135,7 @@ struct RPostItem: View {
     Button {
       RealmThawFunctions().downvoteAction(post: post)
     } label: {
-      Image(systemSymbol: .arrowDownCircleFill)
+      Label("Downvote", systemSymbol: .arrowDownCircleFill)
     }
     .tint(.red)
   }
@@ -269,9 +199,10 @@ struct RPostItem: View {
       active: post.postMyVote == 1,
       opposite: false
     )
-    .highPriorityGesture(TapGesture().onEnded {
-      RealmThawFunctions().upvoteAction(post: post)
-    })
+    .highPriorityGesture(
+      TapGesture().onEnded {
+        RealmThawFunctions().upvoteAction(post: post)
+      })
   }
 
   @ViewBuilder
@@ -284,9 +215,10 @@ struct RPostItem: View {
         active: post.postMyVote == -1,
         opposite: false
       )
-      .highPriorityGesture(TapGesture().onEnded {
-        RealmThawFunctions().downvoteAction(post: post)
-      })
+      .highPriorityGesture(
+        TapGesture().onEnded {
+          RealmThawFunctions().downvoteAction(post: post)
+        })
     }
   }
 
@@ -307,9 +239,11 @@ struct RPostItem: View {
           icon: .safari,
           color: Color.blue
         )
-        .highPriorityGesture(TapGesture().onEnded {
-          showSafari.toggle()
-        })
+        .highPriorityGesture(
+          TapGesture().onEnded {
+            showSafari.toggle()
+          }
+        )
         .inAppSafari(isPresented: $showSafari, stringURL: url)
       }
     }
@@ -317,49 +251,24 @@ struct RPostItem: View {
 
   var commentsNavLink: some View {
     NavigationLink {
-      PlaceholderView() // Comments View
+      CommentsView(
+        commentsFetcher: CommentsFetcher(postID: post.postID),
+        upvoted: .constant(false),
+        downvoted: .constant(false),
+        post: post
+      )
     } label: {
       EmptyView()
     }
     .opacity(0)
   }
-}
 
-struct RPostsView_Previews: PreviewProvider {
-  static var previews: some View {
-    let samplePost = RealmPost(
-      postID: 1,
-      postName: "Sonoma. This is the body of the sample post. It contains some information about the post.",
-      postPublished: "2023-09-15T12:33:03.503139",
-      postURL: "https://example.com/sample-post",
-      postBody: "This is the body of the sample post. It contains some information about the post.",
-      postThumbnailURL: "https://i.imgur.com/bgHfktp.jpeg",
-      personID: 1,
-      personName: "mani",
-      personPublished: "October 17, 2023",
-      personActorID: "mani01",
-      personInstanceID: 123,
-      personAvatar: "https://i.imgur.com/cflaISU.jpeg",
-      personDisplayName: "Mani",
-      personBio: "Just a sample user on this platform.",
-      personBanner: "",
-      communityID: 1,
-      communityName: "SampleCommunity",
-      communityTitle: "Welcome to the Sample Community",
-      communityActorID: "https://lemmy.world/c/worldnews",
-      communityInstanceID: 456,
-      communityDescription: "This is a sample community description. It provides information about the community.",
-      communityIcon: "https://example.com/community-icon.jpg",
-      communityBanner: "https://example.com/community-banner.jpg",
-      communityUpdated: "October 16, 2023",
-      postScore: 42,
-      postCommentCount: 10,
-      upvotes: 30,
-      downvotes: 12,
-      postMyVote: 1,
-      postHidden: false,
-      postMinimised: true
-    )
-    return RPostItem(post: samplePost).previewLayout(.sizeThatFits)
+  var debugValues: some View {
+    VStack(alignment: .leading) {
+      DebugTextView(name: "communityID", value: String(describing: post.communityID))
+      DebugTextView(name: "communityActorID", value: post.communityActorID)
+      DebugTextView(name: "sort", value: post.sort)
+      DebugTextView(name: "type", value: post.type)
+    }
   }
 }

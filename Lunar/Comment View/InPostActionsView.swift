@@ -11,11 +11,12 @@ import SwiftUI
 struct InPostActionsView: View {
   @State var showingCommentPopover: Bool = false
 
-  var post: PostObject
+  var post: RealmPost
 
   var body: some View {
     ReactionButton(
-      text: "Comment", icon: SFSafeSymbols.SFSymbol.bubbleLeftCircleFill, color: .blue, active: .constant(false),
+      text: "Comment", icon: SFSafeSymbols.SFSymbol.bubbleLeftCircleFill, color: .blue,
+      active: .constant(false),
       opposite: .constant(false)
     )
     .highPriorityGesture(
@@ -24,7 +25,7 @@ struct InPostActionsView: View {
       }
     )
     .sheet(isPresented: $showingCommentPopover) {
-      CommentPopoverView(showingCommentPopover: $showingCommentPopover, post: post.post)
+      CommentPopoverView(showingCommentPopover: $showingCommentPopover, post: post)
     }
   }
 }

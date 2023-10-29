@@ -1,5 +1,5 @@
 //
-//  PostsSectionView.swift
+//  LegacyPostsSectionView.swift
 //  Lunar
 //
 //  Created by Mani on 06/09/2023.
@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct PostSectionView: View {
+struct LegacyPostSectionView: View {
   @State var upvoted: Bool = false
   @State var downvoted: Bool = false
 
@@ -21,13 +21,13 @@ struct PostSectionView: View {
   var body: some View {
     Section {
       ZStack {
-        PostRowView(
+        LegacyPostRowView(
           upvoted: $upvoted,
           downvoted: $downvoted,
           isSubscribed: communityIsSubscribed, post: post
         )
         NavigationLink {
-          CommentsView(
+          LegacyCommentsView(
             commentsFetcher: CommentsFetcher(postID: post.post.id),
             upvoted: $upvoted,
             downvoted: $downvoted,

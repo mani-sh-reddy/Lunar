@@ -6,6 +6,7 @@
 //
 
 import Defaults
+import LocalConsole
 import Pulse
 import PulseUI
 import SFSafeSymbols
@@ -24,11 +25,33 @@ struct SettingsDevOptionsView: View {
   @State var settingsViewOpacity: Double = 1
   @State private var logoScale: CGFloat = 0.1
   @State private var logoOpacity: Double = 0
+  @State private var localConsoleButtonText: String = "Enable Local Console"
 
   let notificationHaptics = UINotificationFeedbackGenerator()
+  let haptics = UIImpactFeedbackGenerator(style: .soft)
 
   var body: some View {
     List {
+      // MARK: - LOCAL CONSOLE
+
+      Section {
+        Button {
+          haptics.impactOccurred(intensity: 0.7)
+          LCManager.shared.isVisible.toggle()
+          localConsoleButtonText =
+            LCManager.shared.isVisible ? "Close Local Console" : "Enable Local Console"
+
+        } label: {
+          Label {
+            Text(localConsoleButtonText)
+              .foregroundStyle(.foreground)
+          } icon: {
+            Image(systemSymbol: .macwindow)
+              .symbolRenderingMode(.multicolor)
+          }
+        }
+      }
+
       // MARK: - DEBUG AND PULSE
 
       Section {
@@ -140,18 +163,18 @@ struct SettingsDevOptionsView: View {
           }
         }
 
-        NavigationLink {
-          OfflineDownloaderView()
-        } label: {
-          Label {
-            Text("Offline Downloader")
-          } icon: {
-            Image(systemSymbol: .squareAndArrowDownFill)
-              .foregroundStyle(.cyan)
-              .brightness(-0.2)
-              .symbolRenderingMode(.hierarchical)
-          }
-        }
+        //        NavigationLink {
+        //          OfflineDownloaderView()
+        //        } label: {
+        //          Label {
+        //            Text("Offline Downloader")
+        //          } icon: {
+        //            Image(systemSymbol: .squareAndArrowDownFill)
+        //              .foregroundStyle(.cyan)
+        //              .brightness(-0.2)
+        //              .symbolRenderingMode(.hierarchical)
+        //          }
+        //        }
 
         NavigationLink {
           ColorTesterView()

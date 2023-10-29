@@ -17,14 +17,14 @@ struct MyUserView: View {
   @Default(.loggedInAccounts) var loggedInAccounts
   @Default(.iridescenceEnabled) var iridescenceEnabled
 
-//  var myAccount: AccountModel {
-//    if !activeAccount.userID.isEmpty {
+  //  var myAccount: AccountModel {
+  //    if !activeAccount.userID.isEmpty {
   ////      print(selectedUser)
-//      return activeAccount
-//    } else {
-//      return AccountModel()
-//    }
-//  }
+  //      return activeAccount
+  //    } else {
+  //      return AccountModel()
+  //    }
+  //  }
 
   var avatar: String { activeAccount.avatarURL }
   var actorID: String { activeAccount.actorID }
@@ -105,15 +105,17 @@ struct MyUserView: View {
   var postsAndCommentsSection: some View {
     Section {
       NavigationLink {
-        MyUserObserver(
-          personFetcher: PersonFetcher(
-            sortParameter: "New",
-            typeParameter: "All",
-            personID: userID
-          ),
-          userName: name,
-          viewType: "Posts"
-        )
+        if userID != 0 {
+          MyUserObserver(
+            personFetcher: PersonFetcher(
+              sortParameter: "New",
+              typeParameter: "All",
+              personID: userID
+            ),
+            userName: name,
+            viewType: "Posts"
+          )
+        }
       } label: {
         Label {
           HStack {
@@ -128,15 +130,17 @@ struct MyUserView: View {
       }
 
       NavigationLink {
-        MyUserObserver(
-          personFetcher: PersonFetcher(
-            sortParameter: "New",
-            typeParameter: "All",
-            personID: userID
-          ),
-          userName: name,
-          viewType: "Comments"
-        )
+        if userID != 0 {
+          MyUserObserver(
+            personFetcher: PersonFetcher(
+              sortParameter: "New",
+              typeParameter: "All",
+              personID: userID
+            ),
+            userName: name,
+            viewType: "Comments"
+          )
+        }
       } label: {
         Label {
           Text("Comments")
@@ -148,21 +152,24 @@ struct MyUserView: View {
         }
       }
     }
+    .modifier(BlurredAndDisabledModifier(style: actorID.isEmpty ? .disabled : .none))
   }
 
   var savedPostsAndCommentsSection: some View {
     Section {
       NavigationLink {
-        MyUserObserver(
-          personFetcher: PersonFetcher(
-            sortParameter: "New",
-            typeParameter: "All",
-            savedOnly: true,
-            personID: userID
-          ),
-          userName: name,
-          viewType: "Saved Posts"
-        )
+        if userID != 0 {
+          MyUserObserver(
+            personFetcher: PersonFetcher(
+              sortParameter: "New",
+              typeParameter: "All",
+              savedOnly: true,
+              personID: userID
+            ),
+            userName: name,
+            viewType: "Saved Posts"
+          )
+        }
       } label: {
         Label {
           Text("Saved Posts")
@@ -173,16 +180,18 @@ struct MyUserView: View {
         }
       }
       NavigationLink {
-        MyUserObserver(
-          personFetcher: PersonFetcher(
-            sortParameter: "New",
-            typeParameter: "All",
-            savedOnly: true,
-            personID: userID
-          ),
-          userName: name,
-          viewType: "Saved Comments"
-        )
+        if userID != 0 {
+          MyUserObserver(
+            personFetcher: PersonFetcher(
+              sortParameter: "New",
+              typeParameter: "All",
+              savedOnly: true,
+              personID: userID
+            ),
+            userName: name,
+            viewType: "Saved Comments"
+          )
+        }
       } label: {
         Label {
           Text("Saved Comments")
@@ -193,6 +202,7 @@ struct MyUserView: View {
         }
       }
     }
+    .modifier(BlurredAndDisabledModifier(style: actorID.isEmpty ? .disabled : .none))
   }
 
   var scoreSection: some View {
@@ -211,7 +221,10 @@ struct MyUserView: View {
         )
       }
     }
-    .modifier(ConditionalListRowBackgroundModifier(background: iridescenceEnabled ? .iridescent : .defaultBackground))
+    .modifier(BlurredAndDisabledModifier(style: actorID.isEmpty ? .disabled : .none))
+    .modifier(
+      ConditionalListRowBackgroundModifier(
+        background: iridescenceEnabled ? .iridescent : .defaultBackground))
   }
 }
 

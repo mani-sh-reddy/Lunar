@@ -13,7 +13,7 @@ struct CommentPopoverView: View {
   @State private var commentStringUnsent: String = ""
   @EnvironmentObject var commentsFetcher: CommentsFetcher
 
-  var post: Post
+  var post: RealmPost
   var comment: Comment?
   var parentID: Int?
 
@@ -25,7 +25,7 @@ struct CommentPopoverView: View {
         if let comment {
           Text(comment.content)
         } else {
-          Text(post.name)
+          Text(post.postName)
         }
       } header: {
         Text("Replying to:")
@@ -54,7 +54,7 @@ struct CommentPopoverView: View {
           if !commentString.isEmpty {
             CommentSender(
               content: commentString,
-              postID: post.id,
+              postID: post.postID,
               parentID: comment?.id
             ).fetchCommentResponse { response in
               if response == "success" {

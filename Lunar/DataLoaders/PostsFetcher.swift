@@ -13,32 +13,36 @@ import Pulse
 import RealmSwift
 import SwiftUI
 
-@MainActor class PostsFetcher: ObservableObject {
+class PostsFetcher: ObservableObject {
   @Default(.activeAccount) var activeAccount
   @Default(.appBundleID) var appBundleID
   @Default(.postSort) var postSort
   @Default(.postType) var postType
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
+  @Default(.selectedInstance) var selectedInstance
+  @ObservedResults(Batch.self) var batches
 
-  @Published var posts = [PostObject]()
   @Published var isLoading = false
 
   let pulse = Pulse.LoggerStore.shared
-//  let imageRequest = ImageRequest(url: URL(string: thumbnailURL), processors: [.resize(width: 250)])
   let imagePrefetcher = ImagePrefetcher(pipeline: ImagePipeline.shared)
 
-  private var currentPage = 1
-  var sortParameter: String?
-  private var typeParameter: String?
-  private var communityID: Int?
-  private var instance: String?
+  var sort: String
+  var type: String
+  var communityID: Int?
+  var personID: Int?
+  var instance: String?
+  var filterKey: String
+  //  var page: Int
+
+  @State private var page: Int = 1
 
   private var endpoint: URLComponents {
     URLBuilder(
       endpointPath: "/api/v3/post/list",
-      sortParameter: sortParameter,
-      typeParameter: typeParameter,
-      currentPage: currentPage,
+      sortParameter: sort,
+      typeParameter: type,
+      currentPage: page,
       limitParameter: 50,
       communityID: communityID,
       jwt: getJWTFromKeychain(),
@@ -49,9 +53,9 @@ import SwiftUI
   private var endpointRedacted: URLComponents {
     URLBuilder(
       endpointPath: "/api/v3/post/list",
-      sortParameter: sortParameter,
-      typeParameter: typeParameter,
-      currentPage: currentPage,
+      sortParameter: sort,
+      typeParameter: type,
+      currentPage: page,
       limitParameter: 50,
       communityID: communityID,
       instance: instance
@@ -59,44 +63,54 @@ import SwiftUI
   }
 
   init(
-    sortParameter: String? = nil,
-    typeParameter: String? = nil,
+    sort: String,
+    type: String,
     communityID: Int? = 0,
-    instance: String? = nil
+    personID: Int? = 0,
+    instance: String? = nil,
+    page: Int,
+    filterKey: String
   ) {
-    if communityID == 99_999_999_999_999 { // TODO: just a placeholder to prevent running when user posts
-      return
+    self.page = page
+
+    if communityID == 99_999_999_999_999 {  // TODO: just a placeholder to prevent running when user posts
+      self.communityID = 0
     }
 
-    self.sortParameter = sortParameter ?? postSort
-    self.typeParameter = typeParameter ?? postType
-
-    self.communityID = (communityID == 0) ? nil : communityID
-
-    /// Can explicitly pass in an instance if it's different to the currently selected instance
+    /// Values that can be passed in explicitly. Reverts to default if not passed in.
+    self.sort = sort
+    self.type = type
+    /// Force an instance if it's different to the one you want
     self.instance = instance
 
-    loadContent()
-  }
+    self.communityID = communityID
+    self.personID = personID
 
-  func loadMoreContentIfNeeded(currentItem: PostObject) {
-    guard currentItem.post.id == posts.last?.post.id else {
-      return
-    }
-    loadContent()
+    self.filterKey = filterKey
+
+    //    for batch in batches {
+    //      let batchID = "instance_\(self.instance ?? selectedInstance)" +
+    //        "__sort_\(self.sort)" +
+    //        "__type_\(self.type)" +
+    //        "__userUsed_\(Int(activeAccount.userID) ?? 0)" +
+    //        "__communityID_\(self.communityID ?? 0)" +
+    //        "__personID_\(self.personID ?? 0)"
+    //      if batch.batchID == batchID {
+    //        self.page = batch.page
+    //        print("real page => \(page)")
+    //      }
+    //    }
+
+    //    loadContent()
   }
 
   func loadContent(isRefreshing: Bool = false) {
     guard !isLoading else { return }
 
-    if isRefreshing {
-      currentPage = 1
-    } else {
-      isLoading = true
-    }
+    isLoading = true
 
     let cacher = ResponseCacher(behavior: .cache)
-
+    print("_____________FETCH_TRIGGERED_____________")
     AF.request(endpoint) { urlRequest in
       if isRefreshing {
         urlRequest.cachePolicy = .reloadRevalidatingCacheData
@@ -106,7 +120,7 @@ import SwiftUI
       urlRequest.networkServiceType = .responsiveData
     }
     .cacheResponse(using: cacher)
-    .validate(statusCode: 200 ..< 300)
+    .validate(statusCode: 200..<300)
     .responseDecodable(of: PostModel.self) { response in
       if self.networkInspectorEnabled {
         self.pulse.storeRequest(
@@ -120,10 +134,44 @@ import SwiftUI
       switch response.result {
       case let .success(result):
 
+        let imageRequestList = result.imageURLs.compactMap {
+          ImageRequest(url: URL(string: $0), processors: [.resize(width: 200)])
+        }
+        self.imagePrefetcher.startPrefetching(with: imageRequestList)
+
         // MARK: - Realm
 
         let realm = try! Realm()
+
+        let batchID =
+          "instance_\(self.instance ?? self.selectedInstance)" + "__sort_\(self.sort)"
+          + "__type_\(self.type)" + "__userUsed_\(Int(self.activeAccount.userID) ?? 0)"
+          + "__communityID_\(self.communityID ?? 0)" + "__personID_\(self.personID ?? 0)"
+
+        let batch = Batch(
+          batchID: batchID,
+          instance: self.instance ?? self.selectedInstance,
+          sort: self.sort,
+          type: self.type,
+          numberOfPosts: 0,
+          page: self.page,
+          latestTime: NSDate().timeIntervalSince1970,
+          userUsed: Int(self.activeAccount.userID) ?? 0,
+          communityID: self.communityID ?? 0,
+          personID: self.personID ?? 0
+        )
+
         try! realm.write {
+          if let batch = realm.object(ofType: Batch.self, forPrimaryKey: batchID) {
+            print("batch found")
+            //           batch.realmPosts.append(objectsIn: realmPosts)
+            batch.page = self.page
+          } else {
+            print("Batch not found with the primary key specified, creating new batch")
+            realm.add(batch, update: .modified)
+            //            batch.realmPosts.append(objectsIn: realmPosts)
+          }
+
           for post in result.posts {
             let fetchedPost = RealmPost(
               postID: post.post.id,
@@ -151,47 +199,25 @@ import SwiftUI
               communityBanner: post.community.banner,
               communityUpdated: post.community.updated,
               postScore: post.counts.postScore,
-              postCommentCount: post.counts.commentCount,
+              postCommentCount: post.counts.comments,
               upvotes: post.counts.upvotes,
               downvotes: post.counts.downvotes,
               postMyVote: post.myVote ?? 0,
               postHidden: false,
-              postMinimised: false
+              postMinimised: false,
+              sort: self.sort,
+              type: self.type,
+              filterKey: self.filterKey
             )
             realm.add(fetchedPost, update: .modified)
+            //            batch.realmPosts.append(fetchedPost)
           }
         }
+        self.isLoading = false
 
-        // MARK: - General
-
-        let fetchedPosts = result.posts
-
-        let imageRequestList = result.imageURLs.compactMap {
-          ImageRequest(url: URL(string: $0), processors: [.resize(width: 200)])
-        }
-        self.imagePrefetcher.startPrefetching(with: imageRequestList)
-
-//        let imagesToPrefetch = result.imageURLs.compactMap { URL(string: $0) }
-//        self.imagePrefetcher.startPrefetching(with: imagesToPrefetch)
-
-        if isRefreshing {
-          self.posts = fetchedPosts
-        } else {
-          /// Removing duplicates
-          let filteredPosts = fetchedPosts.filter { post in
-            !self.posts.contains { $0.post.id == post.post.id }
-          }
-          self.posts += filteredPosts
-          self.currentPage += 1
-        }
-        if !isRefreshing {
-          self.isLoading = false
-        }
       case let .failure(error):
         print("PostsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
-        if !isRefreshing {
-          self.isLoading = false
-        }
+        self.isLoading = false
       }
     }
   }
@@ -205,5 +231,21 @@ import SwiftUI
     } else {
       return nil
     }
+  }
+
+  // Function to determine if a batch should be displayed based on criteria
+  private func filterBatch(
+    batch: Batch,
+    sort: String,
+    type: String,
+    user: Int,
+    communityID: Int,
+    personID: Int
+  ) -> Bool {
+    let filterCriteria: Bool =
+      batch.sort == sort && batch.type == type && batch.userUsed == user
+      && batch.communityID == communityID && batch.personID == personID
+
+    return filterCriteria
   }
 }

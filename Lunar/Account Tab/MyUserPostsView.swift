@@ -28,7 +28,7 @@ struct MyUserPostsView: View {
   var body: some View {
     List {
       ForEach(personFetcher.posts, id: \.post.id) { post in
-        PostSectionView(post: post)
+        LegacyPostSectionView(post: post)
           .onAppear {
             if post.post.id == personFetcher.posts.last?.post.id {
               personFetcher.loadContent()

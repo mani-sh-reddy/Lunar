@@ -43,14 +43,42 @@ struct ConditionalListRowBackgroundModifier: ViewModifier {
 
   func body(content: Content) -> some View {
     if background == .iridescent {
-      AnyView(content.listRowBackground(
-        ZStack {
-          Color.gray.opacity(0.1)
-          Rectangle().shiny(.iridescent)
-        }
-      ))
+      AnyView(
+        content.listRowBackground(
+          ZStack {
+            Color.gray.opacity(0.1)
+            Rectangle().shiny(.iridescent)
+          }
+        ))
     } else if background == .defaultBackground {
       AnyView(content)
+    } else {
+      AnyView(content)
+    }
+  }
+}
+
+// MARK: - BlurredAndDisabledModifier
+
+enum BlurredAndDisabledStyle: String, CaseIterable {
+  case none
+  case disabled
+  case blurAndDisabled
+}
+
+struct BlurredAndDisabledModifier: ViewModifier {
+  let style: BlurredAndDisabledStyle
+
+  func body(content: Content) -> some View {
+    if style == .blurAndDisabled {
+      AnyView(content)
+        .blur(radius: 3)
+        .disabled(true)
+    } else if style == .none {
+      AnyView(content)
+    } else if style == .disabled {
+      AnyView(content)
+        .disabled(true)
     } else {
       AnyView(content)
     }

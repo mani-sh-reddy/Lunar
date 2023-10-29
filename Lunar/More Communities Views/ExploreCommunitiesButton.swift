@@ -1,5 +1,5 @@
 //
-//  MoreCommunitiesButtonView.swift
+//  ExploreCommunitiesButton.swift
 //  Lunar
 //
 //  Created by Mani on 20/07/2023.
@@ -8,12 +8,11 @@
 import SFSafeSymbols
 import SwiftUI
 
-struct MoreCommunitiesButtonView: View {
+struct ExploreCommunitiesButton: View {
   var body: some View {
     let communitiesFetcher = CommunitiesFetcher(limitParameter: 50)
-
     NavigationLink {
-      MoreCommunitiesView(
+      ExploreCommunitiesView(
         communitiesFetcher: communitiesFetcher,
         title: "Explore Communities"
       )

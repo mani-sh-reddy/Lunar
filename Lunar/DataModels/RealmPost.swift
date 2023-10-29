@@ -9,6 +9,8 @@ import Foundation
 import RealmSwift
 
 class RealmPost: Object, ObjectKeyIdentifiable {
+  @Persisted(originProperty: "realmPosts") var batch: LinkingObjects<Batch>
+
   // MARK: - Post
 
   @Persisted(primaryKey: true) var postID: Int
@@ -32,7 +34,7 @@ class RealmPost: Object, ObjectKeyIdentifiable {
 
   // MARK: - Community
 
-  @Persisted var communityID: Int
+  @Persisted var communityID: Int?
   @Persisted var communityName: String
   @Persisted var communityTitle: String
   @Persisted var communityActorID: String
@@ -55,9 +57,17 @@ class RealmPost: Object, ObjectKeyIdentifiable {
   @Persisted var postHidden: Bool
   @Persisted var postMinimised: Bool
 
-  // MARK: - Backlink to Fetcher Log
+  // MARK: - Filters
 
-  @Persisted(originProperty: "items") var parent: LinkingObjects<RealmDataState>
+  @Persisted var sort: String?
+  @Persisted var type: String?
+  // community, person, etc...
+
+  /// ** Could be one of the below**
+  /// sortAndTypeOnly - used when posts are fetched from aggregate feed
+  /// communitySpecific - used when posts are fetched when a specific community is selected
+  /// personSpecific - used when a person specific set of posts are loaded
+  @Persisted var filterKey: String
 
   // MARK: - Convenience initializer
 
@@ -77,7 +87,7 @@ class RealmPost: Object, ObjectKeyIdentifiable {
     personDisplayName: String?,
     personBio: String?,
     personBanner: String?,
-    communityID: Int,
+    communityID: Int?,
     communityName: String,
     communityTitle: String,
     communityActorID: String,
@@ -92,7 +102,10 @@ class RealmPost: Object, ObjectKeyIdentifiable {
     downvotes: Int?,
     postMyVote: Int,
     postHidden: Bool,
-    postMinimised: Bool
+    postMinimised: Bool,
+    sort: String?,
+    type: String?,
+    filterKey: String
   ) {
     self.init()
     self.postID = postID
@@ -130,5 +143,10 @@ class RealmPost: Object, ObjectKeyIdentifiable {
     self.postMyVote = postMyVote
     self.postHidden = postHidden
     self.postMinimised = postMinimised
+
+    self.sort = sort
+    self.type = type
+
+    self.filterKey = filterKey
   }
 }

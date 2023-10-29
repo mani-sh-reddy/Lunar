@@ -13,36 +13,47 @@ struct CommentsView: View {
   @Binding var upvoted: Bool
   @Binding var downvoted: Bool
   @State var showingCommentPopover = false
-  @State var replyingTo = Comment(content: "", published: "", apID: "", path: "", id: 0, creatorID: 0, postID: 0, languageID: 0, removed: false, deleted: false, local: true, distinguished: false, updated: nil)
+  @State var replyingTo = Comment(
+    content: "", published: "", apID: "", path: "", id: 0, creatorID: 0, postID: 0, languageID: 0,
+    removed: false, deleted: false, local: true, distinguished: false, updated: nil)
 
-  var post: PostObject
+  var post: RealmPost
 
   var body: some View {
-    if commentsFetcher.isLoading {
-      ProgressView()
-    } else {
-      CommentSectionView(
-        post: post,
-        comments: commentsFetcher.comments,
-        postBody: post.post.body ?? "",
-        replyingTo: $replyingTo,
-        upvoted: $upvoted,
-        downvoted: $downvoted,
-        showingCommentPopover: $showingCommentPopover
-      )
-      .popover(isPresented: $showingCommentPopover) {
-        if replyingTo.id == 0 {
-          CommentsViewWorkaroundWarning()
+    List {
+      Section {
+        CompactPostItem(post: post)
+          .padding(.horizontal, -5)
+      }
+      Section {
+        if commentsFetcher.isLoading {
+          ProgressView()
         } else {
-          CommentPopoverView(
-            showingCommentPopover: $showingCommentPopover,
-            post: post.post,
-            comment: replyingTo
+          CommentSectionView(
+            post: post,
+            comments: commentsFetcher.comments,
+            postBody: post.postBody ?? "",
+            replyingTo: $replyingTo,
+            upvoted: $upvoted,
+            downvoted: $downvoted,
+            showingCommentPopover: $showingCommentPopover
           )
+          .popover(isPresented: $showingCommentPopover) {
+            if replyingTo.id == 0 {
+              CommentsViewWorkaroundWarning()
+            } else {
+              CommentPopoverView(
+                showingCommentPopover: $showingCommentPopover,
+                post: post,
+                comment: replyingTo
+              )
+              .environmentObject(commentsFetcher)
+            }
+          }
           .environmentObject(commentsFetcher)
         }
       }
-      .environmentObject(commentsFetcher)
     }
+    .listStyle(.grouped)
   }
 }

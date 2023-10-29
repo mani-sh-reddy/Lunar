@@ -17,19 +17,12 @@ struct RealmBrowser: View {
       } label: {
         Text("RealmPostsDataView")
       }
-
-      NavigationLink {
-        RealmDataStateView()
-      } label: {
-        Text("RealmDataStateView")
-      }
     }
   }
 }
 
 struct RealmPostsDataView: View {
   @ObservedResults(RealmPost.self) var realmPosts
-  @ObservedResults(RealmDataState.self) var realmDataState
 
   var body: some View {
     List {
@@ -77,37 +70,5 @@ struct RealmPostsDataView: View {
 struct RealmBrowser_Previews: PreviewProvider {
   static var previews: some View {
     RealmBrowser()
-  }
-}
-
-struct RealmDataStateView: View {
-  @ObservedResults(RealmPost.self) var realmPosts
-  @ObservedResults(RealmDataState.self) var realmDataState
-
-  var body: some View {
-    List {
-      ForEach(realmDataState, id: \.identifier) { item in
-        DisclosureGroup {
-          Text(String(describing: item.instance))
-          Text(String(describing: item.sortParameter))
-          Text(String(describing: item.typeParameter))
-          Text(String(describing: item.numberOfPosts))
-          Text(String(describing: item.maxPage))
-          Text(String(describing: item.latestTime))
-          Text(String(describing: item.userUsed))
-          Text(String(describing: item.communityID))
-          Text(String(describing: item.personID))
-        } label: {
-          Text(String(describing: item.identifier))
-        }
-      }
-    }
-    .listStyle(.insetGrouped)
-  }
-}
-
-struct RealmDataStateView_Previews: PreviewProvider {
-  static var previews: some View {
-    RealmDataStateView()
   }
 }

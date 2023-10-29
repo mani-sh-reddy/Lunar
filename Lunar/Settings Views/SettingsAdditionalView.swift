@@ -20,7 +20,6 @@ struct SettingsAdditionalView: View {
   @State var settingsViewOpacity: Double = 1
   @State private var logoScale: CGFloat = 0.1
   @State private var logoOpacity: Double = 0
-//  @State private var attributionsExpanded: Bool = false
 
   let notificationHaptics = UINotificationFeedbackGenerator()
   let haptics = UIImpactFeedbackGenerator(style: .soft)
@@ -54,7 +53,7 @@ struct SettingsAdditionalView: View {
         Text("App Cache")
       }
 
-      // MARK: - DATA CACHE
+      // MARK: - REALM CACHE
 
       Section {
         SettingsClearRealmView()
