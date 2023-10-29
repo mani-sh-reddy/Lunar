@@ -64,7 +64,8 @@ struct RecursiveComment: View {
             isExpanded.toggle()
             haptics.impactOccurred(intensity: 0.5)
             commentsFetcher.updateCommentCollapseState(
-              nestedComment.commentViewData, isCollapsed: true)
+              nestedComment.commentViewData, isCollapsed: true
+            )
             print("swipe action collapse clicked")
           } label: {
             Label("collapse", systemSymbol: .arrowUpToLineCircleFill)
@@ -88,7 +89,7 @@ struct RecursiveComment: View {
           post: post
         )
         .id(UUID())
-        .padding(.leading, 10)  // Add indentation
+        .padding(.leading, 10) // Add indentation
 
         //          .sheet(isPresented: $showingCommentPopover) {
         //            let _ = print("POPOVER CLICKED")
@@ -124,7 +125,8 @@ struct RecursiveComment: View {
         isExpanded.toggle()
         haptics.impactOccurred(intensity: 0.5)
         commentsFetcher.updateCommentCollapseState(
-          nestedComment.commentViewData, isCollapsed: false)
+          nestedComment.commentViewData, isCollapsed: false
+        )
         print("tapped to expand")
       }
     }
@@ -166,7 +168,7 @@ struct RecursiveComment: View {
     var count = 0
 
     for comment in nestedComments {
-      count += 1  // Count the current comment
+      count += 1 // Count the current comment
       count += countSubcomments(comment.subComments)
     }
 

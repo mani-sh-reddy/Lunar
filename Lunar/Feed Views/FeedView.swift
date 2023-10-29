@@ -115,7 +115,7 @@ struct FeedView: View {
         }
         .pickerStyle(.menu)
         Picker("Pages to Download", selection: $pagesToDownload) {
-          ForEach(1..<100) {
+          ForEach(1 ..< 100) {
             Text("\($0) pages")
           }
         }
@@ -199,7 +199,7 @@ struct FeedView: View {
   }
 
   func startDownload() {
-    for page in 1...pagesToDownload {
+    for page in 1 ... pagesToDownload {
       DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
         currentlyDownloadingPage = page
         PostsFetcher(

@@ -276,7 +276,7 @@ struct CompactPostsView_Previews: PreviewProvider {
     let samplePost = RealmPost(
       postID: 1,
       postName:
-        "Sonoma. This is the body of the sample post. It contains some information about the post.",
+      "Sonoma. This is the body of the sample post. It contains some information about the post.",
       postPublished: "2023-09-15T12:33:03.503139",
       postURL: "https://example.com/sample-post",
       postBody: "This is the body of the sample post. It contains some information about the post.",
@@ -296,7 +296,7 @@ struct CompactPostsView_Previews: PreviewProvider {
       communityActorID: "https://lemmy.world/c/worldnews",
       communityInstanceID: 456,
       communityDescription:
-        "This is a sample community description. It provides information about the community.",
+      "This is a sample community description. It provides information about the community.",
       communityIcon: "https://example.com/community-icon.jpg",
       communityBanner: "https://example.com/community-banner.jpg",
       communityUpdated: "October 16, 2023",

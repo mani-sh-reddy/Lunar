@@ -73,7 +73,7 @@ class PostsFetcher: ObservableObject {
   ) {
     self.page = page
 
-    if communityID == 99_999_999_999_999 {  // TODO: just a placeholder to prevent running when user posts
+    if communityID == 99_999_999_999_999 { // TODO: just a placeholder to prevent running when user posts
       self.communityID = 0
     }
 
@@ -120,7 +120,7 @@ class PostsFetcher: ObservableObject {
       urlRequest.networkServiceType = .responsiveData
     }
     .cacheResponse(using: cacher)
-    .validate(statusCode: 200..<300)
+    .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: PostModel.self) { response in
       if self.networkInspectorEnabled {
         self.pulse.storeRequest(
@@ -145,8 +145,8 @@ class PostsFetcher: ObservableObject {
 
         let batchID =
           "instance_\(self.instance ?? self.selectedInstance)" + "__sort_\(self.sort)"
-          + "__type_\(self.type)" + "__userUsed_\(Int(self.activeAccount.userID) ?? 0)"
-          + "__communityID_\(self.communityID ?? 0)" + "__personID_\(self.personID ?? 0)"
+            + "__type_\(self.type)" + "__userUsed_\(Int(self.activeAccount.userID) ?? 0)"
+            + "__communityID_\(self.communityID ?? 0)" + "__personID_\(self.personID ?? 0)"
 
         let batch = Batch(
           batchID: batchID,
@@ -244,7 +244,7 @@ class PostsFetcher: ObservableObject {
   ) -> Bool {
     let filterCriteria: Bool =
       batch.sort == sort && batch.type == type && batch.userUsed == user
-      && batch.communityID == communityID && batch.personID == personID
+        && batch.communityID == communityID && batch.personID == personID
 
     return filterCriteria
   }

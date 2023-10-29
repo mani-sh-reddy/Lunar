@@ -41,7 +41,7 @@ class Batch: Object, ObjectKeyIdentifiable {
     userUsed: Int,
     communityID: Int,
     personID: Int
-      //    realmPosts: List<RealmPost>
+    //    realmPosts: List<RealmPost>
   ) {
     self.init()
 

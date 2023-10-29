@@ -13,7 +13,6 @@ struct MyUserObserver: View {
   @Default(.selectedInstance) var selectedInstance
   @Default(.postsViewStyle) var postsViewStyle
 
-  /// Experimenting using ObservedObject instead of StateObject
   @StateObject var personFetcher: PersonFetcher
 
   var userName: String

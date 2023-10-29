@@ -14,24 +14,8 @@ struct PostsView: View {
   /// Removes hidden posts
   @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
   @ObservedResults(Batch.self) var batches
-  //  var filteredBatches: [Batch] {
-  //    batches.filter { batch in
-  //      return batch.sort == sort &&
-  //      batch.type == type &&
-  //      batch.userUsed == user &&
-  //      batch.communityID == communityID &&
-  //      batch.personID == personID
-  //    }
-  //  }
 
   var filteredPosts: [RealmPost]
-
-  //  {
-  //    realmPosts.filter { post in
-  //      return post.sort == sort &&
-  //      post.type == type
-  //    }
-  //  }
 
   var sort: String
   var type: String
@@ -94,6 +78,13 @@ struct PostsView: View {
     .listStyle(.plain)
     .navigationTitle(heading)
     .navigationBarTitleDisplayMode(.inline)
+    .refreshable {
+      let realm = try! Realm()
+      try! realm.write {
+        realm.deleteAll()
+      }
+      runOnce = false
+    }
     .toolbar {
       ToolbarItemGroup(placement: .navigationBarTrailing) {
         infoToolbar
@@ -132,7 +123,7 @@ struct PostsView: View {
   ) -> Bool {
     let filterCriteria: Bool =
       batch.sort == sort && batch.type == type && batch.userUsed == user
-      && batch.communityID == communityID && batch.personID == personID
+        && batch.communityID == communityID && batch.personID == personID
 
     return filterCriteria
   }
@@ -143,7 +134,7 @@ struct PostsView_Previews: PreviewProvider {
     let samplePost = RealmPost(
       postID: 1,
       postName:
-        "Sonoma. This is the body of the sample post. It contains some information about the post.",
+      "Sonoma. This is the body of the sample post. It contains some information about the post.",
       postPublished: "2023-09-15T12:33:03.503139",
       postURL: "https://example.com/sample-post",
       postBody: "This is the body of the sample post. It contains some information about the post.",
@@ -163,7 +154,7 @@ struct PostsView_Previews: PreviewProvider {
       communityActorID: "https://lemmy.world/c/worldnews",
       communityInstanceID: 456,
       communityDescription:
-        "This is a sample community description. It provides information about the community.",
+      "This is a sample community description. It provides information about the community.",
       communityIcon: "https://example.com/community-icon.jpg",
       communityBanner: "https://example.com/community-banner.jpg",
       communityUpdated: "October 16, 2023",

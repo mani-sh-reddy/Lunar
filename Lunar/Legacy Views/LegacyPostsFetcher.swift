@@ -64,7 +64,7 @@ import SwiftUI
     communityID: Int? = 0,
     instance: String? = nil
   ) {
-    if communityID == 99_999_999_999_999 {  // TODO: just a placeholder to prevent running when user posts
+    if communityID == 99_999_999_999_999 { // TODO: just a placeholder to prevent running when user posts
       return
     }
 
@@ -106,7 +106,7 @@ import SwiftUI
       urlRequest.networkServiceType = .responsiveData
     }
     .cacheResponse(using: cacher)
-    .validate(statusCode: 200..<300)
+    .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: PostModel.self) { response in
       if self.networkInspectorEnabled {
         self.pulse.storeRequest(

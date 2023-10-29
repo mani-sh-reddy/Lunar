@@ -34,7 +34,8 @@ extension Defaults.Keys {
   static let clearWhatsNewDefaults = Key<Bool>("clearWhatsNewDefaults", default: false)
   static let clearInitialWhatsNewDefault = Key<Bool>("clearInitialWhatsNewDefault", default: false)
   static let realmExperimentalViewEnabled = Key<Bool>(
-    "realmExperimentalViewEnabled", default: false)
+    "realmExperimentalViewEnabled", default: false
+  )
   static let autoCollapseBots = Key<Bool>("autoCollapseBots", default: true)
   static let commentSort = Key<String>("commentSort", default: "Hot")
   static let commentType = Key<String>("commentType", default: "All")
@@ -61,7 +62,9 @@ extension Defaults.Keys {
   static let subscribedCommunityIDs = Key<[Int]>("subscribedCommunityIDs", default: [])
   static let savedColors = Key<[customColor]>("savedColors", default: [])
   static let quicklinks = Key<[Quicklink]>(
-    "quicklinks", default: DefaultQuicklinks().getDefaultQuicklinks())
+    "quicklinks", default: DefaultQuicklinks().getDefaultQuicklinks()
+  )
   static let lockedQuicklinks = Key<[Quicklink]>(
-    "lockedQuicklinks", default: DefaultQuicklinks().getLockedQuicklinks())
+    "lockedQuicklinks", default: DefaultQuicklinks().getLockedQuicklinks()
+  )
 }
