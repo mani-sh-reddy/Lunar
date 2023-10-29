@@ -56,3 +56,30 @@ struct ConditionalListRowBackgroundModifier: ViewModifier {
     }
   }
 }
+
+// MARK: - BlurredAndDisabledModifier
+
+enum BlurredAndDisabledStyle: String, CaseIterable {
+  case none
+  case disabled
+  case blurAndDisabled
+}
+
+struct BlurredAndDisabledModifier: ViewModifier {
+  let style: BlurredAndDisabledStyle
+
+  func body(content: Content) -> some View {
+    if style == .blurAndDisabled {
+      AnyView(content)
+        .blur(radius: 3)
+        .disabled(true)
+    } else if style == .none {
+      AnyView(content)
+    } else if style == .disabled {
+      AnyView(content)
+        .disabled(true)
+    } else {
+      AnyView(content)
+    }
+  }
+}

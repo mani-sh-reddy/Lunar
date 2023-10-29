@@ -152,6 +152,7 @@ struct MyUserView: View {
         }
       }
     }
+    .modifier(BlurredAndDisabledModifier(style: actorID.isEmpty ? .disabled : .none))
   }
 
   var savedPostsAndCommentsSection: some View {
@@ -201,6 +202,7 @@ struct MyUserView: View {
         }
       }
     }
+    .modifier(BlurredAndDisabledModifier(style: actorID.isEmpty ? .disabled : .none))
   }
 
   var scoreSection: some View {
@@ -219,6 +221,7 @@ struct MyUserView: View {
         )
       }
     }
+    .modifier(BlurredAndDisabledModifier(style: actorID.isEmpty ? .disabled : .none))
     .modifier(ConditionalListRowBackgroundModifier(background: iridescenceEnabled ? .iridescent : .defaultBackground))
   }
 }

@@ -1,5 +1,5 @@
 //
-//  PostRowView.swift
+//  LegacyPostRowView.swift
 //  Lunar
 //
 //  Created by Mani on 04/07/2023.
@@ -10,7 +10,7 @@ import Defaults
 import SFSafeSymbols
 import SwiftUI
 
-struct PostRowView: View {
+struct LegacyPostRowView: View {
   @Default(.activeAccount) var activeAccount
   @Default(.subscribedCommunityIDs) var subscribedCommunityIDs
   @Default(.postsViewStyle) var postsViewStyle
