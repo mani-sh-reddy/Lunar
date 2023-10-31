@@ -221,6 +221,7 @@
 		3CF3F9C02A6EE0390051E725 /* SettingsClearCacheView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheView.swift */; };
 		3CF3F9C22A6EE20C0051E725 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3F9C12A6EE20C0051E725 /* ViewExtension.swift */; };
 		3CF43AA92AE1A42A006C8E84 /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF43AA82AE1A42A006C8E84 /* PostsView.swift */; };
+		3CFB89E82AF19DC3001BB9EB /* CreateCommentPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFB89E72AF19DC3001BB9EB /* CreateCommentPopover.swift */; };
 		3CFE04BF2A7FEA71007BAD81 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 3CFE04BE2A7FEA71007BAD81 /* SwiftSoup */; };
 		3CFE04C32A7FF0EB007BAD81 /* KbinThreadsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE04C22A7FF0EB007BAD81 /* KbinThreadsModel.swift */; };
 		3CFE04C72A7FF270007BAD81 /* KbinThreadsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE04C62A7FF270007BAD81 /* KbinThreadsFetcher.swift */; };
@@ -445,6 +446,7 @@
 		3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsClearCacheView.swift; sourceTree = "<group>"; };
 		3CF3F9C12A6EE20C0051E725 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		3CF43AA82AE1A42A006C8E84 /* PostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
+		3CFB89E72AF19DC3001BB9EB /* CreateCommentPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCommentPopover.swift; sourceTree = "<group>"; };
 		3CFE04C22A7FF0EB007BAD81 /* KbinThreadsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinThreadsModel.swift; sourceTree = "<group>"; };
 		3CFE04C62A7FF270007BAD81 /* KbinThreadsFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinThreadsFetcher.swift; sourceTree = "<group>"; };
 		3CFE04C82A7FF375007BAD81 /* KbinThreadsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinThreadsView.swift; sourceTree = "<group>"; };
@@ -885,6 +887,7 @@
 				3CCE1D1C2AB6050E00357DFA /* RecursiveComment.swift */,
 				3C9E54872A93F4740093DDC7 /* InPostActionsView.swift */,
 				3CCA7F762A956E6F00971BD1 /* CommentPopoverView.swift */,
+				3CFB89E72AF19DC3001BB9EB /* CreateCommentPopover.swift */,
 			);
 			path = "Comment View";
 			sourceTree = "<group>";
@@ -1299,6 +1302,7 @@
 				3C96EA422A77225E00753199 /* ValidationUtils.swift in Sources */,
 				3CC3E4332ADDCF7E00F7F9A9 /* ErrorResponseModel.swift in Sources */,
 				3C432F5C2A819E54000D5321 /* KbinThreadBodyFetcher.swift in Sources */,
+				3CFB89E82AF19DC3001BB9EB /* CreateCommentPopover.swift in Sources */,
 				3C113C432A6EA92600FDE5CE /* InstanceSelectorView.swift in Sources */,
 				3C8709322A747B91004999CE /* SiteModel.swift in Sources */,
 				3C2B14772AABCCA50028E05A /* ColorConverter.swift in Sources */,

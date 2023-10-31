@@ -5,56 +5,76 @@
 //  Created by Mani on 07/07/2023.
 //
 
+import Defaults
 import SFSafeSymbols
 import SwiftUI
 
 struct CommentsView: View {
+  @Default(.activeAccount) var activeAccount
+
   @StateObject var commentsFetcher: CommentsFetcher
   @Binding var upvoted: Bool
   @Binding var downvoted: Bool
-  @State var showingCommentPopover = false
-  @State var replyingTo = Comment(
-    content: "", published: "", apID: "", path: "", id: 0, creatorID: 0, postID: 0, languageID: 0,
-    removed: false, deleted: false, local: true, distinguished: false, updated: nil
-  )
+  @State var showingCreateCommentPopover = false
 
   var post: RealmPost
 
   var body: some View {
     List {
-      Section {
-        CompactPostItem(post: post)
-          .padding(.horizontal, -5)
-      }
-      Section {
-        if commentsFetcher.isLoading {
-          ProgressView()
-        } else {
-          CommentSectionView(
-            post: post,
-            comments: commentsFetcher.comments,
-            postBody: post.postBody ?? "",
-            replyingTo: $replyingTo,
-            upvoted: $upvoted,
-            downvoted: $downvoted,
-            showingCommentPopover: $showingCommentPopover
-          )
-          .popover(isPresented: $showingCommentPopover) {
-            if replyingTo.id == 0 {
-              CommentsViewWorkaroundWarning()
-            } else {
-              CommentPopoverView(
-                showingCommentPopover: $showingCommentPopover,
-                post: post,
-                comment: replyingTo
-              )
-              .environmentObject(commentsFetcher)
-            }
-          }
-          .environmentObject(commentsFetcher)
+      postSection
+      commentsSection
+    }
+    .listStyle(.grouped)
+    .toolbar {
+      ToolbarItemGroup(placement: .navigationBarTrailing) {
+        if !activeAccount.userID.isEmpty {
+          createCommentTopLevelButton
         }
       }
     }
-    .listStyle(.grouped)
+    .popover(isPresented: $showingCreateCommentPopover) {
+      commentPopoverAction
+    }
+    .environmentObject(commentsFetcher)
+  }
+
+  var commentsSection: some View {
+    Section {
+      if commentsFetcher.isLoading {
+        ProgressView()
+      } else {
+        CommentSectionView(
+          post: post,
+          comments: commentsFetcher.comments,
+          postBody: post.postBody ?? "",
+          upvoted: $upvoted,
+          downvoted: $downvoted
+        )
+      }
+    }
+  }
+
+  var postSection: some View {
+    Section {
+      CompactPostItem(post: post)
+        .padding(.horizontal, -5)
+    }
+  }
+
+  @ViewBuilder
+  var commentPopoverAction: some View {
+    CreateCommentPopover(
+      post: post,
+      parentString: post.postName
+    )
+    .environmentObject(commentsFetcher)
+  }
+
+  var createCommentTopLevelButton: some View {
+    Button {
+      showingCreateCommentPopover = true
+    } label: {
+      Image(systemSymbol: .plusBubbleFill)
+    }
   }
 }

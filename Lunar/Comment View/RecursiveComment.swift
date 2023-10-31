@@ -14,9 +14,7 @@ struct RecursiveComment: View {
   @Default(.commentMetadataPosition) var commentMetadataPosition
 
   @State private var isExpanded = true
-  @Binding var showingCommentPopover: Bool
-  @Binding var replyingTo: Comment
-  //  @State var commentText: String = ""
+  @State private var showCreateCommentPopover = false
   @EnvironmentObject var commentsFetcher: CommentsFetcher
 
   let nestedComment: NestedComment
@@ -72,34 +70,25 @@ struct RecursiveComment: View {
           }
           .tint(.blue)
           Button {
-            replyingTo = nestedComment.commentViewData.comment
-            showingCommentPopover = true
+            showCreateCommentPopover = true
           } label: {
             Label("reply", systemSymbol: .arrowshapeTurnUpLeftCircleFill)
           }
-          .tint(.orange)
+          .tint(.indigo)
         }
       }
+      .popover(isPresented: $showCreateCommentPopover) {
+        commentPopoverAction
+      }
+      .environmentObject(commentsFetcher)
 
       ForEach(nestedComment.subComments, id: \.id) { subComment in
         RecursiveComment(
-          showingCommentPopover: $showingCommentPopover,
-          replyingTo: $replyingTo,
           nestedComment: subComment,
           post: post
         )
         .id(UUID())
         .padding(.leading, 10) // Add indentation
-
-        //          .sheet(isPresented: $showingCommentPopover) {
-        //            let _ = print("POPOVER CLICKED")
-        //            CommentPopoverView(
-        //              showingCommentPopover: $showingCommentPopover,
-        //              post: post,
-        //              comment: nestedComment.commentViewData.comment
-        //            )
-        //            .environmentObject(commentsFetcher)
-        //          }
       }
     } else {
       HStack {
@@ -132,26 +121,21 @@ struct RecursiveComment: View {
     }
   }
 
+  @ViewBuilder
+  var commentPopoverAction: some View {
+    CreateCommentPopover(
+      post: post,
+      parentID: nestedComment.commentID,
+      parentString: nestedComment.commentViewData.comment.content
+    )
+//    .environmentObject(commentsFetcher)
+  }
+
   var commentRow: some View {
     VStack(alignment: .leading) {
       if commentMetadataPosition == "Top" {
         commentMetadata
       }
-
-      //      HStack {
-      //        Text(nestedComment.commentViewData.creator.name.uppercased())
-      //          .bold()
-      //          .foregroundStyle(.gray)
-      //        Text(dateTimeParser.timeAgoString(from: nestedComment.commentViewData.comment.published))
-      //          .foregroundStyle(.gray)
-      //        Spacer()
-      //
-      ////        Label(String(nestedComment.commentViewData.counts.upvotes ?? 0), systemSymbol: .arrowUp)
-      ////          .foregroundStyle(.green)
-      ////        Label(String(nestedComment.commentViewData.counts.downvotes ?? 0), systemSymbol: .arrowUp)
-      ////          .foregroundStyle(.red)
-      //      }
-      //      .font(.caption)
       Text(try! AttributedString(markdown: nestedComment.commentViewData.comment.content))
       if commentMetadataPosition == "Bottom" {
         commentMetadata
