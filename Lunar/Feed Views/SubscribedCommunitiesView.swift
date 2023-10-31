@@ -35,7 +35,9 @@ struct SubscribedCommunitiesSectionView: View {
           communityID: community.community.id,
           personID: 0,
           filterKey: "communitySpecific",
-          heading: community.community.title
+          heading: community.community.title,
+          communityName: community.community.name,
+          communityActorID: community.community.actorID
         )
         //        PostsView(
         //          postsFetcher: PostsFetcher(

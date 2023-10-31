@@ -5,13 +5,15 @@
 //  Created by Mani on 19/10/2023.
 //
 
+import Defaults
 import Foundation
 import RealmSwift
 import SFSafeSymbols
 import SwiftUI
 
 struct PostsView: View {
-  /// Removes hidden posts
+  @Default(.debugModeEnabled) var debugModeEnabled
+
   @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
   @ObservedResults(Batch.self) var batches
 
@@ -24,10 +26,13 @@ struct PostsView: View {
   var personID: Int
   var filterKey: String
 
+  var heading: String
+  var communityName: String?
+  var communityActorID: String?
+
   @State var runOnce: Bool = false
   @State var page: Int = 1
-
-  var heading: String
+  @State var showingCreatePostPopover: Bool = false
 
   let hapticsRigid = UIImpactFeedbackGenerator(style: .rigid)
 
@@ -40,38 +45,15 @@ struct PostsView: View {
       if !runOnce {
         Rectangle()
           .foregroundStyle(.green)
-          /// Detects when at the end of the list
-          .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-              PostsFetcher(
-                sort: sort,
-                type: type,
-                communityID: communityID,
-                page: page,
-                filterKey: filterKey
-              ).loadContent()
-              /// Setting the page number for the batch.
-              page += 1
-            }
-            runOnce = true
-          }
+          .onAppear { loadMorePostsOnAppearAction() }
       } else {
         SmallNavButton(
-          systemSymbol: .handTapFill, text: "Load More Posts", color: .blue, symbolLocation: .left
+          systemSymbol: .handTapFill,
+          text: "Load More Posts",
+          color: .blue,
+          symbolLocation: .left
         )
-        .onTapGesture {
-          hapticsRigid.impactOccurred(intensity: 0.5)
-          DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            PostsFetcher(
-              sort: sort,
-              type: type,
-              communityID: communityID,
-              page: page,
-              filterKey: filterKey
-            ).loadContent()
-            page += 1
-          }
-        }
+        .onTapGesture { loadMorePostsButtonAction() }
       }
     }
     .background(Color("postListBackground"))
@@ -87,12 +69,61 @@ struct PostsView: View {
     }
     .toolbar {
       ToolbarItemGroup(placement: .navigationBarTrailing) {
-        infoToolbar
+        if communityActorID != nil {
+          createPostButton
+        }
+        if debugModeEnabled {
+          infoToolbar
+        }
       }
+    }
+    .popover(isPresented: $showingCreatePostPopover) {
+      CreatePostPopoverView(
+        communityID: communityID,
+        communityName: communityName ?? "",
+        communityActorID: communityActorID ?? ""
+      )
     }
     //    .onChange(of: realmPosts.count) { _ in
     //      runOnce = false
     //    }
+  }
+
+  func loadMorePostsOnAppearAction() {
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+      PostsFetcher(
+        sort: sort,
+        type: type,
+        communityID: communityID,
+        page: page,
+        filterKey: filterKey
+      ).loadContent()
+      /// Setting the page number for the batch.
+      page += 1
+    }
+    runOnce = true
+  }
+
+  func loadMorePostsButtonAction() {
+    hapticsRigid.impactOccurred(intensity: 0.5)
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+      PostsFetcher(
+        sort: sort,
+        type: type,
+        communityID: communityID,
+        page: page,
+        filterKey: filterKey
+      ).loadContent()
+      page += 1
+    }
+  }
+
+  var createPostButton: some View {
+    Button {
+      showingCreatePostPopover = true
+    } label: {
+      Image(systemSymbol: .rectangleFillBadgePlus)
+    }
   }
 
   var infoToolbar: some View {
