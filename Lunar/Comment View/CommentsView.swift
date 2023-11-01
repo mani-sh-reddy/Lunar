@@ -16,6 +16,7 @@ struct CommentsView: View {
   @Binding var upvoted: Bool
   @Binding var downvoted: Bool
   @State var showingCreateCommentPopover = false
+  @State var postBodyExpanded = false
 
   var post: RealmPost
 
@@ -25,6 +26,7 @@ struct CommentsView: View {
       commentsSection
     }
     .listStyle(.grouped)
+    .navigationTitle(post.postName)
     .toolbar {
       ToolbarItemGroup(placement: .navigationBarTrailing) {
         if !activeAccount.userID.isEmpty {
@@ -58,6 +60,21 @@ struct CommentsView: View {
     Section {
       CompactPostItem(post: post)
         .padding(.horizontal, -5)
+      if let postBody = post.postBody, !postBody.isEmpty {
+        DisclosureGroup(isExpanded: $postBodyExpanded) {
+          Text(try! AttributedString(styledMarkdown: postBody))
+        } label: {
+          if postBodyExpanded {
+            Text("")
+          } else {
+            Text(postBody)
+              .italic()
+              .foregroundStyle(.gray)
+              .lineLimit(3)
+              .font(.caption)
+          }
+        }
+      }
     }
   }
 

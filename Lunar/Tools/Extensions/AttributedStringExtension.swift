@@ -13,7 +13,7 @@ extension AttributedString {
       markdown: markdownString,
       options: .init(
         allowsExtendedAttributes: true,
-        interpretedSyntax: .full,
+        interpretedSyntax: .inlineOnlyPreservingWhitespace,
         failurePolicy: .returnPartiallyParsedIfPossible
       ),
       baseURL: nil

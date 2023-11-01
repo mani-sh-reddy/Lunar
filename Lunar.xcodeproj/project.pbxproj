@@ -215,7 +215,6 @@
 		3CEF4CD52A69B798002B83C0 /* URLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CD42A69B798002B83C0 /* URLParser.swift */; };
 		3CF3B8F12A8F797D001C08B5 /* SettingsLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3B8F02A8F797D001C08B5 /* SettingsLayoutView.swift */; };
 		3CF3B8F32A8FF7D4001C08B5 /* KbinSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3B8F22A8FF7D4001C08B5 /* KbinSelectorView.swift */; };
-		3CF3B8FB2A901847001C08B5 /* CommentSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3B8FA2A901847001C08B5 /* CommentSectionView.swift */; };
 		3CF3B8FD2A90188D001C08B5 /* CommentMetadataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3B8FC2A90188D001C08B5 /* CommentMetadataView.swift */; };
 		3CF3B9042A90C0ED001C08B5 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3B9032A90C0ED001C08B5 /* HeaderView.swift */; };
 		3CF3F9C02A6EE0390051E725 /* SettingsClearCacheView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheView.swift */; };
@@ -440,7 +439,6 @@
 		3CEF4CD42A69B798002B83C0 /* URLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParser.swift; sourceTree = "<group>"; };
 		3CF3B8F02A8F797D001C08B5 /* SettingsLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLayoutView.swift; sourceTree = "<group>"; };
 		3CF3B8F22A8FF7D4001C08B5 /* KbinSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinSelectorView.swift; sourceTree = "<group>"; };
-		3CF3B8FA2A901847001C08B5 /* CommentSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSectionView.swift; sourceTree = "<group>"; };
 		3CF3B8FC2A90188D001C08B5 /* CommentMetadataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentMetadataView.swift; sourceTree = "<group>"; };
 		3CF3B9032A90C0ED001C08B5 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsClearCacheView.swift; sourceTree = "<group>"; };
@@ -883,7 +881,6 @@
 				3CBCCDF52A589F2C00307AC1 /* CommentsView.swift */,
 				3CB046F12ADAF3C00011BFEC /* CommentsViewWorkaroundWarning.swift */,
 				3CF3B8FC2A90188D001C08B5 /* CommentMetadataView.swift */,
-				3CF3B8FA2A901847001C08B5 /* CommentSectionView.swift */,
 				3CCE1D1C2AB6050E00357DFA /* RecursiveComment.swift */,
 				3C9E54872A93F4740093DDC7 /* InPostActionsView.swift */,
 				3CCA7F762A956E6F00971BD1 /* CommentPopoverView.swift */,
@@ -1212,7 +1209,6 @@
 				3CC3E4212ADC3FD600F7F9A9 /* CreatePostPopoverView.swift in Sources */,
 				3CE237372AA4D188000F1D20 /* SmallNavButton.swift in Sources */,
 				3CEF4CC22A69B38B002B83C0 /* SubscribedCommunitiesView.swift in Sources */,
-				3CF3B8FB2A901847001C08B5 /* CommentSectionView.swift in Sources */,
 				3CB046F22ADAF3C00011BFEC /* CommentsViewWorkaroundWarning.swift in Sources */,
 				3CA8A0C92AE5DBA900EEABD3 /* RealmBrowser.swift in Sources */,
 				3CBF88122AEEC8C20058B14D /* LegacyInPostActionsView.swift in Sources */,
@@ -1548,6 +1544,7 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = QR8TDZJV2W;
 				ENABLE_PREVIEWS = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Lunar/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Lunar;
