@@ -12,9 +12,11 @@ import SFSafeSymbols
 import SwiftUI
 
 struct PostItem: View {
-  //  var post: RealmPost
   @Default(.debugModeEnabled) var debugModeEnabled
+  @Default(.activeAccount) var activeAccount
+
   @ObservedRealmObject var post: RealmPost
+
   @State var showSafari: Bool = false
 
   let hapticsSoft = UIImpactFeedbackGenerator(style: .soft)
@@ -202,6 +204,7 @@ struct PostItem: View {
     .highPriorityGesture(
       TapGesture().onEnded {
         RealmThawFunctions().upvoteAction(post: post)
+        sendReaction(voteType: 1, postID: post.postID)
       })
   }
 
@@ -218,6 +221,7 @@ struct PostItem: View {
       .highPriorityGesture(
         TapGesture().onEnded {
           RealmThawFunctions().downvoteAction(post: post)
+          sendReaction(voteType: -1, postID: post.postID)
         })
     }
   }
@@ -269,6 +273,18 @@ struct PostItem: View {
       DebugTextView(name: "communityActorID", value: post.communityActorID)
       DebugTextView(name: "sort", value: post.sort)
       DebugTextView(name: "type", value: post.type)
+    }
+  }
+
+  func sendReaction(voteType: Int, postID: Int) {
+    VoteSender(
+      asActorID: activeAccount.actorID,
+      voteType: voteType,
+      postID: postID,
+      commentID: 0,
+      elementType: "post"
+    ).fetchVoteInfo { postID, voteSubmittedSuccessfully, _ in
+      print("RETURNED /post/like \(String(describing: postID)):\(voteSubmittedSuccessfully)")
     }
   }
 }

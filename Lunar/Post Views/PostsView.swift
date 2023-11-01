@@ -207,7 +207,6 @@ struct PostsView: View {
     let filterCriteria: Bool =
       batch.sort == sort && batch.type == type && batch.userUsed == user
         && batch.communityID == communityID && batch.personID == personID
-
     return filterCriteria
   }
 }
