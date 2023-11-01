@@ -43,13 +43,13 @@ struct CommentsView: View {
       if commentsFetcher.isLoading {
         ProgressView()
       } else {
-        CommentSectionView(
-          post: post,
-          comments: commentsFetcher.comments,
-          postBody: post.postBody ?? "",
-          upvoted: $upvoted,
-          downvoted: $downvoted
-        )
+        let nestedComments = commentsFetcher.comments.nestedComment
+        ForEach(nestedComments, id: \.id) { comment in
+          RecursiveComment(
+            nestedComment: comment,
+            post: post
+          )
+        }
       }
     }
   }
