@@ -136,7 +136,6 @@ struct CreateCommentPopover: View {
             postID: post.postID,
             parentID: parentID
           ).fetchCommentResponse { response in
-
             if response == "success" {
               commentsFetcher.loadContent(isRefreshing: true)
               notificationHaptics.notificationOccurred(.success)

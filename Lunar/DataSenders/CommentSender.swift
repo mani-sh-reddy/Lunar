@@ -73,11 +73,11 @@ class CommentSender: ObservableObject {
         if let data = response.data,
            let fetchError = try? JSONDecoder().decode(ErrorResponseModel.self, from: data)
         {
-          print("subscriptionActionSender ERROR: \(fetchError.error)")
+          print("commentSender ERROR: \(fetchError.error)")
           completion(fetchError.error)
         } else {
           let errorDescription = String(describing: error.errorDescription)
-          print("subscriptionActionSender JSON DECODE ERROR: \(error): \(errorDescription)")
+          print("commentSender JSON DECODE ERROR: \(error): \(errorDescription)")
           completion(error.errorDescription)
         }
       }

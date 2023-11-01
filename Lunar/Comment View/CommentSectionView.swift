@@ -39,7 +39,6 @@ struct CommentSectionView: View {
         nestedComment: comment,
         post: post
       )
-      .id(UUID())
     }
   }
 }

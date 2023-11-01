@@ -14,7 +14,7 @@ struct RecursiveComment: View {
   @Default(.commentMetadataPosition) var commentMetadataPosition
 
   @State private var isExpanded = true
-  @State private var showCreateCommentPopover = false
+  @State var showCreateCommentPopover = false
   @EnvironmentObject var commentsFetcher: CommentsFetcher
 
   let nestedComment: NestedComment
@@ -22,102 +22,111 @@ struct RecursiveComment: View {
   let dateTimeParser = DateTimeParser()
 
   let commentHierarchyColors: [Color] = [
-    .clear,
-    .red,
-    .orange,
-    .yellow,
-    .green,
-    .cyan,
-    .blue,
-    .indigo,
-    .purple,
+    .clear, .red, .orange, .yellow, .green, .cyan, .blue, .indigo, .purple,
   ]
 
   let haptics = UIImpactFeedbackGenerator(style: .soft)
 
   var body: some View {
     if !nestedComment.commentViewData.isCollapsed {
-      let indentLevel = min(nestedComment.indentLevel, commentHierarchyColors.count - 1)
-      let color = commentHierarchyColors[indentLevel]
       HStack {
-        if nestedComment.indentLevel > 1 {
-          Rectangle()
-            .foregroundColor(color)
-            .frame(width: 2)
-            .padding(.vertical, 5)
-        }
+        commentNestedLevelIndicator
         commentRow
         Spacer()
       }
-      .contentShape(Rectangle())
-      .onTapGesture {
-        isExpanded.toggle()
-        haptics.impactOccurred(intensity: 0.5)
-        commentsFetcher.updateCommentCollapseState(nestedComment.commentViewData, isCollapsed: true)
-        print("tapped to collapse")
-      }
-      .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-        Group {
-          Button {
-            isExpanded.toggle()
-            haptics.impactOccurred(intensity: 0.5)
-            commentsFetcher.updateCommentCollapseState(
-              nestedComment.commentViewData, isCollapsed: true
-            )
-            print("swipe action collapse clicked")
-          } label: {
-            Label("collapse", systemSymbol: .arrowUpToLineCircleFill)
-          }
-          .tint(.blue)
-          Button {
-            showCreateCommentPopover = true
-          } label: {
-            Label("reply", systemSymbol: .arrowshapeTurnUpLeftCircleFill)
-          }
-          .tint(.indigo)
-        }
-      }
-      .popover(isPresented: $showCreateCommentPopover) {
+      .fullScreenCover(isPresented: $showCreateCommentPopover) {
         commentPopoverAction
       }
-      .environmentObject(commentsFetcher)
+      .contentShape(Rectangle())
+      .onTapGesture { minimiseComment() }
+      .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+        minimiseButton
+        replyButton
+      }
 
       ForEach(nestedComment.subComments, id: \.id) { subComment in
         RecursiveComment(
           nestedComment: subComment,
           post: post
         )
-        .id(UUID())
         .padding(.leading, 10) // Add indentation
       }
     } else {
-      HStack {
-        Text(try! AttributedString(markdown: "\(nestedComment.commentViewData.comment.content)"))
-          .italic()
-          .lineLimit(1)
-          .foregroundStyle(.gray)
+      minimisedCommentStyle
+        .contentShape(Rectangle())
+        .onTapGesture { maximiseComment() }
+    }
+  }
+
+  var minimisedCommentStyle: some View {
+    HStack {
+      Text(try! AttributedString(markdown: "\(nestedComment.commentViewData.comment.content)"))
+        .italic()
+        .lineLimit(1)
+        .foregroundStyle(.gray)
+        .font(.caption)
+      Spacer()
+      if countSubcomments(nestedComment.subComments) > 0 {
+        Text(String(countSubcomments(nestedComment.subComments)))
+          .bold()
           .font(.caption)
-        Spacer()
-        if countSubcomments(nestedComment.subComments) > 0 {
-          Text(String(countSubcomments(nestedComment.subComments)))
-            .bold()
-            .font(.caption)
-            .fixedSize()
-            .foregroundStyle(.gray)
-          Spacer().frame(width: 10)
-        }
-        Image(systemSymbol: .chevronForward)
-          .foregroundStyle(.blue)
+          .fixedSize()
+          .foregroundStyle(.gray)
+        Spacer().frame(width: 10)
       }
-      .contentShape(Rectangle())
-      .onTapGesture {
-        isExpanded.toggle()
-        haptics.impactOccurred(intensity: 0.5)
-        commentsFetcher.updateCommentCollapseState(
-          nestedComment.commentViewData, isCollapsed: false
-        )
-        print("tapped to expand")
-      }
+      Image(systemSymbol: .chevronForward)
+        .foregroundStyle(.blue)
+    }
+  }
+
+  var replyButton: some View {
+    Button {
+      showCreateCommentPopover = true
+    } label: {
+      Label("reply", systemSymbol: .arrowshapeTurnUpLeftCircleFill)
+    }
+    .tint(.indigo)
+  }
+
+  var minimiseButton: some View {
+    Button {
+      isExpanded.toggle()
+      haptics.impactOccurred(intensity: 0.5)
+      commentsFetcher.updateCommentCollapseState(
+        nestedComment.commentViewData, isCollapsed: true
+      )
+      print("swipe action collapse clicked")
+    } label: {
+      Label("collapse", systemSymbol: .arrowUpToLineCircleFill)
+    }
+    .tint(.blue)
+  }
+
+  func minimiseComment() {
+    isExpanded.toggle()
+    haptics.impactOccurred(intensity: 0.5)
+    commentsFetcher.updateCommentCollapseState(nestedComment.commentViewData, isCollapsed: true)
+    print("tapped to collapse")
+  }
+
+  func maximiseComment() {
+    isExpanded.toggle()
+    haptics.impactOccurred(intensity: 0.5)
+    commentsFetcher.updateCommentCollapseState(
+      nestedComment.commentViewData, isCollapsed: false
+    )
+    print("tapped to expand")
+  }
+
+  @ViewBuilder
+  var commentNestedLevelIndicator: some View {
+    let indentLevel = min(nestedComment.indentLevel, commentHierarchyColors.count - 1)
+    let color = commentHierarchyColors[indentLevel]
+    if nestedComment.indentLevel > 1 {
+      Rectangle()
+        .foregroundColor(color)
+        .frame(width: 2)
+        .padding(.vertical, 5)
     }
   }
 
@@ -128,7 +137,8 @@ struct RecursiveComment: View {
       parentID: nestedComment.commentID,
       parentString: nestedComment.commentViewData.comment.content
     )
-//    .environmentObject(commentsFetcher)
+    .id(nestedComment.commentViewData.comment.id)
+    .environmentObject(commentsFetcher)
   }
 
   var commentRow: some View {
