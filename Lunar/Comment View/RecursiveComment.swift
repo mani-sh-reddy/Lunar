@@ -146,7 +146,7 @@ struct RecursiveComment: View {
       if commentMetadataPosition == "Top" {
         commentMetadata
       }
-      Text(try! AttributedString(markdown: nestedComment.commentViewData.comment.content))
+      Text(try! AttributedString(styledMarkdown: nestedComment.commentViewData.comment.content))
       if commentMetadataPosition == "Bottom" {
         commentMetadata
       }

@@ -42,7 +42,9 @@ struct SearchCommunitiesRowView: View {
           filterKey: "communitySpecific",
           heading: community.community.title,
           communityName: community.community.name,
-          communityActorID: community.community.actorID
+          communityActorID: community.community.actorID,
+          communityDescription: community.community.description,
+          communityIcon: community.community.icon
         )
         //        PostsView(
         //          postsFetcher: PostsFetcher(

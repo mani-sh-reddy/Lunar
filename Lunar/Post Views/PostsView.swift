@@ -7,6 +7,7 @@
 
 import Defaults
 import Foundation
+import NukeUI
 import RealmSwift
 import SFSafeSymbols
 import SwiftUI
@@ -29,6 +30,8 @@ struct PostsView: View {
   var heading: String
   var communityName: String?
   var communityActorID: String?
+  var communityDescription: String?
+  var communityIcon: String?
 
   @State var runOnce: Bool = false
   @State var page: Int = 1
@@ -38,6 +41,9 @@ struct PostsView: View {
 
   var body: some View {
     List {
+      if let communityActorID, !communityActorID.isEmpty {
+        communitySpecificHeader
+      }
       ForEach(filteredPosts) { post in
         PostItem(post: post)
       }
@@ -89,6 +95,77 @@ struct PostsView: View {
     //    }
   }
 
+  var communitySpecificHeader: some View {
+    Section {
+//      var communityName: String?
+//      var communityActorID: String?
+//      var communityDescription: String?
+//      var communityIcon String?
+
+      DisclosureGroup {
+        Text(try! AttributedString(styledMarkdown: communityDescription ?? ""))
+      } label: {
+        HStack {
+          communityIconView
+          VStack(alignment: .leading) {
+            Text(communityName ?? "")
+              .bold()
+            Text("@\(URLParser.extractDomain(from: communityActorID ?? ""))")
+              .foregroundStyle(.secondary)
+              .font(.caption)
+          }
+        }
+      }
+    }
+    .listRowSeparator(.hidden)
+  }
+
+  var communityIconView: some View {
+    LazyImage(url: URL(string: communityIcon ?? "")) { state in
+      if let image = state.image {
+        image
+          .resizable()
+          .aspectRatio(contentMode: .fill)
+          .clipShape(Circle())
+          .frame(width: 60, height: 60)
+      } else if state.error != nil {
+        Image(systemSymbol: .booksVerticalCircleFill)
+          .resizable()
+          .frame(width: 60, height: 60)
+          .foregroundStyle(.secondary)
+          .symbolRenderingMode(.hierarchical)
+      } else {
+        Color.clear.frame(width: 60, height: 60)
+      }
+    }
+    .padding(5)
+  }
+
+  var createPostButton: some View {
+    Button {
+      showingCreatePostPopover = true
+    } label: {
+      Image(systemSymbol: .rectangleFillBadgePlus)
+    }
+  }
+
+  var infoToolbar: some View {
+    HStack(alignment: .lastTextBaseline) {
+      VStack {
+        Image(systemSymbol: .signpostRight)
+        Text(String(filteredPosts.count))
+          .fixedSize()
+      }
+      .padding(.trailing, 3)
+      VStack {
+        Image(systemSymbol: .doc)
+        Text(String(page))
+          .fixedSize()
+      }
+    }
+    .font(.caption)
+  }
+
   func loadMorePostsOnAppearAction() {
     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
       PostsFetcher(
@@ -116,31 +193,6 @@ struct PostsView: View {
       ).loadContent()
       page += 1
     }
-  }
-
-  var createPostButton: some View {
-    Button {
-      showingCreatePostPopover = true
-    } label: {
-      Image(systemSymbol: .rectangleFillBadgePlus)
-    }
-  }
-
-  var infoToolbar: some View {
-    HStack(alignment: .lastTextBaseline) {
-      VStack {
-        Image(systemSymbol: .signpostRight)
-        Text(String(filteredPosts.count))
-          .fixedSize()
-      }
-      .padding(.trailing, 3)
-      VStack {
-        Image(systemSymbol: .doc)
-        Text(String(page))
-          .fixedSize()
-      }
-    }
-    .font(.caption)
   }
 
   // Function to determine if a batch should be displayed based on criteria
