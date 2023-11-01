@@ -56,15 +56,21 @@ struct PostsView: View {
       .listRowBackground(Color("postListBackground"))
       if !runOnce {
         Rectangle()
-          .foregroundStyle(.green)
+          .foregroundStyle(.gray.opacity(0.1))
           .onAppear { loadMorePostsOnAppearAction() }
       } else {
-        SmallNavButton(
-          systemSymbol: .handTapFill,
-          text: "Load More Posts",
-          color: .blue,
-          symbolLocation: .left
-        )
+        HStack {
+          Spacer()
+          SmallNavButton(
+            systemSymbol: .handTapFill,
+            text: "Load More Posts",
+            color: .secondary,
+            symbolLocation: .left
+          )
+          Spacer()
+        }
+        .padding(.bottom, 10)
+        .listRowSeparator(.hidden)
         .onTapGesture { loadMorePostsButtonAction() }
       }
     }
