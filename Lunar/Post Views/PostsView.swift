@@ -14,6 +14,7 @@ import SwiftUI
 
 struct PostsView: View {
   @Default(.debugModeEnabled) var debugModeEnabled
+  @Default(.postsViewStyle) var postsViewStyle
 
   @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
   @ObservedResults(Batch.self) var batches
@@ -45,7 +46,12 @@ struct PostsView: View {
         communitySpecificHeader
       }
       ForEach(filteredPosts) { post in
-        PostItem(post: post)
+        switch postsViewStyle {
+        case .large:
+          PostItem(post: post)
+        case .compact:
+          CompactPostItem(post: post, navigable: true)
+        }
       }
       .listRowBackground(Color("postListBackground"))
       if !runOnce {

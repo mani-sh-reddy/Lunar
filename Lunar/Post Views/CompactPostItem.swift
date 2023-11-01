@@ -14,8 +14,13 @@ import SwiftUI
 struct CompactPostItem: View {
   //  var post: RealmPost
   @Default(.debugModeEnabled) var debugModeEnabled
+  @Default(.activeAccount) var activeAccount
+
   @ObservedRealmObject var post: RealmPost
+
   @State var showSafari: Bool = false
+
+  var navigable: Bool?
 
   let hapticsSoft = UIImpactFeedbackGenerator(style: .soft)
   let hapticsLight = UIImpactFeedbackGenerator(style: .light)
@@ -84,6 +89,10 @@ struct CompactPostItem: View {
             debugValues
           }
         }
+        .padding(navigable ?? false ? 10 : 0)
+      }
+      if navigable != nil, navigable == true {
+        commentsNavLink
       }
     }
     .listRowSeparator(.hidden)
@@ -200,6 +209,7 @@ struct CompactPostItem: View {
     .highPriorityGesture(
       TapGesture().onEnded {
         RealmThawFunctions().upvoteAction(post: post)
+        sendReaction(voteType: 1, postID: post.postID)
       })
   }
 
@@ -216,6 +226,7 @@ struct CompactPostItem: View {
       .highPriorityGesture(
         TapGesture().onEnded {
           RealmThawFunctions().downvoteAction(post: post)
+          sendReaction(voteType: -1, postID: post.postID)
         })
     }
   }
@@ -259,6 +270,18 @@ struct CompactPostItem: View {
       EmptyView()
     }
     .opacity(0)
+  }
+
+  func sendReaction(voteType: Int, postID: Int) {
+    VoteSender(
+      asActorID: activeAccount.actorID,
+      voteType: voteType,
+      postID: postID,
+      commentID: 0,
+      elementType: "post"
+    ).fetchVoteInfo { postID, voteSubmittedSuccessfully, _ in
+      print("RETURNED /post/like \(String(describing: postID)):\(voteSubmittedSuccessfully)")
+    }
   }
 
   var debugValues: some View {

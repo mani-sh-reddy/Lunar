@@ -8,6 +8,11 @@
 import Defaults
 import SwiftUI
 
+enum PostsViewStyle: String, Defaults.Serializable {
+  case large
+  case compact
+}
+
 struct SettingsLayoutView: View {
   @Default(.commentMetadataPosition) var commentMetadataPosition
   @Default(.detailedCommunityLabels) var detailedCommunityLabels
@@ -19,9 +24,8 @@ struct SettingsLayoutView: View {
 
       Section {
         Picker("Posts Style", selection: $postsViewStyle) {
-          Text("Sparse").tag("insetGrouped")
-          Text("Cosy").tag("plain")
-          Text("Compact").tag("compactPlain")
+          Text("Large").tag(PostsViewStyle.large)
+          Text("Compact").tag(PostsViewStyle.compact)
         }
         .pickerStyle(.menu)
 

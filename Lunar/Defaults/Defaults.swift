@@ -28,14 +28,13 @@ extension Defaults.Keys {
   static let showLaunchSplashScreen = Key<Bool>("showLaunchSplashScreen", default: true)
   static let showWelcomeScreen = Key<Bool>("showWelcomeScreen", default: true)
   static let detailedCommunityLabels = Key<Bool>("detailedCommunityLabels", default: true)
-  static let postsViewStyle = Key<String>("postsViewStyle", default: "insetGrouped")
+  static let legacyPostsViewStyle = Key<String>("legacyPostsViewStyle", default: "insetGrouped")
+  static let postsViewStyle = Key<PostsViewStyle>("postsViewStyle", default: .large)
   static let iridescenceEnabled = Key<Bool>("iridescenceEnabled", default: true)
   static let prominentInspectorButton = Key<Bool>("prominentInspectorButton", default: true)
   static let clearWhatsNewDefaults = Key<Bool>("clearWhatsNewDefaults", default: false)
   static let clearInitialWhatsNewDefault = Key<Bool>("clearInitialWhatsNewDefault", default: false)
-  static let realmExperimentalViewEnabled = Key<Bool>(
-    "realmExperimentalViewEnabled", default: false
-  )
+  static let realmExperimentalViewEnabled = Key<Bool>("realmExperimentalViewEnabled", default: false)
   static let autoCollapseBots = Key<Bool>("autoCollapseBots", default: true)
   static let commentSort = Key<String>("commentSort", default: "Hot")
   static let commentType = Key<String>("commentType", default: "All")
@@ -61,10 +60,6 @@ extension Defaults.Keys {
   static let lastDownloadedPage = Key<Int>("lastDownloadedPage", default: 1)
   static let subscribedCommunityIDs = Key<[Int]>("subscribedCommunityIDs", default: [])
   static let savedColors = Key<[customColor]>("savedColors", default: [])
-  static let quicklinks = Key<[Quicklink]>(
-    "quicklinks", default: DefaultQuicklinks().getDefaultQuicklinks()
-  )
-  static let lockedQuicklinks = Key<[Quicklink]>(
-    "lockedQuicklinks", default: DefaultQuicklinks().getLockedQuicklinks()
-  )
+  static let quicklinks = Key<[Quicklink]>("quicklinks", default: DefaultQuicklinks().getDefaultQuicklinks())
+  static let lockedQuicklinks = Key<[Quicklink]>("lockedQuicklinks", default: DefaultQuicklinks().getLockedQuicklinks())
 }

@@ -12,7 +12,7 @@ import SwiftUI
 struct old_PostsView: View {
   @Default(.forcedPostSort) var forcedPostSort
   @Default(.selectedInstance) var selectedInstance
-  @Default(.postsViewStyle) var postsViewStyle
+  @Default(.legacyPostsViewStyle) var legacyPostsViewStyle
   @Default(.enableQuicklinks) var enableQuicklinks
 
   @StateObject var postsFetcher: LegacyPostsFetcher
@@ -44,10 +44,10 @@ struct old_PostsView: View {
   var userIcon: String? { user?.person.avatar }
 
   var listStyle: String {
-    if postsViewStyle == "compactPlain" {
+    if legacyPostsViewStyle == "compactPlain" {
       "plain"
     } else {
-      postsViewStyle
+      legacyPostsViewStyle
     }
   }
 

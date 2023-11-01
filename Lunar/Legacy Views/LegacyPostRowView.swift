@@ -13,7 +13,7 @@ import SwiftUI
 struct LegacyPostRowView: View {
   @Default(.activeAccount) var activeAccount
   @Default(.subscribedCommunityIDs) var subscribedCommunityIDs
-  @Default(.postsViewStyle) var postsViewStyle
+  @Default(.legacyPostsViewStyle) var legacyPostsViewStyle
 
   @Binding var upvoted: Bool
   @Binding var downvoted: Bool
@@ -31,7 +31,7 @@ struct LegacyPostRowView: View {
   var insideCommentsView: Bool = false
 
   var compactViewEnabled: Bool {
-    postsViewStyle == "compactPlain"
+    legacyPostsViewStyle == "compactPlain"
   }
 
   var imageURL: String {
