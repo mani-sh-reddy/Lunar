@@ -130,27 +130,6 @@ struct FeedView: View {
     }
   }
 
-  //  var realmSection: some View {
-  //    NavigationLink {
-  //      PostsView(
-  //        filteredPosts: realmPosts.filter { post in
-  //          post.sort == "Active" &&
-  //            post.type == "All" &&
-  //            post.filterKey == "sortAndTypeOnly"
-  //        },
-  //        sort: "Active",
-  //        type: "All",
-  //        user: 0,
-  //        communityID: 0,
-  //        personID: 0,
-  //        filterKey: "sortAndTypeOnly",
-  //        heading: "Realm Experiment"
-  //      )
-  //    } label: {
-  //      RealmPostsViewLabel()
-  //    }
-  //  }
-
   var title: some View {
     VStack(alignment: .leading, spacing: 10) {
       Text(selectedInstance)
@@ -175,17 +154,14 @@ struct FeedView: View {
 
   var trendingSection: some View {
     Section(header: Text("Trending")) {
-      TrendingCommunitiesSectionView(communitiesFetcher: CommunitiesFetcher(limitParameter: 5))
+      TrendingCommunitiesSectionView(communitiesFetcher: LegacyCommunitiesFetcher(limitParameter: 5))
       ExploreCommunitiesButton()
     }
   }
 
   var subscribedSection: some View {
     Section(header: Text(subscribedCommunityListHeading)) {
-      SubscribedCommunitiesSectionView(
-        communitiesFetcher: CommunitiesFetcher(
-          limitParameter: 50, sortParameter: "Active", typeParameter: "Subscribed"
-        ))
+      SubscribedCommunitiesSectionView()
     }
   }
 

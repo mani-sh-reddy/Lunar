@@ -11,7 +11,7 @@ import SwiftUI
 struct ExploreCommunitiesView: View {
   @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
 
-  @StateObject var communitiesFetcher: CommunitiesFetcher
+  @StateObject var communitiesFetcher: LegacyCommunitiesFetcher
 
   var title: String
 
@@ -37,7 +37,7 @@ struct ExploreCommunitiesView: View {
               communityActorID: community.community.actorID
             )
           } label: {
-            CommunityRowView(community: community)
+            LegacyCommunityRowView(community: community)
           }
           .onAppear {
             communitiesFetcher.loadMoreContentIfNeeded(currentItem: community)
@@ -65,7 +65,7 @@ struct ExploreCommunitiesView: View {
 
 struct MoreCommunitiesView_Previews: PreviewProvider {
   static var previews: some View {
-    let communitiesFetcher = CommunitiesFetcher(
+    let communitiesFetcher = LegacyCommunitiesFetcher(
       limitParameter: 50,
       sortParameter: "Active",
       typeParameter: "All"

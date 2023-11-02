@@ -14,7 +14,7 @@ struct TrendingCommunitiesSectionView: View {
 
   @Default(.selectedInstance) var selectedInstance
 
-  @StateObject var communitiesFetcher: CommunitiesFetcher
+  @StateObject var communitiesFetcher: LegacyCommunitiesFetcher
 
   var body: some View {
     ForEach(communitiesFetcher.communities, id: \.community.id) { community in
@@ -37,7 +37,7 @@ struct TrendingCommunitiesSectionView: View {
           communityIcon: community.community.icon
         )
       } label: {
-        CommunityRowView(community: community)
+        LegacyCommunityRowView(community: community)
       }
     }
     .onChange(of: selectedInstance) { _ in

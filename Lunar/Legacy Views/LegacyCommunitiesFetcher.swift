@@ -1,5 +1,5 @@
 //
-//  CommunitiesFetcher.swift
+//  LegacyCommunitiesFetcher.swift
 //  Lunar
 //
 //  Created by Mani on 09/07/2023.
@@ -10,10 +10,9 @@ import Defaults
 import Foundation
 import Nuke
 import Pulse
-import RealmSwift
 import SwiftUI
 
-@MainActor class CommunitiesFetcher: ObservableObject {
+@MainActor class LegacyCommunitiesFetcher: ObservableObject {
   @Default(.communitiesSort) var communitiesSort
   @Default(.communitiesType) var communitiesType
   @Default(.activeAccount) var activeAccount
@@ -21,6 +20,7 @@ import SwiftUI
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
 
   @Published var communities = [CommunityObject]()
+  @Published var isLoading = false
 
   let imagePrefetcher = ImagePrefetcher(pipeline: ImagePipeline.shared)
 
@@ -72,15 +72,34 @@ import SwiftUI
     self.sortParameter = sortParameter ?? communitiesSort
     self.typeParameter = typeParameter ?? communitiesType
     self.limitParameter = limitParameter
-
     jwt = getJWTFromKeychain(actorID: activeAccount.actorID) ?? ""
+    loadContent()
   }
 
-  func loadContent(isRefreshing _: Bool = false) {
+  func loadMoreContentIfNeeded(currentItem: CommunityObject) {
+    guard currentItem.community.id == communities.last?.community.id else {
+      return
+    }
+    loadContent()
+  }
+
+  func loadContent(isRefreshing: Bool = false) {
+    guard !isLoading else { return }
+
+    if isRefreshing {
+      currentPage = 1
+    } else {
+      isLoading = true
+    }
+
     let cacher = ResponseCacher(behavior: .cache)
 
     AF.request(endpoint) { urlRequest in
-      urlRequest.cachePolicy = .returnCacheDataElseLoad
+      if isRefreshing {
+        urlRequest.cachePolicy = .reloadRevalidatingCacheData
+      } else {
+        urlRequest.cachePolicy = .returnCacheDataElseLoad
+      }
     }
     .cacheResponse(using: cacher)
     .validate(statusCode: 200 ..< 300)
@@ -98,37 +117,30 @@ import SwiftUI
       switch response.result {
       case let .success(result):
 
-        print(result.communities.count)
+        let fetchedCommunities = result.communities
 
         let imagesToPrefetch = result.iconURLs.compactMap { URL(string: $0) }
         self.imagePrefetcher.startPrefetching(with: imagesToPrefetch)
 
-        let realm = try! Realm()
-
-        try! realm.write {
-          for community in result.communities {
-            let fetchedCommunity = RealmCommunity(
-              id: community.community.id,
-              name: community.community.name,
-              title: community.community.title,
-              actorID: community.community.actorID,
-              instanceID: community.community.instanceID,
-              descriptionText: community.community.description,
-              icon: community.community.icon,
-              banner: community.community.banner,
-              postingRestrictedToMods: community.community.postingRestrictedToMods,
-              published: community.community.published,
-              subscribers: community.counts.subscribers,
-              posts: community.counts.posts,
-              comments: community.counts.comments,
-              subscribed: community.subscribed
-            )
-            realm.add(fetchedCommunity, update: .modified)
+        if isRefreshing {
+          self.communities = fetchedCommunities
+        } else {
+          /// Removing duplicates
+          let filteredCommunities = fetchedCommunities.filter { community in
+            !self.communities.contains { $0.community.id == community.community.id }
           }
+          self.communities += filteredCommunities
+          self.currentPage += 1
+        }
+        if !isRefreshing {
+          self.isLoading = false
         }
 
       case let .failure(error):
         print("CommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")")
+        if !isRefreshing {
+          self.isLoading = false
+        }
       }
     }
   }

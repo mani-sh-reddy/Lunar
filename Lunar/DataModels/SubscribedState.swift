@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import RealmSwift
 
-enum SubscribedState: String, Codable {
+enum SubscribedState: String, Codable, PersistableEnum {
   case notSubscribed = "NotSubscribed"
   case subscribed = "Subscribed"
   case pending = "Pending"
