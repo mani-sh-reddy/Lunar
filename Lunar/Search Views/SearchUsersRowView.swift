@@ -20,18 +20,12 @@ struct SearchUsersRowView: View {
   var body: some View {
     ForEach(searchUsersResults, id: \.person.id) { person in
       NavigationLink {
-        //        PostsView(
-        //          sort: "Active",
-        //          type: "All",
-        //          user: 0,
-        //          communityID: 0,
-        //          personID: 0,
-        //          heading: person.person.name
-        //        )
         PostsView(
           filteredPosts: realmPosts.filter { post in
-            post.sort == "Active" && post.type == "All" && post.personID == person.person.id
-              && post.filterKey == "personSpecific"
+            post.sort == "Active" &&
+              post.type == "All" &&
+              post.personID == person.person.id &&
+              post.filterKey == "personSpecific"
           },
           sort: "Active",
           type: "All",
@@ -39,14 +33,12 @@ struct SearchUsersRowView: View {
           communityID: 0,
           personID: person.person.id ?? 0,
           filterKey: "personSpecific",
-          heading: person.person.name
+          heading: person.person.name,
+          personName: person.person.name,
+          personActorID: person.person.actorID,
+          personBio: person.person.bio,
+          personAvatar: person.person.avatar
         )
-        //        PostsView(
-        //          postsFetcher: PostsFetcher(
-        //            communityID: 99_999_999_999_999 // TODO: change once implement user posts/comments fetcher
-        //          ), title: person.person.name,
-        //          user: person
-        //        )
       } label: {
         UserRowDetailView(person: person)
       }

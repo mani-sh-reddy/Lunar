@@ -20,6 +20,7 @@ class PostsFetcher: ObservableObject {
   @Default(.postType) var postType
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
   @Default(.selectedInstance) var selectedInstance
+
   @ObservedResults(Batch.self) var batches
 
   @Published var isLoading = false
@@ -33,18 +34,20 @@ class PostsFetcher: ObservableObject {
   var personID: Int?
   var instance: String?
   var filterKey: String
+  var endpointPath: String
   //  var page: Int
 
   @State private var page: Int = 1
 
   private var endpoint: URLComponents {
     URLBuilder(
-      endpointPath: "/api/v3/post/list",
+      endpointPath: endpointPath,
       sortParameter: sort,
       typeParameter: type,
       currentPage: page,
       limitParameter: 50,
       communityID: communityID,
+      personID: personID,
       jwt: getJWTFromKeychain(),
       instance: instance
     ).buildURL()
@@ -52,12 +55,13 @@ class PostsFetcher: ObservableObject {
 
   private var endpointRedacted: URLComponents {
     URLBuilder(
-      endpointPath: "/api/v3/post/list",
+      endpointPath: endpointPath,
       sortParameter: sort,
       typeParameter: type,
       currentPage: page,
       limitParameter: 50,
       communityID: communityID,
+      personID: personID,
       instance: instance
     ).buildURL()
   }
@@ -71,6 +75,13 @@ class PostsFetcher: ObservableObject {
     page: Int,
     filterKey: String
   ) {
+    ///    When getting user specific posts, need to use a different endpoint path.
+    if personID == nil || personID == 0 {
+      endpointPath = "/api/v3/post/list"
+    } else {
+      endpointPath = "/api/v3/user"
+    }
+
     self.page = page
 
     if communityID == 99_999_999_999_999 { // TODO: just a placeholder to prevent running when user posts
@@ -133,6 +144,8 @@ class PostsFetcher: ObservableObject {
 
       switch response.result {
       case let .success(result):
+
+        ///    When getting user specific posts, look for
 
         let imageRequestList = result.imageURLs.compactMap {
           ImageRequest(url: URL(string: $0), processors: [.resize(width: 200)])

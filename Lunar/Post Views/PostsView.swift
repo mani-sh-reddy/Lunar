@@ -29,10 +29,16 @@ struct PostsView: View {
   var filterKey: String
 
   var heading: String
+
   var communityName: String?
   var communityActorID: String?
   var communityDescription: String?
   var communityIcon: String?
+
+  var personName: String?
+  var personActorID: String?
+  var personBio: String?
+  var personAvatar: String?
 
   @State var runOnce: Bool = false
   @State var page: Int = 1
@@ -44,6 +50,9 @@ struct PostsView: View {
     List {
       if let communityActorID, !communityActorID.isEmpty {
         communitySpecificHeader
+      }
+      if let personActorID, !personActorID.isEmpty {
+        personSpecificHeader
       }
       ForEach(filteredPosts) { post in
         switch postsViewStyle {
@@ -84,6 +93,7 @@ struct PostsView: View {
         let posts = realm.objects(RealmPost.self)
         realm.delete(posts)
       }
+      page = 1
       runOnce = false
     }
     .toolbar {
@@ -154,6 +164,47 @@ struct PostsView: View {
     .padding(5)
   }
 
+  var personSpecificHeader: some View {
+    Section {
+      DisclosureGroup {
+        Text(try! AttributedString(styledMarkdown: personBio ?? ""))
+      } label: {
+        HStack {
+          personAvatarView
+          VStack(alignment: .leading) {
+            Text(personName ?? "")
+              .bold()
+            Text("@\(URLParser.extractDomain(from: personActorID ?? ""))")
+              .foregroundStyle(.secondary)
+              .font(.caption)
+          }
+        }
+      }
+    }
+    .listRowSeparator(.hidden)
+  }
+
+  var personAvatarView: some View {
+    LazyImage(url: URL(string: personAvatar ?? "")) { state in
+      if let image = state.image {
+        image
+          .resizable()
+          .aspectRatio(contentMode: .fill)
+          .clipShape(Circle())
+          .frame(width: 60, height: 60)
+      } else if state.error != nil {
+        Image(systemSymbol: .personCircleFill)
+          .resizable()
+          .frame(width: 60, height: 60)
+          .foregroundStyle(.secondary)
+          .symbolRenderingMode(.hierarchical)
+      } else {
+        Color.clear.frame(width: 60, height: 60)
+      }
+    }
+    .padding(5)
+  }
+
   var createPostButton: some View {
     Button {
       showingCreatePostPopover = true
@@ -185,6 +236,7 @@ struct PostsView: View {
         sort: sort,
         type: type,
         communityID: communityID,
+        personID: personID,
         page: page,
         filterKey: filterKey
       ).loadContent()
@@ -201,6 +253,7 @@ struct PostsView: View {
         sort: sort,
         type: type,
         communityID: communityID,
+        personID: personID,
         page: page,
         filterKey: filterKey
       ).loadContent()
