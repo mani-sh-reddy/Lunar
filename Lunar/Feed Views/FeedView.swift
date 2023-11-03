@@ -30,13 +30,13 @@ struct FeedView: View {
   @State var currentlyDownloadingPage: Int = 1
   @State var downloaderCommunityID: Int = 0
 
-  var subscribedCommunityListHeading: String {
-    if !activeAccount.actorID.isEmpty {
-      "\(URLParser.extractUsername(from: activeAccount.actorID))'s Subscribed Communities"
-    } else {
-      "Subscribed Communities"
-    }
-  }
+//  var subscribedCommunityListHeading: String {
+//    if !activeAccount.actorID.isEmpty {
+//      "\(URLParser.extractUsername(from: activeAccount.actorID))'s Subscribed Communities"
+//    } else {
+//      "Subscribed Communities"
+//    }
+//  }
 
   var body: some View {
     NavigationView {
@@ -48,8 +48,8 @@ struct FeedView: View {
           }
         }
         kbinFeed
-        trendingSection
         subscribedSection
+        trendingSection
         downloaderButton
       }
       .navigationTitle("Home")
@@ -160,7 +160,7 @@ struct FeedView: View {
   }
 
   var subscribedSection: some View {
-    Section(header: Text(subscribedCommunityListHeading)) {
+    Section {
       SubscribedCommunitiesSectionView()
     }
   }

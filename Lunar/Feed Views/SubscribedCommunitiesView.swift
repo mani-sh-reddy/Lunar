@@ -17,56 +17,84 @@ struct SubscribedCommunitiesSectionView: View {
   @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
   @ObservedResults(RealmCommunity.self, where: ({ $0.subscribed != .notSubscribed })) var realmCommunities
 
-  @SceneStorage("subscriptionsFetchCounter") var fetchCounter: Int = 0
+  @State var fetchCounter: Int = 0
 
   @Default(.activeAccount) var activeAccount
   @Default(.debugModeEnabled) var debugModeEnabled
   @Default(.selectedInstance) var selectedInstance
   @Default(.subscribedCommunityIDs) var subscribedCommunityIDs
 
-//  @StateObject var communitiesFetcher: CommunitiesFetcher
   let realm = try! Realm()
 
+  var subscribedCommunityListHeading: String {
+    if !activeAccount.actorID.isEmpty {
+      "\(activeAccount.name)'s Communities"
+    } else {
+      "Subscribed Communities"
+    }
+  }
+
   var body: some View {
+    if !activeAccount.actorID.isEmpty {
+      DisclosureGroup {
+        ForEach(realmCommunities, id: \.id) { community in
+          NavigationLink {
+            PostsView(
+              filteredPosts: realmPosts.filter { post in
+                post.sort == "Active" &&
+                  post.type == "All" &&
+                  post.communityID == community.id &&
+                  post.filterKey == "communitySpecific"
+              },
+              sort: "Active",
+              type: "All",
+              user: 0,
+              communityID: community.id,
+              personID: 0,
+              filterKey: "communitySpecific",
+              heading: community.title ?? community.name,
+              communityName: community.name,
+              communityActorID: community.actorID,
+              communityDescription: community.descriptionText,
+              communityIcon: community.icon
+            )
+          } label: {
+            CommunityRowView(community: community)
+              .padding(.leading, -20)
+          }
+        }
+      } label: {
+        userSubscriptionsDisclosureGroupLabel
+      }
+    }
+
     SubscribedFeedQuicklink()
       .onAppear {
         if fetchCounter < 1 {
+          print("=====Refetching subscriptions=====")
           fetchSubscribedCommunities()
         }
       }
-
-    ForEach(realmCommunities, id: \.id) { community in
-      NavigationLink {
-        PostsView(
-          filteredPosts: realmPosts.filter { post in
-            post.sort == "Active" &&
-              post.type == "All" &&
-              post.communityID == community.id &&
-              post.filterKey == "communitySpecific"
-          },
-          sort: "Active",
-          type: "All",
-          user: 0,
-          communityID: community.id,
-          personID: 0,
-          filterKey: "communitySpecific",
-          heading: community.title ?? community.name,
-          communityName: community.name,
-          communityActorID: community.actorID,
-          communityDescription: community.descriptionText,
-          communityIcon: community.icon
-        )
-      } label: {
-        CommunityRowView(community: community)
+      .onChange(of: activeAccount.actorID) { _ in
+        try! realm.write {
+          let communities = realm.objects(RealmCommunity.self)
+          realm.delete(communities)
+        }
+        fetchSubscribedCommunities()
       }
-    }
-    .onChange(of: activeAccount.actorID) { _ in
-      try! realm.write {
-        let communities = realm.objects(RealmCommunity.self)
-        realm.delete(communities)
-      }
+  }
 
-      fetchSubscribedCommunities()
+  var userSubscriptionsDisclosureGroupLabel: some View {
+    HStack {
+      Image(systemSymbol: .personCircleFill)
+        .resizable()
+        .frame(width: 30, height: 30)
+        .symbolRenderingMode(.hierarchical)
+        .foregroundColor(.orange)
+
+      Text(subscribedCommunityListHeading)
+        .padding(.horizontal, 10)
+        .foregroundColor(.primary)
     }
   }
 

@@ -81,7 +81,8 @@ struct PostsView: View {
     .refreshable {
       let realm = try! Realm()
       try! realm.write {
-        realm.deleteAll()
+        let posts = realm.objects(RealmPost.self)
+        realm.delete(posts)
       }
       runOnce = false
     }

@@ -45,13 +45,24 @@ struct SubscribedFeedQuicklink: View {
           heading: subscribedPostsQuicklink.title
         )
       } label: {
-        GeneralCommunityQuicklinkButton(
-          image: subscribedPostsQuicklink.icon,
-          hexColor: subscribedPostsQuicklink.iconColor,
-          title: subscribedPostsQuicklink.title,
-          brightness: subscribedPostsQuicklink.brightness,
-          saturation: subscribedPostsQuicklink.saturation
-        )
+        HStack {
+          Image(systemSymbol: .bookmarkCircleFill)
+            .resizable()
+            .frame(width: 30, height: 30)
+            .symbolRenderingMode(.hierarchical)
+            .foregroundColor(.purple)
+
+          Text("Subscribed Feed")
+            .padding(.horizontal, 10)
+            .foregroundColor(.primary)
+        }
+//        GeneralCommunityQuicklinkButton(
+//          image: subscribedPostsQuicklink.icon,
+//          hexColor: subscribedPostsQuicklink.iconColor,
+//          title: subscribedPostsQuicklink.title,
+//          brightness: subscribedPostsQuicklink.brightness,
+//          saturation: subscribedPostsQuicklink.saturation
+//        )
       }
     }
   }
