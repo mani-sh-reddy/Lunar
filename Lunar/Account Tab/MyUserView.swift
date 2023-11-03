@@ -16,6 +16,8 @@ struct MyUserView: View {
   @Default(.activeAccount) var activeAccount
   @Default(.loggedInAccounts) var loggedInAccounts
   @Default(.iridescenceEnabled) var iridescenceEnabled
+  
+  @GestureState var dragAmount = CGSize.zero
 
   //  var myAccount: AccountModel {
   //    if !activeAccount.userID.isEmpty {
@@ -85,6 +87,14 @@ struct MyUserView: View {
 
         Spacer()
       }
+      
+      .offset(dragAmount)
+      .gesture(
+        DragGesture().updating($dragAmount) { value, state, transaction in
+          state = value.translation
+        }
+      )
+      
       HStack {
         Spacer()
         VStack {
