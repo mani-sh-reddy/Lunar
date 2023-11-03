@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "Icon-Small-40 1.png",
+      "filename" : "Icon-Small-40.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "2x",
@@ -43,21 +43,21 @@
       "size" : "38x38"
     },
     {
-      "filename" : "Icon-Small-40@2x.png",
+      "filename" : "AppIcon40x40@2x 1.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "Icon-60@2x 2.png",
+      "filename" : "Icon-60@2x 1.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "3x",
       "size" : "40x40"
     },
     {
-      "filename" : "Icon-60@2x 3.png",
+      "filename" : "Icon-60@2x 2.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "2x",
@@ -85,7 +85,7 @@
       "size" : "64x64"
     },
     {
-      "filename" : "New Lunar App Icon-2.png",
+      "filename" : "1024x1024.png",
       "idiom" : "universal",
       "platform" : "ios",
       "scale" : "2x",
@@ -106,13 +106,13 @@
       "size" : "83.5x83.5"
     },
     {
-      "filename" : "1024x1024.png",
+      "filename" : "1024x1024 1.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
     },
     {
-      "filename" : "Icon-Small-40.png",
+      "filename" : "Icon-Small-40 1.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
@@ -148,7 +148,7 @@
       "size" : "40x40"
     },
     {
-      "filename" : "Icon-60@2x 1.png",
+      "filename" : "Icon-60@2x 3.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
@@ -178,7 +178,7 @@
       "size" : "60x60"
     },
     {
-      "filename" : "1024x1024 1.png",
+      "filename" : "1024x1024 2.png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"
@@ -226,7 +226,7 @@
       "size" : "256x256"
     },
     {
-      "filename" : "512x512 1.png",
+      "filename" : "iTunesArtwork.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "256x256"
