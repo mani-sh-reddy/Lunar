@@ -17,33 +17,35 @@ struct SettingsLayoutView: View {
   @Default(.commentMetadataPosition) var commentMetadataPosition
   @Default(.detailedCommunityLabels) var detailedCommunityLabels
   @Default(.postsViewStyle) var postsViewStyle
+  @Default(.autoCollapseBots) var autoCollapseBots
+  @Default(.enableQuicklinks) var enableQuicklinks
 
   var body: some View {
     List {
+      Section {
+        quicklinksToggle
+      } header: {
+        Text("Quicklinks")
+      }
+      footer: {
+        Text("With QuickLinks off, you'll only see Local and Federated links. Use the picker in the toolbar to sort posts.")
+      }
+
       // MARK: - Posts Section
 
       Section {
-        Picker("Posts Style", selection: $postsViewStyle) {
-          Text("Large").tag(PostsViewStyle.large)
-          Text("Compact").tag(PostsViewStyle.compact)
-        }
-        .pickerStyle(.menu)
+        postsPageStylePicker
 
       } header: {
         Text("Posts")
-      } footer: {
-        Text("Note that the compact posts view is currently buggy. An update is coming soon.")
       }
 
       // MARK: - Comments Section
 
       Section {
-        Picker("Comment Metadata Position", selection: $commentMetadataPosition) {
-          Text("Bottom").tag("Bottom")
-          Text("Top").tag("Top")
-          Text("None").tag("None")
-        }
-        .pickerStyle(.menu)
+        commentMetadataLayoutPicker
+        autoCollapseBotsToggle
+
       } header: {
         Text("Comments")
       } footer: {
@@ -53,14 +55,47 @@ struct SettingsLayoutView: View {
       // MARK: - Labels Section
 
       Section {
-        Toggle(isOn: $detailedCommunityLabels) {
-          Text("Detailed Community Labels")
-        }
+        detailedCommunityLabelsToggle
       } header: {
         Text("Labels")
       }
     }
     .navigationTitle("Layout")
+  }
+
+  var quicklinksToggle: some View {
+    Toggle(isOn: $enableQuicklinks) {
+      Text("Enable Quicklinks")
+    }
+  }
+
+  var postsPageStylePicker: some View {
+    Picker("Posts Style", selection: $postsViewStyle) {
+      Text("Large").tag(PostsViewStyle.large)
+      Text("Compact").tag(PostsViewStyle.compact)
+    }
+    .pickerStyle(.menu)
+  }
+
+  var commentMetadataLayoutPicker: some View {
+    Picker("Comment Metadata Position", selection: $commentMetadataPosition) {
+      Text("Bottom").tag("Bottom")
+      Text("Top").tag("Top")
+      Text("None").tag("None")
+    }
+    .pickerStyle(.menu)
+  }
+
+  var autoCollapseBotsToggle: some View {
+    Toggle(isOn: $autoCollapseBots) {
+      Text("Auto-collapse Bots")
+    }
+  }
+
+  var detailedCommunityLabelsToggle: some View {
+    Toggle(isOn: $detailedCommunityLabels) {
+      Text("Detailed Community Labels")
+    }
   }
 }
 

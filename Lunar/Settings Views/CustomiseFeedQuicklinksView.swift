@@ -81,6 +81,8 @@ struct CustomiseFeedQuicklinksView: View {
     .sheet(isPresented: $showingAddQuicklinkPopover) {
       popover
     }
+    .navigationTitle("Quicklinks")
+    .navigationBarTitleDisplayMode(.inline)
   }
 
   var popover: some View {

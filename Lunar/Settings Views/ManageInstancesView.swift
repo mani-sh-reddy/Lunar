@@ -105,6 +105,8 @@ struct ManageInstancesView: View {
     .toolbar {
       EditButton()
     }
+    .navigationTitle("Manage Instances")
+    .navigationBarTitleDisplayMode(.inline)
   }
 
   func checkInstanceValidity() {
