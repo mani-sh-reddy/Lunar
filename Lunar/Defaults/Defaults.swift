@@ -55,6 +55,7 @@ extension Defaults.Keys {
 
   // MARK: - Other
 
+  static let selectedTab = Key<Int>("selectedTab", default: 0)
   static let debugModeEnabled = Key<Bool>("debugModeEnabled", default: false)
   static let realmLastReset = Key<String>("realmLastReset", default: "Never")
   static let networkInspectorEnabled = Key<Bool>("networkInspectorEnabled", default: false)

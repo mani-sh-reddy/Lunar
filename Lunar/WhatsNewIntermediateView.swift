@@ -1,5 +1,5 @@
 //
-//  EntryView.swift
+//  WhatsNewIntermediateView.swift
 //  Lunar
 //
 //  Created by Mani on 04/07/2023.
@@ -9,44 +9,20 @@ import Defaults
 import SwiftUI
 import WhatsNewKit
 
-struct EntryView: View {
+struct WhatsNewIntermediateView: View {
   @Default(.showLaunchSplashScreen) var showLaunchSplashScreen
   @Default(.clearWhatsNewDefaults) var clearWhatsNewDefaults
   @Default(.clearInitialWhatsNewDefault) var clearInitialWhatsNewDefault
   @Default(.accentColor) var accentColor
 
   let userDefaultsWhatsNewVersionStore = UserDefaultsWhatsNewVersionStore()
-  /// Uncomment for Testing
-//  let userDefaultsWhatsNewVersionStore = InMemoryWhatsNewVersionStore()
+  /// **Uncomment for Testing**
+  //  let userDefaultsWhatsNewVersionStore = InMemoryWhatsNewVersionStore()
 
-  @State var whatsNewFirstLaunch: WhatsNew? = WhatsNew(
-    version: "0.0.0",
-    title: "Welcome to Lunar",
-    features: [
-      WhatsNewInitialInfo().intro,
-      WhatsNewInitialInfo().discover,
-      WhatsNewInitialInfo().auth,
-      WhatsNewInitialInfo().open,
-      WhatsNewInitialInfo().updates,
-      WhatsNewInitialInfo().contribute,
-    ],
-    primaryAction: WhatsNew.PrimaryAction(
-      title: "Get Started",
-      backgroundColor: .accentColor,
-      foregroundColor: .white
-    ),
-    secondaryAction: WhatsNew.SecondaryAction(
-      title: "Learn More About Lemmy",
-      foregroundColor: .accentColor,
-      hapticFeedback: .selection,
-      action: .present {
-        AboutLemmyView()
-      }
-    )
-  )
+  @State var whatsNewFirstLaunch: WhatsNew? = WhatsNewKitData().initial
 
   var body: some View {
-    ContentView()
+    TabContentView()
       .accentColor(accentColor)
       .sheet(whatsNew: $whatsNewFirstLaunch, versionStore: userDefaultsWhatsNewVersionStore)
       .whatsNewSheet(
@@ -68,8 +44,8 @@ struct EntryView: View {
   }
 }
 
-struct EntryView_Previews: PreviewProvider {
+struct WhatsNewIntermediateView_Previews: PreviewProvider {
   static var previews: some View {
-    EntryView()
+    WhatsNewIntermediateView()
   }
 }

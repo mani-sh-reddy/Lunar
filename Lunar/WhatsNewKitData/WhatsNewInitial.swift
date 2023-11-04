@@ -1,5 +1,5 @@
 //
-//  WhatsNewInitialInfo.swift
+//  WhatsNewInitial.swift
 //  Lunar
 //
 //  Created by Mani on 14/09/2023.
@@ -10,7 +10,38 @@ import SFSafeSymbols
 import SwiftUI
 import WhatsNewKit
 
-class WhatsNewKitData {
+class WhatsNewKitData {}
+extension WhatsNewKitData {
+  var initial: WhatsNew {
+    WhatsNew(
+      version: "0.0.0",
+      title: "Welcome to Lunar",
+      features: [
+        WhatsNewKitInitialLaunchFeatures().intro,
+        WhatsNewKitInitialLaunchFeatures().discover,
+        WhatsNewKitInitialLaunchFeatures().auth,
+        WhatsNewKitInitialLaunchFeatures().open,
+        WhatsNewKitInitialLaunchFeatures().updates,
+        WhatsNewKitInitialLaunchFeatures().contribute,
+      ],
+      primaryAction: WhatsNew.PrimaryAction(
+        title: "Get Started",
+        backgroundColor: .accentColor,
+        foregroundColor: .white
+      ),
+      secondaryAction: WhatsNew.SecondaryAction(
+        title: "Learn More About Lemmy",
+        foregroundColor: .accentColor,
+        hapticFeedback: .selection,
+        action: .present {
+          AboutLemmyView()
+        }
+      )
+    )
+  }
+}
+
+class WhatsNewKitInitialLaunchFeatures {
   let intro = WhatsNew.Feature(
     image: .init(
       systemName: "moonphase.waxing.crescent.inverse",

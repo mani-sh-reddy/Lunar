@@ -45,7 +45,7 @@ struct SplashScreen: View {
       }
     }
     .fullScreenCover(isPresented: $showFeedView) {
-      ContentView()
+      TabContentView()
     }
   }
 }

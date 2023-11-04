@@ -18,16 +18,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var dataCacheHolder: DataCacheHolder?
 
   func application(
-    _: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil
+    _: UIApplication,
+    didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil
   ) -> Bool {
     print("App Started")
+    initialiseLocalConsole()
+    initialiseNukeUI()
+    initialiseRealm()
+    return true
+  }
 
-    // MARK: - Local Console
+  func initialiseLocalConsole() {
+    _ = LCManager.shared
+  }
 
-    let consoleManager = LCManager.shared
-
-    // MARK: - NukeUI
-
+  func initialiseNukeUI() {
     DataLoader.sharedUrlCache.diskCapacity = 0
 
     let pipeline = ImagePipeline {
@@ -38,9 +43,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     ImagePipeline.shared = pipeline
+  }
 
-    // MARK: - Realm
-
+  func initialiseRealm() {
     print("Realm DB Path:")
     print("\(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.path)")
 
@@ -52,7 +57,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       deleteRealmIfMigrationNeeded: true
     )
     Realm.Configuration.defaultConfiguration = config
-
-    return true
   }
 }

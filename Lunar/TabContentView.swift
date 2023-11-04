@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  TabContentView.swift
 //  Lunar
 //
 //  Created by Mani on 03/07/2023.
@@ -10,9 +10,10 @@ import PulseUI
 import SFSafeSymbols
 import SwiftUI
 
-struct ContentView: View {
+struct TabContentView: View {
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
   @Default(.prominentInspectorButton) var prominentInspectorButton
+  @Default(.selectedTab) var selectedTab
 
   @State private var networkInspectorPopover: Bool = false
 
@@ -26,27 +27,27 @@ struct ContentView: View {
   }
 
   var body: some View {
-    TabView {
+    TabView(selection: $selectedTab) {
       FeedView()
         .tabItem {
           Label("Feed", systemSymbol: .mailStack)
-        }
+        }.tag(0)
       PlaceholderView()
         .tabItem {
           Label("Inbox", systemSymbol: .tray)
-        }
+        }.tag(1)
       MyUserView()
         .tabItem {
           Label("Account", systemSymbol: .person)
-        }
+        }.tag(2)
       SearchView()
         .tabItem {
           Label("Search", systemSymbol: .magnifyingglass)
-        }
+        }.tag(3)
       SettingsView()
         .tabItem {
           Label("Settings", systemSymbol: .gearshape)
-        }
+        }.tag(4)
     }
     .overlay(alignment: .bottomTrailing) {
       if networkInspectorEnabled, prominentInspectorButton {
@@ -74,8 +75,8 @@ struct ContentView: View {
   }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct TabContentView_Previews: PreviewProvider {
   static var previews: some View {
-    ContentView()
+    TabContentView()
   }
 }
