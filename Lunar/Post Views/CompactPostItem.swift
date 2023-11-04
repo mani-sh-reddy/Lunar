@@ -322,7 +322,7 @@ struct CompactPostsView_Previews: PreviewProvider {
       "This is a sample community description. It provides information about the community.",
       communityIcon: "https://example.com/community-icon.jpg",
       communityBanner: "https://example.com/community-banner.jpg",
-      communityUpdated: "October 16, 2023",
+      communityUpdated: "October 16, 2023", communitySubscribed: .subscribed,
       postScore: 42,
       postCommentCount: 10,
       upvotes: 30,

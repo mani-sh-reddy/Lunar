@@ -306,6 +306,7 @@ struct PostsView_Previews: PreviewProvider {
       communityIcon: "https://example.com/community-icon.jpg",
       communityBanner: "https://example.com/community-banner.jpg",
       communityUpdated: "October 16, 2023",
+      communitySubscribed: .subscribed,
       postScore: 42,
       postCommentCount: 10,
       upvotes: 30,

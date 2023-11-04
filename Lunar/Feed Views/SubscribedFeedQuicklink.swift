@@ -56,13 +56,6 @@ struct SubscribedFeedQuicklink: View {
             .padding(.horizontal, 10)
             .foregroundColor(.primary)
         }
-//        GeneralCommunityQuicklinkButton(
-//          image: subscribedPostsQuicklink.icon,
-//          hexColor: subscribedPostsQuicklink.iconColor,
-//          title: subscribedPostsQuicklink.title,
-//          brightness: subscribedPostsQuicklink.brightness,
-//          saturation: subscribedPostsQuicklink.saturation
-//        )
       }
     }
   }

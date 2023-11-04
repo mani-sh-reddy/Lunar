@@ -13,6 +13,15 @@ class RealmThawFunctions {
   let hapticsLight = UIImpactFeedbackGenerator(style: .light)
   let hapticsSoft = UIImpactFeedbackGenerator(style: .soft)
 
+  func subscribe(post: RealmPost, subscribedState: SubscribedState) {
+    let realm = try! Realm()
+    try! realm.write {
+      if let thawedPost = post.thaw() {
+        thawedPost.communitySubscribed = subscribedState
+      }
+    }
+  }
+
   func hideAction(post: RealmPost) {
     let realm = try! Realm()
     try! realm.write {

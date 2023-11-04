@@ -43,6 +43,7 @@ class RealmPost: Object, ObjectKeyIdentifiable {
   @Persisted var communityIcon: String?
   @Persisted var communityBanner: String?
   @Persisted var communityUpdated: String?
+  @Persisted var communitySubscribed: SubscribedState?
 
   // MARK: - Counts
 
@@ -96,6 +97,7 @@ class RealmPost: Object, ObjectKeyIdentifiable {
     communityIcon: String?,
     communityBanner: String?,
     communityUpdated: String?,
+    communitySubscribed: SubscribedState?,
     postScore: Int?,
     postCommentCount: Int?,
     upvotes: Int?,
@@ -134,6 +136,7 @@ class RealmPost: Object, ObjectKeyIdentifiable {
     self.communityIcon = communityIcon
     self.communityBanner = communityBanner
     self.communityUpdated = communityUpdated
+    self.communitySubscribed = communitySubscribed
 
     self.postScore = postScore
     self.postCommentCount = postCommentCount

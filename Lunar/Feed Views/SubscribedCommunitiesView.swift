@@ -26,14 +26,6 @@ struct SubscribedCommunitiesSectionView: View {
 
   let realm = try! Realm()
 
-  var subscribedCommunityListHeading: String {
-    if !activeAccount.actorID.isEmpty {
-      "\(activeAccount.name)'s Communities"
-    } else {
-      "Subscribed Communities"
-    }
-  }
-
   var body: some View {
     if !activeAccount.actorID.isEmpty {
       DisclosureGroup {
@@ -86,13 +78,13 @@ struct SubscribedCommunitiesSectionView: View {
 
   var userSubscriptionsDisclosureGroupLabel: some View {
     HStack {
-      Image(systemSymbol: .personCircleFill)
+      Image(systemSymbol: .person2CircleFill)
         .resizable()
         .frame(width: 30, height: 30)
         .symbolRenderingMode(.hierarchical)
         .foregroundColor(.orange)
 
-      Text(subscribedCommunityListHeading)
+      Text("Subscribed Communities")
         .padding(.horizontal, 10)
         .foregroundColor(.primary)
     }

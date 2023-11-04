@@ -18,6 +18,7 @@ struct PostItem: View {
   @ObservedRealmObject var post: RealmPost
 
   @State var showSafari: Bool = false
+  @State var subscribeAlertPresented: Bool = false
 
   let hapticsSoft = UIImpactFeedbackGenerator(style: .soft)
   let hapticsLight = UIImpactFeedbackGenerator(style: .light)
@@ -156,15 +157,39 @@ struct PostItem: View {
   }
 
   var postCommunityLabel: some View {
-    Text(communityLabel)
-      .textCase(.lowercase)
-      .foregroundColor(.secondary)
-      .font(.caption)
-      .highPriorityGesture(
-        TapGesture().onEnded {
-          hapticsLight.impactOccurred(intensity: 0.5)
+    HStack(spacing: 3) {
+      Text(communityLabel)
+      if post.communitySubscribed != nil, post.communitySubscribed == .subscribed {
+        Image(systemSymbol: .bookmark)
+      } else if post.communitySubscribed != nil, post.communitySubscribed == .pending {
+        Image(systemSymbol: .clock)
+      }
+    }
+    .textCase(.lowercase)
+    .foregroundColor(.secondary)
+    .font(.caption)
+    .highPriorityGesture(
+      TapGesture().onEnded {
+        hapticsLight.impactOccurred()
+        subscribeAlertPresented = true
+      }
+    )
+    .confirmationDialog("", isPresented: $subscribeAlertPresented) {
+      if post.communitySubscribed == .notSubscribed {
+        Button("Subscribe") {
+          sendSubscribeAction(subscribeAction: true)
         }
-      )
+      } else {
+        Button("Unsubscribe") {
+          sendSubscribeAction(subscribeAction: false)
+        }
+      }
+      Button("Dismiss", role: .cancel) {
+        subscribeAlertPresented = false
+      }
+    } message: {
+      Text("\(post.communityName)@\(URLParser.extractDomain(from: post.communityActorID))")
+    }
   }
 
   var postTitle: some View {
@@ -285,6 +310,44 @@ struct PostItem: View {
       elementType: "post"
     ).fetchVoteInfo { postID, voteSubmittedSuccessfully, _ in
       print("RETURNED /post/like \(String(describing: postID)):\(voteSubmittedSuccessfully)")
+    }
+  }
+
+  func sendSubscribeAction(subscribeAction: Bool) {
+    let notificationHaptics = UINotificationFeedbackGenerator()
+    if let communityID = post.communityID {
+      SubscriptionActionSender(
+        communityID: communityID,
+        asActorID: activeAccount.actorID,
+        subscribeAction: subscribeAction
+      ).fetchSubscribeInfo { _, subscribeResponse, _ in
+        let realm = try! Realm()
+        if subscribeResponse != nil {
+          notificationHaptics.notificationOccurred(.success)
+          try! realm.write {
+            let community = RealmCommunity(
+              id: communityID,
+              name: post.communityName,
+              title: post.communityTitle,
+              actorID: post.communityActorID,
+              instanceID: post.communityInstanceID,
+              descriptionText: post.communityDescription,
+              icon: post.communityIcon,
+              banner: post.communityBanner,
+              postingRestrictedToMods: false,
+              published: "",
+              subscribers: nil,
+              posts: nil,
+              comments: nil,
+              subscribed: subscribeResponse ?? .notSubscribed
+            )
+            realm.add(community, update: .modified)
+          }
+          RealmThawFunctions().subscribe(post: post, subscribedState: subscribeResponse ?? .notSubscribed)
+        } else {
+          notificationHaptics.notificationOccurred(.error)
+        }
+      }
     }
   }
 }

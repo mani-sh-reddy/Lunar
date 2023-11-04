@@ -211,6 +211,7 @@ class PostsFetcher: ObservableObject {
               communityIcon: post.community.icon,
               communityBanner: post.community.banner,
               communityUpdated: post.community.updated,
+              communitySubscribed: post.subscribed,
               postScore: post.counts.postScore,
               postCommentCount: post.counts.comments,
               upvotes: post.counts.upvotes,
