@@ -19,6 +19,8 @@ struct SettingsLayoutView: View {
   @Default(.postsViewStyle) var postsViewStyle
   @Default(.autoCollapseBots) var autoCollapseBots
   @Default(.enableQuicklinks) var enableQuicklinks
+  @Default(.accentColor) var accentColor
+  @Default(.accentColorString) var accentColorString
 
   var body: some View {
     List {
@@ -67,6 +69,7 @@ struct SettingsLayoutView: View {
     Toggle(isOn: $enableQuicklinks) {
       Text("Enable Quicklinks")
     }
+    .tint(accentColor)
   }
 
   var postsPageStylePicker: some View {
@@ -90,12 +93,14 @@ struct SettingsLayoutView: View {
     Toggle(isOn: $autoCollapseBots) {
       Text("Auto-collapse Bots")
     }
+    .tint(accentColor)
   }
 
   var detailedCommunityLabelsToggle: some View {
     Toggle(isOn: $detailedCommunityLabels) {
       Text("Detailed Community Labels")
     }
+    .tint(accentColor)
   }
 }
 

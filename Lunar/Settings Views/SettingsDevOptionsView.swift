@@ -20,6 +20,8 @@ struct SettingsDevOptionsView: View {
   @Default(.clearWhatsNewDefaults) var clearWhatsNewDefaults
   @Default(.clearInitialWhatsNewDefault) var clearInitialWhatsNewDefault
   @Default(.realmExperimentalViewEnabled) var realmExperimentalViewEnabled
+  @Default(.accentColor) var accentColor
+  @Default(.accentColorString) var accentColorString
 
   @State var clearedAlertPresented: Bool = false
   @State var settingsViewOpacity: Double = 1
@@ -63,6 +65,8 @@ struct SettingsDevOptionsView: View {
               .symbolRenderingMode(.multicolor)
           }
         }
+        .tint(accentColor)
+
         Toggle(isOn: $networkInspectorEnabled) {
           Label {
             Text("Pulse Network Inspector")
@@ -72,6 +76,7 @@ struct SettingsDevOptionsView: View {
               .symbolRenderingMode(.hierarchical)
           }
         }
+        .tint(accentColor)
         .animation(.smooth, value: networkInspectorEnabled)
 
         if networkInspectorEnabled {
@@ -83,6 +88,7 @@ struct SettingsDevOptionsView: View {
                 .foregroundStyle(.orange)
             }
           }
+          .tint(accentColor)
           .animation(.smooth, value: prominentInspectorButton)
 
           if !prominentInspectorButton {
@@ -162,6 +168,7 @@ struct SettingsDevOptionsView: View {
               .symbolRenderingMode(.hierarchical)
           }
         }
+        .tint(accentColor)
 
         //        NavigationLink {
         //          OfflineDownloaderView()

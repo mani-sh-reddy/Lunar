@@ -13,6 +13,8 @@ struct SettingsSplashScreenView: View {
   @Default(.showLaunchSplashScreen) var showLaunchSplashScreen
   @Default(.clearWhatsNewDefaults) var clearWhatsNewDefaults
   @Default(.clearInitialWhatsNewDefault) var clearInitialWhatsNewDefault
+  @Default(.accentColor) var accentColor
+  @Default(.accentColorString) var accentColorString
 
   @State var alertPresented: Bool = false
 
@@ -24,6 +26,8 @@ struct SettingsSplashScreenView: View {
         Toggle(isOn: $showLaunchSplashScreen) {
           Text("Launch Splash Screen")
         }
+        .tint(accentColor)
+
       } footer: {
         Text("Show the Lunar logo splash screen for a couple of seconds every time the app is launched.")
       }

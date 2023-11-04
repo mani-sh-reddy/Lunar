@@ -11,6 +11,8 @@ import SwiftUI
 
 struct SettingsHiddenOptionsView: View {
   @Default(.debugModeEnabled) var debugModeEnabled
+  @Default(.accentColor) var accentColor
+  @Default(.accentColorString) var accentColorString
 
   var body: some View {
     Section {
@@ -22,7 +24,8 @@ struct SettingsHiddenOptionsView: View {
             .symbolRenderingMode(.hierarchical)
             .foregroundStyle(.red)
         }
-      }.toggleStyle(SwitchToggleStyle(tint: .red))
+      }
+      .tint(accentColorString == "Default" ? .red : accentColor)
     } header: {
       Text("Developer Options")
     }

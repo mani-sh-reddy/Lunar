@@ -11,8 +11,11 @@ import SwiftUI
 
 struct KbinSelectorView: View {
   @Default(.kbinActive) var kbinActive
+  @Default(.accentColor) var accentColor
+  @Default(.accentColorString) var accentColorString
 
   var body: some View {
-    Toggle("Enable Kbin", isOn: $kbinActive).tint(.purple)
+    Toggle("Enable Kbin", isOn: $kbinActive)
+      .tint(accentColorString == "Default" ? .purple : accentColor)
   }
 }

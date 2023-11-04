@@ -13,6 +13,8 @@ import SwiftUI
 struct SettingsView: View {
   @Default(.debugModeEnabled) var debugModeEnabled
   @Default(.enableQuicklinks) var enableQuicklinks
+  @Default(.accentColor) var accentColor
+  @Default(.accentColorString) var accentColorString
 
   @State var selectedAccount: AccountModel?
   @State private var showSafariGithub: Bool = false
@@ -33,7 +35,7 @@ struct SettingsView: View {
           gesturesNavLink
           soundAndHapticsNavLink
         } header: { Text("System") }
-        
+
         Section {
           composerNavLink
           searchNavLink
@@ -100,8 +102,7 @@ struct SettingsView: View {
       Label {
         Text("Notifications")
       } icon: {
-        Image(systemSymbol: .bellBadgeFill)
-          .symbolRenderingMode(.multicolor)
+        CustomSymbols().notificationsSettings
       }
     }
   }
@@ -113,9 +114,7 @@ struct SettingsView: View {
       Label {
         Text("Gestures")
       } icon: {
-        Image(systemSymbol: .handDrawFill)
-          .symbolRenderingMode(.hierarchical)
-          .foregroundStyle(.blue)
+        CustomSymbols().gesturesSettings
       }
     }
   }
@@ -127,9 +126,7 @@ struct SettingsView: View {
       Label {
         Text("Sounds and Haptics")
       } icon: {
-        Image(systemSymbol: .speakerWave2Fill)
-          .symbolRenderingMode(.hierarchical)
-          .foregroundStyle(.pink)
+        CustomSymbols().soundAndHapticsSettings
       }
     }
   }
@@ -141,9 +138,7 @@ struct SettingsView: View {
       Label {
         Text("Composer")
       } icon: {
-        Image(systemSymbol: .textBubbleFill)
-          .symbolRenderingMode(.hierarchical)
-          .foregroundStyle(.gray)
+        CustomSymbols().composerSettings
       }
     }
   }
@@ -155,8 +150,7 @@ struct SettingsView: View {
       Label {
         Text("Search")
       } icon: {
-        Image(systemSymbol: .textMagnifyingglass)
-          .foregroundStyle(.teal)
+        CustomSymbols().searchSettings
       }
     }
   }
@@ -169,8 +163,7 @@ struct SettingsView: View {
         Label {
           Text("Quicklinks")
         } icon: {
-          Image(systemSymbol: .link)
-            .symbolRenderingMode(.multicolor)
+          CustomSymbols().quicklinksSettings
         }
       } else {
         Label {
@@ -178,8 +171,7 @@ struct SettingsView: View {
             .italic()
             .font(.caption)
         } icon: {
-          Image(systemSymbol: .link)
-            .foregroundStyle(.gray)
+          CustomSymbols().quicklinksSettingsDisabled
         }
       }
     }
@@ -193,8 +185,7 @@ struct SettingsView: View {
       Label {
         Text("App Icon")
       } icon: {
-        Image(systemSymbol: .appDashed)
-          .foregroundStyle(.purple)
+        CustomSymbols().appIconSettings
       }
     }
   }
@@ -206,8 +197,7 @@ struct SettingsView: View {
       Label {
         Text("Theme")
       } icon: {
-        Image(systemSymbol: .paintbrush)
-          .foregroundStyle(.indigo)
+        CustomSymbols().themeSettings
       }
     }
   }
@@ -219,8 +209,7 @@ struct SettingsView: View {
       Label {
         Text("Layout")
       } icon: {
-        Image(systemSymbol: .squareshapeControlhandlesOnSquareshapeControlhandles)
-          .foregroundStyle(.mint)
+        CustomSymbols().layoutSettings
       }
     }
   }
@@ -236,8 +225,7 @@ struct SettingsView: View {
         Image(systemSymbol: .safari)
           .foregroundStyle(.secondary)
       } icon: {
-        Image(systemSymbol: .lockDocFill)
-          .foregroundStyle(.green)
+        CustomSymbols().privacyPolicySettings
       }
     }
     .foregroundStyle(.foreground)
@@ -258,8 +246,7 @@ struct SettingsView: View {
         Image(systemSymbol: .envelopeCircle)
           .foregroundStyle(.secondary)
       } icon: {
-        Image(systemSymbol: .paperplaneFill)
-          .foregroundStyle(.blue)
+        CustomSymbols().emailSettings
       }
     }
     .foregroundStyle(.foreground)
@@ -275,12 +262,7 @@ struct SettingsView: View {
         Image(systemSymbol: .safari)
           .foregroundStyle(.secondary)
       } icon: {
-        Image(asset: "GithubLogo")
-          .resizable()
-          .aspectRatio(contentMode: .fit)
-          .frame(width: 25, height: 25)
-          .clipped()
-          .symbolRenderingMode(.hierarchical)
+        CustomSymbols().githubSettings
       }
     }
     .foregroundStyle(.foreground)
@@ -297,8 +279,7 @@ struct SettingsView: View {
       Label {
         Text("Additional Settings")
       } icon: {
-        Image(systemSymbol: .shippingboxFill)
-          .foregroundStyle(.brown)
+        CustomSymbols().additionalSettings
       }
     }
   }
@@ -310,8 +291,7 @@ struct SettingsView: View {
       Label {
         Text("Development")
       } icon: {
-        Image(systemSymbol: .wrenchAndScrewdriverFill)
-          .foregroundStyle(.red)
+        CustomSymbols().developmentSettings
       }
     }
   }

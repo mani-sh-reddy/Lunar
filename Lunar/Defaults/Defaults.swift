@@ -45,6 +45,8 @@ extension Defaults.Keys {
   static let commentMetadataPosition = Key<String>("commentMetadataPosition", default: "Top")
   static let selectedSearchSortType = Key<String>("selectedSearchSortType", default: "Active")
   static let enableQuicklinks = Key<Bool>("enableQuicklinks", default: true)
+  static let accentColor = Key<Color>("accentColor", default: .blue)
+  static let accentColorString = Key<String>("accentColorString", default: "Blue")
 
   // MARK: - Account
 

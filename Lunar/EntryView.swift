@@ -13,6 +13,7 @@ struct EntryView: View {
   @Default(.showLaunchSplashScreen) var showLaunchSplashScreen
   @Default(.clearWhatsNewDefaults) var clearWhatsNewDefaults
   @Default(.clearInitialWhatsNewDefault) var clearInitialWhatsNewDefault
+  @Default(.accentColor) var accentColor
 
   let userDefaultsWhatsNewVersionStore = UserDefaultsWhatsNewVersionStore()
   /// Uncomment for Testing
@@ -46,6 +47,7 @@ struct EntryView: View {
 
   var body: some View {
     ContentView()
+      .accentColor(accentColor)
       .sheet(whatsNew: $whatsNewFirstLaunch, versionStore: userDefaultsWhatsNewVersionStore)
       .whatsNewSheet(
         layout: WhatsNew.Layout(
