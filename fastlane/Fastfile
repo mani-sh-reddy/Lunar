@@ -98,12 +98,22 @@ platform :ios do
 
   end
 
-  desc "Generate a release on github"
+  desc "Create a PR and generate Github release"
   lane :GENERATE_GITHUB_RELEASE do
     changelog = prompt(
       text: "Changelog: ",
       multi_line_end_keyword: "END"
     )
+
+    create_pull_request(
+      repo: "mani-sh-reddy/Lunar",
+      api_token: "#{REPO_GITHUB_TOKEN}",
+      title: latest_git_tag,
+      head: "dev",       # optional, defaults to current branch name
+      base: "release", # optional, defaults to "master"
+      body: changelog,
+    )
+
     github_release = set_github_release(
       repository_name: "mani-sh-reddy/Lunar",
       api_token: "#{REPO_GITHUB_TOKEN}",

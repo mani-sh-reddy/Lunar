@@ -37,7 +37,7 @@ Package and deploy to testflight
 [bundle exec] fastlane ios GENERATE_GITHUB_RELEASE
 ```
 
-Generate a release on github
+Create a PR and generate Github release
 
 ----
 
