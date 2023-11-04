@@ -10,7 +10,6 @@ import SFSafeSymbols
 import SwiftUI
 import WhatsNewKit
 
-class WhatsNewKitData {}
 extension WhatsNewKitData {
   var initial: WhatsNew {
     WhatsNew(

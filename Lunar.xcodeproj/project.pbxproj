@@ -64,8 +64,9 @@
 		3C5ECB2E2A767957002BA561 /* TwoFactorFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5ECB2D2A767957002BA561 /* TwoFactorFieldView.swift */; };
 		3C6299D12A751A5900BE2A9F /* TextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6299D02A751A5900BE2A9F /* TextExtension.swift */; };
 		3C62C2552A72F4BC003BAC5B /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C62C2542A72F4BC003BAC5B /* SplashScreenView.swift */; };
-		3C64E7C92AF700E9003BB42E /* WhatsNewInitial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C64E7C82AF700E9003BB42E /* WhatsNewInitial.swift */; };
+		3C64E7C92AF700E9003BB42E /* WhatsNew_0_0_0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C64E7C82AF700E9003BB42E /* WhatsNew_0_0_0.swift */; };
 		3C64E7CC2AF7057B003BB42E /* WhatsNew_2023_11.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C64E7CB2AF7057B003BB42E /* WhatsNew_2023_11.swift */; };
+		3C64E7CE2AF70E90003BB42E /* WhatsNewKitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C64E7CD2AF70E90003BB42E /* WhatsNewKitData.swift */; };
 		3C6588592A6169EB00A46DA3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6588582A6169EB00A46DA3 /* SettingsView.swift */; };
 		3C65885D2A6189AF00A46DA3 /* CommentsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C65885C2A6189AF00A46DA3 /* CommentsFetcher.swift */; };
 		3C65885F2A621C6100A46DA3 /* ExploreCommunitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C65885E2A621C6100A46DA3 /* ExploreCommunitiesView.swift */; };
@@ -301,8 +302,9 @@
 		3C62C23E2A72AA4D003BAC5B /* Lunar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Lunar.entitlements; sourceTree = "<group>"; };
 		3C62C23F2A72AABD003BAC5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3C62C2542A72F4BC003BAC5B /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
-		3C64E7C82AF700E9003BB42E /* WhatsNewInitial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewInitial.swift; sourceTree = "<group>"; };
+		3C64E7C82AF700E9003BB42E /* WhatsNew_0_0_0.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNew_0_0_0.swift; sourceTree = "<group>"; };
 		3C64E7CB2AF7057B003BB42E /* WhatsNew_2023_11.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNew_2023_11.swift; sourceTree = "<group>"; };
+		3C64E7CD2AF70E90003BB42E /* WhatsNewKitData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsNewKitData.swift; sourceTree = "<group>"; };
 		3C6588582A6169EB00A46DA3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3C65885C2A6189AF00A46DA3 /* CommentsFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsFetcher.swift; sourceTree = "<group>"; };
 		3C65885E2A621C6100A46DA3 /* ExploreCommunitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCommunitiesView.swift; sourceTree = "<group>"; };
@@ -623,7 +625,8 @@
 		3C64E7CA2AF70528003BB42E /* WhatsNewKitData */ = {
 			isa = PBXGroup;
 			children = (
-				3C64E7C82AF700E9003BB42E /* WhatsNewInitial.swift */,
+				3C64E7CD2AF70E90003BB42E /* WhatsNewKitData.swift */,
+				3C64E7C82AF700E9003BB42E /* WhatsNew_0_0_0.swift */,
 				3C64E7CB2AF7057B003BB42E /* WhatsNew_2023_11.swift */,
 			);
 			path = WhatsNewKitData;
@@ -1229,6 +1232,7 @@
 				3C9E549A2A954C060093DDC7 /* CommentResponseModel.swift in Sources */,
 				3CC178952A7DAAE300C208D0 /* SearchFetcher.swift in Sources */,
 				3CF3F9C02A6EE0390051E725 /* SettingsClearCacheView.swift in Sources */,
+				3C64E7CE2AF70E90003BB42E /* WhatsNewKitData.swift in Sources */,
 				3CFE04C72A7FF270007BAD81 /* KbinThreadsFetcher.swift in Sources */,
 				3C96EA502A7843EC00753199 /* AddNewUserButtonView.swift in Sources */,
 				3C96EA3E2A76FC1200753199 /* LoginButtonView.swift in Sources */,
@@ -1348,7 +1352,7 @@
 				3CAD16EA2AF6EF4800A18BBA /* SceneDelegate.swift in Sources */,
 				3CC3E4352ADDD74D00F7F9A9 /* PostSiteMetadataFetcher.swift in Sources */,
 				3C6ACC1E2AE426D40073288E /* AboutLemmyInfo.swift in Sources */,
-				3C64E7C92AF700E9003BB42E /* WhatsNewInitial.swift in Sources */,
+				3C64E7C92AF700E9003BB42E /* WhatsNew_0_0_0.swift in Sources */,
 				3CC3E4312ADDCE1200F7F9A9 /* CreatePostResponseModel.swift in Sources */,
 				3CC734AA2A6D697C007523B5 /* InsertSorter.swift in Sources */,
 				3CB8D2662A55EFF900EE615A /* PlaceholderView.swift in Sources */,
@@ -1572,7 +1576,7 @@
 				CODE_SIGN_ENTITLEMENTS = Lunar/LunarDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 302;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = QR8TDZJV2W;
 				ENABLE_PREVIEWS = YES;
@@ -1593,7 +1597,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.8.75;
+				MARKETING_VERSION = 2023.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.Lunar.dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1619,7 +1623,7 @@
 				CODE_SIGN_ENTITLEMENTS = Lunar/Lunar.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 302;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = QR8TDZJV2W;
 				ENABLE_PREVIEWS = YES;
@@ -1639,7 +1643,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.8.75;
+				MARKETING_VERSION = 2023.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.Lunar";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
