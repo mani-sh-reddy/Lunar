@@ -15,7 +15,7 @@ struct Person: Codable {
   let actorID: String
   let local: Bool
   let deleted: Bool
-  let admin: Bool
+  let admin: Bool?
   let botAccount: Bool
   let instanceID: Int?
   let avatar: String?

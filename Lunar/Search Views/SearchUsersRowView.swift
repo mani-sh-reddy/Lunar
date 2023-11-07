@@ -123,7 +123,7 @@ struct UserRowDetailView: View {
               .font(.caption)
               .foregroundStyle(.blue)
           }
-          if person.person.admin {
+          if person.person.admin != nil {
             Image(systemSymbol: .checkmarkShieldFill)
               .font(.caption)
               .foregroundStyle(.yellow)

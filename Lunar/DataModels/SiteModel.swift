@@ -11,7 +11,7 @@ struct SiteModel: Codable {
   let siteView: Site?
   //  let admins: [Person]?
   let version: String?
-  let myUser: MyUser
+  let myUser: MyUser?
   let allLanguages: [Language]?
   let discussionLanguages: [Int]?
   let taglines: [JSONAny]?

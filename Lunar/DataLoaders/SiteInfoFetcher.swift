@@ -48,53 +48,57 @@ class SiteInfoFetcher: ObservableObject {
         switch response.result {
         case let .success(result):
 
-          let userID = result.myUser.localUserView.person.id
-          self.loggedInAccount.userID = String(userID ?? 0)
+          if let myUser = result.myUser {
+            let userID = myUser.localUserView.person.id
+            self.loggedInAccount.userID = String(userID ?? 0)
 
-          let username = result.myUser.localUserView.person.name
-          self.loggedInAccount.name = username
+            let username = myUser.localUserView.person.name
+            self.loggedInAccount.name = username
 
-          let email = result.myUser.localUserView.localUser.email
-          self.loggedInAccount.email = email ?? ""
+            let email = myUser.localUserView.localUser.email
+            self.loggedInAccount.email = email ?? ""
 
-          let avatarURL = result.myUser.localUserView.person.avatar
-          self.loggedInAccount.avatarURL = avatarURL ?? ""
+            let avatarURL = myUser.localUserView.person.avatar
+            self.loggedInAccount.avatarURL = avatarURL ?? ""
 
-          let actorID = result.myUser.localUserView.person.actorID
-          self.loggedInAccount.actorID = actorID
+            let actorID = myUser.localUserView.person.actorID
+            self.loggedInAccount.actorID = actorID
 
-          let displayName = result.myUser.localUserView.person.displayName
-          self.loggedInAccount.displayName = displayName ?? username
+            let displayName = myUser.localUserView.person.displayName
+            self.loggedInAccount.displayName = displayName ?? username
 
-          let postScore = result.myUser.localUserView.counts.postScore
-          self.loggedInAccount.postScore = postScore ?? 0
+            let postScore = myUser.localUserView.counts.postScore
+            self.loggedInAccount.postScore = postScore ?? 0
 
-          let commentScore = result.myUser.localUserView.counts.commentScore
-          self.loggedInAccount.commentScore = commentScore ?? 0
+            let commentScore = myUser.localUserView.counts.commentScore
+            self.loggedInAccount.commentScore = commentScore ?? 0
 
-          let postCount = result.myUser.localUserView.counts.postCount
-          self.loggedInAccount.postCount = postCount ?? 0
+            let postCount = myUser.localUserView.counts.postCount
+            self.loggedInAccount.postCount = postCount ?? 0
 
-          let commentCount = result.myUser.localUserView.counts.commentCount
-          self.loggedInAccount.commentCount = commentCount ?? 0
+            let commentCount = myUser.localUserView.counts.commentCount
+            self.loggedInAccount.commentCount = commentCount ?? 0
+            let response = String(response.response?.statusCode ?? 0)
 
-          let response = String(response.response?.statusCode ?? 0)
+            var foundMatch = false
 
-          var foundMatch = false
-
-          for account in self.loggedInAccounts {
-            if actorID == account.actorID {
-              foundMatch = true
-//              completion(nil, nil, nil, nil)
-              break // Exit the loop early since a match was found
+            for account in self.loggedInAccounts {
+              if actorID == account.actorID {
+                foundMatch = true
+                //              completion(nil, nil, nil, nil)
+                break // Exit the loop early since a match was found
+              }
             }
-          }
 
-          if !foundMatch {
-            self.loggedInAccounts.append(self.loggedInAccount)
-            self.activeAccount = self.loggedInAccount
+            if !foundMatch {
+              self.loggedInAccounts.append(self.loggedInAccount)
+              self.activeAccount = self.loggedInAccount
 
-            completion(username, email, actorID, response)
+              completion(username, email, actorID, response)
+            }
+          } else {
+            completion(nil, nil, nil, "myUser not found")
+            print("Error getting myUser info from SiteInfoFetcher")
           }
 
         /// This function would only trigger if login was a success,
