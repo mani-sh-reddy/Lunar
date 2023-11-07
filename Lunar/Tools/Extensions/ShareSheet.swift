@@ -8,25 +8,50 @@
 import Foundation
 import SwiftUI
 
-extension UIApplication {
-  static let keyWindow = keyWindowScene?.windows.filter(\.isKeyWindow).first
-  static let keyWindowScene =
-    shared.connectedScenes.first { $0.activationState == .foregroundActive } as? UIWindowScene
+//extension UIApplication {
+//  static let keyWindow = keyWindowScene?.windows.filter(\.isKeyWindow).first
+//  static let keyWindowScene =
+//    shared.connectedScenes.first { $0.activationState == .foregroundActive } as? UIWindowScene
+//}
+//
+//extension View {
+//  func shareSheet(isPresented: Binding<Bool>, items: [Any]) -> some View {
+//    guard isPresented.wrappedValue else { return self }
+//    let activityViewController = UIActivityViewController(
+//      activityItems: items, applicationActivities: nil
+//    )
+//    let presentedViewController =
+//      UIApplication.keyWindow?.rootViewController?.presentedViewController
+//        ?? UIApplication.keyWindow?.rootViewController
+//    activityViewController.completionWithItemsHandler = { _, _, _, _ in
+//      isPresented.wrappedValue = false
+//    }
+//    presentedViewController?.present(activityViewController, animated: true)
+//    return self
+//  }
+//}
+
+struct ActivityViewController: UIViewControllerRepresentable {
+  
+  var activityItems: [Any]
+  var applicationActivities: [UIActivity]? = nil
+  @Environment(\.presentationMode) var presentationMode
+  
+  func makeUIViewController(context: UIViewControllerRepresentableContext<ActivityViewController>) -> UIActivityViewController {
+    let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
+    controller.completionWithItemsHandler = { (activityType, completed, returnedItems, error) in
+      self.presentationMode.wrappedValue.dismiss()
+    }
+    return controller
+  }
+  
+  func updateUIViewController(_ uiViewController: UIActivityViewController, context: UIViewControllerRepresentableContext<ActivityViewController>) {}
+  
 }
 
-extension View {
-  func shareSheet(isPresented: Binding<Bool>, items: [Any]) -> some View {
-    guard isPresented.wrappedValue else { return self }
-    let activityViewController = UIActivityViewController(
-      activityItems: items, applicationActivities: nil
-    )
-    let presentedViewController =
-      UIApplication.keyWindow?.rootViewController?.presentedViewController
-        ?? UIApplication.keyWindow?.rootViewController
-    activityViewController.completionWithItemsHandler = { _, _, _, _ in
-      isPresented.wrappedValue = false
-    }
-    presentedViewController?.present(activityViewController, animated: true)
-    return self
-  }
-}
+/// **USEAGE**
+//  .sheet(isPresented: $shareSheetPresented, onDismiss: {
+//    print("Dismiss")
+//  }, content: {
+//    ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
+//    })

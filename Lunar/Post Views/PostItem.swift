@@ -19,6 +19,7 @@ struct PostItem: View {
 
   @State var showSafari: Bool = false
   @State var subscribeAlertPresented: Bool = false
+  @State var shareSheetPresented: Bool = false
 
   let hapticsSoft = UIImpactFeedbackGenerator(style: .soft)
   let hapticsLight = UIImpactFeedbackGenerator(style: .light)
@@ -90,6 +91,12 @@ struct PostItem: View {
       }
       commentsNavLink
     }
+//    .shareSheet(isPresented: $shareSheetPresented, items: [post.postURL ?? post.postThumbnailURL ?? ""])
+    .sheet(isPresented: $shareSheetPresented, onDismiss: {
+      print("Dismiss")
+    }, content: {
+      ActivityViewController(activityItems: [URL(string: post.postURL ?? post.postThumbnailURL ?? "")!])
+    })
     .listRowSeparator(.hidden)
     .padding(.vertical, 5)
     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
@@ -104,6 +111,15 @@ struct PostItem: View {
       upvoteButton
       hideButton
       minimiseButton
+      shareButton
+    }
+  }
+
+  var shareButton: some View {
+    Button {
+      shareSheetPresented = true
+    } label: {
+      Label("Share", systemSymbol: .squareAndArrowUp)
     }
   }
 
