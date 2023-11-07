@@ -27,6 +27,7 @@ extension WhatsNewKitData {
       )
     )
   }
+
   var newAppIcon: WhatsNew.Feature {
     WhatsNew.Feature(
       image: .init(systemName: "app.gift.fill"),

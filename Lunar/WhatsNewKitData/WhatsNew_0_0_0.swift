@@ -1,5 +1,5 @@
 //
-//  WhatsNewInitial.swift
+//  WhatsNew_0_0_0.swift
 //  Lunar
 //
 //  Created by Mani on 14/09/2023.

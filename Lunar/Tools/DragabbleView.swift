@@ -12,22 +12,22 @@ enum DragState {
   case inactive
   case pressing
   case dragging(translation: CGSize)
-  
+
   var translation: CGSize {
     switch self {
     case .inactive, .pressing:
-      return .zero
-    case .dragging(let translation):
-      return translation
+      .zero
+    case let .dragging(translation):
+      translation
     }
   }
-  
+
   var isPressing: Bool {
     switch self {
     case .pressing, .dragging:
-      return true
+      true
     case .inactive:
-      return false
+      false
     }
   }
 }
@@ -35,12 +35,12 @@ enum DragState {
 struct DraggableView<Content>: View where Content: View {
   @GestureState private var dragState = DragState.inactive
   @State private var position = CGSize.zero
-  
+
   let hapticsHeavy = UIImpactFeedbackGenerator(style: .heavy)
   let hapticsRigid = UIImpactFeedbackGenerator(style: .rigid)
-  
+
   var content: () -> Content
-  
+
   var body: some View {
     content()
       .opacity(dragState.isPressing ? 0.7 : 1.0)
@@ -61,15 +61,15 @@ struct DraggableView<Content>: View where Content: View {
             default:
               break
             }
-            
+
           })
           .onEnded { value in
             hapticsHeavy.impactOccurred()
             guard case .second(true, let drag?) = value else {
               return
             }
-            self.position.height += drag.translation.height
-            self.position.width += drag.translation.width
+            position.height += drag.translation.height
+            position.width += drag.translation.width
           }
       )
   }

@@ -17,7 +17,6 @@ class PostSiteMetadataFetcher: ObservableObject {
   @Default(.loggedInAccounts) var loggedInAccounts
 
   private var endpoint: URLComponents
-  private var endpointRedacted: URLComponents
 
   var urlString: String
 
@@ -27,7 +26,6 @@ class PostSiteMetadataFetcher: ObservableObject {
   init(urlString: String) {
     self.urlString = urlString
     endpoint = URLBuilder(endpointPath: "/api/v3/post/site_metadata", urlString: urlString).buildURL()
-    endpointRedacted = endpoint
   }
 
   func fetchPostSiteMetadata(completion: @escaping (SiteMetadataObject?) -> Void) {
@@ -37,7 +35,7 @@ class PostSiteMetadataFetcher: ObservableObject {
 
         if self.networkInspectorEnabled {
           self.pulse.storeRequest(
-            try! URLRequest(url: self.endpointRedacted, method: .get),
+            try! URLRequest(url: self.endpoint, method: .get),
             response: response.response,
             error: response.error,
             data: response.data

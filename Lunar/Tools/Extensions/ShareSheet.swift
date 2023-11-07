@@ -8,13 +8,13 @@
 import Foundation
 import SwiftUI
 
-//extension UIApplication {
+// extension UIApplication {
 //  static let keyWindow = keyWindowScene?.windows.filter(\.isKeyWindow).first
 //  static let keyWindowScene =
 //    shared.connectedScenes.first { $0.activationState == .foregroundActive } as? UIWindowScene
-//}
+// }
 //
-//extension View {
+// extension View {
 //  func shareSheet(isPresented: Binding<Bool>, items: [Any]) -> some View {
 //    guard isPresented.wrappedValue else { return self }
 //    let activityViewController = UIActivityViewController(
@@ -29,24 +29,22 @@ import SwiftUI
 //    presentedViewController?.present(activityViewController, animated: true)
 //    return self
 //  }
-//}
+// }
 
 struct ActivityViewController: UIViewControllerRepresentable {
-  
   var activityItems: [Any]
   var applicationActivities: [UIActivity]? = nil
   @Environment(\.presentationMode) var presentationMode
-  
-  func makeUIViewController(context: UIViewControllerRepresentableContext<ActivityViewController>) -> UIActivityViewController {
+
+  func makeUIViewController(context _: UIViewControllerRepresentableContext<ActivityViewController>) -> UIActivityViewController {
     let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
-    controller.completionWithItemsHandler = { (activityType, completed, returnedItems, error) in
-      self.presentationMode.wrappedValue.dismiss()
+    controller.completionWithItemsHandler = { _, _, _, _ in
+      presentationMode.wrappedValue.dismiss()
     }
     return controller
   }
-  
-  func updateUIViewController(_ uiViewController: UIActivityViewController, context: UIViewControllerRepresentableContext<ActivityViewController>) {}
-  
+
+  func updateUIViewController(_: UIActivityViewController, context _: UIViewControllerRepresentableContext<ActivityViewController>) {}
 }
 
 /// **USEAGE**

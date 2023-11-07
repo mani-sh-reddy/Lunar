@@ -98,21 +98,6 @@ class PostsFetcher: ObservableObject {
     self.personID = personID
 
     self.filterKey = filterKey
-
-    //    for batch in batches {
-    //      let batchID = "instance_\(self.instance ?? selectedInstance)" +
-    //        "__sort_\(self.sort)" +
-    //        "__type_\(self.type)" +
-    //        "__userUsed_\(Int(activeAccount.userID) ?? 0)" +
-    //        "__communityID_\(self.communityID ?? 0)" +
-    //        "__personID_\(self.personID ?? 0)"
-    //      if batch.batchID == batchID {
-    //        self.page = batch.page
-    //        print("real page => \(page)")
-    //      }
-    //    }
-
-    //    loadContent()
   }
 
   func loadContent(isRefreshing: Bool = false) {
@@ -251,21 +236,5 @@ class PostsFetcher: ObservableObject {
     } else {
       return nil
     }
-  }
-
-  // Function to determine if a batch should be displayed based on criteria
-  private func filterBatch(
-    batch: Batch,
-    sort: String,
-    type: String,
-    user: Int,
-    communityID: Int,
-    personID: Int
-  ) -> Bool {
-    let filterCriteria: Bool =
-      batch.sort == sort && batch.type == type && batch.userUsed == user
-        && batch.communityID == communityID && batch.personID == personID
-
-    return filterCriteria
   }
 }
