@@ -12,8 +12,8 @@ extension WhatsNewKitData {
   var WhatsNew_2023_11: WhatsNew {
     WhatsNew(
       version: "2023.11",
-      title: "November 2023 Update",
-      features: [],
+      title: "November 2023",
+      features: [newAppIcon],
       primaryAction: WhatsNew.PrimaryAction(
         title: "Dismiss",
         backgroundColor: .accentColor,
@@ -25,6 +25,13 @@ extension WhatsNewKitData {
         hapticFeedback: .selection,
         action: .openURL(URL(string: "https://github.com/mani-sh-reddy/Lunar/releases"))
       )
+    )
+  }
+  var newAppIcon: WhatsNew.Feature {
+    WhatsNew.Feature(
+      image: .init(systemName: "app.gift.fill"),
+      title: "New App Icon",
+      subtitle: "Subtitle"
     )
   }
 }

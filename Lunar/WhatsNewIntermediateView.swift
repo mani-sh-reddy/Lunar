@@ -17,7 +17,16 @@ struct WhatsNewIntermediateView: View {
 
   let userDefaultsWhatsNewVersionStore = UserDefaultsWhatsNewVersionStore()
   /// **Uncomment for Testing**
-  //  let userDefaultsWhatsNewVersionStore = InMemoryWhatsNewVersionStore()
+//    let userDefaultsWhatsNewVersionStore = InMemoryWhatsNewVersionStore()
+
+  var whatsNewSheetLayout = WhatsNew.Layout(
+    contentPadding: .init(
+      top: 35,
+      leading: 10,
+      bottom: 0,
+      trailing: 30
+    )
+  )
 
   @State var whatsNewFirstLaunch: WhatsNew? = WhatsNewKitData().initial
 
@@ -25,16 +34,12 @@ struct WhatsNewIntermediateView: View {
     TabContentView()
       .accentColor(accentColor)
       .sheet(whatsNew: $whatsNewFirstLaunch, versionStore: userDefaultsWhatsNewVersionStore)
-      .whatsNewSheet(
-        layout: WhatsNew.Layout(
-          contentPadding: .init(
-            top: 10,
-            leading: 10,
-            bottom: 0,
-            trailing: 30
-          )
-        )
-      )
+      .whatsNewSheet()
+      .environment(\.whatsNew, WhatsNewEnvironment(
+        versionStore: userDefaultsWhatsNewVersionStore,
+        defaultLayout: whatsNewSheetLayout,
+        whatsNewCollection: WhatsNewKitCollection().whatsNewArray
+      ))
       .onChange(of: clearWhatsNewDefaults) { _ in
         userDefaultsWhatsNewVersionStore.removeAll()
       }

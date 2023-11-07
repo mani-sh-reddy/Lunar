@@ -11,3 +11,9 @@ import SwiftUI
 import WhatsNewKit
 
 class WhatsNewKitData {}
+
+class WhatsNewKitCollection {
+  /// **Unreleased**
+//  var whatsNewArray: [WhatsNew] = [WhatsNewKitData().WhatsNew_2023_11]
+  var whatsNewArray: [WhatsNew] = []
+}
