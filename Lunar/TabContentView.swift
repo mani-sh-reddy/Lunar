@@ -51,20 +51,22 @@ struct TabContentView: View {
     }
     .overlay(alignment: .bottomTrailing) {
       if networkInspectorEnabled, prominentInspectorButton {
-        Button {
-          networkInspectorPopover = true
-
-        } label: {
+        DraggableView {
           Image(systemSymbol: .rectangleAndTextMagnifyingglass)
             .font(.title2)
             .padding(15)
             .foregroundColor(.white)
             .background(Color.orange)
             .clipShape(Circle())
+            .padding(20)
+            .padding(.bottom, 50)
+            .shadow(radius: 5)
+            .highPriorityGesture(
+              TapGesture().onEnded {
+                networkInspectorPopover = true
+              }
+            )
         }
-        .padding(20)
-        .padding(.bottom, 50)
-        .shadow(radius: 5)
       }
     }
     .popover(isPresented: $networkInspectorPopover) {
