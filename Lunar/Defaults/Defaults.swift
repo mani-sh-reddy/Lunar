@@ -46,7 +46,7 @@ extension Defaults.Keys {
   static let selectedSearchSortType = Key<String>("selectedSearchSortType", default: "Active")
   static let enableQuicklinks = Key<Bool>("enableQuicklinks", default: true)
   static let accentColor = Key<Color>("accentColor", default: .blue)
-  static let accentColorString = Key<String>("accentColorString", default: "Blue")
+  static let accentColorString = Key<String>("accentColorString", default: "Default")
 
   // MARK: - Account
 
