@@ -30,7 +30,9 @@ class SiteInfoFetcher: ObservableObject {
   }
 
   func fetchSiteInfo(completion: @escaping (String?, String?, String?, String?) -> Void) {
-    AF.request(endpoint)
+    let headers: HTTPHeaders = [.authorization(bearerToken: jwt)]
+
+    AF.request(endpoint, headers: headers)
       .validate(statusCode: 200 ..< 300)
       .responseDecodable(of: SiteModel.self) { response in
 

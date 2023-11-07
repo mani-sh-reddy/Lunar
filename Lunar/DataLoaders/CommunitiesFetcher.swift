@@ -79,7 +79,12 @@ import SwiftUI
   func loadContent(isRefreshing _: Bool = false) {
     let cacher = ResponseCacher(behavior: .cache)
 
-    AF.request(endpoint) { urlRequest in
+    var headers: HTTPHeaders = []
+    if let jwt {
+      headers = [.authorization(bearerToken: jwt)]
+    }
+
+    AF.request(endpoint, headers: headers) { urlRequest in
       urlRequest.cachePolicy = .returnCacheDataElseLoad
     }
     .cacheResponse(using: cacher)

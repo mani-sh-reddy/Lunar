@@ -71,7 +71,12 @@ import SwiftUI
 
     let cacher = ResponseCacher(behavior: .cache)
 
-    AF.request(endpoint) { urlRequest in
+    var headers: HTTPHeaders = []
+    if let jwt = getJWTFromKeychain() {
+      headers = [.authorization(bearerToken: jwt)]
+    }
+
+    AF.request(endpoint, headers: headers) { urlRequest in
       if isRefreshing {
         urlRequest.cachePolicy = .reloadRevalidatingCacheData
       } else {

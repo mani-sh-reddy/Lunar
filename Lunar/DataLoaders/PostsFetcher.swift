@@ -121,8 +121,14 @@ class PostsFetcher: ObservableObject {
     isLoading = true
 
     let cacher = ResponseCacher(behavior: .cache)
+
+    var headers: HTTPHeaders = []
+    if let jwt = getJWTFromKeychain() {
+      headers = [.authorization(bearerToken: jwt)]
+    }
+
     print("_____________FETCH_TRIGGERED_____________")
-    AF.request(endpoint) { urlRequest in
+    AF.request(endpoint, headers: headers) { urlRequest in
       if isRefreshing {
         urlRequest.cachePolicy = .reloadRevalidatingCacheData
       } else {
