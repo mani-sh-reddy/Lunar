@@ -15,6 +15,7 @@ import SwiftUI
 struct PostsView: View {
   @Default(.debugModeEnabled) var debugModeEnabled
   @Default(.postsViewStyle) var postsViewStyle
+  @Default(.selectedInstance) var selectedInstance
 
   @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
   @ObservedResults(Batch.self) var batches
@@ -89,13 +90,10 @@ struct PostsView: View {
     .navigationBarTitleDisplayMode(.inline)
     .refreshable {
       try? await Task.sleep(nanoseconds: 1 * 1_000_000_000)
-      let realm = try! await Realm()
-      try! realm.write {
-        let posts = realm.objects(RealmPost.self)
-        realm.delete(posts)
-      }
-      page = 1
-      runOnce = false
+      resetRealmPosts()
+    }
+    .onChange(of: selectedInstance) { _ in
+      resetRealmPosts()
     }
     .toolbar {
       ToolbarItemGroup(placement: .navigationBarTrailing) {
@@ -114,18 +112,20 @@ struct PostsView: View {
         communityActorID: communityActorID ?? ""
       )
     }
-    //    .onChange(of: realmPosts.count) { _ in
-    //      runOnce = false
-    //    }
+  }
+
+  func resetRealmPosts() {
+    let realm = try! Realm()
+    try! realm.write {
+      let posts = realm.objects(RealmPost.self)
+      realm.delete(posts)
+    }
+    page = 1
+    runOnce = false
   }
 
   var communitySpecificHeader: some View {
     Section {
-//      var communityName: String?
-//      var communityActorID: String?
-//      var communityDescription: String?
-//      var communityIcon String?
-
       DisclosureGroup {
         Text(try! AttributedString(styledMarkdown: communityDescription ?? ""))
       } label: {
