@@ -103,7 +103,7 @@ struct LegacyRecursiveComment: View {
       }
     } else {
       HStack {
-        Text(try! AttributedString(markdown: "\(nestedComment.commentViewData.comment.content)"))
+        Text(try! AttributedString(styledMarkdown: "\(nestedComment.commentViewData.comment.content)"))
           .italic()
           .lineLimit(1)
           .foregroundStyle(.gray)
@@ -152,7 +152,7 @@ struct LegacyRecursiveComment: View {
       ////          .foregroundStyle(.red)
       //      }
       //      .font(.caption)
-      Text(try! AttributedString(markdown: nestedComment.commentViewData.comment.content))
+      Text(try! AttributedString(styledMarkdown: nestedComment.commentViewData.comment.content))
       if commentMetadataPosition == "Bottom" {
         commentMetadata
       }

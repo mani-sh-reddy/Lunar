@@ -60,7 +60,7 @@ struct RecursiveComment: View {
 
   var minimisedCommentStyle: some View {
     HStack {
-      Text(try! AttributedString(markdown: "\(nestedComment.commentViewData.comment.content)"))
+      Text(try! AttributedString(styledMarkdown: "\(nestedComment.commentViewData.comment.content)"))
         .italic()
         .lineLimit(1)
         .foregroundStyle(.gray)

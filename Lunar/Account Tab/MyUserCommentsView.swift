@@ -33,7 +33,7 @@ struct MyUserCommentsView: View {
           if commentMetadataPosition == "Top" {
             MyUserCommentMetadataView(comment: comment)
           }
-          Text(try! AttributedString(markdown: comment.comment.content))
+          Text(try! AttributedString(styledMarkdown: comment.comment.content))
           if commentMetadataPosition == "Bottom" {
             MyUserCommentMetadataView(comment: comment)
           }
