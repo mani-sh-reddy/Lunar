@@ -79,7 +79,7 @@
 		3C6D29692A797D6E007AFD99 /* UserRowSettingsBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D29682A797D6E007AFD99 /* UserRowSettingsBannerView.swift */; };
 		3C72E21B2A71735E00C794C6 /* InPostThumbnailImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C72E21A2A71735E00C794C6 /* InPostThumbnailImageView.swift */; };
 		3C7B121C2AF69CFA003DA2F5 /* CustomSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7B121B2AF69CFA003DA2F5 /* CustomSymbols.swift */; };
-		3C7B7DC92A89485000A02A43 /* DateTimeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7B7DC82A89485000A02A43 /* DateTimeParser.swift */; };
+		3C7B7DC92A89485000A02A43 /* TimestampParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7B7DC82A89485000A02A43 /* TimestampParser.swift */; };
 		3C808E242A9B6DAD008FA62E /* SettingsDevOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C808E232A9B6DAD008FA62E /* SettingsDevOptionsView.swift */; };
 		3C808E2E2A9B87FA008FA62E /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C808E2D2A9B87FA008FA62E /* ShareSheet.swift */; };
 		3C8426432AFAAE82002CD74C /* DragabbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8426422AFAAE82002CD74C /* DragabbleView.swift */; };
@@ -318,7 +318,7 @@
 		3C6D29682A797D6E007AFD99 /* UserRowSettingsBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRowSettingsBannerView.swift; sourceTree = "<group>"; };
 		3C72E21A2A71735E00C794C6 /* InPostThumbnailImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InPostThumbnailImageView.swift; sourceTree = "<group>"; };
 		3C7B121B2AF69CFA003DA2F5 /* CustomSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSymbols.swift; sourceTree = "<group>"; };
-		3C7B7DC82A89485000A02A43 /* DateTimeParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeParser.swift; sourceTree = "<group>"; };
+		3C7B7DC82A89485000A02A43 /* TimestampParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimestampParser.swift; sourceTree = "<group>"; };
 		3C808E222A9A8C95008FA62E /* LunarDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LunarDebug.entitlements; sourceTree = "<group>"; };
 		3C808E232A9B6DAD008FA62E /* SettingsDevOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDevOptionsView.swift; sourceTree = "<group>"; };
 		3C808E2D2A9B87FA008FA62E /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
@@ -859,7 +859,7 @@
 				3C96EA412A77225E00753199 /* ValidationUtils.swift */,
 				3C1A3F5A2A73B2B800898FC6 /* KeychainInterface.swift */,
 				3CE0A7932A8551CD008A782A /* EncodeDecodeHelpers.swift */,
-				3C7B7DC82A89485000A02A43 /* DateTimeParser.swift */,
+				3C7B7DC82A89485000A02A43 /* TimestampParser.swift */,
 				3CC3E4262ADC589B00F7F9A9 /* PhotoPicker.swift */,
 			);
 			path = Utilities;
@@ -1344,7 +1344,7 @@
 				3C54C0A32ABB9F9500F1BADE /* AccountSelectionItem.swift in Sources */,
 				3CB9C7372AA2461C00FB5A10 /* Person.swift in Sources */,
 				3C5ECB2E2A767957002BA561 /* TwoFactorFieldView.swift in Sources */,
-				3C7B7DC92A89485000A02A43 /* DateTimeParser.swift in Sources */,
+				3C7B7DC92A89485000A02A43 /* TimestampParser.swift in Sources */,
 				3CA92E432A549A7F00688DEB /* CommunityRowView.swift in Sources */,
 				3CDBBC872AEDBB51005EFF2B /* CompactPostItem.swift in Sources */,
 				3CEF4CC42A69B39B002B83C0 /* TrendingCommunitiesSectionView.swift in Sources */,
@@ -1479,7 +1479,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",

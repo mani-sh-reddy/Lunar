@@ -49,12 +49,14 @@ struct PostItem: View {
     }
   }
 
-  var creatorLabel: String {
-    let dateTimeParser = DateTimeParser()
-    let published = post.postPublished
+  var creatorTimeAgoLabel: String {
     let creator = post.personName.uppercased()
-    let timeAgo = ", \(dateTimeParser.timeAgoString(from: published))"
-    return "\(creator)\(timeAgo)"
+    let timeAgo = post.postTimeAgo
+    if !timeAgo.isEmpty {
+      return "\(creator), \(timeAgo) ago"
+    } else {
+      return "\(creator)"
+    }
   }
 
   var webLink: String {
@@ -230,7 +232,7 @@ struct PostItem: View {
   }
 
   var postCreatorLabel: some View {
-    Text(creatorLabel)
+    Text(creatorTimeAgoLabel)
       .font(.caption)
       .foregroundColor(.secondary)
   }

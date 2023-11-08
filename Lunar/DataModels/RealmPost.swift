@@ -19,6 +19,7 @@ class RealmPost: Object, ObjectKeyIdentifiable {
   @Persisted var postURL: String?
   @Persisted var postBody: String?
   @Persisted var postThumbnailURL: String?
+  @Persisted var postTimeAgo: String
 
   // MARK: - Person
 
@@ -116,6 +117,7 @@ class RealmPost: Object, ObjectKeyIdentifiable {
     self.postURL = postURL
     self.postBody = postBody
     self.postThumbnailURL = postThumbnailURL
+    postTimeAgo = TimestampParser().parse(originalTimestamp: postPublished) ?? ""
 
     self.personID = personID
     self.personName = personName

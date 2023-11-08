@@ -21,7 +21,6 @@ struct LegacyRecursiveComment: View {
 
   let nestedComment: NestedComment
   let post: Post
-  let dateTimeParser = DateTimeParser()
 
   let commentHierarchyColors: [Color] = [
     .clear,
@@ -138,20 +137,6 @@ struct LegacyRecursiveComment: View {
         commentMetadata
       }
 
-      //      HStack {
-      //        Text(nestedComment.commentViewData.creator.name.uppercased())
-      //          .bold()
-      //          .foregroundStyle(.gray)
-      //        Text(dateTimeParser.timeAgoString(from: nestedComment.commentViewData.comment.published))
-      //          .foregroundStyle(.gray)
-      //        Spacer()
-      //
-      ////        Label(String(nestedComment.commentViewData.counts.upvotes ?? 0), systemSymbol: .arrowUp)
-      ////          .foregroundStyle(.green)
-      ////        Label(String(nestedComment.commentViewData.counts.downvotes ?? 0), systemSymbol: .arrowUp)
-      ////          .foregroundStyle(.red)
-      //      }
-      //      .font(.caption)
       Text(try! AttributedString(styledMarkdown: nestedComment.commentViewData.comment.content))
       if commentMetadataPosition == "Bottom" {
         commentMetadata

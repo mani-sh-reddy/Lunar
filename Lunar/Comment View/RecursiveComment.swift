@@ -19,7 +19,6 @@ struct RecursiveComment: View {
 
   let nestedComment: NestedComment
   let post: RealmPost
-  let dateTimeParser = DateTimeParser()
 
   let commentHierarchyColors: [Color] = [
     .clear, .red, .orange, .yellow, .green, .cyan, .blue, .indigo, .purple,

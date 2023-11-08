@@ -17,7 +17,6 @@ struct CommentMetadataView: View {
   @State var commentDownvoted: Bool = false
 
   var comment: CommentObject
-  let dateTimeParser = DateTimeParser()
 
   let haptics = UIImpactFeedbackGenerator(style: .rigid)
 
@@ -26,7 +25,7 @@ struct CommentMetadataView: View {
       VStack(alignment: .leading) {
         Text(comment.creator.name.uppercased())
           .bold()
-        Text(dateTimeParser.timeAgoString(from: comment.comment.published))
+        Text("\(TimestampParser().parse(originalTimestamp: comment.comment.published) ?? "") ago")
       }
       .padding(.top, 2)
       .font(.caption)

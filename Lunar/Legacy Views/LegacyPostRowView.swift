@@ -61,9 +61,8 @@ struct LegacyPostRowView: View {
     }
   }
 
-  let dateTimeParser = DateTimeParser()
   var timeAgo: String {
-    ", \(dateTimeParser.timeAgoString(from: post.post.published))"
+    ", \(TimestampParser().parse(originalTimestamp: post.post.published) ?? "") ago"
   }
 
   let haptics = UIImpactFeedbackGenerator(style: .rigid)

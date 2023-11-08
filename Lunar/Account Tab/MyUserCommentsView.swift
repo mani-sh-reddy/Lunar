@@ -74,7 +74,6 @@ struct MyUserCommentMetadataView: View {
   @State var commentDownvoted: Bool = false
 
   let notificationHaptics = UINotificationFeedbackGenerator()
-  let dateTimeParser = DateTimeParser()
   var comment: CommentObject
 
   var body: some View {
@@ -85,7 +84,7 @@ struct MyUserCommentMetadataView: View {
             .bold()
           Text("@\(URLParser.extractDomain(from: comment.community.actorID))")
         }
-        Text(dateTimeParser.timeAgoString(from: comment.comment.published))
+        Text("\(TimestampParser().parse(originalTimestamp: comment.comment.published) ?? "") ago")
       }
       .padding(.top, 2)
       .font(.caption)
