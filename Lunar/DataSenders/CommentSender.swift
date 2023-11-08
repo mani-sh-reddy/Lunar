@@ -43,13 +43,19 @@ class CommentSender: ObservableObject {
         "auth": jwt,
       ] as [String: Any]
 
+    var headers: HTTPHeaders = []
+    if !jwt.isEmpty {
+      headers = [.authorization(bearerToken: jwt)]
+    }
+
     let endpoint = "https://\(URLParser.extractDomain(from: activeAccount.actorID))/api/v3/comment"
 
     AF.request(
       endpoint,
       method: .post,
       parameters: parameters,
-      encoding: JSONEncoding.default
+      encoding: JSONEncoding.default,
+      headers: headers
     )
     .validate(statusCode: 200 ..< 300)
     // URLRequest(url: endpoint, method: .post)

@@ -57,9 +57,13 @@ class ImageSender: ObservableObject {
   func uploadImage(completion: @escaping (String, String?, String?) -> Void) {
     let endpoint = "https://lemmy.world/api/v3/pictrs/image"
 //    let endpoint = "https://\(URLParser.extractDomain(from: selectedActorID))/api/v3/pictrs/image"
-    let headers: HTTPHeaders = [
+    var headers: HTTPHeaders = [
       "Accept": "*/*", // Removed Content-type
     ]
+
+    if !jwt.isEmpty {
+      headers.add(.authorization(bearerToken: jwt))
+    }
 
     AF.upload(
       multipartFormData: { multipartFormData in

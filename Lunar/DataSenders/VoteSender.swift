@@ -49,11 +49,17 @@ class VoteSender: ObservableObject {
 
     let endpoint = "https://\(URLParser.extractDomain(from: activeAccount.actorID))/api/v3/\(elementType)/like"
 
+    var headers: HTTPHeaders = []
+    if !jwt.isEmpty {
+      headers = [.authorization(bearerToken: jwt)]
+    }
+
     AF.request(
       endpoint,
       method: .post,
       parameters: parameters,
-      encoding: JSONEncoding.default
+      encoding: JSONEncoding.default,
+      headers: headers
     )
     .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: VoteResponseModel.self) { response in
