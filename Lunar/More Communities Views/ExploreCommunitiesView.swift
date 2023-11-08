@@ -52,6 +52,7 @@ struct ExploreCommunitiesView: View {
       }
     }
     .refreshable {
+      try? await Task.sleep(nanoseconds: 1 * 1_000_000_000)
       communitiesFetcher.loadContent(isRefreshing: true)
     }
     .listStyle(.insetGrouped)

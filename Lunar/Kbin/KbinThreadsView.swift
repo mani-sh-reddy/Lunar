@@ -36,6 +36,7 @@ struct KbinThreadsView: View {
       }
     }
     .refreshable {
+      try? await Task.sleep(nanoseconds: 1 * 1_000_000_000)
       await kbinThreadsFetcher.refreshContent()
     }
     .navigationTitle("Kbin")

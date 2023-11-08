@@ -40,6 +40,7 @@ struct MyUserPostsView: View {
       }
     }
     .refreshable {
+      try? await Task.sleep(nanoseconds: 1 * 1_000_000_000)
       personFetcher.loadContent(isRefreshing: true)
     }
     .onChange(of: selectedInstance) { _ in

@@ -76,6 +76,7 @@ struct old_PostsView: View {
       }
     }
     .refreshable {
+      try? await Task.sleep(nanoseconds: 1 * 1_000_000_000)
       postsFetcher.loadContent(isRefreshing: true)
     }
     .onChange(of: selectedInstance) { _ in

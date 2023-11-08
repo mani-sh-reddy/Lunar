@@ -88,7 +88,8 @@ struct PostsView: View {
     .navigationTitle(heading)
     .navigationBarTitleDisplayMode(.inline)
     .refreshable {
-      let realm = try! Realm()
+      try? await Task.sleep(nanoseconds: 1 * 1_000_000_000)
+      let realm = try! await Realm()
       try! realm.write {
         let posts = realm.objects(RealmPost.self)
         realm.delete(posts)
