@@ -43,6 +43,9 @@ struct RecursiveComment: View {
         minimiseButton
         replyButton
       }
+      .contextMenu {
+        shareButton
+      }
 
       ForEach(nestedComment.subComments, id: \.id) { subComment in
         RecursiveComment(
@@ -55,6 +58,15 @@ struct RecursiveComment: View {
       minimisedCommentStyle
         .contentShape(Rectangle())
         .onTapGesture { maximiseComment() }
+    }
+  }
+
+  var shareButton: some View {
+    Button {
+      let items: [Any] = [nestedComment.commentViewData.comment.content]
+      ShareSheet().share(items: items)
+    } label: {
+      Label("Share", systemSymbol: .squareAndArrowUp)
     }
   }
 

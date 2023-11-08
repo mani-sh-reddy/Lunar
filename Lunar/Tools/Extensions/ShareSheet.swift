@@ -2,54 +2,25 @@
 //  ShareSheet.swift
 //  Lunar
 //
-//  Created by Mani on 27/08/2023.
+//  Created by Mani on 08/11/2023.
 //
 
 import Foundation
 import SwiftUI
 
-// extension UIApplication {
-//  static let keyWindow = keyWindowScene?.windows.filter(\.isKeyWindow).first
-//  static let keyWindowScene =
-//    shared.connectedScenes.first { $0.activationState == .foregroundActive } as? UIWindowScene
-// }
-//
-// extension View {
-//  func shareSheet(isPresented: Binding<Bool>, items: [Any]) -> some View {
-//    guard isPresented.wrappedValue else { return self }
-//    let activityViewController = UIActivityViewController(
-//      activityItems: items, applicationActivities: nil
-//    )
-//    let presentedViewController =
-//      UIApplication.keyWindow?.rootViewController?.presentedViewController
-//        ?? UIApplication.keyWindow?.rootViewController
-//    activityViewController.completionWithItemsHandler = { _, _, _, _ in
-//      isPresented.wrappedValue = false
-//    }
-//    presentedViewController?.present(activityViewController, animated: true)
-//    return self
-//  }
-// }
-
-struct ActivityViewController: UIViewControllerRepresentable {
-  var activityItems: [Any]
-  var applicationActivities: [UIActivity]? = nil
-  @Environment(\.presentationMode) var presentationMode
-
-  func makeUIViewController(context _: UIViewControllerRepresentableContext<ActivityViewController>) -> UIActivityViewController {
-    let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
-    controller.completionWithItemsHandler = { _, _, _, _ in
-      presentationMode.wrappedValue.dismiss()
+class ShareSheet {
+  func share(items: [Any]) {
+    DispatchQueue.global(qos: .userInitiated).async {
+      let activityController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+      DispatchQueue.main.async {
+        UIApplication.keyWindow?.rootViewController?.present(activityController, animated: true, completion: nil)
+      }
     }
-    return controller
   }
-
-  func updateUIViewController(_: UIActivityViewController, context _: UIViewControllerRepresentableContext<ActivityViewController>) {}
 }
 
-/// **USEAGE**
-//  .sheet(isPresented: $shareSheetPresented, onDismiss: {
-//    print("Dismiss")
-//  }, content: {
-//    ActivityViewController(activityItems: [URL(string: "https://www.apple.com")!])
-//    })
+extension UIApplication {
+  static let keyWindow = keyWindowScene?.windows.filter(\.isKeyWindow).first
+  static let keyWindowScene =
+    shared.connectedScenes.first { $0.activationState == .foregroundActive } as? UIWindowScene
+}

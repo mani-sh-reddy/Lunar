@@ -91,12 +91,7 @@ struct PostItem: View {
       }
       commentsNavLink
     }
-//    .shareSheet(isPresented: $shareSheetPresented, items: [post.postURL ?? post.postThumbnailURL ?? ""])
-    .sheet(isPresented: $shareSheetPresented, onDismiss: {
-      print("Dismiss")
-    }, content: {
-      ActivityViewController(activityItems: [URL(string: post.postURL ?? post.postThumbnailURL ?? "")!])
-    })
+
     .listRowSeparator(.hidden)
     .padding(.vertical, 5)
     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
@@ -117,7 +112,13 @@ struct PostItem: View {
 
   var shareButton: some View {
     Button {
-      shareSheetPresented = true
+      var items: [Any] = [post.postName]
+      if post.postThumbnailURL != nil || post.postURL != nil {
+        items = [URL(string: post.postThumbnailURL ?? post.postURL!)!, post.postName]
+      } else if post.postBody != nil {
+        items = [post.postName, post.postBody as Any]
+      }
+      ShareSheet().share(items: items)
     } label: {
       Label("Share", systemSymbol: .squareAndArrowUp)
     }
