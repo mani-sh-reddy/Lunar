@@ -12,6 +12,7 @@ import SwiftUI
 enum SortType: String, Defaults.Serializable {
   case active = "Active"
   case hot = "Hot"
+  case scaled = "Scaled"
   case new = "New"
   case topDay = "TopDay"
   case topWeek = "TopWeek"
@@ -45,6 +46,14 @@ struct SortTypePickerView: View {
           } icon: {
             Image(systemSymbol: .flameFill)
           }.tag(SortType.hot)
+
+          // MARK: -
+
+          Label {
+            Text("Scaled")
+          } icon: {
+            Image(systemSymbol: .scalemass)
+          }.tag(SortType.scaled)
 
           // MARK: -
 
