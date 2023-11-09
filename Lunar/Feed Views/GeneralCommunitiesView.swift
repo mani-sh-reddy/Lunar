@@ -40,7 +40,9 @@ struct GeneralCommunitiesView: View {
           hexColor: quicklink.iconColor,
           title: quicklink.title,
           brightness: quicklink.brightness,
-          saturation: quicklink.saturation
+          saturation: quicklink.saturation,
+          type: quicklink.type,
+          sort: quicklink.sort
         )
       }
     }

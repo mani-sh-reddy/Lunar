@@ -16,6 +16,8 @@ struct GeneralCommunityQuicklinkButton: View {
   let title: String
   let brightness: Double
   let saturation: Double
+  let type: String
+  let sort: String
 
   var body: some View {
     HStack {
@@ -28,6 +30,23 @@ struct GeneralCommunityQuicklinkButton: View {
         .saturation(saturation)
       Text(title)
         .padding(.horizontal, 10)
+      Spacer()
+      HStack {
+        switch type {
+        case "Local":
+          Image(systemSymbol: .houseFill)
+        case "All":
+          Image(systemSymbol: .globeAmericasFill)
+        case "Subscribed":
+          Image(systemSymbol: .bookmarkFill)
+        default:
+          Image(systemSymbol: .circle)
+        }
+        Text(sort)
+          .bold()
+      }
+      .font(.caption)
+      .foregroundStyle(.secondary)
     }
   }
 }

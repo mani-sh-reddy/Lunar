@@ -23,7 +23,7 @@ class DefaultQuicklinks {
   func getDefaultQuicklinks() -> [Quicklink] {
     [
       Quicklink(
-        title: "Local",
+        title: "Home",
         type: "Local",
         sort: "Active",
         icon: "house.circle.fill",
@@ -41,7 +41,7 @@ class DefaultQuicklinks {
         saturation: 3
       ),
       Quicklink(
-        title: "Top",
+        title: "Top This Week",
         type: "All",
         sort: "TopWeek",
         icon: "chart.line.uptrend.xyaxis.circle.fill",
@@ -50,8 +50,8 @@ class DefaultQuicklinks {
         saturation: 3
       ),
       Quicklink(
-        title: "New",
-        type: "All",
+        title: "New Local",
+        type: "Local",
         sort: "New",
         icon: "star.circle.fill",
         iconColor: "C4BC00", /// **yellow**

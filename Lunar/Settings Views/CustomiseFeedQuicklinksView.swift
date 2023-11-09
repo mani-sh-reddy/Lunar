@@ -47,7 +47,15 @@ struct CustomiseFeedQuicklinksView: View {
     List {
       Section {
         ForEach(quicklinks, id: \.self) { quicklink in
-          GeneralCommunityQuicklinkButton(image: quicklink.icon, hexColor: quicklink.iconColor, title: quicklink.title, brightness: quicklink.brightness, saturation: quicklink.saturation)
+          GeneralCommunityQuicklinkButton(
+            image: quicklink.icon,
+            hexColor: quicklink.iconColor,
+            title: quicklink.title,
+            brightness: quicklink.brightness,
+            saturation: quicklink.saturation,
+            type: quicklink.type,
+            sort: quicklink.sort
+          )
         }
         .onDelete(perform: delete)
         Button {
@@ -171,7 +179,15 @@ struct CustomiseFeedQuicklinksView: View {
       }
 
       Section {
-        GeneralCommunityQuicklinkButton(image: quicklinkIcon ?? "", hexColor: quicklinkColorString, title: quicklinkTitle.isEmpty ? "Title" : quicklinkTitle, brightness: 0.3, saturation: 2)
+        GeneralCommunityQuicklinkButton(
+          image: quicklinkIcon ?? "",
+          hexColor: quicklinkColorString,
+          title: quicklinkTitle.isEmpty ? "Title" : quicklinkTitle,
+          brightness: 0.3,
+          saturation: 2,
+          type: quicklinkType,
+          sort: quicklinkSort
+        )
       } header: {
         Text("Quicklink Preview")
       }
