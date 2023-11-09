@@ -12,12 +12,21 @@ import SwiftUI
 
 class PhaseChangeActions {
   @Default(.activeAccount) var activeAccount
+  @Default(.selectedInstance) var selectedInstance
 
   var accountSubtitle: String {
     if activeAccount.actorID.isEmpty {
       ""
     } else {
-      "Signed in as \(activeAccount.name)"
+      "\(activeAccount.name)@\(URLParser.extractDomain(from: activeAccount.actorID))"
+    }
+  }
+
+  var feedSubtitle: String {
+    if selectedInstance.isEmpty {
+      ""
+    } else {
+      "\(selectedInstance)"
     }
   }
 
@@ -39,29 +48,29 @@ class PhaseChangeActions {
       UIApplicationShortcutItem(
         type: "Feed",
         localizedTitle: "Feed",
-        localizedSubtitle: "",
-        icon: UIApplicationShortcutIcon(systemSymbol: .house),
+        localizedSubtitle: feedSubtitle,
+        icon: UIApplicationShortcutIcon(systemSymbol: .houseCircle),
         userInfo: feedUserInfo
       ),
       UIApplicationShortcutItem(
         type: "Inbox",
         localizedTitle: "Inbox",
         localizedSubtitle: "",
-        icon: UIApplicationShortcutIcon(systemSymbol: .tray),
+        icon: UIApplicationShortcutIcon(systemSymbol: .trayCircle),
         userInfo: inboxUserInfo
       ),
       UIApplicationShortcutItem(
         type: "Account",
         localizedTitle: "Account",
         localizedSubtitle: accountSubtitle,
-        icon: UIApplicationShortcutIcon(systemSymbol: .personCropCircle),
+        icon: UIApplicationShortcutIcon(systemSymbol: .personCircle),
         userInfo: accountUserInfo
       ),
       UIApplicationShortcutItem(
         type: "Search",
         localizedTitle: "Search",
         localizedSubtitle: "",
-        icon: UIApplicationShortcutIcon(systemSymbol: .magnifyingglass),
+        icon: UIApplicationShortcutIcon(systemSymbol: .magnifyingglassCircle),
         userInfo: searchUserInfo
       ),
     ]
