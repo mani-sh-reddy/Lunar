@@ -46,7 +46,7 @@ struct SearchView: View {
             )
             .textCase(.none)
             .pickerStyle(.segmented)
-            SortTypePickerView(sortType: $searchSortType)
+            SortPicker(sortType: $searchSortType)
               .labelStyle(.iconOnly)
               .frame(width: 80, alignment: .trailing)
 

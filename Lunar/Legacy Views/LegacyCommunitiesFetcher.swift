@@ -25,10 +25,10 @@ import SwiftUI
   let imagePrefetcher = ImagePrefetcher(pipeline: ImagePipeline.shared)
 
   private var currentPage = 1
-  private var sortParameter: String?
-  private var typeParameter: String?
-  private var limitParameter: Int = 50
-  private var communityID: Int?
+  var sortParameter: String?
+  var typeParameter: String?
+  var limitParameter: Int = 50
+  var communityID: Int?
   private var jwt: String?
 
   private var endpointPath: String {
@@ -104,6 +104,8 @@ import SwiftUI
     .cacheResponse(using: cacher)
     .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: CommunityModel.self) { response in
+
+//      print("====== Fetched Communities ======")
 
       if self.networkInspectorEnabled {
         self.pulse.storeRequest(

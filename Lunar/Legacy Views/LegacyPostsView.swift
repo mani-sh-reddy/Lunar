@@ -103,7 +103,7 @@ struct old_PostsView: View {
       ToolbarItemGroup(placement: .navigationBarTrailing) {
         switch enableQuicklinks {
         case false:
-          SortTypePickerView(sortType: $forcedPostSort)
+          SortPicker(sortType: $forcedPostSort)
         case true:
           EmptyView()
         }

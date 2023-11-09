@@ -13,6 +13,8 @@ struct ExploreCommunitiesView: View {
 
   @StateObject var communitiesFetcher: LegacyCommunitiesFetcher
 
+  @State private var sortType: SortType = .new
+
   var title: String
 
   var body: some View {
@@ -39,14 +41,18 @@ struct ExploreCommunitiesView: View {
           } label: {
             LegacyCommunityRowView(community: community)
           }
-          .onAppear {
-            communitiesFetcher.loadMoreContentIfNeeded(currentItem: community)
-          }
         }
       } header: {
-        Text("Sorted by New")
+        Text(sortType.rawValue)
       }
       .accentColor(Color.primary)
+      ZStack {
+        Rectangle()
+          .foregroundStyle(.gray.opacity(0.1))
+          .onAppear { loadMoreCommunitiesOnAppear() }
+        ProgressView()
+          .id(UUID())
+      }
       if communitiesFetcher.isLoading {
         ProgressView()
       }
@@ -59,7 +65,21 @@ struct ExploreCommunitiesView: View {
     .navigationTitle(title)
     .navigationBarTitleDisplayMode(.inline)
     .toolbar {
-      ToolbarItem(placement: .topBarTrailing) { Image(systemSymbol: .sparkles) }
+      ToolbarItem(placement: .topBarTrailing) {
+        SortPicker(sortType: $sortType)
+      }
+    }
+    .onChange(of: sortType) { _ in
+      withAnimation {
+        communitiesFetcher.sortParameter = sortType.rawValue
+        communitiesFetcher.loadContent(isRefreshing: true)
+      }
+    }
+  }
+
+  func loadMoreCommunitiesOnAppear() {
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+      communitiesFetcher.loadContent()
     }
   }
 }

@@ -110,7 +110,6 @@ class CircleFillIcons {
       "at.circle.fill",
       "shekelsign.circle.fill",
       "xmark.bin.circle.fill",
-      "person2.circle.fill",
       "figure.walk.circle.fill",
       "figure.wave.circle.fill",
       "speaker.slash.circle.fill",

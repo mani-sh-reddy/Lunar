@@ -50,7 +50,7 @@
 		3C4EE4B92A8006D0009EE4A8 /* KbinPostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4EE4B82A8006D0009EE4A8 /* KbinPostRowView.swift */; };
 		3C4F0A002A54399F009DF8AB /* LunarAppEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F09FF2A54399F009DF8AB /* LunarAppEntryView.swift */; };
 		3C54C0962AB8E62C00F1BADE /* InAppSafariModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C54C0952AB8E62C00F1BADE /* InAppSafariModifier.swift */; };
-		3C54C09B2ABA1CCA00F1BADE /* SortTypePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C54C09A2ABA1CCA00F1BADE /* SortTypePickerView.swift */; };
+		3C54C09B2ABA1CCA00F1BADE /* SortPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C54C09A2ABA1CCA00F1BADE /* SortPicker.swift */; };
 		3C54C09D2ABA1ECE00F1BADE /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C54C09C2ABA1ECD00F1BADE /* Defaults.swift */; };
 		3C54C0A12ABB995E00F1BADE /* DefaultValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C54C0A02ABB995E00F1BADE /* DefaultValues.swift */; };
 		3C54C0A32ABB9F9500F1BADE /* AccountSelectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C54C0A22ABB9F9500F1BADE /* AccountSelectionItem.swift */; };
@@ -287,7 +287,7 @@
 		3C4F09FC2A54399F009DF8AB /* Lunar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lunar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4F09FF2A54399F009DF8AB /* LunarAppEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarAppEntryView.swift; sourceTree = "<group>"; };
 		3C54C0952AB8E62C00F1BADE /* InAppSafariModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppSafariModifier.swift; sourceTree = "<group>"; };
-		3C54C09A2ABA1CCA00F1BADE /* SortTypePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortTypePickerView.swift; sourceTree = "<group>"; };
+		3C54C09A2ABA1CCA00F1BADE /* SortPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortPicker.swift; sourceTree = "<group>"; };
 		3C54C09C2ABA1ECD00F1BADE /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		3C54C0A02ABB995E00F1BADE /* DefaultValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultValues.swift; sourceTree = "<group>"; };
 		3C54C0A22ABB9F9500F1BADE /* AccountSelectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSelectionItem.swift; sourceTree = "<group>"; };
@@ -970,7 +970,7 @@
 				3CCAA8BE2A65309E007CCEC2 /* NoInternetConnectionView.swift */,
 				3CE237342AA4D171000F1D20 /* LargeNavButton.swift */,
 				3CE237362AA4D188000F1D20 /* SmallNavButton.swift */,
-				3C54C09A2ABA1CCA00F1BADE /* SortTypePickerView.swift */,
+				3C54C09A2ABA1CCA00F1BADE /* SortPicker.swift */,
 				3CC3E41E2ADC36D900F7F9A9 /* DismissButtonView.swift */,
 			);
 			path = "Common Views";
@@ -1368,7 +1368,7 @@
 				3CF3B8F12A8F797D001C08B5 /* SettingsLayoutView.swift in Sources */,
 				3C65885D2A6189AF00A46DA3 /* CommentsFetcher.swift in Sources */,
 				3CECCE192AACFA4B0017A605 /* MyUserView.swift in Sources */,
-				3C54C09B2ABA1CCA00F1BADE /* SortTypePickerView.swift in Sources */,
+				3C54C09B2ABA1CCA00F1BADE /* SortPicker.swift in Sources */,
 				3CD4DA212A7EF3AE00BC374A /* SearchCommunitiesRowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

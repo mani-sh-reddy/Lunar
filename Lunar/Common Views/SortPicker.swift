@@ -1,5 +1,5 @@
 //
-//  SortTypePickerView.swift
+//  SortPicker.swift
 //  Lunar
 //
 //  Created by Mani on 19/09/2023.
@@ -23,7 +23,7 @@ enum SortType: String, Defaults.Serializable {
   case newComments = "NewComments"
 }
 
-struct SortTypePickerView: View {
+struct SortPicker: View {
   @Binding var sortType: SortType
 
   var body: some View {
@@ -31,7 +31,7 @@ struct SortTypePickerView: View {
       "Sort Type", selection: $sortType,
       content: {
         Group {
-          // MARK: -
+          // MARK: - Active
 
           Label {
             Text("Active")
@@ -39,7 +39,7 @@ struct SortTypePickerView: View {
             Image(systemSymbol: .chartLineUptrendXyaxis)
           }.tag(SortType.active)
 
-          // MARK: -
+          // MARK: - Hot
 
           Label {
             Text("Hot")
@@ -47,7 +47,7 @@ struct SortTypePickerView: View {
             Image(systemSymbol: .flameFill)
           }.tag(SortType.hot)
 
-          // MARK: -
+          // MARK: - Scaled
 
           Label {
             Text("Scaled")
@@ -55,7 +55,7 @@ struct SortTypePickerView: View {
             Image(systemSymbol: .scalemass)
           }.tag(SortType.scaled)
 
-          // MARK: -
+          // MARK: - New
 
           Label {
             Text("New")
@@ -63,7 +63,7 @@ struct SortTypePickerView: View {
             Image(systemSymbol: .sparkles)
           }.tag(SortType.new)
 
-          // MARK: -
+          // MARK: - Top Day
 
           Label {
             Text("Top Day")
@@ -71,7 +71,7 @@ struct SortTypePickerView: View {
             Image(systemSymbol: .dCircle)
           }.tag(SortType.topDay)
 
-          // MARK: -
+          // MARK: - Top Week
 
           Label {
             Text("Top Week")
@@ -79,7 +79,7 @@ struct SortTypePickerView: View {
             Image(systemSymbol: .wCircle)
           }.tag(SortType.topWeek)
 
-          // MARK: -
+          // MARK: - Top Month
 
           Label {
             Text("Top Month")
@@ -87,7 +87,7 @@ struct SortTypePickerView: View {
             Image(systemSymbol: .mCircle)
           }.tag(SortType.topMonth)
 
-          // MARK: -
+          // MARK: - Top Year
 
           Label {
             Text("Top Year")
@@ -95,7 +95,7 @@ struct SortTypePickerView: View {
             Image(systemSymbol: .yCircle)
           }.tag(SortType.topYear)
 
-          // MARK: -
+          // MARK: - Top All
 
           Label {
             Text("Top All")
@@ -103,7 +103,7 @@ struct SortTypePickerView: View {
             Image(systemSymbol: .arrowUpCircle)
           }.tag(SortType.topAll)
 
-          // MARK: -
+          // MARK: - Most Comments
 
           Label {
             Text("Most Comments")
@@ -111,15 +111,13 @@ struct SortTypePickerView: View {
             Image(systemSymbol: .quoteBubble)
           }.tag(SortType.mostComments)
 
-          // MARK: -
+          // MARK: - New Comments
 
           Label {
             Text("New Comments")
           } icon: {
             Image(systemSymbol: .starBubble)
           }.tag(SortType.newComments)
-
-          // MARK: -
         }
         .textCase(.none)
       }

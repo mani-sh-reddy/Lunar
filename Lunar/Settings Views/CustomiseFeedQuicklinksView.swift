@@ -19,7 +19,7 @@ struct CustomiseFeedQuicklinksView: View {
   @State var showingAddQuicklinkPopover = false
   @State var showingResetConfirmation = false
   @State var quicklinkTitle: String = ""
-  @State var quicklinkSort: String = "Active"
+  @State var quicklinkSort: SortType = .active
   @State var quicklinkType: String = "All"
   @State var quicklinkIcon: String? = "circle.dashed"
   @State var quicklinkColorString: String = "007AFF"
@@ -112,7 +112,7 @@ struct CustomiseFeedQuicklinksView: View {
             ForEach(iconList, id: \.self) { icon in
               ZStack {
                 if icon == quicklinkIcon {
-                  Image(systemSymbol: .circle) /// Cannot use SFSafeSymbols due to @AppStorage
+                  Image(systemSymbol: .circle)
                     .resizable()
                     .frame(width: 60, height: 60)
                     .foregroundStyle(quicklinkColor)
@@ -140,7 +140,7 @@ struct CustomiseFeedQuicklinksView: View {
           Text("quicklinkColor: \(String(describing: quicklinkColor))")
           Text("quicklinkTitle: \(quicklinkTitle)")
           Text("quicklinkType: \(quicklinkType)")
-          Text("quicklinkSort: \(quicklinkSort)")
+          Text("quicklinkSort: \(quicklinkSort.rawValue)")
           Text("quicklinkIcon: \(quicklinkIcon ?? "")")
           Text("quicklinkColorString: \(quicklinkColorString)")
         }
@@ -161,19 +161,22 @@ struct CustomiseFeedQuicklinksView: View {
         }
         .pickerStyle(.menu)
 
-        Picker("Post Sort", selection: $quicklinkSort) {
-          Text("Active").tag("Active")
-          Text("Hot").tag("Hot")
-          Text("New").tag("New")
-          Text("Top Day").tag("TopDay")
-          Text("Top Week").tag("TopWeek")
-          Text("Top Month").tag("TopMonth")
-          Text("Top Year").tag("TopYear")
-          Text("Top All").tag("TopAll")
-          Text("Most Comments").tag("MostComments")
-          Text("New Comments").tag("NewComments")
-        }
-        .pickerStyle(.menu)
+        SortPicker(sortType: $quicklinkSort)
+          .labelStyle(TitleOnlyLabelStyle())
+
+//        Picker("Post Sort", selection: $quicklinkSort) {
+//          Text("Active").tag("Active")
+//          Text("Hot").tag("Hot")
+//          Text("New").tag("New")
+//          Text("Top Day").tag("TopDay")
+//          Text("Top Week").tag("TopWeek")
+//          Text("Top Month").tag("TopMonth")
+//          Text("Top Year").tag("TopYear")
+//          Text("Top All").tag("TopAll")
+//          Text("Most Comments").tag("MostComments")
+//          Text("New Comments").tag("NewComments")
+//        }
+//        .pickerStyle(.menu)
       } header: {
         Text("Type")
       }
@@ -186,7 +189,7 @@ struct CustomiseFeedQuicklinksView: View {
           brightness: 0.3,
           saturation: 2,
           type: quicklinkType,
-          sort: quicklinkSort
+          sort: quicklinkSort.rawValue
         )
       } header: {
         Text("Quicklink Preview")
@@ -226,7 +229,7 @@ struct CustomiseFeedQuicklinksView: View {
       Quicklink(
         title: quicklinkTitle,
         type: quicklinkType,
-        sort: quicklinkSort,
+        sort: quicklinkSort.rawValue,
         icon: quicklinkIcon,
         iconColor: quicklinkColorString
       )

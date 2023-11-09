@@ -56,7 +56,7 @@ struct MyUserPostsView: View {
     }
     .toolbar {
       ToolbarItemGroup(placement: .navigationBarTrailing) {
-        SortTypePickerView(sortType: $forcedPostSort)
+        SortPicker(sortType: $forcedPostSort)
       }
     }
     .navigationTitle(heading)
