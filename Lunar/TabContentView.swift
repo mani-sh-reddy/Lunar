@@ -13,7 +13,6 @@ import SwiftUI
 struct TabContentView: View {
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
   @Default(.prominentInspectorButton) var prominentInspectorButton
-  @Default(.selectedTab) var selectedTab
 
   @State private var networkInspectorPopover: Bool = false
 
@@ -27,27 +26,27 @@ struct TabContentView: View {
   }
 
   var body: some View {
-    TabView(selection: $selectedTab) {
+    TabView {
       FeedView()
         .tabItem {
           Label("Feed", systemSymbol: .mailStack)
-        }.tag(0)
+        }
       PlaceholderView()
         .tabItem {
           Label("Inbox", systemSymbol: .tray)
-        }.tag(1)
+        }
       MyUserView()
         .tabItem {
           Label("Account", systemSymbol: .person)
-        }.tag(2)
+        }
       SearchView()
         .tabItem {
           Label("Search", systemSymbol: .magnifyingglass)
-        }.tag(3)
+        }
       SettingsView()
         .tabItem {
           Label("Settings", systemSymbol: .gearshape)
-        }.tag(4)
+        }
     }
     .overlay(alignment: .bottomTrailing) {
       if networkInspectorEnabled, prominentInspectorButton {
