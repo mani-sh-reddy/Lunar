@@ -59,6 +59,7 @@ struct SubscribedCommunitiesSectionView: View {
       } label: {
         userSubscriptionsDisclosureGroupLabel
       }
+      .disabled(realmCommunities.count == 0)
     }
 
     SubscribedFeedQuicklink()
@@ -75,6 +76,7 @@ struct SubscribedCommunitiesSectionView: View {
         }
         fetchSubscribedCommunities()
       }
+      .disabled(realmCommunities.count == 0)
   }
 
   var userSubscriptionsDisclosureGroupLabel: some View {
