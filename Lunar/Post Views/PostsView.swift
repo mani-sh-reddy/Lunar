@@ -45,6 +45,8 @@ struct PostsView: View {
   @State var page: Int = 1
   @State var showingCreatePostPopover: Bool = false
 
+  @State var showingProgressView: Bool = false
+
   let hapticsRigid = UIImpactFeedbackGenerator(style: .rigid)
 
   var body: some View {
@@ -71,15 +73,20 @@ struct PostsView: View {
       } else {
         HStack {
           Spacer()
-          SmallNavButton(
-            systemSymbol: .handTapFill,
-            text: "Load More Posts",
-            color: .secondary,
-            symbolLocation: .left
-          )
+          if showingProgressView {
+            ProgressView()
+              .frame(width: 20)
+          } else {
+            Image(systemSymbol: .handTapFill)
+              .imageScale(.small)
+              .frame(width: 20)
+          }
+          Text("Load More Posts")
           Spacer()
         }
-        .padding(.bottom, 10)
+        .foregroundColor(.secondary)
+        .font(.subheadline)
+        .padding(.vertical, 10)
         .listRowSeparator(.hidden)
         .onTapGesture { loadMorePostsButtonAction() }
       }
@@ -89,6 +96,7 @@ struct PostsView: View {
     .navigationTitle(heading)
     .navigationBarTitleDisplayMode(.inline)
     .refreshable {
+      showingProgressView = true
       try? await Task.sleep(nanoseconds: 1 * 1_000_000_000)
       resetRealmPosts()
     }
@@ -234,6 +242,7 @@ struct PostsView: View {
   }
 
   func loadMorePostsOnAppearAction() {
+    showingProgressView = true
     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
       PostsFetcher(
         sort: sort,
@@ -245,11 +254,13 @@ struct PostsView: View {
       ).loadContent()
       /// Setting the page number for the batch.
       page += 1
+      showingProgressView = false
     }
     runOnce = true
   }
 
   func loadMorePostsButtonAction() {
+    showingProgressView = true
     hapticsRigid.impactOccurred(intensity: 0.5)
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
       PostsFetcher(
@@ -260,6 +271,7 @@ struct PostsView: View {
         page: page,
         filterKey: filterKey
       ).loadContent()
+      showingProgressView = false
       page += 1
     }
   }
