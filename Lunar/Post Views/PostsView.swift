@@ -93,7 +93,9 @@ struct PostsView: View {
       resetRealmPosts()
     }
     .onChange(of: selectedInstance) { _ in
-      resetRealmPosts()
+      /// Resetting realm post action within InstanceSelectorView
+      page = 1
+      runOnce = false
     }
     .toolbar {
       ToolbarItemGroup(placement: .navigationBarTrailing) {

@@ -5,8 +5,8 @@
 //  Created by Mani on 24/07/2023.
 //
 
-import Alamofire
 import Defaults
+import RealmSwift
 import SwiftUI
 
 struct InstanceSelectorView: View {
@@ -31,6 +31,17 @@ struct InstanceSelectorView: View {
         }
         .pickerStyle(.menu)
       }
+    }
+    .onChange(of: selectedInstance) { _ in
+      resetRealmPosts()
+    }
+  }
+
+  func resetRealmPosts() {
+    let realm = try! Realm()
+    try! realm.write {
+      let posts = realm.objects(RealmPost.self)
+      realm.delete(posts)
     }
   }
 }
