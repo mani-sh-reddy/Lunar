@@ -12,7 +12,7 @@
 
 Lunar is an iOS app that serves as a client for [Lemmy](https://join-lemmy.org/instances) and [Kbin](https://kbin.pub/en), the open-source federated alternatives to Reddit
 
-![Lunar Github Screenshots](Images/LunarScreenshots.webp)
+![Lunar Features Dashboard](Images/Lunar-Features-Dashboard.webp)
 
 </div>
 
@@ -20,10 +20,9 @@ Lunar is an iOS app that serves as a client for [Lemmy](https://join-lemmy.org/i
 
 **Download Lunar beta on TestFlight - https://testflight.apple.com/join/GEFCCQTb**
 
-
 ## Package Dependencies
 
-[Alamofire](https://github.com/Alamofire/Alamofire)  - Elegant HTTP Networking in Swift
+[Alamofire](https://github.com/Alamofire/Alamofire) - Elegant HTTP Networking in Swift
 
 [BetterSafariView](https://github.com/stleamist/BetterSafariView) - A better way to present a SFSafariViewController
 
@@ -46,7 +45,6 @@ Lunar is an iOS app that serves as a client for [Lemmy](https://join-lemmy.org/i
 [Shiny](https://github.com/maustinstar/shiny) - Simulate lighting and motion effects on color
 
 [WhatsNewKit](https://github.com/SvenTiigi/WhatsNewKit) - Showcase your new app features
-
 
 ## Contributing
 
