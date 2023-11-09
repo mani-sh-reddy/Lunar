@@ -14,6 +14,11 @@ class CustomSymbols {
   @Default(.accentColor) var accentColor
   @Default(.accentColorString) var accentColorString
 
+  var hiddenPosts: some View {
+    Image(systemSymbol: accentColorString == "Default" ? .lockFill : .lock)
+      .foregroundStyle(accentColorString == "Default" ? .gray : accentColor)
+  }
+
   var notificationsSettings: some View {
     Image(systemSymbol: accentColorString == "Default" ? .bellBadgeFill : .bellBadge)
       .symbolRenderingMode(accentColorString == "Default" ? .multicolor : .monochrome)

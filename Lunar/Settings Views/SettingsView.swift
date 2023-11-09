@@ -55,6 +55,7 @@ struct SettingsView: View {
         } header: { Text("Info") }
 
         Section {
+          hiddenPostsNavLink
           additionalSettingsNavLink
           developmentSettingsNavLink
         } header: { Text("Extras") }
@@ -270,6 +271,18 @@ struct SettingsView: View {
       isPresented: $showSafariGithub,
       stringURL: "https://github.com/mani-sh-reddy/Lunar"
     )
+  }
+
+  var hiddenPostsNavLink: some View {
+    NavigationLink {
+      HiddenPostsView()
+    } label: {
+      Label {
+        Text("Hidden Posts")
+      } icon: {
+        CustomSymbols().hiddenPosts
+      }
+    }
   }
 
   var additionalSettingsNavLink: some View {
