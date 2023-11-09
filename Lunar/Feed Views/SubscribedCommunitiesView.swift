@@ -7,6 +7,7 @@
 
 import Defaults
 import RealmSwift
+import SFSafeSymbols
 import SwiftUI
 
 // communitiesFetcher: CommunitiesFetcher(
@@ -87,6 +88,13 @@ struct SubscribedCommunitiesSectionView: View {
       Text("Subscribed Communities")
         .padding(.horizontal, 10)
         .foregroundColor(.primary)
+
+      Spacer()
+
+      Text(String(realmCommunities.count))
+        .bold()
+        .font(.caption)
+        .foregroundStyle(.secondary)
     }
   }
 
