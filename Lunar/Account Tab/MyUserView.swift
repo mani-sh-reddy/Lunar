@@ -79,9 +79,9 @@ struct MyUserView: View {
           }
         }
         .pipeline(ImagePipeline.shared)
-        .processors([.resize(width: 100)])
+        .processors([.resize(width: 300)])
 
-        .frame(width: 150, height: 150)
+        .frame(width: 250, height: 250)
         .transition(.opacity)
         .padding(.bottom, 10)
 
