@@ -15,6 +15,7 @@ import UIKit
 struct SettingsClearRealmView: View {
   @Default(.appBundleID) var appBundleID
   @Default(.realmLastReset) var realmLastReset
+  @Default(.activeAccount) var activeAccount
 
   @State var lastReset: String = ""
 
@@ -55,6 +56,21 @@ struct SettingsClearRealmView: View {
       realm.deleteAll()
     }
     haptics.notificationOccurred(.success)
+
+    if !activeAccount.actorID.isEmpty {
+      refetchSubscribedCommunities()
+    }
+  }
+
+  func refetchSubscribedCommunities() {
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+      CommunitiesFetcher(
+        limitParameter: 50,
+        sortParameter: "Active",
+        typeParameter: "Subscribed",
+        instance: URLParser.extractDomain(from: activeAccount.actorID)
+      ).loadContent()
+    }
   }
 
   func currentDateAndTime() -> String {

@@ -91,6 +91,7 @@ class PostsFetcher: ObservableObject {
     /// Values that can be passed in explicitly. Reverts to default if not passed in.
     self.sort = sort
     self.type = type
+
     /// Force an instance if it's different to the one you want
     self.instance = instance
 

@@ -19,6 +19,7 @@ import SwiftUI
   @Default(.activeAccount) var activeAccount
   @Default(.appBundleID) var appBundleID
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
+  @Default(.selectedInstance) var selectedInstance
 
   @Published var communities = [CommunityObject]()
 
@@ -30,6 +31,7 @@ import SwiftUI
   private var limitParameter: Int = 50
   private var communityID: Int?
   private var jwt: String?
+  var instance: String?
 
   private var endpointPath: String {
     if communityID != nil {
@@ -47,7 +49,8 @@ import SwiftUI
       currentPage: currentPage,
       limitParameter: limitParameter,
       communityID: communityID,
-      jwt: jwt
+      jwt: jwt,
+      instance: instance
     ).buildURL()
   }
 
@@ -58,7 +61,8 @@ import SwiftUI
       typeParameter: typeParameter,
       currentPage: currentPage,
       limitParameter: limitParameter,
-      communityID: communityID
+      communityID: communityID,
+      instance: instance
     ).buildURL()
   }
 
@@ -67,11 +71,15 @@ import SwiftUI
   init(
     limitParameter: Int,
     sortParameter: String? = nil,
-    typeParameter: String? = nil
+    typeParameter: String? = nil,
+    instance: String? = nil
   ) {
     self.sortParameter = sortParameter ?? communitiesSort
     self.typeParameter = typeParameter ?? communitiesType
     self.limitParameter = limitParameter
+
+    /// Force an instance if it's different to the one you want
+    self.instance = instance
 
     jwt = getJWTFromKeychain(actorID: activeAccount.actorID) ?? ""
   }
