@@ -10,10 +10,6 @@ import RealmSwift
 import SFSafeSymbols
 import SwiftUI
 
-// communitiesFetcher: CommunitiesFetcher(
-//  limitParameter: 50, sortParameter: "Active", typeParameter: "Subscribed"
-// ))
-
 struct SubscribedCommunitiesSectionView: View {
   @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
   @ObservedResults(RealmCommunity.self, where: ({ $0.subscribed != .notSubscribed })) var realmCommunities

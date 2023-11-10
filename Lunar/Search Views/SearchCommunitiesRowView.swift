@@ -21,14 +21,6 @@ struct SearchCommunitiesRowView: View {
   var body: some View {
     ForEach(searchCommunitiesResults, id: \.community.id) { community in
       NavigationLink {
-        //        PostsView(
-        //          sort: "Active",
-        //          type: "All",
-        //          user: 0,
-        //          communityID: 0,
-        //          personID: 0,
-        //          heading: community.community.title
-        //        )
         PostsView(
           filteredPosts: realmPosts.filter { post in
             post.sort == "Active" && post.type == "All"
@@ -46,12 +38,6 @@ struct SearchCommunitiesRowView: View {
           communityDescription: community.community.description,
           communityIcon: community.community.icon
         )
-        //        PostsView(
-        //          postsFetcher: PostsFetcher(
-        //            communityID: community.community.id
-        //          ), title: community.community.name,
-        //          community: community
-        //        )
       } label: {
         HStack {
           LazyImage(url: URL(string: community.community.icon ?? "")) { state in

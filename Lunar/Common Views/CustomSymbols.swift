@@ -15,7 +15,7 @@ class CustomSymbols {
   @Default(.accentColorString) var accentColorString
 
   var hiddenPosts: some View {
-    Image(systemSymbol: accentColorString == "Default" ? .lockFill : .lock)
+    Image(systemSymbol: accentColorString == "Default" ? .lockRectangleOnRectangleFill : .lockRectangleOnRectangle)
       .foregroundStyle(accentColorString == "Default" ? .gray : accentColor)
   }
 

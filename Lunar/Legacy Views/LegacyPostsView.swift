@@ -121,9 +121,3 @@ struct old_PostsView: View {
     .modifier(ConditionalListStyleModifier(listStyle: listStyle))
   }
 }
-
-// struct PostsView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    PostsView(postsFetcher: PostsFetcher())
-//  }
-// }
