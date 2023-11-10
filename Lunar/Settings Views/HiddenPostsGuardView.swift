@@ -18,7 +18,9 @@ struct HiddenPostsGuardView: View {
     ZStack {
       if appContext.appUnlocked {
         PostsView(
-          filteredPosts: hiddenRealmPosts.filter { post in post.postHidden },
+          filteredPosts: hiddenRealmPosts.filter { post in
+            post.postHidden
+          },
           sort: "", /// Can set these to anything because nothing is being fetched here.
           type: "",
           user: 0,

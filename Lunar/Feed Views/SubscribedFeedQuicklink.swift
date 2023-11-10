@@ -33,7 +33,8 @@ struct SubscribedFeedQuicklink: View {
       NavigationLink {
         PostsView(
           filteredPosts: realmPosts.filter { post in
-            post.sort == subscribedPostsQuicklink.sort && post.type == subscribedPostsQuicklink.type
+            post.sort == subscribedPostsQuicklink.sort
+              && post.type == subscribedPostsQuicklink.type
               && post.filterKey == "sortAndTypeOnly"
           },
           sort: subscribedPostsQuicklink.sort,

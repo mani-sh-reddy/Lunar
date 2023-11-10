@@ -22,10 +22,10 @@ struct SearchUsersRowView: View {
       NavigationLink {
         PostsView(
           filteredPosts: realmPosts.filter { post in
-            post.sort == "Active" &&
-              post.type == "All" &&
-              post.personID == person.person.id &&
-              post.filterKey == "personSpecific"
+            post.sort == "Active"
+              && post.type == "All"
+              && post.personID == person.person.id
+              && post.filterKey == "personSpecific"
           },
           sort: "Active",
           type: "All",

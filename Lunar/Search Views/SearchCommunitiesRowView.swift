@@ -23,8 +23,10 @@ struct SearchCommunitiesRowView: View {
       NavigationLink {
         PostsView(
           filteredPosts: realmPosts.filter { post in
-            post.sort == "Active" && post.type == "All"
-              && post.communityID == community.community.id && post.filterKey == "communitySpecific"
+            post.sort == "Active"
+              && post.type == "All"
+              && post.communityID == community.community.id
+              && post.filterKey == "communitySpecific"
           },
           sort: "Active",
           type: "All",

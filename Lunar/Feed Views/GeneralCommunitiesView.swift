@@ -19,11 +19,11 @@ struct GeneralCommunitiesView: View {
 
   var body: some View {
     ForEach(enableQuicklinks ? quicklinks : lockedQuicklinks, id: \.self) { quicklink in
-
       NavigationLink {
         PostsView(
           filteredPosts: realmPosts.filter { post in
-            post.sort == quicklink.sort && post.type == quicklink.type
+            post.sort == quicklink.sort
+              && post.type == quicklink.type
               && post.filterKey == "sortAndTypeOnly"
           },
           sort: quicklink.sort,

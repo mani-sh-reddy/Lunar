@@ -127,7 +127,24 @@ struct PostsView: View {
   func resetRealmPosts() {
     let realm = try! Realm()
     try! realm.write {
-      let posts = realm.objects(RealmPost.self)
+      let posts = realm.objects(RealmPost.self).where { post in
+        (
+          post.sort == sort
+            && post.type == type
+            && post.filterKey == "sortAndTypeOnly"
+        )
+          || (
+            post.sort == sort
+              && post.type == type
+              && post.communityID == communityID
+              && post.filterKey == "communitySpecific"
+          )
+          || (
+            post.sort == sort
+              && post.type == type
+              && post.filterKey == "personSpecific"
+          )
+      }
       realm.delete(posts)
     }
     page = 1
