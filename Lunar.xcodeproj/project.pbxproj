@@ -29,7 +29,7 @@
 		3C29F5452A97D49C001563E7 /* LunarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C29F5442A97D49C001563E7 /* LunarUITests.swift */; };
 		3C29F5472A97D49C001563E7 /* LunarUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C29F5462A97D49C001563E7 /* LunarUITestsLaunchTests.swift */; };
 		3C29F54E2A97D4AE001563E7 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C29F54D2A97D4AE001563E7 /* SnapshotHelper.swift */; };
-		3C2A80592AFD88C70077B7D7 /* HiddenPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2A80582AFD88C70077B7D7 /* HiddenPostsView.swift */; };
+		3C2A80592AFD88C70077B7D7 /* HiddenPostsGuardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2A80582AFD88C70077B7D7 /* HiddenPostsGuardView.swift */; };
 		3C2A805B2AFD893A0077B7D7 /* Biometrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2A805A2AFD893A0077B7D7 /* Biometrics.swift */; };
 		3C2B14712AABC66E0028E05A /* Quicklink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2B14702AABC66E0028E05A /* Quicklink.swift */; };
 		3C2B14732AABC6AD0028E05A /* GeneralCommunityButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2B14722AABC6AD0028E05A /* GeneralCommunityButtonView.swift */; };
@@ -38,6 +38,7 @@
 		3C2B14792AABD1290028E05A /* SettingsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2B14782AABD1290028E05A /* SettingsFeedView.swift */; };
 		3C2B147D2AABE17C0028E05A /* SymbolPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2B147C2AABE17C0028E05A /* SymbolPicker.swift */; };
 		3C2C454A2AA648A000727DD5 /* UserDefaultsExplorerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2C45492AA648A000727DD5 /* UserDefaultsExplorerView.swift */; };
+		3C41EEC82AFECEF200F47931 /* CheckBiometricType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C41EEC72AFECEF200F47931 /* CheckBiometricType.swift */; };
 		3C42AD1A2A8038300056AFBC /* KbinCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42AD192A8038300056AFBC /* KbinCommentsView.swift */; };
 		3C42AD1C2A803AE50056AFBC /* KbinCommentsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42AD1B2A803AE50056AFBC /* KbinCommentsFetcher.swift */; };
 		3C432F5C2A819E54000D5321 /* KbinThreadBodyFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C432F5B2A819E54000D5321 /* KbinThreadBodyFetcher.swift */; };
@@ -269,7 +270,7 @@
 		3C29F5442A97D49C001563E7 /* LunarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarUITests.swift; sourceTree = "<group>"; };
 		3C29F5462A97D49C001563E7 /* LunarUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3C29F54D2A97D4AE001563E7 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
-		3C2A80582AFD88C70077B7D7 /* HiddenPostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenPostsView.swift; sourceTree = "<group>"; };
+		3C2A80582AFD88C70077B7D7 /* HiddenPostsGuardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenPostsGuardView.swift; sourceTree = "<group>"; };
 		3C2A805A2AFD893A0077B7D7 /* Biometrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Biometrics.swift; sourceTree = "<group>"; };
 		3C2B14702AABC66E0028E05A /* Quicklink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quicklink.swift; sourceTree = "<group>"; };
 		3C2B14722AABC6AD0028E05A /* GeneralCommunityButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralCommunityButtonView.swift; sourceTree = "<group>"; };
@@ -278,6 +279,7 @@
 		3C2B14782AABD1290028E05A /* SettingsFeedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsFeedView.swift; sourceTree = "<group>"; };
 		3C2B147C2AABE17C0028E05A /* SymbolPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolPicker.swift; sourceTree = "<group>"; };
 		3C2C45492AA648A000727DD5 /* UserDefaultsExplorerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExplorerView.swift; sourceTree = "<group>"; };
+		3C41EEC72AFECEF200F47931 /* CheckBiometricType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBiometricType.swift; sourceTree = "<group>"; };
 		3C42AD192A8038300056AFBC /* KbinCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinCommentsView.swift; sourceTree = "<group>"; };
 		3C42AD1B2A803AE50056AFBC /* KbinCommentsFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KbinCommentsFetcher.swift; sourceTree = "<group>"; };
 		3C432F5B2A819E54000D5321 /* KbinThreadBodyFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KbinThreadBodyFetcher.swift; sourceTree = "<group>"; };
@@ -866,6 +868,7 @@
 				3CE0A7932A8551CD008A782A /* EncodeDecodeHelpers.swift */,
 				3C7B7DC82A89485000A02A43 /* TimestampParser.swift */,
 				3CC3E4262ADC589B00F7F9A9 /* PhotoPicker.swift */,
+				3C41EEC72AFECEF200F47931 /* CheckBiometricType.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -954,7 +957,7 @@
 				3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheView.swift */,
 				3C6ACC212AE5481F0073288E /* SettingsClearRealmView.swift */,
 				3C4DB8C52AB72145000137CF /* SettingsAppResetView.swift */,
-				3C2A80582AFD88C70077B7D7 /* HiddenPostsView.swift */,
+				3C2A80582AFD88C70077B7D7 /* HiddenPostsGuardView.swift */,
 				3C9E548F2A94C0870093DDC7 /* Account */,
 				3C9E54962A94C34D0093DDC7 /* Appearance */,
 				3CE35B1D2AE3D7E100263E13 /* Additional Options */,
@@ -1317,7 +1320,7 @@
 				3CB9C7352AA2461700FB5A10 /* PersonObject.swift in Sources */,
 				3C5ECB242A766D64002BA561 /* DebugLoginPagePropertiesView.swift in Sources */,
 				3CC734A62A6D591A007523B5 /* URLComponentsExtension.swift in Sources */,
-				3C2A80592AFD88C70077B7D7 /* HiddenPostsView.swift in Sources */,
+				3C2A80592AFD88C70077B7D7 /* HiddenPostsGuardView.swift in Sources */,
 				3C9E54982A953FB60093DDC7 /* SettingsSplashScreenView.swift in Sources */,
 				3CEF4CD52A69B798002B83C0 /* URLParser.swift in Sources */,
 				3CC3E4292ADC7B7A00F7F9A9 /* LocalImagePopoverView.swift in Sources */,
@@ -1373,6 +1376,7 @@
 				3C6588592A6169EB00A46DA3 /* SettingsView.swift in Sources */,
 				3C1A3F592A73B17E00898FC6 /* LoginView.swift in Sources */,
 				3C1A3F552A731C3F00898FC6 /* ImageExtension.swift in Sources */,
+				3C41EEC82AFECEF200F47931 /* CheckBiometricType.swift in Sources */,
 				3CF3B8F12A8F797D001C08B5 /* SettingsLayoutView.swift in Sources */,
 				3C65885D2A6189AF00A46DA3 /* CommentsFetcher.swift in Sources */,
 				3CECCE192AACFA4B0017A605 /* MyUserView.swift in Sources */,

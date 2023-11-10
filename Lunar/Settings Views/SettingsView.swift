@@ -275,7 +275,7 @@ struct SettingsView: View {
 
   var hiddenPostsNavLink: some View {
     NavigationLink {
-      HiddenPostsView()
+      HiddenPostsGuardView()
     } label: {
       Label {
         Text("Hidden Posts")
