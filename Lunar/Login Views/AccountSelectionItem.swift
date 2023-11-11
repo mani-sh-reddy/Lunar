@@ -7,12 +7,15 @@
 
 import Defaults
 import Foundation
+import SFSafeSymbols
 import SwiftUI
 
 struct AccountSelectionItem: View {
   @Default(.activeAccount) var activeAccount
 
   let account: AccountModel
+
+  let widgetLink = WidgetLink()
 
   let haptics = UIImpactFeedbackGenerator(style: .soft)
 
@@ -35,6 +38,8 @@ struct AccountSelectionItem: View {
     .onTapGesture {
       haptics.impactOccurred()
       activeAccount = account
+      widgetLink.storeAccountData(account: account)
+      widgetLink.reloadWidget(kind: "AccountWidget")
     }
   }
 }

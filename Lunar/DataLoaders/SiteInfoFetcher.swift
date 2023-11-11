@@ -90,6 +90,26 @@ class SiteInfoFetcher: ObservableObject {
               }
             }
 
+            // Example of loading an image based on a key
+            ImageDownloadManager(suiteName: "group.io.github.mani-sh-reddy.Lunar")
+              .loadImage(forKey: actorID.replacingOccurrences(of: "/", with: "_")) { _ in
+//                if let image = image {
+//                  // Do something with the loaded image
+//                  print("Image loaded successfully.")
+//                } else {
+//                  print("Failed to load the image.")
+//                }
+              }
+
+            if let avatarURL {
+              self.storeUserAvatarToDisk(
+                avatarURL: avatarURL,
+                suiteName: "group.io.github.mani-sh-reddy.Lunar",
+                imageKey: actorID
+                  .replacingOccurrences(of: "/", with: "_")
+              )
+            }
+
             if !foundMatch {
               self.loggedInAccounts.append(self.loggedInAccount)
               self.activeAccount = self.loggedInAccount
@@ -115,5 +135,18 @@ class SiteInfoFetcher: ObservableObject {
           }
         }
       }
+  }
+
+  func storeUserAvatarToDisk(avatarURL: String, suiteName: String, imageKey: String) {
+    let imageDownloadManager = ImageDownloadManager(suiteName: suiteName)
+    if let imageURL = URL(string: avatarURL) {
+      imageDownloadManager.storeImage(fromURL: imageURL, forKey: imageKey) { success in
+        if success {
+          print("Image stored successfully. \(imageKey)")
+        } else {
+          print("Failed to store the image.")
+        }
+      }
+    }
   }
 }
