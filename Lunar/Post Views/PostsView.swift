@@ -84,6 +84,7 @@ struct PostsView: View {
           Text("Load More Posts")
           Spacer()
         }
+        .listRowBackground(Color("postListBackground"))
         .foregroundColor(.secondary)
         .font(.subheadline)
         .padding(.vertical, 10)
@@ -168,6 +169,7 @@ struct PostsView: View {
         }
       }
     }
+    .listRowBackground(Color("postListBackground"))
     .listRowSeparator(.hidden)
   }
 
@@ -209,6 +211,7 @@ struct PostsView: View {
         }
       }
     }
+    .listRowBackground(Color("postListBackground"))
     .listRowSeparator(.hidden)
   }
 
