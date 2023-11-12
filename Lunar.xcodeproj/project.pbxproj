@@ -67,6 +67,7 @@
 		3C4DB8C22AB70856000137CF /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 3C4DB8C12AB70856000137CF /* NukeExtensions */; };
 		3C4DB8C62AB72145000137CF /* SettingsAppResetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4DB8C52AB72145000137CF /* SettingsAppResetView.swift */; };
 		3C4DB8C82AB725FB000137CF /* DataCacheHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4DB8C72AB725FB000137CF /* DataCacheHolder.swift */; };
+		3C4EBFF92B00F735004B7665 /* SupportedFamiliesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4EBFF82B00F735004B7665 /* SupportedFamiliesExtension.swift */; };
 		3C4EE4B92A8006D0009EE4A8 /* KbinPostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4EE4B82A8006D0009EE4A8 /* KbinPostRowView.swift */; };
 		3C4F0A002A54399F009DF8AB /* LunarAppEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F09FF2A54399F009DF8AB /* LunarAppEntryView.swift */; };
 		3C54C0962AB8E62C00F1BADE /* InAppSafariModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C54C0952AB8E62C00F1BADE /* InAppSafariModifier.swift */; };
@@ -343,6 +344,7 @@
 		3C4DB8BD2AB701B2000137CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C4DB8C52AB72145000137CF /* SettingsAppResetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAppResetView.swift; sourceTree = "<group>"; };
 		3C4DB8C72AB725FB000137CF /* DataCacheHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCacheHolder.swift; sourceTree = "<group>"; };
+		3C4EBFF82B00F735004B7665 /* SupportedFamiliesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedFamiliesExtension.swift; sourceTree = "<group>"; };
 		3C4EE4B82A8006D0009EE4A8 /* KbinPostRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KbinPostRowView.swift; sourceTree = "<group>"; };
 		3C4F09FC2A54399F009DF8AB /* Lunar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lunar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4F09FF2A54399F009DF8AB /* LunarAppEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarAppEntryView.swift; sourceTree = "<group>"; };
@@ -621,6 +623,7 @@
 				3C2EA64A2AFFD033007AC12D /* IconWidget.swift */,
 				3C2EA69D2AFFDE87007AC12D /* AccountWidget.swift */,
 				3C2EA6942AFFDBBB007AC12D /* Info.plist */,
+				3C4EBFF82B00F735004B7665 /* SupportedFamiliesExtension.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -1295,6 +1298,7 @@
 			files = (
 				3C2EA6D02B003B45007AC12D /* ArrayExtension.swift in Sources */,
 				3C2EA6CF2B003B0F007AC12D /* URLParser.swift in Sources */,
+				3C4EBFF92B00F735004B7665 /* SupportedFamiliesExtension.swift in Sources */,
 				3C2EA69F2AFFDF08007AC12D /* AccountWidget.swift in Sources */,
 				3C2EA68F2AFFDBBA007AC12D /* WidgetsBundle.swift in Sources */,
 				3C2EA6CE2B002DCA007AC12D /* ImageDownloadRetriever.swift in Sources */,

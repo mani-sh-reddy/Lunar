@@ -8,6 +8,8 @@
 import SwiftUI
 import WidgetKit
 
+// MARK: - IconWidgetProvider
+
 struct IconWidgetProvider: TimelineProvider {
   func placeholder(in _: Context) -> IconWidgetEntry {
     IconWidgetEntry(date: Date())
@@ -34,20 +36,47 @@ struct IconWidgetProvider: TimelineProvider {
   }
 }
 
+// MARK: - IconWidgetEntry
+
 struct IconWidgetEntry: TimelineEntry {
   let date: Date
 }
 
+// MARK: - IconWidgetEntryView
+
 struct IconWidgetEntryView: View {
+  @Environment(\.widgetFamily) var widgetFamily
+
   var entry: IconWidgetProvider.Entry
 
   var body: some View {
+    switch widgetFamily {
+    case .systemSmall:
+      square
+    case .accessoryCircular:
+      circle
+    default:
+      square
+    }
+  }
+
+  var circle: some View {
+    Image("WidgetIcon")
+      .resizable()
+      .clipShape(Circle())
+      .scaledToFit()
+      .ignoresSafeArea()
+  }
+
+  var square: some View {
     Image("WidgetIcon")
       .resizable()
       .scaledToFit()
       .ignoresSafeArea()
   }
 }
+
+// MARK: - IconWidget
 
 struct IconWidget: Widget {
   let kind: String = "IconWidget"
@@ -63,15 +92,48 @@ struct IconWidget: Widget {
           .background()
       }
     }
-    .supportedFamilies([.systemSmall])
+    .adaptedSupportedFamilies()
     .contentMarginsDisabled()
     .configurationDisplayName("App Icon")
     .description("Display a large Lunar app icon.")
   }
+
+  func widgetCompatibility() -> [WidgetFamily] {
+    if #available(iOS 16, *) {
+      [
+        .systemSmall,
+        .accessoryCircular,
+      ]
+    } else {
+      [
+        .systemSmall,
+      ]
+    }
+  }
 }
 
-#Preview(as: .systemSmall) {
-  IconWidget()
-} timeline: {
-  IconWidgetEntry(date: .now)
+// MARK: - Preview
+
+// #Preview(as: .systemSmall) {
+//  IconWidget()
+// } timeline: {
+//  IconWidgetEntry(date: .now)
+// }
+
+struct IconWidget_Previews: PreviewProvider {
+  static var previews: some View {
+    let entry = IconWidgetEntry(date: Date())
+    if #available(iOS 17.0, *) {
+      IconWidgetEntryView(entry: entry)
+        .containerBackground(.background, for: .widget)
+        .previewContext(WidgetPreviewContext(family: .systemSmall))
+      IconWidgetEntryView(entry: entry)
+        .containerBackground(.background, for: .widget)
+        .previewContext(WidgetPreviewContext(family: .accessoryCircular))
+    } else {
+      IconWidgetEntryView(entry: entry)
+        .padding()
+        .background()
+    }
+  }
 }
