@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C066B632B017B0A00220A59 /* WhatsNewKitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C066B622B017B0A00220A59 /* WhatsNewKitData.swift */; };
 		3C0E2DD02AA909BB00095FA5 /* LegacyPostsSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0E2DCF2AA909BB00095FA5 /* LegacyPostsSectionView.swift */; };
 		3C113C392A6E71E100FDE5CE /* SettingsAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */; };
 		3C113C432A6EA92600FDE5CE /* InstanceSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C422A6EA92600FDE5CE /* InstanceSelectorView.swift */; };
@@ -86,7 +87,6 @@
 		3C62C2552A72F4BC003BAC5B /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C62C2542A72F4BC003BAC5B /* SplashScreenView.swift */; };
 		3C64E7C92AF700E9003BB42E /* WhatsNew_0_0_0.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C64E7C82AF700E9003BB42E /* WhatsNew_0_0_0.swift */; };
 		3C64E7CC2AF7057B003BB42E /* WhatsNew_2023_11.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C64E7CB2AF7057B003BB42E /* WhatsNew_2023_11.swift */; };
-		3C64E7CE2AF70E90003BB42E /* WhatsNewKitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C64E7CD2AF70E90003BB42E /* WhatsNewKitData.swift */; };
 		3C6588592A6169EB00A46DA3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6588582A6169EB00A46DA3 /* SettingsView.swift */; };
 		3C65885D2A6189AF00A46DA3 /* CommentsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C65885C2A6189AF00A46DA3 /* CommentsFetcher.swift */; };
 		3C65885F2A621C6100A46DA3 /* ExploreCommunitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C65885E2A621C6100A46DA3 /* ExploreCommunitiesView.swift */; };
@@ -294,6 +294,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3C066B622B017B0A00220A59 /* WhatsNewKitData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewKitData.swift; sourceTree = "<group>"; };
 		3C0E2DCF2AA909BB00095FA5 /* LegacyPostsSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyPostsSectionView.swift; sourceTree = "<group>"; };
 		3C10A76E2A72A6FC0040F1A9 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAccountView.swift; sourceTree = "<group>"; };
@@ -366,7 +367,6 @@
 		3C62C2542A72F4BC003BAC5B /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		3C64E7C82AF700E9003BB42E /* WhatsNew_0_0_0.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNew_0_0_0.swift; sourceTree = "<group>"; };
 		3C64E7CB2AF7057B003BB42E /* WhatsNew_2023_11.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNew_2023_11.swift; sourceTree = "<group>"; };
-		3C64E7CD2AF70E90003BB42E /* WhatsNewKitData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsNewKitData.swift; sourceTree = "<group>"; };
 		3C6588582A6169EB00A46DA3 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		3C65885C2A6189AF00A46DA3 /* CommentsFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsFetcher.swift; sourceTree = "<group>"; };
 		3C65885E2A621C6100A46DA3 /* ExploreCommunitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCommunitiesView.swift; sourceTree = "<group>"; };
@@ -721,7 +721,7 @@
 		3C64E7CA2AF70528003BB42E /* WhatsNewKitData */ = {
 			isa = PBXGroup;
 			children = (
-				3C64E7CD2AF70E90003BB42E /* WhatsNewKitData.swift */,
+				3C066B622B017B0A00220A59 /* WhatsNewKitData.swift */,
 				3C64E7C82AF700E9003BB42E /* WhatsNew_0_0_0.swift */,
 				3C64E7CB2AF7057B003BB42E /* WhatsNew_2023_11.swift */,
 			);
@@ -1381,7 +1381,6 @@
 				3C2EA6CB2B00274F007AC12D /* ImageDownloadManager.swift in Sources */,
 				3CC178952A7DAAE300C208D0 /* SearchFetcher.swift in Sources */,
 				3CF3F9C02A6EE0390051E725 /* SettingsClearCacheView.swift in Sources */,
-				3C64E7CE2AF70E90003BB42E /* WhatsNewKitData.swift in Sources */,
 				3CFE04C72A7FF270007BAD81 /* KbinThreadsFetcher.swift in Sources */,
 				3C96EA502A7843EC00753199 /* AddNewUserButtonView.swift in Sources */,
 				3C96EA3E2A76FC1200753199 /* LoginButtonView.swift in Sources */,
@@ -1447,6 +1446,7 @@
 				3CE35B182AE2FF1B00263E13 /* PostButtonItem.swift in Sources */,
 				3CA8A0C32AE570E200EEABD3 /* PostsFetcher.swift in Sources */,
 				3C4EE4B92A8006D0009EE4A8 /* KbinPostRowView.swift in Sources */,
+				3C066B632B017B0A00220A59 /* WhatsNewKitData.swift in Sources */,
 				3CC3E42D2ADD6EBA00F7F9A9 /* PostSender.swift in Sources */,
 				3CECCE1E2AADDBBA0017A605 /* CircleFillIcons.swift in Sources */,
 				3C42AD1C2A803AE50056AFBC /* KbinCommentsFetcher.swift in Sources */,
