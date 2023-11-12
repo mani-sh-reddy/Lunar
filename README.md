@@ -30,8 +30,6 @@ Lunar is an iOS app that serves as a client for [Lemmy](https://join-lemmy.org/i
 
 [Defaults](https://github.com/sindresorhus/Defaults) - Swifty and modern UserDefaults
 
-[KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess) - Simple Swift wrapper for Keychain
-
 [LocalConsole](https://github.com/duraidabdul/LocalConsole) - In-app console and debug tools
 
 [Nuke](https://github.com/kean/Nuke) - Image loading system

@@ -221,7 +221,6 @@
 		3CE69E962ABDCA8A00E2821E /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 3CE69E952ABDCA8A00E2821E /* Realm */; };
 		3CE69E982ABDCA8A00E2821E /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3CE69E972ABDCA8A00E2821E /* RealmSwift */; };
 		3CEB2C0A2AB2F3A50013609E /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEB2C092AB2F3A50013609E /* Defaults */; };
-		3CEB2C102AB2F4520013609E /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEB2C0F2AB2F4520013609E /* KeychainAccess */; };
 		3CEB2C132AB2F45F0013609E /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEB2C122AB2F45F0013609E /* SFSafeSymbols */; };
 		3CECCE192AACFA4B0017A605 /* MyUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CECCE182AACFA4B0017A605 /* MyUserView.swift */; };
 		3CECCE1C2AADBFFA0017A605 /* ColorTesterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CECCE1B2AADBFFA0017A605 /* ColorTesterView.swift */; };
@@ -345,6 +344,7 @@
 		3C4DB8C52AB72145000137CF /* SettingsAppResetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAppResetView.swift; sourceTree = "<group>"; };
 		3C4DB8C72AB725FB000137CF /* DataCacheHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCacheHolder.swift; sourceTree = "<group>"; };
 		3C4EBFF82B00F735004B7665 /* SupportedFamiliesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedFamiliesExtension.swift; sourceTree = "<group>"; };
+		3C4EBFFA2B010FC5004B7665 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3C4EE4B82A8006D0009EE4A8 /* KbinPostRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KbinPostRowView.swift; sourceTree = "<group>"; };
 		3C4F09FC2A54399F009DF8AB /* Lunar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lunar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4F09FF2A54399F009DF8AB /* LunarAppEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarAppEntryView.swift; sourceTree = "<group>"; };
@@ -554,7 +554,6 @@
 			files = (
 				3CEB2C132AB2F45F0013609E /* SFSafeSymbols in Frameworks */,
 				3C23F0402AAA66E000AACA46 /* PulseUI in Frameworks */,
-				3CEB2C102AB2F4520013609E /* KeychainAccess in Frameworks */,
 				3CC4200D2AB37DDA00BE1612 /* BetterSafariView in Frameworks */,
 				3CE69E962ABDCA8A00E2821E /* Realm in Frameworks */,
 				3CC3E41B2ADC054000F7F9A9 /* Shiny in Frameworks */,
@@ -643,6 +642,7 @@
 		3C4F09F32A54399F009DF8AB = {
 			isa = PBXGroup;
 			children = (
+				3C4EBFFA2B010FC5004B7665 /* README.md */,
 				3C87A36B2A9FB6BF0029C18F /* Assets.xcassets */,
 				3C2EA68D2AFFDBBA007AC12D /* Widgets */,
 				3C10A76D2A72A6FC0040F1A9 /* Frameworks */,
@@ -1182,7 +1182,6 @@
 				3C23F03D2AAA66E000AACA46 /* Pulse */,
 				3C23F03F2AAA66E000AACA46 /* PulseUI */,
 				3CEB2C092AB2F3A50013609E /* Defaults */,
-				3CEB2C0F2AB2F4520013609E /* KeychainAccess */,
 				3CEB2C122AB2F45F0013609E /* SFSafeSymbols */,
 				3CC420092AB37BCB00BE1612 /* WhatsNewKit */,
 				3CC4200C2AB37DDA00BE1612 /* BetterSafariView */,
@@ -1236,7 +1235,6 @@
 				3CFE04BD2A7FEA71007BAD81 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				3C23F03C2AAA66E000AACA46 /* XCRemoteSwiftPackageReference "Pulse" */,
 				3CEB2C082AB2F3A50013609E /* XCRemoteSwiftPackageReference "Defaults" */,
-				3CEB2C0E2AB2F4520013609E /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
 				3CC420082AB37BCB00BE1612 /* XCRemoteSwiftPackageReference "WhatsNewKit" */,
 				3CC4200B2AB37DDA00BE1612 /* XCRemoteSwiftPackageReference "BetterSafariView" */,
@@ -2021,14 +2019,6 @@
 				kind = branch;
 			};
 		};
-		3CEB2C0E2AB2F4520013609E /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SFSafeSymbols/SFSafeSymbols.git";
@@ -2124,11 +2114,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3CEB2C082AB2F3A50013609E /* XCRemoteSwiftPackageReference "Defaults" */;
 			productName = Defaults;
-		};
-		3CEB2C0F2AB2F4520013609E /* KeychainAccess */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3CEB2C0E2AB2F4520013609E /* XCRemoteSwiftPackageReference "KeychainAccess" */;
-			productName = KeychainAccess;
 		};
 		3CEB2C122AB2F45F0013609E /* SFSafeSymbols */ = {
 			isa = XCSwiftPackageProductDependency;
