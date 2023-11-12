@@ -47,12 +47,12 @@ struct SearchUsersRowView: View {
         Button {
           showingPlaceholderAlert = true
         } label: {
-          Label("go", systemSymbol: .chevronForwardCircleFill)
+          Label("go", systemSymbol: AllSymbols().goIntoContextIcon)
         }.tint(.blue)
         Button {
           showingPlaceholderAlert = true
         } label: {
-          Label("Hide", systemSymbol: .eyeSlashCircleFill)
+          Label("Hide", systemSymbol: AllSymbols().hideContextIcon)
         }.tint(.orange)
       }
 

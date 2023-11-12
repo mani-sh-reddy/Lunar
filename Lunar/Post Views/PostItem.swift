@@ -122,7 +122,7 @@ struct PostItem: View {
       }
       ShareSheet().share(items: items)
     } label: {
-      Label("Share", systemSymbol: .squareAndArrowUp)
+      Label("Share", systemSymbol: AllSymbols().shareContextIcon)
     }
   }
 
@@ -130,7 +130,7 @@ struct PostItem: View {
     Button {
       RealmThawFunctions().hideAction(post: post)
     } label: {
-      Label("Hide", systemSymbol: .eyeSlash)
+      Label("Hide", systemSymbol: AllSymbols().hideContextIcon)
     }
     .tint(.orange)
   }
@@ -139,7 +139,7 @@ struct PostItem: View {
     Button {
       RealmThawFunctions().minimiseToggleAction(post: post)
     } label: {
-      Label("Minimise", systemSymbol: .rectangleArrowtriangle2Inward)
+      Label("Minimise", systemSymbol: AllSymbols().minimiseContextIcon)
     }
     .tint(.yellow)
   }
@@ -148,7 +148,7 @@ struct PostItem: View {
     Button {
       RealmThawFunctions().upvoteAction(post: post)
     } label: {
-      Label("Upvote", systemSymbol: .arrowUpCircleFill)
+      Label("Upvote", systemSymbol: AllSymbols().upvoteContextIcon)
     }
     .tint(.green)
   }
@@ -157,7 +157,7 @@ struct PostItem: View {
     Button {
       RealmThawFunctions().downvoteAction(post: post)
     } label: {
-      Label("Downvote", systemSymbol: .arrowDownCircleFill)
+      Label("Downvote", systemSymbol: AllSymbols().downvoteContextIcon)
     }
     .tint(.red)
   }

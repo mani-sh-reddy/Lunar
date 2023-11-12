@@ -112,7 +112,7 @@ struct GoIntotSwipeAction: View {
     Button {
       isClicked = true
     } label: {
-      Image(systemSymbol: .chevronForwardCircleFill)
+      Image(systemSymbol: AllSymbols().goIntoContextIcon)
     }
     .tint(.blue)
   }
@@ -125,7 +125,7 @@ struct UpvoteSwipeAction: View {
     Button {
       isClicked = true
     } label: {
-      Image(systemSymbol: .arrowUpCircle)
+      Image(systemSymbol: AllSymbols().upvoteContextIcon)
     }
     .tint(.green)
   }
@@ -138,7 +138,7 @@ struct DownvoteSwipeAction: View {
     Button {
       isClicked = true
     } label: {
-      Image(systemSymbol: .arrowDownCircle)
+      Image(systemSymbol: AllSymbols().downvoteContextIcon)
     }
     .tint(.red)
   }

@@ -116,12 +116,12 @@ struct SearchCommunitiesRowView: View {
         Button {
           showingPlaceholderAlert = true
         } label: {
-          Image(systemSymbol: .chevronForwardCircleFill)
+          Image(systemSymbol: AllSymbols().goIntoContextIcon)
         }.tint(.blue)
         Button {
           showingPlaceholderAlert = true
         } label: {
-          Image(systemSymbol: .eyeSlashCircleFill)
+          Image(systemSymbol: AllSymbols().hideContextIcon)
         }.tint(.orange)
       }
 

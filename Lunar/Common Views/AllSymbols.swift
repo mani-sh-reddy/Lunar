@@ -1,5 +1,5 @@
 //
-//  CustomSymbols.swift
+//  AllSymbols.swift
 //  Lunar
 //
 //  Created by Mani on 04/11/2023.
@@ -10,9 +10,69 @@ import Foundation
 import SFSafeSymbols
 import SwiftUI
 
-class CustomSymbols {
+class AllSymbols {
   @Default(.accentColor) var accentColor
   @Default(.accentColorString) var accentColorString
+
+  // MARK: - Context Menu and Swipe Action Icons
+
+  var shareContextIcon: SFSafeSymbols.SFSymbol {
+    SFSafeSymbols.SFSymbol.arrowTriangleTurnUpRightCircle
+  }
+
+  var unsubscribeContextIcon: SFSafeSymbols.SFSymbol {
+    SFSafeSymbols.SFSymbol.heartSlashCircle
+  }
+
+  var hideContextIcon: SFSafeSymbols.SFSymbol {
+    SFSafeSymbols.SFSymbol.slashCircle
+  }
+
+  var upvoteContextIcon: SFSafeSymbols.SFSymbol {
+    SFSafeSymbols.SFSymbol.arrowUpCircle
+  }
+
+  var downvoteContextIcon: SFSafeSymbols.SFSymbol {
+    SFSafeSymbols.SFSymbol.arrowDownCircle
+  }
+
+  var goIntoContextIcon: SFSafeSymbols.SFSymbol {
+    SFSafeSymbols.SFSymbol.chevronForwardCircle
+  }
+
+  var replyContextIcon: SFSafeSymbols.SFSymbol {
+    SFSafeSymbols.SFSymbol.arrowshapeTurnUpLeftCircle
+  }
+
+  var minimiseContextIcon: SFSafeSymbols.SFSymbol {
+    SFSafeSymbols.SFSymbol.arrowDownRightAndArrowUpLeftCircle
+  }
+
+  // MARK: - Home Screen Quick Actions Icons
+
+  var feedQuickAction: UIApplicationShortcutIcon {
+    UIApplicationShortcutIcon(systemSymbol: .rectangleOnRectangle)
+  }
+
+  var inboxQuickAction: UIApplicationShortcutIcon {
+    UIApplicationShortcutIcon(systemSymbol: .envelope)
+  }
+
+  var accountQuickAction: UIApplicationShortcutIcon {
+    UIApplicationShortcutIcon(systemSymbol: .personCropRectangle)
+  }
+
+  var searchQuickAction: UIApplicationShortcutIcon {
+    UIApplicationShortcutIcon(systemSymbol: .rectangleAndTextMagnifyingglass)
+  }
+
+//  MARK: - Settings Icons
+
+  var externalLinkArrow: some View {
+    Image(systemSymbol: .arrowUpRightCircle)
+      .foregroundStyle(.secondary)
+      .opacity(0.5)
+  }
 
   var hiddenPosts: some View {
     Image(systemSymbol: accentColorString == "Default" ? .lockRectangleOnRectangleFill : .lockRectangleOnRectangle)
@@ -135,35 +195,62 @@ class CustomSymbols {
 
 import SwiftUI
 
-struct test: View {
+struct SettingsIconsView: View {
   var body: some View {
     List {
-      CustomSymbols().lemmyGuide
-      CustomSymbols().appCacheTotalSize
-      CustomSymbols().appCacheLimit
-      CustomSymbols().appCacheClearCache
+      AllSymbols().lemmyGuide
+      AllSymbols().appCacheTotalSize
+      AllSymbols().appCacheLimit
+      AllSymbols().appCacheClearCache
       Text("")
-      CustomSymbols().notificationsSettings
-      CustomSymbols().gesturesSettings
-      CustomSymbols().soundAndHapticsSettings
-      CustomSymbols().composerSettings
-      CustomSymbols().searchSettings
-      CustomSymbols().quicklinksSettings
-      CustomSymbols().appIconSettings
-      CustomSymbols().themeSettings
-      CustomSymbols().layoutSettings
-      CustomSymbols().privacyPolicySettings
-      CustomSymbols().emailSettings
-      CustomSymbols().githubSettings
-      CustomSymbols().additionalSettings
-      CustomSymbols().developmentSettings
+      AllSymbols().notificationsSettings
+      AllSymbols().gesturesSettings
+      AllSymbols().soundAndHapticsSettings
+      AllSymbols().composerSettings
+      AllSymbols().searchSettings
+      AllSymbols().quicklinksSettings
+      AllSymbols().appIconSettings
+      AllSymbols().themeSettings
+      AllSymbols().layoutSettings
+      AllSymbols().privacyPolicySettings
+      AllSymbols().emailSettings
+      AllSymbols().githubSettings
+      AllSymbols().additionalSettings
+      AllSymbols().developmentSettings
     }
     .font(.title)
   }
 }
 
-struct test_Previews: PreviewProvider {
+struct ContextIconsView: View {
+  var body: some View {
+    Circle().frame(width: 100, height: 100)
+      .contextMenu(ContextMenu(menuItems: {
+        Button {} label:
+          { Label("shareContextIcon", systemSymbol: AllSymbols().shareContextIcon) }
+        Button {} label:
+          { Label("unsubscribeContextIcon", systemSymbol: AllSymbols().unsubscribeContextIcon) }
+        Button {} label:
+          { Label("hideContextIcon", systemSymbol: AllSymbols().hideContextIcon) }
+        Button {} label:
+          { Label("minimiseContextIcon", systemSymbol: AllSymbols().minimiseContextIcon) }
+        Button {} label:
+          { Label("upvoteContextIcon", systemSymbol: AllSymbols().upvoteContextIcon) }
+        Button {} label:
+          { Label("downvoteContextIcon", systemSymbol: AllSymbols().downvoteContextIcon) }
+        Button {} label:
+          { Label("goIntoContextIcon", systemSymbol: AllSymbols().goIntoContextIcon) }
+        Button {} label:
+          { Label("replyContextIcon", systemSymbol: AllSymbols().replyContextIcon) }
+      }))
+  }
+}
+
+struct AllSymbols_Previews: PreviewProvider {
   static var previews: some View {
-    test()
+    SettingsIconsView()
+      .previewDisplayName("Settings Icons")
+    ContextIconsView()
+      .previewDisplayName("Context Icons")
   }
 }

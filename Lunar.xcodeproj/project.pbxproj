@@ -99,7 +99,7 @@
 		3C6D29672A795141007AFD99 /* DebugSettingsPropertiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D29662A795141007AFD99 /* DebugSettingsPropertiesView.swift */; };
 		3C6D29692A797D6E007AFD99 /* UserRowSettingsBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C6D29682A797D6E007AFD99 /* UserRowSettingsBannerView.swift */; };
 		3C72E21B2A71735E00C794C6 /* InPostThumbnailImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C72E21A2A71735E00C794C6 /* InPostThumbnailImageView.swift */; };
-		3C7B121C2AF69CFA003DA2F5 /* CustomSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7B121B2AF69CFA003DA2F5 /* CustomSymbols.swift */; };
+		3C7B121C2AF69CFA003DA2F5 /* AllSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7B121B2AF69CFA003DA2F5 /* AllSymbols.swift */; };
 		3C7B7DC92A89485000A02A43 /* TimestampParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7B7DC82A89485000A02A43 /* TimestampParser.swift */; };
 		3C808E242A9B6DAD008FA62E /* SettingsDevOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C808E232A9B6DAD008FA62E /* SettingsDevOptionsView.swift */; };
 		3C808E2E2A9B87FA008FA62E /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C808E2D2A9B87FA008FA62E /* ShareSheet.swift */; };
@@ -379,7 +379,7 @@
 		3C6D29662A795141007AFD99 /* DebugSettingsPropertiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugSettingsPropertiesView.swift; sourceTree = "<group>"; };
 		3C6D29682A797D6E007AFD99 /* UserRowSettingsBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRowSettingsBannerView.swift; sourceTree = "<group>"; };
 		3C72E21A2A71735E00C794C6 /* InPostThumbnailImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InPostThumbnailImageView.swift; sourceTree = "<group>"; };
-		3C7B121B2AF69CFA003DA2F5 /* CustomSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSymbols.swift; sourceTree = "<group>"; };
+		3C7B121B2AF69CFA003DA2F5 /* AllSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSymbols.swift; sourceTree = "<group>"; };
 		3C7B7DC82A89485000A02A43 /* TimestampParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimestampParser.swift; sourceTree = "<group>"; };
 		3C808E222A9A8C95008FA62E /* LunarDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LunarDebug.entitlements; sourceTree = "<group>"; };
 		3C808E232A9B6DAD008FA62E /* SettingsDevOptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsDevOptionsView.swift; sourceTree = "<group>"; };
@@ -1055,7 +1055,7 @@
 		3CE237332AA4D157000F1D20 /* Common Views */ = {
 			isa = PBXGroup;
 			children = (
-				3C7B121B2AF69CFA003DA2F5 /* CustomSymbols.swift */,
+				3C7B121B2AF69CFA003DA2F5 /* AllSymbols.swift */,
 				3CC3E4282ADC7B7A00F7F9A9 /* LocalImagePopoverView.swift */,
 				3CED897A2A71A5CF00BD9086 /* ImagePopoverView.swift */,
 				3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */,
@@ -1472,7 +1472,7 @@
 				3CC3E4392ADDE2B500F7F9A9 /* ConditionalModifiers.swift in Sources */,
 				3CE237322AA48E7C000F1D20 /* WelcomeScreenInfo.swift in Sources */,
 				3CA8A0C72AE5A38C00EEABD3 /* IdentifierGenerators.swift in Sources */,
-				3C7B121C2AF69CFA003DA2F5 /* CustomSymbols.swift in Sources */,
+				3C7B121C2AF69CFA003DA2F5 /* AllSymbols.swift in Sources */,
 				3CC3E43D2ADDF69200F7F9A9 /* URLInputViews.swift in Sources */,
 				3CA92E3A2A543BF000688DEB /* TabContentView.swift in Sources */,
 				3C4DB8C62AB72145000137CF /* SettingsAppResetView.swift in Sources */,

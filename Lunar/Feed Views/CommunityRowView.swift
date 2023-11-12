@@ -127,7 +127,7 @@ struct CommunityRowView: View {
       Button(role: .destructive) {
 //        TODO: - SEND UNSUB ACTION
       } label: {
-        Label("Delete", systemSymbol: .starSlash)
+        Label("Delete", systemSymbol: AllSymbols().unsubscribeContextIcon)
           .tint(.red)
       }
     }

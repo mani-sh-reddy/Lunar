@@ -67,14 +67,14 @@ struct LegacyRecursiveComment: View {
             )
             print("swipe action collapse clicked")
           } label: {
-            Label("collapse", systemSymbol: .arrowUpToLineCircleFill)
+            Label("collapse", systemSymbol: AllSymbols().minimiseContextIcon)
           }
           .tint(.blue)
           Button {
             replyingTo = nestedComment.commentViewData.comment
             showingCommentPopover = true
           } label: {
-            Label("reply", systemSymbol: .arrowshapeTurnUpLeftCircleFill)
+            Label("reply", systemSymbol: AllSymbols().replyContextIcon)
           }
           .tint(.orange)
         }

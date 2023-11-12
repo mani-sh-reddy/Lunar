@@ -7,7 +7,6 @@
 
 import Defaults
 import Foundation
-import SFSafeSymbols
 import SwiftUI
 
 class PhaseChangeActions {
@@ -49,28 +48,28 @@ class PhaseChangeActions {
         type: "Feed",
         localizedTitle: "Feed",
         localizedSubtitle: feedSubtitle,
-        icon: UIApplicationShortcutIcon(systemSymbol: .houseCircle),
+        icon: AllSymbols().feedQuickAction,
         userInfo: feedUserInfo
       ),
       UIApplicationShortcutItem(
         type: "Inbox",
         localizedTitle: "Inbox",
         localizedSubtitle: "",
-        icon: UIApplicationShortcutIcon(systemSymbol: .trayCircle),
+        icon: AllSymbols().inboxQuickAction,
         userInfo: inboxUserInfo
       ),
       UIApplicationShortcutItem(
         type: "Account",
         localizedTitle: "Account",
         localizedSubtitle: accountSubtitle,
-        icon: UIApplicationShortcutIcon(systemSymbol: .personCircle),
+        icon: AllSymbols().accountQuickAction,
         userInfo: accountUserInfo
       ),
       UIApplicationShortcutItem(
         type: "Search",
         localizedTitle: "Search",
         localizedSubtitle: "",
-        icon: UIApplicationShortcutIcon(systemSymbol: .magnifyingglassCircle),
+        icon: AllSymbols().searchQuickAction,
         userInfo: searchUserInfo
       ),
     ]

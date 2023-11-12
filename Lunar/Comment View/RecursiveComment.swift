@@ -65,7 +65,7 @@ struct RecursiveComment: View {
       let items: [Any] = [nestedComment.commentViewData.comment.content]
       ShareSheet().share(items: items)
     } label: {
-      Label("Share", systemSymbol: .squareAndArrowUp)
+      Label("Share", systemSymbol: AllSymbols().shareContextIcon)
     }
   }
 
@@ -94,7 +94,7 @@ struct RecursiveComment: View {
     Button {
       showCreateCommentPopover = true
     } label: {
-      Label("reply", systemSymbol: .arrowshapeTurnUpLeftCircleFill)
+      Label("reply", systemSymbol: AllSymbols().replyContextIcon)
     }
     .tint(.indigo)
   }
@@ -108,7 +108,7 @@ struct RecursiveComment: View {
       )
       print("swipe action collapse clicked")
     } label: {
-      Label("collapse", systemSymbol: .arrowUpToLineCircleFill)
+      Label("collapse", systemSymbol: AllSymbols().minimiseContextIcon)
     }
     .tint(.blue)
   }

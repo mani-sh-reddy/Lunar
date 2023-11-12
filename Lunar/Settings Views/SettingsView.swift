@@ -103,7 +103,7 @@ struct SettingsView: View {
       Label {
         Text("Notifications")
       } icon: {
-        CustomSymbols().notificationsSettings
+        AllSymbols().notificationsSettings
       }
     }
   }
@@ -115,7 +115,7 @@ struct SettingsView: View {
       Label {
         Text("Gestures")
       } icon: {
-        CustomSymbols().gesturesSettings
+        AllSymbols().gesturesSettings
       }
     }
   }
@@ -127,7 +127,7 @@ struct SettingsView: View {
       Label {
         Text("Sounds and Haptics")
       } icon: {
-        CustomSymbols().soundAndHapticsSettings
+        AllSymbols().soundAndHapticsSettings
       }
     }
   }
@@ -139,7 +139,7 @@ struct SettingsView: View {
       Label {
         Text("Composer")
       } icon: {
-        CustomSymbols().composerSettings
+        AllSymbols().composerSettings
       }
     }
   }
@@ -151,7 +151,7 @@ struct SettingsView: View {
       Label {
         Text("Search")
       } icon: {
-        CustomSymbols().searchSettings
+        AllSymbols().searchSettings
       }
     }
   }
@@ -164,7 +164,7 @@ struct SettingsView: View {
         Label {
           Text("Quicklinks")
         } icon: {
-          CustomSymbols().quicklinksSettings
+          AllSymbols().quicklinksSettings
         }
       } else {
         Label {
@@ -172,7 +172,7 @@ struct SettingsView: View {
             .italic()
             .font(.caption)
         } icon: {
-          CustomSymbols().quicklinksSettingsDisabled
+          AllSymbols().quicklinksSettingsDisabled
         }
       }
     }
@@ -186,7 +186,7 @@ struct SettingsView: View {
       Label {
         Text("App Icon")
       } icon: {
-        CustomSymbols().appIconSettings
+        AllSymbols().appIconSettings
       }
     }
   }
@@ -198,7 +198,7 @@ struct SettingsView: View {
       Label {
         Text("Theme")
       } icon: {
-        CustomSymbols().themeSettings
+        AllSymbols().themeSettings
       }
     }
   }
@@ -210,7 +210,7 @@ struct SettingsView: View {
       Label {
         Text("Layout")
       } icon: {
-        CustomSymbols().layoutSettings
+        AllSymbols().layoutSettings
       }
     }
   }
@@ -223,10 +223,9 @@ struct SettingsView: View {
         Text("Privacy Policy")
           .foregroundStyle(.foreground)
         Spacer()
-        Image(systemSymbol: .safari)
-          .foregroundStyle(.secondary)
+        AllSymbols().externalLinkArrow
       } icon: {
-        CustomSymbols().privacyPolicySettings
+        AllSymbols().privacyPolicySettings
       }
     }
     .foregroundStyle(.foreground)
@@ -244,10 +243,9 @@ struct SettingsView: View {
         Text("Contact")
           .foregroundStyle(.foreground)
         Spacer()
-        Image(systemSymbol: .envelopeCircle)
-          .foregroundStyle(.secondary)
+        AllSymbols().externalLinkArrow
       } icon: {
-        CustomSymbols().emailSettings
+        AllSymbols().emailSettings
       }
     }
     .foregroundStyle(.foreground)
@@ -260,10 +258,9 @@ struct SettingsView: View {
       Label {
         Text("Github")
         Spacer()
-        Image(systemSymbol: .safari)
-          .foregroundStyle(.secondary)
+        AllSymbols().externalLinkArrow
       } icon: {
-        CustomSymbols().githubSettings
+        AllSymbols().githubSettings
       }
     }
     .foregroundStyle(.foreground)
@@ -280,7 +277,7 @@ struct SettingsView: View {
       Label {
         Text("Hidden Posts")
       } icon: {
-        CustomSymbols().hiddenPosts
+        AllSymbols().hiddenPosts
       }
     }
   }
@@ -292,7 +289,7 @@ struct SettingsView: View {
       Label {
         Text("Additional Settings")
       } icon: {
-        CustomSymbols().additionalSettings
+        AllSymbols().additionalSettings
       }
     }
   }
@@ -304,7 +301,7 @@ struct SettingsView: View {
       Label {
         Text("Development")
       } icon: {
-        CustomSymbols().developmentSettings
+        AllSymbols().developmentSettings
       }
     }
   }
