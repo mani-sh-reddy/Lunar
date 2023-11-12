@@ -1,4 +1,0 @@
-app_identifier "io.github.mani-sh-reddy.Lunar" # The bundle identifier of the app
-apple_id "aaaaa@aaa.com" # Apple email address
-team_id "ABCDF12345" # Team ID from the Developer Portal
-itc_team_id "000000000" # ID from the App Store Connect team

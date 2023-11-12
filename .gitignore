@@ -1,15 +1,41 @@
-# Created by https://www.gitignore.io/api/swift,xcode
+# .gitignore
 
-### Swift ###
-# Xcode
-#
-# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+############## macOS General
+.DS_Store
+.AppleDouble
+.LSOverride
 
-## Build generated
+############## macOS Thumbnails
+._*
+
+############## macOS Root files
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+*.swp
+
+############## macOS Network share files
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+############## Xcode User settings
+xcuserdata/
+
+############## Xcode 8.x compatibility
+*.xcscmblueprint
+*.xccheckout
+
+############## Xcode 3.x compatibility
 build/
 DerivedData/
-
-## Various settings
+*.moved-aside
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -18,77 +44,60 @@ DerivedData/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-xcuserdata/
 
-## Other
-*.moved-aside
-*.xccheckout
-*.xcscmblueprint
-*.imageasset
-
-## Obj-C/Swift specific
+############## Xcode Obj-C
 *.hmap
+
+############## Xcode App packaging
 *.ipa
 *.dSYM.zip
 *.dSYM
 
-## Playgrounds
+############## Xcode Playgrounds
 timeline.xctimeline
 playground.xcworkspace
 
-# Swift Package Manager
-#
-# Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
-# Packages/
-# Package.pins
+############## Xcode Other
+*.imageasset
+*~.nib
+
+############## Swift Package Manager
+Packages/
+Package.pins
+Package.resolved
+.swiftpm
 .build/
+Packages
+xcuserdata
+*.xcodeproj
 
-# CocoaPods - Refactored to standalone file
+############## Carthage
+Carthage/Checkouts
+Carthage/Build/
 
-# Carthage - Refactored to standalone file
+############## Accio
+Dependencies/
+.accio/
 
-# fastlane
-#
-# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
-# screenshots whenever they are needed.
-# For more information about the recommended setup visit:
-# https://docs.fastlane.tools/best-practices/source-control/#source-control
-
-# fastlane specific
+############## Fastlane
 **/fastlane/report.xml
-
-# deliver temporary files
 **/fastlane/Preview.html
-
-# snapshot generated screenshots
-**/fastlane/screenshots
-
-# scan temporary files
+**/fastlane/screenshots/
 **/fastlane/test_output
+FastlaneScreenshots/
+fastlane/Appfile
+!Gemfile.lock
 
-### Xcode ###
-# Xcode
-#
-# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+############## iOS Code Injection
+iOSInjectionProject/
 
-## Build generated
-
-## Various settings
-
-## Other
-
-### Xcode Patch ###
+############## Xcode Allowlist
+*.xcodeproj/*
 !*.xcodeproj/project.pbxproj
 !*.xcodeproj/xcshareddata/
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
+**/xcshareddata/WorkspaceSettings.xcsettings
 
-# End of https://www.gitignore.io/api/swift,xcode
-
-Lunar.xcodeproj/xcshareddata/xcschemes/
-
-*.xcscheme
-
-fastlane/Appfile
-
-FastlaneScreenshots/
+############## IDE Specific
+.idea/
