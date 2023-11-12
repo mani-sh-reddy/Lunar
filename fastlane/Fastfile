@@ -27,7 +27,10 @@ API_KEY_FILEPATH = ENV["API_KEY_FILEPATH"]
 
 default_platform(:ios)
 platform :ios do
-  desc "Only Increment Xcode Build/version numbers"
+
+#################################################### Increment
+
+  desc "INCREMENT_ONLY"
   lane :INCREMENT_ONLY do
     increment_build_number({
       build_number: number_of_commits
@@ -39,14 +42,27 @@ platform :ios do
   )
   end
 
-  desc "Package and deploy to testflight"
+#################################################### Testflight Deploy
+
+  desc "INCREMENT_AND_TESTFLIGHT_UPLOAD"
   lane :INCREMENT_AND_TESTFLIGHT_UPLOAD do
+    ############################
+    # Update Changelog
+    ############################
     changelog = prompt(
       text: "Changelog: ",
       multi_line_end_keyword: "END"
     )
-    match(type: "appstore")
-
+    ############################
+    # Sync Code Signing (aka match)
+    ############################
+    match(
+      type: "appstore",
+    app_identifier: ["io.github.mani-sh-reddy.Lunar", "io.github.mani-sh-reddy.Lunar.Widgets"]
+    )
+    ############################
+    # Increment Build & Version
+    ############################
     latest_build_number = latest_testflight_build_number(
       app_identifier: "#{DEVELOPER_APP_IDENTIFIER}"
     )
@@ -54,18 +70,28 @@ platform :ios do
     increment_build_number({
         build_number: number_of_commits
     })
+    
 
     increment_version_number_in_xcodeproj(
       scheme: "Lunar",
       version_number: latest_git_tag, 
     )
-
-    build_app(
+    ############################
+    # Build App (aka gym)
+    ############################
+    gym(
       scheme: "Lunar",
+      xcodebuild_formatter: "xcbeautify --quieter",
+      suppress_xcode_output: true,
       silent: true,
-      suppress_xcode_output: true
+      clean: true,
+      build_timing_summary: true,
+      analyze_build_time: true
     )
-
+    
+    ############################
+    # Connect & Upload
+    ############################
     api_key = app_store_connect_api_key(
       key_id: "#{APPLE_KEY_ID}",
       issuer_id: "#{APPLE_ISSUER_ID}",
@@ -89,16 +115,11 @@ platform :ios do
       force: true,
       files: ["./Lunar.xcodeproj/project.pbxproj"]
     )
-
-    # Next Steps
-    #   Create/merge PR to main
-    #   Create release
-    #   Add release notes
-    #   Upload IPA file
-
   end
 
-  desc "Create a PR and generate Github release"
+#################################################### Release Notes
+
+  desc "GENERATE_GITHUB_RELEASE"
   lane :GENERATE_GITHUB_RELEASE do
     changelog = prompt(
       text: "Changelog: ",

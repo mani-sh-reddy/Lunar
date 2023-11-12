@@ -29,7 +29,7 @@ Only Increment Xcode Build/version numbers
 [bundle exec] fastlane ios INCREMENT_AND_TESTFLIGHT_UPLOAD
 ```
 
-Package and deploy to testflight
+TESTFLIGHT_DEPLOY
 
 ### ios GENERATE_GITHUB_RELEASE
 
@@ -37,7 +37,7 @@ Package and deploy to testflight
 [bundle exec] fastlane ios GENERATE_GITHUB_RELEASE
 ```
 
-Create a PR and generate Github release
+GITHUB_RELEASE_NOTES
 
 ----
 
