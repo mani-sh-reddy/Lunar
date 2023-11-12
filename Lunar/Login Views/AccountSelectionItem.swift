@@ -38,7 +38,7 @@ struct AccountSelectionItem: View {
     .onTapGesture {
       haptics.impactOccurred()
       activeAccount = account
-      widgetLink.storeAccountData(account: account)
+      widgetLink.storeAccountData(account: activeAccount)
       widgetLink.reloadWidget(kind: "AccountWidget")
     }
   }

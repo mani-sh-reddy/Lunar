@@ -15,6 +15,8 @@ struct LogoutAllUsersButtonView: View {
   @Default(.debugModeEnabled) var debugModeEnabled
   @Default(.appBundleID) var appBundleID
 
+  let widgetLink = WidgetLink()
+
   @Binding var showingPopover: Bool
   @Binding var isPresentingConfirm: Bool
   @Binding var logoutAllUsersButtonClicked: Bool
@@ -78,6 +80,8 @@ struct LogoutAllUsersButtonView: View {
           )
           loggedInAccounts.removeAll()
           activeAccount = AccountModel()
+          widgetLink.storeAccountData(account: activeAccount)
+          widgetLink.reloadWidget(kind: "AccountWidget")
 
           isLoadingDeleteButton = true
           haptic.notificationOccurred(.success)

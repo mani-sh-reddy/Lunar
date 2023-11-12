@@ -20,6 +20,8 @@ class SiteInfoFetcher: ObservableObject {
   private var endpointRedacted: URLComponents
   private var jwt: String
 
+  let widgetLink = WidgetLink()
+
   var loggedInAccount = AccountModel()
   let pulse = Pulse.LoggerStore.shared
 
@@ -93,12 +95,6 @@ class SiteInfoFetcher: ObservableObject {
             // Example of loading an image based on a key
             ImageDownloadManager(suiteName: "group.io.github.mani-sh-reddy.Lunar")
               .loadImage(forKey: actorID.replacingOccurrences(of: "/", with: "_")) { _ in
-//                if let image = image {
-//                  // Do something with the loaded image
-//                  print("Image loaded successfully.")
-//                } else {
-//                  print("Failed to load the image.")
-//                }
               }
 
             if let avatarURL {
@@ -113,6 +109,8 @@ class SiteInfoFetcher: ObservableObject {
             if !foundMatch {
               self.loggedInAccounts.append(self.loggedInAccount)
               self.activeAccount = self.loggedInAccount
+              self.widgetLink.storeAccountData(account: self.activeAccount)
+              self.widgetLink.reloadWidget(kind: "AccountWidget")
 
               completion(username, email, actorID, response)
             }
