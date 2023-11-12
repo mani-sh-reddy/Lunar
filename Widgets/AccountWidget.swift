@@ -87,6 +87,8 @@ struct AccountWidgetEntry: TimelineEntry {
 // MARK: - AccountWidgetEntryView
 
 struct AccountWidgetEntryView: View {
+  @Environment(\.widgetFamily) var widgetFamily
+
   var entry: AccountWidgetProvider.Entry
 
   let data = DataService()
@@ -109,22 +111,53 @@ struct AccountWidgetEntryView: View {
   }
 
   var body: some View {
+    switch widgetFamily {
+    case .systemSmall, .systemMedium:
+      homescreen
+    case .accessoryCircular:
+      accessoryCircular
+    case .accessoryRectangular:
+      accessoryRectangular
+    case .accessoryInline:
+      accessoryInline
+    default:
+      homescreen
+    }
+  }
+
+  var accessoryRectangular: some View {
+    HStack {
+      userAvatar
+      VStack {
+        postsMetadataLockScreen
+        commentsMetadataLockScreen
+      }
+    }
+  }
+
+  var accessoryInline: some View {
+    HStack(spacing: 1) {
+      Image(systemSymbol: .arrowUpCircleFill)
+        .symbolRenderingMode(.hierarchical)
+      Text("\(entry.account.3)")
+    }
+  }
+
+  var accessoryCircular: some View {
+    HStack(spacing: 1) {
+      Text(String(entry.account.3))
+        .bold()
+      Image(systemSymbol: .arrowUp)
+        .symbolRenderingMode(.hierarchical)
+        .foregroundStyle(.secondary)
+        .font(.caption)
+    }
+  }
+
+  var homescreen: some View {
     VStack(alignment: .leading) {
-      HStack(alignment: .top) {
-        if let image {
-          Image(uiImage: image)
-            .resizable()
-            .scaledToFit()
-            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-            .frame(width: 35, height: 35)
-        } else {
-          Image(systemSymbol: .personCropSquareFill)
-            .symbolRenderingMode(.hierarchical)
-            .resizable()
-            .scaledToFit()
-            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-            .frame(width: 35, height: 35)
-        }
+      HStack(alignment: .center) {
+        userAvatar
         Text(entry.account.0)
           .lineLimit(2)
       }
@@ -139,46 +172,115 @@ struct AccountWidgetEntryView: View {
       .padding(.bottom, 1)
       .lineLimit(1)
       Spacer()
-      HStack(alignment: .firstTextBaseline, spacing: 2) {
-        Text(String(entry.account.3))
-          .font(.title2)
-          .bold()
-        Image(systemSymbol: .rectangleOnRectangle)
-          .symbolRenderingMode(.hierarchical)
-          .foregroundStyle(.secondary)
-          .font(.caption)
-        Spacer()
-        Image(systemSymbol: .number)
-          .foregroundStyle(.secondary)
-          .font(.caption)
-        Text(String(entry.account.4))
-          .font(.caption)
-          .bold()
-      }
-      .lineLimit(1)
-      .padding(.bottom, 1)
-      HStack(alignment: .firstTextBaseline, spacing: 2) {
-        Text(String(entry.account.5))
-          .font(.caption)
-          .bold()
-
-        Image(systemSymbol: .quoteBubble)
-          .symbolRenderingMode(.hierarchical)
-          .foregroundStyle(.secondary)
-          .font(.caption)
-          .imageScale(.small)
-        Spacer()
-        Image(systemSymbol: .number)
-          .foregroundStyle(.secondary)
-          .font(.caption)
-
-        Text(String(entry.account.6))
-          .font(.caption)
-          .bold()
-      }
-      .lineLimit(1)
-
+      postsMetadata
+      commentsMetadata
       Spacer()
+    }
+  }
+
+  var postsMetadataLockScreen: some View {
+    HStack(alignment: .firstTextBaseline, spacing: 2) {
+      Text(String(entry.account.3))
+        .font(.body)
+        .bold()
+      Image(systemSymbol: .arrowUp)
+        .symbolRenderingMode(.hierarchical)
+        .foregroundStyle(.secondary)
+        .font(.caption)
+      Spacer()
+      Image(systemSymbol: .number)
+        .foregroundStyle(.secondary)
+        .font(.caption)
+      Text(String(entry.account.4))
+        .font(.caption)
+        .bold()
+    }
+    .lineLimit(1)
+    .padding(.bottom, 1)
+  }
+
+  var postsMetadata: some View {
+    HStack(alignment: .firstTextBaseline, spacing: 2) {
+      Text(String(entry.account.3))
+        .font(.title2)
+        .bold()
+      Image(systemSymbol: .arrowUp)
+        .symbolRenderingMode(.hierarchical)
+        .foregroundStyle(.secondary)
+        .font(.caption)
+      Spacer()
+      Image(systemSymbol: .number)
+        .foregroundStyle(.secondary)
+        .font(.caption)
+      Text(String(entry.account.4))
+        .font(.caption)
+        .bold()
+    }
+    .lineLimit(1)
+    .padding(.bottom, 1)
+  }
+
+  var commentsMetadataLockScreen: some View {
+    HStack(alignment: .firstTextBaseline, spacing: 2) {
+      Text(String(entry.account.5))
+        .font(.caption)
+        .bold()
+
+      Image(systemSymbol: .quoteBubble)
+        .foregroundStyle(.secondary)
+        .font(.caption)
+        .imageScale(.small)
+      Spacer()
+      Image(systemSymbol: .number)
+        .foregroundStyle(.secondary)
+        .font(.caption)
+
+      Text(String(entry.account.6))
+        .font(.caption)
+        .bold()
+    }
+    .lineLimit(1)
+  }
+
+  var commentsMetadata: some View {
+    HStack(alignment: .firstTextBaseline, spacing: 2) {
+      Text(String(entry.account.5))
+        .font(.caption)
+        .bold()
+
+      Image(systemSymbol: .quoteBubble)
+        .symbolRenderingMode(.hierarchical)
+        .foregroundStyle(.secondary)
+        .font(.caption)
+        .imageScale(.small)
+      Spacer()
+      Image(systemSymbol: .number)
+        .foregroundStyle(.secondary)
+        .font(.caption)
+
+      Text(String(entry.account.6))
+        .font(.caption)
+        .bold()
+    }
+    .lineLimit(1)
+  }
+
+  var userAvatar: some View {
+    Group {
+      if let image {
+        Image(uiImage: image)
+          .resizable()
+          .scaledToFit()
+          .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+          .frame(width: 35, height: 35)
+      } else {
+        Image(systemSymbol: .personCropSquareFill)
+          .symbolRenderingMode(.hierarchical)
+          .resizable()
+          .scaledToFit()
+          .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+          .frame(width: 35, height: 35)
+      }
     }
   }
 }
@@ -199,9 +301,26 @@ struct AccountWidget: Widget {
           .background()
       }
     }
-    .supportedFamilies([.systemSmall, .systemMedium])
+    .supportedFamilies(widgetSupportedFamilies())
     .configurationDisplayName("User")
     .description("Display the information of the currently active user.")
+  }
+
+  func widgetSupportedFamilies() -> [WidgetFamily] {
+    if #available(iOS 16, *) {
+      [
+        .systemSmall,
+        .systemMedium,
+        .accessoryCircular,
+        .accessoryRectangular,
+        .accessoryInline,
+      ]
+    } else {
+      [
+        .systemSmall,
+        .systemMedium,
+      ]
+    }
   }
 }
 
@@ -212,7 +331,7 @@ struct AccountWidget_Previews: PreviewProvider {
     let entry = AccountWidgetEntry(
       date: Date(),
       account: (
-        "manimanimanimani",
+        "mani",
         "https://lemmy.world/u/mani",
         "https://lemmy.world/pictrs/image/72d8c20e-1d55-42db-8db1-aa47ff4036ef.jpeg",
         123,
@@ -224,7 +343,7 @@ struct AccountWidget_Previews: PreviewProvider {
     if #available(iOS 17.0, *) {
       AccountWidgetEntryView(entry: entry)
         .containerBackground(.background, for: .widget)
-        .previewContext(WidgetPreviewContext(family: .systemSmall))
+        .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
     } else {
       AccountWidgetEntryView(entry: entry)
         .padding()

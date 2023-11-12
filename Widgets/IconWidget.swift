@@ -92,13 +92,13 @@ struct IconWidget: Widget {
           .background()
       }
     }
-    .adaptedSupportedFamilies()
+    .supportedFamilies(widgetSupportedFamilies())
     .contentMarginsDisabled()
     .configurationDisplayName("App Icon")
     .description("Display a large Lunar app icon.")
   }
 
-  func widgetCompatibility() -> [WidgetFamily] {
+  func widgetSupportedFamilies() -> [WidgetFamily] {
     if #available(iOS 16, *) {
       [
         .systemSmall,
