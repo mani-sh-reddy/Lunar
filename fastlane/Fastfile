@@ -1,128 +1,182 @@
-# This file contains the fastlane.tools configuration
-
-# sem_ver_tag = UI.select("Select Semantic Versioning Tag: ", ["major", "minor", "patch"])
-
-line_separator = "========================================================================="
-
-latest_git_tag = sh("git describe --abbrev=0 --tags | tr -d '\n'")
-
 opt_out_usage
-update_fastlane
 
 default_platform(:ios)
-# xcode_select("/Applications/Xcode-beta.app")
+# ------
+DEVELOPER_APPLE_ID = ENV.fetch('DEVELOPER_APPLE_ID')
+DEVELOPER_APP_IDENTIFIER = ENV.fetch('DEVELOPER_APP_IDENTIFIER')
+PROVISIONING_PROFILE_SPECIFIER = ENV.fetch('PROVISIONING_PROFILE_SPECIFIER')
+# ------
+APPLE_ISSUER_ID = ENV.fetch('APPLE_ISSUER_ID')
+APPLE_KEY_ID = ENV.fetch('APPLE_KEY_ID')
+APPLE_KEY_CONTENT = ENV.fetch('APPLE_KEY_CONTENT')
+# ------
+MATCH_KEYCHAIN_USER = ENV.fetch('MATCH_KEYCHAIN_USER')
+MATCH_PASSWORD = ENV.fetch('MATCH_PASSWORD')
+MATCH_GIT_BASIC_AUTHORIZATION = ENV.fetch('MATCH_GIT_BASIC_AUTHORIZATION')
+MATCH_CERTS_URL_LUNAR = ENV.fetch('MATCH_CERTS_URL_LUNAR')
+# ------
+ASC_P8_KEY_ENCODED = ENV.fetch('ASC_P8_KEY_ENCODED')
+REPO_GITHUB_TOKEN = ENV.fetch('REPO_GITHUB_TOKEN')
+# ------
+LOCAL_KEYCHAIN_NAME = 'github_actions_keychain'.freeze
+LOCAL_KEYCHAIN_PASS = ENV.fetch('LOCAL_KEYCHAIN_PASS')
+# ------
+LATEST_GIT_TAG = sh("git describe --abbrev=0 --tags | tr -d '\n'")
+# ------
+CHANGELOG_LATEST_SECTION = read_changelog(
+  section_identifier: '[Unreleased]',
+  excluded_markdown_elements: []
+)
+# ------
+APPSTORE_CONNECT_API_KEY = app_store_connect_api_key(
+  key_id: APPLE_KEY_ID.to_s,
+  issuer_id: APPLE_ISSUER_ID.to_s,
+  key_content: ASC_P8_KEY_ENCODED.to_s,
+  is_key_content_base64: true,
+  duration: 60,
+  in_house: false # Is App Store or Enterprise (in house) team?
+)
 
-DEVELOPER_APPLE_ID = ENV["DEVELOPER_APPLE_ID"]
-DEVELOPER_APP_IDENTIFIER = ENV["DEVELOPER_APP_IDENTIFIER"]
-PROVISIONING_PROFILE_SPECIFIER = ENV["PROVISIONING_PROFILE_SPECIFIER"]
-TEMP_KEYCHAIN_USER = ENV["TEMP_KEYCHAIN_USER"]
-TEMP_KEYCHAIN_PASSWORD = ENV["TEMP_KEYCHAIN_PASSWORD"]
-APPLE_ISSUER_ID = ENV["APPLE_ISSUER_ID"]
-APPLE_KEY_ID = ENV["APPLE_KEY_ID"]
-APPLE_KEY_CONTENT = ENV["APPLE_KEY_CONTENT"]
-GIT_AUTHORIZATION = ENV["GIT_AUTHORIZATION"]
-REPO_GITHUB_TOKEN = ENV["REPO_GITHUB_TOKEN"]
-LATEST_TAG = ENV["LATEST_TAG"]
-API_KEY_FILEPATH = ENV["API_KEY_FILEPATH"]
+lane :verify_changelog do
+  puts CHANGELOG_LATEST_SECTION
+end
 
-default_platform(:ios)
-platform :ios do
-  desc "Only Increment Xcode Build/version numbers"
-  lane :INCREMENT_ONLY do
-    increment_build_number({
-      build_number: number_of_commits
-  })
-
-  increment_version_number_in_xcodeproj(
-    scheme: "Lunar",
-    version_number: latest_git_tag, 
+lane :increment_versions do
+  current_testflight_build_number = latest_testflight_build_number(
+    app_identifier: DEVELOPER_APP_IDENTIFIER.to_s,
+    api_key: @APPSTORE_CONNECT_API_KEY
   )
-  end
+  increment_build_number(
+    build_number: number_of_commits
+  )
+  increment_version_number_in_xcodeproj(
+    scheme: 'Lunar',
+    version_number: LATEST_GIT_TAG.to_s
+  )
+  UI.message "---->Current Build Number: #{current_testflight_build_number}"
+  UI.message "-----------> New Build Number: #{number_of_commits}"
+end
 
-  desc "Package and deploy to testflight"
-  lane :INCREMENT_AND_TESTFLIGHT_UPLOAD do
-    changelog = prompt(
-      text: "Changelog: ",
-      multi_line_end_keyword: "END"
-    )
-    match(type: "appstore")
+lane :lunar_sign do
+  match(
+    type: 'appstore',
+    git_url: MATCH_CERTS_URL_LUNAR.to_s,
+    app_identifier: [
+      'io.github.mani-sh-reddy.Lunar',
+      'io.github.mani-sh-reddy.Lunar.Widgets'
+    ]
+  )
+end
 
-    latest_build_number = latest_testflight_build_number(
-      app_identifier: "#{DEVELOPER_APP_IDENTIFIER}"
-    )
-    
-    increment_build_number({
-        build_number: number_of_commits
-    })
+lane :ci_lunar_sign do
+  match(
+    type: 'appstore',
+    git_url: MATCH_CERTS_URL_LUNAR.to_s,
+    app_identifier: [
+      'io.github.mani-sh-reddy.Lunar',
+      'io.github.mani-sh-reddy.Lunar.Widgets'
+    ],
+    git_basic_authorization: @MATCH_GIT_BASIC_AUTHORIZATION,
+    keychain_name: LOCAL_KEYCHAIN_NAME.to_s,
+    keychain_password: LOCAL_KEYCHAIN_PASS.to_s
+  )
+end
 
-    increment_version_number_in_xcodeproj(
-      scheme: "Lunar",
-      version_number: latest_git_tag, 
-    )
+lane :ci_create_keychain do
+  create_keychain(
+    name: LOCAL_KEYCHAIN_NAME.to_s,
+    password: LOCAL_KEYCHAIN_PASS.to_s,
+    default_keychain: true,
+    unlock: true,
+    timeout: 3600,
+    lock_when_sleeps: false
+  )
+end
 
-    build_app(
-      scheme: "Lunar",
-      silent: true,
-      suppress_xcode_output: true
-    )
+lane :lunar_build do
+  gym(
+    scheme: 'Lunar',
+    xcodebuild_formatter: 'xcbeautify',
+    xcodebuild_command: 'xcodebuild -allowProvisioningUpdates',
+    suppress_xcode_output: false,
+    silent: false,
+    clean: false,
+    build_timing_summary: true,
+    analyze_build_time: true
+  )
+end
 
-    api_key = app_store_connect_api_key(
-      key_id: "#{APPLE_KEY_ID}",
-      issuer_id: "#{APPLE_ISSUER_ID}",
-      key_filepath: "../AuthKey_2VL63G4UUJ.p8",
-      duration: 1200, # optional (maximum 1200)
-      in_house: false # optional but may be required if using match/sigh
-    )
+lane :lunar_deploy do
+  pilot(
+    changelog: CHANGELOG_LATEST_SECTION.to_s,
+    skip_submission: true,
+    api_key: @APPSTORE_CONNECT_API_KEY,
+    skip_waiting_for_build_processing: false,
+    submit_beta_review: true
+  )
+end
 
-      UI.message "\n #{line_separator}#{line_separator} \n"
-      UI.message "Release Notes: \n #{latest_git_tag} \n \n #{changelog} \n"
-      UI.message "\n #{line_separator}#{line_separator} \n"
+lane :write_changelog do
+  stamp_changelog(
+    section_identifier: LATEST_GIT_TAG.to_s,
+    should_stamp_date: false
+  )
+end
 
-    upload_to_testflight(
-      changelog: changelog,
-      skip_submission: true, # skip submission, only upload build
-      api_key: api_key,
-      skip_waiting_for_build_processing: true
-    )
+lane :write_github_release do
+  create_pull_request(
+    repo: 'mani-sh-reddy/Lunar',
+    api_token: REPO_GITHUB_TOKEN.to_s,
+    title: LATEST_GIT_TAG.to_s,
+    head: 'dev',
+    base: 'release',
+    body: CHANGELOG_LATEST_SECTION.to_s
+  )
 
-    reset_git_repo(
-      force: true,
-      files: ["./Lunar.xcodeproj/project.pbxproj"]
-    )
+  set_github_release(
+    repository_name: 'mani-sh-reddy/Lunar',
+    api_token: REPO_GITHUB_TOKEN.to_s,
+    name: LATEST_GIT_TAG.to_s,
+    tag_name: LATEST_GIT_TAG.to_s,
+    description: CHANGELOG_LATEST_SECTION.to_s,
+    commitish: 'dev',
+    upload_assets: ['Lunar.ipa']
+  )
+end
 
-    # Next Steps
-    #   Create/merge PR to main
-    #   Create release
-    #   Add release notes
-    #   Upload IPA file
+lane :ci_generate_github_release do
+  set_github_release(
+  repository_name: 'mani-sh-reddy/Lunar',
+  api_token: REPO_GITHUB_TOKEN.to_s,
+  name: LATEST_GIT_TAG.to_s,
+  tag_name: LATEST_GIT_TAG.to_s,
+  description: CHANGELOG_LATEST_SECTION.to_s,
+  commitish: 'dev',
+  upload_assets: ['Lunar.ipa']
+)
+end
 
-  end
+lane :CI_TO_TESTFLIGHT_DEPLOY do
+  increment_versions
+  ci_create_keychain
+  ci_lunar_sign
+  lunar_build
+  lunar_deploy
+  write_changelog
+  ci_generate_github_release
+  # Remaining steps use github actions
+end
 
-  desc "Create a PR and generate Github release"
-  lane :GENERATE_GITHUB_RELEASE do
-    changelog = prompt(
-      text: "Changelog: ",
-      multi_line_end_keyword: "END"
-    )
+lane :LOCAL_TO_TESTFLIGHT_DEPLOY do
+  increment_versions
+  lunar_sign
+  lunar_build
+  lunar_deploy
+  write_changelog
+  write_github_release
 
-    create_pull_request(
-      repo: "mani-sh-reddy/Lunar",
-      api_token: "#{REPO_GITHUB_TOKEN}",
-      title: latest_git_tag,
-      head: "dev",       # optional, defaults to current branch name
-      base: "release", # optional, defaults to "master"
-      body: changelog,
-    )
-
-    github_release = set_github_release(
-      repository_name: "mani-sh-reddy/Lunar",
-      api_token: "#{REPO_GITHUB_TOKEN}",
-      name: latest_git_tag,
-      tag_name: latest_git_tag,
-      description: changelog,
-      commitish: "dev",
-      upload_assets: ["Lunar.ipa"]
-    )
-  end
-
+  # reset_git_repo(
+  #   force: true,
+  #   files: ['./Lunar.xcodeproj/project.pbxproj']
+  # )
 end

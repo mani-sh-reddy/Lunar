@@ -79,7 +79,7 @@ Carthage/Build/
 Dependencies/
 .accio/
 
-############## Fastlane
+############## Fastlane/Ruby
 **/fastlane/report.xml
 **/fastlane/Preview.html
 **/fastlane/screenshots/
@@ -87,6 +87,10 @@ Dependencies/
 FastlaneScreenshots/
 fastlane/Appfile
 !Gemfile.lock
+culprits.txt
+**/AuthKey_*
+.bundle
+vendor/**
 
 ############## iOS Code Injection
 iOSInjectionProject/

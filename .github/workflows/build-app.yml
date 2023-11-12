@@ -1,0 +1,104 @@
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - "release"
+
+jobs:
+  build:
+    runs-on: macos-13
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # all history
+          fetch-tags: true
+
+      - name: Install Homebrew Dependencies
+        run: |
+          env HOMEBREW_NO_AUTO_UPDATE=1 
+          brew install xcbeautify
+          brew install diff-so-fancy
+
+      - name: Select Xcode version
+        run: sudo xcode-select -s '/Applications/Xcode_15.0.1.app/Contents/Developer'
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2.2"
+          bundler-cache: true
+          bundler: "2.2.27"
+          rubygems: "latest"
+          cache-version: 1
+
+      - name: Update fastlane
+        run: bundle update fastlane
+
+      - name: Cache Xcode Data
+        uses: irgaly/xcode-cache@v1
+        with:
+          key: xcode-cache-deriveddata-${{ github.workflow }}-${{ github.sha }}
+          restore-keys: xcode-cache-deriveddata-${{ github.workflow }}-
+
+      - name: fastlane Deploy to Testflight
+        run: bundle exec fastlane CI_TO_TESTFLIGHT_DEPLOY
+        env:
+          GIT_AUTHORIZATION: ${{ secrets.GIT_AUTHORIZATION }}
+          DEVELOPER_APPLE_ID: ${{ secrets.DEVELOPER_APPLE_ID }}
+          DEVELOPER_APP_IDENTIFIER: ${{ secrets.DEVELOPER_APP_IDENTIFIER }}
+          PROVISIONING_PROFILE_SPECIFIER: ${{ secrets.PROVISIONING_PROFILE_SPECIFIER }}
+          APPLE_ISSUER_ID: ${{ secrets.APPLE_ISSUER_ID }}
+          APPLE_KEY_ID: ${{ secrets.APPLE_KEY_ID }}
+          APPLE_KEY_CONTENT: ${{ secrets.APPLE_KEY_CONTENT }}
+          MATCH_KEYCHAIN_USER: ${{ secrets.MATCH_KEYCHAIN_USER }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+          MATCH_CERTS_URL_LUNAR: ${{ secrets.MATCH_CERTS_URL_LUNAR }}
+          ASC_P8_KEY_ENCODED: ${{ secrets.ASC_P8_KEY_ENCODED }}
+          REPO_GITHUB_TOKEN: ""
+          LOCAL_KEYCHAIN_PASS: ${{ secrets.LOCAL_KEYCHAIN_PASS }}
+
+      - name: Archive IPA and dSYM artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: lunar-artifacts
+          path: |
+            ${{ github.workspace }}/Lunar.ipa
+            ${{ github.workspace }}/Lunar.app.dSYM.zip
+
+      - name: Setup Git Config
+        run: |
+          git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+          git config --global interactive.diffFilter "diff-so-fancy --patch"
+          git config --global color.ui true
+          git config --global color.diff-highlight.oldNormal    "red bold"
+          git config --global color.diff-highlight.oldHighlight "red bold 52"
+          git config --global color.diff-highlight.newNormal    "green bold"
+          git config --global color.diff-highlight.newHighlight "green bold 22"
+          git config --global color.diff.meta       "11"
+          git config --global color.diff.frag       "magenta bold"
+          git config --global color.diff.func       "146 bold"
+          git config --global color.diff.commit     "yellow bold"
+          git config --global color.diff.old        "red bold"
+          git config --global color.diff.new        "green bold"
+          git config --global color.diff.whitespace "red reverse"
+
+      - name: Get branch names
+        id: branch-name
+        uses: tj-actions/branch-names@v7
+
+      - name: Diff
+        run: |
+          git diff --color "origin/${{ steps.branch-name.outputs.current_branch }}"
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Automated Deploy Changes
+          commit_user_email: 47571755+mani-sh-reddy@users.noreply.github.com
+
+      # - name: Output build summary
+      #   run: |
+      #     echo 'Build Summary' >> $GITHUB_STEP_SUMMARY
