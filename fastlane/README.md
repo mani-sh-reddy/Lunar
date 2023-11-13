@@ -13,31 +13,69 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 # Available Actions
 
-## iOS
-
-### ios INCREMENT_ONLY
+### verify_changelog
 
 ```sh
-[bundle exec] fastlane ios INCREMENT_ONLY
+[bundle exec] fastlane verify_changelog
 ```
 
-Only Increment Xcode Build/version numbers
 
-### ios INCREMENT_AND_TESTFLIGHT_UPLOAD
+
+### increment_versions
 
 ```sh
-[bundle exec] fastlane ios INCREMENT_AND_TESTFLIGHT_UPLOAD
+[bundle exec] fastlane increment_versions
 ```
 
-TESTFLIGHT_DEPLOY
 
-### ios GENERATE_GITHUB_RELEASE
+
+### lunar_sign
 
 ```sh
-[bundle exec] fastlane ios GENERATE_GITHUB_RELEASE
+[bundle exec] fastlane lunar_sign
 ```
 
-GITHUB_RELEASE_NOTES
+
+
+### lunar_build
+
+```sh
+[bundle exec] fastlane lunar_build
+```
+
+
+
+### lunar_deploy
+
+```sh
+[bundle exec] fastlane lunar_deploy
+```
+
+
+
+### CI
+
+```sh
+[bundle exec] fastlane CI
+```
+
+
+
+### DEPLOY_TESTFLIGHT
+
+```sh
+[bundle exec] fastlane DEPLOY_TESTFLIGHT
+```
+
+
+
+### generate_github_release
+
+```sh
+[bundle exec] fastlane generate_github_release
+```
+
+
 
 ----
 
