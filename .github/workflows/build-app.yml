@@ -18,6 +18,6 @@ jobs:
           gem install bundler:2.2.27
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
-      - run: fastlane INCREMENT_ONLY
+      - run: bundle exec fastlane INCREMENT_ONLY
         # env:
         #   MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
