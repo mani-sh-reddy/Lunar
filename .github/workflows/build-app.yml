@@ -1,0 +1,23 @@
+name: Build App
+on:
+  push:
+    branches:
+      - 'testflight'
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Setup Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '3.2.2'
+      - name: Install bundler & Fastlane
+        run: |
+          gem install bundler:2.2.27
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+      - run: fastlane INCREMENT_ONLY
+        # env:
+        #   MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
