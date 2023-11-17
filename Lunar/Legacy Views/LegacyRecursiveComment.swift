@@ -12,6 +12,7 @@ import SwiftUI
 
 struct LegacyRecursiveComment: View {
   @Default(.commentMetadataPosition) var commentMetadataPosition
+  @Default(.activeAccount) var activeAccount
 
   @State private var isExpanded = true
   @Binding var showingCommentPopover: Bool
@@ -70,13 +71,15 @@ struct LegacyRecursiveComment: View {
             Label("collapse", systemSymbol: AllSymbols().minimiseContextIcon)
           }
           .tint(.blue)
-          Button {
-            replyingTo = nestedComment.commentViewData.comment
-            showingCommentPopover = true
-          } label: {
-            Label("reply", systemSymbol: AllSymbols().replyContextIcon)
+          if !activeAccount.actorID.isEmpty {
+            Button {
+              replyingTo = nestedComment.commentViewData.comment
+              showingCommentPopover = true
+            } label: {
+              Label("reply", systemSymbol: AllSymbols().replyContextIcon)
+            }
+            .tint(.orange)
           }
-          .tint(.orange)
         }
       }
 

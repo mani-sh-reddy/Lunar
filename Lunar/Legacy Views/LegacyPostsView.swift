@@ -14,6 +14,7 @@ struct old_PostsView: View {
   @Default(.selectedInstance) var selectedInstance
   @Default(.legacyPostsViewStyle) var legacyPostsViewStyle
   @Default(.enableQuicklinks) var enableQuicklinks
+  @Default(.activeAccount) var activeAccount
 
   @StateObject var postsFetcher: LegacyPostsFetcher
 
@@ -92,7 +93,7 @@ struct old_PostsView: View {
     }
     .toolbar {
       ToolbarItemGroup(placement: .navigationBarTrailing) {
-        if isCommunitySpecific {
+        if isCommunitySpecific && !activeAccount.actorID.isEmpty {
           Button {
             showingCreatePostPopover = true
           } label: {

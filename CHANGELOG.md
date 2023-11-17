@@ -9,9 +9,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+
+- Hiding Create Post, Create Comment, and Reply buttons when not logged in. 
+
 ### Misc
 
-- Testing Automated Deploymets Deployments
+- Testing Automated Deployments
 
 ## [2023.11.14]
 

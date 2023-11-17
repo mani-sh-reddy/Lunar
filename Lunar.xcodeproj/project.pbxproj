@@ -222,6 +222,7 @@
 		3CE69E982ABDCA8A00E2821E /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3CE69E972ABDCA8A00E2821E /* RealmSwift */; };
 		3CEB2C0A2AB2F3A50013609E /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEB2C092AB2F3A50013609E /* Defaults */; };
 		3CEB2C132AB2F45F0013609E /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEB2C122AB2F45F0013609E /* SFSafeSymbols */; };
+		3CEBF4672B08302000469008 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 3CEBF4662B08302000469008 /* CHANGELOG.md */; };
 		3CECCE192AACFA4B0017A605 /* MyUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CECCE182AACFA4B0017A605 /* MyUserView.swift */; };
 		3CECCE1C2AADBFFA0017A605 /* ColorTesterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CECCE1B2AADBFFA0017A605 /* ColorTesterView.swift */; };
 		3CECCE1E2AADDBBA0017A605 /* CircleFillIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CECCE1D2AADDBBA0017A605 /* CircleFillIcons.swift */; };
@@ -496,6 +497,7 @@
 		3CE35B1B2AE3D7D600263E13 /* AttributionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributionsView.swift; sourceTree = "<group>"; };
 		3CE35B1E2AE3DAF000263E13 /* AttributionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttributionInfo.swift; sourceTree = "<group>"; };
 		3CE35B202AE4148A00263E13 /* AboutLemmyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutLemmyView.swift; sourceTree = "<group>"; };
+		3CEBF4662B08302000469008 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		3CECCE182AACFA4B0017A605 /* MyUserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUserView.swift; sourceTree = "<group>"; };
 		3CECCE1B2AADBFFA0017A605 /* ColorTesterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTesterView.swift; sourceTree = "<group>"; };
 		3CECCE1D2AADDBBA0017A605 /* CircleFillIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleFillIcons.swift; sourceTree = "<group>"; };
@@ -642,6 +644,7 @@
 		3C4F09F32A54399F009DF8AB = {
 			isa = PBXGroup;
 			children = (
+				3CEBF4662B08302000469008 /* CHANGELOG.md */,
 				3C4EBFFA2B010FC5004B7665 /* README.md */,
 				3C87A36B2A9FB6BF0029C18F /* Assets.xcassets */,
 				3C2EA68D2AFFDBBA007AC12D /* Widgets */,
@@ -1230,15 +1233,15 @@
 			);
 			mainGroup = 3C4F09F32A54399F009DF8AB;
 			packageReferences = (
-				3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire.git" */,
-				3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */,
+				3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */,
 				3CFE04BD2A7FEA71007BAD81 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				3C23F03C2AAA66E000AACA46 /* XCRemoteSwiftPackageReference "Pulse" */,
 				3CEB2C082AB2F3A50013609E /* XCRemoteSwiftPackageReference "Defaults" */,
-				3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols.git" */,
+				3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
 				3CC420082AB37BCB00BE1612 /* XCRemoteSwiftPackageReference "WhatsNewKit" */,
 				3CC4200B2AB37DDA00BE1612 /* XCRemoteSwiftPackageReference "BetterSafariView" */,
-				3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift.git" */,
+				3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */,
 				3CC3E4192ADC054000F7F9A9 /* XCRemoteSwiftPackageReference "shiny" */,
 				3C20B37D2AEB27F8003F578F /* XCRemoteSwiftPackageReference "LocalConsole" */,
 			);
@@ -1274,6 +1277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C87A36C2A9FB6BF0029C18F /* Assets.xcassets in Resources */,
+				3CEBF4672B08302000469008 /* CHANGELOG.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1971,7 +1975,7 @@
 				minimumVersion = 4.0.3;
 			};
 		};
-		3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
+		3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -1979,7 +1983,7 @@
 				minimumVersion = 5.7.1;
 			};
 		};
-		3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */ = {
+		3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kean/Nuke.git";
 			requirement = {
@@ -2011,7 +2015,7 @@
 				kind = branch;
 			};
 		};
-		3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift.git" */ = {
+		3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
 			requirement = {
@@ -2027,7 +2031,7 @@
 				kind = branch;
 			};
 		};
-		3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols.git" */ = {
+		3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SFSafeSymbols/SFSafeSymbols.git";
 			requirement = {
@@ -2071,12 +2075,12 @@
 		};
 		3C2EA6C82B002322007AC12D /* SFSafeSymbols */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols.git" */;
+			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
 			productName = SFSafeSymbols;
 		};
 		3C4B7DDA2A58AD23003C8192 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire.git" */;
+			package = 3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 		3C4DB8C12AB70856000137CF /* NukeExtensions */ = {
@@ -2085,12 +2089,12 @@
 		};
 		3CA95F072A7ACF3B00626353 /* Nuke */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */;
+			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = Nuke;
 		};
 		3CA95F092A7ACF3B00626353 /* NukeUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */;
+			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = NukeUI;
 		};
 		3CC3E41A2ADC054000F7F9A9 /* Shiny */ = {
@@ -2110,12 +2114,12 @@
 		};
 		3CE69E952ABDCA8A00E2821E /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift.git" */;
+			package = 3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = Realm;
 		};
 		3CE69E972ABDCA8A00E2821E /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift.git" */;
+			package = 3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
 		3CEB2C092AB2F3A50013609E /* Defaults */ = {
@@ -2125,7 +2129,7 @@
 		};
 		3CEB2C122AB2F45F0013609E /* SFSafeSymbols */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols.git" */;
+			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
 			productName = SFSafeSymbols;
 		};
 		3CFE04BE2A7FEA71007BAD81 /* SwiftSoup */ = {

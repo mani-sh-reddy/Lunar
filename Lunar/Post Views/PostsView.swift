@@ -16,6 +16,7 @@ struct PostsView: View {
   @Default(.debugModeEnabled) var debugModeEnabled
   @Default(.postsViewStyle) var postsViewStyle
   @Default(.selectedInstance) var selectedInstance
+  @Default(.activeAccount) var activeAccount
 
   @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
   @ObservedResults(Batch.self) var batches
@@ -108,7 +109,7 @@ struct PostsView: View {
     }
     .toolbar {
       ToolbarItemGroup(placement: .navigationBarTrailing) {
-        if communityActorID != nil {
+        if communityActorID != nil && !activeAccount.actorID.isEmpty {
           createPostButton
         }
         if debugModeEnabled {
