@@ -37,6 +37,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 
 
+### ci_lunar_sign
+
+```sh
+[bundle exec] fastlane ci_lunar_sign
+```
+
+
+
 ### lunar_build
 
 ```sh
@@ -53,18 +61,18 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 
 
-### CI
+### CI_TO_TESTFLIGHT_DEPLOY
 
 ```sh
-[bundle exec] fastlane CI
+[bundle exec] fastlane CI_TO_TESTFLIGHT_DEPLOY
 ```
 
 
 
-### DEPLOY_TESTFLIGHT
+### LOCAL_TO_TESTFLIGHT_DEPLOY
 
 ```sh
-[bundle exec] fastlane DEPLOY_TESTFLIGHT
+[bundle exec] fastlane LOCAL_TO_TESTFLIGHT_DEPLOY
 ```
 
 

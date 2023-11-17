@@ -7,8 +7,11 @@ All notable changes to this project will be documented in this file.
 - `### Fixed` for any bug fixes.
 - `### Misc` for tech debt and other changes.
 
-
 ## [Unreleased]
+
+### Misc
+
+- Testing Automated Deploymets Deployments
 
 ## [2023.11.14]
 
