@@ -37,6 +37,22 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 
 
+### ci_lunar_sign
+
+```sh
+[bundle exec] fastlane ci_lunar_sign
+```
+
+
+
+### ci_create_keychain
+
+```sh
+[bundle exec] fastlane ci_create_keychain
+```
+
+
+
 ### lunar_build
 
 ```sh
@@ -53,26 +69,50 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 
 
-### CI
+### write_changelog
 
 ```sh
-[bundle exec] fastlane CI
+[bundle exec] fastlane write_changelog
 ```
 
 
 
-### DEPLOY_TESTFLIGHT
+### write_github_release
 
 ```sh
-[bundle exec] fastlane DEPLOY_TESTFLIGHT
+[bundle exec] fastlane write_github_release
 ```
 
 
 
-### generate_github_release
+### ci_generate_github_release
 
 ```sh
-[bundle exec] fastlane generate_github_release
+[bundle exec] fastlane ci_generate_github_release
+```
+
+
+
+### local_create_pr_to_release
+
+```sh
+[bundle exec] fastlane local_create_pr_to_release
+```
+
+
+
+### CI_TO_TESTFLIGHT_DEPLOY
+
+```sh
+[bundle exec] fastlane CI_TO_TESTFLIGHT_DEPLOY
+```
+
+
+
+### LOCAL_TO_TESTFLIGHT_DEPLOY
+
+```sh
+[bundle exec] fastlane LOCAL_TO_TESTFLIGHT_DEPLOY
 ```
 
 

@@ -7,8 +7,15 @@ All notable changes to this project will be documented in this file.
 - `### Fixed` for any bug fixes.
 - `### Misc` for tech debt and other changes.
 
-
 ## [Unreleased]
+
+### Changed
+
+- Hiding Create Post, Create Comment, and Reply buttons when not logged in. 
+
+### Misc
+
+- Testing Automated Deployments
 
 ## [2023.11.14]
 

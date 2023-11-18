@@ -12,6 +12,7 @@ import SwiftUI
 
 struct RecursiveComment: View {
   @Default(.commentMetadataPosition) var commentMetadataPosition
+  @Default(.activeAccount) var activeAccount
 
   @State private var isExpanded = true
   @State var showCreateCommentPopover = false
@@ -40,7 +41,9 @@ struct RecursiveComment: View {
       .onTapGesture { minimiseComment() }
       .swipeActions(edge: .trailing, allowsFullSwipe: true) {
         minimiseButton
-        replyButton
+        if !activeAccount.actorID.isEmpty {
+          replyButton
+        }
       }
       .contextMenu {
         shareButton
