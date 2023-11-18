@@ -54,7 +54,7 @@ struct HeaderView: View {
       .border(debugModeEnabled ? Color.purple : Color.clear)
 
       if let description {
-        ExpandableTextBox(LocalizedStringKey(description))
+        ExpandableTextBox(text: description)
       }
     }
     .listRowSeparator(.hidden)

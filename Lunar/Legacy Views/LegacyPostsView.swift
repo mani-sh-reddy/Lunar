@@ -93,7 +93,7 @@ struct old_PostsView: View {
     }
     .toolbar {
       ToolbarItemGroup(placement: .navigationBarTrailing) {
-        if isCommunitySpecific && !activeAccount.actorID.isEmpty {
+        if isCommunitySpecific, !activeAccount.actorID.isEmpty {
           Button {
             showingCreatePostPopover = true
           } label: {

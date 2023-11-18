@@ -9,11 +9,20 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+
+- Using package (@gonzalezreal /swift-markdown-ui) to parse post headers and comment text.
+- Hiding Create Post, Create Comment, and Reply buttons when not logged in.
+
+### Fixed
+
+- Image links now rendering images instead of showing an empty line.
+
 ## [2023.11.16]
 
 ### Changed
 
-- Hiding Create Post, Create Comment, and Reply buttons when not logged in. 
+- Hiding Create Post, Create Comment, and Reply buttons when not logged in.
 
 ### Misc
 

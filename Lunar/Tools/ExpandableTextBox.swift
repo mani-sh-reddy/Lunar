@@ -7,31 +7,34 @@
 
 import Defaults
 import Foundation
+import MarkdownUI
 import SFSafeSymbols
 import SwiftUI
 
 struct ExpandableTextBox: View {
   @State private var expanded: Bool = false
   @State private var truncated: Bool = false
-  private var text: LocalizedStringKey
+//  private var text: LocalizedStringKey
+  var text: String
   var lineLimit = 3
 
   let haptics = UIImpactFeedbackGenerator(style: .soft)
 
-  init(_ text: LocalizedStringKey) {
-    self.text = text
-  }
+//  init(_ text: LocalizedStringKey) {
+//    self.text = text
+//  }
 
   var body: some View {
     VStack(alignment: .leading) {
-      Text(text)
+//      Text(text)
+      Markdown { text }
         .lineLimit(expanded ? nil : lineLimit)
         .background(
           Text(text).lineLimit(lineLimit)
             .background(
               GeometryReader { displayedGeometry in
                 ZStack {
-                  Text(text)
+                  Markdown { text }
                     .background(
                       GeometryReader { fullGeometry in
                         Color.clear.onAppear {

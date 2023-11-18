@@ -223,6 +223,7 @@
 		3CEB2C0A2AB2F3A50013609E /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEB2C092AB2F3A50013609E /* Defaults */; };
 		3CEB2C132AB2F45F0013609E /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEB2C122AB2F45F0013609E /* SFSafeSymbols */; };
 		3CEBF4672B08302000469008 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 3CEBF4662B08302000469008 /* CHANGELOG.md */; };
+		3CEBF46C2B09426E00469008 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3CEBF46B2B09426E00469008 /* MarkdownUI */; };
 		3CECCE192AACFA4B0017A605 /* MyUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CECCE182AACFA4B0017A605 /* MyUserView.swift */; };
 		3CECCE1C2AADBFFA0017A605 /* ColorTesterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CECCE1B2AADBFFA0017A605 /* ColorTesterView.swift */; };
 		3CECCE1E2AADDBBA0017A605 /* CircleFillIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CECCE1D2AADDBBA0017A605 /* CircleFillIcons.swift */; };
@@ -565,6 +566,7 @@
 				3CC4200A2AB37BCB00BE1612 /* WhatsNewKit in Frameworks */,
 				3C20B37F2AEB27F9003F578F /* LocalConsole in Frameworks */,
 				3C23F03E2AAA66E000AACA46 /* Pulse in Frameworks */,
+				3CEBF46C2B09426E00469008 /* MarkdownUI in Frameworks */,
 				3CA95F0A2A7ACF3B00626353 /* NukeUI in Frameworks */,
 				3CFE04BF2A7FEA71007BAD81 /* SwiftSoup in Frameworks */,
 				3CEB2C0A2AB2F3A50013609E /* Defaults in Frameworks */,
@@ -1193,6 +1195,7 @@
 				3CE69E972ABDCA8A00E2821E /* RealmSwift */,
 				3CC3E41A2ADC054000F7F9A9 /* Shiny */,
 				3C20B37E2AEB27F9003F578F /* LocalConsole */,
+				3CEBF46B2B09426E00469008 /* MarkdownUI */,
 			);
 			productName = Lunar;
 			productReference = 3C4F09FC2A54399F009DF8AB /* Lunar.app */;
@@ -1244,6 +1247,7 @@
 				3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */,
 				3CC3E4192ADC054000F7F9A9 /* XCRemoteSwiftPackageReference "shiny" */,
 				3C20B37D2AEB27F8003F578F /* XCRemoteSwiftPackageReference "LocalConsole" */,
+				3CEBF46A2B09426E00469008 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
 			);
 			productRefGroup = 3C4F09FD2A54399F009DF8AB /* Products */;
 			projectDirPath = "";
@@ -2039,6 +2043,14 @@
 				minimumVersion = 4.1.1;
 			};
 		};
+		3CEBF46A2B09426E00469008 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.0;
+			};
+		};
 		3CFE04BD2A7FEA71007BAD81 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scinfu/SwiftSoup";
@@ -2131,6 +2143,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
 			productName = SFSafeSymbols;
+		};
+		3CEBF46B2B09426E00469008 /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3CEBF46A2B09426E00469008 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
 		};
 		3CFE04BE2A7FEA71007BAD81 /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
