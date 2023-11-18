@@ -156,6 +156,17 @@ lane :ci_generate_github_release do
 )
 end
 
+lane :local_create_pr_to_release do
+create_pull_request(
+  repo: 'mani-sh-reddy/Lunar',
+  api_token: REPO_GITHUB_TOKEN.to_s,
+  title: LATEST_GIT_TAG.to_s,
+  head: 'dev',
+  base: 'release',
+  body: CHANGELOG_LATEST_SECTION.to_s
+)
+end
+
 lane :CI_TO_TESTFLIGHT_DEPLOY do
   increment_versions
   ci_create_keychain
