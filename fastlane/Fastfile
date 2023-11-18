@@ -123,7 +123,12 @@ lane :write_changelog do
   )
 end
 
-lane :write_github_release do
+lane :local_pr_and_github_release_notes do
+  pr_dev_to_release
+  create_gh_release_notes
+end
+
+lane :pr_dev_to_release do
   create_pull_request(
     repo: 'mani-sh-reddy/Lunar',
     api_token: REPO_GITHUB_TOKEN.to_s,
@@ -132,7 +137,9 @@ lane :write_github_release do
     base: 'release',
     body: CHANGELOG_LATEST_SECTION.to_s
   )
+end
 
+lane :create_gh_release_notes do
   set_github_release(
     repository_name: 'mani-sh-reddy/Lunar',
     api_token: REPO_GITHUB_TOKEN.to_s,
@@ -144,27 +151,8 @@ lane :write_github_release do
   )
 end
 
-lane :ci_generate_github_release do
-  set_github_release(
-  repository_name: 'mani-sh-reddy/Lunar',
-  api_token: REPO_GITHUB_TOKEN.to_s,
-  name: LATEST_GIT_TAG.to_s,
-  tag_name: LATEST_GIT_TAG.to_s,
-  description: CHANGELOG_LATEST_SECTION.to_s,
-  commitish: 'dev',
-  upload_assets: ['Lunar.ipa']
-)
-end
-
-lane :local_create_pr_to_release do
-create_pull_request(
-  repo: 'mani-sh-reddy/Lunar',
-  api_token: REPO_GITHUB_TOKEN.to_s,
-  title: LATEST_GIT_TAG.to_s,
-  head: 'dev',
-  base: 'release',
-  body: CHANGELOG_LATEST_SECTION.to_s
-)
+lane :local_pr do
+  pr_dev_to_release
   reset_git_repo(
     force: true,
     files: ['./fastlane/README.md']
@@ -178,7 +166,7 @@ lane :CI_TO_TESTFLIGHT_DEPLOY do
   lunar_build
   lunar_deploy
   write_changelog
-  ci_generate_github_release
+  create_gh_release_notes
   # Remaining steps use github actions
 end
 
@@ -188,7 +176,7 @@ lane :LOCAL_TO_TESTFLIGHT_DEPLOY do
   lunar_build
   lunar_deploy
   write_changelog
-  write_github_release
+  local_pr_and_github_release_notes
 
   # reset_git_repo(
   #   force: true,

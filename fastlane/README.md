@@ -77,26 +77,34 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 
 
-### write_github_release
+### local_pr_and_github_release_notes
 
 ```sh
-[bundle exec] fastlane write_github_release
+[bundle exec] fastlane local_pr_and_github_release_notes
 ```
 
 
 
-### ci_generate_github_release
+### pr_dev_to_release
 
 ```sh
-[bundle exec] fastlane ci_generate_github_release
+[bundle exec] fastlane pr_dev_to_release
 ```
 
 
 
-### local_create_pr_to_release
+### create_gh_release_notes
 
 ```sh
-[bundle exec] fastlane local_create_pr_to_release
+[bundle exec] fastlane create_gh_release_notes
+```
+
+
+
+### local_pr
+
+```sh
+[bundle exec] fastlane local_pr
 ```
 
 

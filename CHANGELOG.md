@@ -9,6 +9,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [2023.11.16]
+
 ### Changed
 
 - Hiding Create Post, Create Comment, and Reply buttons when not logged in. 
