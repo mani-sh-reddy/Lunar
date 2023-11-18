@@ -7,6 +7,7 @@
 
 import Defaults
 import Foundation
+import MarkdownUI
 import SFSafeSymbols
 import SwiftUI
 
@@ -74,7 +75,7 @@ struct RecursiveComment: View {
 
   var minimisedCommentStyle: some View {
     HStack {
-      Text(try! AttributedString(styledMarkdown: "\(nestedComment.commentViewData.comment.content)"))
+      Text(nestedComment.commentViewData.comment.content)
         .italic()
         .lineLimit(1)
         .foregroundStyle(.gray)
@@ -160,7 +161,7 @@ struct RecursiveComment: View {
       if commentMetadataPosition == "Top" {
         commentMetadata
       }
-      Text(try! AttributedString(styledMarkdown: nestedComment.commentViewData.comment.content))
+      Markdown { nestedComment.commentViewData.comment.content }
       if commentMetadataPosition == "Bottom" {
         commentMetadata
       }

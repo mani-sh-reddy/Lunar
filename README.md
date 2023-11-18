@@ -6,8 +6,7 @@
 
 ![GitHub issues](https://img.shields.io/github/issues/mani-sh-reddy/Lunar-Lemmy-iOS?logo=github)
 ![Static Badge](https://img.shields.io/badge/supports-iOS_15+-lightgray)
-[![Static Badge](https://img.shields.io/badge/SwiftUI-3.0-blue?logo=swift&logoColor=blue)
-](https://developer.apple.com/xcode/swiftui/)
+![Static Badge](https://img.shields.io/badge/SwiftUI-3.0-blue?logo=swift&logoColor=blue)
 [![license: GPL v3](https://img.shields.io/badge/license-GPLv3-maroon.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 Lunar is an iOS app that serves as a client for [Lemmy](https://join-lemmy.org/instances) and [Kbin](https://kbin.pub/en), the open-source federated alternatives to Reddit
@@ -31,6 +30,8 @@ Lunar is an iOS app that serves as a client for [Lemmy](https://join-lemmy.org/i
 [Defaults](https://github.com/sindresorhus/Defaults) - Swifty and modern UserDefaults
 
 [LocalConsole](https://github.com/duraidabdul/LocalConsole) - In-app console and debug tools
+
+[MarkdownUI](https://github.com/gonzalezreal/swift-markdown-ui) - Display and customize Markdown text in SwiftUI
 
 [Nuke](https://github.com/kean/Nuke) - Image loading system
 

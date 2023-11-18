@@ -6,6 +6,7 @@
 //
 
 import Defaults
+import MarkdownUI
 import SFSafeSymbols
 import SwiftUI
 
@@ -33,7 +34,7 @@ struct MyUserCommentsView: View {
           if commentMetadataPosition == "Top" {
             MyUserCommentMetadataView(comment: comment)
           }
-          Text(try! AttributedString(styledMarkdown: comment.comment.content))
+          Markdown { comment.comment.content }
           if commentMetadataPosition == "Bottom" {
             MyUserCommentMetadataView(comment: comment)
           }

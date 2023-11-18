@@ -58,7 +58,7 @@ jobs:
           MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
           MATCH_CERTS_URL_LUNAR: ${{ secrets.MATCH_CERTS_URL_LUNAR }}
           ASC_P8_KEY_ENCODED: ${{ secrets.ASC_P8_KEY_ENCODED }}
-          REPO_GITHUB_TOKEN: ""
+          REPO_GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
           LOCAL_KEYCHAIN_PASS: ${{ secrets.LOCAL_KEYCHAIN_PASS }}
 
       - name: Archive IPA and dSYM artifacts

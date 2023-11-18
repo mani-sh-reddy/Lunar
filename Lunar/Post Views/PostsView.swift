@@ -7,6 +7,7 @@
 
 import Defaults
 import Foundation
+import MarkdownUI
 import NukeUI
 import RealmSwift
 import SFSafeSymbols
@@ -109,7 +110,7 @@ struct PostsView: View {
     }
     .toolbar {
       ToolbarItemGroup(placement: .navigationBarTrailing) {
-        if communityActorID != nil && !activeAccount.actorID.isEmpty {
+        if communityActorID != nil, !activeAccount.actorID.isEmpty {
           createPostButton
         }
         if debugModeEnabled {
@@ -156,7 +157,7 @@ struct PostsView: View {
   var communitySpecificHeader: some View {
     Section {
       DisclosureGroup {
-        Text(try! AttributedString(styledMarkdown: communityDescription ?? ""))
+        Markdown { communityDescription ?? "" }
       } label: {
         HStack {
           communityIconView
@@ -198,7 +199,7 @@ struct PostsView: View {
   var personSpecificHeader: some View {
     Section {
       DisclosureGroup {
-        Text(try! AttributedString(styledMarkdown: personBio ?? ""))
+        Markdown { personBio ?? "" }
       } label: {
         HStack {
           personAvatarView

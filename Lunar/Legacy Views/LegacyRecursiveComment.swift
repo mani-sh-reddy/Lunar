@@ -7,6 +7,7 @@
 
 import Defaults
 import Foundation
+import MarkdownUI
 import SFSafeSymbols
 import SwiftUI
 
@@ -105,8 +106,7 @@ struct LegacyRecursiveComment: View {
       }
     } else {
       HStack {
-        Text(try! AttributedString(styledMarkdown: "\(nestedComment.commentViewData.comment.content)"))
-          .italic()
+        Markdown { nestedComment.commentViewData.comment.content }
           .lineLimit(1)
           .foregroundStyle(.gray)
           .font(.caption)
@@ -139,8 +139,7 @@ struct LegacyRecursiveComment: View {
       if commentMetadataPosition == "Top" {
         commentMetadata
       }
-
-      Text(try! AttributedString(styledMarkdown: nestedComment.commentViewData.comment.content))
+      Markdown { nestedComment.commentViewData.comment.content }
       if commentMetadataPosition == "Bottom" {
         commentMetadata
       }

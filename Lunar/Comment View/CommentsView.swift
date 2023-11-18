@@ -6,6 +6,7 @@
 //
 
 import Defaults
+import MarkdownUI
 import SFSafeSymbols
 import SwiftUI
 
@@ -62,7 +63,7 @@ struct CommentsView: View {
         .padding(.horizontal, -5)
       if let postBody = post.postBody, !postBody.isEmpty {
         DisclosureGroup(isExpanded: $postBodyExpanded) {
-          Text(try! AttributedString(styledMarkdown: postBody))
+          Markdown { postBody }
         } label: {
           if postBodyExpanded {
             Text("")
