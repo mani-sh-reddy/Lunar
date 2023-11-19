@@ -5,6 +5,7 @@
 //  Created by Mani on 31/07/2023.
 //
 
+import SFSafeSymbols
 import SwiftUI
 
 struct AddNewUserButtonView: View {

@@ -9,6 +9,19 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- Matrix tag in settings.
+- Hide Communities button functionality.
+- Pinned (Featured) posts labels.
+- Go to comments from Posts Search View
+
+### Changed
+
+- Confirmation of Logged Out All Users action
+- Using SwiftUI built-in picker for app icon selection
+- Using SwiftUI built-in picker for account selection
+
 ## [2023.11.17]
 
 ### Changed
