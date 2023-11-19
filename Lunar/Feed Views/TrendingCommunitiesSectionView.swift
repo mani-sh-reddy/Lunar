@@ -17,7 +17,7 @@ struct TrendingCommunitiesSectionView: View {
   @StateObject var communitiesFetcher: LegacyCommunitiesFetcher
 
   var body: some View {
-    ForEach(communitiesFetcher.communities, id: \.community.id) { community in
+    ForEach(communitiesFetcher.communities.prefix(5), id: \.community.id) { community in
       NavigationLink {
         PostsView(
           filteredPosts: realmPosts.filter { post in
@@ -39,7 +39,10 @@ struct TrendingCommunitiesSectionView: View {
           communityIcon: community.community.icon
         )
       } label: {
-        LegacyCommunityRowView(community: community)
+        LegacyCommunityRowView(
+          community: community,
+          communitiesFetcher: communitiesFetcher
+        )
       }
     }
     .onChange(of: selectedInstance) { _ in

@@ -42,7 +42,10 @@ struct ExploreCommunitiesView: View {
               communityIcon: community.community.icon
             )
           } label: {
-            LegacyCommunityRowView(community: community)
+            LegacyCommunityRowView(
+              community: community,
+              communitiesFetcher: communitiesFetcher
+            )
           }
         }
       } header: {

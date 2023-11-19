@@ -18,6 +18,7 @@ import SwiftUI
   @Default(.activeAccount) var activeAccount
   @Default(.appBundleID) var appBundleID
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
+  @Default(.legacyHiddenCommunitiesList) var legacyHiddenCommunitiesList
 
   @Published var communities = [CommunityObject]()
   @Published var isLoading = false
@@ -119,7 +120,9 @@ import SwiftUI
       switch response.result {
       case let .success(result):
 
-        let fetchedCommunities = result.communities
+        let fetchedCommunities = result.communities.filter {
+          !self.legacyHiddenCommunitiesList.contains($0.community.actorID)
+        }
 
         let imagesToPrefetch = result.iconURLs.compactMap { URL(string: $0) }
         self.imagePrefetcher.startPrefetching(with: imagesToPrefetch)
