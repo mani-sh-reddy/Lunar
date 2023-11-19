@@ -324,6 +324,7 @@ struct PostsView_Previews: PreviewProvider {
       postURL: "https://example.com/sample-post",
       postBody: "This is the body of the sample post. It contains some information about the post.",
       postThumbnailURL: "https://i.imgur.com/bgHfktp.jpeg",
+      postFeatured: false,
       personID: 1,
       personName: "mani",
       personPublished: "October 17, 2023",

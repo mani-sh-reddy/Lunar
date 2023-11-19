@@ -59,7 +59,7 @@ struct CommentsView: View {
 
   var postSection: some View {
     Section {
-      CompactPostItem(post: post)
+      CompactPostItem(post: post, parentView: "CommentsView")
         .padding(.horizontal, -5)
       if let postBody = post.postBody, !postBody.isEmpty {
         DisclosureGroup(isExpanded: $postBodyExpanded) {

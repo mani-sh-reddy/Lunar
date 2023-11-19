@@ -26,6 +26,8 @@ struct CompactPostItem: View {
   let hapticsLight = UIImpactFeedbackGenerator(style: .light)
   let notificationHaptics = UINotificationFeedbackGenerator()
 
+  var parentView: String? = "PostsView"
+
   var image: String? {
     let thumbnail = post.postThumbnailURL ?? ""
     let url = post.postURL ?? ""
@@ -68,8 +70,12 @@ struct CompactPostItem: View {
   var body: some View {
     ZStack {
       postBackground
-      if post.postMinimised {
-        postMinimised
+      if post.postMinimised, parentView == "PostsView" {
+        if post.postFeatured {
+          postMinimisedFeatured
+        } else {
+          postMinimised
+        }
       } else {
         VStack(alignment: .leading, spacing: 7) {
           HStack {
@@ -194,6 +200,21 @@ struct CompactPostItem: View {
     }
   }
 
+  var postMinimisedFeatured: some View {
+    HStack {
+      Text(post.postName)
+        .font(.caption)
+        .fontWeight(.semibold)
+        .lineLimit(1)
+        .padding(.horizontal)
+        .padding(.vertical, 5)
+      Spacer()
+      Image(systemSymbol: .pinCircleFill)
+        .symbolRenderingMode(.multicolor)
+        .padding(.horizontal, 5)
+    }
+  }
+
   var postCreatorLabel: some View {
     Text(creatorTimeAgoLabel)
       .font(.caption)
@@ -306,6 +327,7 @@ struct CompactPostsView_Previews: PreviewProvider {
       postURL: "https://example.com/sample-post",
       postBody: "This is the body of the sample post. It contains some information about the post.",
       postThumbnailURL: "https://i.imgur.com/bgHfktp.jpeg",
+      postFeatured: false,
       personID: 1,
       personName: "mani",
       personPublished: "October 17, 2023",
@@ -336,6 +358,6 @@ struct CompactPostsView_Previews: PreviewProvider {
       type: "All",
       filterKey: "sortAndTypeOnly"
     )
-    return CompactPostItem(post: samplePost).previewLayout(.sizeThatFits)
+    return CompactPostItem(post: samplePost, parentView: "PostsView").previewLayout(.sizeThatFits)
   }
 }
