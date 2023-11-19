@@ -47,7 +47,14 @@ struct SearchResultsList: View {
           SearchCommunitiesRowView(searchCommunitiesResults: searchFetcher.communities)
         case "Posts":
           ForEach(searchFetcher.posts, id: \.post.id) { post in
-            Text(post.post.name)
+            NavigationLink {
+              NonRealmCommentsView(
+                commentsFetcher: CommentsFetcher(postID: post.post.id),
+                post: post
+              )
+            } label: {
+              Text(post.post.name)
+            }
           }
         default:
           EmptyView()

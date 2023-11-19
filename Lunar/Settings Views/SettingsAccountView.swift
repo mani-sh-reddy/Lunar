@@ -5,6 +5,7 @@
 //  Created by Mani on 24/07/2023.
 //
 
+import Defaults
 import SwiftUI
 
 struct SettingsAccountView: View {
@@ -18,13 +19,11 @@ struct SettingsAccountView: View {
   @State var keychainDebugString: String = ""
   @State var isLoginFlowComplete: Bool = true
 
-  @Binding var selectedAccount: AccountModel?
-
   var body: some View {
     List {
       Section {
         if isLoginFlowComplete {
-          LoggedInUsersListView(selectedAccount: $selectedAccount)
+          LoggedInUsersListView()
         } else {
           HStack {
             ProgressView()
@@ -47,8 +46,7 @@ struct SettingsAccountView: View {
           isLoadingDeleteButton: $isLoadingDeleteButton,
           deleteConfirmationShown: $deleteConfirmationShown,
           isConvertingEmails: $isConvertingEmails,
-          keychainDebugString: $keychainDebugString,
-          selectedAccount: $selectedAccount
+          keychainDebugString: $keychainDebugString
         )
       }
 
@@ -73,16 +71,6 @@ struct SettingsAccountView: View {
 
 struct SettingsAccountView_Previews: PreviewProvider {
   static var previews: some View {
-    SettingsAccountView(
-      selectedAccount: .constant(
-        AccountModel(
-          userID: "",
-          name: "",
-          email: "",
-          avatarURL: "",
-          actorID: ""
-        )
-      )
-    )
+    SettingsAccountView()
   }
 }

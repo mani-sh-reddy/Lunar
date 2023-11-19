@@ -14,6 +14,8 @@ struct LogoutAllUsersButtonView: View {
   @Default(.loggedInAccounts) var loggedInAccounts
   @Default(.debugModeEnabled) var debugModeEnabled
   @Default(.appBundleID) var appBundleID
+  @Default(.accentColorString) var accentColorString
+  @Default(.accentColor) var accentColor
 
   let widgetLink = WidgetLink()
 
@@ -25,7 +27,6 @@ struct LogoutAllUsersButtonView: View {
   @Binding var deleteConfirmationShown: Bool
   @Binding var isConvertingEmails: Bool
   @Binding var keychainDebugString: String
-  @Binding var selectedAccount: AccountModel?
 
   let haptic = UINotificationFeedbackGenerator()
 
@@ -46,10 +47,10 @@ struct LogoutAllUsersButtonView: View {
         ZStack(alignment: .trailing) {
           if logoutAllUsersButtonClicked {
             Group {
-              Image(systemSymbol: .checkmarkCircleFill)
-                .font(.title2).opacity(logoutAllUsersButtonOpacity)
-                .symbolRenderingMode(.hierarchical)
-                .foregroundStyle(.green)
+              Text("Cleared")
+                .bold()
+                .font(.caption)
+                .foregroundStyle(accentColorString == "Default" ? .red : accentColor)
             }.onAppear {
               let animation = Animation.easeIn(duration: 2)
               withAnimation(animation) {
@@ -75,9 +76,6 @@ struct LogoutAllUsersButtonView: View {
       Button(role: .destructive) {
         isPresentingConfirm = true
         if !loggedInAccounts.isEmpty {
-          selectedAccount = AccountModel(
-            userID: "", name: "", email: "", avatarURL: "", actorID: ""
-          )
           loggedInAccounts.removeAll()
           activeAccount = AccountModel()
           widgetLink.storeAccountData(account: activeAccount)

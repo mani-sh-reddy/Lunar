@@ -6,18 +6,28 @@
 //
 
 import Defaults
+import NukeUI
 import SwiftUI
 
 struct LoggedInUsersListView: View {
   @Default(.loggedInAccounts) var loggedInAccounts
   @Default(.debugModeEnabled) var debugModeEnabled
   @Default(.appBundleID) var appBundleID
+  @Default(.activeAccount) var activeAccount
 
-  @Binding var selectedAccount: AccountModel?
+  let widgetLink = WidgetLink()
 
   var body: some View {
-    ForEach(loggedInAccounts, id: \.self) { account in
-      AccountSelectionItem(account: account)
+    Picker("Accounts", selection: $activeAccount) {
+      ForEach(loggedInAccounts, id: \.self) { account in
+        AccountItemView(account: account)
+      }
+    }
+    .labelsHidden()
+    .pickerStyle(.inline)
+    .onChange(of: activeAccount) { newValue in
+      widgetLink.storeAccountData(account: newValue)
+      widgetLink.reloadWidget(kind: "AccountWidget")
     }
   }
 }

@@ -154,7 +154,7 @@ struct FeedView: View {
 
   var trendingSection: some View {
     Section(header: Text("Trending")) {
-      TrendingCommunitiesSectionView(communitiesFetcher: LegacyCommunitiesFetcher(limitParameter: 5))
+      TrendingCommunitiesSectionView(communitiesFetcher: LegacyCommunitiesFetcher(limitParameter: 50))
       ExploreCommunitiesButton()
     }
   }

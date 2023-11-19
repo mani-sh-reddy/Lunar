@@ -1,5 +1,5 @@
 //
-//  CommentsView.swift
+//  NonRealmCommentsView.swift
 //  Lunar
 //
 //  Created by Mani on 07/07/2023.
@@ -10,16 +10,13 @@ import MarkdownUI
 import SFSafeSymbols
 import SwiftUI
 
-struct CommentsView: View {
+struct NonRealmCommentsView: View {
   @Default(.activeAccount) var activeAccount
 
   @StateObject var commentsFetcher: CommentsFetcher
-  @Binding var upvoted: Bool
-  @Binding var downvoted: Bool
-  @State var showingCreateCommentPopover = false
   @State var postBodyExpanded = false
 
-  var post: RealmPost
+  var post: PostObject
 
   var body: some View {
     List {
@@ -27,17 +24,7 @@ struct CommentsView: View {
       commentsSection
     }
     .listStyle(.grouped)
-    .navigationTitle(post.postName)
-    .toolbar {
-      ToolbarItemGroup(placement: .navigationBarTrailing) {
-        if !activeAccount.userID.isEmpty {
-          createCommentTopLevelButton
-        }
-      }
-    }
-    .popover(isPresented: $showingCreateCommentPopover) {
-      commentPopoverAction
-    }
+    .navigationTitle(post.post.name)
     .environmentObject(commentsFetcher)
   }
 
@@ -48,7 +35,7 @@ struct CommentsView: View {
       } else {
         let nestedComments = commentsFetcher.comments.nestedComment
         ForEach(nestedComments, id: \.id) { comment in
-          RecursiveComment(
+          NonRealmRecursiveComment(
             nestedComment: comment,
             post: post
           )
@@ -59,9 +46,9 @@ struct CommentsView: View {
 
   var postSection: some View {
     Section {
-      CompactPostItem(post: post, parentView: "CommentsView")
+      NonRealmPostItem(post: post)
         .padding(.horizontal, -5)
-      if let postBody = post.postBody, !postBody.isEmpty {
+      if let postBody = post.post.body, !postBody.isEmpty {
         DisclosureGroup(isExpanded: $postBodyExpanded) {
           Markdown { postBody }
         } label: {
@@ -76,23 +63,6 @@ struct CommentsView: View {
           }
         }
       }
-    }
-  }
-
-  @ViewBuilder
-  var commentPopoverAction: some View {
-    CreateCommentPopover(
-      post: post,
-      parentString: post.postName
-    )
-    .environmentObject(commentsFetcher)
-  }
-
-  var createCommentTopLevelButton: some View {
-    Button {
-      showingCreateCommentPopover = true
-    } label: {
-      Image(systemSymbol: .plusBubbleFill)
     }
   }
 }

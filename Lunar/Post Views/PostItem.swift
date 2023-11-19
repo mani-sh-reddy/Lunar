@@ -68,7 +68,11 @@ struct PostItem: View {
     ZStack {
       postBackground
       if post.postMinimised {
-        postMinimised
+        if post.postFeatured {
+          postMinimisedFeatured
+        } else {
+          postMinimised
+        }
       } else {
         VStack(alignment: .leading, spacing: 7) {
           postImage
@@ -228,6 +232,21 @@ struct PostItem: View {
         .padding(.horizontal)
         .padding(.vertical, 5)
       Spacer()
+    }
+  }
+
+  var postMinimisedFeatured: some View {
+    HStack {
+      Text(post.postName)
+        .font(.caption)
+        .fontWeight(.semibold)
+        .lineLimit(1)
+        .padding(.horizontal)
+        .padding(.vertical, 5)
+      Spacer()
+      Image(systemSymbol: .pinCircleFill)
+        .symbolRenderingMode(.multicolor)
+        .padding(.horizontal, 5)
     }
   }
 

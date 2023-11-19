@@ -1,5 +1,5 @@
 //
-//  UserRowSettingsBannerView.swift
+//  AccountItemView.swift
 //  Lunar
 //
 //  Created by Mani on 28/07/2023.
@@ -11,15 +11,13 @@ import Nuke
 import NukeUI
 import SwiftUI
 
-struct UserRowSettingsBannerView: View {
-  @Default(.activeAccount) var activeAccount
-
-  @Binding var selectedAccount: AccountModel?
+struct AccountItemView: View {
+  var account: AccountModel
 
   var body: some View {
     HStack {
-      if !activeAccount.avatarURL.isEmpty {
-        LazyImage(url: URL(string: activeAccount.avatarURL)) { state in
+      if !account.avatarURL.isEmpty {
+        LazyImage(url: URL(string: account.avatarURL)) { state in
           if let image = state.image {
             image
               .resizable()
@@ -47,12 +45,12 @@ struct UserRowSettingsBannerView: View {
           .symbolRenderingMode(.hierarchical)
       }
 
-      if activeAccount.actorID.isEmpty {
+      if account.actorID.isEmpty {
         Text("Sign In").font(.title2).bold()
       } else {
         VStack(alignment: .leading, spacing: 3) {
-          Text(activeAccount.name).font(.title2).bold()
-          Text("@\(URLParser.extractDomain(from: activeAccount.actorID))")
+          Text(account.name).font(.title2).bold()
+          Text("@\(URLParser.extractDomain(from: account.actorID))")
             .font(.caption)
             .foregroundStyle(.secondary)
         }

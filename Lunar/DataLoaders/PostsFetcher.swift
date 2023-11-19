@@ -185,6 +185,7 @@ class PostsFetcher: ObservableObject {
               postURL: post.post.url,
               postBody: post.post.body,
               postThumbnailURL: post.post.thumbnailURL,
+              postFeatured: post.post.featuredCommunity || post.post.featuredLocal,
               personID: post.creator.id,
               personName: post.creator.name,
               personPublished: post.creator.published,
@@ -210,7 +211,7 @@ class PostsFetcher: ObservableObject {
               downvotes: post.counts.downvotes,
               postMyVote: post.myVote ?? 0,
               postHidden: false,
-              postMinimised: false,
+              postMinimised: post.post.featuredCommunity || post.post.featuredLocal,
               sort: self.sort,
               type: self.type,
               filterKey: self.filterKey

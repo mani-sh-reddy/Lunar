@@ -59,6 +59,7 @@ extension Defaults.Keys {
   static let debugModeEnabled = Key<Bool>("debugModeEnabled", default: false)
   static let realmLastReset = Key<String>("realmLastReset", default: "Never")
   static let networkInspectorEnabled = Key<Bool>("networkInspectorEnabled", default: false)
+  static let legacyHiddenCommunitiesList = Key<[String]>("legacyHiddenCommunitiesList", default: [])
   static let quicklinkColor = Key<Color>("quicklinkColor", default: .primary)
   static let lastDownloadedPage = Key<Int>("lastDownloadedPage", default: 1)
   static let subscribedCommunityIDs = Key<[Int]>("subscribedCommunityIDs", default: [])
