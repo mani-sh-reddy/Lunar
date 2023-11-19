@@ -14,6 +14,8 @@ struct LogoutAllUsersButtonView: View {
   @Default(.loggedInAccounts) var loggedInAccounts
   @Default(.debugModeEnabled) var debugModeEnabled
   @Default(.appBundleID) var appBundleID
+  @Default(.accentColorString) var accentColorString
+  @Default(.accentColor) var accentColor
 
   let widgetLink = WidgetLink()
 
@@ -46,10 +48,10 @@ struct LogoutAllUsersButtonView: View {
         ZStack(alignment: .trailing) {
           if logoutAllUsersButtonClicked {
             Group {
-              Image(systemSymbol: .checkmarkCircleFill)
-                .font(.title2).opacity(logoutAllUsersButtonOpacity)
-                .symbolRenderingMode(.hierarchical)
-                .foregroundStyle(.green)
+              Text("Cleared")
+                .bold()
+                .font(.caption)
+                .foregroundStyle(accentColorString == "Default" ? .red : accentColor)
             }.onAppear {
               let animation = Animation.easeIn(duration: 2)
               withAnimation(animation) {
