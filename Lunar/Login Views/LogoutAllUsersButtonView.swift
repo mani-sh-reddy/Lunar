@@ -27,7 +27,6 @@ struct LogoutAllUsersButtonView: View {
   @Binding var deleteConfirmationShown: Bool
   @Binding var isConvertingEmails: Bool
   @Binding var keychainDebugString: String
-  @Binding var selectedAccount: AccountModel?
 
   let haptic = UINotificationFeedbackGenerator()
 
@@ -77,9 +76,6 @@ struct LogoutAllUsersButtonView: View {
       Button(role: .destructive) {
         isPresentingConfirm = true
         if !loggedInAccounts.isEmpty {
-          selectedAccount = AccountModel(
-            userID: "", name: "", email: "", avatarURL: "", actorID: ""
-          )
           loggedInAccounts.removeAll()
           activeAccount = AccountModel()
           widgetLink.storeAccountData(account: activeAccount)

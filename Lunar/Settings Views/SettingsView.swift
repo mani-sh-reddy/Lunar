@@ -16,8 +16,8 @@ struct SettingsView: View {
   @Default(.enableQuicklinks) var enableQuicklinks
   @Default(.accentColor) var accentColor
   @Default(.accentColorString) var accentColorString
+  @Default(.activeAccount) var activeAccount
 
-  @State var selectedAccount: AccountModel?
   @State private var showSafariGithub: Bool = false
   @State private var showSafariLemmy: Bool = false
   @State private var showSafariPrivacyPolicy: Bool = false
@@ -82,9 +82,9 @@ struct SettingsView: View {
 
   var accountSection: some View {
     NavigationLink {
-      SettingsAccountView(selectedAccount: $selectedAccount)
+      SettingsAccountView()
     } label: {
-      UserRowSettingsBannerView(selectedAccount: $selectedAccount)
+      AccountItemView(account: activeAccount)
     }
   }
 
