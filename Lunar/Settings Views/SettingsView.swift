@@ -9,6 +9,7 @@ import BetterSafariView
 import Defaults
 import SFSafeSymbols
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct SettingsView: View {
   @Default(.debugModeEnabled) var debugModeEnabled
@@ -20,9 +21,11 @@ struct SettingsView: View {
   @State private var showSafariGithub: Bool = false
   @State private var showSafariLemmy: Bool = false
   @State private var showSafariPrivacyPolicy: Bool = false
+  @State private var matrixCopiedToClipboard: Bool = false
 
   let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
   let haptics = UIImpactFeedbackGenerator(style: .soft)
+  let notificationHaptics = UINotificationFeedbackGenerator()
 
   var body: some View {
     NavigationView {
@@ -50,6 +53,7 @@ struct SettingsView: View {
 
         Section {
           privacyPolicyButton
+          matrixButton
           emailButton
           githubButton
         } header: { Text("Info") }
@@ -235,15 +239,48 @@ struct SettingsView: View {
     )
   }
 
+  var matrixButton: some View {
+    Button {
+      notificationHaptics.notificationOccurred(.success)
+      withAnimation {
+        matrixCopiedToClipboard = true
+      }
+      DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        withAnimation {
+          matrixCopiedToClipboard = false
+        }
+      }
+
+      UIPasteboard.general
+        .setValue("@mani.sh:matrix.org", forPasteboardType: UTType.plainText.identifier)
+    } label: {
+      Label {
+        Text("@mani.sh:matrix.org")
+        Spacer()
+        if !matrixCopiedToClipboard {
+          AllSymbols().copyToClipboardHint
+        } else {
+          Text("Copied")
+            .bold()
+            .font(.caption)
+            .foregroundStyle(accentColorString == "Default" ? .blue : accentColor)
+        }
+      } icon: {
+        AllSymbols().matrixSettings
+      }
+    }
+    .foregroundStyle(.foreground)
+  }
+
   var emailButton: some View {
     Button {
       Mailto().mailto("lunarforlemmy@outlook.com")
     } label: {
       Label {
-        Text("Contact")
+        Text("Email")
           .foregroundStyle(.foreground)
         Spacer()
-        AllSymbols().externalLinkArrow
+        AllSymbols().externalMailArrow
       } icon: {
         AllSymbols().emailSettings
       }

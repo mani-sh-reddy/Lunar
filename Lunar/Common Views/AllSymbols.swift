@@ -74,6 +74,18 @@ class AllSymbols {
       .opacity(0.5)
   }
 
+  var externalMailArrow: some View {
+    Image(systemSymbol: .envelopeCircle)
+      .foregroundStyle(.secondary)
+      .opacity(0.5)
+  }
+
+  var copyToClipboardHint: some View {
+    Image(systemSymbol: .commandCircle)
+      .foregroundStyle(.secondary)
+      .opacity(0.5)
+  }
+
   var hiddenPosts: some View {
     Image(systemSymbol: accentColorString == "Default" ? .lockRectangleOnRectangleFill : .lockRectangleOnRectangle)
       .foregroundStyle(accentColorString == "Default" ? .gray : accentColor)
@@ -155,6 +167,21 @@ class AllSymbols {
         .foregroundStyle(accentColor)
     } else {
       Image(systemSymbol: .arrowTrianglePull)
+        .foregroundStyle(accentColor)
+    }
+  }
+
+  @ViewBuilder
+  var matrixSettings: some View {
+    if accentColorString == "Default" {
+      Image(asset: "MatrixLogo")
+        .resizable()
+        .aspectRatio(contentMode: .fit)
+        .frame(width: 25, height: 25)
+        .clipped()
+        .foregroundStyle(accentColor)
+    } else {
+      Image(systemSymbol: .bubbleLeft)
         .foregroundStyle(accentColor)
     }
   }
