@@ -12,42 +12,43 @@ import SwiftUI
 struct SettingsAppIconPickerView: View {
   @Default(.selectedAppIcon) var selectedAppIcon
 
-  private var appIconNames = [
-    /// **Prepended with 'AppIcon'**
-    "Light", "Dark", "Purple", "Night", "LemmY", "Kbin", "v0",
+  private var appIcons = [
+    ("New", "Light"),
+    ("Original", "v0"),
+    ("Dark", "Dark"),
+    ("Purple", "Purple"),
+    ("Night", "Night"),
+    ("Lemmy Y", "LemmY"),
+    ("Kbin", "Kbin"),
   ]
 
   let haptics = UIImpactFeedbackGenerator(style: .soft)
 
   var body: some View {
     List {
-      ForEach(appIconNames, id: \.self) { iconName in
-        Button {
-          selectedAppIcon = "AppIcon\(iconName)"
-          if selectedAppIcon == "AppIconLight" {
-            UIApplication.shared.setAlternateIconName(nil)
-          } else {
-            UIApplication.shared.setAlternateIconName(selectedAppIcon)
-          }
-          haptics.impactOccurred(intensity: 0.5)
-        } label: {
-          HStack {
-            Image("AppIconDownsized\(iconName)")
+      Picker("Icons", selection: $selectedAppIcon) {
+        ForEach(appIcons, id: \.1.self) { name, identifier in
+          Label {
+            Text(name)
+              .padding(.horizontal, 10)
+          } icon: {
+            Image("AppIconDownsized\(identifier)")
               .resizable()
               .frame(width: 50, height: 50)
               .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-              .padding(.trailing, 10)
-            Text(iconName).tag("AppIcon\(iconName)")
-            Spacer()
-            Image(
-              systemSymbol: selectedAppIcon == "AppIcon\(iconName)" ? .checkmarkCircleFill : .circle
-            )
-            .resizable()
-            .frame(width: 20, height: 20)
-            .foregroundStyle(.indigo)
           }
+          .tag("AppIcon\(identifier)")
+          .padding(.horizontal, 10)
         }
-      }.foregroundStyle(.foreground)
+      }
+      .pickerStyle(.inline)
+    }
+    .onChange(of: selectedAppIcon) { newValue in
+      if newValue == "AppIconLight" {
+        UIApplication.shared.setAlternateIconName(nil)
+      } else {
+        UIApplication.shared.setAlternateIconName(newValue)
+      }
     }
     .navigationTitle("App Icons")
   }
