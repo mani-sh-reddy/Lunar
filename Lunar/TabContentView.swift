@@ -31,7 +31,7 @@ struct TabContentView: View {
         .tabItem {
           Label("Feed", systemSymbol: .mailStack)
         }
-      PlaceholderView()
+      InboxView()
         .tabItem {
           Label("Inbox", systemSymbol: .tray)
         }

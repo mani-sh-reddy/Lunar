@@ -172,6 +172,13 @@
 		3CBF88102AEEC8430058B14D /* LegacyPostsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBF880F2AEEC8430058B14D /* LegacyPostsFetcher.swift */; };
 		3CBF88122AEEC8C20058B14D /* LegacyInPostActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBF88112AEEC8C20058B14D /* LegacyInPostActionsView.swift */; };
 		3CBF88142AEEC8CF0058B14D /* LegacyRecursiveComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CBF88132AEEC8CF0058B14D /* LegacyRecursiveComment.swift */; };
+		3CC09CDB2B0E92840036422F /* PrivateMessageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC09CDA2B0E92840036422F /* PrivateMessageFetcher.swift */; };
+		3CC09CDD2B0E92D90036422F /* PrivateMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC09CDC2B0E92D90036422F /* PrivateMessageModel.swift */; };
+		3CC09CDF2B0E94EB0036422F /* PrivateMessageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC09CDE2B0E94EB0036422F /* PrivateMessageObject.swift */; };
+		3CC09CE12B0E95490036422F /* PrivateMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC09CE02B0E95490036422F /* PrivateMessage.swift */; };
+		3CC09CE32B0E95A60036422F /* RealmPrivateMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC09CE22B0E95A60036422F /* RealmPrivateMessage.swift */; };
+		3CC09CE52B0E9C3D0036422F /* InboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC09CE42B0E9C3D0036422F /* InboxView.swift */; };
+		3CC09CE82B0EA6DD0036422F /* BindingNOTGate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC09CE72B0EA6DD0036422F /* BindingNOTGate.swift */; };
 		3CC178912A7DA6A200C208D0 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC178902A7DA6A200C208D0 /* SearchView.swift */; };
 		3CC178932A7DA9FE00C208D0 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC178922A7DA9FE00C208D0 /* SearchModel.swift */; };
 		3CC178952A7DAAE300C208D0 /* SearchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC178942A7DAAE300C208D0 /* SearchFetcher.swift */; };
@@ -456,6 +463,13 @@
 		3CBF880F2AEEC8430058B14D /* LegacyPostsFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyPostsFetcher.swift; sourceTree = "<group>"; };
 		3CBF88112AEEC8C20058B14D /* LegacyInPostActionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyInPostActionsView.swift; sourceTree = "<group>"; };
 		3CBF88132AEEC8CF0058B14D /* LegacyRecursiveComment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyRecursiveComment.swift; sourceTree = "<group>"; };
+		3CC09CDA2B0E92840036422F /* PrivateMessageFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateMessageFetcher.swift; sourceTree = "<group>"; };
+		3CC09CDC2B0E92D90036422F /* PrivateMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateMessageModel.swift; sourceTree = "<group>"; };
+		3CC09CDE2B0E94EB0036422F /* PrivateMessageObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivateMessageObject.swift; sourceTree = "<group>"; };
+		3CC09CE02B0E95490036422F /* PrivateMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateMessage.swift; sourceTree = "<group>"; };
+		3CC09CE22B0E95A60036422F /* RealmPrivateMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmPrivateMessage.swift; sourceTree = "<group>"; };
+		3CC09CE42B0E9C3D0036422F /* InboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxView.swift; sourceTree = "<group>"; };
+		3CC09CE72B0EA6DD0036422F /* BindingNOTGate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingNOTGate.swift; sourceTree = "<group>"; };
 		3CC178902A7DA6A200C208D0 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		3CC178922A7DA9FE00C208D0 /* SearchModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		3CC178942A7DAAE300C208D0 /* SearchFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFetcher.swift; sourceTree = "<group>"; };
@@ -686,6 +700,7 @@
 				3CE35B202AE4148A00263E13 /* AboutLemmyView.swift */,
 				3C6ACC1D2AE426D40073288E /* AboutLemmyInfo.swift */,
 				3C62C2542A72F4BC003BAC5B /* SplashScreenView.swift */,
+				3CC09CE62B0E9C480036422F /* Inbox Tab */,
 				3CECCE212AAE14140017A605 /* Account Tab */,
 				3CCAE1842A6ADDE20040EE12 /* Comment View */,
 				3CE237332AA4D157000F1D20 /* Common Views */,
@@ -782,6 +797,7 @@
 			isa = PBXGroup;
 			children = (
 				3CA8A0C22AE570E200EEABD3 /* PostsFetcher.swift */,
+				3CC09CDA2B0E92840036422F /* PrivateMessageFetcher.swift */,
 				3CB046F52ADB28850011BFEC /* PersonFetcher.swift */,
 				3C65885C2A6189AF00A46DA3 /* CommentsFetcher.swift */,
 				3CB408B32A5C558B00B7C983 /* CommunitiesFetcher.swift */,
@@ -795,6 +811,10 @@
 		3CA5C4082A57443200BF8F1B /* DataModels */ = {
 			isa = PBXGroup;
 			children = (
+				3CC09CDC2B0E92D90036422F /* PrivateMessageModel.swift */,
+				3CC09CDE2B0E94EB0036422F /* PrivateMessageObject.swift */,
+				3CC09CE02B0E95490036422F /* PrivateMessage.swift */,
+				3CC09CE22B0E95A60036422F /* RealmPrivateMessage.swift */,
 				3CA8A0C42AE57CA700EEABD3 /* Batch.swift */,
 				3C2B14702AABC66E0028E05A /* Quicklink.swift */,
 				3CB9C72F2AA2445B00FB5A10 /* ResponseModels */,
@@ -919,6 +939,14 @@
 			path = "Legacy Views";
 			sourceTree = "<group>";
 		};
+		3CC09CE62B0E9C480036422F /* Inbox Tab */ = {
+			isa = PBXGroup;
+			children = (
+				3CC09CE42B0E9C3D0036422F /* InboxView.swift */,
+			);
+			path = "Inbox Tab";
+			sourceTree = "<group>";
+		};
 		3CC1788F2A7DA68C00C208D0 /* Search Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -947,6 +975,7 @@
 				3C2B14762AABCCA50028E05A /* ColorConverter.swift */,
 				3C808E2D2A9B87FA008FA62E /* ShareSheet.swift */,
 				3CC3E4422AE05AB900F7F9A9 /* JSONDecoderExtension.swift */,
+				3CC09CE72B0EA6DD0036422F /* BindingNOTGate.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1357,6 +1386,7 @@
 				3C0E2DD02AA909BB00095FA5 /* LegacyPostsSectionView.swift in Sources */,
 				3CF3F9C22A6EE20C0051E725 /* ViewExtension.swift in Sources */,
 				3CF717FD2AF437D4005030D8 /* LegacyCommunitiesFetcher.swift in Sources */,
+				3CC09CE32B0E95A60036422F /* RealmPrivateMessage.swift in Sources */,
 				3CB046FA2ADB2B6E0011BFEC /* Moderates.swift in Sources */,
 				3CECCE252AAE68E80017A605 /* LocalUserProperties.swift in Sources */,
 				3C87A36A2A9F9C4E0029C18F /* ForceAppearance.swift in Sources */,
@@ -1379,6 +1409,7 @@
 				3CB9C71C2AA23EF000FB5A10 /* Community.swift in Sources */,
 				3CB9C73C2AA24A5B00FB5A10 /* Site.swift in Sources */,
 				3CCA7F772A956E6F00971BD1 /* CommentPopoverView.swift in Sources */,
+				3CC09CDB2B0E92840036422F /* PrivateMessageFetcher.swift in Sources */,
 				3CFE04C92A7FF375007BAD81 /* KbinThreadsView.swift in Sources */,
 				3CE35B1A2AE3D03C00263E13 /* RealmThawFunctions.swift in Sources */,
 				3CB9C7242AA23FF400FB5A10 /* Comment.swift in Sources */,
@@ -1388,6 +1419,7 @@
 				3CCAA8BF2A65309E007CCEC2 /* NoInternetConnectionView.swift in Sources */,
 				3CE35B1C2AE3D7D600263E13 /* AttributionsView.swift in Sources */,
 				3CAEDDE52A9E58DB001469AA /* ManageInstancesView.swift in Sources */,
+				3CC09CE82B0EA6DD0036422F /* BindingNOTGate.swift in Sources */,
 				3CA5C40E2A57525500BF8F1B /* LegacyPostsView.swift in Sources */,
 				3CEF4CCC2A69B70C002B83C0 /* InPostThumbnailView.swift in Sources */,
 				3C9E549A2A954C060093DDC7 /* CommentResponseModel.swift in Sources */,
@@ -1414,6 +1446,7 @@
 				3CB9C71A2AA23EB700FB5A10 /* SubscribedState.swift in Sources */,
 				3C2B14732AABC6AD0028E05A /* GeneralCommunityButtonView.swift in Sources */,
 				3C96EA552A7857D900753199 /* AccountModel.swift in Sources */,
+				3CC09CE52B0E9C3D0036422F /* InboxView.swift in Sources */,
 				3CBF880C2AEEC7E10058B14D /* LegacyCommentSectionView.swift in Sources */,
 				3CF717FF2AF44704005030D8 /* LegacyCommunityRowView.swift in Sources */,
 				3CADB5752A7EA03000095839 /* SearchUsersListAll.swift in Sources */,
@@ -1433,6 +1466,7 @@
 				3C5ECB1F2A75ABFE002BA561 /* SiteInfoFetcher.swift in Sources */,
 				3C9E548C2A94A3DC0093DDC7 /* CommentSender.swift in Sources */,
 				3CF43AA92AE1A42A006C8E84 /* PostsView.swift in Sources */,
+				3CC09CE12B0E95490036422F /* PrivateMessage.swift in Sources */,
 				3CE35B1F2AE3DAF000263E13 /* AttributionInfo.swift in Sources */,
 				3CE237352AA4D171000F1D20 /* LargeNavButton.swift in Sources */,
 				3CE35B142AE2AFD600263E13 /* MailtoUtil.swift in Sources */,
@@ -1491,6 +1525,7 @@
 				3C4DB8C62AB72145000137CF /* SettingsAppResetView.swift in Sources */,
 				3CB408B42A5C558B00B7C983 /* CommunitiesFetcher.swift in Sources */,
 				3CF717FB2AF42ED2005030D8 /* RealmCommunity.swift in Sources */,
+				3CC09CDF2B0E94EB0036422F /* PrivateMessageObject.swift in Sources */,
 				3C808E2E2A9B87FA008FA62E /* ShareSheet.swift in Sources */,
 				3CB046F62ADB28850011BFEC /* PersonFetcher.swift in Sources */,
 				3C96EA422A77225E00753199 /* ValidationUtils.swift in Sources */,
@@ -1514,6 +1549,7 @@
 				3CE35B212AE4148A00263E13 /* AboutLemmyView.swift in Sources */,
 				3CBCCDF62A589F2C00307AC1 /* CommentsView.swift in Sources */,
 				3C65885F2A621C6100A46DA3 /* ExploreCommunitiesView.swift in Sources */,
+				3CC09CDD2B0E92D90036422F /* PrivateMessageModel.swift in Sources */,
 				3CAD16EA2AF6EF4800A18BBA /* SceneDelegate.swift in Sources */,
 				3CC3E4352ADDD74D00F7F9A9 /* PostSiteMetadataFetcher.swift in Sources */,
 				3C6ACC1E2AE426D40073288E /* AboutLemmyInfo.swift in Sources */,

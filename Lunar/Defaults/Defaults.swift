@@ -66,4 +66,5 @@ extension Defaults.Keys {
   static let savedColors = Key<[customColor]>("savedColors", default: [])
   static let quicklinks = Key<[Quicklink]>("quicklinks", default: DefaultQuicklinks().getDefaultQuicklinks())
   static let lockedQuicklinks = Key<[Quicklink]>("lockedQuicklinks", default: DefaultQuicklinks().getLockedQuicklinks())
+  static let privateMessagesRetrieved = Key<Bool>("privateMessagesRetrieved", default: false)
 }
