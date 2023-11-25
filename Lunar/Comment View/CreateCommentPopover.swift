@@ -13,7 +13,7 @@ struct CreateCommentPopover: View {
   @Default(.activeAccount) var activeAccount
 
   @EnvironmentObject var commentsFetcher: CommentsFetcher
-//  @Environment(\.dismiss) var dismiss
+  @Environment(\.dismiss) var dismiss
 
   @State private var userInputComment: String = ""
   @State private var userInputCommentEntry: String = ""
@@ -102,7 +102,7 @@ struct CreateCommentPopover: View {
           .bold()
         Spacer()
         Button {
-//          dismiss()
+          dismiss()
         } label: {
           Image(systemSymbol: .xmarkCircleFill)
             .font(.largeTitle)

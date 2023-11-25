@@ -21,6 +21,7 @@ struct FeedView: View {
   @Default(.enableQuicklinks) var enableQuicklinks
   @Default(.realmExperimentalViewEnabled) var realmExperimentalViewEnabled
 
+  /// _ Commented out because causing stutter _
 //  @Environment(\.dismiss) var dismiss
 
   @State var showingOfflineDownloaderPopover: Bool = false
@@ -50,85 +51,86 @@ struct FeedView: View {
         kbinFeed
         subscribedSection
         trendingSection
-//        downloaderButton
+        downloaderButton
       }
       .navigationTitle("Home")
       .navigationBarTitleDisplayMode(.inline)
     }
-//    .popover(isPresented: $showingOfflineDownloaderPopover) {
-//      downloaderPopover
-//    }
+    .popover(isPresented: $showingOfflineDownloaderPopover) {
+      downloaderPopover
+    }
     .navigationViewStyle(StackNavigationViewStyle())
   }
 
-//  var downloaderButton: some View {
-//    Section {
-//      Button {
-//        showingOfflineDownloaderPopover = true
-//      } label: {
-//        HStack {
-//          Image(systemSymbol: .arrowDownCircleFill)
-//            .resizable()
-//            .frame(width: 30, height: 30)
-//            .symbolRenderingMode(.hierarchical)
-//            .foregroundColor(.indigo)
-//
-//          Text("Offline Downloader")
-//            .padding(.horizontal, 10)
-//            .foregroundColor(.indigo)
-//        }
-//      }
-//    }
-//  }
+  var downloaderButton: some View {
+    Section {
+      Button {
+        showingOfflineDownloaderPopover = true
+      } label: {
+        HStack {
+          Image(systemSymbol: .arrowDownCircleFill)
+            .resizable()
+            .frame(width: 30, height: 30)
+            .symbolRenderingMode(.hierarchical)
+            .foregroundColor(.indigo)
 
-//  var downloaderPopover: some View {
-//    List {
-//      Section {
-//        HStack {
-//          Text("Downloader")
-//            .font(.title)
-//            .bold()
-//          Spacer()
-//          Button {
+          Text("Offline Downloader")
+            .padding(.horizontal, 10)
+            .foregroundColor(.indigo)
+        }
+      }
+    }
+  }
+
+  var downloaderPopover: some View {
+    List {
+      Section {
+        HStack {
+          Text("Downloader")
+            .font(.title)
+            .bold()
+          Spacer()
+          Button {
+            /// _ Commented out because causing stutter _
 //            dismiss()
-//          } label: {
-//            Image(systemSymbol: .xmarkCircleFill)
-//              .font(.largeTitle)
-//              .foregroundStyle(.secondary)
-//              .saturation(0)
-//          }
-//        }
-//      }
-//      .listRowBackground(Color.clear)
-//
-//      Section {
-//        Text("Downloading Page \(currentlyDownloadingPage)/\(pagesToDownload)")
-//      }
-//
-//      Section {
-//        Picker(selection: $downloaderSort, label: Text("Sort Query")) {
-//          Text("Active").tag("Active")
-//        }
-//        .pickerStyle(.menu)
-//        Picker(selection: $downloaderType, label: Text("Type Query")) {
-//          Text("All").tag("All")
-//        }
-//        .pickerStyle(.menu)
-//        Picker("Pages to Download", selection: $pagesToDownload) {
-//          ForEach(1 ..< 100) {
-//            Text("\($0) pages")
-//          }
-//        }
-//      }
-//      Section {
-//        Button {
-//          startDownload()
-//        } label: {
-//          Text("Download")
-//        }
-//      }
-//    }
-//  }
+          } label: {
+            Image(systemSymbol: .xmarkCircleFill)
+              .font(.largeTitle)
+              .foregroundStyle(.secondary)
+              .saturation(0)
+          }
+        }
+      }
+      .listRowBackground(Color.clear)
+
+      Section {
+        Text("Downloading Page \(currentlyDownloadingPage)/\(pagesToDownload)")
+      }
+
+      Section {
+        Picker(selection: $downloaderSort, label: Text("Sort Query")) {
+          Text("Active").tag("Active")
+        }
+        .pickerStyle(.menu)
+        Picker(selection: $downloaderType, label: Text("Type Query")) {
+          Text("All").tag("All")
+        }
+        .pickerStyle(.menu)
+        Picker("Pages to Download", selection: $pagesToDownload) {
+          ForEach(1 ..< 100) {
+            Text("\($0) pages")
+          }
+        }
+      }
+      Section {
+        Button {
+          startDownload()
+        } label: {
+          Text("Download")
+        }
+      }
+    }
+  }
 
   var title: some View {
     VStack(alignment: .leading, spacing: 10) {
