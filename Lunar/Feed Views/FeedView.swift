@@ -21,7 +21,8 @@ struct FeedView: View {
   @Default(.enableQuicklinks) var enableQuicklinks
   @Default(.realmExperimentalViewEnabled) var realmExperimentalViewEnabled
 
-  @Environment(\.dismiss) var dismiss
+  /// _ Commented out because causing stutter _
+//  @Environment(\.dismiss) var dismiss
 
   @State var showingOfflineDownloaderPopover: Bool = false
   @State var downloaderSort: String = "Active"
@@ -90,7 +91,8 @@ struct FeedView: View {
             .bold()
           Spacer()
           Button {
-            dismiss()
+            /// _ Commented out because causing stutter _
+//            dismiss()
           } label: {
             Image(systemSymbol: .xmarkCircleFill)
               .font(.largeTitle)

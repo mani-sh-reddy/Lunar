@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     initialiseLocalConsole()
     initialiseNukeUI()
     initialiseRealm()
+    PhaseChangeActions().homeScreenQuickActions()
     return true
   }
 
