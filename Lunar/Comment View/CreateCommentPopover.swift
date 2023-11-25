@@ -139,7 +139,7 @@ struct CreateCommentPopover: View {
             if response == "success" {
               commentsFetcher.loadContent(isRefreshing: true)
               notificationHaptics.notificationOccurred(.success)
-//              dismiss()
+              dismiss()
             } else {
               notificationHaptics.notificationOccurred(.error)
               print("ERROR SENDING COMMENT")

@@ -57,7 +57,7 @@ struct FeedView: View {
       .navigationBarTitleDisplayMode(.inline)
     }
     .popover(isPresented: $showingOfflineDownloaderPopover) {
-      downloaderPopover
+      OfflineDownloaderView(presentingView: $showingOfflineDownloaderPopover)
     }
     .navigationViewStyle(StackNavigationViewStyle())
   }
