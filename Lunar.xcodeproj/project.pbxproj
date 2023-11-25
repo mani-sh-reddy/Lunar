@@ -19,6 +19,17 @@
 			name = "Unused Code Scan";
 			productName = "Unused Code Scan";
 		};
+		3CFA769D2B129A3F002B88B2 /* Lint */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 3CFA769E2B129A3F002B88B2 /* Build configuration list for PBXAggregateTarget "Lint" */;
+			buildPhases = (
+				3CFA76A12B129A43002B88B2 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Lint;
+			productName = Lint;
+		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
@@ -1234,6 +1245,9 @@
 					3CDAFF652B125D6100C83BE3 = {
 						CreatedOnToolsVersion = 15.0.1;
 					};
+					3CFA769D2B129A3F002B88B2 = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
 				};
 			};
 			buildConfigurationList = 3C4F09F72A54399F009DF8AB /* Build configuration list for PBXProject "Lunar" */;
@@ -1267,6 +1281,7 @@
 				3C29F5412A97D49C001563E7 /* LunarUITests */,
 				3C2EA6892AFFDBB9007AC12D /* WidgetsExtension */,
 				3CDAFF652B125D6100C83BE3 /* Unused Code Scan */,
+				3CFA769D2B129A3F002B88B2 /* Lint */,
 			);
 		};
 /* End PBXProject section */
@@ -1317,6 +1332,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/opt/homebrew/bin/periphery scan --project Lunar.xcodeproj --schemes Lunar-Dev --targets Lunar --format xcode\n";
+		};
+		3CFA76A12B129A43002B88B2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1637,6 +1669,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_ENTITLEMENTS = Widgets/WidgetsExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1669,6 +1702,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_ENTITLEMENTS = Widgets/WidgetsExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -1864,6 +1898,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_STICKER_CONTENT = YES;
 				ASSETCATALOG_COMPILER_TARGET_STICKERS_ICON_ROLE = extension;
+				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_ENTITLEMENTS = Lunar/LunarDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1912,6 +1947,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_STICKER_CONTENT = YES;
 				ASSETCATALOG_COMPILER_TARGET_STICKERS_ICON_ROLE = extension;
+				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_ENTITLEMENTS = Lunar/Lunar.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -1973,6 +2009,24 @@
 			};
 			name = Release;
 		};
+		3CFA769F2B129A3F002B88B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		3CFA76A02B129A3F002B88B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2017,6 +2071,15 @@
 			buildConfigurations = (
 				3CDAFF672B125D6100C83BE3 /* Debug */,
 				3CDAFF682B125D6100C83BE3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3CFA769E2B129A3F002B88B2 /* Build configuration list for PBXAggregateTarget "Lint" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3CFA769F2B129A3F002B88B2 /* Debug */,
+				3CFA76A02B129A3F002B88B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
