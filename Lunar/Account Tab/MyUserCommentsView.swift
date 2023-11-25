@@ -13,19 +13,10 @@ import SwiftUI
 struct MyUserCommentsView: View {
   @Default(.forcedPostSort) var forcedPostSort
   @Default(.selectedInstance) var selectedInstance
-  @Default(.legacyPostsViewStyle) var legacyPostsViewStyle
   @Default(.commentMetadataPosition) var commentMetadataPosition
 
   var personFetcher: PersonFetcher
   var heading: String
-
-  var listStyle: String {
-    if legacyPostsViewStyle == "compactPlain" {
-      "plain"
-    } else {
-      legacyPostsViewStyle
-    }
-  }
 
   var body: some View {
     List {

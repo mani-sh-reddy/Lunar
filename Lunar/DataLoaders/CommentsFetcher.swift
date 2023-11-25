@@ -12,7 +12,7 @@ import Foundation
 import Pulse
 import SwiftUI
 
-@MainActor class CommentsFetcher: ObservableObject {
+class CommentsFetcher: ObservableObject {
   @Default(.activeAccount) var activeAccount
   @Default(.appBundleID) var appBundleID
   @Default(.commentSort) var commentSort
@@ -144,12 +144,6 @@ import SwiftUI
   func updateCommentCollapseState(_ comment: CommentObject, isCollapsed: Bool) {
     if let index = comments.firstIndex(where: { $0.comment.id == comment.comment.id }) {
       comments[index].isCollapsed = isCollapsed
-    }
-  }
-
-  func updateCommentShrinkState(_ comment: CommentObject, isShrunk: Bool) {
-    if let index = comments.firstIndex(where: { $0.comment.id == comment.comment.id }) {
-      comments[index].isShrunk = isShrunk
     }
   }
 }

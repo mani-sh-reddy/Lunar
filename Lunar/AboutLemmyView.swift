@@ -70,8 +70,6 @@ struct AboutLemmyView: View {
   }
 }
 
-struct AboutLemmyView_Previews: PreviewProvider {
-  static var previews: some View {
-    AboutLemmyView()
-  }
+#Preview {
+  AboutLemmyView()
 }

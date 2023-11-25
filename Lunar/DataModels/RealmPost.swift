@@ -8,6 +8,7 @@
 import Foundation
 import RealmSwift
 
+// periphery:ignore
 class RealmPost: Object, ObjectKeyIdentifiable {
   @Persisted(originProperty: "realmPosts") var batch: LinkingObjects<Batch>
 

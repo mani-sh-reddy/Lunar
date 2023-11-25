@@ -10,8 +10,6 @@ import Foundation
 import SwiftUI
 
 struct UserDefaultsExplorerView: View {
-  @Default(.debugModeEnabled) var debugModeEnabled
-
   var contents: [String: Any] {
     if Bundle.main.bundleIdentifier != nil {
       return UserDefaults.standard.dictionaryRepresentation()
@@ -43,8 +41,6 @@ struct UserDefaultsExplorerView: View {
   }
 }
 
-struct UserDefaultsExplorerView_Previews: PreviewProvider {
-  static var previews: some View {
-    UserDefaultsExplorerView()
-  }
+#Preview {
+  UserDefaultsExplorerView()
 }

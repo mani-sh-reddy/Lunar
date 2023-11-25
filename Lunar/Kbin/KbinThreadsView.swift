@@ -45,9 +45,6 @@ struct KbinThreadsView: View {
   }
 }
 
-struct KbinThreadsView_Previews: PreviewProvider {
-  static var previews: some View {
-    /// need to set showing popover to a constant value
-    KbinThreadsView(kbinThreadsFetcher: KbinThreadsFetcher())
-  }
+#Preview {
+  KbinThreadsView(kbinThreadsFetcher: KbinThreadsFetcher())
 }

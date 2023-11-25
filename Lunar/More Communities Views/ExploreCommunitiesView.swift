@@ -90,16 +90,13 @@ struct ExploreCommunitiesView: View {
   }
 }
 
-struct MoreCommunitiesView_Previews: PreviewProvider {
-  static var previews: some View {
-    let communitiesFetcher = LegacyCommunitiesFetcher(
+#Preview {
+  ExploreCommunitiesView(
+    communitiesFetcher: LegacyCommunitiesFetcher(
       limitParameter: 50,
       sortParameter: "Active",
       typeParameter: "All"
-    )
-    ExploreCommunitiesView(
-      communitiesFetcher: communitiesFetcher,
-      title: "Explore Communities"
-    )
-  }
+    ),
+    title: "Explore Communities"
+  )
 }

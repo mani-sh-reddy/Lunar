@@ -16,24 +16,13 @@ import SwiftUI
 class PrivateMessageFetcher: ObservableObject {
   @Default(.activeAccount) var activeAccount
   @Default(.appBundleID) var appBundleID
-  @Default(.postSort) var postSort
-  @Default(.postType) var postType
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
-  @Default(.selectedInstance) var selectedInstance
 
   @Published var isLoading = false
 
   let pulse = Pulse.LoggerStore.shared
-
-//  var sort: String
-//  var type: String
-//  var communityID: Int?
-//  var personID: Int?
   var instance: String
-//  var filterKey: String
   var endpointPath: String = "/api/v3/private_message/list"
-
-//  @State private var page: Int = 1
 
   private var endpoint: URLComponents {
     URLBuilder(

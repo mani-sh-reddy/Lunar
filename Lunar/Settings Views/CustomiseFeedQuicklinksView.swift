@@ -29,7 +29,6 @@ struct CustomiseFeedQuicklinksView: View {
 
   let notificationHaptics = UINotificationFeedbackGenerator()
   let haptics = UIImpactFeedbackGenerator(style: .soft)
-  let colorConverter = ColorConverter()
   var defaultQuicklinks: [Quicklink] = DefaultQuicklinks().getDefaultQuicklinks()
   var iconList: [String] = CircleFillIcons().iconsList()
 
@@ -244,9 +243,6 @@ struct CustomiseFeedQuicklinksView: View {
   }
 }
 
-struct CustomiseFeedQuicklinksView_Previews: PreviewProvider {
-  static var previews: some View {
-//    CustomiseFeedQuicklinksView()
-    CustomiseFeedQuicklinksView(showingAddQuicklinkPopover: true)
-  }
+#Preview {
+  CustomiseFeedQuicklinksView(showingAddQuicklinkPopover: true)
 }

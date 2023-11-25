@@ -21,12 +21,11 @@ struct LunarAppEntryView: App {
 //
   @State var whatsNewFirstLaunch: WhatsNew? = WhatsNewKitData().initial
 //  @State var WhatsNew_2023_11: WhatsNew? = WhatsNewKitData().WhatsNew_2023_11
-//
+
   @Default(.accentColor) var accentColor
-  @Default(.selectedTab) var selectedTab
   @Default(.clearWhatsNewDefaults) var clearWhatsNewDefaults
   @Default(.clearInitialWhatsNewDefault) var clearInitialWhatsNewDefault
-//
+
 //  let whatsNewVersionStore = InMemoryWhatsNewVersionStore() /// ** Uncomment when testing **
   let whatsNewVersionStore = UserDefaultsWhatsNewVersionStore()
 

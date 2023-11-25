@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+// periphery:ignore
 extension Binding where Value == Bool {
   var not: Binding<Value> {
     Binding<Value>(

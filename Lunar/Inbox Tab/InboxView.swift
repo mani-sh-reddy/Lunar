@@ -15,7 +15,6 @@ import SwiftUI
 
 struct InboxView: View {
   @Default(.activeAccount) var activeAccount
-  @Default(.loggedInAccounts) var loggedInAccounts
   @Default(.privateMessagesRetrieved) var privateMessagesRetrieved
 
   @ObservedResults(RealmPrivateMessage.self) var messages
@@ -90,15 +89,13 @@ struct MessageItem: View {
 
   @ObservedRealmObject var message: RealmPrivateMessage
 
-  let haptics = UIImpactFeedbackGenerator(style: .rigid)
-
   var messageDirection: messageDirection {
     message.creatorActorID == activeAccount.actorID ? .outgoing : .incoming
   }
 
-  var fromTo: String {
-    messageDirection == .incoming ? "from" : "to"
-  }
+//  var fromTo: String {
+//    messageDirection == .incoming ? "from" : "to"
+//  }
 
   var name: String {
     messageDirection == .incoming ? message.creatorName : message.recipientName
@@ -211,25 +208,7 @@ struct MessageItem: View {
 //    .hapticFeedbackOnTap(style: .rigid)
 //  }
 
-struct MessageItem_Previews: PreviewProvider {
-  static var previews: some View {
-    MessageItem(message: RealmPrivateMessage(
-      messageID: 123,
-      messageContent: "Hello, this is a placeholder message.",
-      messageDeleted: false,
-      messageRead: true,
-      messagePublished: "2023-09-15T16:11:33.739267",
-      messageApID: "abc123",
-      messageIsLocal: true,
-      creatorID: 456,
-      creatorName: "John Doe",
-      creatorAvatar: "https://example.com/john_avatar.jpg",
-      creatorActorID: "https://lemmy.world/u/mani",
-      recipientID: 789,
-      recipientName: "Jane Smith",
-      recipientAvatar: "https://example.com/jane_avatar.jpg",
-      recipientActorID: "actor456"
-    ))
+#Preview {
+  MessageItem(message: MockData().privateMessage)
     .previewLayout(.sizeThatFits)
-  }
 }

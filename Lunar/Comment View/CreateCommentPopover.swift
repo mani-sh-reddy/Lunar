@@ -157,9 +157,3 @@ struct CreateCommentPopover: View {
     }
   }
 }
-
-// struct CommentPopoverView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    CommentPopoverView(showingCommentPopover: .constant(false), post: MockData.postElement.post)
-//  }
-// }

@@ -18,9 +18,6 @@ struct customColor: Codable, Hashable, Defaults.Serializable {
 
 struct ColorTesterView: View {
   @Default(.savedColors) var savedColors
-  @Default(.debugModeEnabled) var debugModeEnabled
-
-  @Environment(\.colorScheme) var colorScheme
 
   @State var quicklinkColor: Color = .blue
   @State var brightness: Double = 0.3
@@ -115,10 +112,8 @@ struct ColorTesterView: View {
   }
 }
 
-struct ColorTesterView_Previews: PreviewProvider {
-  static var previews: some View {
-    ColorTesterView()
-  }
+#Preview {
+  ColorTesterView()
 }
 
 struct SavedColorsListView: View {
@@ -149,10 +144,6 @@ struct SavedColorsListView: View {
 }
 
 struct AppearanceSwitcherButton: View {
-  @Default(.savedColors) var savedColors
-
-  @Environment(\.colorScheme) var colorScheme
-
   @Binding var isListDarkMode: Bool
 
   var body: some View {

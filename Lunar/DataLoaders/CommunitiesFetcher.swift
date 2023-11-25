@@ -13,15 +13,12 @@ import Pulse
 import RealmSwift
 import SwiftUI
 
-@MainActor class CommunitiesFetcher: ObservableObject {
+class CommunitiesFetcher: ObservableObject {
   @Default(.communitiesSort) var communitiesSort
   @Default(.communitiesType) var communitiesType
   @Default(.activeAccount) var activeAccount
   @Default(.appBundleID) var appBundleID
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
-  @Default(.selectedInstance) var selectedInstance
-
-  @Published var communities = [CommunityObject]()
 
   let imagePrefetcher = ImagePrefetcher(pipeline: ImagePipeline.shared)
 

@@ -12,14 +12,11 @@ import Pulse
 import SwiftUI
 
 class ImageSender: ObservableObject {
-  @Default(.networkInspectorEnabled) var networkInspectorEnabled
   @Default(.activeAccount) var activeAccount
   @Default(.appBundleID) var appBundleID
 
   private var jwt: String = ""
   private var imageData: Data // Change this to Data
-
-  let pulse = Pulse.LoggerStore.shared
 
   init(
     image: UIImage?

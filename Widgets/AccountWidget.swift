@@ -12,6 +12,7 @@ import WidgetKit
 
 // MARK: - DataService
 
+// periphery:ignore
 struct DataService {
   @AppStorage("activeAccountName", store: UserDefaults(suiteName: "group.io.github.mani-sh-reddy.Lunar"))
   var activeAccountName = ""
@@ -86,6 +87,7 @@ struct AccountWidgetEntry: TimelineEntry {
 
 // MARK: - AccountWidgetEntryView
 
+// periphery:ignore
 struct AccountWidgetEntryView: View {
   @Environment(\.widgetFamily) var widgetFamily
 
@@ -287,6 +289,7 @@ struct AccountWidgetEntryView: View {
 
 // MARK: - AccountWidget
 
+// periphery:ignore
 struct AccountWidget: Widget {
   let kind: String = "AccountWidget"
 
@@ -326,6 +329,7 @@ struct AccountWidget: Widget {
 
 // MARK: - Previews
 
+// periphery:ignore
 struct AccountWidget_Previews: PreviewProvider {
   static var previews: some View {
     let entry = AccountWidgetEntry(

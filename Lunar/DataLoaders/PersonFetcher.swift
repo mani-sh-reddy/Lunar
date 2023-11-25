@@ -12,15 +12,12 @@ import Nuke
 import Pulse
 import SwiftUI
 
-@MainActor class PersonFetcher: ObservableObject {
+class PersonFetcher: ObservableObject {
   @Default(.appBundleID) var appBundleID
   @Default(.activeAccount) var activeAccount
-//  @Default(.postSort) var postSort
-//  @Default(.postType) var postType
-
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
 
-  @Published var personModel = [PersonModel]()
+//  @Published var personModel = [PersonModel]()
   @Published var posts = [PostObject]()
   @Published var comments = [CommentObject]()
   @Published var isLoading = false
@@ -81,12 +78,12 @@ import SwiftUI
     loadContent()
   }
 
-  func loadMoreContentIfNeeded(currentItem: PostObject) {
-    guard currentItem.post.id == personModel.first?.posts.last?.post.id else {
-      return
-    }
-    loadContent()
-  }
+//  func loadMoreContentIfNeeded(currentItem: PostObject) {
+//    guard currentItem.post.id == personModel.first?.posts.last?.post.id else {
+//      return
+//    }
+//    loadContent()
+//  }
 
   func loadContent(isRefreshing: Bool = false) {
     guard !isLoading else { return }
@@ -129,7 +126,7 @@ import SwiftUI
 
         let fetchedPosts = result.posts
         let fetchedComments = result.comments
-        self.personModel = [result]
+//        self.personModel = [result]
 
         let imageRequestList = result.imageURLs.compactMap {
           ImageRequest(url: URL(string: $0), processors: [.resize(width: 200)])

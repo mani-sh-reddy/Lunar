@@ -9,13 +9,9 @@ import SFSafeSymbols
 import SwiftUI
 
 struct LegacyCommentSectionView: View {
-  @EnvironmentObject var commentsFetcher: CommentsFetcher
   var post: PostObject
   var comments: [CommentObject]
   var postBody: String
-
-  @State var collapseToIndex: Int = 0
-  @State var collapserPath: String = ""
 
   @Binding var replyingTo: Comment
   @Binding var upvoted: Bool
@@ -29,8 +25,6 @@ struct LegacyCommentSectionView: View {
       false
     }
   }
-
-  let haptics = UIImpactFeedbackGenerator(style: .soft)
 
   var body: some View {
     List {

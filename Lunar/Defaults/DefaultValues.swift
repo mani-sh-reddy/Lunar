@@ -9,7 +9,7 @@ import Defaults
 import Foundation
 import SwiftUI
 
-class DefaultValues {
+enum DefaultValues {
   static let lemmyInstances = [
     "lemmy.world",
     "lemmy.ml",

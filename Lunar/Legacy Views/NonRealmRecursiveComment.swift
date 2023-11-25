@@ -13,10 +13,9 @@ import SwiftUI
 
 struct NonRealmRecursiveComment: View {
   @Default(.commentMetadataPosition) var commentMetadataPosition
-  @Default(.activeAccount) var activeAccount
 
   @State private var isExpanded = true
-  @State var showCreateCommentPopover = false
+//  @State var showCreateCommentPopover = false
   @EnvironmentObject var commentsFetcher: CommentsFetcher
 
   let nestedComment: NestedComment
@@ -39,9 +38,9 @@ struct NonRealmRecursiveComment: View {
       .onTapGesture { minimiseComment() }
       .swipeActions(edge: .trailing, allowsFullSwipe: true) {
         minimiseButton
-        if !activeAccount.actorID.isEmpty {
-          replyButton
-        }
+//        if !activeAccount.actorID.isEmpty {
+//          replyButton
+//        }
       }
       .contextMenu {
         shareButton
@@ -91,14 +90,14 @@ struct NonRealmRecursiveComment: View {
     }
   }
 
-  var replyButton: some View {
-    Button {
-      showCreateCommentPopover = true
-    } label: {
-      Label("reply", systemSymbol: AllSymbols().replyContextIcon)
-    }
-    .tint(.indigo)
-  }
+//  var replyButton: some View {
+//    Button {
+//      showCreateCommentPopover = true
+//    } label: {
+//      Label("reply", systemSymbol: AllSymbols().replyContextIcon)
+//    }
+//    .tint(.indigo)
+//  }
 
   var minimiseButton: some View {
     Button {

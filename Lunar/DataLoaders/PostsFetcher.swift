@@ -16,12 +16,8 @@ import SwiftUI
 class PostsFetcher: ObservableObject {
   @Default(.activeAccount) var activeAccount
   @Default(.appBundleID) var appBundleID
-  @Default(.postSort) var postSort
-  @Default(.postType) var postType
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
   @Default(.selectedInstance) var selectedInstance
-
-  @ObservedResults(Batch.self) var batches
 
   @Published var isLoading = false
 

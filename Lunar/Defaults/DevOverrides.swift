@@ -7,6 +7,7 @@
 
 import Foundation
 
+// periphery:ignore
 class devOverrides {
   var enableDebugger: Bool {
     if ProcessInfo.processInfo.environment["TEST_ENV_VA"] != nil {

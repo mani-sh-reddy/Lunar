@@ -89,13 +89,11 @@ struct SettingsAppResetView: View {
   }
 }
 
-struct SettingsAppResetView_Previews: PreviewProvider {
-  static var previews: some View {
-    SettingsAppResetView(
-      settingsViewOpacity: .constant(1),
-      logoScale: .constant(0),
-      logoOpacity: .constant(0)
-    )
-    .previewLayout(.sizeThatFits)
-  }
+#Preview {
+  SettingsAppResetView(
+    settingsViewOpacity: .constant(1),
+    logoScale: .constant(0),
+    logoOpacity: .constant(0)
+  )
+  .previewLayout(.sizeThatFits)
 }

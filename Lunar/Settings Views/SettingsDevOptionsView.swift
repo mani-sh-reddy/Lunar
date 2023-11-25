@@ -16,17 +16,12 @@ struct SettingsDevOptionsView: View {
   @Default(.debugModeEnabled) var debugModeEnabled
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
   @Default(.prominentInspectorButton) var prominentInspectorButton
-  @Default(.showLaunchSplashScreen) var showLaunchSplashScreen
   @Default(.clearWhatsNewDefaults) var clearWhatsNewDefaults
   @Default(.clearInitialWhatsNewDefault) var clearInitialWhatsNewDefault
   @Default(.realmExperimentalViewEnabled) var realmExperimentalViewEnabled
   @Default(.accentColor) var accentColor
-  @Default(.accentColorString) var accentColorString
 
-  @State var clearedAlertPresented: Bool = false
   @State var settingsViewOpacity: Double = 1
-  @State private var logoScale: CGFloat = 0.1
-  @State private var logoOpacity: Double = 0
   @State private var localConsoleButtonText: String = "Enable Local Console"
 
   let notificationHaptics = UINotificationFeedbackGenerator()
@@ -114,7 +109,6 @@ struct SettingsDevOptionsView: View {
         Button {
           clearWhatsNewDefaults.toggle()
           notificationHaptics.notificationOccurred(.success)
-          clearedAlertPresented = true
         } label: {
           Label {
             Text("Clear All WhatsNewKit List")
@@ -128,7 +122,6 @@ struct SettingsDevOptionsView: View {
         Button {
           clearInitialWhatsNewDefault.toggle()
           notificationHaptics.notificationOccurred(.success)
-          clearedAlertPresented = true
         } label: {
           Label {
             Text("Clear WhatsNewKit Initial Launch")

@@ -22,8 +22,6 @@ struct SettingsAppIconPickerView: View {
     ("Kbin", "Kbin"),
   ]
 
-  let haptics = UIImpactFeedbackGenerator(style: .soft)
-
   var body: some View {
     List {
       Picker("Icons", selection: $selectedAppIcon) {
@@ -54,8 +52,6 @@ struct SettingsAppIconPickerView: View {
   }
 }
 
-struct SettingsAppIconPickerView_Previews: PreviewProvider {
-  static var previews: some View {
-    SettingsAppIconPickerView()
-  }
+#Preview {
+  SettingsAppIconPickerView()
 }

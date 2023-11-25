@@ -10,6 +10,7 @@ import Foundation
 import Foundation
 import RealmSwift
 
+// periphery:ignore
 class RealmPrivateMessage: Object, ObjectKeyIdentifiable {
   // MARK: - Message
 

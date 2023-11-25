@@ -33,13 +33,6 @@ class TimestampParser {
     }
   }
 
-  private func formatToCustomString(date: Date) -> String {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS Z"
-    dateFormatter.timeZone = TimeZone.current
-    return dateFormatter.string(from: date)
-  }
-
   private func formatToTimeAgo(date: Date) -> String {
     let secondsAgo = date.timeIntervalSinceNow.magnitude
     let formatter = DateComponentsFormatter()

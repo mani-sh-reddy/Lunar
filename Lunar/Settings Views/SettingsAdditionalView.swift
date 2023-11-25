@@ -12,16 +12,12 @@ import SFSafeSymbols
 import SwiftUI
 
 struct SettingsAdditionalView: View {
-  @Default(.debugModeEnabled) var debugModeEnabled
-  @Default(.showLaunchSplashScreen) var showLaunchSplashScreen
-
   @State private var showAboutLemmyPopover: Bool = false
   @State var clearedAlertPresented: Bool = false
   @State var settingsViewOpacity: Double = 1
   @State private var logoScale: CGFloat = 0.1
   @State private var logoOpacity: Double = 0
 
-  let notificationHaptics = UINotificationFeedbackGenerator()
   let haptics = UIImpactFeedbackGenerator(style: .soft)
 
   var body: some View {

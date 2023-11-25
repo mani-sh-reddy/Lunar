@@ -67,8 +67,6 @@ struct RealmPostsDataView: View {
   }
 }
 
-struct RealmBrowser_Previews: PreviewProvider {
-  static var previews: some View {
-    RealmBrowser()
-  }
+#Preview {
+  RealmBrowser()
 }

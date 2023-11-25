@@ -69,8 +69,6 @@ struct SettingsAccountView: View {
   }
 }
 
-struct SettingsAccountView_Previews: PreviewProvider {
-  static var previews: some View {
-    SettingsAccountView()
-  }
+#Preview {
+  SettingsAccountView()
 }

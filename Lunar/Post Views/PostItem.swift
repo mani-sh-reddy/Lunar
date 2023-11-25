@@ -19,11 +19,8 @@ struct PostItem: View {
 
   @State var showSafari: Bool = false
   @State var subscribeAlertPresented: Bool = false
-  @State var shareSheetPresented: Bool = false
 
-  let hapticsSoft = UIImpactFeedbackGenerator(style: .soft)
   let hapticsLight = UIImpactFeedbackGenerator(style: .light)
-  let notificationHaptics = UINotificationFeedbackGenerator()
 
   var image: String? {
     let thumbnail = post.postThumbnailURL ?? ""

@@ -76,8 +76,6 @@ struct TabContentView: View {
   }
 }
 
-struct TabContentView_Previews: PreviewProvider {
-  static var previews: some View {
-    TabContentView()
-  }
+#Preview {
+  TabContentView()
 }

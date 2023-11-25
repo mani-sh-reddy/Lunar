@@ -9,10 +9,6 @@ import Defaults
 import SwiftUI
 
 struct MyUserObserver: View {
-  @Default(.forcedPostSort) var forcedPostSort
-  @Default(.selectedInstance) var selectedInstance
-  @Default(.postsViewStyle) var postsViewStyle
-
   @StateObject var personFetcher: PersonFetcher
 
   var userName: String

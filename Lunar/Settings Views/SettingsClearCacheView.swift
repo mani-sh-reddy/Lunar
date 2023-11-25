@@ -19,7 +19,6 @@ enum CacheInfoType {
 import SwiftUI
 
 struct SettingsClearCacheView: View {
-  @Default(.appBundleID) var appBundleID
   @EnvironmentObject var dataCacheHolder: DataCacheHolder
 
   @State var alertPresented: Bool = false
@@ -109,9 +108,7 @@ struct SettingsClearCacheView: View {
   }
 }
 
-struct SettingsClearCacheView_Previews: PreviewProvider {
-  static var previews: some View {
-    SettingsClearCacheView()
-      .previewLayout(.sizeThatFits)
-  }
+#Preview {
+  SettingsClearCacheView()
+    .previewLayout(.sizeThatFits)
 }

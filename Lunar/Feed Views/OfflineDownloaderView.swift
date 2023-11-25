@@ -11,16 +11,6 @@ import SFSafeSymbols
 import SwiftUI
 
 struct OfflineDownloaderView: View {
-  @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
-
-  @Default(.selectedInstance) var selectedInstance
-  @Default(.kbinActive) var kbinActive
-  @Default(.kbinHostURL) var kbinHostURL
-  @Default(.activeAccount) var activeAccount
-  @Default(.quicklinks) var quicklinks
-  @Default(.enableQuicklinks) var enableQuicklinks
-  @Default(.realmExperimentalViewEnabled) var realmExperimentalViewEnabled
-
   /// _ Commented out because causing stutter _
 //  @Environment(\.dismiss) var dismiss
 
@@ -29,7 +19,6 @@ struct OfflineDownloaderView: View {
   @State var downloaderType: String = "All"
   @State var pagesToDownload: Int = 1
   @State var currentlyDownloadingPage: Int = 1
-  @State var downloaderCommunityID: Int = 0
 
   var body: some View {
     List {

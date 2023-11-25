@@ -96,8 +96,6 @@ struct SettingsThemeView: View {
   }
 }
 
-struct SettingsThemeView_Previews: PreviewProvider {
-  static var previews: some View {
-    SettingsThemeView()
-  }
+#Preview {
+  SettingsThemeView()
 }

@@ -273,11 +273,10 @@ struct ContextIconsView: View {
   }
 }
 
-struct AllSymbols_Previews: PreviewProvider {
-  static var previews: some View {
-    SettingsIconsView()
-      .previewDisplayName("Settings Icons")
-    ContextIconsView()
-      .previewDisplayName("Context Icons")
-  }
+#Preview {
+  SettingsIconsView()
+}
+
+#Preview {
+  ContextIconsView()
 }

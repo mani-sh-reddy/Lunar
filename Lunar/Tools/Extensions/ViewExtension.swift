@@ -11,13 +11,6 @@ import SwiftUI
 import UIKit
 
 extension View {
-  func hapticFeedbackOnTap(style: UIImpactFeedbackGenerator.FeedbackStyle = .light) -> some View {
-    onTapGesture {
-      let impact = UIImpactFeedbackGenerator(style: style)
-      impact.impactOccurred()
-    }
-  }
-
   func onDebouncedChange<V>(
     of binding: Binding<V>,
     debounceFor dueTime: TimeInterval,

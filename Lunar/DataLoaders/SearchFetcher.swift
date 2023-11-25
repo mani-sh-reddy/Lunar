@@ -12,7 +12,7 @@ import Foundation
 import Pulse
 import SwiftUI
 
-@MainActor class SearchFetcher: ObservableObject {
+class SearchFetcher: ObservableObject {
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
 
   @Published var comments = [CommentObject]()
