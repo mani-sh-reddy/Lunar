@@ -27,17 +27,17 @@ struct CommentsView: View {
       commentsSection
     }
     .listStyle(.grouped)
-    .navigationTitle(post.postName)
-    .toolbar {
-      ToolbarItemGroup(placement: .navigationBarTrailing) {
-        if !activeAccount.userID.isEmpty {
-          createCommentTopLevelButton
-        }
-      }
-    }
-    .popover(isPresented: $showingCreateCommentPopover) {
-      commentPopoverAction
-    }
+//    .navigationTitle(post.postName)
+//    .toolbar {
+//      ToolbarItemGroup(placement: .navigationBarTrailing) {
+//        if !activeAccount.userID.isEmpty {
+//          createCommentTopLevelButton
+//        }
+//      }
+//    }
+//    .popover(isPresented: $showingCreateCommentPopover) {
+//      commentPopoverAction
+//    }
     .environmentObject(commentsFetcher)
   }
 
@@ -79,20 +79,20 @@ struct CommentsView: View {
     }
   }
 
-  @ViewBuilder
-  var commentPopoverAction: some View {
-    CreateCommentPopover(
-      post: post,
-      parentString: post.postName
-    )
-    .environmentObject(commentsFetcher)
-  }
-
-  var createCommentTopLevelButton: some View {
-    Button {
-      showingCreateCommentPopover = true
-    } label: {
-      Image(systemSymbol: .plusBubbleFill)
-    }
-  }
+//  @ViewBuilder
+//  var commentPopoverAction: some View {
+//    CreateCommentPopover(
+//      post: post,
+//      parentString: post.postName
+//    )
+//    .environmentObject(commentsFetcher)
+//  }
+//
+//  var createCommentTopLevelButton: some View {
+//    Button {
+//      showingCreateCommentPopover = true
+//    } label: {
+//      Image(systemSymbol: .plusBubbleFill)
+//    }
+//  }
 }

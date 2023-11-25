@@ -35,9 +35,9 @@ struct RecursiveComment: View {
         commentRow
         Spacer()
       }
-      .fullScreenCover(isPresented: $showCreateCommentPopover) {
-        commentPopoverAction
-      }
+//      .fullScreenCover(isPresented: $showCreateCommentPopover) {
+//        commentPopoverAction
+//      }
       .contentShape(Rectangle())
       .onTapGesture { minimiseComment() }
       .swipeActions(edge: .trailing, allowsFullSwipe: true) {
@@ -96,7 +96,7 @@ struct RecursiveComment: View {
 
   var replyButton: some View {
     Button {
-      showCreateCommentPopover = true
+//      showCreateCommentPopover = true
     } label: {
       Label("reply", systemSymbol: AllSymbols().replyContextIcon)
     }
@@ -145,16 +145,16 @@ struct RecursiveComment: View {
     }
   }
 
-  @ViewBuilder
-  var commentPopoverAction: some View {
-    CreateCommentPopover(
-      post: post,
-      parentID: nestedComment.commentID,
-      parentString: nestedComment.commentViewData.comment.content
-    )
-    .id(nestedComment.commentViewData.comment.id)
-    .environmentObject(commentsFetcher)
-  }
+//  @ViewBuilder
+//  var commentPopoverAction: some View {
+//    CreateCommentPopover(
+//      post: post,
+//      parentID: nestedComment.commentID,
+//      parentString: nestedComment.commentViewData.comment.content
+//    )
+//    .id(nestedComment.commentViewData.comment.id)
+//    .environmentObject(commentsFetcher)
+//  }
 
   var commentRow: some View {
     VStack(alignment: .leading) {

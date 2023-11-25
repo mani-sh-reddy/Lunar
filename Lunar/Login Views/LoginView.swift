@@ -16,7 +16,7 @@ enum FocusedField {
 }
 
 struct LoginView: View {
-  @Environment(\.dismiss) var dismiss
+//  @Environment(\.dismiss) var dismiss
 
   @State private var isTryingLogin: Bool = false
   @State private var usernameEmailInput: String = ""
@@ -44,7 +44,7 @@ struct LoginView: View {
             .bold()
           Spacer()
           Button {
-            dismiss()
+//            dismiss()
           } label: {
             Image(systemSymbol: .xmarkCircleFill)
               .font(.largeTitle)

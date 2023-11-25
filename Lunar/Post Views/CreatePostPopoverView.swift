@@ -12,7 +12,7 @@ import SwiftUI
 struct CreatePostPopoverView: View {
   @Default(.activeAccount) var activeAccount
 
-  @Environment(\.dismiss) var dismiss
+//  @Environment(\.dismiss) var dismiss
 
   @State private var postBody: String = ""
   @State private var userInputBody: String = ""
@@ -162,7 +162,7 @@ struct CreatePostPopoverView: View {
           .bold()
         Spacer()
         Button {
-          dismiss()
+//          dismiss()
         } label: {
           Image(systemSymbol: .xmarkCircleFill)
             .font(.largeTitle)
@@ -251,7 +251,7 @@ struct CreatePostPopoverView: View {
           ).fetchPostSentResponse { response, postID in
             if response == "success" {
               notificationHaptics.notificationOccurred(.success)
-              dismiss()
+//              dismiss()
               print("CREATED NEW POST: id=\(postID)")
             } else {
               notificationHaptics.notificationOccurred(.error)
