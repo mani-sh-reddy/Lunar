@@ -27,8 +27,8 @@ struct LunarAppEntryView: App {
   @Default(.clearWhatsNewDefaults) var clearWhatsNewDefaults
   @Default(.clearInitialWhatsNewDefault) var clearInitialWhatsNewDefault
 //
-  let whatsNewVersionStore = InMemoryWhatsNewVersionStore() /// ** Uncomment when testing **
-//  let whatsNewVersionStore = UserDefaultsWhatsNewVersionStore()
+//  let whatsNewVersionStore = InMemoryWhatsNewVersionStore() /// ** Uncomment when testing **
+  let whatsNewVersionStore = UserDefaultsWhatsNewVersionStore()
 
   var body: some Scene {
     WindowGroup {
