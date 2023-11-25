@@ -9,6 +9,7 @@ import Foundation
 import LocalAuthentication
 import SwiftUI
 
+// periphery:ignore
 class Biometrics: ObservableObject {
   @Published var appUnlocked = false
   @Published var authorizationError: Error?

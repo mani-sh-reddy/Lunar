@@ -12,19 +12,12 @@ import Pulse
 import SwiftUI
 
 class PostSiteMetadataFetcher: ObservableObject {
-  @Default(.activeAccount) var activeAccount
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
-  @Default(.loggedInAccounts) var loggedInAccounts
 
   private var endpoint: URLComponents
-
-  var urlString: String
-
-  var loggedInAccount = AccountModel()
   let pulse = Pulse.LoggerStore.shared
 
   init(urlString: String) {
-    self.urlString = urlString
     endpoint = URLBuilder(endpointPath: "/api/v3/post/site_metadata", urlString: urlString).buildURL()
   }
 

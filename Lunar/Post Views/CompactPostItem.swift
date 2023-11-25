@@ -21,11 +21,7 @@ struct CompactPostItem: View {
   @State var showSafari: Bool = false
 
   var navigable: Bool?
-
-  let hapticsSoft = UIImpactFeedbackGenerator(style: .soft)
   let hapticsLight = UIImpactFeedbackGenerator(style: .light)
-  let notificationHaptics = UINotificationFeedbackGenerator()
-
   var parentView: String? = "PostsView"
 
   var image: String? {
@@ -254,13 +250,13 @@ struct CompactPostItem: View {
     }
   }
 
-  var postComments: some View {
-    PostButtonItem(
-      text: String(post.postCommentCount ?? 0),
-      icon: .bubbleLeftCircleFill,
-      color: Color.gray
-    )
-  }
+//  var postComments: some View {
+//    PostButtonItem(
+//      text: String(post.postCommentCount ?? 0),
+//      icon: .bubbleLeftCircleFill,
+//      color: Color.gray
+//    )
+//  }
 
   @ViewBuilder
   var postWebLink: some View {
@@ -317,47 +313,7 @@ struct CompactPostItem: View {
   }
 }
 
-struct CompactPostsView_Previews: PreviewProvider {
-  static var previews: some View {
-    let samplePost = RealmPost(
-      postID: 1,
-      postName:
-      "Sonoma. This is the body of the sample post. It contains some information about the post.",
-      postPublished: "2023-09-15T12:33:03.503139",
-      postURL: "https://example.com/sample-post",
-      postBody: "This is the body of the sample post. It contains some information about the post.",
-      postThumbnailURL: "https://i.imgur.com/bgHfktp.jpeg",
-      postFeatured: false,
-      personID: 1,
-      personName: "mani",
-      personPublished: "October 17, 2023",
-      personActorID: "mani01",
-      personInstanceID: 123,
-      personAvatar: "https://i.imgur.com/cflaISU.jpeg",
-      personDisplayName: "Mani",
-      personBio: "Just a sample user on this platform.",
-      personBanner: "",
-      communityID: 1,
-      communityName: "SampleCommunity",
-      communityTitle: "Welcome to the Sample Community",
-      communityActorID: "https://lemmy.world/c/worldnews",
-      communityInstanceID: 456,
-      communityDescription:
-      "This is a sample community description. It provides information about the community.",
-      communityIcon: "https://example.com/community-icon.jpg",
-      communityBanner: "https://example.com/community-banner.jpg",
-      communityUpdated: "October 16, 2023", communitySubscribed: .subscribed,
-      postScore: 42,
-      postCommentCount: 10,
-      upvotes: 30,
-      downvotes: 12,
-      postMyVote: 1,
-      postHidden: false,
-      postMinimised: false,
-      sort: "Active",
-      type: "All",
-      filterKey: "sortAndTypeOnly"
-    )
-    return CompactPostItem(post: samplePost, parentView: "PostsView").previewLayout(.sizeThatFits)
-  }
+#Preview {
+  CompactPostItem(post: MockData().post, parentView: "PostsView")
+    .previewLayout(.sizeThatFits)
 }

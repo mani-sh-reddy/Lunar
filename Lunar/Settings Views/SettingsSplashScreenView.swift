@@ -14,7 +14,6 @@ struct SettingsSplashScreenView: View {
   @Default(.clearWhatsNewDefaults) var clearWhatsNewDefaults
   @Default(.clearInitialWhatsNewDefault) var clearInitialWhatsNewDefault
   @Default(.accentColor) var accentColor
-  @Default(.accentColorString) var accentColorString
 
   @State var alertPresented: Bool = false
 
@@ -55,8 +54,6 @@ struct SettingsSplashScreenView: View {
   }
 }
 
-struct SettingsSplashScreenView_Previews: PreviewProvider {
-  static var previews: some View {
-    SettingsSplashScreenView()
-  }
+#Preview {
+  SettingsSplashScreenView()
 }

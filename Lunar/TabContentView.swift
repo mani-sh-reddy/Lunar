@@ -31,7 +31,7 @@ struct TabContentView: View {
         .tabItem {
           Label("Feed", systemSymbol: .mailStack)
         }
-      PlaceholderView()
+      InboxView()
         .tabItem {
           Label("Inbox", systemSymbol: .tray)
         }
@@ -76,8 +76,6 @@ struct TabContentView: View {
   }
 }
 
-struct TabContentView_Previews: PreviewProvider {
-  static var previews: some View {
-    TabContentView()
-  }
+#Preview {
+  TabContentView()
 }

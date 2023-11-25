@@ -14,19 +14,9 @@ import SwiftUI
 
 struct MyUserView: View {
   @Default(.activeAccount) var activeAccount
-  @Default(.loggedInAccounts) var loggedInAccounts
   @Default(.iridescenceEnabled) var iridescenceEnabled
 
   @GestureState var dragAmount = CGSize.zero
-
-  //  var myAccount: AccountModel {
-  //    if !activeAccount.userID.isEmpty {
-  ////      print(selectedUser)
-  //      return activeAccount
-  //    } else {
-  //      return AccountModel()
-  //    }
-  //  }
 
   var avatar: String { activeAccount.avatarURL }
   var actorID: String { activeAccount.actorID }
@@ -55,8 +45,10 @@ struct MyUserView: View {
       }
       .listStyle(.insetGrouped)
       .onAppear {
-        if let jwt = JWT().getJWTFromKeychain(actorID: activeAccount.actorID) {
-          SiteInfoFetcher(jwt: jwt).fetchSiteInfo { _, _, _, _ in }
+        DispatchQueue.global(qos: .background).async {
+          if let jwt = JWT().getJWTFromKeychain(actorID: activeAccount.actorID) {
+            SiteInfoFetcher(jwt: jwt).fetchSiteInfo { _, _, _, _ in }
+          }
         }
       }
     }
@@ -238,10 +230,8 @@ struct MyUserView: View {
   }
 }
 
-struct AccountTabView_Previews: PreviewProvider {
-  static var previews: some View {
-    MyUserView()
-  }
+#Preview {
+  MyUserView()
 }
 
 struct AccountScoreView: View {

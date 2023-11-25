@@ -17,9 +17,6 @@ struct SubscribedCommunitiesSectionView: View {
   @State var fetchCounter: Int = 0
 
   @Default(.activeAccount) var activeAccount
-  @Default(.debugModeEnabled) var debugModeEnabled
-  @Default(.selectedInstance) var selectedInstance
-  @Default(.subscribedCommunityIDs) var subscribedCommunityIDs
 
   let realm = try! Realm()
 
@@ -104,19 +101,6 @@ struct SubscribedCommunitiesSectionView: View {
         typeParameter: "Subscribed"
       ).loadContent()
       fetchCounter += 1
-    }
-  }
-
-  @ViewBuilder
-  var debugModeView: some View {
-    if debugModeEnabled {
-      Text("subscribedCommunityIDs App Storage Array:")
-      Text(String(describing: subscribedCommunityIDs))
-      Button {
-        subscribedCommunityIDs.removeAll()
-      } label: {
-        Text("Clear subscribedCommunityIDs Array")
-      }
     }
   }
 }

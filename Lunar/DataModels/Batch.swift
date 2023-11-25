@@ -8,6 +8,7 @@
 import Foundation
 import RealmSwift
 
+// periphery:ignore
 class Batch: Object, ObjectKeyIdentifiable {
   @Persisted var realmPosts: List<RealmPost>
 

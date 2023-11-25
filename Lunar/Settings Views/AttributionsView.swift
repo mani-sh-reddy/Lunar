@@ -51,15 +51,13 @@ struct AttributionsView: View {
   }
 }
 
-struct AttributionsView_Previews: PreviewProvider {
-  static var previews: some View {
-    List {
-      Section {
-        MetadataView(vm: LinkViewModel(link: "https://github.com/mani-sh-reddy"))
-      }
-      Section {
-        Text("None")
-      }
+#Preview {
+  List {
+    Section {
+      MetadataView(vm: LinkViewModel(link: "https://github.com/mani-sh-reddy"))
+    }
+    Section {
+      Text("None")
     }
   }
 }

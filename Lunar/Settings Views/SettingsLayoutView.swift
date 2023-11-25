@@ -20,7 +20,6 @@ struct SettingsLayoutView: View {
   @Default(.autoCollapseBots) var autoCollapseBots
   @Default(.enableQuicklinks) var enableQuicklinks
   @Default(.accentColor) var accentColor
-  @Default(.accentColorString) var accentColorString
 
   var body: some View {
     List {
@@ -104,8 +103,6 @@ struct SettingsLayoutView: View {
   }
 }
 
-struct SettingsLayoutView_Previews: PreviewProvider {
-  static var previews: some View {
-    SettingsLayoutView()
-  }
+#Preview {
+  SettingsLayoutView()
 }

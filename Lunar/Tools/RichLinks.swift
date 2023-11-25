@@ -31,6 +31,7 @@ struct MetadataView: View {
   }
 }
 
+// periphery:ignore
 class LinkViewModel: ObservableObject {
   let metadataProvider = LPMetadataProvider()
 
@@ -68,8 +69,6 @@ class LinkViewModel: ObservableObject {
   }
 }
 
-struct MetadataView_Previews: PreviewProvider {
-  static var previews: some View {
-    MetadataView(vm: LinkViewModel(link: "https://google.com"))
-  }
+#Preview {
+  MetadataView(vm: LinkViewModel(link: "https://google.com"))
 }

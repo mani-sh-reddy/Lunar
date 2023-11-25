@@ -13,11 +13,8 @@ import SwiftUI
 import UIKit
 
 struct SettingsClearRealmView: View {
-  @Default(.appBundleID) var appBundleID
   @Default(.realmLastReset) var realmLastReset
   @Default(.activeAccount) var activeAccount
-
-  @State var lastReset: String = ""
 
   @State var alertPresented: Bool = false
   let haptics = UINotificationFeedbackGenerator()

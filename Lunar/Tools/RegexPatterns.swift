@@ -8,7 +8,7 @@
 import Foundation
 
 // Utility class for regular expressions
-class RegexPatterns {
+enum RegexPatterns {
   static let matchAnyURL: NSRegularExpression? = {
     do {
       return try NSRegularExpression(

@@ -136,8 +136,6 @@ struct ManageInstancesView: View {
   }
 }
 
-struct ManageInstancesView_Previews: PreviewProvider {
-  static var previews: some View {
-    ManageInstancesView()
-  }
+#Preview {
+  ManageInstancesView()
 }

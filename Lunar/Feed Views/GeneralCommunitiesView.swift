@@ -15,7 +15,6 @@ struct GeneralCommunitiesView: View {
   @Default(.enableQuicklinks) var enableQuicklinks
   @Default(.quicklinks) var quicklinks
   @Default(.lockedQuicklinks) var lockedQuicklinks
-  @Default(.forcedPostSort) var forcedPostSort
 
   var body: some View {
     ForEach(enableQuicklinks ? quicklinks : lockedQuicklinks, id: \.self) { quicklink in

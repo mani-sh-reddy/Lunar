@@ -11,8 +11,6 @@ import SwiftUI
 
 struct LoggedInUsersListView: View {
   @Default(.loggedInAccounts) var loggedInAccounts
-  @Default(.debugModeEnabled) var debugModeEnabled
-  @Default(.appBundleID) var appBundleID
   @Default(.activeAccount) var activeAccount
 
   let widgetLink = WidgetLink()

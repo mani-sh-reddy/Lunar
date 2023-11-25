@@ -8,7 +8,7 @@
 import Foundation
 import LocalAuthentication
 
-class CheckBiometricType {
+enum CheckBiometricType {
   static func biometricType() -> BiometricType {
     let authContext = LAContext()
     if #available(iOS 11, *) {

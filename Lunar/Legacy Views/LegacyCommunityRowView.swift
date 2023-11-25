@@ -14,10 +14,10 @@ import SwiftUI
 struct LegacyCommunityRowView: View {
   @Default(.detailedCommunityLabels) var detailedCommunityLabels
   @Default(.legacyHiddenCommunitiesList) var legacyHiddenCommunitiesList
+
   var community: CommunityObject
   var communitiesFetcher: LegacyCommunitiesFetcher
 
-  @State var showingPlaceholderAlert = false
   @State var showHideCommunityConfirmation = false
 
   var body: some View {
@@ -41,7 +41,7 @@ struct LegacyCommunityRowView: View {
         communityDomain
       }
       .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-        goButton
+//        goButton
         hideButton
       }
       .contextMenu {
@@ -68,7 +68,7 @@ struct LegacyCommunityRowView: View {
         communityDomain
       }
       .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-        goButton
+//        goButton
         hideButton
       }
       .contextMenu {
@@ -191,14 +191,14 @@ struct LegacyCommunityRowView: View {
     }
   }
 
-  var goButton: some View {
-    Button {
-      showingPlaceholderAlert = true
-    } label: {
-      Label("go", systemSymbol: AllSymbols().goIntoContextIcon)
-    }
-    .tint(.blue)
-  }
+//  var goButton: some View {
+//    Button {
+//      showingPlaceholderAlert = true
+//    } label: {
+//      Label("go", systemSymbol: AllSymbols().goIntoContextIcon)
+//    }
+//    .tint(.blue)
+//  }
 
   var hideButton: some View {
     Button {

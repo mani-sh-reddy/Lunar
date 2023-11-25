@@ -126,20 +126,4 @@ extension KeychainHelper {
       assertionFailure("Fail to encode item for keychain: \(error)")
     }
   }
-
-  func read<T>(service: String, account: String, type: T.Type) -> T? where T: Codable {
-    // Read item data from keychain
-    guard let data = read(service: service, account: account) else {
-      return nil
-    }
-
-    // Decode JSON data to object
-    do {
-      let item = try JSONDecoder().decode(type, from: data)
-      return item
-    } catch {
-      assertionFailure("Fail to decode item for keychain: \(error)")
-      return nil
-    }
-  }
 }

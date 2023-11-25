@@ -12,18 +12,9 @@ import SFSafeSymbols
 import SwiftUI
 
 struct NonRealmPostItem: View {
-  @Default(.debugModeEnabled) var debugModeEnabled
-  @Default(.activeAccount) var activeAccount
-
   var post: PostObject
 
   @State var showSafari: Bool = false
-  @State var subscribeAlertPresented: Bool = false
-  @State var shareSheetPresented: Bool = false
-
-  let hapticsSoft = UIImpactFeedbackGenerator(style: .soft)
-  let hapticsLight = UIImpactFeedbackGenerator(style: .light)
-  let notificationHaptics = UINotificationFeedbackGenerator()
 
   var image: String? {
     let thumbnail = post.post.thumbnailURL ?? ""
@@ -89,20 +80,6 @@ struct NonRealmPostItem: View {
 
     .listRowSeparator(.hidden)
     .padding(.vertical, 5)
-  }
-
-  var shareButton: some View {
-    Button {
-      var items: [Any] = [post.post.name]
-      if post.post.thumbnailURL != nil || post.post.url != nil {
-        items = [URL(string: post.post.thumbnailURL ?? post.post.url!)!, post.post.name]
-      } else if post.post.body != nil {
-        items = [post.post.name, post.post.body as Any]
-      }
-      ShareSheet().share(items: items)
-    } label: {
-      Label("Share", systemSymbol: AllSymbols().shareContextIcon)
-    }
   }
 
   var postBackground: some View {

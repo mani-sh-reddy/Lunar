@@ -81,34 +81,4 @@ class ImageDownloadManager {
       completion(nil)
     }
   }
-
-  func deleteImage(forKey key: String, completion: @escaping (Bool) -> Void) {
-    if let filePath = UserDefaults(suiteName: suiteName)?.string(forKey: key) {
-      let fileURL = URL(fileURLWithPath: filePath)
-      do {
-        try FileManager.default.removeItem(at: fileURL)
-        UserDefaults(suiteName: suiteName)?.removeObject(forKey: key)
-        completion(true)
-      } catch {
-        print("Error deleting image: \(error)")
-        completion(false)
-      }
-    } else {
-      completion(false)
-    }
-  }
 }
-
-// private func store(image: UIImage, forKey key: String) {
-//  if let pngRepresentation = image.pngData() {
-//    let fileManager = FileManager.default
-//    if let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first {
-//      let fileURL = documentsURL.appendingPathComponent("\(key).png")
-//      do {
-//        try pngRepresentation.write(to: fileURL)
-//      } catch {
-//        print("Error writing image to file: \(error)")
-//      }
-//    }
-//  }
-// }

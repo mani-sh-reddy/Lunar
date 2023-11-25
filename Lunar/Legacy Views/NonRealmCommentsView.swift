@@ -11,8 +11,6 @@ import SFSafeSymbols
 import SwiftUI
 
 struct NonRealmCommentsView: View {
-  @Default(.activeAccount) var activeAccount
-
   @StateObject var commentsFetcher: CommentsFetcher
   @State var postBodyExpanded = false
 

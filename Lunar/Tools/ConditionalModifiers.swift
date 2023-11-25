@@ -10,6 +10,7 @@ import SwiftUI
 
 // MARK: - ConditionalListStyle
 
+// periphery:ignore
 enum ConditionalListStyle: String, CaseIterable {
   case insetGrouped
   case grouped

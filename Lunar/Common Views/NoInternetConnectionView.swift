@@ -36,8 +36,6 @@ struct NoInternetConnectionView: View {
   }
 }
 
-struct NoInternetConnectionView_Previews: PreviewProvider {
-  static var previews: some View {
-    NoInternetConnectionView()
-  }
+#Preview {
+  NoInternetConnectionView()
 }

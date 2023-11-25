@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import WidgetKit
 
+// periphery:ignore
 struct WidgetLink {
   @AppStorage("activeAccountName", store: UserDefaults(suiteName: "group.io.github.mani-sh-reddy.Lunar"))
   var activeAccountName = ""

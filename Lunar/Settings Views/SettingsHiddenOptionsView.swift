@@ -32,8 +32,6 @@ struct SettingsHiddenOptionsView: View {
   }
 }
 
-struct SettingsHiddenOptionsView_Previews: PreviewProvider {
-  static var previews: some View {
-    SettingsHiddenOptionsView()
-  }
+#Preview {
+  SettingsHiddenOptionsView()
 }

@@ -8,6 +8,7 @@
 import Foundation
 import RealmSwift
 
+// periphery:ignore
 class RealmCommunity: Object, ObjectKeyIdentifiable {
   @Persisted(primaryKey: true) var id: Int
 

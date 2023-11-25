@@ -17,8 +17,6 @@ struct CommunityRowView: View {
 
   @ObservedRealmObject var community: RealmCommunity
 
-  @State var showingPlaceholderAlert = false
-
   var body: some View {
     if detailedCommunityLabels {
       HStack {

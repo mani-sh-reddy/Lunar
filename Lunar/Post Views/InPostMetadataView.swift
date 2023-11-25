@@ -34,24 +34,10 @@ struct InPostMetadataView: View {
   }
 }
 
-struct InPostMetadataView_Previews: PreviewProvider {
-  static var previews: some View {
-    HStack(spacing: 6) {
-      InPostMetadataView(
-        bodyText: String("3428"),
-        iconName: .arrowUp,
-        iconColor: .green
-      )
-      InPostMetadataView(
-        bodyText: String("34"),
-        iconName: .arrowDown,
-        iconColor: .red
-      )
-      InPostMetadataView(
-        bodyText: String("142"),
-        iconName: .textBubble,
-        iconColor: .gray
-      )
-    }
+#Preview {
+  HStack(spacing: 6) {
+    InPostMetadataView(bodyText: String("3428"), iconName: .arrowUp, iconColor: .green)
+    InPostMetadataView(bodyText: String("34"), iconName: .arrowDown, iconColor: .red)
+    InPostMetadataView(bodyText: String("142"), iconName: .textBubble, iconColor: .gray)
   }
 }

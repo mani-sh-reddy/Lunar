@@ -15,7 +15,6 @@ struct LegacyCommentPopoverView: View {
 
   var post: Post
   var comment: Comment?
-  var parentID: Int?
 
   var body: some View {
     List {

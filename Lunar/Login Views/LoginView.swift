@@ -123,9 +123,9 @@ struct LoginView: View {
   }
 }
 
-struct LoginView_Previews: PreviewProvider {
-  static var previews: some View {
-    /// need to set showing popover to a constant value
-    LoginView(showingPopover: .constant(false), isLoginFlowComplete: .constant(true))
-  }
+#Preview {
+  LoginView(
+    showingPopover: .constant(false),
+    isLoginFlowComplete: .constant(true)
+  )
 }

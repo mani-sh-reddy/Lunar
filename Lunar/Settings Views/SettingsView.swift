@@ -19,12 +19,10 @@ struct SettingsView: View {
   @Default(.activeAccount) var activeAccount
 
   @State private var showSafariGithub: Bool = false
-  @State private var showSafariLemmy: Bool = false
   @State private var showSafariPrivacyPolicy: Bool = false
   @State private var matrixCopiedToClipboard: Bool = false
 
   let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
-  let haptics = UIImpactFeedbackGenerator(style: .soft)
   let notificationHaptics = UINotificationFeedbackGenerator()
 
   var body: some View {
@@ -360,8 +358,6 @@ struct SettingsView: View {
   }
 }
 
-struct SettingsView_Previews: PreviewProvider {
-  static var previews: some View {
-    SettingsView()
-  }
+#Preview {
+  SettingsView()
 }

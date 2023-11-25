@@ -12,7 +12,7 @@ import Nuke
 import Pulse
 import SwiftUI
 
-@MainActor class LegacyCommunitiesFetcher: ObservableObject {
+class LegacyCommunitiesFetcher: ObservableObject {
   @Default(.communitiesSort) var communitiesSort
   @Default(.communitiesType) var communitiesType
   @Default(.activeAccount) var activeAccount
@@ -74,13 +74,6 @@ import SwiftUI
     self.typeParameter = typeParameter ?? communitiesType
     self.limitParameter = limitParameter
     jwt = getJWTFromKeychain(actorID: activeAccount.actorID) ?? ""
-    loadContent()
-  }
-
-  func loadMoreContentIfNeeded(currentItem: CommunityObject) {
-    guard currentItem.community.id == communities.last?.community.id else {
-      return
-    }
     loadContent()
   }
 

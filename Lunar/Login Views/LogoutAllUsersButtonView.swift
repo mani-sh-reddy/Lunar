@@ -12,7 +12,6 @@ import SwiftUI
 struct LogoutAllUsersButtonView: View {
   @Default(.activeAccount) var activeAccount
   @Default(.loggedInAccounts) var loggedInAccounts
-  @Default(.debugModeEnabled) var debugModeEnabled
   @Default(.appBundleID) var appBundleID
   @Default(.accentColorString) var accentColorString
   @Default(.accentColor) var accentColor

@@ -7,7 +7,7 @@
 
 import Foundation
 import WhatsNewKit
-
+// periphery:ignore
 extension WhatsNewKitData {
   var WhatsNew_2023_11: WhatsNew {
     WhatsNew(
