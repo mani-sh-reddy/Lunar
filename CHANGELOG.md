@@ -16,6 +16,7 @@ All notable changes to this project will be documented in this file.
 ### Misc
 - Code clean up
 - Removed unused code and comments
+- Added SwiftLint and Periphery run script and schemes
 
 ## [2023.11.19]
 
