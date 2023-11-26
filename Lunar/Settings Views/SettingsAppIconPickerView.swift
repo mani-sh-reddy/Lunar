@@ -13,13 +13,13 @@ struct SettingsAppIconPickerView: View {
   @Default(.selectedAppIcon) var selectedAppIcon
 
   private var appIcons = [
-    ("New", "Light"),
+    ("Default", "Default"),
+    ("Space", "Space"),
+    ("Lemming", "Lemming"),
     ("Original", "v0"),
-    ("Dark", "Dark"),
-    ("Purple", "Purple"),
     ("Night", "Night"),
-    ("Lemmy Y", "LemmY"),
-    ("Kbin", "Kbin"),
+    ("Purple", "Purple"),
+    ("Kbin", "Kbin")
   ]
 
   var body: some View {
@@ -42,7 +42,7 @@ struct SettingsAppIconPickerView: View {
       .pickerStyle(.inline)
     }
     .onChange(of: selectedAppIcon) { newValue in
-      if newValue == "AppIconLight" {
+      if newValue == "AppIconDefault" {
         UIApplication.shared.setAlternateIconName(nil)
       } else {
         UIApplication.shared.setAlternateIconName(newValue)

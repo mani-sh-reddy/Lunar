@@ -390,7 +390,7 @@
 		3C5ECB2D2A767957002BA561 /* TwoFactorFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFactorFieldView.swift; sourceTree = "<group>"; };
 		3C6299D02A751A5900BE2A9F /* TextExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextExtension.swift; sourceTree = "<group>"; };
 		3C62C23E2A72AA4D003BAC5B /* Lunar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Lunar.entitlements; sourceTree = "<group>"; };
-		3C62C23F2A72AABD003BAC5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3C62C23F2A72AABD003BAC5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C62C2542A72F4BC003BAC5B /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		3C64E7C82AF700E9003BB42E /* WhatsNew_0_0_0.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNew_0_0_0.swift; sourceTree = "<group>"; };
 		3C64E7CB2AF7057B003BB42E /* WhatsNew_2023_11.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNew_2023_11.swift; sourceTree = "<group>"; };
@@ -672,9 +672,9 @@
 				3CEBF4662B08302000469008 /* CHANGELOG.md */,
 				3C4EBFFA2B010FC5004B7665 /* README.md */,
 				3C87A36B2A9FB6BF0029C18F /* Assets.xcassets */,
+				3C4F09FE2A54399F009DF8AB /* Lunar */,
 				3C2EA68D2AFFDBBA007AC12D /* Widgets */,
 				3C10A76D2A72A6FC0040F1A9 /* Frameworks */,
-				3C4F09FE2A54399F009DF8AB /* Lunar */,
 				3C29F5432A97D49C001563E7 /* LunarUITests */,
 				3C4F09FD2A54399F009DF8AB /* Products */,
 			);
@@ -693,9 +693,9 @@
 		3C4F09FE2A54399F009DF8AB /* Lunar */ = {
 			isa = PBXGroup;
 			children = (
+				3C62C23F2A72AABD003BAC5B /* Info.plist */,
 				3C62C23E2A72AA4D003BAC5B /* Lunar.entitlements */,
 				3C808E222A9A8C95008FA62E /* LunarDebug.entitlements */,
-				3C62C23F2A72AABD003BAC5B /* Info.plist */,
 				3CFA769A2B127E76002B88B2 /* MockData.swift */,
 				3C2EA6C22AFFFA42007AC12D /* WidgetLink.swift */,
 				3C4F09FF2A54399F009DF8AB /* LunarAppEntryView.swift */,
@@ -1619,6 +1619,8 @@
 		3C29F54B2A97D49C001563E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTestflight;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1644,6 +1646,8 @@
 		3C29F54C2A97D49C001563E7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDefault;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1669,6 +1673,8 @@
 		3C2EA6992AFFDBBB007AC12D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTestflight;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
@@ -1703,6 +1709,8 @@
 		3C2EA69A2AFFDBBB007AC12D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDefault;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
@@ -1740,11 +1748,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTestflight;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_STICKER_CONTENT = YES;
+				ASSETCATALOG_COMPILER_TARGET_STICKERS_ICON_ROLE = extension;
 				CLANG_ANALYZER_GCD_PERFORMANCE = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_EMPTY_CONTEXT = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -1822,11 +1831,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconLight;
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDefault;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_STICKER_CONTENT = YES;
+				ASSETCATALOG_COMPILER_TARGET_STICKERS_ICON_ROLE = extension;
 				CLANG_ANALYZER_GCD_PERFORMANCE = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_EMPTY_CONTEXT = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -1897,8 +1907,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconKbin AppIconNight AppIconIndigo AppIconLemmY AppIconDark AppIconv0";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTestflight;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_STICKER_CONTENT = YES;
 				ASSETCATALOG_COMPILER_TARGET_STICKERS_ICON_ROLE = extension;
@@ -1947,8 +1957,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconKbin AppIconNight AppIconIndigo AppIconLemmY AppIconDark AppIconv0";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconLight;
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDefault;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_STICKER_CONTENT = YES;
 				ASSETCATALOG_COMPILER_TARGET_STICKERS_ICON_ROLE = extension;
@@ -1998,6 +2008,8 @@
 		3CDAFF672B125D6100C83BE3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTestflight;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CODE_SIGN_STYLE = Automatic;
 				ENABLE_ON_DEMAND_RESOURCES = YES;
@@ -2009,6 +2021,8 @@
 		3CDAFF682B125D6100C83BE3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDefault;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CODE_SIGN_STYLE = Automatic;
 				ENABLE_ON_DEMAND_RESOURCES = YES;
@@ -2020,6 +2034,8 @@
 		3CFA769F2B129A3F002B88B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTestflight;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CODE_SIGN_STYLE = Automatic;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -2030,6 +2046,8 @@
 		3CFA76A02B129A3F002B88B2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDefault;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CODE_SIGN_STYLE = Automatic;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;

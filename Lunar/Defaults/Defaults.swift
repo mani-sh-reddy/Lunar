@@ -21,7 +21,7 @@ extension Defaults.Keys {
 
   // MARK: - Settings
 
-  static let selectedAppIcon = Key<String>("selectedAppIcon", default: "AppIconLight")
+  static let selectedAppIcon = Key<String>("selectedAppIcon", default: "AppIconDefault")
   static let kbinActive = Key<Bool>("kbinActive", default: false)
   static let forcedPostSort = Key<SortType>("forcedPostSort", default: .active)
   static let searchSortType = Key<SortType>("searchSortType", default: .topYear)
