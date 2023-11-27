@@ -9,6 +9,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [2023.11.22]
+
 ### Fixed
 - Stutter caused by phase change actions
 - Stutter cause by @Environment Dismiss
