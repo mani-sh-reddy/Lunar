@@ -57,7 +57,7 @@
 		3C2A805B2AFD893A0077B7D7 /* Biometrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2A805A2AFD893A0077B7D7 /* Biometrics.swift */; };
 		3C2B14712AABC66E0028E05A /* Quicklink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2B14702AABC66E0028E05A /* Quicklink.swift */; };
 		3C2B14732AABC6AD0028E05A /* GeneralCommunityButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2B14722AABC6AD0028E05A /* GeneralCommunityButtonView.swift */; };
-		3C2B14752AABC7CB0028E05A /* CustomiseFeedQuicklinksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2B14742AABC7CB0028E05A /* CustomiseFeedQuicklinksView.swift */; };
+		3C2B14752AABC7CB0028E05A /* SettingsQuicklinksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2B14742AABC7CB0028E05A /* SettingsQuicklinksView.swift */; };
 		3C2B14772AABCCA50028E05A /* ColorConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2B14762AABCCA50028E05A /* ColorConverter.swift */; };
 		3C2C454A2AA648A000727DD5 /* UserDefaultsExplorerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C2C45492AA648A000727DD5 /* UserDefaultsExplorerView.swift */; };
 		3C2EA68B2AFFDBB9007AC12D /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CAEDE332A9F3EDF001469AA /* WidgetKit.framework */; };
@@ -347,7 +347,7 @@
 		3C2A805A2AFD893A0077B7D7 /* Biometrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Biometrics.swift; sourceTree = "<group>"; };
 		3C2B14702AABC66E0028E05A /* Quicklink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quicklink.swift; sourceTree = "<group>"; };
 		3C2B14722AABC6AD0028E05A /* GeneralCommunityButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralCommunityButtonView.swift; sourceTree = "<group>"; };
-		3C2B14742AABC7CB0028E05A /* CustomiseFeedQuicklinksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomiseFeedQuicklinksView.swift; sourceTree = "<group>"; };
+		3C2B14742AABC7CB0028E05A /* SettingsQuicklinksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsQuicklinksView.swift; sourceTree = "<group>"; };
 		3C2B14762AABCCA50028E05A /* ColorConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorConverter.swift; sourceTree = "<group>"; };
 		3C2C45492AA648A000727DD5 /* UserDefaultsExplorerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExplorerView.swift; sourceTree = "<group>"; };
 		3C2EA64A2AFFD033007AC12D /* IconWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconWidget.swift; sourceTree = "<group>"; };
@@ -791,7 +791,7 @@
 			children = (
 				3C87A3692A9F9C4E0029C18F /* ForceAppearance.swift */,
 				3C9E54972A953FB60093DDC7 /* SettingsSplashScreenView.swift */,
-				3C2B14742AABC7CB0028E05A /* CustomiseFeedQuicklinksView.swift */,
+				3C2B14742AABC7CB0028E05A /* SettingsQuicklinksView.swift */,
 				3CECCE1D2AADDBBA0017A605 /* CircleFillIcons.swift */,
 			);
 			name = Appearance;
@@ -1390,7 +1390,7 @@
 				3CB9C7312AA244CC00FB5A10 /* Post.swift in Sources */,
 				3CEF4CD02A69B738002B83C0 /* InPostMetadataView.swift in Sources */,
 				3CB9C7442AA24B4100FB5A10 /* MyUser.swift in Sources */,
-				3C2B14752AABC7CB0028E05A /* CustomiseFeedQuicklinksView.swift in Sources */,
+				3C2B14752AABC7CB0028E05A /* SettingsQuicklinksView.swift in Sources */,
 				3C5ECB2A2A7676AD002BA561 /* UsernameFieldView.swift in Sources */,
 				3CA95F052A7ACBD500626353 /* PhotoDetailView.swift in Sources */,
 				3CC178912A7DA6A200C208D0 /* SearchView.swift in Sources */,

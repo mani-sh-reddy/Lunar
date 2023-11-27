@@ -9,13 +9,19 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+
+- Reorganised Quicklink settings
+
 ## [2023.11.22]
 
 ### Fixed
+
 - Stutter caused by phase change actions
 - Stutter cause by @Environment Dismiss
 
 ### Misc
+
 - Code clean up
 - Removed unused code and comments
 - Added SwiftLint and Periphery run script and schemes

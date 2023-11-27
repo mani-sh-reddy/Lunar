@@ -160,25 +160,14 @@ struct SettingsView: View {
 
   var quicklinksNavLink: some View {
     NavigationLink {
-      CustomiseFeedQuicklinksView()
+      SettingsQuicklinksView()
     } label: {
-      if enableQuicklinks {
-        Label {
-          Text("Quicklinks")
-        } icon: {
-          AllSymbols().quicklinksSettings
-        }
-      } else {
-        Label {
-          Text("Quicklinks disabled in Feed Options")
-            .italic()
-            .font(.caption)
-        } icon: {
-          AllSymbols().quicklinksSettingsDisabled
-        }
+      Label {
+        Text("Quicklinks")
+      } icon: {
+        AllSymbols().quicklinksSettings
       }
     }
-    .disabled(!enableQuicklinks)
   }
 
   var appIconNavLink: some View {

@@ -60,4 +60,5 @@ extension Defaults.Keys {
   static let quicklinks = Key<[Quicklink]>("quicklinks", default: DefaultQuicklinks().getDefaultQuicklinks())
   static let lockedQuicklinks = Key<[Quicklink]>("lockedQuicklinks", default: DefaultQuicklinks().getLockedQuicklinks())
   static let privateMessagesRetrieved = Key<Bool>("privateMessagesRetrieved", default: false)
+  static let postsSortWithToolbar = Key<SortType>("postsSortWithToolbar", default: .active)
 }

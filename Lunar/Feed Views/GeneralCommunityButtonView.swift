@@ -8,9 +8,13 @@
 import Foundation
 import SFSafeSymbols
 import SwiftUI
+import Defaults
 
 struct GeneralCommunityQuicklinkButton: View {
+  @Default(.enableQuicklinks) var enableQuicklinks
+  
   @Environment(\.colorScheme) var colorScheme
+  
   let image: String
   let hexColor: String
   let title: String
@@ -31,22 +35,24 @@ struct GeneralCommunityQuicklinkButton: View {
       Text(title)
         .padding(.horizontal, 10)
       Spacer()
-      HStack {
-        switch type {
-        case "Local":
-          Image(systemSymbol: .houseFill)
-        case "All":
-          Image(systemSymbol: .globeAmericasFill)
-        case "Subscribed":
-          Image(systemSymbol: .bookmarkFill)
-        default:
-          Image(systemSymbol: .circle)
+      if enableQuicklinks {
+        HStack {
+          switch type {
+          case "Local":
+            Image(systemSymbol: .houseFill)
+          case "All":
+            Image(systemSymbol: .globeAmericasFill)
+          case "Subscribed":
+            Image(systemSymbol: .bookmarkFill)
+          default:
+            Image(systemSymbol: .circle)
+          }
+          Text(sort)
+            .bold()
         }
-        Text(sort)
-          .bold()
+        .font(.caption)
+        .foregroundStyle(.secondary)
       }
-      .font(.caption)
-      .foregroundStyle(.secondary)
     }
   }
 }

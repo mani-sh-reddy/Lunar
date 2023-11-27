@@ -67,7 +67,7 @@ class DefaultQuicklinks {
         title: "Local",
         type: "Local",
         sort: "Active",
-        icon: "mappin.circle",
+        icon: "house.circle",
         iconColor: "669D34", /// **green**
         brightness: 0.0,
         saturation: 3

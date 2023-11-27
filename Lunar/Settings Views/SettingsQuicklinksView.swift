@@ -1,5 +1,5 @@
 //
-//  CustomiseFeedQuicklinksView.swift
+//  SettingsQuicklinksView.swift
 //  Lunar
 //
 //  Created by Mani on 08/09/2023.
@@ -10,7 +10,7 @@ import Foundation
 import SFSafeSymbols
 import SwiftUI
 
-struct CustomiseFeedQuicklinksView: View {
+struct SettingsQuicklinksView: View {
   @Default(.quicklinks) var quicklinks
   @Default(.debugModeEnabled) var debugModeEnabled
   @Default(.enableQuicklinks) var enableQuicklinks
@@ -46,7 +46,6 @@ struct CustomiseFeedQuicklinksView: View {
     //    }
 
     List {
-      
       Section {
         Toggle(isOn: $enableQuicklinks) {
           Text("Enable Quicklinks")
@@ -55,45 +54,46 @@ struct CustomiseFeedQuicklinksView: View {
       } header: {
         Text("Quicklinks")
       }
-    footer: {
-      Text("With QuickLinks off, you'll only see Local and Federated links. Use the picker in the toolbar to sort posts.")
-    }
-      
-      Section {
-        ForEach(quicklinks, id: \.self) { quicklink in
-          GeneralCommunityQuicklinkButton(
-            image: quicklink.icon,
-            hexColor: quicklink.iconColor,
-            title: quicklink.title,
-            brightness: quicklink.brightness,
-            saturation: quicklink.saturation,
-            type: quicklink.type,
-            sort: quicklink.sort
-          )
-        }
-        .onDelete(perform: delete)
-        Button {
-          print(quicklinks)
-          showingAddQuicklinkPopover = true
-        } label: {
-          Text("Add Quicklink")
-            .foregroundStyle(.blue)
-        }
+      footer: {
+        Text("With QuickLinks off, you'll only see Local and Federated links. Use the picker in the toolbar to sort posts.")
       }
-      Section {
-        Button {
-          showingResetConfirmation = true
-        } label: {
-          Text("Reset Quicklinks List")
-            .foregroundStyle(.red)
+      if enableQuicklinks {
+        Section {
+          ForEach(quicklinks, id: \.self) { quicklink in
+            GeneralCommunityQuicklinkButton(
+              image: quicklink.icon,
+              hexColor: quicklink.iconColor,
+              title: quicklink.title,
+              brightness: quicklink.brightness,
+              saturation: quicklink.saturation,
+              type: quicklink.type,
+              sort: quicklink.sort
+            )
+          }
+          .onDelete(perform: delete)
+          Button {
+            print(quicklinks)
+            showingAddQuicklinkPopover = true
+          } label: {
+            Text("Add Quicklink")
+              .foregroundStyle(.blue)
+          }
         }
-      }
-      .confirmationDialog("Confirm Quicklinks List Reset", isPresented: $showingResetConfirmation) {
-        Button("Reset", role: .destructive) {
-          quicklinks = defaultQuicklinks
+        Section {
+          Button {
+            showingResetConfirmation = true
+          } label: {
+            Text("Reset Quicklinks List")
+              .foregroundStyle(.red)
+          }
         }
+        .confirmationDialog("Confirm Quicklinks List Reset", isPresented: $showingResetConfirmation) {
+          Button("Reset", role: .destructive) {
+            quicklinks = defaultQuicklinks
+          }
 
-        Button("Cancel", role: .cancel) {}
+          Button("Cancel", role: .cancel) {}
+        }
       }
     }
     .toolbar {
@@ -259,5 +259,5 @@ struct CustomiseFeedQuicklinksView: View {
 }
 
 #Preview {
-  CustomiseFeedQuicklinksView(showingAddQuicklinkPopover: true)
+  SettingsQuicklinksView(showingAddQuicklinkPopover: true)
 }
