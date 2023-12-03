@@ -9,9 +9,16 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- Font size slider
+
 ### Changed
 
-- Reorganised Quicklink settings
+- Rearranged settings view
+- Decreased default font size
+- Using github styled markdown
+
 
 ## [2023.11.22]
 
