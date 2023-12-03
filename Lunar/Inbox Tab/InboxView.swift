@@ -16,6 +16,7 @@ import SwiftUI
 struct InboxView: View {
   @Default(.activeAccount) var activeAccount
   @Default(.privateMessagesRetrieved) var privateMessagesRetrieved
+  @Default(.fontSize) var fontSize
 
   @ObservedResults(RealmPrivateMessage.self) var messages
 
@@ -85,6 +86,7 @@ enum messageDirection {
 }
 
 struct MessageItem: View {
+  @Default(.fontSize) var fontSize
   @Default(.activeAccount) var activeAccount
 
   @ObservedRealmObject var message: RealmPrivateMessage
@@ -169,6 +171,8 @@ struct MessageItem: View {
 
   var messageBody: some View {
     Markdown { message.messageContent }
+      .markdownTextStyle(\.text) { FontSize(fontSize) }
+      .markdownTheme(.gitHub)
       .padding(.bottom, 2)
   }
 }

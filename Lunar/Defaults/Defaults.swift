@@ -29,7 +29,7 @@ extension Defaults.Keys {
   static let detailedCommunityLabels = Key<Bool>("detailedCommunityLabels", default: true)
   static let legacyPostsViewStyle = Key<String>("legacyPostsViewStyle", default: "insetGrouped")
   static let postsViewStyle = Key<PostsViewStyle>("postsViewStyle", default: .large)
-  static let iridescenceEnabled = Key<Bool>("iridescenceEnabled", default: true)
+  static let iridescenceEnabled = Key<Bool>("iridescenceEnabled", default: false)
   static let prominentInspectorButton = Key<Bool>("prominentInspectorButton", default: true)
   static let clearWhatsNewDefaults = Key<Bool>("clearWhatsNewDefaults", default: false)
   static let clearInitialWhatsNewDefault = Key<Bool>("clearInitialWhatsNewDefault", default: false)
@@ -43,6 +43,7 @@ extension Defaults.Keys {
   static let enableQuicklinks = Key<Bool>("enableQuicklinks", default: true)
   static let accentColor = Key<Color>("accentColor", default: .blue)
   static let accentColorString = Key<String>("accentColorString", default: "Default")
+  static let fontSize = Key<CGFloat>("fontSize", default: 16)
 
   // MARK: - Account
 

@@ -13,6 +13,9 @@ struct ManageInstancesView: View {
   @Default(.lemmyInstances) var lemmyInstances
   @Default(.selectedInstance) var selectedInstance
   @Default(.debugModeEnabled) var debugModeEnabled
+  @Default(.kbinActive) var kbinActive
+  @Default(.accentColor) var accentColor
+  @Default(.accentColorString) var accentColorString
 
   @State var enteredCustomInstance = ""
   @State var showingAddInstanceAlert = false
@@ -35,6 +38,14 @@ struct ManageInstancesView: View {
       if debugModeEnabled {
         Text(String(describing: lemmyInstances))
       }
+
+      Section {
+        Toggle("kbin.social", isOn: $kbinActive)
+          .tint(accentColorString == "Default" ? .purple : accentColor)
+      } header: {
+        Text("Kbin")
+      }
+
       Section {
         ForEach(lemmyInstances, id: \.self) { instance in
           Text(instance)
@@ -47,7 +58,10 @@ struct ManageInstancesView: View {
           Text("Add Instance")
             .foregroundStyle(.blue)
         }
+      } header: {
+        Text("Lemmy")
       }
+
       Section {
         Button {
           showingResetConfirmation = true

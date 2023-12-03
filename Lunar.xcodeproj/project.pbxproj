@@ -37,6 +37,7 @@
 		3C0E2DD02AA909BB00095FA5 /* LegacyPostsSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0E2DCF2AA909BB00095FA5 /* LegacyPostsSectionView.swift */; };
 		3C113C392A6E71E100FDE5CE /* SettingsAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */; };
 		3C113C432A6EA92600FDE5CE /* InstanceSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C422A6EA92600FDE5CE /* InstanceSelectorView.swift */; };
+		3C11B28B2B1CB44600244838 /* SettingsAppearanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C11B28A2B1CB44600244838 /* SettingsAppearanceView.swift */; };
 		3C130F752A8C0A520060B6E4 /* ExpandableTextBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C130F742A8C0A520060B6E4 /* ExpandableTextBox.swift */; };
 		3C130F772A8C0CB90060B6E4 /* ReactionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C130F762A8C0CB90060B6E4 /* ReactionButton.swift */; };
 		3C17DE042A92D4D6008EEB10 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C17DE032A92D4D6008EEB10 /* IntExtension.swift */; };
@@ -329,6 +330,7 @@
 		3C10A76E2A72A6FC0040F1A9 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAccountView.swift; sourceTree = "<group>"; };
 		3C113C422A6EA92600FDE5CE /* InstanceSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstanceSelectorView.swift; sourceTree = "<group>"; };
+		3C11B28A2B1CB44600244838 /* SettingsAppearanceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAppearanceView.swift; sourceTree = "<group>"; };
 		3C130F742A8C0A520060B6E4 /* ExpandableTextBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableTextBox.swift; sourceTree = "<group>"; };
 		3C130F762A8C0CB90060B6E4 /* ReactionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionButton.swift; sourceTree = "<group>"; };
 		3C17DE032A92D4D6008EEB10 /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
@@ -1065,6 +1067,7 @@
 			isa = PBXGroup;
 			children = (
 				3C6588582A6169EB00A46DA3 /* SettingsView.swift */,
+				3C11B28A2B1CB44600244838 /* SettingsAppearanceView.swift */,
 				3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */,
 				3C87A36D2A9FBDE70029C18F /* SettingsAppIconPickerView.swift */,
 				3CF3B8F02A8F797D001C08B5 /* SettingsLayoutView.swift */,
@@ -1260,15 +1263,15 @@
 			);
 			mainGroup = 3C4F09F32A54399F009DF8AB;
 			packageReferences = (
-				3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire.git" */,
-				3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */,
+				3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */,
 				3CFE04BD2A7FEA71007BAD81 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				3C23F03C2AAA66E000AACA46 /* XCRemoteSwiftPackageReference "Pulse" */,
 				3CEB2C082AB2F3A50013609E /* XCRemoteSwiftPackageReference "Defaults" */,
-				3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols.git" */,
+				3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
 				3CC420082AB37BCB00BE1612 /* XCRemoteSwiftPackageReference "WhatsNewKit" */,
 				3CC4200B2AB37DDA00BE1612 /* XCRemoteSwiftPackageReference "BetterSafariView" */,
-				3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift.git" */,
+				3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */,
 				3CC3E4192ADC054000F7F9A9 /* XCRemoteSwiftPackageReference "shiny" */,
 				3C20B37D2AEB27F8003F578F /* XCRemoteSwiftPackageReference "LocalConsole" */,
 				3CEBF46A2B09426E00469008 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
@@ -1384,6 +1387,7 @@
 				3C5D66B82B0A8C0D00DBBE87 /* LegacyCommentsView.swift in Sources */,
 				3C1A3F5D2A73BC9F00898FC6 /* CredentialsModel.swift in Sources */,
 				3CC3E4182ADBFFEF00F7F9A9 /* MyUserCommentsView.swift in Sources */,
+				3C11B28B2B1CB44600244838 /* SettingsAppearanceView.swift in Sources */,
 				3C4B7DD82A58A741003C8192 /* CommentModel.swift in Sources */,
 				3CEF4CC62A69B3AD002B83C0 /* ExploreCommunitiesButton.swift in Sources */,
 				3CEF4CD32A69B770002B83C0 /* StringExtension.swift in Sources */,
@@ -2131,7 +2135,7 @@
 				minimumVersion = 4.0.3;
 			};
 		};
-		3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
+		3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -2139,7 +2143,7 @@
 				minimumVersion = 5.7.1;
 			};
 		};
-		3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */ = {
+		3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kean/Nuke.git";
 			requirement = {
@@ -2171,7 +2175,7 @@
 				kind = branch;
 			};
 		};
-		3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift.git" */ = {
+		3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
 			requirement = {
@@ -2187,7 +2191,7 @@
 				kind = branch;
 			};
 		};
-		3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols.git" */ = {
+		3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SFSafeSymbols/SFSafeSymbols.git";
 			requirement = {
@@ -2239,12 +2243,12 @@
 		};
 		3C2EA6C82B002322007AC12D /* SFSafeSymbols */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols.git" */;
+			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
 			productName = SFSafeSymbols;
 		};
 		3C4B7DDA2A58AD23003C8192 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire.git" */;
+			package = 3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 		3C4DB8C12AB70856000137CF /* NukeExtensions */ = {
@@ -2253,12 +2257,12 @@
 		};
 		3CA95F072A7ACF3B00626353 /* Nuke */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */;
+			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = Nuke;
 		};
 		3CA95F092A7ACF3B00626353 /* NukeUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */;
+			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = NukeUI;
 		};
 		3CC3E41A2ADC054000F7F9A9 /* Shiny */ = {
@@ -2278,12 +2282,12 @@
 		};
 		3CE69E952ABDCA8A00E2821E /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift.git" */;
+			package = 3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = Realm;
 		};
 		3CE69E972ABDCA8A00E2821E /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift.git" */;
+			package = 3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
 		3CEB2C092AB2F3A50013609E /* Defaults */ = {
@@ -2293,7 +2297,7 @@
 		};
 		3CEB2C122AB2F45F0013609E /* SFSafeSymbols */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols.git" */;
+			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
 			productName = SFSafeSymbols;
 		};
 		3CEBF46B2B09426E00469008 /* MarkdownUI */ = {

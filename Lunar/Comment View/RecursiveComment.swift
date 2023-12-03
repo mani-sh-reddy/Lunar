@@ -14,6 +14,7 @@ import SwiftUI
 struct RecursiveComment: View {
   @Default(.commentMetadataPosition) var commentMetadataPosition
   @Default(.activeAccount) var activeAccount
+  @Default(.fontSize) var fontSize
 
   @State private var isExpanded = true
   @State var showCreateCommentPopover = false
@@ -32,7 +33,7 @@ struct RecursiveComment: View {
     if !nestedComment.commentViewData.isCollapsed {
       HStack {
         commentNestedLevelIndicator
-        commentRow
+        maximisedCommentRow
         Spacer()
       }
       .fullScreenCover(isPresented: $showCreateCommentPopover) {
@@ -58,7 +59,7 @@ struct RecursiveComment: View {
         .padding(.leading, 10) // Add indentation
       }
     } else {
-      minimisedCommentStyle
+      minimisedCommentRow
         .contentShape(Rectangle())
         .onTapGesture { maximiseComment() }
     }
@@ -67,13 +68,13 @@ struct RecursiveComment: View {
   var shareButton: some View {
     Button {
       let items: [Any] = [nestedComment.commentViewData.comment.content]
-      ShareSheet().share(items: items)
+      ShareSheet().share(items: items) {}
     } label: {
       Label("Share", systemSymbol: AllSymbols().shareContextIcon)
     }
   }
 
-  var minimisedCommentStyle: some View {
+  var minimisedCommentRow: some View {
     HStack {
       Text(nestedComment.commentViewData.comment.content)
         .italic()
@@ -156,12 +157,15 @@ struct RecursiveComment: View {
     .environmentObject(commentsFetcher)
   }
 
-  var commentRow: some View {
+  var maximisedCommentRow: some View {
     VStack(alignment: .leading) {
       if commentMetadataPosition == "Top" {
         commentMetadata
       }
       Markdown { nestedComment.commentViewData.comment.content }
+        .markdownTextStyle(\.text) { FontSize(fontSize) }
+        .markdownTheme(.gitHub)
+
       if commentMetadataPosition == "Bottom" {
         commentMetadata
       }

@@ -21,6 +21,8 @@ struct SettingsView: View {
   @State private var showSafariGithub: Bool = false
   @State private var showSafariPrivacyPolicy: Bool = false
   @State private var matrixCopiedToClipboard: Bool = false
+  @State private var presentingShareSheet: Bool = false
+  @State private var rotationAngle: Double = 0.0
 
   let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
   let notificationHaptics = UINotificationFeedbackGenerator()
@@ -31,36 +33,32 @@ struct SettingsView: View {
         debugSection
         accountSection
         manageInstancesSection
-        Section {
-          notificationsNavLink
-          gesturesNavLink
-          soundAndHapticsNavLink
-        } header: { Text("System") }
 
         Section {
-          composerNavLink
-          searchNavLink
           quicklinksNavLink
-        } header: { Text("General") }
-
-        Section {
           appIconNavLink
-          themeNavLink
-          layoutNavLink
-        } header: { Text("Appearance") }
+          appearanceNavLink
+        }
 
         Section {
-          privacyPolicyButton
-          matrixButton
-          emailButton
           githubButton
-        } header: { Text("Info") }
+          privacyPolicyButton
+          shareLunarButton
+        }
+
+        Section {
+          additionalSettingsNavLink
+          developmentSettingsNavLink
+        }
 
         Section {
           hiddenPostsNavLink
-          additionalSettingsNavLink
-          developmentSettingsNavLink
-        } header: { Text("Extras") }
+        }
+
+        Section {
+          emailButton
+          matrixButton
+        }
 
         Section {
           appCreditsAndInfo
@@ -94,7 +92,7 @@ struct SettingsView: View {
       } label: {
         Text("Manage Instances")
       }
-      KbinSelectorView()
+      /// KbinSelectorView() - Moved to instance selector view
     }
   }
 
@@ -182,6 +180,18 @@ struct SettingsView: View {
     }
   }
 
+  var appearanceNavLink: some View {
+    NavigationLink {
+      SettingsAppearanceView()
+    } label: {
+      Label {
+        Text("Appearance")
+      } icon: {
+        AllSymbols().themeSettings
+      }
+    }
+  }
+
   var themeNavLink: some View {
     NavigationLink {
       SettingsThemeView()
@@ -239,7 +249,10 @@ struct SettingsView: View {
       }
 
       UIPasteboard.general
-        .setValue("@mani.sh:matrix.org", forPasteboardType: UTType.plainText.identifier)
+        .setValue(
+          "@mani.sh:matrix.org",
+          forPasteboardType: UTType.plainText.identifier
+        )
     } label: {
       Label {
         Text("@mani.sh:matrix.org")
@@ -264,7 +277,7 @@ struct SettingsView: View {
       Mailto().mailto("lunarforlemmy@outlook.com")
     } label: {
       Label {
-        Text("Email")
+        Text("Email Me")
           .foregroundStyle(.foreground)
         Spacer()
         AllSymbols().externalMailArrow
@@ -294,6 +307,41 @@ struct SettingsView: View {
     )
   }
 
+  var shareLunarButton: some View {
+    Button {
+      DispatchQueue.main.async {
+        presentingShareSheet = true
+      }
+      let items: [Any] = ["https://testflight.apple.com/join/GEFCCQTb"]
+      ShareSheet().share(items: items) {
+        presentingShareSheet = false
+      }
+    } label: {
+      Label {
+        Text("Share Lunar")
+          .foregroundStyle(.foreground)
+        Spacer()
+        if !presentingShareSheet {
+          AllSymbols().externalShareArrow
+        } else {
+          Image(systemSymbol: .rays)
+            .foregroundStyle(accentColorString == "Default" ? .blue : accentColor)
+            .opacity(0.5)
+            .rotationEffect(.degrees(rotationAngle))
+            .task {
+              withAnimation(Animation.linear(duration: 2.0).repeatForever(autoreverses: false)) {
+                rotationAngle = 360.0
+              }
+            }
+        }
+
+      } icon: {
+        AllSymbols().shareLunarSettings
+      }
+    }
+    .foregroundStyle(.foreground)
+  }
+
   var hiddenPostsNavLink: some View {
     NavigationLink {
       HiddenPostsGuardView()
@@ -311,7 +359,7 @@ struct SettingsView: View {
       SettingsAdditionalView()
     } label: {
       Label {
-        Text("Additional Settings")
+        Text("More Settings")
       } icon: {
         AllSymbols().additionalSettings
       }
@@ -337,16 +385,82 @@ struct SettingsView: View {
         Text("Lunar v\(appVersion)")
         Text(LocalizedStringKey("~ by [mani](https://github.com/mani-sh-reddy) ~"))
       }
-      .font(.caption)
-      .foregroundStyle(.secondary)
       Spacer()
     }
-
+    .font(.caption)
+    .foregroundStyle(.secondary)
     .listRowSeparator(.hidden)
     .listRowBackground(Color.clear)
   }
 }
 
+//  @ViewBuilder
+//  var appCreditsAndInfo: some View {
+//    Group {
+//      HStack {
+//        Spacer()
+//        VStack(alignment: .center, spacing: 2) {
+//          Text("Lunar v\(appVersion)")
+//          Text(LocalizedStringKey("~ by [mani](https://github.com/mani-sh-reddy) ~"))
+//        }
+//        Spacer()
+//      }
+//      HStack {
+//        Spacer()
+//        emailButtonSmall
+//          .padding(.top, 20)
+//        Spacer()
+//      }
+//      HStack {
+//        Spacer()
+//        matrixButtonSmall
+//          .padding(.bottom, 10)
+//        Spacer()
+//      }
+//    }
+//
+//    .font(.caption)
+//    .foregroundStyle(.secondary)
+//    .listRowSeparator(.hidden)
+//    .listRowBackground(Color.clear)
+//  }
+//
+//  var matrixButtonSmall: some View {
+//    Button {
+//      notificationHaptics.notificationOccurred(.success)
+//      withAnimation {
+//        matrixCopiedToClipboard = true
+//      }
+//      DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//        withAnimation {
+//          matrixCopiedToClipboard = false
+//        }
+//      }
+//
+//      UIPasteboard.general
+//        .setValue(
+//          "@mani.sh:matrix.org",
+//          forPasteboardType: UTType.plainText.identifier
+//        )
+//    } label: {
+//      Text(matrixCopiedToClipboard ? "Copied to clipboard" : "@mani.sh:matrix.org")
+//    }
+//    .foregroundStyle(accentColorString == "Default" ? .blue : accentColor)
+//  }
+//
+//  var emailButtonSmall: some View {
+//    Button {
+//      Mailto().mailto("lunarforlemmy@outlook.com")
+//    } label: {
+//      Text("lunarforlemmy@outlook.com")
+//    }
+//    .foregroundStyle(accentColorString == "Default" ? .blue : accentColor)
+//  }
+// }
+
 #Preview {
-  SettingsView()
+  List {
+    SettingsView().appCreditsAndInfo
+  }
+//  SettingsView()
 }

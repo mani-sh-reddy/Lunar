@@ -11,6 +11,8 @@ import SFSafeSymbols
 import SwiftUI
 
 struct NonRealmCommentsView: View {
+  @Default(.fontSize) var fontSize
+
   @StateObject var commentsFetcher: CommentsFetcher
   @State var postBodyExpanded = false
 
@@ -49,6 +51,8 @@ struct NonRealmCommentsView: View {
       if let postBody = post.post.body, !postBody.isEmpty {
         DisclosureGroup(isExpanded: $postBodyExpanded) {
           Markdown { postBody }
+            .markdownTextStyle(\.text) { FontSize(fontSize) }
+            .markdownTheme(.gitHub)
         } label: {
           if postBodyExpanded {
             Text("")

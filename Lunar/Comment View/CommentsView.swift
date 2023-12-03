@@ -12,6 +12,7 @@ import SwiftUI
 
 struct CommentsView: View {
   @Default(.activeAccount) var activeAccount
+  @Default(.fontSize) var fontSize
 
   @StateObject var commentsFetcher: CommentsFetcher
   @Binding var upvoted: Bool
@@ -64,6 +65,8 @@ struct CommentsView: View {
       if let postBody = post.postBody, !postBody.isEmpty {
         DisclosureGroup(isExpanded: $postBodyExpanded) {
           Markdown { postBody }
+            .markdownTextStyle(\.text) { FontSize(fontSize) }
+            .markdownTheme(.gitHub)
         } label: {
           if postBodyExpanded {
             Text("")

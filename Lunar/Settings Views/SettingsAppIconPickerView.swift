@@ -19,7 +19,7 @@ struct SettingsAppIconPickerView: View {
     ("Original", "v0"),
     ("Night", "Night"),
     ("Purple", "Purple"),
-    ("Kbin", "Kbin")
+    ("Kbin", "Kbin"),
   ]
 
   var body: some View {

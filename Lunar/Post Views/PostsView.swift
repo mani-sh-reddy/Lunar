@@ -18,6 +18,7 @@ struct PostsView: View {
   @Default(.postsViewStyle) var postsViewStyle
   @Default(.selectedInstance) var selectedInstance
   @Default(.activeAccount) var activeAccount
+  @Default(.fontSize) var fontSize
 
   var filteredPosts: [RealmPost]
 
@@ -155,6 +156,8 @@ struct PostsView: View {
     Section {
       DisclosureGroup {
         Markdown { communityDescription ?? "" }
+          .markdownTextStyle(\.text) { FontSize(fontSize) }
+          .markdownTheme(.gitHub)
       } label: {
         HStack {
           communityIconView
@@ -197,6 +200,8 @@ struct PostsView: View {
     Section {
       DisclosureGroup {
         Markdown { personBio ?? "" }
+          .markdownTextStyle(\.text) { FontSize(fontSize) }
+          .markdownTheme(.gitHub)
       } label: {
         HStack {
           personAvatarView
