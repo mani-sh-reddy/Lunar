@@ -18,20 +18,10 @@ struct SettingsLayoutView: View {
   @Default(.detailedCommunityLabels) var detailedCommunityLabels
   @Default(.postsViewStyle) var postsViewStyle
   @Default(.autoCollapseBots) var autoCollapseBots
-  @Default(.enableQuicklinks) var enableQuicklinks
   @Default(.accentColor) var accentColor
 
   var body: some View {
     List {
-      Section {
-        quicklinksToggle
-      } header: {
-        Text("Quicklinks")
-      }
-      footer: {
-        Text("With QuickLinks off, you'll only see Local and Federated links. Use the picker in the toolbar to sort posts.")
-      }
-
       // MARK: - Posts Section
 
       Section {
@@ -62,13 +52,6 @@ struct SettingsLayoutView: View {
       }
     }
     .navigationTitle("Layout")
-  }
-
-  var quicklinksToggle: some View {
-    Toggle(isOn: $enableQuicklinks) {
-      Text("Enable Quicklinks")
-    }
-    .tint(accentColor)
   }
 
   var postsPageStylePicker: some View {

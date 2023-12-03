@@ -14,6 +14,7 @@ import SwiftUI
 struct LegacyRecursiveComment: View {
   @Default(.commentMetadataPosition) var commentMetadataPosition
   @Default(.activeAccount) var activeAccount
+  @Default(.fontSize) var fontSize
 
   @State private var isExpanded = true
   @Binding var showingCommentPopover: Bool
@@ -107,6 +108,8 @@ struct LegacyRecursiveComment: View {
     } else {
       HStack {
         Markdown { nestedComment.commentViewData.comment.content }
+          .markdownTextStyle(\.text) { FontSize(fontSize) }
+          .markdownTheme(.gitHub)
           .lineLimit(1)
           .foregroundStyle(.gray)
           .font(.caption)
@@ -140,6 +143,8 @@ struct LegacyRecursiveComment: View {
         commentMetadata
       }
       Markdown { nestedComment.commentViewData.comment.content }
+        .markdownTextStyle(\.text) { FontSize(fontSize) }
+        .markdownTheme(.gitHub)
       if commentMetadataPosition == "Bottom" {
         commentMetadata
       }

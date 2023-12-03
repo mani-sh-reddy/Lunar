@@ -41,7 +41,7 @@ struct PlaceholderView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .clipped()
-        Image(asset: "AppIconLight")
+        Image(asset: "AppIconDefault")
           .renderingMode(.original)
           .resizable()
           .aspectRatio(contentMode: .fit)

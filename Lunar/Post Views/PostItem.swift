@@ -121,7 +121,7 @@ struct PostItem: View {
       } else if post.postBody != nil {
         items = [post.postName, post.postBody as Any]
       }
-      ShareSheet().share(items: items)
+      ShareSheet().share(items: items) {}
     } label: {
       Label("Share", systemSymbol: AllSymbols().shareContextIcon)
     }

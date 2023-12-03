@@ -13,6 +13,7 @@ import SwiftUI
 
 struct NonRealmRecursiveComment: View {
   @Default(.commentMetadataPosition) var commentMetadataPosition
+  @Default(.fontSize) var fontSize
 
   @State private var isExpanded = true
 //  @State var showCreateCommentPopover = false
@@ -63,7 +64,7 @@ struct NonRealmRecursiveComment: View {
   var shareButton: some View {
     Button {
       let items: [Any] = [nestedComment.commentViewData.comment.content]
-      ShareSheet().share(items: items)
+      ShareSheet().share(items: items) {}
     } label: {
       Label("Share", systemSymbol: AllSymbols().shareContextIcon)
     }
@@ -147,6 +148,8 @@ struct NonRealmRecursiveComment: View {
         commentMetadata
       }
       Markdown { nestedComment.commentViewData.comment.content }
+        .markdownTextStyle(\.text) { FontSize(fontSize) }
+        .markdownTheme(.gitHub)
       if commentMetadataPosition == "Bottom" {
         commentMetadata
       }

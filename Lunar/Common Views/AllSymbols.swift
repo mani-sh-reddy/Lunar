@@ -80,6 +80,12 @@ class AllSymbols {
       .opacity(0.5)
   }
 
+  var externalShareArrow: some View {
+    Image(systemSymbol: .arrowUpCircle)
+      .foregroundStyle(.secondary)
+      .opacity(0.5)
+  }
+
   var copyToClipboardHint: some View {
     Image(systemSymbol: .commandCircle)
       .foregroundStyle(.secondary)
@@ -154,6 +160,11 @@ class AllSymbols {
   var emailSettings: some View {
     Image(systemSymbol: accentColorString == "Default" ? .paperplaneFill : .paperplane)
       .foregroundStyle(accentColorString == "Default" ? .blue : accentColor)
+  }
+
+  var shareLunarSettings: some View {
+    Image(systemSymbol: accentColorString == "Default" ? .squareAndArrowUpFill : .squareAndArrowUp)
+      .foregroundStyle(accentColorString == "Default" ? .yellow : accentColor)
   }
 
   @ViewBuilder

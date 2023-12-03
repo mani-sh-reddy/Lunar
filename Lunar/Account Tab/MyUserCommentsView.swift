@@ -14,6 +14,7 @@ struct MyUserCommentsView: View {
   @Default(.forcedPostSort) var forcedPostSort
   @Default(.selectedInstance) var selectedInstance
   @Default(.commentMetadataPosition) var commentMetadataPosition
+  @Default(.fontSize) var fontSize
 
   var personFetcher: PersonFetcher
   var heading: String
@@ -26,6 +27,8 @@ struct MyUserCommentsView: View {
             MyUserCommentMetadataView(comment: comment)
           }
           Markdown { comment.comment.content }
+            .markdownTextStyle(\.text) { FontSize(fontSize) }
+            .markdownTheme(.gitHub)
           if commentMetadataPosition == "Bottom" {
             MyUserCommentMetadataView(comment: comment)
           }

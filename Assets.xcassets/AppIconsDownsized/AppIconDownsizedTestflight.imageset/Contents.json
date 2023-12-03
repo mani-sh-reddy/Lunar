@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "app-icon-down-testflight.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

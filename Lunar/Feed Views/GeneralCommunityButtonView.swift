@@ -5,12 +5,16 @@
 //  Created by Mani on 08/09/2023.
 //
 
+import Defaults
 import Foundation
 import SFSafeSymbols
 import SwiftUI
 
 struct GeneralCommunityQuicklinkButton: View {
+  @Default(.enableQuicklinks) var enableQuicklinks
+
   @Environment(\.colorScheme) var colorScheme
+
   let image: String
   let hexColor: String
   let title: String
@@ -31,22 +35,29 @@ struct GeneralCommunityQuicklinkButton: View {
       Text(title)
         .padding(.horizontal, 10)
       Spacer()
-      HStack {
-        switch type {
-        case "Local":
-          Image(systemSymbol: .houseFill)
-        case "All":
-          Image(systemSymbol: .globeAmericasFill)
-        case "Subscribed":
-          Image(systemSymbol: .bookmarkFill)
-        default:
-          Image(systemSymbol: .circle)
+      if enableQuicklinks {
+        HStack {
+          switch type {
+          case "Local":
+            Image(systemSymbol: .houseFill)
+              .opacity(0.6)
+          case "All":
+            Image(systemSymbol: .globeAmericasFill)
+              .opacity(0.6)
+          case "Subscribed":
+            Image(systemSymbol: .bookmarkFill)
+              .opacity(0.6)
+          default:
+            Image(systemSymbol: .circle)
+              .opacity(0.6)
+          }
+          Text(sort)
+            .bold()
         }
-        Text(sort)
-          .bold()
+        .font(.caption)
+        .foregroundStyle(.gray)
+        .opacity(0.9)
       }
-      .font(.caption)
-      .foregroundStyle(.secondary)
     }
   }
 }

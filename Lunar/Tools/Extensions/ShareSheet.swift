@@ -8,12 +8,25 @@
 import Foundation
 import SwiftUI
 
-class ShareSheet {
-  func share(items: [Any]) {
-    DispatchQueue.global(qos: .userInitiated).async {
+class ShareSheet: ObservableObject {
+  @Published var isSharing: Bool = false
+
+  func share(items: [Any], completion: @escaping () -> Void) {
+    isSharing = true
+
+    DispatchQueue.global(qos: .userInteractive).async {
       let activityController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+
       DispatchQueue.main.async {
-        UIApplication.keyWindow?.rootViewController?.present(activityController, animated: true, completion: nil)
+        if let rootViewController = UIApplication.keyWindow?.rootViewController {
+          activityController.completionWithItemsHandler = { _, _, _, _ in
+            DispatchQueue.main.async {
+              self.isSharing = false
+              completion()
+            }
+          }
+          rootViewController.present(activityController, animated: true, completion: nil)
+        }
       }
     }
   }
