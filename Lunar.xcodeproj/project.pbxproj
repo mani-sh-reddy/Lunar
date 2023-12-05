@@ -90,6 +90,7 @@
 		3C4DB8C22AB70856000137CF /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 3C4DB8C12AB70856000137CF /* NukeExtensions */; };
 		3C4DB8C62AB72145000137CF /* SettingsAppResetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4DB8C52AB72145000137CF /* SettingsAppResetView.swift */; };
 		3C4DB8C82AB725FB000137CF /* DataCacheHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4DB8C72AB725FB000137CF /* DataCacheHolder.swift */; };
+		3C4E4CF92B1E68D50001D5FF /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 3C4E4CF82B1E68D50001D5FF /* Moya */; };
 		3C4EBFF92B00F735004B7665 /* SupportedFamiliesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4EBFF82B00F735004B7665 /* SupportedFamiliesExtension.swift */; };
 		3C4EE4B92A8006D0009EE4A8 /* KbinPostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4EE4B82A8006D0009EE4A8 /* KbinPostRowView.swift */; };
 		3C4F0A002A54399F009DF8AB /* LunarAppEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F09FF2A54399F009DF8AB /* LunarAppEntryView.swift */; };
@@ -227,6 +228,8 @@
 		3CD3F5672A8014B900D284D0 /* KbinMagazinesSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD3F5662A8014B900D284D0 /* KbinMagazinesSectionView.swift */; };
 		3CD4DA212A7EF3AE00BC374A /* SearchCommunitiesRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD4DA202A7EF3AE00BC374A /* SearchCommunitiesRowView.swift */; };
 		3CD4DA232A7EF3C200BC374A /* SearchUsersRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD4DA222A7EF3C200BC374A /* SearchUsersRowView.swift */; };
+		3CDA82C62B1F7E420078AB36 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 3CDA82C52B1F7E420078AB36 /* Collections */; };
+		3CDA82C82B1F7E420078AB36 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 3CDA82C72B1F7E420078AB36 /* OrderedCollections */; };
 		3CDAFF612B12547300C83BE3 /* OfflineDownloaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDAFF602B12547300C83BE3 /* OfflineDownloaderView.swift */; };
 		3CDAFF6B2B125EDF00C83BE3 /* .periphery.yml in Resources */ = {isa = PBXBuildFile; fileRef = 3CDAFF6A2B125EDF00C83BE3 /* .periphery.yml */; };
 		3CDBBC872AEDBB51005EFF2B /* CompactPostItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDBBC862AEDBB51005EFF2B /* CompactPostItem.swift */; };
@@ -580,11 +583,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C4E4CF92B1E68D50001D5FF /* Moya in Frameworks */,
 				3CEB2C132AB2F45F0013609E /* SFSafeSymbols in Frameworks */,
 				3C23F0402AAA66E000AACA46 /* PulseUI in Frameworks */,
 				3CC4200D2AB37DDA00BE1612 /* BetterSafariView in Frameworks */,
 				3CE69E962ABDCA8A00E2821E /* Realm in Frameworks */,
 				3CC3E41B2ADC054000F7F9A9 /* Shiny in Frameworks */,
+				3CDA82C62B1F7E420078AB36 /* Collections in Frameworks */,
 				3CA95F082A7ACF3B00626353 /* Nuke in Frameworks */,
 				3C4B7DDB2A58AD23003C8192 /* Alamofire in Frameworks */,
 				3CE69E982ABDCA8A00E2821E /* RealmSwift in Frameworks */,
@@ -592,6 +597,7 @@
 				3C20B37F2AEB27F9003F578F /* LocalConsole in Frameworks */,
 				3C23F03E2AAA66E000AACA46 /* Pulse in Frameworks */,
 				3CEBF46C2B09426E00469008 /* MarkdownUI in Frameworks */,
+				3CDA82C82B1F7E420078AB36 /* OrderedCollections in Frameworks */,
 				3CA95F0A2A7ACF3B00626353 /* NukeUI in Frameworks */,
 				3CFE04BF2A7FEA71007BAD81 /* SwiftSoup in Frameworks */,
 				3CEB2C0A2AB2F3A50013609E /* Defaults in Frameworks */,
@@ -1217,6 +1223,9 @@
 				3CC3E41A2ADC054000F7F9A9 /* Shiny */,
 				3C20B37E2AEB27F9003F578F /* LocalConsole */,
 				3CEBF46B2B09426E00469008 /* MarkdownUI */,
+				3C4E4CF82B1E68D50001D5FF /* Moya */,
+				3CDA82C52B1F7E420078AB36 /* Collections */,
+				3CDA82C72B1F7E420078AB36 /* OrderedCollections */,
 			);
 			productName = Lunar;
 			productReference = 3C4F09FC2A54399F009DF8AB /* Lunar.app */;
@@ -1275,6 +1284,8 @@
 				3CC3E4192ADC054000F7F9A9 /* XCRemoteSwiftPackageReference "shiny" */,
 				3C20B37D2AEB27F8003F578F /* XCRemoteSwiftPackageReference "LocalConsole" */,
 				3CEBF46A2B09426E00469008 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
+				3C4E4CF72B1E68D50001D5FF /* XCRemoteSwiftPackageReference "Moya" */,
+				3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
 			productRefGroup = 3C4F09FD2A54399F009DF8AB /* Products */;
 			projectDirPath = "";
@@ -1623,8 +1634,6 @@
 		3C29F54B2A97D49C001563E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTestflight;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1650,8 +1659,6 @@
 		3C29F54C2A97D49C001563E7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDefault;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1677,8 +1684,6 @@
 		3C2EA6992AFFDBBB007AC12D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTestflight;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
@@ -1713,8 +1718,6 @@
 		3C2EA69A2AFFDBBB007AC12D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDefault;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
@@ -1752,7 +1755,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0 AppIconMrSebSin";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTestflight;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
@@ -1835,7 +1838,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0 AppIconMrSebSin";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDefault;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
@@ -1911,11 +1914,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTestflight;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_STICKER_CONTENT = YES;
-				ASSETCATALOG_COMPILER_TARGET_STICKERS_ICON_ROLE = extension;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_ENTITLEMENTS = Lunar/LunarDebug.entitlements;
@@ -1961,11 +1960,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDefault;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_STICKER_CONTENT = YES;
-				ASSETCATALOG_COMPILER_TARGET_STICKERS_ICON_ROLE = extension;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_ENTITLEMENTS = Lunar/Lunar.entitlements;
@@ -2012,8 +2007,6 @@
 		3CDAFF672B125D6100C83BE3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTestflight;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CODE_SIGN_STYLE = Automatic;
 				ENABLE_ON_DEMAND_RESOURCES = YES;
@@ -2025,8 +2018,6 @@
 		3CDAFF682B125D6100C83BE3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDefault;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CODE_SIGN_STYLE = Automatic;
 				ENABLE_ON_DEMAND_RESOURCES = YES;
@@ -2038,8 +2029,6 @@
 		3CFA769F2B129A3F002B88B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTestflight;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CODE_SIGN_STYLE = Automatic;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -2050,8 +2039,6 @@
 		3CFA76A02B129A3F002B88B2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDefault;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CODE_SIGN_STYLE = Automatic;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -2143,6 +2130,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		3C4E4CF72B1E68D50001D5FF /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
 		3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kean/Nuke.git";
@@ -2173,6 +2168,14 @@
 			requirement = {
 				branch = main;
 				kind = branch;
+			};
+		};
+		3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.5;
 			};
 		};
 		3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */ = {
@@ -2255,6 +2258,11 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = NukeExtensions;
 		};
+		3C4E4CF82B1E68D50001D5FF /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3C4E4CF72B1E68D50001D5FF /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
 		3CA95F072A7ACF3B00626353 /* Nuke */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */;
@@ -2279,6 +2287,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3CC4200B2AB37DDA00BE1612 /* XCRemoteSwiftPackageReference "BetterSafariView" */;
 			productName = BetterSafariView;
+		};
+		3CDA82C52B1F7E420078AB36 /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+		3CDA82C72B1F7E420078AB36 /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
 		};
 		3CE69E952ABDCA8A00E2821E /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
