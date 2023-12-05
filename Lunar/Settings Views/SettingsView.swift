@@ -173,9 +173,14 @@ struct SettingsView: View {
       SettingsAppIconPickerView()
     } label: {
       Label {
-        Text("App Icon")
+        Text("App Icons")
       } icon: {
-        AllSymbols().appIconSettings
+        // Till 03/01/2024
+        if Date().timeIntervalSince1970 < 1704301200 {
+          AllSymbols().christmasAppIconSettings
+        } else {
+          AllSymbols().appIconSettings
+        }
       }
     }
   }
@@ -461,6 +466,7 @@ struct SettingsView: View {
 #Preview {
   List {
     SettingsView().appCreditsAndInfo
+    SettingsView().appIconNavLink
   }
 //  SettingsView()
 }

@@ -141,6 +141,11 @@ class AllSymbols {
     Image(systemSymbol: .appDashed)
       .foregroundStyle(accentColorString == "Default" ? .purple : accentColor)
   }
+  
+  var christmasAppIconSettings: some View {
+    Image(systemSymbol: .appGift)
+      .foregroundStyle(accentColorString == "Default" ? .red : accentColor)
+  }
 
   var themeSettings: some View {
     Image(systemSymbol: .paintbrush)
