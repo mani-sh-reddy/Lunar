@@ -90,6 +90,7 @@
 		3C4DB8C22AB70856000137CF /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 3C4DB8C12AB70856000137CF /* NukeExtensions */; };
 		3C4DB8C62AB72145000137CF /* SettingsAppResetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4DB8C52AB72145000137CF /* SettingsAppResetView.swift */; };
 		3C4DB8C82AB725FB000137CF /* DataCacheHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4DB8C72AB725FB000137CF /* DataCacheHolder.swift */; };
+		3C4E4CF92B1E68D50001D5FF /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 3C4E4CF82B1E68D50001D5FF /* Moya */; };
 		3C4EBFF92B00F735004B7665 /* SupportedFamiliesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4EBFF82B00F735004B7665 /* SupportedFamiliesExtension.swift */; };
 		3C4EE4B92A8006D0009EE4A8 /* KbinPostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4EE4B82A8006D0009EE4A8 /* KbinPostRowView.swift */; };
 		3C4F0A002A54399F009DF8AB /* LunarAppEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F09FF2A54399F009DF8AB /* LunarAppEntryView.swift */; };
@@ -227,6 +228,8 @@
 		3CD3F5672A8014B900D284D0 /* KbinMagazinesSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD3F5662A8014B900D284D0 /* KbinMagazinesSectionView.swift */; };
 		3CD4DA212A7EF3AE00BC374A /* SearchCommunitiesRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD4DA202A7EF3AE00BC374A /* SearchCommunitiesRowView.swift */; };
 		3CD4DA232A7EF3C200BC374A /* SearchUsersRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD4DA222A7EF3C200BC374A /* SearchUsersRowView.swift */; };
+		3CDA82C62B1F7E420078AB36 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 3CDA82C52B1F7E420078AB36 /* Collections */; };
+		3CDA82C82B1F7E420078AB36 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 3CDA82C72B1F7E420078AB36 /* OrderedCollections */; };
 		3CDAFF612B12547300C83BE3 /* OfflineDownloaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDAFF602B12547300C83BE3 /* OfflineDownloaderView.swift */; };
 		3CDAFF6B2B125EDF00C83BE3 /* .periphery.yml in Resources */ = {isa = PBXBuildFile; fileRef = 3CDAFF6A2B125EDF00C83BE3 /* .periphery.yml */; };
 		3CDBBC872AEDBB51005EFF2B /* CompactPostItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CDBBC862AEDBB51005EFF2B /* CompactPostItem.swift */; };
@@ -271,6 +274,11 @@
 		3CF717FB2AF42ED2005030D8 /* RealmCommunity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF717FA2AF42ED2005030D8 /* RealmCommunity.swift */; };
 		3CF717FD2AF437D4005030D8 /* LegacyCommunitiesFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF717FC2AF437D3005030D8 /* LegacyCommunitiesFetcher.swift */; };
 		3CF717FF2AF44704005030D8 /* LegacyCommunityRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF717FE2AF44704005030D8 /* LegacyCommunityRowView.swift */; };
+		3CF831BF2B1F9D960036BCE0 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF831BE2B1F9D960036BCE0 /* APIService.swift */; };
+		3CF831C52B1FA3E40036BCE0 /* ParameterStructures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF831C42B1FA3E40036BCE0 /* ParameterStructures.swift */; };
+		3CF831C72B1FAE390036BCE0 /* PostSenderM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF831C62B1FAE390036BCE0 /* PostSenderM.swift */; };
+		3CF831C92B1FAE5A0036BCE0 /* AppDelegateM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF831C82B1FAE5A0036BCE0 /* AppDelegateM.swift */; };
+		3CF831CB2B1FAE730036BCE0 /* CreatePostPopoverViewM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF831CA2B1FAE730036BCE0 /* CreatePostPopoverViewM.swift */; };
 		3CFA769B2B127E76002B88B2 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFA769A2B127E76002B88B2 /* MockData.swift */; };
 		3CFB89E82AF19DC3001BB9EB /* CreateCommentPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFB89E72AF19DC3001BB9EB /* CreateCommentPopover.swift */; };
 		3CFE04BF2A7FEA71007BAD81 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 3CFE04BE2A7FEA71007BAD81 /* SwiftSoup */; };
@@ -549,6 +557,11 @@
 		3CF717FA2AF42ED2005030D8 /* RealmCommunity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmCommunity.swift; sourceTree = "<group>"; };
 		3CF717FC2AF437D3005030D8 /* LegacyCommunitiesFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyCommunitiesFetcher.swift; sourceTree = "<group>"; };
 		3CF717FE2AF44704005030D8 /* LegacyCommunityRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyCommunityRowView.swift; sourceTree = "<group>"; };
+		3CF831BE2B1F9D960036BCE0 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		3CF831C42B1FA3E40036BCE0 /* ParameterStructures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterStructures.swift; sourceTree = "<group>"; };
+		3CF831C62B1FAE390036BCE0 /* PostSenderM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostSenderM.swift; sourceTree = "<group>"; };
+		3CF831C82B1FAE5A0036BCE0 /* AppDelegateM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateM.swift; sourceTree = "<group>"; };
+		3CF831CA2B1FAE730036BCE0 /* CreatePostPopoverViewM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePostPopoverViewM.swift; sourceTree = "<group>"; };
 		3CFA769A2B127E76002B88B2 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		3CFB89E72AF19DC3001BB9EB /* CreateCommentPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCommentPopover.swift; sourceTree = "<group>"; };
 		3CFE04C22A7FF0EB007BAD81 /* KbinThreadsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinThreadsModel.swift; sourceTree = "<group>"; };
@@ -580,11 +593,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C4E4CF92B1E68D50001D5FF /* Moya in Frameworks */,
 				3CEB2C132AB2F45F0013609E /* SFSafeSymbols in Frameworks */,
 				3C23F0402AAA66E000AACA46 /* PulseUI in Frameworks */,
 				3CC4200D2AB37DDA00BE1612 /* BetterSafariView in Frameworks */,
 				3CE69E962ABDCA8A00E2821E /* Realm in Frameworks */,
 				3CC3E41B2ADC054000F7F9A9 /* Shiny in Frameworks */,
+				3CDA82C62B1F7E420078AB36 /* Collections in Frameworks */,
 				3CA95F082A7ACF3B00626353 /* Nuke in Frameworks */,
 				3C4B7DDB2A58AD23003C8192 /* Alamofire in Frameworks */,
 				3CE69E982ABDCA8A00E2821E /* RealmSwift in Frameworks */,
@@ -592,6 +607,7 @@
 				3C20B37F2AEB27F9003F578F /* LocalConsole in Frameworks */,
 				3C23F03E2AAA66E000AACA46 /* Pulse in Frameworks */,
 				3CEBF46C2B09426E00469008 /* MarkdownUI in Frameworks */,
+				3CDA82C82B1F7E420078AB36 /* OrderedCollections in Frameworks */,
 				3CA95F0A2A7ACF3B00626353 /* NukeUI in Frameworks */,
 				3CFE04BF2A7FEA71007BAD81 /* SwiftSoup in Frameworks */,
 				3CEB2C0A2AB2F3A50013609E /* Defaults in Frameworks */,
@@ -698,6 +714,7 @@
 				3C62C23F2A72AABD003BAC5B /* Info.plist */,
 				3C62C23E2A72AA4D003BAC5B /* Lunar.entitlements */,
 				3C808E222A9A8C95008FA62E /* LunarDebug.entitlements */,
+				3CF831C32B1FA3D10036BCE0 /* APIService */,
 				3CFA769A2B127E76002B88B2 /* MockData.swift */,
 				3C2EA6C22AFFFA42007AC12D /* WidgetLink.swift */,
 				3C4F09FF2A54399F009DF8AB /* LunarAppEntryView.swift */,
@@ -1126,6 +1143,18 @@
 			path = "Account Tab";
 			sourceTree = "<group>";
 		};
+		3CF831C32B1FA3D10036BCE0 /* APIService */ = {
+			isa = PBXGroup;
+			children = (
+				3CF831CA2B1FAE730036BCE0 /* CreatePostPopoverViewM.swift */,
+				3CF831C82B1FAE5A0036BCE0 /* AppDelegateM.swift */,
+				3CF831C62B1FAE390036BCE0 /* PostSenderM.swift */,
+				3CF831BE2B1F9D960036BCE0 /* APIService.swift */,
+				3CF831C42B1FA3E40036BCE0 /* ParameterStructures.swift */,
+			);
+			path = APIService;
+			sourceTree = "<group>";
+		};
 		3CFE04C42A7FF1E7007BAD81 /* Kbin */ = {
 			isa = PBXGroup;
 			children = (
@@ -1217,6 +1246,9 @@
 				3CC3E41A2ADC054000F7F9A9 /* Shiny */,
 				3C20B37E2AEB27F9003F578F /* LocalConsole */,
 				3CEBF46B2B09426E00469008 /* MarkdownUI */,
+				3C4E4CF82B1E68D50001D5FF /* Moya */,
+				3CDA82C52B1F7E420078AB36 /* Collections */,
+				3CDA82C72B1F7E420078AB36 /* OrderedCollections */,
 			);
 			productName = Lunar;
 			productReference = 3C4F09FC2A54399F009DF8AB /* Lunar.app */;
@@ -1263,18 +1295,20 @@
 			);
 			mainGroup = 3C4F09F32A54399F009DF8AB;
 			packageReferences = (
-				3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire.git" */,
-				3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */,
+				3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */,
 				3CFE04BD2A7FEA71007BAD81 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				3C23F03C2AAA66E000AACA46 /* XCRemoteSwiftPackageReference "Pulse" */,
 				3CEB2C082AB2F3A50013609E /* XCRemoteSwiftPackageReference "Defaults" */,
-				3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols.git" */,
+				3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
 				3CC420082AB37BCB00BE1612 /* XCRemoteSwiftPackageReference "WhatsNewKit" */,
 				3CC4200B2AB37DDA00BE1612 /* XCRemoteSwiftPackageReference "BetterSafariView" */,
-				3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift.git" */,
+				3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */,
 				3CC3E4192ADC054000F7F9A9 /* XCRemoteSwiftPackageReference "shiny" */,
 				3C20B37D2AEB27F8003F578F /* XCRemoteSwiftPackageReference "LocalConsole" */,
 				3CEBF46A2B09426E00469008 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
+				3C4E4CF72B1E68D50001D5FF /* XCRemoteSwiftPackageReference "Moya" */,
+				3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
 			productRefGroup = 3C4F09FD2A54399F009DF8AB /* Products */;
 			projectDirPath = "";
@@ -1466,6 +1500,7 @@
 				3CEF4CC22A69B38B002B83C0 /* SubscribedCommunitiesView.swift in Sources */,
 				3CB046F22ADAF3C00011BFEC /* CommentsViewWorkaroundWarning.swift in Sources */,
 				3CA8A0C92AE5DBA900EEABD3 /* RealmBrowser.swift in Sources */,
+				3CF831C52B1FA3E40036BCE0 /* ParameterStructures.swift in Sources */,
 				3CBF88122AEEC8C20058B14D /* LegacyInPostActionsView.swift in Sources */,
 				3C4DB8BE2AB701B2000137CF /* AppDelegate.swift in Sources */,
 				3CC3E4412AE047FE00F7F9A9 /* RealmPost.swift in Sources */,
@@ -1493,6 +1528,8 @@
 				3C6ACC202AE52FD20073288E /* RichLinks.swift in Sources */,
 				3C54C0A12ABB995E00F1BADE /* DefaultValues.swift in Sources */,
 				3C5ECB1F2A75ABFE002BA561 /* SiteInfoFetcher.swift in Sources */,
+				3CF831C72B1FAE390036BCE0 /* PostSenderM.swift in Sources */,
+				3CF831CB2B1FAE730036BCE0 /* CreatePostPopoverViewM.swift in Sources */,
 				3C9E548C2A94A3DC0093DDC7 /* CommentSender.swift in Sources */,
 				3CF43AA92AE1A42A006C8E84 /* PostsView.swift in Sources */,
 				3CC09CE12B0E95490036422F /* PrivateMessage.swift in Sources */,
@@ -1536,6 +1573,7 @@
 				3C2A80592AFD88C70077B7D7 /* HiddenPostsGuardView.swift in Sources */,
 				3C9E54982A953FB60093DDC7 /* SettingsSplashScreenView.swift in Sources */,
 				3CEF4CD52A69B798002B83C0 /* URLParser.swift in Sources */,
+				3CF831C92B1FAE5A0036BCE0 /* AppDelegateM.swift in Sources */,
 				3CC3E4292ADC7B7A00F7F9A9 /* LocalImagePopoverView.swift in Sources */,
 				3CB9C7222AA23F7400FB5A10 /* CommunityObject.swift in Sources */,
 				3CA92E3B2A543BF000688DEB /* CommunityModel.swift in Sources */,
@@ -1575,6 +1613,7 @@
 				3CBCCDF62A589F2C00307AC1 /* CommentsView.swift in Sources */,
 				3C65885F2A621C6100A46DA3 /* ExploreCommunitiesView.swift in Sources */,
 				3CC09CDD2B0E92D90036422F /* PrivateMessageModel.swift in Sources */,
+				3CF831BF2B1F9D960036BCE0 /* APIService.swift in Sources */,
 				3CC3E4352ADDD74D00F7F9A9 /* PostSiteMetadataFetcher.swift in Sources */,
 				3C6ACC1E2AE426D40073288E /* AboutLemmyInfo.swift in Sources */,
 				3C64E7C92AF700E9003BB42E /* WhatsNew_0_0_0.swift in Sources */,
@@ -1623,8 +1662,6 @@
 		3C29F54B2A97D49C001563E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTestflight;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1650,8 +1687,6 @@
 		3C29F54C2A97D49C001563E7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDefault;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -1677,8 +1712,6 @@
 		3C2EA6992AFFDBBB007AC12D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTestflight;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
@@ -1713,8 +1746,6 @@
 		3C2EA69A2AFFDBBB007AC12D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDefault;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
@@ -1752,7 +1783,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0 AppIconMrSebSin";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTestflight;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
@@ -1835,7 +1866,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0 AppIconMrSebSin";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDefault;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
@@ -1911,11 +1942,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTestflight;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_STICKER_CONTENT = YES;
-				ASSETCATALOG_COMPILER_TARGET_STICKERS_ICON_ROLE = extension;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_ENTITLEMENTS = Lunar/LunarDebug.entitlements;
@@ -1961,11 +1988,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDefault;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				ASSETCATALOG_COMPILER_INCLUDE_STICKER_CONTENT = YES;
-				ASSETCATALOG_COMPILER_TARGET_STICKERS_ICON_ROLE = extension;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_ENTITLEMENTS = Lunar/Lunar.entitlements;
@@ -2012,8 +2035,6 @@
 		3CDAFF672B125D6100C83BE3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTestflight;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CODE_SIGN_STYLE = Automatic;
 				ENABLE_ON_DEMAND_RESOURCES = YES;
@@ -2025,8 +2046,6 @@
 		3CDAFF682B125D6100C83BE3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDefault;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CODE_SIGN_STYLE = Automatic;
 				ENABLE_ON_DEMAND_RESOURCES = YES;
@@ -2038,8 +2057,6 @@
 		3CFA769F2B129A3F002B88B2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconTestflight;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CODE_SIGN_STYLE = Automatic;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -2050,8 +2067,6 @@
 		3CFA76A02B129A3F002B88B2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIconNight AppIconKbin AppIconLemming AppIconPurple AppIconSpace AppIconv0";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDefault;
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CODE_SIGN_STYLE = Automatic;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
@@ -2135,7 +2150,7 @@
 				minimumVersion = 4.0.3;
 			};
 		};
-		3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
+		3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -2143,7 +2158,15 @@
 				minimumVersion = 5.7.1;
 			};
 		};
-		3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */ = {
+		3C4E4CF72B1E68D50001D5FF /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
+		3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kean/Nuke.git";
 			requirement = {
@@ -2175,7 +2198,15 @@
 				kind = branch;
 			};
 		};
-		3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift.git" */ = {
+		3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.5;
+			};
+		};
+		3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
 			requirement = {
@@ -2191,7 +2222,7 @@
 				kind = branch;
 			};
 		};
-		3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols.git" */ = {
+		3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SFSafeSymbols/SFSafeSymbols.git";
 			requirement = {
@@ -2243,26 +2274,31 @@
 		};
 		3C2EA6C82B002322007AC12D /* SFSafeSymbols */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols.git" */;
+			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
 			productName = SFSafeSymbols;
 		};
 		3C4B7DDA2A58AD23003C8192 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire.git" */;
+			package = 3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 		3C4DB8C12AB70856000137CF /* NukeExtensions */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NukeExtensions;
 		};
+		3C4E4CF82B1E68D50001D5FF /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3C4E4CF72B1E68D50001D5FF /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
 		3CA95F072A7ACF3B00626353 /* Nuke */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */;
+			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = Nuke;
 		};
 		3CA95F092A7ACF3B00626353 /* NukeUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */;
+			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = NukeUI;
 		};
 		3CC3E41A2ADC054000F7F9A9 /* Shiny */ = {
@@ -2280,14 +2316,24 @@
 			package = 3CC4200B2AB37DDA00BE1612 /* XCRemoteSwiftPackageReference "BetterSafariView" */;
 			productName = BetterSafariView;
 		};
+		3CDA82C52B1F7E420078AB36 /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+		3CDA82C72B1F7E420078AB36 /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
+		};
 		3CE69E952ABDCA8A00E2821E /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift.git" */;
+			package = 3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = Realm;
 		};
 		3CE69E972ABDCA8A00E2821E /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift.git" */;
+			package = 3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
 		3CEB2C092AB2F3A50013609E /* Defaults */ = {
@@ -2297,7 +2343,7 @@
 		};
 		3CEB2C122AB2F45F0013609E /* SFSafeSymbols */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols.git" */;
+			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
 			productName = SFSafeSymbols;
 		};
 		3CEBF46B2B09426E00469008 /* MarkdownUI */ = {
