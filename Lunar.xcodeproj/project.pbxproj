@@ -1295,20 +1295,20 @@
 			);
 			mainGroup = 3C4F09F32A54399F009DF8AB;
 			packageReferences = (
-				3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */,
+				3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire.git" */,
+				3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */,
 				3CFE04BD2A7FEA71007BAD81 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				3C23F03C2AAA66E000AACA46 /* XCRemoteSwiftPackageReference "Pulse" */,
 				3CEB2C082AB2F3A50013609E /* XCRemoteSwiftPackageReference "Defaults" */,
-				3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
+				3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols.git" */,
 				3CC420082AB37BCB00BE1612 /* XCRemoteSwiftPackageReference "WhatsNewKit" */,
 				3CC4200B2AB37DDA00BE1612 /* XCRemoteSwiftPackageReference "BetterSafariView" */,
-				3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */,
+				3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift.git" */,
 				3CC3E4192ADC054000F7F9A9 /* XCRemoteSwiftPackageReference "shiny" */,
 				3C20B37D2AEB27F8003F578F /* XCRemoteSwiftPackageReference "LocalConsole" */,
 				3CEBF46A2B09426E00469008 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
-				3C4E4CF72B1E68D50001D5FF /* XCRemoteSwiftPackageReference "Moya" */,
-				3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections" */,
+				3C4E4CF72B1E68D50001D5FF /* XCRemoteSwiftPackageReference "Moya.git" */,
+				3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections.git" */,
 			);
 			productRefGroup = 3C4F09FD2A54399F009DF8AB /* Products */;
 			projectDirPath = "";
@@ -1665,11 +1665,11 @@
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 568;
+				CURRENT_PROJECT_VERSION = 575;
 				DEVELOPMENT_TEAM = QR8TDZJV2W;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 2023.12.0;
+				MARKETING_VERSION = 2023.12.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.LunarUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1690,11 +1690,11 @@
 				CLANG_OPTIMIZATION_PROFILE_FILE = "";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 568;
+				CURRENT_PROJECT_VERSION = 575;
 				DEVELOPMENT_TEAM = QR8TDZJV2W;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 2023.12.0;
+				MARKETING_VERSION = 2023.12.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.LunarUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1719,7 +1719,7 @@
 				CODE_SIGN_ENTITLEMENTS = Widgets/WidgetsExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 568;
+				CURRENT_PROJECT_VERSION = 575;
 				DEVELOPMENT_TEAM = QR8TDZJV2W;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1732,7 +1732,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2023.12.0;
+				MARKETING_VERSION = 2023.12.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.Lunar.dev.Widgets";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1754,7 +1754,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 568;
+				CURRENT_PROJECT_VERSION = 575;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = QR8TDZJV2W;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1767,7 +1767,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2023.12.0;
+				MARKETING_VERSION = 2023.12.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.Lunar.Widgets";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1948,7 +1948,7 @@
 				CODE_SIGN_ENTITLEMENTS = Lunar/LunarDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 568;
+				CURRENT_PROJECT_VERSION = 575;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = QR8TDZJV2W;
 				ENABLE_PREVIEWS = YES;
@@ -1969,7 +1969,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2023.12.0;
+				MARKETING_VERSION = 2023.12.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.Lunar.dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1995,7 +1995,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 568;
+				CURRENT_PROJECT_VERSION = 575;
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = QR8TDZJV2W;
@@ -2016,7 +2016,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2023.12.0;
+				MARKETING_VERSION = 2023.12.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "io.github.mani-sh-reddy.Lunar";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2150,7 +2150,7 @@
 				minimumVersion = 4.0.3;
 			};
 		};
-		3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -2158,7 +2158,7 @@
 				minimumVersion = 5.7.1;
 			};
 		};
-		3C4E4CF72B1E68D50001D5FF /* XCRemoteSwiftPackageReference "Moya" */ = {
+		3C4E4CF72B1E68D50001D5FF /* XCRemoteSwiftPackageReference "Moya.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya.git";
 			requirement = {
@@ -2166,7 +2166,7 @@
 				minimumVersion = 15.0.3;
 			};
 		};
-		3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */ = {
+		3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kean/Nuke.git";
 			requirement = {
@@ -2198,7 +2198,7 @@
 				kind = branch;
 			};
 		};
-		3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+		3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-collections.git";
 			requirement = {
@@ -2206,7 +2206,7 @@
 				minimumVersion = 1.0.5;
 			};
 		};
-		3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+		3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
 			requirement = {
@@ -2222,7 +2222,7 @@
 				kind = branch;
 			};
 		};
-		3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */ = {
+		3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SFSafeSymbols/SFSafeSymbols.git";
 			requirement = {
@@ -2274,12 +2274,12 @@
 		};
 		3C2EA6C82B002322007AC12D /* SFSafeSymbols */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
+			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols.git" */;
 			productName = SFSafeSymbols;
 		};
 		3C4B7DDA2A58AD23003C8192 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = 3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire.git" */;
 			productName = Alamofire;
 		};
 		3C4DB8C12AB70856000137CF /* NukeExtensions */ = {
@@ -2288,17 +2288,17 @@
 		};
 		3C4E4CF82B1E68D50001D5FF /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3C4E4CF72B1E68D50001D5FF /* XCRemoteSwiftPackageReference "Moya" */;
+			package = 3C4E4CF72B1E68D50001D5FF /* XCRemoteSwiftPackageReference "Moya.git" */;
 			productName = Moya;
 		};
 		3CA95F072A7ACF3B00626353 /* Nuke */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */;
+			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */;
 			productName = Nuke;
 		};
 		3CA95F092A7ACF3B00626353 /* NukeUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */;
+			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */;
 			productName = NukeUI;
 		};
 		3CC3E41A2ADC054000F7F9A9 /* Shiny */ = {
@@ -2318,22 +2318,22 @@
 		};
 		3CDA82C52B1F7E420078AB36 /* Collections */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			package = 3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections.git" */;
 			productName = Collections;
 		};
 		3CDA82C72B1F7E420078AB36 /* OrderedCollections */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			package = 3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections.git" */;
 			productName = OrderedCollections;
 		};
 		3CE69E952ABDCA8A00E2821E /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = 3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift.git" */;
 			productName = Realm;
 		};
 		3CE69E972ABDCA8A00E2821E /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */;
+			package = 3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift.git" */;
 			productName = RealmSwift;
 		};
 		3CEB2C092AB2F3A50013609E /* Defaults */ = {
@@ -2343,7 +2343,7 @@
 		};
 		3CEB2C122AB2F45F0013609E /* SFSafeSymbols */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
+			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols.git" */;
 			productName = SFSafeSymbols;
 		};
 		3CEBF46B2B09426E00469008 /* MarkdownUI */ = {
