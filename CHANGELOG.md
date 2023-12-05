@@ -9,6 +9,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- Brand new community app icon created by @MrSebSin
+
 ## [2023.12.0]
 
 ### Added
