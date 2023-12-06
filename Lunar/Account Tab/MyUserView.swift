@@ -44,7 +44,7 @@ struct MyUserView: View {
       .listStyle(.insetGrouped)
       .onAppear {
         DispatchQueue.global(qos: .background).async {
-          if let jwt = JWT().getJWTFromKeychain(actorID: activeAccount.actorID) {
+          if let jwt = JWT().getJWT(actorID: activeAccount.actorID) {
             SiteInfoFetcher(jwt: jwt).fetchSiteInfo { _, _, _, _ in }
           }
         }

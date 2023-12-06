@@ -14,42 +14,44 @@ import SwiftUI
 class PostSiteMetadataFetcher: ObservableObject {
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
 
-  private var endpoint: URLComponents
-  let pulse = Pulse.LoggerStore.shared
+  private var urlString: String
+
+  private var parameters: EndpointParameters {
+    EndpointParameters(
+      endpointPath: "/api/v3/post/site_metadata",
+      urlString: urlString
+    )
+  }
 
   init(urlString: String) {
-    endpoint = URLBuilder(endpointPath: "/api/v3/post/site_metadata", urlString: urlString).buildURL()
+    self.urlString = urlString
   }
 
   func fetchPostSiteMetadata(completion: @escaping (SiteMetadataObject?) -> Void) {
-    AF.request(endpoint)
-      .validate(statusCode: 200 ..< 300)
-      .responseDecodable(of: PostSiteMetadataResponseModel.self) { response in
+    AF.request(
+      EndpointBuilder(parameters: parameters).build(),
+      headers: GenerateHeaders().generate()
+    )
+    .validate(statusCode: 200 ..< 300)
+    .responseDecodable(of: PostSiteMetadataResponseModel.self) { response in
 
-        if self.networkInspectorEnabled {
-          self.pulse.storeRequest(
-            try! URLRequest(url: self.endpoint, method: .get),
-            response: response.response,
-            error: response.error,
-            data: response.data
-          )
-        }
+      PulseWriter().write(response, self.parameters, .get)
 
-        switch response.result {
-        case let .success(result):
-          completion(result.metadata)
+      switch response.result {
+      case let .success(result):
+        completion(result.metadata)
 
-        case let .failure(error):
-          if let data = response.data,
-             let fetchError = try? JSONDecoder().decode(ErrorResponseModel.self, from: data)
-          {
-            print("PostSiteMetadataFetcher ERROR: \(fetchError.error)")
-            completion(nil)
-          } else {
-            print("PostSiteMetadataFetcher JSON DECODE ERROR: \(error): \(String(describing: error.errorDescription))")
-            completion(nil)
-          }
+      case let .failure(error):
+        if let data = response.data,
+           let fetchError = try? JSONDecoder().decode(ErrorResponseModel.self, from: data)
+        {
+          print("PostSiteMetadataFetcher ERROR: \(fetchError.error)")
+          completion(nil)
+        } else {
+          print("PostSiteMetadataFetcher JSON DECODE ERROR: \(error): \(String(describing: error.errorDescription))")
+          completion(nil)
         }
       }
+    }
   }
 }

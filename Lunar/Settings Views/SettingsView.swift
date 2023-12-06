@@ -177,7 +177,7 @@ struct SettingsView: View {
         Text("App Icons")
       } icon: {
         // Till 03/01/2024
-        if Date().timeIntervalSince1970 < 1704301200 {
+        if Date().timeIntervalSince1970 < 1_704_301_200 {
           AllSymbols().christmasAppIconSettings
         } else {
           AllSymbols().appIconSettings

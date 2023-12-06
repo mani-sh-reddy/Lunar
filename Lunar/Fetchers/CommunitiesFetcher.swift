@@ -27,7 +27,6 @@ class CommunitiesFetcher: ObservableObject {
   private var typeParameter: String?
   private var limitParameter: Int = 50
   private var communityID: Int?
-  private var jwt: String?
   var instance: String?
 
   private var endpointPath: String {
@@ -38,32 +37,18 @@ class CommunitiesFetcher: ObservableObject {
     }
   }
 
-  private var endpoint: URLComponents {
-    URLBuilder(
+  private var parameters: EndpointParameters {
+    EndpointParameters(
       endpointPath: endpointPath,
       sortParameter: sortParameter,
       typeParameter: typeParameter,
       currentPage: currentPage,
       limitParameter: limitParameter,
       communityID: communityID,
-      jwt: jwt,
+      jwt: JWT().getJWTForActiveAccount(),
       instance: instance
-    ).buildURL()
+    )
   }
-
-  private var endpointRedacted: URLComponents {
-    URLBuilder(
-      endpointPath: endpointPath,
-      sortParameter: sortParameter,
-      typeParameter: typeParameter,
-      currentPage: currentPage,
-      limitParameter: limitParameter,
-      communityID: communityID,
-      instance: instance
-    ).buildURL()
-  }
-
-  let pulse = Pulse.LoggerStore.shared
 
   init(
     limitParameter: Int,
@@ -77,33 +62,22 @@ class CommunitiesFetcher: ObservableObject {
 
     /// Force an instance if it's different to the one you want
     self.instance = instance
-
-    jwt = getJWTFromKeychain(actorID: activeAccount.actorID) ?? ""
   }
 
   func loadContent(isRefreshing _: Bool = false) {
     let cacher = ResponseCacher(behavior: .cache)
 
-    var headers: HTTPHeaders = []
-    if let jwt {
-      headers = [.authorization(bearerToken: jwt)]
-    }
-
-    AF.request(endpoint, headers: headers) { urlRequest in
+    AF.request(
+      EndpointBuilder(parameters: parameters).build(),
+      headers: GenerateHeaders().generate()
+    ) { urlRequest in
       urlRequest.cachePolicy = .returnCacheDataElseLoad
     }
     .cacheResponse(using: cacher)
     .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: CommunityModel.self) { response in
 
-      if self.networkInspectorEnabled {
-        self.pulse.storeRequest(
-          try! URLRequest(url: self.endpointRedacted, method: .get),
-          response: response.response,
-          error: response.error,
-          data: response.data
-        )
-      }
+      PulseWriter().write(response, self.parameters, .get)
 
       switch response.result {
       case let .success(result):
@@ -113,44 +87,11 @@ class CommunitiesFetcher: ObservableObject {
         let imagesToPrefetch = result.iconURLs.compactMap { URL(string: $0) }
         self.imagePrefetcher.startPrefetching(with: imagesToPrefetch)
 
-        let realm = try! Realm()
-
-        try! realm.write {
-          for community in result.communities {
-            let fetchedCommunity = RealmCommunity(
-              id: community.community.id,
-              name: community.community.name,
-              title: community.community.title,
-              actorID: community.community.actorID,
-              instanceID: community.community.instanceID,
-              descriptionText: community.community.description,
-              icon: community.community.icon,
-              banner: community.community.banner,
-              postingRestrictedToMods: community.community.postingRestrictedToMods,
-              published: community.community.published,
-              subscribers: community.counts.subscribers,
-              posts: community.counts.posts,
-              comments: community.counts.comments,
-              subscribed: community.subscribed
-            )
-            realm.add(fetchedCommunity, update: .modified)
-          }
-        }
+        RealmWriter().writeCommunity(communities: result.communities)
 
       case let .failure(error):
         print("CommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")")
       }
-    }
-  }
-
-  func getJWTFromKeychain(actorID: String) -> String? {
-    if let keychainObject = KeychainHelper.standard.read(
-      service: appBundleID, account: actorID
-    ) {
-      let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
-      return jwt.replacingOccurrences(of: "\"", with: "")
-    } else {
-      return nil
     }
   }
 }

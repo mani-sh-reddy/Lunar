@@ -2,7 +2,7 @@
 //  JWT.swift
 //  Lunar
 //
-//  Created by Mani on 10/09/2023.
+//  Created by Mani on 06/12/2023.
 //
 
 import Defaults
@@ -23,7 +23,7 @@ class JWT {
       return nil
     }
   }
-  
+
   func getJWT(actorID: String) -> String? {
     if let keychainObject = KeychainHelper.standard.read(
       service: appBundleID, account: actorID

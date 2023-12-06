@@ -30,7 +30,6 @@ class LegacyCommunitiesFetcher: ObservableObject {
   var typeParameter: String?
   var limitParameter: Int = 50
   var communityID: Int?
-  private var jwt: String?
 
   private var endpointPath: String {
     if communityID != nil {
@@ -40,27 +39,16 @@ class LegacyCommunitiesFetcher: ObservableObject {
     }
   }
 
-  private var endpoint: URLComponents {
-    URLBuilder(
+  private var parameters: EndpointParameters {
+    EndpointParameters(
       endpointPath: endpointPath,
       sortParameter: sortParameter,
       typeParameter: typeParameter,
       currentPage: currentPage,
       limitParameter: limitParameter,
       communityID: communityID,
-      jwt: jwt
-    ).buildURL()
-  }
-
-  private var endpointRedacted: URLComponents {
-    URLBuilder(
-      endpointPath: endpointPath,
-      sortParameter: sortParameter,
-      typeParameter: typeParameter,
-      currentPage: currentPage,
-      limitParameter: limitParameter,
-      communityID: communityID
-    ).buildURL()
+      jwt: JWT().getJWTForActiveAccount()
+    )
   }
 
   let pulse = Pulse.LoggerStore.shared
@@ -73,7 +61,6 @@ class LegacyCommunitiesFetcher: ObservableObject {
     self.sortParameter = sortParameter ?? communitiesSort
     self.typeParameter = typeParameter ?? communitiesType
     self.limitParameter = limitParameter
-    jwt = getJWTFromKeychain(actorID: activeAccount.actorID) ?? ""
     loadContent()
   }
 
@@ -88,7 +75,10 @@ class LegacyCommunitiesFetcher: ObservableObject {
 
     let cacher = ResponseCacher(behavior: .cache)
 
-    AF.request(endpoint) { urlRequest in
+    AF.request(
+      EndpointBuilder(parameters: parameters).build(),
+      headers: GenerateHeaders().generate()
+    ) { urlRequest in
       if isRefreshing {
         urlRequest.cachePolicy = .reloadRevalidatingCacheData
       } else {
@@ -99,16 +89,7 @@ class LegacyCommunitiesFetcher: ObservableObject {
     .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: CommunityModel.self) { response in
 
-//      print("====== Fetched Communities ======")
-
-      if self.networkInspectorEnabled {
-        self.pulse.storeRequest(
-          try! URLRequest(url: self.endpointRedacted, method: .get),
-          response: response.response,
-          error: response.error,
-          data: response.data
-        )
-      }
+      PulseWriter().write(response, self.parameters, .get)
 
       switch response.result {
       case let .success(result):
@@ -140,17 +121,6 @@ class LegacyCommunitiesFetcher: ObservableObject {
           self.isLoading = false
         }
       }
-    }
-  }
-
-  func getJWTFromKeychain(actorID: String) -> String? {
-    if let keychainObject = KeychainHelper.standard.read(
-      service: appBundleID, account: actorID
-    ) {
-      let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
-      return jwt.replacingOccurrences(of: "\"", with: "")
-    } else {
-      return nil
     }
   }
 }

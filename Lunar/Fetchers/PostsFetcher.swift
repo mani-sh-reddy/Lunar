@@ -6,22 +6,16 @@
 //
 
 import Alamofire
-import Combine
 import Defaults
 import Nuke
-import Pulse
-import RealmSwift
 import SwiftUI
 
 class PostsFetcher: ObservableObject {
   @Default(.activeAccount) var activeAccount
-  @Default(.appBundleID) var appBundleID
-  @Default(.networkInspectorEnabled) var networkInspectorEnabled
   @Default(.selectedInstance) var selectedInstance
 
   @Published var isLoading = false
 
-  let pulse = Pulse.LoggerStore.shared
   let imagePrefetcher = ImagePrefetcher(pipeline: ImagePipeline.shared)
 
   var sort: String
@@ -35,8 +29,8 @@ class PostsFetcher: ObservableObject {
 
   @State private var page: Int = 1
 
-  private var endpoint: URLComponents {
-    URLBuilder(
+  private var parameters: EndpointParameters {
+    EndpointParameters(
       endpointPath: endpointPath,
       sortParameter: sort,
       typeParameter: type,
@@ -46,20 +40,7 @@ class PostsFetcher: ObservableObject {
       personID: personID,
       jwt: JWT().getJWTForActiveAccount(),
       instance: instance
-    ).buildURL()
-  }
-
-  private var endpointRedacted: URLComponents {
-    URLBuilder(
-      endpointPath: endpointPath,
-      sortParameter: sort,
-      typeParameter: type,
-      currentPage: page,
-      limitParameter: 50,
-      communityID: communityID,
-      personID: personID,
-      instance: instance
-    ).buildURL()
+    )
   }
 
   init(
@@ -87,135 +68,45 @@ class PostsFetcher: ObservableObject {
     /// Values that can be passed in explicitly. Reverts to default if not passed in.
     self.sort = sort
     self.type = type
-
     /// Force an instance if it's different to the one you want
     self.instance = instance
-
     self.communityID = communityID
     self.personID = personID
-
     self.filterKey = filterKey
   }
 
-  func loadContent(isRefreshing: Bool = false) {
+  func loadContent(isRefreshing _: Bool = false) {
     guard !isLoading else { return }
 
     isLoading = true
 
     let cacher = ResponseCacher(behavior: .cache)
 
-    var headers: HTTPHeaders = []
-    if let jwt = JWT().getJWTForActiveAccount() {
-      headers = [.authorization(bearerToken: jwt)]
-    }
-
-    print("_____________FETCH_TRIGGERED_____________")
-    AF.request(endpoint, headers: headers) { urlRequest in
-      if isRefreshing {
-        urlRequest.cachePolicy = .reloadRevalidatingCacheData
-      } else {
-        urlRequest.cachePolicy = .returnCacheDataElseLoad
-      }
-      urlRequest.networkServiceType = .responsiveData
-    }
+    AF.request(
+      EndpointBuilder(parameters: parameters).build(),
+      headers: GenerateHeaders().generate()
+    )
     .cacheResponse(using: cacher)
     .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: PostModel.self) { response in
-      if self.networkInspectorEnabled {
-        self.pulse.storeRequest(
-          try! URLRequest(url: self.endpointRedacted, method: .get),
-          response: response.response,
-          error: response.error,
-          data: response.data
-        )
-      }
+
+      PulseWriter().write(response, self.parameters, .get)
 
       switch response.result {
       case let .success(result):
-
-        ///    When getting user specific posts, look for
 
         let imageRequestList = result.imageURLs.compactMap {
           ImageRequest(url: URL(string: $0), processors: [.resize(width: 200)])
         }
         self.imagePrefetcher.startPrefetching(with: imageRequestList)
 
-        // MARK: - Realm
-
-        let realm = try! Realm()
-
-        let batchID =
-          "instance_\(self.instance ?? self.selectedInstance)" + "__sort_\(self.sort)"
-            + "__type_\(self.type)" + "__userUsed_\(Int(self.activeAccount.userID) ?? 0)"
-            + "__communityID_\(self.communityID ?? 0)" + "__personID_\(self.personID ?? 0)"
-
-        let batch = Batch(
-          batchID: batchID,
-          instance: self.instance ?? self.selectedInstance,
+        RealmWriter().writePost(
+          posts: result.posts,
           sort: self.sort,
           type: self.type,
-          numberOfPosts: 0,
-          page: self.page,
-          latestTime: NSDate().timeIntervalSince1970,
-          userUsed: Int(self.activeAccount.userID) ?? 0,
-          communityID: self.communityID ?? 0,
-          personID: self.personID ?? 0
+          filterKey: self.filterKey
         )
 
-        try! realm.write {
-          if let batch = realm.object(ofType: Batch.self, forPrimaryKey: batchID) {
-            print("batch found")
-            //           batch.realmPosts.append(objectsIn: realmPosts)
-            batch.page = self.page
-          } else {
-            print("Batch not found with the primary key specified, creating new batch")
-            realm.add(batch, update: .modified)
-            //            batch.realmPosts.append(objectsIn: realmPosts)
-          }
-
-          for post in result.posts {
-            let fetchedPost = RealmPost(
-              postID: post.post.id,
-              postName: post.post.name,
-              postPublished: post.post.published,
-              postURL: post.post.url,
-              postBody: post.post.body,
-              postThumbnailURL: post.post.thumbnailURL,
-              postFeatured: post.post.featuredCommunity || post.post.featuredLocal,
-              personID: post.creator.id,
-              personName: post.creator.name,
-              personPublished: post.creator.published,
-              personActorID: post.creator.actorID,
-              personInstanceID: post.creator.instanceID,
-              personAvatar: post.creator.avatar,
-              personDisplayName: post.creator.displayName,
-              personBio: post.creator.bio,
-              personBanner: post.creator.banner,
-              communityID: post.community.id,
-              communityName: post.community.name,
-              communityTitle: post.community.title,
-              communityActorID: post.community.actorID,
-              communityInstanceID: post.community.instanceID,
-              communityDescription: post.community.description,
-              communityIcon: post.community.icon,
-              communityBanner: post.community.banner,
-              communityUpdated: post.community.updated,
-              communitySubscribed: post.subscribed,
-              postScore: post.counts.postScore,
-              postCommentCount: post.counts.comments,
-              upvotes: post.counts.upvotes,
-              downvotes: post.counts.downvotes,
-              postMyVote: post.myVote ?? 0,
-              postHidden: false,
-              postMinimised: post.post.featuredCommunity || post.post.featuredLocal,
-              sort: self.sort,
-              type: self.type,
-              filterKey: self.filterKey
-            )
-            realm.add(fetchedPost, update: .modified)
-            //            batch.realmPosts.append(fetchedPost)
-          }
-        }
         self.isLoading = false
 
       case let .failure(error):

@@ -5,11 +5,11 @@
 ////  Created by Mani on 27/07/2023.
 ////
 //
-//import Defaults
-//import SFSafeSymbols
-//import SwiftUI
+// import Defaults
+// import SFSafeSymbols
+// import SwiftUI
 //
-//struct SettingsThemeView: View {
+// struct SettingsThemeView: View {
 //  @AppStorage("appAppearance") var appAppearance: AppearanceOptions = .system
 //
 //  @Default(.accentColor) var accentColor
@@ -83,8 +83,8 @@
 //    }
 //  }
 //
-//}
+// }
 //
-//#Preview {
+// #Preview {
 //  SettingsThemeView()
-//}
+// }

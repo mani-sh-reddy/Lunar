@@ -6,10 +6,8 @@
 //
 
 import Alamofire
-import Combine
 import Defaults
 import Nuke
-import Pulse
 import SwiftUI
 
 class PersonFetcher: ObservableObject {
@@ -21,7 +19,6 @@ class PersonFetcher: ObservableObject {
   @Published var comments = [CommentObject]()
   @Published var isLoading = false
 
-  let pulse = Pulse.LoggerStore.shared
   let imagePrefetcher = ImagePrefetcher(pipeline: ImagePipeline.shared)
 
   private var currentPage = 1
@@ -31,8 +28,8 @@ class PersonFetcher: ObservableObject {
   private var personID: Int
   private var instance: String?
 
-  private var endpoint: URLComponents {
-    URLBuilder(
+  private var parameters: EndpointParameters {
+    EndpointParameters(
       endpointPath: "/api/v3/user",
       sortParameter: sortParameter,
       typeParameter: typeParameter,
@@ -42,20 +39,7 @@ class PersonFetcher: ObservableObject {
       personID: personID,
       jwt: JWT().getJWTForActiveAccount(),
       instance: instance
-    ).buildURL()
-  }
-
-  private var endpointRedacted: URLComponents {
-    URLBuilder(
-      endpointPath: "/api/v3/user",
-      sortParameter: sortParameter,
-      typeParameter: typeParameter,
-      currentPage: currentPage,
-      limitParameter: 50,
-      savedOnly: savedOnly,
-      personID: personID,
-      instance: instance
-    ).buildURL()
+    )
   }
 
   init(
@@ -88,12 +72,10 @@ class PersonFetcher: ObservableObject {
 
     let cacher = ResponseCacher(behavior: .cache)
 
-    var headers: HTTPHeaders = []
-    if let jwt = JWT().getJWTForActiveAccount() {
-      headers = [.authorization(bearerToken: jwt)]
-    }
-
-    AF.request(endpoint, headers: headers) { urlRequest in
+    AF.request(
+      EndpointBuilder(parameters: parameters).build(),
+      headers: GenerateHeaders().generate()
+    ) { urlRequest in
       if isRefreshing {
         urlRequest.cachePolicy = .reloadRevalidatingCacheData
       } else {
@@ -104,29 +86,18 @@ class PersonFetcher: ObservableObject {
     .cacheResponse(using: cacher)
     .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: PersonModel.self) { response in
-      if self.networkInspectorEnabled {
-        self.pulse.storeRequest(
-          try! URLRequest(url: self.endpointRedacted, method: .get),
-          response: response.response,
-          error: response.error,
-          data: response.data
-        )
-      }
+      PulseWriter().write(response, self.parameters, .get)
 
       switch response.result {
       case let .success(result):
 
         let fetchedPosts = result.posts
         let fetchedComments = result.comments
-//        self.personModel = [result]
 
         let imageRequestList = result.imageURLs.compactMap {
           ImageRequest(url: URL(string: $0), processors: [.resize(width: 200)])
         }
         self.imagePrefetcher.startPrefetching(with: imageRequestList)
-
-//        let imagesToPrefetch = result.imageURLs.compactMap { URL(string: $0) }
-//        self.imagePrefetcher.startPrefetching(with: imagesToPrefetch)
 
         if isRefreshing {
           self.posts = fetchedPosts

@@ -20,23 +20,15 @@ class PrivateMessageFetcher: ObservableObject {
 
   @Published var isLoading = false
 
-  let pulse = Pulse.LoggerStore.shared
   var instance: String
   var endpointPath: String = "/api/v3/private_message/list"
 
-  private var endpoint: URLComponents {
-    URLBuilder(
+  private var parameters: EndpointParameters {
+    EndpointParameters(
       endpointPath: endpointPath,
       jwt: JWT().getJWTForActiveAccount(),
       instance: instance
-    ).buildURL()
-  }
-
-  private var endpointRedacted: URLComponents {
-    URLBuilder(
-      endpointPath: endpointPath,
-      instance: instance
-    ).buildURL()
+    )
   }
 
   init(
@@ -52,13 +44,7 @@ class PrivateMessageFetcher: ObservableObject {
 
     let cacher = ResponseCacher(behavior: .cache)
 
-    var headers: HTTPHeaders = []
-    if let jwt = JWT().getJWTForActiveAccount() {
-      headers = [.authorization(bearerToken: jwt)]
-    }
-
-    print("_____________FETCH_TRIGGERED_____________")
-    AF.request(endpoint, headers: headers) { urlRequest in
+    AF.request(EndpointBuilder(parameters: parameters).build(), headers: GenerateHeaders().generate()) { urlRequest in
       if isRefreshing {
         urlRequest.cachePolicy = .reloadRevalidatingCacheData
       } else {
@@ -69,44 +55,14 @@ class PrivateMessageFetcher: ObservableObject {
     .cacheResponse(using: cacher)
     .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: PrivateMessageModel.self) { response in
-      if self.networkInspectorEnabled {
-        self.pulse.storeRequest(
-          try! URLRequest(url: self.endpointRedacted, method: .get),
-          response: response.response,
-          error: response.error,
-          data: response.data
-        )
-      }
+
+      PulseWriter().write(response, self.parameters, .get)
 
       switch response.result {
       case let .success(result):
 
-        // MARK: - Realm
+        RealmWriter().writePrivateMessage(privateMessages: result.privateMessages)
 
-        let realm = try! Realm()
-
-        try! realm.write {
-          for message in result.privateMessages {
-            let realmPrivateMessage = RealmPrivateMessage(
-              messageID: message.privateMessage.id,
-              messageContent: message.privateMessage.content,
-              messageDeleted: message.privateMessage.deleted,
-              messageRead: message.privateMessage.deleted,
-              messagePublished: message.privateMessage.published,
-              messageApID: message.privateMessage.apID,
-              messageIsLocal: message.privateMessage.local,
-              creatorID: message.creator.id ?? 0,
-              creatorName: message.creator.name,
-              creatorAvatar: message.creator.avatar ?? "",
-              creatorActorID: message.creator.actorID,
-              recipientID: message.recipient.id ?? 0,
-              recipientName: message.recipient.name,
-              recipientAvatar: message.recipient.avatar ?? "",
-              recipientActorID: message.recipient.actorID
-            )
-            realm.add(realmPrivateMessage, update: .modified)
-          }
-        }
         self.isLoading = false
 
       case let .failure(error):
