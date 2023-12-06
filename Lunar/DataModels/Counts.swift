@@ -8,7 +8,7 @@
 import Foundation
 
 struct Counts: Codable {
-  let id: Int
+  let id: Int?
   let published: String?
 
   let posts: Int?
