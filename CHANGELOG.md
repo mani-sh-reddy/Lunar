@@ -10,7 +10,9 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
-- Added a warning to notify users about errors performing actions outside of home instance
+
+- Blocking users via a post
+- Warning to notify users about errors performing actions outside of home instance
 ### Misc
 
 - Removed `Shiny` package due to lag

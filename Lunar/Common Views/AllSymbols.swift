@@ -28,6 +28,10 @@ class AllSymbols {
     SFSafeSymbols.SFSymbol.slashCircle
   }
 
+  var blockContextIcon: SFSafeSymbols.SFSymbol {
+    SFSafeSymbols.SFSymbol.xmarkCircle
+  }
+
   var upvoteContextIcon: SFSafeSymbols.SFSymbol {
     SFSafeSymbols.SFSymbol.arrowUpCircle
   }

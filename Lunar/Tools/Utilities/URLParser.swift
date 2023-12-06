@@ -54,4 +54,9 @@ enum URLParser {
 
     return components.penultimate() ?? ""
   }
+
+  /// "https://lemmy.world/c/mani" ==> _mani@lemmy.world_
+  static func buildFullUsername(from url: String) -> String {
+    "\(extractUsername(from: url))@\(extractDomain(from: url))"
+  }
 }

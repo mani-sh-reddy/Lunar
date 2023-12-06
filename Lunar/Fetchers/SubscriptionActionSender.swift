@@ -54,7 +54,7 @@ class SubscriptionActionSender: ObservableObject {
     )
     .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: SubscribeResponseModel.self) { response in
-      
+
       PulseWriter().write(response, EndpointParameters(endpointPath: endpoint), .post)
 
       print(response.request ?? "")

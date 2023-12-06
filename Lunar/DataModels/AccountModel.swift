@@ -19,4 +19,5 @@ struct AccountModel: Codable, Hashable, Defaults.Serializable {
   var postCount: Int = 0
   var commentScore: Int = 0
   var commentCount: Int = 0
+  var instance: String { URLParser.extractDomain(from: actorID) }
 }

@@ -13,6 +13,7 @@ import SwiftUI
 
 class PulseWriter {
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
+  @Default(.selectedInstance) var selectedInstance
 
   let pulse = Pulse.LoggerStore.shared
 
@@ -23,14 +24,26 @@ class PulseWriter {
   ) {
     guard networkInspectorEnabled else { return }
 
-    pulse.storeRequest(
-      try! URLRequest(
-        url: EndpointBuilder(parameters: parameters).build(redact: true),
-        method: method
-      ),
-      response: response.response,
-      error: response.error,
-      data: response.data
-    )
+    if method == .get {
+      pulse.storeRequest(
+        try! URLRequest(
+          url: EndpointBuilder(parameters: parameters).build(redact: true),
+          method: method
+        ),
+        response: response.response,
+        error: response.error,
+        data: response.data
+      )
+    } else if method == .post {
+      pulse.storeRequest(
+        try! URLRequest(
+          url: URL(string: "https://\(selectedInstance)\(parameters.endpointPath)")!,
+          method: method
+        ),
+        response: response.response,
+        error: response.error,
+        data: response.data
+      )
+    }
   }
 }

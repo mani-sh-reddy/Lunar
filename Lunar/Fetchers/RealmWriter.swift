@@ -19,9 +19,8 @@ class RealmWriter {
   ) {
     try! realm.write {
       for post in posts {
-        
         guard !post.creatorBlocked else { return }
-        
+
         let realmPost = RealmPost(
           postID: post.post.id,
           postName: post.post.name,

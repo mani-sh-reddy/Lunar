@@ -19,6 +19,7 @@ struct PostItem: View {
 
   @State var showSafari: Bool = false
   @State var subscribeAlertPresented: Bool = false
+  @State var blockUserAlertPresented: Bool = false
 
   let hapticsLight = UIImpactFeedbackGenerator(style: .light)
 
@@ -110,6 +111,15 @@ struct PostItem: View {
       hideButton
       minimiseButton
       shareButton
+      blockUserButton
+    }
+  }
+
+  var blockUserButton: some View {
+    Button {
+      blockUserAlertPresented = true
+    } label: {
+      Label("Block User", systemSymbol: AllSymbols().blockContextIcon)
     }
   }
 
@@ -209,6 +219,25 @@ struct PostItem: View {
       }
     } message: {
       Text("\(post.communityName)@\(URLParser.extractDomain(from: post.communityActorID))")
+    }
+    .confirmationDialog("", isPresented: $blockUserAlertPresented) {
+      blockUserConfirmationDialogButtons
+    } message: {
+      Text("Block User \(URLParser.buildFullUsername(from: post.personActorID))")
+    }
+  }
+
+  @ViewBuilder
+  var blockUserConfirmationDialogButtons: some View {
+    Button("Block") {
+      blockUserAction()
+    }
+    Button("Block and Report") {
+      blockUserAction()
+//      reportUserAction()
+    }
+    Button("Dismiss", role: .cancel) {
+      blockUserAlertPresented = false
     }
   }
 
@@ -381,6 +410,16 @@ struct PostItem: View {
           RealmThawFunctions().subscribe(post: post, subscribedState: subscribeResponse ?? .notSubscribed)
         } else {
           notificationHaptics.notificationOccurred(.error)
+        }
+      }
+    }
+  }
+
+  func blockUserAction() {
+    if let personID = post.personID {
+      BlockUserSender(personID: personID, block: true).blockUser { _, userIsBlockedResponse, _ in
+        if userIsBlockedResponse == true {
+          RealmThawFunctions().deleteAction(post: post)
         }
       }
     }
