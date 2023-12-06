@@ -29,7 +29,6 @@ extension Defaults.Keys {
   static let detailedCommunityLabels = Key<Bool>("detailedCommunityLabels", default: true)
   static let legacyPostsViewStyle = Key<String>("legacyPostsViewStyle", default: "insetGrouped")
   static let postsViewStyle = Key<PostsViewStyle>("postsViewStyle", default: .large)
-  static let iridescenceEnabled = Key<Bool>("iridescenceEnabled", default: false)
   static let prominentInspectorButton = Key<Bool>("prominentInspectorButton", default: true)
   static let clearWhatsNewDefaults = Key<Bool>("clearWhatsNewDefaults", default: false)
   static let clearInitialWhatsNewDefault = Key<Bool>("clearInitialWhatsNewDefault", default: false)

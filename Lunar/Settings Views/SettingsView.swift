@@ -92,69 +92,70 @@ struct SettingsView: View {
       } label: {
         Text("Manage Instances")
       }
-      /// KbinSelectorView() - Moved to instance selector view
     }
   }
 
-  var notificationsNavLink: some View {
-    NavigationLink {
-      PlaceholderView()
-    } label: {
-      Label {
-        Text("Notifications")
-      } icon: {
-        AllSymbols().notificationsSettings
-      }
-    }
-  }
+  /*
+   var notificationsNavLink: some View {
+     NavigationLink {
+       PlaceholderView()
+     } label: {
+       Label {
+         Text("Notifications")
+       } icon: {
+         AllSymbols().notificationsSettings
+       }
+     }
+   }
 
-  var gesturesNavLink: some View {
-    NavigationLink {
-      PlaceholderView()
-    } label: {
-      Label {
-        Text("Gestures")
-      } icon: {
-        AllSymbols().gesturesSettings
-      }
-    }
-  }
+   var gesturesNavLink: some View {
+     NavigationLink {
+       PlaceholderView()
+     } label: {
+       Label {
+         Text("Gestures")
+       } icon: {
+         AllSymbols().gesturesSettings
+       }
+     }
+   }
 
-  var soundAndHapticsNavLink: some View {
-    NavigationLink {
-      PlaceholderView()
-    } label: {
-      Label {
-        Text("Sounds and Haptics")
-      } icon: {
-        AllSymbols().soundAndHapticsSettings
-      }
-    }
-  }
+   var soundAndHapticsNavLink: some View {
+     NavigationLink {
+       PlaceholderView()
+     } label: {
+       Label {
+         Text("Sounds and Haptics")
+       } icon: {
+         AllSymbols().soundAndHapticsSettings
+       }
+     }
+   }
 
-  var composerNavLink: some View {
-    NavigationLink {
-      PlaceholderView()
-    } label: {
-      Label {
-        Text("Composer")
-      } icon: {
-        AllSymbols().composerSettings
-      }
-    }
-  }
+   var composerNavLink: some View {
+     NavigationLink {
+       PlaceholderView()
+     } label: {
+       Label {
+         Text("Composer")
+       } icon: {
+         AllSymbols().composerSettings
+       }
+     }
+   }
 
-  var searchNavLink: some View {
-    NavigationLink {
-      PlaceholderView()
-    } label: {
-      Label {
-        Text("Search")
-      } icon: {
-        AllSymbols().searchSettings
-      }
-    }
-  }
+   var searchNavLink: some View {
+     NavigationLink {
+       PlaceholderView()
+     } label: {
+       Label {
+         Text("Search")
+       } icon: {
+         AllSymbols().searchSettings
+       }
+     }
+   }
+    */
 
   var quicklinksNavLink: some View {
     NavigationLink {
@@ -197,29 +198,19 @@ struct SettingsView: View {
     }
   }
 
-  var themeNavLink: some View {
-    NavigationLink {
-      SettingsThemeView()
-    } label: {
-      Label {
-        Text("Theme")
-      } icon: {
-        AllSymbols().themeSettings
+  /*
+    var themeNavLink: some View {
+      NavigationLink {
+        SettingsThemeView()
+      } label: {
+        Label {
+          Text("Theme")
+        } icon: {
+          AllSymbols().themeSettings
+        }
       }
     }
-  }
-
-  var layoutNavLink: some View {
-    NavigationLink {
-      SettingsLayoutView()
-    } label: {
-      Label {
-        Text("Layout")
-      } icon: {
-        AllSymbols().layoutSettings
-      }
-    }
-  }
+   */
 
   var privacyPolicyButton: some View {
     Button {
@@ -399,74 +390,9 @@ struct SettingsView: View {
   }
 }
 
-//  @ViewBuilder
-//  var appCreditsAndInfo: some View {
-//    Group {
-//      HStack {
-//        Spacer()
-//        VStack(alignment: .center, spacing: 2) {
-//          Text("Lunar v\(appVersion)")
-//          Text(LocalizedStringKey("~ by [mani](https://github.com/mani-sh-reddy) ~"))
-//        }
-//        Spacer()
-//      }
-//      HStack {
-//        Spacer()
-//        emailButtonSmall
-//          .padding(.top, 20)
-//        Spacer()
-//      }
-//      HStack {
-//        Spacer()
-//        matrixButtonSmall
-//          .padding(.bottom, 10)
-//        Spacer()
-//      }
-//    }
-//
-//    .font(.caption)
-//    .foregroundStyle(.secondary)
-//    .listRowSeparator(.hidden)
-//    .listRowBackground(Color.clear)
-//  }
-//
-//  var matrixButtonSmall: some View {
-//    Button {
-//      notificationHaptics.notificationOccurred(.success)
-//      withAnimation {
-//        matrixCopiedToClipboard = true
-//      }
-//      DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//        withAnimation {
-//          matrixCopiedToClipboard = false
-//        }
-//      }
-//
-//      UIPasteboard.general
-//        .setValue(
-//          "@mani.sh:matrix.org",
-//          forPasteboardType: UTType.plainText.identifier
-//        )
-//    } label: {
-//      Text(matrixCopiedToClipboard ? "Copied to clipboard" : "@mani.sh:matrix.org")
-//    }
-//    .foregroundStyle(accentColorString == "Default" ? .blue : accentColor)
-//  }
-//
-//  var emailButtonSmall: some View {
-//    Button {
-//      Mailto().mailto("lunarforlemmy@outlook.com")
-//    } label: {
-//      Text("lunarforlemmy@outlook.com")
-//    }
-//    .foregroundStyle(accentColorString == "Default" ? .blue : accentColor)
-//  }
-// }
-
 #Preview {
   List {
     SettingsView().appCreditsAndInfo
     SettingsView().appIconNavLink
   }
-//  SettingsView()
 }

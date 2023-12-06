@@ -7,7 +7,6 @@
 
 import Defaults
 import Foundation
-import LocalConsole
 import Nuke
 import RealmSwift
 import SwiftUI
@@ -22,15 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil
   ) -> Bool {
     print("App Started")
-    initialiseLocalConsole()
     initialiseNukeUI()
     initialiseRealm()
     PhaseChangeActions().homeScreenQuickActions()
     return true
-  }
-
-  func initialiseLocalConsole() {
-    _ = LCManager.shared
   }
 
   func initialiseNukeUI() {

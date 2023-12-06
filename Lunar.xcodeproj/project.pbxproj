@@ -48,7 +48,6 @@
 		3C1A3F5F2A73D64C00898FC6 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F5E2A73D64C00898FC6 /* LoginHelper.swift */; };
 		3C1AF0AA2AB4BDA000763602 /* NestedCommentsLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1AF0A92AB4BDA000763602 /* NestedCommentsLogic.swift */; };
 		3C20B37C2AEAF645003F578F /* DebugTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C20B37B2AEAF645003F578F /* DebugTextView.swift */; };
-		3C20B37F2AEB27F9003F578F /* LocalConsole in Frameworks */ = {isa = PBXBuildFile; productRef = 3C20B37E2AEB27F9003F578F /* LocalConsole */; };
 		3C23F03E2AAA66E000AACA46 /* Pulse in Frameworks */ = {isa = PBXBuildFile; productRef = 3C23F03D2AAA66E000AACA46 /* Pulse */; };
 		3C23F0402AAA66E000AACA46 /* PulseUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3C23F03F2AAA66E000AACA46 /* PulseUI */; };
 		3C29F5452A97D49C001563E7 /* LunarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C29F5442A97D49C001563E7 /* LunarUITests.swift */; };
@@ -90,7 +89,6 @@
 		3C4DB8C22AB70856000137CF /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 3C4DB8C12AB70856000137CF /* NukeExtensions */; };
 		3C4DB8C62AB72145000137CF /* SettingsAppResetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4DB8C52AB72145000137CF /* SettingsAppResetView.swift */; };
 		3C4DB8C82AB725FB000137CF /* DataCacheHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4DB8C72AB725FB000137CF /* DataCacheHolder.swift */; };
-		3C4E4CF92B1E68D50001D5FF /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 3C4E4CF82B1E68D50001D5FF /* Moya */; };
 		3C4EBFF92B00F735004B7665 /* SupportedFamiliesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4EBFF82B00F735004B7665 /* SupportedFamiliesExtension.swift */; };
 		3C4EE4B92A8006D0009EE4A8 /* KbinPostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4EE4B82A8006D0009EE4A8 /* KbinPostRowView.swift */; };
 		3C4F0A002A54399F009DF8AB /* LunarAppEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F09FF2A54399F009DF8AB /* LunarAppEntryView.swift */; };
@@ -144,7 +142,6 @@
 		3C96EA552A7857D900753199 /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96EA542A7857D900753199 /* AccountModel.swift */; };
 		3C9E548A2A940F9B0093DDC7 /* UITextViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E54892A940F9B0093DDC7 /* UITextViewExtension.swift */; };
 		3C9E548C2A94A3DC0093DDC7 /* CommentSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E548B2A94A3DC0093DDC7 /* CommentSender.swift */; };
-		3C9E54982A953FB60093DDC7 /* SettingsSplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E54972A953FB60093DDC7 /* SettingsSplashScreenView.swift */; };
 		3C9E549A2A954C060093DDC7 /* CommentResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9E54992A954C060093DDC7 /* CommentResponseModel.swift */; };
 		3CA5C40A2A574FF500BF8F1B /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C4092A574FF500BF8F1B /* PostModel.swift */; };
 		3CA5C4102A5753AC00BF8F1B /* LegacyPostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CA5C40F2A5753AC00BF8F1B /* LegacyPostRowView.swift */; };
@@ -201,7 +198,6 @@
 		3CC178952A7DAAE300C208D0 /* SearchFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC178942A7DAAE300C208D0 /* SearchFetcher.swift */; };
 		3CC3E4162ADBFCBA00F7F9A9 /* MyUserPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3E4152ADBFCBA00F7F9A9 /* MyUserPostsView.swift */; };
 		3CC3E4182ADBFFEF00F7F9A9 /* MyUserCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3E4172ADBFFEF00F7F9A9 /* MyUserCommentsView.swift */; };
-		3CC3E41B2ADC054000F7F9A9 /* Shiny in Frameworks */ = {isa = PBXBuildFile; productRef = 3CC3E41A2ADC054000F7F9A9 /* Shiny */; };
 		3CC3E41F2ADC36D900F7F9A9 /* DismissButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3E41E2ADC36D900F7F9A9 /* DismissButtonView.swift */; };
 		3CC3E4212ADC3FD600F7F9A9 /* CreatePostPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3E4202ADC3FD600F7F9A9 /* CreatePostPopoverView.swift */; };
 		3CC3E4232ADC4A2600F7F9A9 /* ImageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC3E4222ADC4A2600F7F9A9 /* ImageSender.swift */; };
@@ -265,7 +261,6 @@
 		3CEF4CD02A69B738002B83C0 /* InPostMetadataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CCF2A69B738002B83C0 /* InPostMetadataView.swift */; };
 		3CEF4CD32A69B770002B83C0 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CD22A69B770002B83C0 /* StringExtension.swift */; };
 		3CEF4CD52A69B798002B83C0 /* URLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CD42A69B798002B83C0 /* URLParser.swift */; };
-		3CF3B8F12A8F797D001C08B5 /* SettingsLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3B8F02A8F797D001C08B5 /* SettingsLayoutView.swift */; };
 		3CF3B8F32A8FF7D4001C08B5 /* KbinSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3B8F22A8FF7D4001C08B5 /* KbinSelectorView.swift */; };
 		3CF3B8FD2A90188D001C08B5 /* CommentMetadataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3B8FC2A90188D001C08B5 /* CommentMetadataView.swift */; };
 		3CF3F9C02A6EE0390051E725 /* SettingsClearCacheView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheView.swift */; };
@@ -274,11 +269,6 @@
 		3CF717FB2AF42ED2005030D8 /* RealmCommunity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF717FA2AF42ED2005030D8 /* RealmCommunity.swift */; };
 		3CF717FD2AF437D4005030D8 /* LegacyCommunitiesFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF717FC2AF437D3005030D8 /* LegacyCommunitiesFetcher.swift */; };
 		3CF717FF2AF44704005030D8 /* LegacyCommunityRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF717FE2AF44704005030D8 /* LegacyCommunityRowView.swift */; };
-		3CF831BF2B1F9D960036BCE0 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF831BE2B1F9D960036BCE0 /* APIService.swift */; };
-		3CF831C52B1FA3E40036BCE0 /* ParameterStructures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF831C42B1FA3E40036BCE0 /* ParameterStructures.swift */; };
-		3CF831C72B1FAE390036BCE0 /* PostSenderM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF831C62B1FAE390036BCE0 /* PostSenderM.swift */; };
-		3CF831C92B1FAE5A0036BCE0 /* AppDelegateM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF831C82B1FAE5A0036BCE0 /* AppDelegateM.swift */; };
-		3CF831CB2B1FAE730036BCE0 /* CreatePostPopoverViewM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF831CA2B1FAE730036BCE0 /* CreatePostPopoverViewM.swift */; };
 		3CFA769B2B127E76002B88B2 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFA769A2B127E76002B88B2 /* MockData.swift */; };
 		3CFB89E82AF19DC3001BB9EB /* CreateCommentPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFB89E72AF19DC3001BB9EB /* CreateCommentPopover.swift */; };
 		3CFE04BF2A7FEA71007BAD81 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 3CFE04BE2A7FEA71007BAD81 /* SwiftSoup */; };
@@ -437,7 +427,6 @@
 		3C96EA542A7857D900753199 /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
 		3C9E54892A940F9B0093DDC7 /* UITextViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewExtension.swift; sourceTree = "<group>"; };
 		3C9E548B2A94A3DC0093DDC7 /* CommentSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentSender.swift; sourceTree = "<group>"; };
-		3C9E54972A953FB60093DDC7 /* SettingsSplashScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsSplashScreenView.swift; sourceTree = "<group>"; };
 		3C9E54992A954C060093DDC7 /* CommentResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentResponseModel.swift; sourceTree = "<group>"; };
 		3CA5C4092A574FF500BF8F1B /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		3CA5C40F2A5753AC00BF8F1B /* LegacyPostRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyPostRowView.swift; sourceTree = "<group>"; };
@@ -548,7 +537,6 @@
 		3CEF4CCF2A69B738002B83C0 /* InPostMetadataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InPostMetadataView.swift; sourceTree = "<group>"; };
 		3CEF4CD22A69B770002B83C0 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		3CEF4CD42A69B798002B83C0 /* URLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParser.swift; sourceTree = "<group>"; };
-		3CF3B8F02A8F797D001C08B5 /* SettingsLayoutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLayoutView.swift; sourceTree = "<group>"; };
 		3CF3B8F22A8FF7D4001C08B5 /* KbinSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinSelectorView.swift; sourceTree = "<group>"; };
 		3CF3B8FC2A90188D001C08B5 /* CommentMetadataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentMetadataView.swift; sourceTree = "<group>"; };
 		3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsClearCacheView.swift; sourceTree = "<group>"; };
@@ -557,11 +545,6 @@
 		3CF717FA2AF42ED2005030D8 /* RealmCommunity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmCommunity.swift; sourceTree = "<group>"; };
 		3CF717FC2AF437D3005030D8 /* LegacyCommunitiesFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyCommunitiesFetcher.swift; sourceTree = "<group>"; };
 		3CF717FE2AF44704005030D8 /* LegacyCommunityRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyCommunityRowView.swift; sourceTree = "<group>"; };
-		3CF831BE2B1F9D960036BCE0 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
-		3CF831C42B1FA3E40036BCE0 /* ParameterStructures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterStructures.swift; sourceTree = "<group>"; };
-		3CF831C62B1FAE390036BCE0 /* PostSenderM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostSenderM.swift; sourceTree = "<group>"; };
-		3CF831C82B1FAE5A0036BCE0 /* AppDelegateM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegateM.swift; sourceTree = "<group>"; };
-		3CF831CA2B1FAE730036BCE0 /* CreatePostPopoverViewM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePostPopoverViewM.swift; sourceTree = "<group>"; };
 		3CFA769A2B127E76002B88B2 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		3CFB89E72AF19DC3001BB9EB /* CreateCommentPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCommentPopover.swift; sourceTree = "<group>"; };
 		3CFE04C22A7FF0EB007BAD81 /* KbinThreadsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinThreadsModel.swift; sourceTree = "<group>"; };
@@ -593,18 +576,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C4E4CF92B1E68D50001D5FF /* Moya in Frameworks */,
 				3CEB2C132AB2F45F0013609E /* SFSafeSymbols in Frameworks */,
 				3C23F0402AAA66E000AACA46 /* PulseUI in Frameworks */,
 				3CC4200D2AB37DDA00BE1612 /* BetterSafariView in Frameworks */,
 				3CE69E962ABDCA8A00E2821E /* Realm in Frameworks */,
-				3CC3E41B2ADC054000F7F9A9 /* Shiny in Frameworks */,
 				3CDA82C62B1F7E420078AB36 /* Collections in Frameworks */,
 				3CA95F082A7ACF3B00626353 /* Nuke in Frameworks */,
 				3C4B7DDB2A58AD23003C8192 /* Alamofire in Frameworks */,
 				3CE69E982ABDCA8A00E2821E /* RealmSwift in Frameworks */,
 				3CC4200A2AB37BCB00BE1612 /* WhatsNewKit in Frameworks */,
-				3C20B37F2AEB27F9003F578F /* LocalConsole in Frameworks */,
 				3C23F03E2AAA66E000AACA46 /* Pulse in Frameworks */,
 				3CEBF46C2B09426E00469008 /* MarkdownUI in Frameworks */,
 				3CDA82C82B1F7E420078AB36 /* OrderedCollections in Frameworks */,
@@ -671,14 +651,30 @@
 			path = Widgets;
 			sourceTree = "<group>";
 		};
-		3C4D42A62A8D0FB3003B6F1D /* DataSenders */ = {
+		3C3E75F12B20FF1300F25F7D /* Fetchers */ = {
 			isa = PBXGroup;
 			children = (
+				3CECCE222AAE1B1B0017A605 /* JWT.swift */,
 				3C4D42A72A8D0FD1003B6F1D /* VoteSender.swift */,
 				3CC3E4222ADC4A2600F7F9A9 /* ImageSender.swift */,
 				3C6BBF712A910F6100312E2B /* SubscriptionActionSender.swift */,
 				3C9E548B2A94A3DC0093DDC7 /* CommentSender.swift */,
 				3CC3E42C2ADD6EBA00F7F9A9 /* PostSender.swift */,
+				3CA8A0C22AE570E200EEABD3 /* PostsFetcher.swift */,
+				3CC09CDA2B0E92840036422F /* PrivateMessageFetcher.swift */,
+				3CB046F52ADB28850011BFEC /* PersonFetcher.swift */,
+				3C65885C2A6189AF00A46DA3 /* CommentsFetcher.swift */,
+				3CB408B32A5C558B00B7C983 /* CommunitiesFetcher.swift */,
+				3C5ECB1E2A75ABFE002BA561 /* SiteInfoFetcher.swift */,
+				3CC3E4342ADDD74D00F7F9A9 /* PostSiteMetadataFetcher.swift */,
+				3CC178942A7DAAE300C208D0 /* SearchFetcher.swift */,
+			);
+			path = Fetchers;
+			sourceTree = "<group>";
+		};
+		3C4D42A62A8D0FB3003B6F1D /* DataSenders */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = DataSenders;
 			sourceTree = "<group>";
@@ -714,7 +710,6 @@
 				3C62C23F2A72AABD003BAC5B /* Info.plist */,
 				3C62C23E2A72AA4D003BAC5B /* Lunar.entitlements */,
 				3C808E222A9A8C95008FA62E /* LunarDebug.entitlements */,
-				3CF831C32B1FA3D10036BCE0 /* APIService */,
 				3CFA769A2B127E76002B88B2 /* MockData.swift */,
 				3C2EA6C22AFFFA42007AC12D /* WidgetLink.swift */,
 				3C4F09FF2A54399F009DF8AB /* LunarAppEntryView.swift */,
@@ -728,9 +723,9 @@
 				3CC09CE62B0E9C480036422F /* Inbox Tab */,
 				3CECCE212AAE14140017A605 /* Account Tab */,
 				3CCAE1842A6ADDE20040EE12 /* Comment View */,
+				3C3E75F12B20FF1300F25F7D /* Fetchers */,
 				3CE237332AA4D157000F1D20 /* Common Views */,
 				3C4D42A62A8D0FB3003B6F1D /* DataSenders */,
-				3CA5C4062A5743EB00BF8F1B /* DataLoaders */,
 				3CA5C4082A57443200BF8F1B /* DataModels */,
 				3C96EA582A79147C00753199 /* Debugging Views */,
 				3CC3E4102ADBE39700F7F9A9 /* Defaults */,
@@ -782,53 +777,6 @@
 				3C20B37B2AEAF645003F578F /* DebugTextView.swift */,
 			);
 			path = "Debugging Views";
-			sourceTree = "<group>";
-		};
-		3C9E548F2A94C0870093DDC7 /* Account */ = {
-			isa = PBXGroup;
-			children = (
-				3C6D29682A797D6E007AFD99 /* AccountItemView.swift */,
-				3C113C422A6EA92600FDE5CE /* InstanceSelectorView.swift */,
-				3CAEDDE42A9E58DB001469AA /* ManageInstancesView.swift */,
-				3CF3B8F22A8FF7D4001C08B5 /* KbinSelectorView.swift */,
-			);
-			name = Account;
-			sourceTree = "<group>";
-		};
-		3C9E54952A94C3170093DDC7 /* Developer Options */ = {
-			isa = PBXGroup;
-			children = (
-				3C2C45492AA648A000727DD5 /* UserDefaultsExplorerView.swift */,
-				3CECCE1B2AADBFFA0017A605 /* ColorTesterView.swift */,
-				3CA8A0C82AE5DBA900EEABD3 /* RealmBrowser.swift */,
-			);
-			name = "Developer Options";
-			sourceTree = "<group>";
-		};
-		3C9E54962A94C34D0093DDC7 /* Appearance */ = {
-			isa = PBXGroup;
-			children = (
-				3C87A3692A9F9C4E0029C18F /* ForceAppearance.swift */,
-				3C9E54972A953FB60093DDC7 /* SettingsSplashScreenView.swift */,
-				3C2B14742AABC7CB0028E05A /* SettingsQuicklinksView.swift */,
-				3CECCE1D2AADDBBA0017A605 /* CircleFillIcons.swift */,
-			);
-			name = Appearance;
-			sourceTree = "<group>";
-		};
-		3CA5C4062A5743EB00BF8F1B /* DataLoaders */ = {
-			isa = PBXGroup;
-			children = (
-				3CA8A0C22AE570E200EEABD3 /* PostsFetcher.swift */,
-				3CC09CDA2B0E92840036422F /* PrivateMessageFetcher.swift */,
-				3CB046F52ADB28850011BFEC /* PersonFetcher.swift */,
-				3C65885C2A6189AF00A46DA3 /* CommentsFetcher.swift */,
-				3CB408B32A5C558B00B7C983 /* CommunitiesFetcher.swift */,
-				3C5ECB1E2A75ABFE002BA561 /* SiteInfoFetcher.swift */,
-				3CC3E4342ADDD74D00F7F9A9 /* PostSiteMetadataFetcher.swift */,
-				3CC178942A7DAAE300C208D0 /* SearchFetcher.swift */,
-			);
-			path = DataLoaders;
 			sourceTree = "<group>";
 		};
 		3CA5C4082A57443200BF8F1B /* DataModels */ = {
@@ -1087,7 +1035,6 @@
 				3C11B28A2B1CB44600244838 /* SettingsAppearanceView.swift */,
 				3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */,
 				3C87A36D2A9FBDE70029C18F /* SettingsAppIconPickerView.swift */,
-				3CF3B8F02A8F797D001C08B5 /* SettingsLayoutView.swift */,
 				3C87A3672A9F999D0029C18F /* SettingsThemeView.swift */,
 				3C808E232A9B6DAD008FA62E /* SettingsDevOptionsView.swift */,
 				3CE35B152AE2D7CD00263E13 /* SettingsAdditionalView.swift */,
@@ -1096,10 +1043,18 @@
 				3C6ACC212AE5481F0073288E /* SettingsClearRealmView.swift */,
 				3C4DB8C52AB72145000137CF /* SettingsAppResetView.swift */,
 				3C2A80582AFD88C70077B7D7 /* HiddenPostsGuardView.swift */,
-				3C9E548F2A94C0870093DDC7 /* Account */,
-				3C9E54962A94C34D0093DDC7 /* Appearance */,
-				3CE35B1D2AE3D7E100263E13 /* Additional Options */,
-				3C9E54952A94C3170093DDC7 /* Developer Options */,
+				3C6D29682A797D6E007AFD99 /* AccountItemView.swift */,
+				3C113C422A6EA92600FDE5CE /* InstanceSelectorView.swift */,
+				3CAEDDE42A9E58DB001469AA /* ManageInstancesView.swift */,
+				3CF3B8F22A8FF7D4001C08B5 /* KbinSelectorView.swift */,
+				3C87A3692A9F9C4E0029C18F /* ForceAppearance.swift */,
+				3C2B14742AABC7CB0028E05A /* SettingsQuicklinksView.swift */,
+				3CECCE1D2AADDBBA0017A605 /* CircleFillIcons.swift */,
+				3CE35B1B2AE3D7D600263E13 /* AttributionsView.swift */,
+				3CE35B1E2AE3DAF000263E13 /* AttributionInfo.swift */,
+				3C2C45492AA648A000727DD5 /* UserDefaultsExplorerView.swift */,
+				3CECCE1B2AADBFFA0017A605 /* ColorTesterView.swift */,
+				3CA8A0C82AE5DBA900EEABD3 /* RealmBrowser.swift */,
 			);
 			path = "Settings Views";
 			sourceTree = "<group>";
@@ -1113,7 +1068,6 @@
 				3CB8D2652A55EFF900EE615A /* PlaceholderView.swift */,
 				3C130F762A8C0CB90060B6E4 /* ReactionButton.swift */,
 				3CE35B172AE2FF1B00263E13 /* PostButtonItem.swift */,
-				3CECCE222AAE1B1B0017A605 /* JWT.swift */,
 				3CCAA8BE2A65309E007CCEC2 /* NoInternetConnectionView.swift */,
 				3CE237342AA4D171000F1D20 /* LargeNavButton.swift */,
 				3CE237362AA4D188000F1D20 /* SmallNavButton.swift */,
@@ -1121,15 +1075,6 @@
 				3CC3E41E2ADC36D900F7F9A9 /* DismissButtonView.swift */,
 			);
 			path = "Common Views";
-			sourceTree = "<group>";
-		};
-		3CE35B1D2AE3D7E100263E13 /* Additional Options */ = {
-			isa = PBXGroup;
-			children = (
-				3CE35B1B2AE3D7D600263E13 /* AttributionsView.swift */,
-				3CE35B1E2AE3DAF000263E13 /* AttributionInfo.swift */,
-			);
-			name = "Additional Options";
 			sourceTree = "<group>";
 		};
 		3CECCE212AAE14140017A605 /* Account Tab */ = {
@@ -1141,18 +1086,6 @@
 				3CECCE182AACFA4B0017A605 /* MyUserView.swift */,
 			);
 			path = "Account Tab";
-			sourceTree = "<group>";
-		};
-		3CF831C32B1FA3D10036BCE0 /* APIService */ = {
-			isa = PBXGroup;
-			children = (
-				3CF831CA2B1FAE730036BCE0 /* CreatePostPopoverViewM.swift */,
-				3CF831C82B1FAE5A0036BCE0 /* AppDelegateM.swift */,
-				3CF831C62B1FAE390036BCE0 /* PostSenderM.swift */,
-				3CF831BE2B1F9D960036BCE0 /* APIService.swift */,
-				3CF831C42B1FA3E40036BCE0 /* ParameterStructures.swift */,
-			);
-			path = APIService;
 			sourceTree = "<group>";
 		};
 		3CFE04C42A7FF1E7007BAD81 /* Kbin */ = {
@@ -1243,10 +1176,7 @@
 				3C4DB8C12AB70856000137CF /* NukeExtensions */,
 				3CE69E952ABDCA8A00E2821E /* Realm */,
 				3CE69E972ABDCA8A00E2821E /* RealmSwift */,
-				3CC3E41A2ADC054000F7F9A9 /* Shiny */,
-				3C20B37E2AEB27F9003F578F /* LocalConsole */,
 				3CEBF46B2B09426E00469008 /* MarkdownUI */,
-				3C4E4CF82B1E68D50001D5FF /* Moya */,
 				3CDA82C52B1F7E420078AB36 /* Collections */,
 				3CDA82C72B1F7E420078AB36 /* OrderedCollections */,
 			);
@@ -1295,20 +1225,17 @@
 			);
 			mainGroup = 3C4F09F32A54399F009DF8AB;
 			packageReferences = (
-				3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire.git" */,
-				3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */,
+				3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */,
 				3CFE04BD2A7FEA71007BAD81 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				3C23F03C2AAA66E000AACA46 /* XCRemoteSwiftPackageReference "Pulse" */,
 				3CEB2C082AB2F3A50013609E /* XCRemoteSwiftPackageReference "Defaults" */,
-				3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols.git" */,
+				3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
 				3CC420082AB37BCB00BE1612 /* XCRemoteSwiftPackageReference "WhatsNewKit" */,
 				3CC4200B2AB37DDA00BE1612 /* XCRemoteSwiftPackageReference "BetterSafariView" */,
-				3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift.git" */,
-				3CC3E4192ADC054000F7F9A9 /* XCRemoteSwiftPackageReference "shiny" */,
-				3C20B37D2AEB27F8003F578F /* XCRemoteSwiftPackageReference "LocalConsole" */,
+				3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */,
 				3CEBF46A2B09426E00469008 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
-				3C4E4CF72B1E68D50001D5FF /* XCRemoteSwiftPackageReference "Moya.git" */,
-				3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections.git" */,
+				3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
 			productRefGroup = 3C4F09FD2A54399F009DF8AB /* Products */;
 			projectDirPath = "";
@@ -1500,7 +1427,6 @@
 				3CEF4CC22A69B38B002B83C0 /* SubscribedCommunitiesView.swift in Sources */,
 				3CB046F22ADAF3C00011BFEC /* CommentsViewWorkaroundWarning.swift in Sources */,
 				3CA8A0C92AE5DBA900EEABD3 /* RealmBrowser.swift in Sources */,
-				3CF831C52B1FA3E40036BCE0 /* ParameterStructures.swift in Sources */,
 				3CBF88122AEEC8C20058B14D /* LegacyInPostActionsView.swift in Sources */,
 				3C4DB8BE2AB701B2000137CF /* AppDelegate.swift in Sources */,
 				3CC3E4412AE047FE00F7F9A9 /* RealmPost.swift in Sources */,
@@ -1528,8 +1454,6 @@
 				3C6ACC202AE52FD20073288E /* RichLinks.swift in Sources */,
 				3C54C0A12ABB995E00F1BADE /* DefaultValues.swift in Sources */,
 				3C5ECB1F2A75ABFE002BA561 /* SiteInfoFetcher.swift in Sources */,
-				3CF831C72B1FAE390036BCE0 /* PostSenderM.swift in Sources */,
-				3CF831CB2B1FAE730036BCE0 /* CreatePostPopoverViewM.swift in Sources */,
 				3C9E548C2A94A3DC0093DDC7 /* CommentSender.swift in Sources */,
 				3CF43AA92AE1A42A006C8E84 /* PostsView.swift in Sources */,
 				3CC09CE12B0E95490036422F /* PrivateMessage.swift in Sources */,
@@ -1571,9 +1495,7 @@
 				3C5ECB242A766D64002BA561 /* DebugLoginPagePropertiesView.swift in Sources */,
 				3CC734A62A6D591A007523B5 /* URLComponentsExtension.swift in Sources */,
 				3C2A80592AFD88C70077B7D7 /* HiddenPostsGuardView.swift in Sources */,
-				3C9E54982A953FB60093DDC7 /* SettingsSplashScreenView.swift in Sources */,
 				3CEF4CD52A69B798002B83C0 /* URLParser.swift in Sources */,
-				3CF831C92B1FAE5A0036BCE0 /* AppDelegateM.swift in Sources */,
 				3CC3E4292ADC7B7A00F7F9A9 /* LocalImagePopoverView.swift in Sources */,
 				3CB9C7222AA23F7400FB5A10 /* CommunityObject.swift in Sources */,
 				3CA92E3B2A543BF000688DEB /* CommunityModel.swift in Sources */,
@@ -1613,7 +1535,6 @@
 				3CBCCDF62A589F2C00307AC1 /* CommentsView.swift in Sources */,
 				3C65885F2A621C6100A46DA3 /* ExploreCommunitiesView.swift in Sources */,
 				3CC09CDD2B0E92D90036422F /* PrivateMessageModel.swift in Sources */,
-				3CF831BF2B1F9D960036BCE0 /* APIService.swift in Sources */,
 				3CC3E4352ADDD74D00F7F9A9 /* PostSiteMetadataFetcher.swift in Sources */,
 				3C6ACC1E2AE426D40073288E /* AboutLemmyInfo.swift in Sources */,
 				3C64E7C92AF700E9003BB42E /* WhatsNew_0_0_0.swift in Sources */,
@@ -1625,7 +1546,6 @@
 				3C1A3F592A73B17E00898FC6 /* LoginView.swift in Sources */,
 				3C1A3F552A731C3F00898FC6 /* ImageExtension.swift in Sources */,
 				3C41EEC82AFECEF200F47931 /* CheckBiometricType.swift in Sources */,
-				3CF3B8F12A8F797D001C08B5 /* SettingsLayoutView.swift in Sources */,
 				3C2EA6C32AFFFA42007AC12D /* WidgetLink.swift in Sources */,
 				3C65885D2A6189AF00A46DA3 /* CommentsFetcher.swift in Sources */,
 				3CECCE192AACFA4B0017A605 /* MyUserView.swift in Sources */,
@@ -2134,14 +2054,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3C20B37D2AEB27F8003F578F /* XCRemoteSwiftPackageReference "LocalConsole" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/duraidabdul/LocalConsole/";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.12.1;
-			};
-		};
 		3C23F03C2AAA66E000AACA46 /* XCRemoteSwiftPackageReference "Pulse" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kean/Pulse";
@@ -2150,7 +2062,7 @@
 				minimumVersion = 4.0.3;
 			};
 		};
-		3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
+		3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -2158,28 +2070,12 @@
 				minimumVersion = 5.7.1;
 			};
 		};
-		3C4E4CF72B1E68D50001D5FF /* XCRemoteSwiftPackageReference "Moya.git" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Moya/Moya.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 15.0.3;
-			};
-		};
-		3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */ = {
+		3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kean/Nuke.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 12.1.5;
-			};
-		};
-		3CC3E4192ADC054000F7F9A9 /* XCRemoteSwiftPackageReference "shiny" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/maustinstar/shiny";
-			requirement = {
-				branch = master;
-				kind = branch;
 			};
 		};
 		3CC420082AB37BCB00BE1612 /* XCRemoteSwiftPackageReference "WhatsNewKit" */ = {
@@ -2198,7 +2094,7 @@
 				kind = branch;
 			};
 		};
-		3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections.git" */ = {
+		3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-collections.git";
 			requirement = {
@@ -2206,7 +2102,7 @@
 				minimumVersion = 1.0.5;
 			};
 		};
-		3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift.git" */ = {
+		3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
 			requirement = {
@@ -2222,7 +2118,7 @@
 				kind = branch;
 			};
 		};
-		3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols.git" */ = {
+		3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SFSafeSymbols/SFSafeSymbols.git";
 			requirement = {
@@ -2249,11 +2145,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3C20B37E2AEB27F9003F578F /* LocalConsole */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3C20B37D2AEB27F8003F578F /* XCRemoteSwiftPackageReference "LocalConsole" */;
-			productName = LocalConsole;
-		};
 		3C23F03D2AAA66E000AACA46 /* Pulse */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3C23F03C2AAA66E000AACA46 /* XCRemoteSwiftPackageReference "Pulse" */;
@@ -2274,37 +2165,27 @@
 		};
 		3C2EA6C82B002322007AC12D /* SFSafeSymbols */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols.git" */;
+			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
 			productName = SFSafeSymbols;
 		};
 		3C4B7DDA2A58AD23003C8192 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire.git" */;
+			package = 3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 		3C4DB8C12AB70856000137CF /* NukeExtensions */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NukeExtensions;
 		};
-		3C4E4CF82B1E68D50001D5FF /* Moya */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3C4E4CF72B1E68D50001D5FF /* XCRemoteSwiftPackageReference "Moya.git" */;
-			productName = Moya;
-		};
 		3CA95F072A7ACF3B00626353 /* Nuke */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */;
+			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = Nuke;
 		};
 		3CA95F092A7ACF3B00626353 /* NukeUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */;
+			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = NukeUI;
-		};
-		3CC3E41A2ADC054000F7F9A9 /* Shiny */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3CC3E4192ADC054000F7F9A9 /* XCRemoteSwiftPackageReference "shiny" */;
-			productName = Shiny;
 		};
 		3CC420092AB37BCB00BE1612 /* WhatsNewKit */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -2318,22 +2199,22 @@
 		};
 		3CDA82C52B1F7E420078AB36 /* Collections */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections.git" */;
+			package = 3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = Collections;
 		};
 		3CDA82C72B1F7E420078AB36 /* OrderedCollections */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections.git" */;
+			package = 3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = OrderedCollections;
 		};
 		3CE69E952ABDCA8A00E2821E /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift.git" */;
+			package = 3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = Realm;
 		};
 		3CE69E972ABDCA8A00E2821E /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift.git" */;
+			package = 3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
 		3CEB2C092AB2F3A50013609E /* Defaults */ = {
@@ -2343,7 +2224,7 @@
 		};
 		3CEB2C122AB2F45F0013609E /* SFSafeSymbols */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols.git" */;
+			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
 			productName = SFSafeSymbols;
 		};
 		3CEBF46B2B09426E00469008 /* MarkdownUI */ = {

@@ -9,12 +9,10 @@ import Defaults
 import Nuke
 import NukeUI
 import SFSafeSymbols
-import Shiny
 import SwiftUI
 
 struct MyUserView: View {
   @Default(.activeAccount) var activeAccount
-  @Default(.iridescenceEnabled) var iridescenceEnabled
 
   @GestureState var dragAmount = CGSize.zero
 
@@ -224,9 +222,6 @@ struct MyUserView: View {
       }
     }
     .modifier(BlurredAndDisabledModifier(style: actorID.isEmpty ? .disabled : .none))
-    .modifier(
-      ConditionalListRowBackgroundModifier(
-        background: iridescenceEnabled ? .iridescent : .defaultBackground))
   }
 }
 

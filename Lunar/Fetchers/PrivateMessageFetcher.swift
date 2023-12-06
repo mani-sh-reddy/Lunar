@@ -27,7 +27,7 @@ class PrivateMessageFetcher: ObservableObject {
   private var endpoint: URLComponents {
     URLBuilder(
       endpointPath: endpointPath,
-      jwt: getJWTFromKeychain(),
+      jwt: JWT().getJWTForActiveAccount(),
       instance: instance
     ).buildURL()
   }
@@ -53,7 +53,7 @@ class PrivateMessageFetcher: ObservableObject {
     let cacher = ResponseCacher(behavior: .cache)
 
     var headers: HTTPHeaders = []
-    if let jwt = getJWTFromKeychain() {
+    if let jwt = JWT().getJWTForActiveAccount() {
       headers = [.authorization(bearerToken: jwt)]
     }
 
@@ -113,17 +113,6 @@ class PrivateMessageFetcher: ObservableObject {
         print("PrivateMessageFetcher ERROR: \(error): \(error.errorDescription ?? "")")
         self.isLoading = false
       }
-    }
-  }
-
-  func getJWTFromKeychain() -> String? {
-    if let keychainObject = KeychainHelper.standard.read(
-      service: appBundleID, account: activeAccount.actorID
-    ) {
-      let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
-      return jwt.replacingOccurrences(of: "\"", with: "")
-    } else {
-      return nil
     }
   }
 }

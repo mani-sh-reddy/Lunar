@@ -8,8 +8,6 @@
 
 [Defaults](https://github.com/sindresorhus/Defaults) - Swifty and modern UserDefaults
 
-[LocalConsole](https://github.com/duraidabdul/LocalConsole) - In-app console and debug tools
-
 [MarkdownUI](https://github.com/gonzalezreal/swift-markdown-ui) - Display and customize Markdown text in SwiftUI
 
 [Nuke](https://github.com/kean/Nuke) - Image loading system
@@ -19,7 +17,5 @@
 [Realm](https://github.com/realm/realm-swift) - Mobile database replacement for Core Data & SQLite
 
 [SFSafeSymbols](https://github.com/SFSafeSymbols/SFSafeSymbols) - Access Apple's SF Symbols using static typing
-
-[Shiny](https://github.com/maustinstar/shiny) - Simulate lighting and motion effects on color
 
 [WhatsNewKit](https://github.com/SvenTiigi/WhatsNewKit) - Showcase your new app features

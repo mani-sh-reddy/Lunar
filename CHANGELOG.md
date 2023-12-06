@@ -9,6 +9,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Misc
+
+- Removed `Shiny` package due to lag
+- Removed `Local Console` package
+
 ## [2023.12.1]
 
 ### Added

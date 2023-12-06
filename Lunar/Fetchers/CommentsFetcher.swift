@@ -36,7 +36,7 @@ class CommentsFetcher: ObservableObject {
       limitParameter: limitParameter,
       postID: postID,
       maxDepth: maxDepth,
-      jwt: getJWTFromKeychain()
+      jwt: JWT().getJWTForActiveAccount()
     ).buildURL()
   }
 
@@ -72,7 +72,7 @@ class CommentsFetcher: ObservableObject {
     let cacher = ResponseCacher(behavior: .cache)
 
     var headers: HTTPHeaders = []
-    if let jwt = getJWTFromKeychain() {
+    if let jwt = JWT().getJWTForActiveAccount() {
       headers = [.authorization(bearerToken: jwt)]
     }
 
@@ -127,17 +127,6 @@ class CommentsFetcher: ObservableObject {
       case let .failure(error):
         print("CommentsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
       }
-    }
-  }
-
-  func getJWTFromKeychain() -> String? {
-    if let keychainObject = KeychainHelper.standard.read(
-      service: appBundleID, account: activeAccount.actorID
-    ) {
-      let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
-      return jwt.replacingOccurrences(of: "\"", with: "")
-    } else {
-      return nil
     }
   }
 

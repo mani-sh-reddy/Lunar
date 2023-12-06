@@ -48,7 +48,7 @@ struct ConditionalListRowBackgroundModifier: ViewModifier {
         content.listRowBackground(
           ZStack {
             Color.gray.opacity(0.1)
-            Rectangle().shiny(.iridescent)
+            Rectangle()
           }
         ))
     } else if background == .defaultBackground {

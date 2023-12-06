@@ -17,7 +17,6 @@ class PersonFetcher: ObservableObject {
   @Default(.activeAccount) var activeAccount
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
 
-//  @Published var personModel = [PersonModel]()
   @Published var posts = [PostObject]()
   @Published var comments = [CommentObject]()
   @Published var isLoading = false
@@ -41,7 +40,7 @@ class PersonFetcher: ObservableObject {
       limitParameter: 50,
       savedOnly: savedOnly,
       personID: personID,
-      jwt: getJWTFromKeychain(),
+      jwt: JWT().getJWTForActiveAccount(),
       instance: instance
     ).buildURL()
   }
@@ -78,13 +77,6 @@ class PersonFetcher: ObservableObject {
     loadContent()
   }
 
-//  func loadMoreContentIfNeeded(currentItem: PostObject) {
-//    guard currentItem.post.id == personModel.first?.posts.last?.post.id else {
-//      return
-//    }
-//    loadContent()
-//  }
-
   func loadContent(isRefreshing: Bool = false) {
     guard !isLoading else { return }
 
@@ -97,7 +89,7 @@ class PersonFetcher: ObservableObject {
     let cacher = ResponseCacher(behavior: .cache)
 
     var headers: HTTPHeaders = []
-    if let jwt = getJWTFromKeychain() {
+    if let jwt = JWT().getJWTForActiveAccount() {
       headers = [.authorization(bearerToken: jwt)]
     }
 
@@ -160,17 +152,6 @@ class PersonFetcher: ObservableObject {
           self.isLoading = false
         }
       }
-    }
-  }
-
-  func getJWTFromKeychain() -> String? {
-    if let keychainObject = KeychainHelper.standard.read(
-      service: appBundleID, account: activeAccount.actorID
-    ) {
-      let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
-      return jwt.replacingOccurrences(of: "\"", with: "")
-    } else {
-      return nil
     }
   }
 }
