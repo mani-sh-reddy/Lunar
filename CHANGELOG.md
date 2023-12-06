@@ -9,6 +9,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+- Added a warning to notify users about errors performing actions outside of home instance
 ### Misc
 
 - Removed `Shiny` package due to lag
