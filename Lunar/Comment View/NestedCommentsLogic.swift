@@ -22,7 +22,7 @@ extension CommentObject {
 }
 
 class NestedComment: ObservableObject {
-  let commentViewData: CommentObject
+  var commentViewData: CommentObject
   var subComments: [NestedComment]
   var indentLevel: Int
 

@@ -185,6 +185,7 @@ struct PostItem: View {
           Text("Report")
         }
         .tint(.red)
+        .disabled(reportReasonHolder.isEmpty)
         Button {
           let reportReason = reportReasonHolder
           reportPostAction(reportReason: reportReason)
@@ -193,6 +194,7 @@ struct PostItem: View {
           Text("Report and Block User")
         }
         .tint(.red)
+        .disabled(reportReasonHolder.isEmpty)
       }
     }
   }
@@ -511,12 +513,13 @@ struct PostItem: View {
   }
 
   func reportPostAction(reportReason: String) {
-    ReportPostSender(postID: post.postID, reportReason: reportReason).sendReport { _, _, successful in
-      if successful {
+    ReportSender(postID: post.postID, reportObjectType: .post, reportReason: reportReason).sendReport { _, _, successful in
+      print(successful)
+      if successful == true {
         notificationHaptics.notificationOccurred(.success)
         reportPostSheetPresented = false
       } else {
-        notificationHaptics.notificationOccurred(.warning)
+        notificationHaptics.notificationOccurred(.error)
       }
     }
   }

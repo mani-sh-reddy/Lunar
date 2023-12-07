@@ -13,6 +13,8 @@ All notable changes to this project will be documented in this file.
 
 - Blocking users via a post
 - Reporting posts
+- Blocking users via a comment
+- Reporting comments
 - Warning to notify users about errors performing actions outside of home instance
 
 ### Misc

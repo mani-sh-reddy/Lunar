@@ -18,10 +18,16 @@ struct RecursiveComment: View {
 
   @State private var isExpanded = true
   @State var showCreateCommentPopover = false
+  @State var blockUserDialogPresented = false
+  @State var reportCommentSheetPresented = false
+  @State var reportReasonHolder: String = ""
+
   @EnvironmentObject var commentsFetcher: CommentsFetcher
 
   let nestedComment: NestedComment
   let post: RealmPost
+
+  let notificationHaptics = UINotificationFeedbackGenerator()
 
   let commentHierarchyColors: [Color] = [
     .clear, .red, .orange, .yellow, .green, .cyan, .blue, .indigo, .purple,
@@ -49,6 +55,20 @@ struct RecursiveComment: View {
       }
       .contextMenu {
         shareButton
+        Menu {
+          reportCommentButton
+          blockUserButton
+        } label: {
+          Label("More", systemSymbol: .ellipsisCircle)
+        }
+      }
+      .confirmationDialog("", isPresented: $blockUserDialogPresented) {
+        blockDialog
+      } message: {
+        Text("Block user \(URLParser.buildFullUsername(from: post.personActorID))")
+      }
+      .sheet(isPresented: $reportCommentSheetPresented) {
+        reportCommentSheet
       }
 
       ForEach(nestedComment.subComments, id: \.id) { subComment in
@@ -65,12 +85,108 @@ struct RecursiveComment: View {
     }
   }
 
+  var reportCommentSheet: some View {
+    List {
+      Section {
+        HStack {
+          Text("Report Comment")
+            .font(.title)
+            .bold()
+          Spacer()
+          Button {
+            reportCommentSheetPresented = false
+          } label: {
+            Image(systemSymbol: .xmarkCircleFill)
+              .font(.largeTitle)
+              .foregroundStyle(.secondary)
+              .saturation(0)
+          }
+        }
+      }
+      .listRowSeparator(.hidden)
+      .listRowBackground(Color.clear)
+
+      Section {
+        VStack(alignment: .leading) {
+          Text(URLParser.buildFullUsername(from: nestedComment.commentViewData.creator.actorID))
+            .foregroundStyle(.secondary)
+          Text(nestedComment.commentViewData.comment.content)
+            .lineLimit(5)
+            .truncationMode(.tail)
+        }
+      } header: {
+        Text("Comment")
+      }
+      .listRowSeparator(.hidden)
+      .listRowBackground(Color.clear)
+
+      Section {
+        TextEditor(text: $reportReasonHolder)
+          .background(Color.clear)
+          .font(.body)
+          .frame(height: 150)
+      } header: {
+        Text("Reason")
+      }
+
+      Section {
+        Button {
+          let reportReason = reportReasonHolder
+          reportCommentAction(reportReason: reportReason)
+        } label: {
+          Text("Report")
+        }
+        .tint(.red)
+        .disabled(reportReasonHolder.isEmpty)
+        Button {
+          let reportReason = reportReasonHolder
+          reportCommentAction(reportReason: reportReason)
+          blockUserAction()
+        } label: {
+          Text("Report and Block User")
+        }
+        .tint(.red)
+        .disabled(reportReasonHolder.isEmpty)
+      }
+    }
+  }
+
   var shareButton: some View {
     Button {
       let items: [Any] = [nestedComment.commentViewData.comment.content]
       ShareSheet().share(items: items) {}
     } label: {
       Label("Share", systemSymbol: AllSymbols().shareContextIcon)
+    }
+  }
+
+  var blockUserButton: some View {
+    Button {
+      blockUserDialogPresented = true
+    } label: {
+      Label("Block User", systemSymbol: AllSymbols().blockContextIcon)
+    }
+  }
+
+  var reportCommentButton: some View {
+    Button {
+      reportCommentSheetPresented = true
+    } label: {
+      Label("Report Comment", systemSymbol: AllSymbols().reportContextIcon)
+    }
+  }
+
+  @ViewBuilder
+  var blockDialog: some View {
+    Button("Block User") {
+      blockUserAction()
+    }
+    Button("Report & Block") {
+      blockUserDialogPresented = false
+      reportCommentSheetPresented = true
+    }
+    Button("Dismiss", role: .cancel) {
+      blockUserDialogPresented = false
     }
   }
 
@@ -162,6 +278,7 @@ struct RecursiveComment: View {
       if commentMetadataPosition == "Top" {
         commentMetadata
       }
+
       Markdown { nestedComment.commentViewData.comment.content }
         .markdownTextStyle(\.text) { FontSize(fontSize) }
         .markdownTheme(.gitHub)
@@ -186,5 +303,31 @@ struct RecursiveComment: View {
     }
 
     return count
+  }
+
+  func blockUserAction() {
+    if let personID = nestedComment.commentViewData.creator.id {
+      BlockUserSender(personID: personID, block: true).blockUser { _, userIsBlockedResponse, _ in
+        if userIsBlockedResponse == true {
+          if let index = commentsFetcher.comments.firstIndex(where: {
+            $0.comment.id == nestedComment.commentViewData.comment.id
+          }) {
+            commentsFetcher.comments.remove(at: index)
+          }
+        }
+      }
+    }
+  }
+
+  func reportCommentAction(reportReason: String) {
+    ReportSender(commentID: nestedComment.commentID, reportObjectType: .comment, reportReason: reportReason).sendReport { _, _, successful in
+      print(successful)
+      if successful == true {
+        notificationHaptics.notificationOccurred(.success)
+        reportCommentSheetPresented = false
+      } else {
+        notificationHaptics.notificationOccurred(.error)
+      }
+    }
   }
 }

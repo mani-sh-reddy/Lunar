@@ -82,7 +82,7 @@
 		3C3E75F82B21158100F25F7D /* GenerateHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3E75F72B21158100F25F7D /* GenerateHeaders.swift */; };
 		3C3E75FA2B21239400F25F7D /* BlockUserSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3E75F92B21239400F25F7D /* BlockUserSender.swift */; };
 		3C3E75FC2B212F2600F25F7D /* BlockUserResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3E75FB2B212F2600F25F7D /* BlockUserResponseModel.swift */; };
-		3C3E75FE2B22713400F25F7D /* ReportPostSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3E75FD2B22713400F25F7D /* ReportPostSender.swift */; };
+		3C3E75FE2B22713400F25F7D /* ReportSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3E75FD2B22713400F25F7D /* ReportSender.swift */; };
 		3C3E76002B22726900F25F7D /* ReportPostResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3E75FF2B22726900F25F7D /* ReportPostResponseModel.swift */; };
 		3C41EEC82AFECEF200F47931 /* CheckBiometricType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C41EEC72AFECEF200F47931 /* CheckBiometricType.swift */; };
 		3C42AD1A2A8038300056AFBC /* KbinCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42AD192A8038300056AFBC /* KbinCommentsView.swift */; };
@@ -371,7 +371,7 @@
 		3C3E75F72B21158100F25F7D /* GenerateHeaders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenerateHeaders.swift; sourceTree = "<group>"; };
 		3C3E75F92B21239400F25F7D /* BlockUserSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockUserSender.swift; sourceTree = "<group>"; };
 		3C3E75FB2B212F2600F25F7D /* BlockUserResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockUserResponseModel.swift; sourceTree = "<group>"; };
-		3C3E75FD2B22713400F25F7D /* ReportPostSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportPostSender.swift; sourceTree = "<group>"; };
+		3C3E75FD2B22713400F25F7D /* ReportSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportSender.swift; sourceTree = "<group>"; };
 		3C3E75FF2B22726900F25F7D /* ReportPostResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportPostResponseModel.swift; sourceTree = "<group>"; };
 		3C41EEC72AFECEF200F47931 /* CheckBiometricType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBiometricType.swift; sourceTree = "<group>"; };
 		3C42AD192A8038300056AFBC /* KbinCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinCommentsView.swift; sourceTree = "<group>"; };
@@ -677,7 +677,7 @@
 				3CC3E4222ADC4A2600F7F9A9 /* ImageSender.swift */,
 				3C6BBF712A910F6100312E2B /* SubscriptionActionSender.swift */,
 				3C3E75F92B21239400F25F7D /* BlockUserSender.swift */,
-				3C3E75FD2B22713400F25F7D /* ReportPostSender.swift */,
+				3C3E75FD2B22713400F25F7D /* ReportSender.swift */,
 				3C9E548B2A94A3DC0093DDC7 /* CommentSender.swift */,
 				3CC3E42C2ADD6EBA00F7F9A9 /* PostSender.swift */,
 				3CA8A0C22AE570E200EEABD3 /* PostsFetcher.swift */,
@@ -1434,7 +1434,7 @@
 				3C9E549A2A954C060093DDC7 /* CommentResponseModel.swift in Sources */,
 				3C2EA6CB2B00274F007AC12D /* ImageDownloadManager.swift in Sources */,
 				3CC178952A7DAAE300C208D0 /* SearchFetcher.swift in Sources */,
-				3C3E75FE2B22713400F25F7D /* ReportPostSender.swift in Sources */,
+				3C3E75FE2B22713400F25F7D /* ReportSender.swift in Sources */,
 				3CF3F9C02A6EE0390051E725 /* SettingsClearCacheView.swift in Sources */,
 				3CFE04C72A7FF270007BAD81 /* KbinThreadsFetcher.swift in Sources */,
 				3C96EA502A7843EC00753199 /* AddNewUserButtonView.swift in Sources */,
