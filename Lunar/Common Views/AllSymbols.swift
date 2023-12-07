@@ -29,7 +29,11 @@ class AllSymbols {
   }
 
   var blockContextIcon: SFSafeSymbols.SFSymbol {
-    SFSafeSymbols.SFSymbol.xmarkCircle
+    SFSafeSymbols.SFSymbol.personCropCircleFillBadgeXmark
+  }
+
+  var reportContextIcon: SFSafeSymbols.SFSymbol {
+    SFSafeSymbols.SFSymbol.exclamationmarkTriangleFill
   }
 
   var upvoteContextIcon: SFSafeSymbols.SFSymbol {

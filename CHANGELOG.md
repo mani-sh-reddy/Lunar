@@ -12,7 +12,9 @@ All notable changes to this project will be documented in this file.
 ### Added
 
 - Blocking users via a post
+- Reporting posts
 - Warning to notify users about errors performing actions outside of home instance
+
 ### Misc
 
 - Removed `Shiny` package due to lag

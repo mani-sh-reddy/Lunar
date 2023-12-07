@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 enum URLParser {
-  /// "https://lemmy.world/c/mani" ==> _lemmy.world_
+  /// "https://lemmy.world/u/mani" ==> _lemmy.world_
   static func extractDomain(from url: String) -> String {
     guard let urlComponents = URLComponents(string: url),
           let host = urlComponents.host
@@ -37,7 +37,7 @@ enum URLParser {
     return path
   }
 
-  /// "https://lemmy.world/c/mani" ==> _mani_
+  /// "https://lemmy.world/u/mani" ==> _mani_
   static func extractUsername(from url: String) -> String {
     let path = extractPath(from: url)
     if let range = path.range(of: "/u/", options: .regularExpression) {
@@ -55,8 +55,13 @@ enum URLParser {
     return components.penultimate() ?? ""
   }
 
-  /// "https://lemmy.world/c/mani" ==> _mani@lemmy.world_
+  /// "https://lemmy.world/u/mani" ==> _mani@lemmy.world_
   static func buildFullUsername(from url: String) -> String {
     "\(extractUsername(from: url))@\(extractDomain(from: url))"
+  }
+
+  /// "https://lemmy.world/c/asklemmy" ==> _asklemmy@lemmy.world_
+  static func buildFullCommunity(from communityActorID: String) -> String {
+    "\(extractUsername(from: communityActorID))@\(extractDomain(from: communityActorID))"
   }
 }
