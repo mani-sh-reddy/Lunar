@@ -9,6 +9,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Misc
+
+- Removed legacy views
+
 ## [2023.12.3]
 
 ### Added

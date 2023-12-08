@@ -1,5 +1,5 @@
 //
-//  CommunityRowView.swift
+//  CommunityItem.swift
 //  Lunar
 //
 //  Created by Mani on 04/07/2023.
@@ -12,7 +12,7 @@ import RealmSwift
 import SFSafeSymbols
 import SwiftUI
 
-struct CommunityRowView: View {
+struct CommunityItem: View {
   @Default(.detailedCommunityLabels) var detailedCommunityLabels
 
   @ObservedRealmObject var community: RealmCommunity
@@ -50,13 +50,17 @@ struct CommunityRowView: View {
       }
     }
     .contextMenu {
-      blockCommunityButton
+      if community.subscribed == .notSubscribed {
+        blockCommunityButton
+      }
       if community.subscribed != .notSubscribed {
         unsubscribeContextMenuButton
       }
     }
     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-      blockCommunityButton
+      if community.subscribed == .notSubscribed {
+        blockCommunityButton
+      }
     }
     .confirmationDialog(
       "Block community \(community.name)?",
