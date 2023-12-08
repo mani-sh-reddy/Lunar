@@ -38,8 +38,17 @@ struct MyUserView: View {
       List {
         userDetailsSection
         scoreSection
-        postsAndCommentsSection
-        savedPostsAndCommentsSection
+        Group {
+          Section {
+            myPosts
+            myComments
+          }
+          Section {
+            savedPosts
+            savedComments
+          }
+        }
+        .modifier(BlurredAndDisabledModifier(style: actorID.isEmpty ? .disabled : .none))
       }
       .listStyle(.insetGrouped)
       .onAppear {
@@ -51,6 +60,8 @@ struct MyUserView: View {
       }
     }
   }
+
+  // MARK: - userDetailsSection
 
   var userDetailsSection: some View {
     Section {
@@ -102,108 +113,113 @@ struct MyUserView: View {
     .listRowBackground(Color.clear)
   }
 
-  var postsAndCommentsSection: some View {
-    Section {
-      NavigationLink {
-        if userID != 0 {
-          MyUserObserver(
-            personFetcher: PersonFetcher(
-              sortParameter: "New",
-              typeParameter: "All",
-              personID: userID
-            ),
-            userName: name,
-            viewType: "Posts"
-          )
-        }
-      } label: {
-        Label {
-          HStack {
-            Text("Posts")
-            Spacer()
-            Text(postCount).bold().foregroundStyle(.gray)
-          }
-        } icon: {
-          Image(systemSymbol: .rectangleOnRectangleAngled)
-            .foregroundStyle(.purple)
-        }
-      }
+  // MARK: - myPosts
 
-      NavigationLink {
-        if userID != 0 {
-          MyUserObserver(
-            personFetcher: PersonFetcher(
-              sortParameter: "New",
-              typeParameter: "All",
-              personID: userID
-            ),
-            userName: name,
-            viewType: "Comments"
-          )
-        }
-      } label: {
-        Label {
-          Text("Comments")
+  var myPosts: some View {
+    NavigationLink {
+      if userID != 0 {
+        MyUserPostsView(
+          personFetcher: PersonFetcher(
+            sortParameter: "New",
+            typeParameter: "All",
+            personID: userID
+          ),
+          heading: "My Posts"
+        )
+      }
+    } label: {
+      Label {
+        HStack {
+          Text("Posts")
           Spacer()
-          Text(commentCount).bold().foregroundStyle(.gray)
-        } icon: {
-          Image(systemSymbol: .textBubble)
-            .foregroundStyle(.cyan)
+          Text(postCount).bold().foregroundStyle(.gray)
         }
+      } icon: {
+        Image(systemSymbol: .rectangleOnRectangleAngled)
+          .foregroundStyle(.purple)
       }
     }
-    .modifier(BlurredAndDisabledModifier(style: actorID.isEmpty ? .disabled : .none))
   }
 
-  var savedPostsAndCommentsSection: some View {
-    Section {
-      NavigationLink {
-        if userID != 0 {
-          MyUserObserver(
-            personFetcher: PersonFetcher(
-              sortParameter: "New",
-              typeParameter: "All",
-              savedOnly: true,
-              personID: userID
-            ),
-            userName: name,
-            viewType: "Saved Posts"
-          )
-        }
-      } label: {
-        Label {
-          Text("Saved Posts")
+  // MARK: - myComments
 
-        } icon: {
-          Image(systemSymbol: .star)
-            .foregroundStyle(.yellow)
-        }
+  var myComments: some View {
+    NavigationLink {
+      if userID != 0 {
+        MyUserCommentsView(
+          personFetcher: PersonFetcher(
+            sortParameter: "New",
+            typeParameter: "All",
+            personID: userID
+          ),
+          heading: "My Comments"
+        )
       }
-      NavigationLink {
-        if userID != 0 {
-          MyUserObserver(
-            personFetcher: PersonFetcher(
-              sortParameter: "New",
-              typeParameter: "All",
-              savedOnly: true,
-              personID: userID
-            ),
-            userName: name,
-            viewType: "Saved Comments"
-          )
-        }
-      } label: {
-        Label {
-          Text("Saved Comments")
-
-        } icon: {
-          Image(systemSymbol: .starBubble)
-            .foregroundStyle(.orange)
-        }
+    } label: {
+      Label {
+        Text("Comments")
+        Spacer()
+        Text(commentCount).bold().foregroundStyle(.gray)
+      } icon: {
+        Image(systemSymbol: .textBubble)
+          .foregroundStyle(.cyan)
       }
     }
-    .modifier(BlurredAndDisabledModifier(style: actorID.isEmpty ? .disabled : .none))
   }
+
+  // MARK: - savedPosts
+
+  var savedPosts: some View {
+    NavigationLink {
+      if userID != 0 {
+        MyUserPostsView(
+          personFetcher: PersonFetcher(
+            sortParameter: "New",
+            typeParameter: "All",
+            savedOnly: true,
+            personID: userID
+          ),
+          heading: "Saved Posts"
+        )
+      }
+    } label: {
+      Label {
+        Text("Saved Posts")
+
+      } icon: {
+        Image(systemSymbol: .star)
+          .foregroundStyle(.yellow)
+      }
+    }
+  }
+
+  // MARK: - savedComments
+
+  var savedComments: some View {
+    NavigationLink {
+      if userID != 0 {
+        MyUserCommentsView(
+          personFetcher: PersonFetcher(
+            sortParameter: "New",
+            typeParameter: "All",
+            savedOnly: true,
+            personID: userID
+          ),
+          heading: "Saved Comments"
+        )
+      }
+    } label: {
+      Label {
+        Text("Saved Comments")
+
+      } icon: {
+        Image(systemSymbol: .starBubble)
+          .foregroundStyle(.orange)
+      }
+    }
+  }
+
+  // MARK: - scoreSection
 
   var scoreSection: some View {
     Section {
@@ -228,6 +244,8 @@ struct MyUserView: View {
 #Preview {
   MyUserView()
 }
+
+// MARK: - AccountScoreView
 
 struct AccountScoreView: View {
   var title: String

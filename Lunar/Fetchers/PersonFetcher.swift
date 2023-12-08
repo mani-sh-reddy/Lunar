@@ -112,6 +112,7 @@ class PersonFetcher: ObservableObject {
           }
           self.posts += filteredPosts
           self.comments += filteredComments
+
           self.currentPage += 1
         }
         if !isRefreshing {

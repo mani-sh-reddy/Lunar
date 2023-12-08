@@ -17,14 +17,6 @@ struct MyUserPostsView: View {
 
   var heading: String
 
-  var listStyle: String {
-    if legacyPostsViewStyle == "compactPlain" {
-      "plain"
-    } else {
-      legacyPostsViewStyle
-    }
-  }
-
   var body: some View {
     List {
       ForEach(personFetcher.posts, id: \.post.id) { post in
@@ -61,6 +53,6 @@ struct MyUserPostsView: View {
     }
     .navigationTitle(heading)
     .navigationBarTitleDisplayMode(.inline)
-    .modifier(ConditionalListStyleModifier(listStyle: listStyle))
+    .listStyle(.plain)
   }
 }
