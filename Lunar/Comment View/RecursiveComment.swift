@@ -306,9 +306,9 @@ struct RecursiveComment: View {
   }
 
   func blockUserAction() {
-    if let personID = nestedComment.commentViewData.creator.id {
-      BlockUserSender(personID: personID, block: true).blockUser { _, userIsBlockedResponse, _ in
-        if userIsBlockedResponse == true {
+    if let personID = post.personID {
+      BlockSender(personID: personID, blockableObjectType: .person, block: true).blockUser { _, isBlockedResponse, _ in
+        if isBlockedResponse == true {
           if let index = commentsFetcher.comments.firstIndex(where: {
             $0.comment.id == nestedComment.commentViewData.comment.id
           }) {

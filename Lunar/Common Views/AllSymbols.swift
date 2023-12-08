@@ -28,6 +28,10 @@ class AllSymbols {
     SFSafeSymbols.SFSymbol.slashCircle
   }
 
+  var blockCommunityIcon: SFSafeSymbols.SFSymbol {
+    SFSafeSymbols.SFSymbol.xmarkOctagonFill
+  }
+
   var blockContextIcon: SFSafeSymbols.SFSymbol {
     SFSafeSymbols.SFSymbol.personCropCircleFillBadgeXmark
   }

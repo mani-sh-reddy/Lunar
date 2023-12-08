@@ -504,8 +504,8 @@ struct PostItem: View {
 
   func blockUserAction() {
     if let personID = post.personID {
-      BlockUserSender(personID: personID, block: true).blockUser { _, userIsBlockedResponse, _ in
-        if userIsBlockedResponse == true {
+      BlockSender(personID: personID, blockableObjectType: .person, block: true).blockUser { _, isBlockedResponse, _ in
+        if isBlockedResponse == true {
           RealmThawFunctions().deleteAction(post: post)
         }
       }

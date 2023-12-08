@@ -80,8 +80,8 @@
 		3C3E75F42B210AF900F25F7D /* PulseWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3E75F32B210AF900F25F7D /* PulseWriter.swift */; };
 		3C3E75F62B21102200F25F7D /* RealmWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3E75F52B21102200F25F7D /* RealmWriter.swift */; };
 		3C3E75F82B21158100F25F7D /* GenerateHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3E75F72B21158100F25F7D /* GenerateHeaders.swift */; };
-		3C3E75FA2B21239400F25F7D /* BlockUserSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3E75F92B21239400F25F7D /* BlockUserSender.swift */; };
-		3C3E75FC2B212F2600F25F7D /* BlockUserResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3E75FB2B212F2600F25F7D /* BlockUserResponseModel.swift */; };
+		3C3E75FA2B21239400F25F7D /* BlockSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3E75F92B21239400F25F7D /* BlockSender.swift */; };
+		3C3E75FC2B212F2600F25F7D /* BlockResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3E75FB2B212F2600F25F7D /* BlockResponseModel.swift */; };
 		3C3E75FE2B22713400F25F7D /* ReportSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3E75FD2B22713400F25F7D /* ReportSender.swift */; };
 		3C3E76002B22726900F25F7D /* ReportPostResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3E75FF2B22726900F25F7D /* ReportPostResponseModel.swift */; };
 		3C41EEC82AFECEF200F47931 /* CheckBiometricType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C41EEC72AFECEF200F47931 /* CheckBiometricType.swift */; };
@@ -369,8 +369,8 @@
 		3C3E75F32B210AF900F25F7D /* PulseWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PulseWriter.swift; sourceTree = "<group>"; };
 		3C3E75F52B21102200F25F7D /* RealmWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmWriter.swift; sourceTree = "<group>"; };
 		3C3E75F72B21158100F25F7D /* GenerateHeaders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenerateHeaders.swift; sourceTree = "<group>"; };
-		3C3E75F92B21239400F25F7D /* BlockUserSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockUserSender.swift; sourceTree = "<group>"; };
-		3C3E75FB2B212F2600F25F7D /* BlockUserResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockUserResponseModel.swift; sourceTree = "<group>"; };
+		3C3E75F92B21239400F25F7D /* BlockSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockSender.swift; sourceTree = "<group>"; };
+		3C3E75FB2B212F2600F25F7D /* BlockResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockResponseModel.swift; sourceTree = "<group>"; };
 		3C3E75FD2B22713400F25F7D /* ReportSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportSender.swift; sourceTree = "<group>"; };
 		3C3E75FF2B22726900F25F7D /* ReportPostResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportPostResponseModel.swift; sourceTree = "<group>"; };
 		3C41EEC72AFECEF200F47931 /* CheckBiometricType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBiometricType.swift; sourceTree = "<group>"; };
@@ -676,7 +676,7 @@
 				3C4D42A72A8D0FD1003B6F1D /* VoteSender.swift */,
 				3CC3E4222ADC4A2600F7F9A9 /* ImageSender.swift */,
 				3C6BBF712A910F6100312E2B /* SubscriptionActionSender.swift */,
-				3C3E75F92B21239400F25F7D /* BlockUserSender.swift */,
+				3C3E75F92B21239400F25F7D /* BlockSender.swift */,
 				3C3E75FD2B22713400F25F7D /* ReportSender.swift */,
 				3C9E548B2A94A3DC0093DDC7 /* CommentSender.swift */,
 				3CC3E42C2ADD6EBA00F7F9A9 /* PostSender.swift */,
@@ -862,7 +862,7 @@
 				3CC3E4302ADDCE1200F7F9A9 /* CreatePostResponseModel.swift */,
 				3CC3E4242ADC556300F7F9A9 /* ImageUploadResponseModel.swift */,
 				3C6BBF732A91108A00312E2B /* SubscribeResponseModel.swift */,
-				3C3E75FB2B212F2600F25F7D /* BlockUserResponseModel.swift */,
+				3C3E75FB2B212F2600F25F7D /* BlockResponseModel.swift */,
 				3C3E75FF2B22726900F25F7D /* ReportPostResponseModel.swift */,
 				3C9E54992A954C060093DDC7 /* CommentResponseModel.swift */,
 				3C1A3F5C2A73BC9F00898FC6 /* CredentialsModel.swift */,
@@ -1401,7 +1401,7 @@
 				3CECCE252AAE68E80017A605 /* LocalUserProperties.swift in Sources */,
 				3C87A36A2A9F9C4E0029C18F /* ForceAppearance.swift in Sources */,
 				3C5ECB2C2A7676B5002BA561 /* PasswordFieldView.swift in Sources */,
-				3C3E75FA2B21239400F25F7D /* BlockUserSender.swift in Sources */,
+				3C3E75FA2B21239400F25F7D /* BlockSender.swift in Sources */,
 				3CB046F82ADB2A220011BFEC /* PersonModel.swift in Sources */,
 				3CA5C40A2A574FF500BF8F1B /* PostModel.swift in Sources */,
 				3CB9C72B2AA2423400FB5A10 /* CommentObject.swift in Sources */,
@@ -1483,7 +1483,7 @@
 				3CECCE1C2AADBFFA0017A605 /* ColorTesterView.swift in Sources */,
 				3CC3E4232ADC4A2600F7F9A9 /* ImageSender.swift in Sources */,
 				3C808E242A9B6DAD008FA62E /* SettingsDevOptionsView.swift in Sources */,
-				3C3E75FC2B212F2600F25F7D /* BlockUserResponseModel.swift in Sources */,
+				3C3E75FC2B212F2600F25F7D /* BlockResponseModel.swift in Sources */,
 				3C42AD1A2A8038300056AFBC /* KbinCommentsView.swift in Sources */,
 				3C6299D12A751A5900BE2A9F /* TextExtension.swift in Sources */,
 				3CF3B8FD2A90188D001C08B5 /* CommentMetadataView.swift in Sources */,

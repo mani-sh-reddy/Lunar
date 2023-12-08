@@ -42,10 +42,8 @@ struct ExploreCommunitiesView: View {
               communityIcon: community.community.icon
             )
           } label: {
-            LegacyCommunityRowView(
-              community: community,
-              communitiesFetcher: communitiesFetcher
-            )
+            CommunityRowView(community: convertToRealmCommunity(community: community))
+              .environmentObject(communitiesFetcher)
           }
         }
       } header: {
@@ -87,6 +85,25 @@ struct ExploreCommunitiesView: View {
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
       communitiesFetcher.loadContent()
     }
+  }
+
+  func convertToRealmCommunity(community: CommunityObject) -> RealmCommunity {
+    RealmCommunity(
+      id: community.community.id,
+      name: community.community.name,
+      title: community.community.title,
+      actorID: community.community.actorID,
+      instanceID: community.community.instanceID,
+      descriptionText: community.community.description,
+      icon: community.community.icon,
+      banner: community.community.banner,
+      postingRestrictedToMods: community.community.postingRestrictedToMods,
+      published: community.community.published,
+      subscribers: community.counts.subscribers,
+      posts: community.counts.posts,
+      comments: community.counts.comments,
+      subscribed: community.subscribed
+    )
   }
 }
 
