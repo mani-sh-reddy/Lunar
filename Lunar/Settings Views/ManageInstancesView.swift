@@ -24,16 +24,6 @@ struct ManageInstancesView: View {
   @State var showingResetConfirmation = false
 
   var body: some View {
-    /// **Future implementation**
-    //    DroppableList("Users 1", users: $users1) { dropped, index in
-    //      users1.insert(dropped, at: index)
-    //      users2.removeAll { $0 == dropped }
-    //    }
-    //    DroppableList("Users 2", users: $users2)  { dropped, index in
-    //      users2.insert(dropped, at: index)
-    //      users1.removeAll { $0 == dropped }
-    //    }
-
     List {
       if debugModeEnabled {
         Text(String(describing: lemmyInstances))

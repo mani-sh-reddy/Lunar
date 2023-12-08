@@ -9,6 +9,9 @@ import Defaults
 import SwiftUI
 
 struct SettingsAccountView: View {
+  @Default(.activeAccount) var activeAccount
+  @Default(.selectedInstance) var selectedInstance
+
   @State var showingPopover: Bool = false
   @State var isPresentingConfirm: Bool = false
   @State var logoutAllUsersButtonClicked: Bool = false
@@ -21,6 +24,25 @@ struct SettingsAccountView: View {
 
   var body: some View {
     List {
+      if !activeAccount.actorID.isEmpty, selectedInstance != URLParser.extractDomain(from: activeAccount.actorID) {
+        Section {
+          VStack(spacing: 10) {
+            Text("Note: If the current user's home instance differs from the selected instance, errors may occur while attempting actions such as voting, replying, or blocking.")
+            HStack {
+              Spacer()
+              Image(systemSymbol: .exclamationmarkTriangleFill).symbolRenderingMode(.multicolor)
+              Text("\(URLParser.extractDomain(from: activeAccount.actorID)) x \(selectedInstance)")
+                .padding(.vertical, 10)
+              Spacer()
+            }
+          }
+        }
+        .listRowBackground(Color.clear)
+        .listRowSeparator(.hidden)
+        .font(.caption)
+        .foregroundStyle(.gray)
+      }
+
       Section {
         if isLoginFlowComplete {
           LoggedInUsersListView()

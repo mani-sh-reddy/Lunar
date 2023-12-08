@@ -6,10 +6,8 @@
 //
 
 import Alamofire
-import Combine
 import Defaults
 import Foundation
-import Pulse
 import SwiftUI
 
 class CommentsFetcher: ObservableObject {
@@ -27,8 +25,8 @@ class CommentsFetcher: ObservableObject {
   private var limitParameter: Int = 50
   private let maxDepth: Int = 50
 
-  private var endpoint: URLComponents {
-    URLBuilder(
+  private var parameters: EndpointParameters {
+    EndpointParameters(
       endpointPath: "/api/v3/comment/list",
       sortParameter: commentSort,
       typeParameter: commentType,
@@ -36,23 +34,9 @@ class CommentsFetcher: ObservableObject {
       limitParameter: limitParameter,
       postID: postID,
       maxDepth: maxDepth,
-      jwt: getJWTFromKeychain()
-    ).buildURL()
+      jwt: JWT().getJWTForActiveAccount()
+    )
   }
-
-  private var endpointRedacted: URLComponents {
-    URLBuilder(
-      endpointPath: "/api/v3/comment/list",
-      sortParameter: commentSort,
-      typeParameter: commentType,
-      currentPage: currentPage,
-      limitParameter: limitParameter,
-      postID: postID,
-      maxDepth: maxDepth
-    ).buildURL()
-  }
-
-  let pulse = Pulse.LoggerStore.shared
 
   init(postID: Int) {
     self.postID = postID
@@ -71,12 +55,10 @@ class CommentsFetcher: ObservableObject {
 
     let cacher = ResponseCacher(behavior: .cache)
 
-    var headers: HTTPHeaders = []
-    if let jwt = getJWTFromKeychain() {
-      headers = [.authorization(bearerToken: jwt)]
-    }
-
-    AF.request(endpoint, headers: headers) { urlRequest in
+    AF.request(
+      EndpointBuilder(parameters: parameters).build(),
+      headers: GenerateHeaders().generate()
+    ) { urlRequest in
       if isRefreshing {
         urlRequest.cachePolicy = .reloadRevalidatingCacheData
       } else {
@@ -88,14 +70,7 @@ class CommentsFetcher: ObservableObject {
     .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: CommentModel.self) { response in
 
-      if self.networkInspectorEnabled {
-        self.pulse.storeRequest(
-          try! URLRequest(url: self.endpointRedacted, method: .get),
-          response: response.response,
-          error: response.error,
-          data: response.data
-        )
-      }
+      PulseWriter().write(response, self.parameters, .get)
 
       switch response.result {
       case let .success(result):
@@ -127,17 +102,6 @@ class CommentsFetcher: ObservableObject {
       case let .failure(error):
         print("CommentsFetcher ERROR: \(error): \(error.errorDescription ?? "")")
       }
-    }
-  }
-
-  func getJWTFromKeychain() -> String? {
-    if let keychainObject = KeychainHelper.standard.read(
-      service: appBundleID, account: activeAccount.actorID
-    ) {
-      let jwt = String(data: keychainObject, encoding: .utf8) ?? ""
-      return jwt.replacingOccurrences(of: "\"", with: "")
-    } else {
-      return nil
     }
   }
 

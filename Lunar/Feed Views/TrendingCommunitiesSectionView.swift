@@ -39,10 +39,8 @@ struct TrendingCommunitiesSectionView: View {
           communityIcon: community.community.icon
         )
       } label: {
-        LegacyCommunityRowView(
-          community: community,
-          communitiesFetcher: communitiesFetcher
-        )
+        CommunityRowView(community: convertToRealmCommunity(community: community))
+          .environmentObject(communitiesFetcher)
       }
     }
     .onChange(of: selectedInstance) { _ in
@@ -53,5 +51,24 @@ struct TrendingCommunitiesSectionView: View {
     if communitiesFetcher.isLoading {
       ProgressView()
     }
+  }
+
+  func convertToRealmCommunity(community: CommunityObject) -> RealmCommunity {
+    RealmCommunity(
+      id: community.community.id,
+      name: community.community.name,
+      title: community.community.title,
+      actorID: community.community.actorID,
+      instanceID: community.community.instanceID,
+      descriptionText: community.community.description,
+      icon: community.community.icon,
+      banner: community.community.banner,
+      postingRestrictedToMods: community.community.postingRestrictedToMods,
+      published: community.community.published,
+      subscribers: community.counts.subscribers,
+      posts: community.counts.posts,
+      comments: community.counts.comments,
+      subscribed: community.subscribed
+    )
   }
 }

@@ -17,23 +17,23 @@ struct SettingsAppIconPickerView: View {
   let notificationHaptics = UINotificationFeedbackGenerator()
 
   private var appIcons: OrderedDictionary<String, [(String, String, String)]> {
-    return [
+    [
       "Default": [
-        ("Default", "Default", "")
+        ("Default", "Default", ""),
       ],
       "Community Icons": [
-        ("@MrSebSin", "MrSebSin", "https://lemmy.world/u/MrSebSin")
+        ("@MrSebSin", "MrSebSin", "https://lemmy.world/u/MrSebSin"),
       ],
       "Created by Mani": [
         ("Lemming", "Lemming", ""),
         ("Kbin", "Kbin", ""),
-        ("Space", "Space", "")
+        ("Space", "Space", ""),
       ],
       "Colors": [
         ("Blue", "v0", ""),
         ("Black", "Night", ""),
-        ("Purple", "Purple", "")
-      ]
+        ("Purple", "Purple", ""),
+      ],
     ]
   }
 

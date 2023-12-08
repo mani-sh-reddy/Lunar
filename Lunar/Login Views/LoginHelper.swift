@@ -85,7 +85,6 @@ class LoginHelper: ObservableObject {
     print("login successful inside handleLoginSuccess()")
     let jwt = fetchedData.jwt
     SiteInfoFetcher(jwt: jwt).fetchSiteInfo { _, _, actorID, _ in
-
       if let validActorID = actorID {
         KeychainHelper.standard.save(jwt, service: self.appBundleID, account: validActorID)
       }

@@ -19,8 +19,14 @@ struct PostItem: View {
 
   @State var showSafari: Bool = false
   @State var subscribeAlertPresented: Bool = false
+  @State var reportPostSheetPresented: Bool = false
+  @State var blockUserDialogPresented: Bool = false
+  @State var reportReasonHolder: String = ""
+
+  @Environment(\.dismiss) var dismissReportPostSheet
 
   let hapticsLight = UIImpactFeedbackGenerator(style: .light)
+  let notificationHaptics = UINotificationFeedbackGenerator()
 
   var image: String? {
     let thumbnail = post.postThumbnailURL ?? ""
@@ -110,6 +116,116 @@ struct PostItem: View {
       hideButton
       minimiseButton
       shareButton
+      Menu {
+        reportPostButton
+        blockUserButton
+      } label: {
+        Label("More", systemSymbol: .ellipsisCircle)
+      }
+    }
+    .confirmationDialog("", isPresented: $blockUserDialogPresented) {
+      blockDialog
+    } message: {
+      Text("Block user \(URLParser.buildFullUsername(from: post.personActorID))")
+    }
+    .sheet(isPresented: $reportPostSheetPresented) {
+      reportSheet
+    }
+  }
+
+  var reportSheet: some View {
+    List {
+      Section {
+        HStack {
+          Text("Report Post")
+            .font(.title)
+            .bold()
+          Spacer()
+          Button {
+            reportPostSheetPresented = false
+          } label: {
+            Image(systemSymbol: .xmarkCircleFill)
+              .font(.largeTitle)
+              .foregroundStyle(.secondary)
+              .saturation(0)
+          }
+        }
+      }
+      .listRowSeparator(.hidden)
+      .listRowBackground(Color.clear)
+
+      Section {
+        VStack(alignment: .leading) {
+          Text(URLParser.buildFullUsername(from: post.personActorID))
+            .foregroundStyle(.secondary)
+          Text(post.postName)
+            .lineLimit(5)
+            .truncationMode(.tail)
+        }
+      } header: {
+        Text("Post")
+      }
+      .listRowSeparator(.hidden)
+      .listRowBackground(Color.clear)
+
+      Section {
+        TextEditor(text: $reportReasonHolder)
+          .background(Color.clear)
+          .font(.body)
+          .frame(height: 150)
+      } header: {
+        Text("Reason")
+      }
+
+      Section {
+        Button {
+          let reportReason = reportReasonHolder
+          reportPostAction(reportReason: reportReason)
+        } label: {
+          Text("Report")
+        }
+        .tint(.red)
+        .disabled(reportReasonHolder.isEmpty)
+        Button {
+          let reportReason = reportReasonHolder
+          reportPostAction(reportReason: reportReason)
+          blockUserAction()
+        } label: {
+          Text("Report and Block User")
+        }
+        .tint(.red)
+        .disabled(reportReasonHolder.isEmpty)
+      }
+    }
+  }
+
+  @ViewBuilder
+  var blockDialog: some View {
+    Button("Block User") {
+      blockUserAction()
+    }
+    Button("Report & Block") {
+      blockUserDialogPresented = false
+      reportPostSheetPresented = true
+    }
+    Button("Dismiss", role: .cancel) {
+      blockUserDialogPresented = false
+    }
+  }
+
+  var reportPostButton: some View {
+    Button {
+      reportPostSheetPresented = true
+    } label: {
+      Label("Report Post", systemSymbol: AllSymbols().reportContextIcon)
+    }
+  }
+
+  var blockUserButton: some View {
+    Button {
+      blockUserDialogPresented = true
+    } label: {
+      Label("Block User", systemSymbol: AllSymbols().blockContextIcon)
     }
   }
 
@@ -382,6 +498,28 @@ struct PostItem: View {
         } else {
           notificationHaptics.notificationOccurred(.error)
         }
+      }
+    }
+  }
+
+  func blockUserAction() {
+    if let personID = post.personID {
+      BlockSender(personID: personID, blockableObjectType: .person, block: true).blockUser { _, isBlockedResponse, _ in
+        if isBlockedResponse == true {
+          RealmThawFunctions().deleteAction(post: post)
+        }
+      }
+    }
+  }
+
+  func reportPostAction(reportReason: String) {
+    ReportSender(postID: post.postID, reportObjectType: .post, reportReason: reportReason).sendReport { _, _, successful in
+      print(successful)
+      if successful == true {
+        notificationHaptics.notificationOccurred(.success)
+        reportPostSheetPresented = false
+      } else {
+        notificationHaptics.notificationOccurred(.error)
       }
     }
   }

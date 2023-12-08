@@ -22,6 +22,19 @@ class RealmThawFunctions {
     }
   }
 
+  func deleteAction(post: RealmPost) {
+    let thawedPost = post.thaw()
+    if thawedPost?.isInvalidated == false {
+      let thawedRealm = thawedPost!.realm!
+      try! thawedRealm.write {
+        if let thawedPost {
+          thawedRealm.delete(thawedPost)
+        }
+      }
+    }
+    hapticsSoft.impactOccurred(intensity: 0.5)
+  }
+
   func hideAction(post: RealmPost) {
     let realm = try! Realm()
     try! realm.write {

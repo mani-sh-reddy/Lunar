@@ -33,18 +33,16 @@ class SearchFetcher: ObservableObject {
   var sortParameter: String
   private var limitParameter: Int
 
-  private var endpoint: URLComponents {
-    URLBuilder(
+  private var parameters: EndpointParameters {
+    EndpointParameters(
       endpointPath: "/api/v3/search",
       sortParameter: sortParameter,
       typeParameter: typeParameter,
       currentPage: currentPage,
       limitParameter: limitParameter,
       searchQuery: searchQuery
-    ).buildURL()
+    )
   }
-
-  let pulse = Pulse.LoggerStore.shared
 
   init(
     searchQuery: String,
@@ -82,7 +80,10 @@ class SearchFetcher: ObservableObject {
 
     let cacher = ResponseCacher(behavior: .cache)
 
-    AF.request(endpoint) { urlRequest in
+    AF.request(
+      EndpointBuilder(parameters: parameters).build(),
+      headers: GenerateHeaders().generate()
+    ) { urlRequest in
       print("SearchFetcher LOAD \(urlRequest.url as Any)")
       urlRequest.cachePolicy = .returnCacheDataElseLoad
     }
@@ -90,14 +91,7 @@ class SearchFetcher: ObservableObject {
     .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: SearchModel.self) { response in
 
-      if self.networkInspectorEnabled {
-        self.pulse.storeRequest(
-          try! URLRequest(url: self.endpoint, method: .get),
-          response: response.response,
-          error: response.error,
-          data: response.data
-        )
-      }
+      PulseWriter().write(response, self.parameters, .get)
 
       switch response.result {
       case let .success(result):

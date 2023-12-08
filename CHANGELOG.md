@@ -9,6 +9,21 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- Blocking users via a post
+- Reporting posts
+- Blocking users via a comment
+- Reporting comments
+- Blocking communities
+- Warning to notify users about errors performing actions outside of home instance
+
+### Misc
+
+- Removed `Shiny` package due to lag
+- Removed `Local Console` package
+- Cleaned up API fetchers code
+
 ## [2023.12.1]
 
 ### Added

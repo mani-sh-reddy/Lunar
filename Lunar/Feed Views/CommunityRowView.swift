@@ -17,33 +17,73 @@ struct CommunityRowView: View {
 
   @ObservedRealmObject var community: RealmCommunity
 
-  var body: some View {
-    if detailedCommunityLabels {
-      HStack {
-        communityIconView
+  @State var blockCommunityDialogPresented = false
 
-        VStack(alignment: .leading, spacing: 2) {
-          HStack(alignment: .center, spacing: 4) {
-            communityNameView
-            communityLabelIcons
+  @EnvironmentObject var communitiesFetcher: LegacyCommunitiesFetcher
+
+  var body: some View {
+    Group {
+      if detailedCommunityLabels {
+        HStack {
+          communityIconView
+
+          VStack(alignment: .leading, spacing: 2) {
+            HStack(alignment: .center, spacing: 4) {
+              communityNameView
+              communityLabelIcons
+            }
+            communityCounts
           }
-          communityCounts
+          .padding(.horizontal, 10)
+          Spacer()
+          instanceLabel
+        }
+      } else {
+        HStack {
+          communityIconView
+          communityNameView
         }
         .padding(.horizontal, 10)
-        Spacer()
-        instanceLabel
+        .contextMenu {
+          unsubscribeContextMenuButton
+        }
       }
-      .contextMenu {
+    }
+    .contextMenu {
+      blockCommunityButton
+      if community.subscribed != .notSubscribed {
         unsubscribeContextMenuButton
       }
-    } else {
-      HStack {
-        communityIconView
-        communityNameView
+    }
+    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+      blockCommunityButton
+    }
+    .confirmationDialog(
+      "Block community \(community.name)?",
+      isPresented: $blockCommunityDialogPresented,
+      actions: {
+        Button("Block", role: .destructive) {
+          blockCommunityAction()
+        }
       }
-      .padding(.horizontal, 10)
-      .contextMenu {
-        unsubscribeContextMenuButton
+    )
+  }
+
+  var blockCommunityButton: some View {
+    Button {
+      blockCommunityDialogPresented = true
+    } label: {
+      Label("Block Community", systemSymbol: AllSymbols().blockCommunityIcon)
+    }
+    .tint(.red)
+  }
+
+  func blockCommunityAction() {
+    BlockSender(communityID: community.id, blockableObjectType: .community, block: true).blockUser { _, isBlockedResponse, _ in
+      if isBlockedResponse == true {
+        if let index = communitiesFetcher.communities.firstIndex(where: { $0.community.id == community.id }) {
+          communitiesFetcher.communities.remove(at: index)
+        }
       }
     }
   }

@@ -1,5 +1,5 @@
 //
-//  LegacyCommunitiesFetcher.swift
+//  CommunitiesFetcher.swift
 //  Lunar
 //
 //  Created by Mani on 09/07/2023.
@@ -10,26 +10,24 @@ import Defaults
 import Foundation
 import Nuke
 import Pulse
+import RealmSwift
 import SwiftUI
 
-class LegacyCommunitiesFetcher: ObservableObject {
+class CommunitiesFetcher: ObservableObject {
   @Default(.communitiesSort) var communitiesSort
   @Default(.communitiesType) var communitiesType
   @Default(.activeAccount) var activeAccount
   @Default(.appBundleID) var appBundleID
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
-  @Default(.legacyHiddenCommunitiesList) var legacyHiddenCommunitiesList
-
-  @Published var communities = [CommunityObject]()
-  @Published var isLoading = false
 
   let imagePrefetcher = ImagePrefetcher(pipeline: ImagePipeline.shared)
 
   private var currentPage = 1
-  var sortParameter: String?
-  var typeParameter: String?
-  var limitParameter: Int = 50
-  var communityID: Int?
+  private var sortParameter: String?
+  private var typeParameter: String?
+  private var limitParameter: Int = 50
+  private var communityID: Int?
+  var instance: String?
 
   private var endpointPath: String {
     if communityID != nil {
@@ -47,43 +45,33 @@ class LegacyCommunitiesFetcher: ObservableObject {
       currentPage: currentPage,
       limitParameter: limitParameter,
       communityID: communityID,
-      jwt: JWT().getJWTForActiveAccount()
+      jwt: JWT().getJWTForActiveAccount(),
+      instance: instance
     )
   }
-
-  let pulse = Pulse.LoggerStore.shared
 
   init(
     limitParameter: Int,
     sortParameter: String? = nil,
-    typeParameter: String? = nil
+    typeParameter: String? = nil,
+    instance: String? = nil
   ) {
     self.sortParameter = sortParameter ?? communitiesSort
     self.typeParameter = typeParameter ?? communitiesType
     self.limitParameter = limitParameter
-    loadContent()
+
+    /// Force an instance if it's different to the one you want
+    self.instance = instance
   }
 
-  func loadContent(isRefreshing: Bool = false) {
-    guard !isLoading else { return }
-
-    if isRefreshing {
-      currentPage = 1
-    } else {
-      isLoading = true
-    }
-
+  func loadContent(isRefreshing _: Bool = false) {
     let cacher = ResponseCacher(behavior: .cache)
 
     AF.request(
       EndpointBuilder(parameters: parameters).build(),
       headers: GenerateHeaders().generate()
     ) { urlRequest in
-      if isRefreshing {
-        urlRequest.cachePolicy = .reloadRevalidatingCacheData
-      } else {
-        urlRequest.cachePolicy = .returnCacheDataElseLoad
-      }
+      urlRequest.cachePolicy = .returnCacheDataElseLoad
     }
     .cacheResponse(using: cacher)
     .validate(statusCode: 200 ..< 300)
@@ -94,32 +82,15 @@ class LegacyCommunitiesFetcher: ObservableObject {
       switch response.result {
       case let .success(result):
 
-        let fetchedCommunities = result.communities.filter {
-          !self.legacyHiddenCommunitiesList.contains($0.community.actorID)
-        }
+        print(result.communities.count)
 
         let imagesToPrefetch = result.iconURLs.compactMap { URL(string: $0) }
         self.imagePrefetcher.startPrefetching(with: imagesToPrefetch)
 
-        if isRefreshing {
-          self.communities = fetchedCommunities
-        } else {
-          /// Removing duplicates
-          let filteredCommunities = fetchedCommunities.filter { community in
-            !self.communities.contains { $0.community.id == community.community.id }
-          }
-          self.communities += filteredCommunities
-          self.currentPage += 1
-        }
-        if !isRefreshing {
-          self.isLoading = false
-        }
+        RealmWriter().writeCommunity(communities: result.communities)
 
       case let .failure(error):
         print("CommunitiesFetcher ERROR: \(error): \(error.errorDescription ?? "")")
-        if !isRefreshing {
-          self.isLoading = false
-        }
       }
     }
   }

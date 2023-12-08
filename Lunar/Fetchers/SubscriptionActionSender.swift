@@ -20,8 +20,6 @@ class SubscriptionActionSender: ObservableObject {
   private var subscribeAction: Bool
   private var jwt: String = ""
 
-  let pulse = Pulse.LoggerStore.shared
-
   init(
     communityID: Int,
     asActorID: String,
@@ -57,14 +55,7 @@ class SubscriptionActionSender: ObservableObject {
     .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: SubscribeResponseModel.self) { response in
 
-      if self.networkInspectorEnabled {
-        self.pulse.storeRequest(
-          response.request ?? URLRequest(url: URL(string: endpoint)!),
-          response: response.response,
-          error: response.error,
-          data: response.data
-        )
-      }
+      PulseWriter().write(response, EndpointParameters(endpointPath: endpoint), .post)
 
       print(response.request ?? "")
       switch response.result {

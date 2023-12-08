@@ -8,13 +8,16 @@
 import Defaults
 import MarkdownUI
 import SFSafeSymbols
-import Shiny
 import SwiftUI
+
+enum PostsViewStyle: String, Defaults.Serializable {
+  case large
+  case compact
+}
 
 struct SettingsAppearanceView: View {
   @AppStorage("appAppearance") var appAppearance: AppearanceOptions = .system
 
-  @Default(.iridescenceEnabled) var iridescenceEnabled
   @Default(.accentColor) var accentColor
   @Default(.accentColorString) var accentColorString
   @Default(.commentMetadataPosition) var commentMetadataPosition
@@ -40,7 +43,6 @@ struct SettingsAppearanceView: View {
       Section {
         appearancePicker
         accentColorPicker
-        iridescenceSection
       } header: { Text("Style") }
 
       Section {
@@ -150,16 +152,6 @@ struct SettingsAppearanceView: View {
           .tint(accentColor)
       }
     }
-  }
-
-  var iridescenceSection: some View {
-    Section {
-      Toggle(isOn: $iridescenceEnabled) {
-        Text("Iridescent Effects")
-      }
-      .tint(accentColorString == "Default" ? .indigo : accentColor)
-    }
-    .modifier(ConditionalListRowBackgroundModifier(background: iridescenceEnabled ? .iridescent : .defaultBackground))
   }
 }
 

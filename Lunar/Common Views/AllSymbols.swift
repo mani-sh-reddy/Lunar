@@ -28,6 +28,18 @@ class AllSymbols {
     SFSafeSymbols.SFSymbol.slashCircle
   }
 
+  var blockCommunityIcon: SFSafeSymbols.SFSymbol {
+    SFSafeSymbols.SFSymbol.xmarkOctagonFill
+  }
+
+  var blockContextIcon: SFSafeSymbols.SFSymbol {
+    SFSafeSymbols.SFSymbol.personCropCircleFillBadgeXmark
+  }
+
+  var reportContextIcon: SFSafeSymbols.SFSymbol {
+    SFSafeSymbols.SFSymbol.exclamationmarkTriangleFill
+  }
+
   var upvoteContextIcon: SFSafeSymbols.SFSymbol {
     SFSafeSymbols.SFSymbol.arrowUpCircle
   }
@@ -141,7 +153,7 @@ class AllSymbols {
     Image(systemSymbol: .appDashed)
       .foregroundStyle(accentColorString == "Default" ? .purple : accentColor)
   }
-  
+
   var christmasAppIconSettings: some View {
     Image(systemSymbol: .appGift)
       .foregroundStyle(accentColorString == "Default" ? .red : accentColor)
