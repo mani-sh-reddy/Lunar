@@ -11,8 +11,13 @@ import SwiftUI
 
 struct InstanceSelectorView: View {
   @Default(.selectedInstance) var selectedInstance
+  @Default(.activeAccount) var activeAccount
   @Default(.lemmyInstances) var lemmyInstances
   @Default(.debugModeEnabled) var debugModeEnabled
+  
+  let haptics = UIImpactFeedbackGenerator(style: .soft)
+  
+  @State var showWarningReasonAlert = false
 
   var body: some View {
     if debugModeEnabled {
@@ -24,7 +29,7 @@ struct InstanceSelectorView: View {
         Text("Add instances to get started!")
           .foregroundStyle(.orange)
       } else {
-        Picker(selection: $selectedInstance, label: Text("Instance")) {
+        Picker(selection: $selectedInstance, label: pickerLabel) {
           ForEach(lemmyInstances, id: \.self) { instance in
             Text(instance).tag(instance)
           }
@@ -34,6 +39,27 @@ struct InstanceSelectorView: View {
     }
     .onChange(of: selectedInstance) { _ in
       resetRealmPosts()
+    }
+  }
+  
+  var pickerLabel: some View {
+    HStack {
+      Text("Instance")
+      if !activeAccount.instance.isEmpty, activeAccount.instance != selectedInstance {
+        Image(systemSymbol: .exclamationmarkTriangle)
+          .symbolRenderingMode(.multicolor)
+          .onTapGesture {
+            showWarningReasonAlert = true
+            haptics.impactOccurred(intensity: 0.5)
+          }
+          .alert("Selected instance does not match currently-active user's instance. Some actions may fail.", isPresented: $showWarningReasonAlert) {
+            Button(role: .cancel) {
+              showWarningReasonAlert = false
+            } label: {
+              Text("Dismiss")
+            }
+          }
+      }
     }
   }
 
