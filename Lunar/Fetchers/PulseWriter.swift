@@ -46,4 +46,34 @@ class PulseWriter {
       )
     }
   }
+
+  func writeKbin(
+    _ response: DataResponse<some Any, AFError>,
+    _ parameters: EndpointParametersKbin,
+    _ method: HTTPMethod
+  ) {
+    guard networkInspectorEnabled else { return }
+
+    if method == .get {
+      pulse.storeRequest(
+        try! URLRequest(
+          url: EndpointBuilderKbin(parameters: parameters).build(redact: true),
+          method: method
+        ),
+        response: response.response,
+        error: response.error,
+        data: response.data
+      )
+    } else if method == .post {
+      pulse.storeRequest(
+        try! URLRequest(
+          url: URL(string: "https://\(selectedInstance)\(parameters.endpointPath)")!,
+          method: method
+        ),
+        response: response.response,
+        error: response.error,
+        data: response.data
+      )
+    }
+  }
 }

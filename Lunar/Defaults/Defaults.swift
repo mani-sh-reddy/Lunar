@@ -17,7 +17,6 @@ extension Defaults.Keys {
   static let appBundleID = Key<String>("appBundleID", default: DefaultValues.appBundleID)
   static let selectedInstance = Key<String>("selectedInstance", default: "lemmy.world")
   static let lemmyInstances = Key<[String]>("lemmyInstances", default: DefaultValues.lemmyInstances)
-  static let kbinHostURL = Key<String>("kbinHostURL", default: "kbin.social")
 
   // MARK: - Settings
 
@@ -47,7 +46,7 @@ extension Defaults.Keys {
   // MARK: - Account
 
   static let loggedInAccounts = Key<[AccountModel]>("loggedInAccounts", default: [])
-  static let activeAccount = Key<AccountModel>("selectedUser", default: AccountModel())
+  static let activeAccount = Key<AccountModel>("activeAccount", default: AccountModel())
 
   // MARK: - Other
 
@@ -61,4 +60,9 @@ extension Defaults.Keys {
   static let lockedQuicklinks = Key<[Quicklink]>("lockedQuicklinks", default: DefaultQuicklinks().getLockedQuicklinks())
   static let privateMessagesRetrieved = Key<Bool>("privateMessagesRetrieved", default: false)
   static let postsSortWithToolbar = Key<SortType>("postsSortWithToolbar", default: .active)
+
+  // MARK: - Kbin Specific
+
+  static let kbinHostURL = Key<String>("kbinHostURL", default: "kbin.social")
+  static let selectedInstanceKbin = Key<String>("selectedInstanceKbin", default: "dev.karab.in")
 }

@@ -120,4 +120,55 @@ class RealmWriter {
       }
     }
   }
+
+//  func writeKbinPost(
+//    kbinPostModel: KbinPostModel,
+//    sort: String? = "",
+//    type: String? = "",
+//    filterKey: String
+//  ) {
+//    try! realm.write {
+//      for member in kbinPostModel.hydraMember {
+//        let realmPost = RealmPost(
+//          postID: UUIDToInt(uuid: UUID()), // TODO: -
+//          postName: member.,
+//          postPublished: post.post.published,
+//          postURL: post.post.url,
+//          postBody: post.post.body,
+//          postThumbnailURL: post.post.thumbnailURL,
+//          postFeatured: post.post.featuredCommunity || post.post.featuredLocal,
+//          personID: post.creator.id,
+//          personName: post.creator.name,
+//          personPublished: post.creator.published,
+//          personActorID: post.creator.actorID,
+//          personInstanceID: post.creator.instanceID,
+//          personAvatar: post.creator.avatar,
+//          personDisplayName: post.creator.displayName,
+//          personBio: post.creator.bio,
+//          personBanner: post.creator.banner,
+//          communityID: post.community.id,
+//          communityName: post.community.name,
+//          communityTitle: post.community.title,
+//          communityActorID: post.community.actorID,
+//          communityInstanceID: post.community.instanceID,
+//          communityDescription: post.community.description,
+//          communityIcon: post.community.icon,
+//          communityBanner: post.community.banner,
+//          communityUpdated: post.community.updated,
+//          communitySubscribed: post.subscribed,
+//          postScore: post.counts.postScore,
+//          postCommentCount: post.counts.comments,
+//          upvotes: post.counts.upvotes,
+//          downvotes: post.counts.downvotes,
+//          postMyVote: post.myVote ?? 0,
+//          postHidden: false,
+//          postMinimised: post.post.featuredCommunity || post.post.featuredLocal,
+//          sort: sort,
+//          type: type,
+//          filterKey: filterKey
+//        )
+//        realm.add(realmPost, update: .modified)
+//      }
+//    }
+//  }
 }
