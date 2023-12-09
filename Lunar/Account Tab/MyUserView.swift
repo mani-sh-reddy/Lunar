@@ -14,6 +14,7 @@ import SwiftUI
 
 struct MyUserView: View {
   @ObservedResults(RealmPost.self) var realmPosts
+  @ObservedResults(RealmPage.self) var realmPage
 
   @Default(.activeAccount) var activeAccount
 
@@ -130,6 +131,11 @@ struct MyUserView: View {
     NavigationLink {
       if userID != 0 {
         PostsView(
+          realmPage: realmPage.sorted(byKeyPath: "timestamp", ascending: false).first(where: {
+            $0.sort == "New"
+              && $0.type == "All"
+              && $0.filterKey == "MY_POSTS"
+          }) ?? RealmPage(),
           filteredPosts: realmPosts.filter { post in
             post.filterKey == "MY_POSTS"
           },
@@ -194,6 +200,11 @@ struct MyUserView: View {
     NavigationLink {
       if userID != 0 {
         PostsView(
+          realmPage: realmPage.sorted(byKeyPath: "timestamp", ascending: false).first(where: {
+            $0.sort == "New"
+              && $0.type == "All"
+              && $0.filterKey == "MY_POSTS_SAVED_ONLY"
+          }) ?? RealmPage(),
           filteredPosts: realmPosts.filter { post in
             post.filterKey == "MY_POSTS_SAVED_ONLY"
           },

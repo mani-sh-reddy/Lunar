@@ -11,6 +11,27 @@ import SwiftUI
 class RealmWriter {
   let realm = try! Realm()
 
+  func writePage(
+    pageCursor: String,
+    sort: String? = nil,
+    type: String? = nil,
+    personID: Int? = nil,
+    communityID: Int? = nil,
+    filterKey: String
+  ) {
+    try! realm.write {
+      let realmPage = RealmPage(
+        pageCursor: pageCursor,
+        sort: sort,
+        type: type,
+        communityID: communityID,
+        personID: personID,
+        filterKey: filterKey
+      )
+      realm.add(realmPage, update: .modified)
+    }
+  }
+
   func writePost(
     posts: [PostObject],
     sort: String,

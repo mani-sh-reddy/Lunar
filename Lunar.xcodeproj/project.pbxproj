@@ -39,6 +39,7 @@
 		3C06CBEC2B24C508000767CC /* EndpointBuilderKbin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C06CBEB2B24C508000767CC /* EndpointBuilderKbin.swift */; };
 		3C06CBEF2B24CEF2000767CC /* KbinPostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C06CBEE2B24CEF2000767CC /* KbinPostModel.swift */; };
 		3C06CBF12B24DAC8000767CC /* UUIDToInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C06CBF02B24DAC8000767CC /* UUIDToInt.swift */; };
+		3C06CBF42B25157F000767CC /* RealmPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C06CBF32B25157F000767CC /* RealmPage.swift */; };
 		3C113C392A6E71E100FDE5CE /* SettingsAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */; };
 		3C113C432A6EA92600FDE5CE /* InstanceSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C422A6EA92600FDE5CE /* InstanceSelectorView.swift */; };
 		3C11B28B2B1CB44600244838 /* SettingsAppearanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C11B28A2B1CB44600244838 /* SettingsAppearanceView.swift */; };
@@ -331,6 +332,7 @@
 		3C06CBEB2B24C508000767CC /* EndpointBuilderKbin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndpointBuilderKbin.swift; sourceTree = "<group>"; };
 		3C06CBEE2B24CEF2000767CC /* KbinPostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinPostModel.swift; sourceTree = "<group>"; };
 		3C06CBF02B24DAC8000767CC /* UUIDToInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUIDToInt.swift; sourceTree = "<group>"; };
+		3C06CBF32B25157F000767CC /* RealmPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmPage.swift; sourceTree = "<group>"; };
 		3C10A76E2A72A6FC0040F1A9 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAccountView.swift; sourceTree = "<group>"; };
 		3C113C422A6EA92600FDE5CE /* InstanceSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstanceSelectorView.swift; sourceTree = "<group>"; };
@@ -859,6 +861,7 @@
 			isa = PBXGroup;
 			children = (
 				3CC3E4402AE047FE00F7F9A9 /* RealmPost.swift */,
+				3C06CBF32B25157F000767CC /* RealmPage.swift */,
 				3CA5C4092A574FF500BF8F1B /* PostModel.swift */,
 				3CB9C72D2AA243CB00FB5A10 /* PostObject.swift */,
 				3CB9C7302AA244CC00FB5A10 /* Post.swift */,
@@ -1545,6 +1548,7 @@
 				3CA92E432A549A7F00688DEB /* CommunityItem.swift in Sources */,
 				3CDBBC872AEDBB51005EFF2B /* CompactPostItem.swift in Sources */,
 				3CEF4CC42A69B39B002B83C0 /* TrendingCommunitiesSectionView.swift in Sources */,
+				3C06CBF42B25157F000767CC /* RealmPage.swift in Sources */,
 				3C6BBF742A91108A00312E2B /* SubscribeResponseModel.swift in Sources */,
 				3C130F752A8C0A520060B6E4 /* ExpandableTextBox.swift in Sources */,
 				3CE35B212AE4148A00263E13 /* AboutLemmyView.swift in Sources */,

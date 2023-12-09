@@ -10,7 +10,7 @@ import Foundation
 struct PostModel: Codable {
   let posts: [PostObject]
   let nextPage: String?
-  
+
   enum CodingKeys: String, CodingKey {
     case posts
     case nextPage = "next_page"

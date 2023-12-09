@@ -14,9 +14,9 @@ struct InstanceSelectorView: View {
   @Default(.activeAccount) var activeAccount
   @Default(.lemmyInstances) var lemmyInstances
   @Default(.debugModeEnabled) var debugModeEnabled
-  
+
   let haptics = UIImpactFeedbackGenerator(style: .soft)
-  
+
   @State var showWarningReasonAlert = false
 
   var body: some View {
@@ -41,7 +41,7 @@ struct InstanceSelectorView: View {
       resetRealmPosts()
     }
   }
-  
+
   var pickerLabel: some View {
     HStack {
       Text("Instance")

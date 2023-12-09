@@ -55,10 +55,9 @@ class PostsFetcher: ObservableObject {
     pageCursor: String? = "",
     filterKey: String
   ) {
-    
     self.page = page
     self.pageCursor = pageCursor
-    
+
     ///    When getting user specific posts, need to use a different endpoint path.
     if personID == nil || personID == 0 {
       endpointPath = "/api/v3/post/list"
@@ -105,12 +104,25 @@ class PostsFetcher: ObservableObject {
         }
         self.imagePrefetcher.startPrefetching(with: imageRequestList)
 
+        print(result.nextPage as Any)
+
         RealmWriter().writePost(
           posts: result.posts,
           sort: self.sort,
           type: self.type,
           filterKey: self.filterKey
         )
+
+        if let nextPage = result.nextPage {
+          RealmWriter().writePage(
+            pageCursor: nextPage,
+            sort: self.sort,
+            type: self.type,
+            personID: self.personID,
+            communityID: self.communityID,
+            filterKey: self.filterKey
+          )
+        }
 
         self.isLoading = false
 

@@ -56,14 +56,18 @@ class EndpointBuilder {
 
     if let sortParameter = parameters.sortParameter { queryParams["sort"] = String(sortParameter) }
     if let typeParameter = parameters.typeParameter { queryParams["type_"] = String(typeParameter) }
-    if let currentPage = parameters.currentPage { queryParams["page"] = String(currentPage) }
     if let limitParameter = parameters.limitParameter { queryParams["limit"] = String(limitParameter) }
     if let savedOnly = parameters.savedOnly { queryParams["saved_only"] = String(savedOnly) }
     if let communityID = parameters.communityID, communityID != 0 { queryParams["community_id"] = String(communityID) }
     if let personID = parameters.personID, personID != 0 { queryParams["person_id"] = String(personID) }
     if let postID = parameters.postID { queryParams["post_id"] = String(postID) }
     if let maxDepth = parameters.maxDepth { queryParams["max_depth"] = String(maxDepth) }
-    if let pageCursor = parameters.pageCursor { queryParams["page_cursor"] = String(pageCursor) }
+
+    if let pageCursor = parameters.pageCursor, !pageCursor.isEmpty {
+      queryParams["page_cursor"] = String(pageCursor)
+    } else {
+      if let currentPage = parameters.currentPage { queryParams["page"] = String(currentPage) }
+    }
 
     if redact == false {
       if let jwt = parameters.jwt { queryParams["auth"] = jwt }

@@ -20,6 +20,9 @@ struct PostsView: View {
   @Default(.activeAccount) var activeAccount
   @Default(.fontSize) var fontSize
 
+  @ObservedRealmObject var realmPage: RealmPage
+  @ObservedResults(RealmPage.self) var realmPages
+
   var filteredPosts: [RealmPost]
 
   var sort: String
@@ -102,6 +105,7 @@ struct PostsView: View {
     .refreshable {
       showingProgressView = true
       try? await Task.sleep(nanoseconds: 1 * 1_000_000_000)
+      resetRealmPages()
       resetRealmPosts()
     }
     .onChange(of: selectedInstance) { _ in
@@ -138,6 +142,17 @@ struct PostsView: View {
     }
     page = 1
     runOnce = false
+  }
+
+  func resetRealmPages() {
+    guard !realmPages.isEmpty else { return }
+    for page in realmPages.filter({
+      $0.sort == sort
+        && $0.type == type
+        && $0.filterKey == filterKey
+    }) {
+      RealmThawFunctions().resetRealmPage(page: page)
+    }
   }
 
   // MARK: - communitySpecificHeader
@@ -278,7 +293,7 @@ struct PostsView: View {
         communityID: communityID,
         personID: personID,
         page: page,
-        pageCursor: pageCursor,
+        pageCursor: realmPage.pageCursor,
         filterKey: filterKey
       ).loadContent()
       /// Setting the page number for the batch.
@@ -300,7 +315,7 @@ struct PostsView: View {
         communityID: communityID,
         personID: personID,
         page: page,
-        pageCursor: pageCursor,
+        pageCursor: realmPage.pageCursor,
         filterKey: filterKey
       ).loadContent()
       showingProgressView = false

@@ -11,6 +11,7 @@ import SwiftUI
 
 struct GeneralCommunitiesView: View {
   @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
+  @ObservedResults(RealmPage.self) var realmPage
 
   @Default(.enableQuicklinks) var enableQuicklinks
   @Default(.quicklinks) var quicklinks
@@ -20,6 +21,11 @@ struct GeneralCommunitiesView: View {
     ForEach(enableQuicklinks ? quicklinks : lockedQuicklinks, id: \.self) { quicklink in
       NavigationLink {
         PostsView(
+          realmPage: realmPage.sorted(byKeyPath: "timestamp", ascending: false).first(where: {
+            $0.sort == quicklink.sort
+              && $0.type == quicklink.type
+              && $0.filterKey == "sortAndTypeOnly"
+          }) ?? RealmPage(),
           filteredPosts: realmPosts.filter { post in
             post.sort == quicklink.sort
               && post.type == quicklink.type

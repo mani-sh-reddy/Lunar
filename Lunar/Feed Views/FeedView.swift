@@ -49,7 +49,7 @@ struct FeedView: View {
     }
     .navigationViewStyle(StackNavigationViewStyle())
   }
-    
+
   var downloaderButton: some View {
     Section {
       Button {
