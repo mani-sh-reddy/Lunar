@@ -8,13 +8,18 @@
 import Defaults
 import Nuke
 import NukeUI
+import RealmSwift
 import SFSafeSymbols
 import SwiftUI
 
 struct MyUserView: View {
+  @ObservedResults(RealmPost.self) var realmPosts
+
   @Default(.activeAccount) var activeAccount
 
   @GestureState var dragAmount = CGSize.zero
+  @State var hasRunOnceMyPosts: Bool = false
+  @State var hasRunOnceSavedPosts: Bool = false
 
   var avatar: String { activeAccount.avatarURL }
   var actorID: String { activeAccount.actorID }
@@ -22,7 +27,12 @@ struct MyUserView: View {
   var name: String { activeAccount.name }
   var postScore: String { String(activeAccount.postScore) }
   var commentScore: String { String(activeAccount.commentScore) }
-  var postCount: String { String(activeAccount.postCount) }
+//  var postCount: String { String(activeAccount.postCount) }
+  var postCount: String {
+    return String(realmPosts.filter { post in
+      post.filterKey == "MY_POSTS"
+    }.count)
+  }
   var commentCount: String { String(activeAccount.commentCount) }
 
   var userInstance: String {
@@ -118,12 +128,16 @@ struct MyUserView: View {
   var myPosts: some View {
     NavigationLink {
       if userID != 0 {
-        MyUserPostsView(
-          personFetcher: PersonFetcher(
-            sortParameter: "New",
-            typeParameter: "All",
-            personID: userID
-          ),
+        PostsView(
+          filteredPosts: realmPosts.filter { post in
+            post.filterKey == "MY_POSTS"
+          },
+          sort: "New",
+          type: "All",
+          user: 0,
+          communityID: 0,
+          personID: userID,
+          filterKey: "MY_POSTS",
           heading: "My Posts"
         )
       }
@@ -137,6 +151,12 @@ struct MyUserView: View {
       } icon: {
         Image(systemSymbol: .rectangleOnRectangleAngled)
           .foregroundStyle(.purple)
+      }
+    }
+    .onAppear {
+      if !hasRunOnceMyPosts {
+        PersonFetcher(sortParameter: "New", typeParameter: "All", savedOnly: false, personID: userID).loadContent()
+        hasRunOnceMyPosts = true
       }
     }
   }
@@ -172,13 +192,16 @@ struct MyUserView: View {
   var savedPosts: some View {
     NavigationLink {
       if userID != 0 {
-        MyUserPostsView(
-          personFetcher: PersonFetcher(
-            sortParameter: "New",
-            typeParameter: "All",
-            savedOnly: true,
-            personID: userID
-          ),
+        PostsView(
+          filteredPosts: realmPosts.filter { post in
+            post.filterKey == "MY_POSTS_SAVED_ONLY"
+          },
+          sort: "New",
+          type: "All",
+          user: 0,
+          communityID: 0,
+          personID: userID,
+          filterKey: "MY_POSTS_SAVED_ONLY",
           heading: "Saved Posts"
         )
       }
@@ -189,6 +212,12 @@ struct MyUserView: View {
       } icon: {
         Image(systemSymbol: .star)
           .foregroundStyle(.yellow)
+      }
+    }
+    .onAppear {
+      if !hasRunOnceSavedPosts {
+        PersonFetcher(sortParameter: "New", typeParameter: "All", savedOnly: true, personID: userID).loadContent()
+        hasRunOnceSavedPosts = true
       }
     }
   }
