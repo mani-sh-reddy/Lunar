@@ -99,6 +99,13 @@ class PersonFetcher: ObservableObject {
         }
         self.imagePrefetcher.startPrefetching(with: imageRequestList)
 
+        RealmWriter().writePost(
+          posts: result.posts,
+          sort: self.sortParameter ?? "",
+          type: self.typeParameter ?? "",
+          filterKey: self.savedOnly ?? false ? "MY_POSTS_SAVED_ONLY" : "MY_POSTS"
+        )
+
         if isRefreshing {
           self.posts = fetchedPosts
           self.comments = fetchedComments
@@ -112,6 +119,7 @@ class PersonFetcher: ObservableObject {
           }
           self.posts += filteredPosts
           self.comments += filteredComments
+
           self.currentPage += 1
         }
         if !isRefreshing {

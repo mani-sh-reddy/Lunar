@@ -12,7 +12,7 @@ import SwiftUI
 struct CreatePostPopoverView: View {
   @Default(.activeAccount) var activeAccount
 
-  @Environment(\.dismiss) var dismiss
+//  @Environment(\.dismiss) var dismiss
 
   @State private var postBody: String = ""
   @State private var userInputBody: String = ""
@@ -36,6 +36,7 @@ struct CreatePostPopoverView: View {
 
   @State var expandSiteMetadata: Bool = false
   @State var imageIsUploading: Bool = false
+  @Binding var showingCreatePostPopover: Bool
 
   var communityID: Int
   var communityName: String
@@ -155,7 +156,7 @@ struct CreatePostPopoverView: View {
           .bold()
         Spacer()
         Button {
-          dismiss()
+          showingCreatePostPopover = false
         } label: {
           Image(systemSymbol: .xmarkCircleFill)
             .font(.largeTitle)
@@ -244,7 +245,7 @@ struct CreatePostPopoverView: View {
           ).fetchPostSentResponse { response, postID in
             if response == "success" {
               notificationHaptics.notificationOccurred(.success)
-              dismiss()
+              showingCreatePostPopover = false
               print("CREATED NEW POST: id=\(postID)")
             } else {
               notificationHaptics.notificationOccurred(.error)
@@ -266,6 +267,7 @@ struct CreatePostPopoverView: View {
 
 #Preview {
   CreatePostPopoverView(
+    showingCreatePostPopover: .constant(true),
     communityID: 234_309,
     communityName: "API Testing Pls Ignore",
     communityActorID: "https://lemmy.world/c/api_testing_pls_ignore"

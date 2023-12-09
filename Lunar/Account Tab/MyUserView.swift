@@ -8,13 +8,18 @@
 import Defaults
 import Nuke
 import NukeUI
+import RealmSwift
 import SFSafeSymbols
 import SwiftUI
 
 struct MyUserView: View {
+  @ObservedResults(RealmPost.self) var realmPosts
+
   @Default(.activeAccount) var activeAccount
 
   @GestureState var dragAmount = CGSize.zero
+  @State var hasRunOnceMyPosts: Bool = false
+  @State var hasRunOnceSavedPosts: Bool = false
 
   var avatar: String { activeAccount.avatarURL }
   var actorID: String { activeAccount.actorID }
@@ -22,7 +27,13 @@ struct MyUserView: View {
   var name: String { activeAccount.name }
   var postScore: String { String(activeAccount.postScore) }
   var commentScore: String { String(activeAccount.commentScore) }
-  var postCount: String { String(activeAccount.postCount) }
+//  var postCount: String { String(activeAccount.postCount) }
+  var postCount: String {
+    String(realmPosts.filter { post in
+      post.filterKey == "MY_POSTS"
+    }.count)
+  }
+
   var commentCount: String { String(activeAccount.commentCount) }
 
   var userInstance: String {
@@ -38,8 +49,17 @@ struct MyUserView: View {
       List {
         userDetailsSection
         scoreSection
-        postsAndCommentsSection
-        savedPostsAndCommentsSection
+        Group {
+          Section {
+            myPosts
+            myComments
+          }
+          Section {
+            savedPosts
+            savedComments
+          }
+        }
+        .modifier(BlurredAndDisabledModifier(style: actorID.isEmpty ? .disabled : .none))
       }
       .listStyle(.insetGrouped)
       .onAppear {
@@ -51,6 +71,8 @@ struct MyUserView: View {
       }
     }
   }
+
+  // MARK: - userDetailsSection
 
   var userDetailsSection: some View {
     Section {
@@ -102,108 +124,132 @@ struct MyUserView: View {
     .listRowBackground(Color.clear)
   }
 
-  var postsAndCommentsSection: some View {
-    Section {
-      NavigationLink {
-        if userID != 0 {
-          MyUserObserver(
-            personFetcher: PersonFetcher(
-              sortParameter: "New",
-              typeParameter: "All",
-              personID: userID
-            ),
-            userName: name,
-            viewType: "Posts"
-          )
-        }
-      } label: {
-        Label {
-          HStack {
-            Text("Posts")
-            Spacer()
-            Text(postCount).bold().foregroundStyle(.gray)
-          }
-        } icon: {
-          Image(systemSymbol: .rectangleOnRectangleAngled)
-            .foregroundStyle(.purple)
-        }
-      }
+  // MARK: - myPosts
 
-      NavigationLink {
-        if userID != 0 {
-          MyUserObserver(
-            personFetcher: PersonFetcher(
-              sortParameter: "New",
-              typeParameter: "All",
-              personID: userID
-            ),
-            userName: name,
-            viewType: "Comments"
-          )
-        }
-      } label: {
-        Label {
-          Text("Comments")
+  var myPosts: some View {
+    NavigationLink {
+      if userID != 0 {
+        PostsView(
+          filteredPosts: realmPosts.filter { post in
+            post.filterKey == "MY_POSTS"
+          },
+          sort: "New",
+          type: "All",
+          user: 0,
+          communityID: 0,
+          personID: userID,
+          filterKey: "MY_POSTS",
+          heading: "My Posts"
+        )
+      }
+    } label: {
+      Label {
+        HStack {
+          Text("Posts")
           Spacer()
-          Text(commentCount).bold().foregroundStyle(.gray)
-        } icon: {
-          Image(systemSymbol: .textBubble)
-            .foregroundStyle(.cyan)
+          Text(postCount).bold().foregroundStyle(.gray)
         }
+      } icon: {
+        Image(systemSymbol: .rectangleOnRectangleAngled)
+          .foregroundStyle(.purple)
       }
     }
-    .modifier(BlurredAndDisabledModifier(style: actorID.isEmpty ? .disabled : .none))
-  }
-
-  var savedPostsAndCommentsSection: some View {
-    Section {
-      NavigationLink {
-        if userID != 0 {
-          MyUserObserver(
-            personFetcher: PersonFetcher(
-              sortParameter: "New",
-              typeParameter: "All",
-              savedOnly: true,
-              personID: userID
-            ),
-            userName: name,
-            viewType: "Saved Posts"
-          )
-        }
-      } label: {
-        Label {
-          Text("Saved Posts")
-
-        } icon: {
-          Image(systemSymbol: .star)
-            .foregroundStyle(.yellow)
-        }
-      }
-      NavigationLink {
-        if userID != 0 {
-          MyUserObserver(
-            personFetcher: PersonFetcher(
-              sortParameter: "New",
-              typeParameter: "All",
-              savedOnly: true,
-              personID: userID
-            ),
-            userName: name,
-            viewType: "Saved Comments"
-          )
-        }
-      } label: {
-        Label {
-          Text("Saved Comments")
-
-        } icon: {
-          Image(systemSymbol: .starBubble)
-            .foregroundStyle(.orange)
-        }
+    .onAppear {
+      if !hasRunOnceMyPosts {
+        PersonFetcher(sortParameter: "New", typeParameter: "All", savedOnly: false, personID: userID).loadContent()
+        hasRunOnceMyPosts = true
       }
     }
-    .modifier(BlurredAndDisabledModifier(style: actorID.isEmpty ? .disabled : .none))
   }
+
+  // MARK: - myComments
+
+  var myComments: some View {
+    NavigationLink {
+      if userID != 0 {
+        MyUserCommentsView(
+          personFetcher: PersonFetcher(
+            sortParameter: "New",
+            typeParameter: "All",
+            personID: userID
+          ),
+          heading: "My Comments"
+        )
+      }
+    } label: {
+      Label {
+        Text("Comments")
+        Spacer()
+        Text(commentCount).bold().foregroundStyle(.gray)
+      } icon: {
+        Image(systemSymbol: .textBubble)
+          .foregroundStyle(.cyan)
+      }
+    }
+  }
+
+  // MARK: - savedPosts
+
+  var savedPosts: some View {
+    NavigationLink {
+      if userID != 0 {
+        PostsView(
+          filteredPosts: realmPosts.filter { post in
+            post.filterKey == "MY_POSTS_SAVED_ONLY"
+          },
+          sort: "New",
+          type: "All",
+          user: 0,
+          communityID: 0,
+          personID: userID,
+          filterKey: "MY_POSTS_SAVED_ONLY",
+          heading: "Saved Posts"
+        )
+      }
+    } label: {
+      Label {
+        Text("Saved Posts")
+
+      } icon: {
+        Image(systemSymbol: .star)
+          .foregroundStyle(.yellow)
+      }
+    }
+    .onAppear {
+      if !hasRunOnceSavedPosts {
+        PersonFetcher(sortParameter: "New", typeParameter: "All", savedOnly: true, personID: userID).loadContent()
+        hasRunOnceSavedPosts = true
+      }
+    }
+  }
+
+  // MARK: - savedComments
+
+  var savedComments: some View {
+    NavigationLink {
+      if userID != 0 {
+        MyUserCommentsView(
+          personFetcher: PersonFetcher(
+            sortParameter: "New",
+            typeParameter: "All",
+            savedOnly: true,
+            personID: userID
+          ),
+          heading: "Saved Comments"
+        )
+      }
+    } label: {
+      Label {
+        Text("Saved Comments")
+
+      } icon: {
+        Image(systemSymbol: .starBubble)
+          .foregroundStyle(.orange)
+      }
+    }
+  }
+
+  // MARK: - scoreSection
 
   var scoreSection: some View {
     Section {
@@ -228,6 +274,8 @@ struct MyUserView: View {
 #Preview {
   MyUserView()
 }
+
+// MARK: - AccountScoreView
 
 struct AccountScoreView: View {
   var title: String

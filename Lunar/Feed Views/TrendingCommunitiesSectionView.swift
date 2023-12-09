@@ -39,7 +39,7 @@ struct TrendingCommunitiesSectionView: View {
           communityIcon: community.community.icon
         )
       } label: {
-        CommunityRowView(community: convertToRealmCommunity(community: community))
+        CommunityItem(community: convertToRealmCommunity(community: community))
           .environmentObject(communitiesFetcher)
       }
     }

@@ -9,6 +9,20 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+
+- Updated inbox tab design
+- Rendering images in comments view with LazyImage
+
+### Fixed
+
+- Disabled subscribed community blocking
+- Fixed a bug in blocking comment creator
+
+### Misc
+
+- Removed legacy views
+
 ## [2023.12.3]
 
 ### Added

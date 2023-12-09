@@ -85,6 +85,7 @@ struct CommentsView: View {
   @ViewBuilder
   var commentPopoverAction: some View {
     CreateCommentPopover(
+      showingCreateCommentPopover: $showingCreateCommentPopover,
       post: post,
       parentString: post.postName
     )

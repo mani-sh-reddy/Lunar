@@ -80,7 +80,7 @@ class PostsFetcher: ObservableObject {
 
     isLoading = true
 
-    let cacher = ResponseCacher(behavior: .cache)
+    let cacher = ResponseCacher(behavior: .doNotCache)
 
     AF.request(
       EndpointBuilder(parameters: parameters).build(),

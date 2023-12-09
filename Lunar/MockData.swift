@@ -48,7 +48,7 @@ class MockData {
     type: "All",
     filterKey: "sortAndTypeOnly"
   )
-  let privateMessage = RealmPrivateMessage(
+  let privateMessageIncoming = RealmPrivateMessage(
     messageID: 123,
     messageContent: "Hello, this is a placeholder message.",
     messageDeleted: false,

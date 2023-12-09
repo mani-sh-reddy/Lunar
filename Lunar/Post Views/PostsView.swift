@@ -118,6 +118,7 @@ struct PostsView: View {
     }
     .popover(isPresented: $showingCreatePostPopover) {
       CreatePostPopoverView(
+        showingCreatePostPopover: $showingCreatePostPopover,
         communityID: communityID,
         communityName: communityName ?? "",
         communityActorID: communityActorID ?? ""
@@ -158,6 +159,7 @@ struct PostsView: View {
         Markdown { communityDescription ?? "" }
           .markdownTextStyle(\.text) { FontSize(fontSize) }
           .markdownTheme(.gitHub)
+          .markdownImageProvider(.lazyImageProvider)
       } label: {
         HStack {
           communityIconView
@@ -202,6 +204,7 @@ struct PostsView: View {
         Markdown { personBio ?? "" }
           .markdownTextStyle(\.text) { FontSize(fontSize) }
           .markdownTheme(.gitHub)
+          .markdownImageProvider(.lazyImageProvider)
       } label: {
         HStack {
           personAvatarView

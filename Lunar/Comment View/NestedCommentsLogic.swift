@@ -44,44 +44,30 @@ extension NestedComment: Identifiable {
 }
 
 extension [CommentObject] {
-  /// Convert a flat array of `APICommentView` into a hierarchical representation for UI rendering with parent-child relationships.
   var nestedComment: [NestedComment] {
-    var comments = self
-
-    // Partition the comments into parent and child categories
-    let childCommentsStartIndex = comments.partition(by: { $0.parentID != nil })
-    let childComments = comments[childCommentsStartIndex...]
-
-    // Create a mapping of parent IDs to their child IDs
+    var commentsByID: [Int: CommentObject] = [:]
     var childIDsByParentID = [Int: [Int]]()
-    childComments.forEach { childComment in
-      guard let parentID = childComment.parentID else { return }
-      childIDsByParentID[parentID] = (childIDsByParentID[parentID] ?? []) + [childComment.comment.id]
+
+    for comment in self {
+      let id = comment.comment.id
+      commentsByID[id] = comment
+
+      if let parentID = comment.parentID {
+        childIDsByParentID[parentID, default: []].append(id)
+      }
     }
 
-    // Create a dictionary for efficient comment lookups by ID
-    let commentsByID = Dictionary(uniqueKeysWithValues: comments.lazy.map { ($0.comment.id, $0) })
-
-    /// Recursively build the hierarchical comment structure
     func buildHierarchicalComment(_ comment: CommentObject) -> NestedComment {
-      guard let childIDs = childIDsByParentID[comment.comment.id] else {
-        return .init(commentData: comment, subComments: [])
-      }
-
       let nestedComment = NestedComment(commentData: comment, subComments: [])
-      nestedComment.subComments = childIDs.compactMap { id -> NestedComment? in
+      nestedComment.subComments = childIDsByParentID[comment.comment.id]?.compactMap { id in
         guard let childComment = commentsByID[id] else { return nil }
         return buildHierarchicalComment(childComment)
-      }
+      } ?? []
 
       return nestedComment
     }
 
-    // Extract parent comments from the original array
-    let parentComments = comments[..<childCommentsStartIndex]
-
-    // Build the hierarchical comment structure starting from parent comments
-    let hierarchicalComments = parentComments.map(buildHierarchicalComment)
-    return hierarchicalComments
+    let parentComments = filter { $0.parentID == nil }
+    return parentComments.map(buildHierarchicalComment)
   }
 }

@@ -48,9 +48,11 @@ struct SearchResultsList: View {
         case "Posts":
           ForEach(searchFetcher.posts, id: \.post.id) { post in
             NavigationLink {
-              NonRealmCommentsView(
+              CommentsView(
                 commentsFetcher: CommentsFetcher(postID: post.post.id),
-                post: post
+                upvoted: .constant(false),
+                downvoted: .constant(false),
+                post: RealmConverter().toPost(post: post)
               )
             } label: {
               Text(post.post.name)

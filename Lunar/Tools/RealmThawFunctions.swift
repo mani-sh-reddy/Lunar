@@ -22,7 +22,7 @@ class RealmThawFunctions {
     }
   }
 
-  func deleteAction(post: RealmPost) {
+  func deletePost(post: RealmPost) {
     let thawedPost = post.thaw()
     if thawedPost?.isInvalidated == false {
       let thawedRealm = thawedPost!.realm!
@@ -33,6 +33,27 @@ class RealmThawFunctions {
       }
     }
     hapticsSoft.impactOccurred(intensity: 0.5)
+  }
+
+  func deleteCommunity(community: RealmCommunity) {
+    let thawedCommunity = community.thaw()
+    if thawedCommunity?.isInvalidated == false {
+      let thawedRealm = thawedCommunity!.realm!
+      try! thawedRealm.write {
+        if let thawedCommunity {
+          thawedRealm.delete(thawedCommunity)
+        }
+      }
+    }
+    hapticsSoft.impactOccurred(intensity: 0.5)
+  }
+
+  func deleteAllCommunities() {
+    let realm = try! Realm()
+    try! realm.write {
+      let communities = realm.objects(RealmCommunity.self)
+      realm.delete(communities)
+    }
   }
 
   func hideAction(post: RealmPost) {

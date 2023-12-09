@@ -11,12 +11,12 @@ import SFSafeSymbols
 import SwiftUI
 
 struct SubscribedCommunitiesSectionView: View {
+  @Default(.activeAccount) var activeAccount
+
   @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
   @ObservedResults(RealmCommunity.self, where: ({ $0.subscribed != .notSubscribed })) var realmCommunities
 
   @State var fetchCounter: Int = 0
-
-  @Default(.activeAccount) var activeAccount
 
   let realm = try! Realm()
 
@@ -45,7 +45,7 @@ struct SubscribedCommunitiesSectionView: View {
               communityIcon: community.icon
             )
           } label: {
-            CommunityRowView(community: community)
+            CommunityItem(community: community)
               .padding(.leading, -20)
           }
         }

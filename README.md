@@ -2,9 +2,9 @@
    
 # Lunar - An iOS Client for Lemmy and Kbin
 [![TestFlight](https://img.shields.io/badge/Download%20via-TestFlight-blue)](https://testflight.apple.com/join/GEFCCQTb)
-[![GitHub release](https://img.shields.io/github/v/release/mani-sh-reddy/Lunar-Lemmy-iOS)](https://github.com/mani-sh-reddy/Lunar-Lemmy-iOS/releases)
+[![GitHub release](https://img.shields.io/github/v/release/mani-sh-reddy/Lunar)](https://github.com/mani-sh-reddy/Lunar/releases)
 
-![GitHub issues](https://img.shields.io/github/issues/mani-sh-reddy/Lunar-Lemmy-iOS?logo=github)
+![GitHub issues](https://img.shields.io/github/issues/mani-sh-reddy/Lunar?logo=github)
 ![Static Badge](https://img.shields.io/badge/supports-iOS_15+-lightgray)
 ![Static Badge](https://img.shields.io/badge/SwiftUI-3.0-blue?logo=swift&logoColor=blue)
 [![license: GPL v3](https://img.shields.io/badge/license-GPLv3-maroon.svg)](https://www.gnu.org/licenses/gpl-3.0)
