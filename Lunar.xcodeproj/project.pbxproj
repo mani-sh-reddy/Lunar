@@ -34,6 +34,7 @@
 
 /* Begin PBXBuildFile section */
 		3C066B632B017B0A00220A59 /* WhatsNewKitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C066B622B017B0A00220A59 /* WhatsNewKitData.swift */; };
+		3C06CBE82B249593000767CC /* MarkdownUIImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C06CBE72B249593000767CC /* MarkdownUIImageProvider.swift */; };
 		3C113C392A6E71E100FDE5CE /* SettingsAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */; };
 		3C113C432A6EA92600FDE5CE /* InstanceSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C422A6EA92600FDE5CE /* InstanceSelectorView.swift */; };
 		3C11B28B2B1CB44600244838 /* SettingsAppearanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C11B28A2B1CB44600244838 /* SettingsAppearanceView.swift */; };
@@ -321,6 +322,7 @@
 
 /* Begin PBXFileReference section */
 		3C066B622B017B0A00220A59 /* WhatsNewKitData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewKitData.swift; sourceTree = "<group>"; };
+		3C06CBE72B249593000767CC /* MarkdownUIImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownUIImageProvider.swift; sourceTree = "<group>"; };
 		3C10A76E2A72A6FC0040F1A9 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAccountView.swift; sourceTree = "<group>"; };
 		3C113C422A6EA92600FDE5CE /* InstanceSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstanceSelectorView.swift; sourceTree = "<group>"; };
@@ -732,6 +734,7 @@
 				3CC1788F2A7DA68C00C208D0 /* Search Views */,
 				3CDF22992A6D3FEF009281F2 /* Settings Views */,
 				3C15DFEC2A6D8C5A0038EFCD /* Tools */,
+				3C06CBE72B249593000767CC /* MarkdownUIImageProvider.swift */,
 			);
 			path = Lunar;
 			sourceTree = "<group>";
@@ -1499,6 +1502,7 @@
 				3CAD16E82AF6EC7B00A18BBA /* PhaseChangeActions.swift in Sources */,
 				3C113C432A6EA92600FDE5CE /* InstanceSelectorView.swift in Sources */,
 				3C8709322A747B91004999CE /* SiteModel.swift in Sources */,
+				3C06CBE82B249593000767CC /* MarkdownUIImageProvider.swift in Sources */,
 				3C3E76022B2392D500F25F7D /* RealmConverter.swift in Sources */,
 				3C8426452AFAC160002CD74C /* DevOverrides.swift in Sources */,
 				3C2B14772AABCCA50028E05A /* ColorConverter.swift in Sources */,

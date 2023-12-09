@@ -29,6 +29,7 @@ struct MyUserCommentsView: View {
           Markdown { comment.comment.content }
             .markdownTextStyle(\.text) { FontSize(fontSize) }
             .markdownTheme(.gitHub)
+            .markdownImageProvider(.lazyImageProvider)
           if commentMetadataPosition == "Bottom" {
             MyUserCommentMetadataView(comment: comment)
           }

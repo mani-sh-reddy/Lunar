@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 - Updated inbox tab design
+- Rendering images in comments view with LazyImage
 
 ### Fixed
 

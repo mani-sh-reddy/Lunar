@@ -29,10 +29,11 @@ struct MyUserView: View {
   var commentScore: String { String(activeAccount.commentScore) }
 //  var postCount: String { String(activeAccount.postCount) }
   var postCount: String {
-    return String(realmPosts.filter { post in
+    String(realmPosts.filter { post in
       post.filterKey == "MY_POSTS"
     }.count)
   }
+
   var commentCount: String { String(activeAccount.commentCount) }
 
   var userInstance: String {

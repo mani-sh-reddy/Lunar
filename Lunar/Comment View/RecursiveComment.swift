@@ -8,6 +8,8 @@
 import Defaults
 import Foundation
 import MarkdownUI
+import Nuke
+import NukeUI
 import SFSafeSymbols
 import SwiftUI
 
@@ -282,6 +284,7 @@ struct RecursiveComment: View {
       Markdown { nestedComment.commentViewData.comment.content }
         .markdownTextStyle(\.text) { FontSize(fontSize) }
         .markdownTheme(.gitHub)
+        .markdownImageProvider(.lazyImageProvider)
 
       if commentMetadataPosition == "Bottom" {
         commentMetadata
