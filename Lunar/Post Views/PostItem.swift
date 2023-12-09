@@ -67,6 +67,8 @@ struct PostItem: View {
     return URLParser.extractBaseDomain(from: url)
   }
 
+  // MARK: - body
+
   var body: some View {
     ZStack {
       postBackground
@@ -132,6 +134,8 @@ struct PostItem: View {
       reportSheet
     }
   }
+
+  // MARK: - reportSheet
 
   var reportSheet: some View {
     List {
@@ -199,6 +203,8 @@ struct PostItem: View {
     }
   }
 
+  // MARK: - blockDialog
+
   @ViewBuilder
   var blockDialog: some View {
     Button("Block User") {
@@ -213,6 +219,8 @@ struct PostItem: View {
     }
   }
 
+  // MARK: - reportPostButton
+
   var reportPostButton: some View {
     Button {
       reportPostSheetPresented = true
@@ -221,6 +229,8 @@ struct PostItem: View {
     }
   }
 
+  // MARK: - blockUserButton
+
   var blockUserButton: some View {
     Button {
       blockUserDialogPresented = true
@@ -228,6 +238,8 @@ struct PostItem: View {
       Label("Block User", systemSymbol: AllSymbols().blockContextIcon)
     }
   }
+
+  // MARK: - shareButton
 
   var shareButton: some View {
     Button {
@@ -243,6 +255,8 @@ struct PostItem: View {
     }
   }
 
+  // MARK: - hideButton
+
   var hideButton: some View {
     Button {
       RealmThawFunctions().hideAction(post: post)
@@ -251,6 +265,8 @@ struct PostItem: View {
     }
     .tint(.orange)
   }
+
+  // MARK: - minimiseButton
 
   var minimiseButton: some View {
     Button {
@@ -261,6 +277,8 @@ struct PostItem: View {
     .tint(.yellow)
   }
 
+  // MARK: - upvoteButton
+
   var upvoteButton: some View {
     Button {
       RealmThawFunctions().upvoteAction(post: post)
@@ -269,6 +287,8 @@ struct PostItem: View {
     }
     .tint(.green)
   }
+
+  // MARK: - downvoteButton
 
   var downvoteButton: some View {
     Button {
@@ -279,10 +299,14 @@ struct PostItem: View {
     .tint(.red)
   }
 
+  // MARK: - postBackground
+
   var postBackground: some View {
     RoundedRectangle(cornerRadius: 13, style: .continuous)
       .foregroundStyle(Color.postBackground)
   }
+
+  // MARK: - postImage
 
   @ViewBuilder
   var postImage: some View {
@@ -291,6 +315,8 @@ struct PostItem: View {
         .padding(.vertical, 5)
     }
   }
+
+  // MARK: - postCommunityLabel
 
   var postCommunityLabel: some View {
     HStack(spacing: 3) {
@@ -328,11 +354,15 @@ struct PostItem: View {
     }
   }
 
+  // MARK: - postTitle
+
   var postTitle: some View {
     Text(post.postName)
       .fontWeight(.semibold)
       .foregroundColor(.primary)
   }
+
+  // MARK: - postMinimised
 
   var postMinimised: some View {
     HStack {
@@ -347,6 +377,8 @@ struct PostItem: View {
       Spacer()
     }
   }
+
+  // MARK: - postMinimisedFeatured
 
   var postMinimisedFeatured: some View {
     HStack {
@@ -363,11 +395,15 @@ struct PostItem: View {
     }
   }
 
+  // MARK: - postCreatorLabel
+
   var postCreatorLabel: some View {
     Text(creatorTimeAgoLabel)
       .font(.caption)
       .foregroundColor(.secondary)
   }
+
+  // MARK: - postUpvotes
 
   var postUpvotes: some View {
     PostButtonItem(
@@ -383,6 +419,8 @@ struct PostItem: View {
         sendReaction(voteType: 1, postID: post.postID)
       })
   }
+
+  // MARK: - postDownvotes
 
   @ViewBuilder
   var postDownvotes: some View {
@@ -402,6 +440,8 @@ struct PostItem: View {
     }
   }
 
+  // MARK: - postComments
+
   var postComments: some View {
     PostButtonItem(
       text: String(post.postCommentCount ?? 0),
@@ -409,6 +449,8 @@ struct PostItem: View {
       color: Color.gray
     )
   }
+
+  // MARK: - postWebLink
 
   @ViewBuilder
   var postWebLink: some View {
@@ -429,6 +471,8 @@ struct PostItem: View {
     }
   }
 
+  // MARK: - commentsNavLink
+
   var commentsNavLink: some View {
     NavigationLink {
       CommentsView(
@@ -443,6 +487,8 @@ struct PostItem: View {
     .opacity(0)
   }
 
+  // MARK: - debugValues
+
   var debugValues: some View {
     VStack(alignment: .leading) {
       DebugTextView(name: "communityID", value: String(describing: post.communityID))
@@ -451,6 +497,8 @@ struct PostItem: View {
       DebugTextView(name: "type", value: post.type)
     }
   }
+
+  // MARK: - sendReaction
 
   func sendReaction(voteType: Int, postID: Int) {
     VoteSender(
@@ -463,6 +511,8 @@ struct PostItem: View {
       print("RETURNED /post/like \(String(describing: postID)):\(voteSubmittedSuccessfully)")
     }
   }
+
+  // MARK: - sendSubscribeAction
 
   func sendSubscribeAction(subscribeAction: Bool) {
     let notificationHaptics = UINotificationFeedbackGenerator()
@@ -502,6 +552,8 @@ struct PostItem: View {
     }
   }
 
+  // MARK: - blockUserAction
+
   func blockUserAction() {
     if let personID = post.personID {
       BlockSender(personID: personID, blockableObjectType: .person, block: true).blockUser { _, isBlockedResponse, _ in
@@ -511,6 +563,8 @@ struct PostItem: View {
       }
     }
   }
+
+  // MARK: - reportPostAction
 
   func reportPostAction(reportReason: String) {
     ReportSender(postID: post.postID, reportObjectType: .post, reportReason: reportReason).sendReport { _, _, successful in

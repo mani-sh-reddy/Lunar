@@ -49,6 +49,8 @@ struct PostsView: View {
 
   let hapticsRigid = UIImpactFeedbackGenerator(style: .rigid)
 
+  // MARK: - body
+
   var body: some View {
     List {
       if let communityActorID, !communityActorID.isEmpty {
@@ -126,32 +128,18 @@ struct PostsView: View {
     }
   }
 
+  // MARK: - resetRealmPosts
+
   func resetRealmPosts() {
-    let realm = try! Realm()
-    try! realm.write {
-      let posts = realm.objects(RealmPost.self).where { post in
-        (
-          post.sort == sort
-            && post.type == type
-            && post.filterKey == "sortAndTypeOnly"
-        )
-          || (
-            post.sort == sort
-              && post.type == type
-              && post.communityID == communityID
-              && post.filterKey == "communitySpecific"
-          )
-          || (
-            post.sort == sort
-              && post.type == type
-              && post.filterKey == "personSpecific"
-          )
-      }
-      realm.delete(posts)
+    guard !filteredPosts.isEmpty else { return }
+    for post in filteredPosts {
+      RealmThawFunctions().deletePost(post: post)
     }
     page = 1
     runOnce = false
   }
+
+  // MARK: - communitySpecificHeader
 
   var communitySpecificHeader: some View {
     Section {
@@ -177,6 +165,8 @@ struct PostsView: View {
     .listRowSeparator(.hidden)
   }
 
+  // MARK: - communityIconView
+
   var communityIconView: some View {
     LazyImage(url: URL(string: communityIcon ?? "")) { state in
       if let image = state.image {
@@ -197,6 +187,8 @@ struct PostsView: View {
     }
     .padding(5)
   }
+
+  // MARK: - personSpecificHeader
 
   var personSpecificHeader: some View {
     Section {
@@ -222,6 +214,8 @@ struct PostsView: View {
     .listRowSeparator(.hidden)
   }
 
+  // MARK: - personAvatarView
+
   var personAvatarView: some View {
     LazyImage(url: URL(string: personAvatar ?? "")) { state in
       if let image = state.image {
@@ -243,6 +237,8 @@ struct PostsView: View {
     .padding(5)
   }
 
+  // MARK: - createPostButton
+
   var createPostButton: some View {
     Button {
       showingCreatePostPopover = true
@@ -250,6 +246,8 @@ struct PostsView: View {
       Image(systemSymbol: .rectangleFillBadgePlus)
     }
   }
+
+  // MARK: - infoToolbar
 
   var infoToolbar: some View {
     HStack(alignment: .lastTextBaseline) {
@@ -268,6 +266,8 @@ struct PostsView: View {
     .font(.caption)
   }
 
+  // MARK: - loadMorePostsOnAppearAction
+
   func loadMorePostsOnAppearAction() {
     showingProgressView = true
     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -285,6 +285,8 @@ struct PostsView: View {
     }
     runOnce = true
   }
+
+  // MARK: - loadMorePostsButtonAction
 
   func loadMorePostsButtonAction() {
     showingProgressView = true

@@ -610,6 +610,17 @@
 			name = Kbin;
 			sourceTree = "<group>";
 		};
+		3C06CBF22B24DF67000767CC /* PrivateMessageModels */ = {
+			isa = PBXGroup;
+			children = (
+				3CC09CDC2B0E92D90036422F /* PrivateMessageModel.swift */,
+				3CC09CDE2B0E94EB0036422F /* PrivateMessageObject.swift */,
+				3CC09CE02B0E95490036422F /* PrivateMessage.swift */,
+				3CC09CE22B0E95A60036422F /* RealmPrivateMessage.swift */,
+			);
+			name = PrivateMessageModels;
+			sourceTree = "<group>";
+		};
 		3C10A76D2A72A6FC0040F1A9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -798,25 +809,20 @@
 			isa = PBXGroup;
 			children = (
 				3C06CBED2B24CEE4000767CC /* Kbin */,
-				3CC09CDC2B0E92D90036422F /* PrivateMessageModel.swift */,
-				3CC09CDE2B0E94EB0036422F /* PrivateMessageObject.swift */,
-				3CC09CE02B0E95490036422F /* PrivateMessage.swift */,
-				3CC09CE22B0E95A60036422F /* RealmPrivateMessage.swift */,
-				3CA8A0C42AE57CA700EEABD3 /* Batch.swift */,
-				3C2B14702AABC66E0028E05A /* Quicklink.swift */,
+				3C06CBF22B24DF67000767CC /* PrivateMessageModels */,
 				3CB9C72F2AA2445B00FB5A10 /* ResponseModels */,
-				3CB9C7202AA23F6000FB5A10 /* Common */,
-				3CB9C71F2AA23F4E00FB5A10 /* Community */,
-				3CB9C7252AA2403600FB5A10 /* Comment */,
-				3CB9C72C2AA2439D00FB5A10 /* Post */,
-				3CB9C7332AA245C900FB5A10 /* Person */,
-				3CB9C7322AA245A400FB5A10 /* Search */,
-				3CB9C7382AA2482900FB5A10 /* Site */,
+				3CB9C7202AA23F6000FB5A10 /* CommonModels */,
+				3CB9C71F2AA23F4E00FB5A10 /* CommunityModels */,
+				3CB9C7252AA2403600FB5A10 /* CommentModels */,
+				3CB9C72C2AA2439D00FB5A10 /* PostModels */,
+				3CB9C7332AA245C900FB5A10 /* PersonModels */,
+				3CB9C7322AA245A400FB5A10 /* SearchModels */,
+				3CB9C7382AA2482900FB5A10 /* SiteModels */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
 		};
-		3CB9C71F2AA23F4E00FB5A10 /* Community */ = {
+		3CB9C71F2AA23F4E00FB5A10 /* CommunityModels */ = {
 			isa = PBXGroup;
 			children = (
 				3CF717FA2AF42ED2005030D8 /* RealmCommunity.swift */,
@@ -824,30 +830,32 @@
 				3CB9C7212AA23F7400FB5A10 /* CommunityObject.swift */,
 				3CB9C71B2AA23EF000FB5A10 /* Community.swift */,
 			);
-			name = Community;
+			name = CommunityModels;
 			sourceTree = "<group>";
 		};
-		3CB9C7202AA23F6000FB5A10 /* Common */ = {
+		3CB9C7202AA23F6000FB5A10 /* CommonModels */ = {
 			isa = PBXGroup;
 			children = (
+				3CA8A0C42AE57CA700EEABD3 /* Batch.swift */,
+				3C2B14702AABC66E0028E05A /* Quicklink.swift */,
 				3CB9C71D2AA23F2600FB5A10 /* Counts.swift */,
 				3CB9C7192AA23EB700FB5A10 /* SubscribedState.swift */,
 				3CB9C7452AA24B7600FB5A10 /* Language.swift */,
 			);
-			name = Common;
+			name = CommonModels;
 			sourceTree = "<group>";
 		};
-		3CB9C7252AA2403600FB5A10 /* Comment */ = {
+		3CB9C7252AA2403600FB5A10 /* CommentModels */ = {
 			isa = PBXGroup;
 			children = (
 				3C4B7DD72A58A741003C8192 /* CommentModel.swift */,
 				3CB9C72A2AA2423400FB5A10 /* CommentObject.swift */,
 				3CB9C7232AA23FF400FB5A10 /* Comment.swift */,
 			);
-			name = Comment;
+			name = CommentModels;
 			sourceTree = "<group>";
 		};
-		3CB9C72C2AA2439D00FB5A10 /* Post */ = {
+		3CB9C72C2AA2439D00FB5A10 /* PostModels */ = {
 			isa = PBXGroup;
 			children = (
 				3CC3E4402AE047FE00F7F9A9 /* RealmPost.swift */,
@@ -855,7 +863,7 @@
 				3CB9C72D2AA243CB00FB5A10 /* PostObject.swift */,
 				3CB9C7302AA244CC00FB5A10 /* Post.swift */,
 			);
-			name = Post;
+			name = PostModels;
 			sourceTree = "<group>";
 		};
 		3CB9C72F2AA2445B00FB5A10 /* ResponseModels */ = {
@@ -876,15 +884,15 @@
 			name = ResponseModels;
 			sourceTree = "<group>";
 		};
-		3CB9C7322AA245A400FB5A10 /* Search */ = {
+		3CB9C7322AA245A400FB5A10 /* SearchModels */ = {
 			isa = PBXGroup;
 			children = (
 				3CC178922A7DA9FE00C208D0 /* SearchModel.swift */,
 			);
-			name = Search;
+			name = SearchModels;
 			sourceTree = "<group>";
 		};
-		3CB9C7332AA245C900FB5A10 /* Person */ = {
+		3CB9C7332AA245C900FB5A10 /* PersonModels */ = {
 			isa = PBXGroup;
 			children = (
 				3CB046F72ADB2A220011BFEC /* PersonModel.swift */,
@@ -895,16 +903,16 @@
 				3CB9C7432AA24B4100FB5A10 /* MyUser.swift */,
 				3CECCE242AAE68E80017A605 /* LocalUserProperties.swift */,
 			);
-			name = Person;
+			name = PersonModels;
 			sourceTree = "<group>";
 		};
-		3CB9C7382AA2482900FB5A10 /* Site */ = {
+		3CB9C7382AA2482900FB5A10 /* SiteModels */ = {
 			isa = PBXGroup;
 			children = (
 				3C8709312A747B91004999CE /* SiteModel.swift */,
 				3CB9C73B2AA24A5B00FB5A10 /* Site.swift */,
 			);
-			name = Site;
+			name = SiteModels;
 			sourceTree = "<group>";
 		};
 		3CBF88082AEEC67E0058B14D /* Legacy Views */ = {

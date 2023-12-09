@@ -32,7 +32,7 @@ class RealmThawFunctions {
         }
       }
     }
-    hapticsSoft.impactOccurred(intensity: 0.5)
+//    hapticsSoft.impactOccurred(intensity: 0.5)
   }
 
   func deleteCommunity(community: RealmCommunity) {
