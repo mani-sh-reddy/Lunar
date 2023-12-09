@@ -43,6 +43,7 @@ struct PostsView: View {
 
   @State var runOnce: Bool = false
   @State var page: Int = 1
+  @State var pageCursor: String = ""
   @State var showingCreatePostPopover: Bool = false
 
   @State var showingProgressView: Bool = false
@@ -277,6 +278,7 @@ struct PostsView: View {
         communityID: communityID,
         personID: personID,
         page: page,
+        pageCursor: pageCursor,
         filterKey: filterKey
       ).loadContent()
       /// Setting the page number for the batch.
@@ -298,6 +300,7 @@ struct PostsView: View {
         communityID: communityID,
         personID: personID,
         page: page,
+        pageCursor: pageCursor,
         filterKey: filterKey
       ).loadContent()
       showingProgressView = false

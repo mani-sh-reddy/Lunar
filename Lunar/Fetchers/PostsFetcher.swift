@@ -27,7 +27,8 @@ class PostsFetcher: ObservableObject {
   var endpointPath: String
   //  var page: Int
 
-  @State private var page: Int = 1
+  var page: Int?
+  var pageCursor: String?
 
   private var parameters: EndpointParameters {
     EndpointParameters(
@@ -35,6 +36,7 @@ class PostsFetcher: ObservableObject {
       sortParameter: sort,
       typeParameter: type,
       currentPage: page,
+      pageCursor: pageCursor,
       limitParameter: 50,
       communityID: communityID,
       personID: personID,
@@ -49,17 +51,20 @@ class PostsFetcher: ObservableObject {
     communityID: Int? = 0,
     personID: Int? = 0,
     instance: String? = nil,
-    page: Int,
+    page: Int? = nil,
+    pageCursor: String? = "",
     filterKey: String
   ) {
+    
+    self.page = page
+    self.pageCursor = pageCursor
+    
     ///    When getting user specific posts, need to use a different endpoint path.
     if personID == nil || personID == 0 {
       endpointPath = "/api/v3/post/list"
     } else {
       endpointPath = "/api/v3/user"
     }
-
-    self.page = page
 
     if communityID == 99_999_999_999_999 { // TODO: just a placeholder to prevent running when user posts
       self.communityID = 0

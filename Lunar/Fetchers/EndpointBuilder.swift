@@ -25,6 +25,7 @@ struct EndpointParameters {
   var sortParameter: String?
   var typeParameter: String?
   var currentPage: Int?
+  var pageCursor: String?
   var limitParameter: Int?
   var savedOnly: Bool?
   var communityID: Int?
@@ -62,6 +63,7 @@ class EndpointBuilder {
     if let personID = parameters.personID, personID != 0 { queryParams["person_id"] = String(personID) }
     if let postID = parameters.postID { queryParams["post_id"] = String(postID) }
     if let maxDepth = parameters.maxDepth { queryParams["max_depth"] = String(maxDepth) }
+    if let pageCursor = parameters.pageCursor { queryParams["page_cursor"] = String(pageCursor) }
 
     if redact == false {
       if let jwt = parameters.jwt { queryParams["auth"] = jwt }
