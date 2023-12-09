@@ -19,7 +19,7 @@ struct RecursiveComment: View {
   @Default(.fontSize) var fontSize
 
   @State private var isExpanded = true
-  @State var showCreateCommentPopover = false
+  @State var showingCreateCommentPopover = false
   @State var blockUserDialogPresented = false
   @State var reportCommentSheetPresented = false
   @State var reportReasonHolder: String = ""
@@ -44,7 +44,7 @@ struct RecursiveComment: View {
         maximisedCommentRow
         Spacer()
       }
-      .fullScreenCover(isPresented: $showCreateCommentPopover) {
+      .fullScreenCover(isPresented: $showingCreateCommentPopover) {
         commentPopoverAction
       }
       .contentShape(Rectangle())
@@ -67,7 +67,7 @@ struct RecursiveComment: View {
       .confirmationDialog("", isPresented: $blockUserDialogPresented) {
         blockDialog
       } message: {
-        Text("Block user \(URLParser.buildFullUsername(from: post.personActorID))")
+        Text("Block user \(URLParser.buildFullUsername(from: nestedComment.commentViewData.creator.actorID))")
       }
       .sheet(isPresented: $reportCommentSheetPresented) {
         reportCommentSheet
@@ -215,7 +215,7 @@ struct RecursiveComment: View {
 
   var replyButton: some View {
     Button {
-      showCreateCommentPopover = true
+      showingCreateCommentPopover = true
     } label: {
       Label("reply", systemSymbol: AllSymbols().replyContextIcon)
     }
@@ -267,6 +267,7 @@ struct RecursiveComment: View {
   @ViewBuilder
   var commentPopoverAction: some View {
     CreateCommentPopover(
+      showingCreateCommentPopover: $showingCreateCommentPopover,
       post: post,
       parentID: nestedComment.commentID,
       parentString: nestedComment.commentViewData.comment.content
@@ -309,7 +310,7 @@ struct RecursiveComment: View {
   }
 
   func blockUserAction() {
-    if let personID = post.personID {
+    if let personID = nestedComment.commentViewData.creator.id {
       BlockSender(personID: personID, blockableObjectType: .person, block: true).blockUser { _, isBlockedResponse, _ in
         if isBlockedResponse == true {
           if let index = commentsFetcher.comments.firstIndex(where: {

@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 
 - Disabled subscribed community blocking
+- Fixed a bug in blocking comment creator
 
 ### Misc
 

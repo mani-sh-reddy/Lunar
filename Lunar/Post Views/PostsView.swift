@@ -118,6 +118,7 @@ struct PostsView: View {
     }
     .popover(isPresented: $showingCreatePostPopover) {
       CreatePostPopoverView(
+        showingCreatePostPopover: $showingCreatePostPopover,
         communityID: communityID,
         communityName: communityName ?? "",
         communityActorID: communityActorID ?? ""

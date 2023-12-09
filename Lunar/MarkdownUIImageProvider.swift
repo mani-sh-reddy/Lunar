@@ -6,15 +6,15 @@
 //
 
 import Foundation
+import MarkdownUI
 import Nuke
 import NukeUI
-import MarkdownUI
 import SwiftUI
 
 struct LazyImageProvider: ImageProvider {
   @MainActor func makeImage(url: URL?) -> some View {
     let imageRequest = ImageRequest(url: url, processors: [.resize(width: 200)], priority: .low)
-    
+
     LazyImage(request: imageRequest) { state in
       if let image = state.image {
         image
