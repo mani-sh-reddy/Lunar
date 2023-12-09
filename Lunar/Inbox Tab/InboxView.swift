@@ -39,6 +39,7 @@ struct InboxView: View {
       }
       .listStyle(.plain)
       .navigationTitle("Inbox")
+      .background(Color("postListBackground"))
       .onAppear {
         guard !privateMessagesRetrieved else { return }
         reloadMessages()
@@ -170,7 +171,6 @@ struct MessageItem: View {
       }
     }
     .processors([.resize(width: 50)])
-
     .frame(width: 20, height: 20)
     .transition(.opacity)
   }
