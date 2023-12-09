@@ -78,6 +78,8 @@ enum messageDirection {
 struct MessageItem: View {
   @Default(.fontSize) var fontSize
   @Default(.activeAccount) var activeAccount
+  @Default(.accentColor) var accentColor
+  @Default(.accentColorString) var accentColorString
 
   @ObservedRealmObject var message: RealmPrivateMessage
 
@@ -106,8 +108,19 @@ struct MessageItem: View {
   }
 
   var chatBubbleColor: Color {
-    messageDirection == .incoming ? .messageBubbleBackgroundBlue : .messageBubbleBackgroundGray
+    if messageDirection == .incoming {
+      let color = accentColorString == "Default" ? Color.messageBubbleBackgroundBlue : .accentColor
+      return color
+    } else {
+      return Color.messageBubbleBackgroundGray
+    }
   }
+
+//  var composerSettings: some View {
+//    Image(systemSymbol: accentColorString == "Default" ? .textBubbleFill : .textBubble)
+//      .symbolRenderingMode(accentColorString == "Default" ? .hierarchical : .monochrome)
+//      .foregroundStyle(accentColorString == "Default" ? .gray : accentColor)
+//  }
 
   var body: some View {
     ChatBubble(position: chatBubbleDirection, color: chatBubbleColor) {
