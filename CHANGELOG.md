@@ -9,6 +9,15 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- Page cursor support for Lemmy 0.19
+
+### Fixed
+
+- Added a UUID to realm posts model to prevent post overwrites
+- Fixed delete-posts-on-refresh logic
+
 ## [2023.12.6]
 
 ### Changed

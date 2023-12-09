@@ -67,7 +67,9 @@ struct InstanceSelectorView: View {
     let realm = try! Realm()
     try! realm.write {
       let posts = realm.objects(RealmPost.self)
+      let pages = realm.objects(RealmPage.self)
       realm.delete(posts)
+      realm.delete(pages)
     }
   }
 }
