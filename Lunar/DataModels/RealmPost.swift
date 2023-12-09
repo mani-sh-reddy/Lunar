@@ -14,7 +14,8 @@ class RealmPost: Object, ObjectKeyIdentifiable {
 
   // MARK: - Post
 
-  @Persisted(primaryKey: true) var postID: Int
+  @Persisted(primaryKey: true) var ID: UUID = .init()
+  @Persisted var postID: Int
   @Persisted var postName: String
   @Persisted var postPublished: String
   @Persisted var postURL: String?
