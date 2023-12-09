@@ -23,31 +23,21 @@ struct InboxView: View {
   var body: some View {
     NavigationView {
       List {
-        if messages.count == 0 {
-          Text("No messages found")
+        if messages.isEmpty || activeAccount.actorID.isEmpty {
+          Text(activeAccount.actorID.isEmpty ? "Login to view messages" : "No messages found")
             .listRowBackground(Color.clear)
+            .foregroundStyle(.secondary)
         } else {
           Section {
             ForEach(messages, id: \.messageID) { message in
-              if message.creatorActorID != activeAccount.actorID {
-                MessageItem(message: message)
-              }
+              MessageItem(message: message)
             }
-          } header: {
-            Text("Received")
           }
-          Section {
-            ForEach(messages, id: \.messageID) { message in
-              if message.creatorActorID == activeAccount.actorID {
-                MessageItem(message: message)
-              }
-            }
-          } header: {
-            Text("Sent")
-          }
+          .listRowBackground(Color.clear)
+          .listRowSeparator(.hidden)
         }
       }
-      .listStyle(.insetGrouped)
+      .listStyle(.plain)
       .navigationTitle("Inbox")
       .onAppear {
         guard !privateMessagesRetrieved else { return }
@@ -95,9 +85,9 @@ struct MessageItem: View {
     message.creatorActorID == activeAccount.actorID ? .outgoing : .incoming
   }
 
-//  var fromTo: String {
-//    messageDirection == .incoming ? "from" : "to"
-//  }
+  //  var fromTo: String {
+  //    messageDirection == .incoming ? "from" : "to"
+  //  }
 
   var name: String {
     messageDirection == .incoming ? message.creatorName : message.recipientName
@@ -111,29 +101,32 @@ struct MessageItem: View {
     messageDirection == .incoming ? message.creatorAvatar : message.recipientAvatar
   }
 
-  var body: some View {
-    VStack(alignment: .leading) {
-      HStack(alignment: .center) {
-//        fromToLabel
-        fromAvatar
-        header
-        Spacer()
-      }
-      messageBody
-      timeAgoHeader
-    }
+  var chatBubbleDirection: BubblePosition {
+    messageDirection == .incoming ? .left : .right
   }
 
-//
-//  var fromToLabel: some View {
-//    Text()
-//      .foregroundStyle(.secondary)
-//  }
+  var chatBubbleColor: Color {
+    messageDirection == .incoming ? .messageBubbleBackgroundBlue : .messageBubbleBackgroundGray
+  }
+
+  var body: some View {
+    ChatBubble(position: chatBubbleDirection, color: chatBubbleColor) {
+      VStack(alignment: .leading) {
+        HStack(alignment: .center) {
+          fromAvatar
+          header
+          Spacer()
+        }
+        messageBody
+        timeAgoHeader
+      }
+    }
+  }
 
   var header: some View {
     HStack(alignment: .firstTextBaseline, spacing: 1) {
       Text("\(name)")
-        .textCase(.uppercase)
+        .bold()
         .fixedSize()
 
       Text("@\(URLParser.extractDomain(from: actorID))")
@@ -170,49 +163,16 @@ struct MessageItem: View {
   }
 
   var messageBody: some View {
-    Markdown { message.messageContent }
-      .markdownTextStyle(\.text) { FontSize(fontSize) }
-      .markdownTheme(.gitHub)
-      .padding(.bottom, 2)
+    Text(message.messageContent)
+      .font(.system(size: 15))
+      .padding(.bottom, 3)
   }
 }
 
-//  @ViewBuilder
-//  var actionButtons: some View {
-//    ReactionButton(
-//      icon: SFSafeSymbols.SFSymbol.checkmarkCircleFill,
-//      color: Color.blue,
-//      active: $message.messageRead.not,
-//      opposite: .constant(false)
-//    )
-//    .hapticFeedbackOnTap(style: .rigid)
-//
-//    ReactionButton(
-//      icon: SFSafeSymbols.SFSymbol.flagCircleFill,
-//      color: Color.red,
-//      active: $message.messageRead.not,
-//      opposite: .constant(false)
-//    )
-//    .hapticFeedbackOnTap(style: .rigid)
-//
-//    ReactionButton(
-//      icon: SFSafeSymbols.SFSymbol.arrowshapeTurnUpLeftCircleFill,
-//      color: Color.orange,
-//      active: $message.messageRead.not,
-//      opposite: .constant(false)
-//    )
-//    .hapticFeedbackOnTap(style: .rigid)
-//
-//    ReactionButton(
-//      icon: SFSafeSymbols.SFSymbol.docCircleFill,
-//      color: Color.gray,
-//      active: $message.messageRead.not,
-//      opposite: .constant(false)
-//    )
-//    .hapticFeedbackOnTap(style: .rigid)
-//  }
-
 #Preview {
-  MessageItem(message: MockData().privateMessage)
-    .previewLayout(.sizeThatFits)
+  VStack {
+    MessageItem(message: MockData().privateMessageIncoming)
+    MessageItem(message: MockData().privateMessageIncoming)
+  }
+  .previewLayout(.sizeThatFits)
 }

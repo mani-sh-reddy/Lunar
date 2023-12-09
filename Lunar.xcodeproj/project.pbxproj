@@ -139,6 +139,7 @@
 		3C87A36C2A9FB6BF0029C18F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C87A36B2A9FB6BF0029C18F /* Assets.xcassets */; };
 		3C87A36E2A9FBDE70029C18F /* SettingsAppIconPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C87A36D2A9FBDE70029C18F /* SettingsAppIconPickerView.swift */; };
 		3C953D0B2B23CC3B00D68CEC /* MyUserPostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C953D0A2B23CC3B00D68CEC /* MyUserPostsView.swift */; };
+		3C953D0D2B23D9EF00D68CEC /* ChatBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C953D0C2B23D9EF00D68CEC /* ChatBubbleView.swift */; };
 		3C96EA3E2A76FC1200753199 /* LoginButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96EA3D2A76FC1200753199 /* LoginButtonView.swift */; };
 		3C96EA422A77225E00753199 /* ValidationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96EA412A77225E00753199 /* ValidationUtils.swift */; };
 		3C96EA4A2A78390F00753199 /* LogoutAllUsersButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C96EA492A78390F00753199 /* LogoutAllUsersButtonView.swift */; };
@@ -420,6 +421,7 @@
 		3C87A36B2A9FB6BF0029C18F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C87A36D2A9FBDE70029C18F /* SettingsAppIconPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAppIconPickerView.swift; sourceTree = "<group>"; };
 		3C953D0A2B23CC3B00D68CEC /* MyUserPostsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyUserPostsView.swift; sourceTree = "<group>"; };
+		3C953D0C2B23D9EF00D68CEC /* ChatBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubbleView.swift; sourceTree = "<group>"; };
 		3C96EA3D2A76FC1200753199 /* LoginButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtonView.swift; sourceTree = "<group>"; };
 		3C96EA412A77225E00753199 /* ValidationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationUtils.swift; sourceTree = "<group>"; };
 		3C96EA492A78390F00753199 /* LogoutAllUsersButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutAllUsersButtonView.swift; sourceTree = "<group>"; };
@@ -615,6 +617,7 @@
 				3CC3E40E2ADBE24100F7F9A9 /* Utilities */,
 				3CC3E40D2ADBE14C00F7F9A9 /* Extensions */,
 				3C2EA6CA2B00274F007AC12D /* ImageDownloadManager.swift */,
+				3C953D0C2B23D9EF00D68CEC /* ChatBubbleView.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -1332,6 +1335,7 @@
 				3CEF4CC62A69B3AD002B83C0 /* ExploreCommunitiesButton.swift in Sources */,
 				3CEF4CD32A69B770002B83C0 /* StringExtension.swift in Sources */,
 				3CB9C7312AA244CC00FB5A10 /* Post.swift in Sources */,
+				3C953D0D2B23D9EF00D68CEC /* ChatBubbleView.swift in Sources */,
 				3CEF4CD02A69B738002B83C0 /* InPostMetadataView.swift in Sources */,
 				3CB9C7442AA24B4100FB5A10 /* MyUser.swift in Sources */,
 				3C3E75F62B21102200F25F7D /* RealmWriter.swift in Sources */,

@@ -9,6 +9,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+
+- Updated inbox tab design
+
 ### Fixed
 
 - Disabled subscribed community blocking
