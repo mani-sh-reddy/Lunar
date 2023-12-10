@@ -20,6 +20,9 @@ struct PostsView: View {
   @Default(.activeAccount) var activeAccount
   @Default(.fontSize) var fontSize
 
+  @ObservedRealmObject var realmPage: RealmPage
+  @ObservedResults(RealmPage.self) var realmPages
+
   var filteredPosts: [RealmPost]
 
   var sort: String
@@ -43,11 +46,14 @@ struct PostsView: View {
 
   @State var runOnce: Bool = false
   @State var page: Int = 1
+  @State var pageCursor: String = ""
   @State var showingCreatePostPopover: Bool = false
 
   @State var showingProgressView: Bool = false
 
   let hapticsRigid = UIImpactFeedbackGenerator(style: .rigid)
+
+  // MARK: - body
 
   var body: some View {
     List {
@@ -99,6 +105,7 @@ struct PostsView: View {
     .refreshable {
       showingProgressView = true
       try? await Task.sleep(nanoseconds: 1 * 1_000_000_000)
+      resetRealmPages()
       resetRealmPosts()
     }
     .onChange(of: selectedInstance) { _ in
@@ -126,32 +133,33 @@ struct PostsView: View {
     }
   }
 
+  // MARK: - resetRealmPosts
+
   func resetRealmPosts() {
-    let realm = try! Realm()
-    try! realm.write {
-      let posts = realm.objects(RealmPost.self).where { post in
-        (
-          post.sort == sort
-            && post.type == type
-            && post.filterKey == "sortAndTypeOnly"
-        )
-          || (
-            post.sort == sort
-              && post.type == type
-              && post.communityID == communityID
-              && post.filterKey == "communitySpecific"
-          )
-          || (
-            post.sort == sort
-              && post.type == type
-              && post.filterKey == "personSpecific"
-          )
-      }
-      realm.delete(posts)
+    guard !filteredPosts.isEmpty else { return }
+    for post in filteredPosts {
+      RealmThawFunctions().deletePost(post: post)
     }
     page = 1
     runOnce = false
   }
+
+  func resetRealmPages() {
+    guard !realmPages.filter({
+      $0.sort == sort
+      && $0.type == type
+      && $0.filterKey == filterKey
+    }).isEmpty else { return }
+    for page in realmPages.filter({
+      $0.sort == sort
+        && $0.type == type
+        && $0.filterKey == filterKey
+    }) {
+      RealmThawFunctions().resetRealmPage(page: page)
+    }
+  }
+
+  // MARK: - communitySpecificHeader
 
   var communitySpecificHeader: some View {
     Section {
@@ -177,6 +185,8 @@ struct PostsView: View {
     .listRowSeparator(.hidden)
   }
 
+  // MARK: - communityIconView
+
   var communityIconView: some View {
     LazyImage(url: URL(string: communityIcon ?? "")) { state in
       if let image = state.image {
@@ -197,6 +207,8 @@ struct PostsView: View {
     }
     .padding(5)
   }
+
+  // MARK: - personSpecificHeader
 
   var personSpecificHeader: some View {
     Section {
@@ -222,6 +234,8 @@ struct PostsView: View {
     .listRowSeparator(.hidden)
   }
 
+  // MARK: - personAvatarView
+
   var personAvatarView: some View {
     LazyImage(url: URL(string: personAvatar ?? "")) { state in
       if let image = state.image {
@@ -243,6 +257,8 @@ struct PostsView: View {
     .padding(5)
   }
 
+  // MARK: - createPostButton
+
   var createPostButton: some View {
     Button {
       showingCreatePostPopover = true
@@ -250,6 +266,8 @@ struct PostsView: View {
       Image(systemSymbol: .rectangleFillBadgePlus)
     }
   }
+
+  // MARK: - infoToolbar
 
   var infoToolbar: some View {
     HStack(alignment: .lastTextBaseline) {
@@ -268,6 +286,8 @@ struct PostsView: View {
     .font(.caption)
   }
 
+  // MARK: - loadMorePostsOnAppearAction
+
   func loadMorePostsOnAppearAction() {
     showingProgressView = true
     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -277,6 +297,7 @@ struct PostsView: View {
         communityID: communityID,
         personID: personID,
         page: page,
+        pageCursor: realmPage.pageCursor,
         filterKey: filterKey
       ).loadContent()
       /// Setting the page number for the batch.
@@ -285,6 +306,8 @@ struct PostsView: View {
     }
     runOnce = true
   }
+
+  // MARK: - loadMorePostsButtonAction
 
   func loadMorePostsButtonAction() {
     showingProgressView = true
@@ -296,6 +319,7 @@ struct PostsView: View {
         communityID: communityID,
         personID: personID,
         page: page,
+        pageCursor: realmPage.pageCursor,
         filterKey: filterKey
       ).loadContent()
       showingProgressView = false

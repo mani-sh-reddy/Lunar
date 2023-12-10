@@ -62,6 +62,7 @@ class PersonFetcher: ObservableObject {
   }
 
   func loadContent(isRefreshing: Bool = false) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {}
     guard !isLoading else { return }
 
     if isRefreshing {

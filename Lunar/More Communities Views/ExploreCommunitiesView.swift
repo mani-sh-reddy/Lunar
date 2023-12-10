@@ -10,6 +10,7 @@ import SwiftUI
 
 struct ExploreCommunitiesView: View {
   @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
+  @ObservedResults(RealmPage.self) var realmPage
 
   @StateObject var communitiesFetcher: LegacyCommunitiesFetcher
 
@@ -23,6 +24,12 @@ struct ExploreCommunitiesView: View {
         ForEach(communitiesFetcher.communities, id: \.community.id) { community in
           NavigationLink {
             PostsView(
+              realmPage: realmPage.sorted(byKeyPath: "timestamp", ascending: false).first(where: {
+                $0.sort == "Active"
+                  && $0.type == "All"
+                  && $0.communityID == community.community.id
+                  && $0.filterKey == "communitySpecific"
+              }) ?? RealmPage(),
               filteredPosts: realmPosts.filter { post in
                 post.sort == "Active"
                   && post.type == "All"

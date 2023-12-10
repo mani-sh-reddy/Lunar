@@ -35,6 +35,11 @@
 /* Begin PBXBuildFile section */
 		3C066B632B017B0A00220A59 /* WhatsNewKitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C066B622B017B0A00220A59 /* WhatsNewKitData.swift */; };
 		3C06CBE82B249593000767CC /* MarkdownUIImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C06CBE72B249593000767CC /* MarkdownUIImageProvider.swift */; };
+		3C06CBEA2B24C1C6000767CC /* KbinPostsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C06CBE92B24C1C6000767CC /* KbinPostsFetcher.swift */; };
+		3C06CBEC2B24C508000767CC /* EndpointBuilderKbin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C06CBEB2B24C508000767CC /* EndpointBuilderKbin.swift */; };
+		3C06CBEF2B24CEF2000767CC /* KbinPostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C06CBEE2B24CEF2000767CC /* KbinPostModel.swift */; };
+		3C06CBF12B24DAC8000767CC /* UUIDToInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C06CBF02B24DAC8000767CC /* UUIDToInt.swift */; };
+		3C06CBF42B25157F000767CC /* RealmPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C06CBF32B25157F000767CC /* RealmPage.swift */; };
 		3C113C392A6E71E100FDE5CE /* SettingsAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */; };
 		3C113C432A6EA92600FDE5CE /* InstanceSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C422A6EA92600FDE5CE /* InstanceSelectorView.swift */; };
 		3C11B28B2B1CB44600244838 /* SettingsAppearanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C11B28A2B1CB44600244838 /* SettingsAppearanceView.swift */; };
@@ -323,6 +328,11 @@
 /* Begin PBXFileReference section */
 		3C066B622B017B0A00220A59 /* WhatsNewKitData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsNewKitData.swift; sourceTree = "<group>"; };
 		3C06CBE72B249593000767CC /* MarkdownUIImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownUIImageProvider.swift; sourceTree = "<group>"; };
+		3C06CBE92B24C1C6000767CC /* KbinPostsFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KbinPostsFetcher.swift; sourceTree = "<group>"; };
+		3C06CBEB2B24C508000767CC /* EndpointBuilderKbin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndpointBuilderKbin.swift; sourceTree = "<group>"; };
+		3C06CBEE2B24CEF2000767CC /* KbinPostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinPostModel.swift; sourceTree = "<group>"; };
+		3C06CBF02B24DAC8000767CC /* UUIDToInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUIDToInt.swift; sourceTree = "<group>"; };
+		3C06CBF32B25157F000767CC /* RealmPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmPage.swift; sourceTree = "<group>"; };
 		3C10A76E2A72A6FC0040F1A9 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAccountView.swift; sourceTree = "<group>"; };
 		3C113C422A6EA92600FDE5CE /* InstanceSelectorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstanceSelectorView.swift; sourceTree = "<group>"; };
@@ -594,6 +604,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C06CBED2B24CEE4000767CC /* Kbin */ = {
+			isa = PBXGroup;
+			children = (
+				3C06CBEE2B24CEF2000767CC /* KbinPostModel.swift */,
+			);
+			name = Kbin;
+			sourceTree = "<group>";
+		};
+		3C06CBF22B24DF67000767CC /* PrivateMessageModels */ = {
+			isa = PBXGroup;
+			children = (
+				3CC09CDC2B0E92D90036422F /* PrivateMessageModel.swift */,
+				3CC09CDE2B0E94EB0036422F /* PrivateMessageObject.swift */,
+				3CC09CE02B0E95490036422F /* PrivateMessage.swift */,
+				3CC09CE22B0E95A60036422F /* RealmPrivateMessage.swift */,
+			);
+			name = PrivateMessageModels;
+			sourceTree = "<group>";
+		};
 		3C10A76D2A72A6FC0040F1A9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -620,6 +649,7 @@
 				3CC3E40D2ADBE14C00F7F9A9 /* Extensions */,
 				3C2EA6CA2B00274F007AC12D /* ImageDownloadManager.swift */,
 				3C953D0C2B23D9EF00D68CEC /* ChatBubbleView.swift */,
+				3C06CBF02B24DAC8000767CC /* UUIDToInt.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -656,6 +686,7 @@
 				3C3E75F72B21158100F25F7D /* GenerateHeaders.swift */,
 				3C3E75F52B21102200F25F7D /* RealmWriter.swift */,
 				3CC734A32A6D58C6007523B5 /* EndpointBuilder.swift */,
+				3C06CBEB2B24C508000767CC /* EndpointBuilderKbin.swift */,
 				3C4D42A72A8D0FD1003B6F1D /* VoteSender.swift */,
 				3CC3E4222ADC4A2600F7F9A9 /* ImageSender.swift */,
 				3C6BBF712A910F6100312E2B /* SubscriptionActionSender.swift */,
@@ -779,25 +810,21 @@
 		3CA5C4082A57443200BF8F1B /* DataModels */ = {
 			isa = PBXGroup;
 			children = (
-				3CC09CDC2B0E92D90036422F /* PrivateMessageModel.swift */,
-				3CC09CDE2B0E94EB0036422F /* PrivateMessageObject.swift */,
-				3CC09CE02B0E95490036422F /* PrivateMessage.swift */,
-				3CC09CE22B0E95A60036422F /* RealmPrivateMessage.swift */,
-				3CA8A0C42AE57CA700EEABD3 /* Batch.swift */,
-				3C2B14702AABC66E0028E05A /* Quicklink.swift */,
+				3C06CBED2B24CEE4000767CC /* Kbin */,
+				3C06CBF22B24DF67000767CC /* PrivateMessageModels */,
 				3CB9C72F2AA2445B00FB5A10 /* ResponseModels */,
-				3CB9C7202AA23F6000FB5A10 /* Common */,
-				3CB9C71F2AA23F4E00FB5A10 /* Community */,
-				3CB9C7252AA2403600FB5A10 /* Comment */,
-				3CB9C72C2AA2439D00FB5A10 /* Post */,
-				3CB9C7332AA245C900FB5A10 /* Person */,
-				3CB9C7322AA245A400FB5A10 /* Search */,
-				3CB9C7382AA2482900FB5A10 /* Site */,
+				3CB9C7202AA23F6000FB5A10 /* CommonModels */,
+				3CB9C71F2AA23F4E00FB5A10 /* CommunityModels */,
+				3CB9C7252AA2403600FB5A10 /* CommentModels */,
+				3CB9C72C2AA2439D00FB5A10 /* PostModels */,
+				3CB9C7332AA245C900FB5A10 /* PersonModels */,
+				3CB9C7322AA245A400FB5A10 /* SearchModels */,
+				3CB9C7382AA2482900FB5A10 /* SiteModels */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
 		};
-		3CB9C71F2AA23F4E00FB5A10 /* Community */ = {
+		3CB9C71F2AA23F4E00FB5A10 /* CommunityModels */ = {
 			isa = PBXGroup;
 			children = (
 				3CF717FA2AF42ED2005030D8 /* RealmCommunity.swift */,
@@ -805,38 +832,41 @@
 				3CB9C7212AA23F7400FB5A10 /* CommunityObject.swift */,
 				3CB9C71B2AA23EF000FB5A10 /* Community.swift */,
 			);
-			name = Community;
+			name = CommunityModels;
 			sourceTree = "<group>";
 		};
-		3CB9C7202AA23F6000FB5A10 /* Common */ = {
+		3CB9C7202AA23F6000FB5A10 /* CommonModels */ = {
 			isa = PBXGroup;
 			children = (
+				3CA8A0C42AE57CA700EEABD3 /* Batch.swift */,
+				3C2B14702AABC66E0028E05A /* Quicklink.swift */,
 				3CB9C71D2AA23F2600FB5A10 /* Counts.swift */,
 				3CB9C7192AA23EB700FB5A10 /* SubscribedState.swift */,
 				3CB9C7452AA24B7600FB5A10 /* Language.swift */,
 			);
-			name = Common;
+			name = CommonModels;
 			sourceTree = "<group>";
 		};
-		3CB9C7252AA2403600FB5A10 /* Comment */ = {
+		3CB9C7252AA2403600FB5A10 /* CommentModels */ = {
 			isa = PBXGroup;
 			children = (
 				3C4B7DD72A58A741003C8192 /* CommentModel.swift */,
 				3CB9C72A2AA2423400FB5A10 /* CommentObject.swift */,
 				3CB9C7232AA23FF400FB5A10 /* Comment.swift */,
 			);
-			name = Comment;
+			name = CommentModels;
 			sourceTree = "<group>";
 		};
-		3CB9C72C2AA2439D00FB5A10 /* Post */ = {
+		3CB9C72C2AA2439D00FB5A10 /* PostModels */ = {
 			isa = PBXGroup;
 			children = (
 				3CC3E4402AE047FE00F7F9A9 /* RealmPost.swift */,
+				3C06CBF32B25157F000767CC /* RealmPage.swift */,
 				3CA5C4092A574FF500BF8F1B /* PostModel.swift */,
 				3CB9C72D2AA243CB00FB5A10 /* PostObject.swift */,
 				3CB9C7302AA244CC00FB5A10 /* Post.swift */,
 			);
-			name = Post;
+			name = PostModels;
 			sourceTree = "<group>";
 		};
 		3CB9C72F2AA2445B00FB5A10 /* ResponseModels */ = {
@@ -857,15 +887,15 @@
 			name = ResponseModels;
 			sourceTree = "<group>";
 		};
-		3CB9C7322AA245A400FB5A10 /* Search */ = {
+		3CB9C7322AA245A400FB5A10 /* SearchModels */ = {
 			isa = PBXGroup;
 			children = (
 				3CC178922A7DA9FE00C208D0 /* SearchModel.swift */,
 			);
-			name = Search;
+			name = SearchModels;
 			sourceTree = "<group>";
 		};
-		3CB9C7332AA245C900FB5A10 /* Person */ = {
+		3CB9C7332AA245C900FB5A10 /* PersonModels */ = {
 			isa = PBXGroup;
 			children = (
 				3CB046F72ADB2A220011BFEC /* PersonModel.swift */,
@@ -876,16 +906,16 @@
 				3CB9C7432AA24B4100FB5A10 /* MyUser.swift */,
 				3CECCE242AAE68E80017A605 /* LocalUserProperties.swift */,
 			);
-			name = Person;
+			name = PersonModels;
 			sourceTree = "<group>";
 		};
-		3CB9C7382AA2482900FB5A10 /* Site */ = {
+		3CB9C7382AA2482900FB5A10 /* SiteModels */ = {
 			isa = PBXGroup;
 			children = (
 				3C8709312A747B91004999CE /* SiteModel.swift */,
 				3CB9C73B2AA24A5B00FB5A10 /* Site.swift */,
 			);
-			name = Site;
+			name = SiteModels;
 			sourceTree = "<group>";
 		};
 		3CBF88082AEEC67E0058B14D /* Legacy Views */ = {
@@ -1004,13 +1034,13 @@
 			isa = PBXGroup;
 			children = (
 				3CB8D2672A55F45900EE615A /* FeedView.swift */,
-				3CDAFF602B12547300C83BE3 /* OfflineDownloaderView.swift */,
 				3CEF4CC72A69B3C3002B83C0 /* GeneralCommunitiesView.swift */,
 				3C2B14722AABC6AD0028E05A /* GeneralCommunityButtonView.swift */,
 				3CEF4CC32A69B39B002B83C0 /* TrendingCommunitiesSectionView.swift */,
 				3CA92E422A549A7F00688DEB /* CommunityItem.swift */,
 				3C54C0A42ABBA42300F1BADE /* SubscribedFeedQuicklink.swift */,
 				3CEF4CC12A69B38B002B83C0 /* SubscribedCommunitiesView.swift */,
+				3CDAFF602B12547300C83BE3 /* OfflineDownloaderView.swift */,
 			);
 			path = "Feed Views";
 			sourceTree = "<group>";
@@ -1077,6 +1107,7 @@
 		3CFE04C42A7FF1E7007BAD81 /* Kbin */ = {
 			isa = PBXGroup;
 			children = (
+				3C06CBE92B24C1C6000767CC /* KbinPostsFetcher.swift */,
 				3CFE04C22A7FF0EB007BAD81 /* KbinThreadsModel.swift */,
 				3CFE04C62A7FF270007BAD81 /* KbinThreadsFetcher.swift */,
 				3C432F5B2A819E54000D5321 /* KbinThreadBodyFetcher.swift */,
@@ -1362,6 +1393,7 @@
 				3CA8A0CF2AE8541B00EEABD3 /* PostItem.swift in Sources */,
 				3CCE1D1D2AB6050E00357DFA /* RecursiveComment.swift in Sources */,
 				3C54C0962AB8E62C00F1BADE /* InAppSafariModifier.swift in Sources */,
+				3C06CBF12B24DAC8000767CC /* UUIDToInt.swift in Sources */,
 				3CF3F9C22A6EE20C0051E725 /* ViewExtension.swift in Sources */,
 				3CF717FD2AF437D4005030D8 /* LegacyCommunitiesFetcher.swift in Sources */,
 				3CC09CE32B0E95A60036422F /* RealmPrivateMessage.swift in Sources */,
@@ -1425,6 +1457,7 @@
 				3CA8A0C52AE57CA700EEABD3 /* Batch.swift in Sources */,
 				3C17DE042A92D4D6008EEB10 /* IntExtension.swift in Sources */,
 				3CB9C72E2AA243CB00FB5A10 /* PostObject.swift in Sources */,
+				3C06CBEC2B24C508000767CC /* EndpointBuilderKbin.swift in Sources */,
 				3CED897B2A71A5CF00BD9086 /* ImagePopoverView.swift in Sources */,
 				3C87A3682A9F999D0029C18F /* SettingsThemeView.swift in Sources */,
 				3CFE04C32A7FF0EB007BAD81 /* KbinThreadsModel.swift in Sources */,
@@ -1438,6 +1471,7 @@
 				3CC09CE12B0E95490036422F /* PrivateMessage.swift in Sources */,
 				3CE35B1F2AE3DAF000263E13 /* AttributionInfo.swift in Sources */,
 				3CE237352AA4D171000F1D20 /* LargeNavButton.swift in Sources */,
+				3C06CBEF2B24CEF2000767CC /* KbinPostModel.swift in Sources */,
 				3CE35B142AE2AFD600263E13 /* MailtoUtil.swift in Sources */,
 				3C3E76002B22726900F25F7D /* ReportPostResponseModel.swift in Sources */,
 				3C62C2552A72F4BC003BAC5B /* SplashScreenView.swift in Sources */,
@@ -1481,6 +1515,7 @@
 				3CB9C7222AA23F7400FB5A10 /* CommunityObject.swift in Sources */,
 				3CA92E3B2A543BF000688DEB /* CommunityModel.swift in Sources */,
 				3CF3B8F32A8FF7D4001C08B5 /* KbinSelectorView.swift in Sources */,
+				3C06CBEA2B24C1C6000767CC /* KbinPostsFetcher.swift in Sources */,
 				3C3E75F82B21158100F25F7D /* GenerateHeaders.swift in Sources */,
 				3CC3E41F2ADC36D900F7F9A9 /* DismissButtonView.swift in Sources */,
 				3C20B37C2AEAF645003F578F /* DebugTextView.swift in Sources */,
@@ -1513,6 +1548,7 @@
 				3CA92E432A549A7F00688DEB /* CommunityItem.swift in Sources */,
 				3CDBBC872AEDBB51005EFF2B /* CompactPostItem.swift in Sources */,
 				3CEF4CC42A69B39B002B83C0 /* TrendingCommunitiesSectionView.swift in Sources */,
+				3C06CBF42B25157F000767CC /* RealmPage.swift in Sources */,
 				3C6BBF742A91108A00312E2B /* SubscribeResponseModel.swift in Sources */,
 				3C130F752A8C0A520060B6E4 /* ExpandableTextBox.swift in Sources */,
 				3CE35B212AE4148A00263E13 /* AboutLemmyView.swift in Sources */,

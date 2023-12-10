@@ -32,7 +32,20 @@ class RealmThawFunctions {
         }
       }
     }
-    hapticsSoft.impactOccurred(intensity: 0.5)
+//    hapticsSoft.impactOccurred(intensity: 0.5)
+  }
+
+  func resetRealmPage(page: RealmPage) {
+    let thawedPage = page.thaw()
+    if thawedPage?.isInvalidated == false {
+      let thawedRealm = thawedPage!.realm!
+      try! thawedRealm.write {
+        if let thawedPage {
+          thawedRealm.delete(thawedPage)
+        }
+      }
+    }
+//    hapticsSoft.impactOccurred(intensity: 0.5)
   }
 
   func deleteCommunity(community: RealmCommunity) {

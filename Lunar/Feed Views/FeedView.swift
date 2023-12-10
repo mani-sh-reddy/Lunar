@@ -18,9 +18,6 @@ struct FeedView: View {
   @Default(.quicklinks) var quicklinks
   @Default(.enableQuicklinks) var enableQuicklinks
 
-  /// _ Commented out because causing stutter _
-//  @Environment(\.dismiss) var dismiss
-
   @State var showingOfflineDownloaderPopover: Bool = false
 
   var subscribedCommunityListHeading: String {
@@ -34,9 +31,8 @@ struct FeedView: View {
   var body: some View {
     NavigationView {
       List {
-        title
         if !quicklinks.isEmpty {
-          Section(header: Text(enableQuicklinks ? "Quicklinks" : "Feed")) {
+          Section(header: Text(enableQuicklinks ? "Links" : "Feed")) {
             GeneralCommunitiesView()
           }
         }
@@ -45,8 +41,8 @@ struct FeedView: View {
         trendingSection
         downloaderButton
       }
-      .navigationTitle("Home")
-      .navigationBarTitleDisplayMode(.inline)
+      .navigationTitle(kbinActive ? "Home" : selectedInstance)
+      .navigationBarTitleDisplayMode(.large)
     }
     .popover(isPresented: $showingOfflineDownloaderPopover) {
       OfflineDownloaderView(presentingView: $showingOfflineDownloaderPopover)

@@ -14,7 +14,10 @@ class RealmPost: Object, ObjectKeyIdentifiable {
 
   // MARK: - Post
 
-  @Persisted(primaryKey: true) var postID: Int
+//  @Persisted(primaryKey: true) var ID: UUID = .init() // **Creates too many duplicates**!
+  @Persisted(primaryKey: true) var primaryKey: String
+
+  @Persisted var postID: Int
   @Persisted var postName: String
   @Persisted var postPublished: String
   @Persisted var postURL: String?
@@ -114,6 +117,7 @@ class RealmPost: Object, ObjectKeyIdentifiable {
     filterKey: String
   ) {
     self.init()
+    self.primaryKey = "\(postID)\(sort ?? "")\(type ?? "")\(personID ?? 0)\(communityID ?? 0)\(filterKey)"
     self.postID = postID
     self.postName = postName
     self.postPublished = postPublished

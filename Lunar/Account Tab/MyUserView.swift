@@ -14,12 +14,15 @@ import SwiftUI
 
 struct MyUserView: View {
   @ObservedResults(RealmPost.self) var realmPosts
+  @ObservedResults(RealmPage.self) var realmPage
 
   @Default(.activeAccount) var activeAccount
 
-  @GestureState var dragAmount = CGSize.zero
+//  @GestureState var dragAmount = CGSize.zero
   @State var hasRunOnceMyPosts: Bool = false
   @State var hasRunOnceSavedPosts: Bool = false
+  @State var hasRunOnceMyComments: Bool = false
+  @State var hasRunOnceSavedComments: Bool = false
 
   var avatar: String { activeAccount.avatarURL }
   var actorID: String { activeAccount.actorID }
@@ -100,12 +103,12 @@ struct MyUserView: View {
         Spacer()
       }
 
-      .offset(dragAmount)
-      .gesture(
-        DragGesture().updating($dragAmount) { value, state, _ in
-          state = value.translation
-        }
-      )
+//      .offset(dragAmount)
+//      .gesture(
+//        DragGesture().updating($dragAmount) { value, state, _ in
+//          state = value.translation
+//        }
+//      )
 
       HStack {
         Spacer()
@@ -130,6 +133,11 @@ struct MyUserView: View {
     NavigationLink {
       if userID != 0 {
         PostsView(
+          realmPage: realmPage.sorted(byKeyPath: "timestamp", ascending: false).first(where: {
+            $0.sort == "New"
+              && $0.type == "All"
+              && $0.filterKey == "MY_POSTS"
+          }) ?? RealmPage(),
           filteredPosts: realmPosts.filter { post in
             post.filterKey == "MY_POSTS"
           },
@@ -166,7 +174,7 @@ struct MyUserView: View {
 
   var myComments: some View {
     NavigationLink {
-      if userID != 0 {
+      if userID != 0 && !hasRunOnceMyComments {
         MyUserCommentsView(
           personFetcher: PersonFetcher(
             sortParameter: "New",
@@ -175,6 +183,7 @@ struct MyUserView: View {
           ),
           heading: "My Comments"
         )
+        let _ = self.hasRunOnceMyComments = true
       }
     } label: {
       Label {
@@ -194,6 +203,11 @@ struct MyUserView: View {
     NavigationLink {
       if userID != 0 {
         PostsView(
+          realmPage: realmPage.sorted(byKeyPath: "timestamp", ascending: false).first(where: {
+            $0.sort == "New"
+              && $0.type == "All"
+              && $0.filterKey == "MY_POSTS_SAVED_ONLY"
+          }) ?? RealmPage(),
           filteredPosts: realmPosts.filter { post in
             post.filterKey == "MY_POSTS_SAVED_ONLY"
           },
@@ -227,7 +241,7 @@ struct MyUserView: View {
 
   var savedComments: some View {
     NavigationLink {
-      if userID != 0 {
+      if userID != 0 && !hasRunOnceSavedComments {
         MyUserCommentsView(
           personFetcher: PersonFetcher(
             sortParameter: "New",
@@ -237,6 +251,7 @@ struct MyUserView: View {
           ),
           heading: "Saved Comments"
         )
+        let _ = self.hasRunOnceSavedComments = true
       }
     } label: {
       Label {

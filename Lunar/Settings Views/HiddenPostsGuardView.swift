@@ -11,6 +11,7 @@ import SwiftUI
 
 struct HiddenPostsGuardView: View {
   @ObservedResults(RealmPost.self, where: ({ $0.postHidden })) var hiddenRealmPosts
+  @ObservedResults(RealmPage.self) var realmPage
 
   @StateObject var appContext = Biometrics()
 
@@ -18,6 +19,7 @@ struct HiddenPostsGuardView: View {
     ZStack {
       if appContext.appUnlocked {
         PostsView(
+          realmPage: RealmPage(),
           filteredPosts: hiddenRealmPosts.filter { post in
             post.postHidden
           },

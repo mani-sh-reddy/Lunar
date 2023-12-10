@@ -12,6 +12,7 @@ import SwiftUI
 
 struct SubscribedFeedQuicklink: View {
   @ObservedResults(RealmPost.self, where: ({ !$0.postHidden })) var realmPosts
+  @ObservedResults(RealmPage.self) var realmPage
 
   @Default(.activeAccount) var activeAccount
 
@@ -32,6 +33,11 @@ struct SubscribedFeedQuicklink: View {
     } else {
       NavigationLink {
         PostsView(
+          realmPage: realmPage.sorted(byKeyPath: "timestamp", ascending: false).first(where: {
+            $0.sort == subscribedPostsQuicklink.sort
+              && $0.type == subscribedPostsQuicklink.type
+              && $0.filterKey == "sortAndTypeOnly"
+          }) ?? RealmPage(),
           filteredPosts: realmPosts.filter { post in
             post.sort == subscribedPostsQuicklink.sort
               && post.type == subscribedPostsQuicklink.type
