@@ -145,7 +145,11 @@ struct PostsView: View {
   }
 
   func resetRealmPages() {
-    guard !realmPages.isEmpty else { return }
+    guard !realmPages.filter({
+      $0.sort == sort
+      && $0.type == type
+      && $0.filterKey == filterKey
+    }).isEmpty else { return }
     for page in realmPages.filter({
       $0.sort == sort
         && $0.type == type
