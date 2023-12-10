@@ -79,17 +79,24 @@ class PostsFetcher: ObservableObject {
     self.filterKey = filterKey
   }
 
-  func loadContent(isRefreshing _: Bool = false) {
+  func loadContent(isRefreshing : Bool = false) {
     guard !isLoading else { return }
 
     isLoading = true
 
-    let cacher = ResponseCacher(behavior: .doNotCache)
+    let cacher = ResponseCacher(behavior: .cache)
 
     AF.request(
       EndpointBuilder(parameters: parameters).build(),
       headers: GenerateHeaders().generate()
-    )
+    ) { urlRequest in
+      if isRefreshing {
+        urlRequest.cachePolicy = .reloadRevalidatingCacheData
+      } else {
+        urlRequest.cachePolicy = .returnCacheDataElseLoad
+      }
+      urlRequest.networkServiceType = .responsiveData
+    }
     .cacheResponse(using: cacher)
     .validate(statusCode: 200 ..< 300)
     .responseDecodable(of: PostModel.self) { response in

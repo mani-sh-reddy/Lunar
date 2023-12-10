@@ -43,11 +43,11 @@ struct MyUserCommentsView: View {
       try? await Task.sleep(nanoseconds: 1 * 1_000_000_000)
       personFetcher.loadContent(isRefreshing: true)
     }
-    .onChange(of: selectedInstance) { _ in
-      Task {
-        personFetcher.loadContent(isRefreshing: true)
-      }
-    }
+//    .onChange(of: selectedInstance) { _ in
+//      Task {
+//        personFetcher.loadContent(isRefreshing: true)
+//      }
+//    }
     .onChange(of: forcedPostSort) { _ in
       withAnimation {
         personFetcher.sortParameter = forcedPostSort.rawValue
