@@ -10,7 +10,9 @@ import RealmSwift
 
 // periphery:ignore
 class RealmPage: Object, ObjectKeyIdentifiable {
-  @Persisted(primaryKey: true) var pageCursor: String
+  @Persisted(primaryKey: true) var id = UUID()
+  @Persisted var pageCursor: String?
+  @Persisted var pageNumber: Int?
   @Persisted var timestamp: Date
   @Persisted var sort: String?
   @Persisted var type: String?
@@ -19,7 +21,8 @@ class RealmPage: Object, ObjectKeyIdentifiable {
   @Persisted var filterKey: String
 
   convenience init(
-    pageCursor: String,
+    pageCursor: String? = "",
+    pageNumber: Int? = 0,
     timestamp _: Date = Date.now,
     sort: String?,
     type: String?,
@@ -30,6 +33,7 @@ class RealmPage: Object, ObjectKeyIdentifiable {
     self.init()
 
     self.pageCursor = pageCursor
+    self.pageNumber = pageNumber
     self.sort = sort
     self.type = type
     self.communityID = communityID

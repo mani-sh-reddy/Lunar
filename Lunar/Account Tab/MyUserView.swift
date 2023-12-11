@@ -174,7 +174,7 @@ struct MyUserView: View {
 
   var myComments: some View {
     NavigationLink {
-      if userID != 0 && !hasRunOnceMyComments {
+      if userID != 0, !hasRunOnceMyComments {
         MyUserCommentsView(
           personFetcher: PersonFetcher(
             sortParameter: "New",
@@ -183,7 +183,7 @@ struct MyUserView: View {
           ),
           heading: "My Comments"
         )
-        let _ = self.hasRunOnceMyComments = true
+        let _ = hasRunOnceMyComments = true
       }
     } label: {
       Label {
@@ -241,7 +241,7 @@ struct MyUserView: View {
 
   var savedComments: some View {
     NavigationLink {
-      if userID != 0 && !hasRunOnceSavedComments {
+      if userID != 0, !hasRunOnceSavedComments {
         MyUserCommentsView(
           personFetcher: PersonFetcher(
             sortParameter: "New",
@@ -251,7 +251,7 @@ struct MyUserView: View {
           ),
           heading: "Saved Comments"
         )
-        let _ = self.hasRunOnceSavedComments = true
+        let _ = hasRunOnceSavedComments = true
       }
     } label: {
       Label {

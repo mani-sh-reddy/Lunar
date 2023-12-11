@@ -12,23 +12,38 @@ class RealmWriter {
   let realm = try! Realm()
 
   func writePage(
-    pageCursor: String,
+    pageCursor: String?,
+    pageNumber: Int?,
     sort: String? = nil,
     type: String? = nil,
     personID: Int? = nil,
     communityID: Int? = nil,
     filterKey: String
   ) {
-    try! realm.write {
-      let realmPage = RealmPage(
-        pageCursor: pageCursor,
-        sort: sort,
-        type: type,
-        communityID: communityID,
+    if pageNumber == nil || pageNumber == 0 {
+      try! realm.write {
+        let realmPage = RealmPage(
+          pageCursor: pageCursor ?? "",
+          sort: sort,
+          type: type,
+          communityID: communityID,
         personID: personID,
         filterKey: filterKey
-      )
-      realm.add(realmPage, update: .modified)
+        )
+        realm.add(realmPage, update: .modified)
+      }
+    } else {
+      try! realm.write {
+        let realmPage = RealmPage(
+          pageNumber: pageNumber,
+          sort: sort,
+          type: type,
+          communityID: communityID,
+          personID: personID,
+          filterKey: filterKey
+        )
+        realm.add(realmPage, update: .modified)
+      }
     }
   }
 

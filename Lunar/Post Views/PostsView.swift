@@ -21,6 +21,7 @@ struct PostsView: View {
   @Default(.fontSize) var fontSize
 
   @ObservedRealmObject var realmPage: RealmPage
+
   @ObservedResults(RealmPage.self) var realmPages
 
   var filteredPosts: [RealmPost]
@@ -45,8 +46,6 @@ struct PostsView: View {
   var personAvatar: String?
 
   @State var runOnce: Bool = false
-  @State var page: Int = 1
-  @State var pageCursor: String = ""
   @State var showingCreatePostPopover: Bool = false
 
   @State var showingProgressView: Bool = false
@@ -75,19 +74,24 @@ struct PostsView: View {
       if !runOnce {
         Rectangle()
           .foregroundStyle(.gray.opacity(0.1))
-          .onAppear { loadMorePostsOnAppearAction() }
+          .onAppear {
+            loadMorePostsOnAppearAction()
+          }
       } else {
         HStack {
           Spacer()
           if showingProgressView {
             ProgressView()
+              .foregroundStyle(.blue)
               .frame(width: 20)
           } else {
             Image(systemSymbol: .handTapFill)
+              .foregroundStyle(.blue)
               .imageScale(.small)
               .frame(width: 20)
           }
-          Text("Load More Posts")
+          Text("Load Posts")
+            .foregroundStyle(.blue)
           Spacer()
         }
         .listRowBackground(Color("postListBackground"))
@@ -100,17 +104,19 @@ struct PostsView: View {
     }
     .background(Color("postListBackground"))
     .listStyle(.plain)
-    .navigationTitle(heading)
+    .navigationTitle(debugModeEnabled ? "" : heading)
     .navigationBarTitleDisplayMode(.inline)
     .refreshable {
+      print("__REFRESHED_POSTS_VIEW__")
       showingProgressView = true
       try? await Task.sleep(nanoseconds: 1 * 1_000_000_000)
+      print("__REFRESHED_POSTS_VIEW_AFTER_WAIT__")
       resetRealmPages()
       resetRealmPosts()
+      showingProgressView = false
     }
     .onChange(of: selectedInstance) { _ in
       /// Resetting realm post action within InstanceSelectorView
-      page = 1
       runOnce = false
     }
     .toolbar {
@@ -135,13 +141,26 @@ struct PostsView: View {
 
   // MARK: - resetRealmPosts
 
+//  func resetRealmPosts() {
+//    guard !filteredPosts.isEmpty else { return }
+//    for post in filteredPosts {
+//      print("__DELETE_POST_\(post.postID)__")
+//      RealmThawFunctions().deletePost(post: post)
+//    }
+  ////    RealmThawFunctions().deleteMultiplePosts(posts: filteredPosts)
+//    runOnce = false
+//  }
+
   func resetRealmPosts() {
-    guard !filteredPosts.isEmpty else { return }
-    for post in filteredPosts {
-      RealmThawFunctions().deletePost(post: post)
+    let realm = try! Realm()
+    try! realm.write {
+      let posts = realm.objects(RealmPost.self).where { post in
+        post.sort == sort
+          && post.type == type
+          && post.filterKey == filterKey
+      }
+      realm.delete(posts)
     }
-    page = 1
-    runOnce = false
   }
 
   func resetRealmPages() {
@@ -278,10 +297,11 @@ struct PostsView: View {
       }
       .padding(.trailing, 3)
       VStack {
-        Image(systemSymbol: .doc)
-        Text(String(page))
+        Image(systemSymbol: .arrowRightDocOnClipboard)
+        Text(String(realmPage.pageNumber ?? 99999))
           .fixedSize()
       }
+      Text(realmPage.pageCursor ?? "")
     }
     .font(.caption)
   }
@@ -296,12 +316,11 @@ struct PostsView: View {
         type: type,
         communityID: communityID,
         personID: personID,
-        page: page,
+          pageNumber: realmPage.pageNumber ?? 1,
         pageCursor: realmPage.pageCursor,
         filterKey: filterKey
       ).loadContent()
       /// Setting the page number for the batch.
-      page += 1
       showingProgressView = false
     }
     runOnce = true
@@ -318,12 +337,12 @@ struct PostsView: View {
         type: type,
         communityID: communityID,
         personID: personID,
-        page: page,
+          pageNumber: realmPage.pageNumber ?? 1,
         pageCursor: realmPage.pageCursor,
         filterKey: filterKey
       ).loadContent()
       showingProgressView = false
-      page += 1
+      }
     }
   }
 }

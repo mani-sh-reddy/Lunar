@@ -38,7 +38,8 @@ struct InstanceSelectorView: View {
       }
     }
     .onChange(of: selectedInstance) { _ in
-      resetRealmPosts()
+      RealmThawFunctions().resetAllPages()
+      RealmThawFunctions().resetAllPosts()
     }
   }
 
@@ -60,16 +61,6 @@ struct InstanceSelectorView: View {
             }
           }
       }
-    }
-  }
-
-  func resetRealmPosts() {
-    let realm = try! Realm()
-    try! realm.write {
-      let posts = realm.objects(RealmPost.self)
-      let pages = realm.objects(RealmPage.self)
-      realm.delete(posts)
-      realm.delete(pages)
     }
   }
 }

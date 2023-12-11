@@ -13,6 +13,10 @@ All notable changes to this project will be documented in this file.
 
 - Links inside comments now open with in-app safari
 
+### Fixed
+
+- Fixed posts pagination logic
+
 ## [2023.12.8]
 
 ### Added

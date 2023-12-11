@@ -79,7 +79,8 @@ struct OfflineDownloaderView: View {
           sort: downloaderSort,
           type: downloaderType,
           communityID: 0,
-          page: page,
+          pageNumber: page,
+          pageCursor: "",
           filterKey: "sortAndTypeOnly"
         ).loadContent()
       }
