@@ -9,6 +9,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+
+- Links inside comments now open with in-app safari
+
 ## [2023.12.8]
 
 ### Added

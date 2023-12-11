@@ -23,6 +23,8 @@ struct RecursiveComment: View {
   @State var blockUserDialogPresented = false
   @State var reportCommentSheetPresented = false
   @State var reportReasonHolder: String = ""
+  @State private var isSafariPresented = false
+  @State private var inlineURL = ""
 
   @EnvironmentObject var commentsFetcher: CommentsFetcher
 
@@ -286,6 +288,12 @@ struct RecursiveComment: View {
         .markdownTextStyle(\.text) { FontSize(fontSize) }
         .markdownTheme(.gitHub)
         .markdownImageProvider(.lazyImageProvider)
+        .environment(\.openURL, OpenURLAction { url in
+          inlineURL = url.absoluteString
+          isSafariPresented.toggle()
+          return .handled
+        })
+        .inAppSafari(isPresented: $isSafariPresented, stringURL: inlineURL)
 
       if commentMetadataPosition == "Bottom" {
         commentMetadata
