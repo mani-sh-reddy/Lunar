@@ -9,21 +9,22 @@ import Defaults
 import Foundation
 import SwiftUI
 
-struct EndpointParametersKbin {
-  var page: Int?
+struct KbinEndpointParameters {
   var endpointPath: String
-  var magazine: String?
+  var page: Int?
+  var perPage: Int?
   var sort: String?
   var time: String?
+  var magazine: String?
   var instance: String?
 }
 
-class EndpointBuilderKbin {
-  @Default(.selectedInstanceKbin) var selectedInstanceKbin
+class KbinEndpointBuilder {
+  @Default(.kbinSelectedInstance) var kbinSelectedInstance
 
-  private let parameters: EndpointParametersKbin
+  private let parameters: KbinEndpointParameters
 
-  init(parameters: EndpointParametersKbin) {
+  init(parameters: KbinEndpointParameters) {
     self.parameters = parameters
   }
 
@@ -31,7 +32,8 @@ class EndpointBuilderKbin {
     var endpoint = URLComponents()
     var queryParams: [String: String?] = [:]
 
-    if let page = parameters.page { queryParams["page"] = String(page) }
+    if let page = parameters.page { queryParams["p"] = String(page) }
+    if let perPage = parameters.perPage { queryParams["perPage"] = String(perPage) }
     if let magazine = parameters.magazine { queryParams["magazine"] = String(magazine) }
     if let sort = parameters.sort { queryParams["sort"] = String(sort) }
     if let time = parameters.time { queryParams["time"] = String(time) }
@@ -41,11 +43,13 @@ class EndpointBuilderKbin {
     if let instance = parameters.instance {
       endpoint.host = instance
     } else {
-      endpoint.host = selectedInstanceKbin
+      endpoint.host = kbinSelectedInstance
     }
 
     endpoint.path = parameters.endpointPath
     endpoint.setQueryItems(with: queryParams)
+
+    print(endpoint.string ?? "")
 
     return endpoint
   }

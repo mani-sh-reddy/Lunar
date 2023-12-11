@@ -13,7 +13,8 @@ import SwiftUI
 struct FeedView: View {
   @Default(.selectedInstance) var selectedInstance
   @Default(.kbinActive) var kbinActive
-  @Default(.kbinHostURL) var kbinHostURL
+  @Default(.legacyKbinActive) var legacyKbinActive
+  @Default(.kbinSelectedInstance) var kbinSelectedInstance
   @Default(.activeAccount) var activeAccount
   @Default(.quicklinks) var quicklinks
   @Default(.enableQuicklinks) var enableQuicklinks
@@ -76,7 +77,7 @@ struct FeedView: View {
         .bold()
         .padding(0)
       if kbinActive {
-        Text(kbinHostURL)
+        Text(kbinSelectedInstance)
           .bold()
           .foregroundStyle(
             LinearGradient(
@@ -109,9 +110,16 @@ struct FeedView: View {
 
   @ViewBuilder
   var kbinFeed: some View {
-    if kbinActive {
-      Section(header: Text("Kbin")) {
-        KbinMagazinesSectionView()
+    if kbinActive || legacyKbinActive {
+      Section {
+        if legacyKbinActive {
+          LegacyKbinMagazinesSectionView()
+        }
+        if kbinActive {
+          KbinNavLink()
+        }
+      } header: {
+        Text("Kbin")
       }
     }
   }

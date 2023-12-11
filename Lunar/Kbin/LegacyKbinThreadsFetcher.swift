@@ -1,5 +1,5 @@
 //
-//  KbinThreadsFetcher.swift
+//  LegacyKbinThreadsFetcher.swift
 //  Lunar
 //
 //  Created by Mani on 06/08/2023.
@@ -9,8 +9,8 @@ import Alamofire
 import SwiftSoup
 import SwiftUI
 
-class KbinThreadsFetcher: ObservableObject {
-  @Published var posts = [KbinPost]()
+class LegacyKbinThreadsFetcher: ObservableObject {
+  @Published var posts = [LegacyKbinPost]()
   @Published var isLoading = false
 
   private var currentPage = 1
@@ -33,7 +33,7 @@ class KbinThreadsFetcher: ObservableObject {
     loadMoreContent()
   }
 
-  func loadMoreContentIfNeeded(currentItem item: KbinPost?) {
+  func loadMoreContentIfNeeded(currentItem item: LegacyKbinPost?) {
     guard let item else {
       loadMoreContent()
       return
@@ -75,7 +75,7 @@ class KbinThreadsFetcher: ObservableObject {
     }
   }
 
-  private func parsePostElement(_ post: Element) -> KbinPost? {
+  private func parsePostElement(_ post: Element) -> LegacyKbinPost? {
     do {
       let id = try post.attr("id")
       let title = try post.select("h2").text()
@@ -99,7 +99,7 @@ class KbinThreadsFetcher: ObservableObject {
       let userObject = parseUserObject(from: post)
       let instanceLink = parseInstanceLink(from: post)
 
-      let parsedPost = KbinPost(
+      let parsedPost = LegacyKbinPost(
         id: id,
         title: title,
         user: user,
@@ -121,7 +121,7 @@ class KbinThreadsFetcher: ObservableObject {
     }
   }
 
-  private func parseUserObject(from post: Element) -> KbinUser? {
+  private func parseUserObject(from post: Element) -> LegacyKbinUser? {
     do {
       let username = try post.select("aside.meta.entry__meta a.user-inline").text()
       let avatarUrl = try post.select("aside.meta.entry__meta figure img").attr("src")
@@ -135,7 +135,7 @@ class KbinThreadsFetcher: ObservableObject {
       let followCountString = try post.select("aside.meta.entry__meta aside.user__follow div")
         .text()
       let followCount = Int(followCountString) ?? 0
-      let userObject = KbinUser(
+      let userObject = LegacyKbinUser(
         username: username,
         avatarUrl: avatarUrl,
         joined: joined,

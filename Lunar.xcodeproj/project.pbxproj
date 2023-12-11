@@ -37,7 +37,7 @@
 		3C06CBE82B249593000767CC /* MarkdownUIImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C06CBE72B249593000767CC /* MarkdownUIImageProvider.swift */; };
 		3C06CBEA2B24C1C6000767CC /* KbinPostsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C06CBE92B24C1C6000767CC /* KbinPostsFetcher.swift */; };
 		3C06CBEC2B24C508000767CC /* EndpointBuilderKbin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C06CBEB2B24C508000767CC /* EndpointBuilderKbin.swift */; };
-		3C06CBEF2B24CEF2000767CC /* KbinPostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C06CBEE2B24CEF2000767CC /* KbinPostModel.swift */; };
+		3C06CBEF2B24CEF2000767CC /* KbinPostsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C06CBEE2B24CEF2000767CC /* KbinPostsModel.swift */; };
 		3C06CBF12B24DAC8000767CC /* UUIDToInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C06CBF02B24DAC8000767CC /* UUIDToInt.swift */; };
 		3C06CBF42B25157F000767CC /* RealmPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C06CBF32B25157F000767CC /* RealmPage.swift */; };
 		3C113C392A6E71E100FDE5CE /* SettingsAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C113C382A6E71E100FDE5CE /* SettingsAccountView.swift */; };
@@ -45,6 +45,13 @@
 		3C11B28B2B1CB44600244838 /* SettingsAppearanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C11B28A2B1CB44600244838 /* SettingsAppearanceView.swift */; };
 		3C130F752A8C0A520060B6E4 /* ExpandableTextBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C130F742A8C0A520060B6E4 /* ExpandableTextBox.swift */; };
 		3C130F772A8C0CB90060B6E4 /* ReactionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C130F762A8C0CB90060B6E4 /* ReactionButton.swift */; };
+		3C1414762B277C9500043E01 /* KbinPostObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1414752B277C9500043E01 /* KbinPostObject.swift */; };
+		3C1414782B277CB900043E01 /* KbinPagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1414772B277CB900043E01 /* KbinPagination.swift */; };
+		3C14147A2B277D1700043E01 /* KbinUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1414792B277D1700043E01 /* KbinUser.swift */; };
+		3C14147C2B277DA100043E01 /* KbinMagazine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C14147B2B277DA100043E01 /* KbinMagazine.swift */; };
+		3C14147E2B277DC000043E01 /* KbinImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C14147D2B277DC000043E01 /* KbinImage.swift */; };
+		3C1414802B277E4900043E01 /* KbinErrorResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C14147F2B277E4900043E01 /* KbinErrorResponseModel.swift */; };
+		3C1414822B27898500043E01 /* KbinNavLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1414812B27898500043E01 /* KbinNavLink.swift */; };
 		3C17DE042A92D4D6008EEB10 /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C17DE032A92D4D6008EEB10 /* IntExtension.swift */; };
 		3C1A3F552A731C3F00898FC6 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F542A731C3F00898FC6 /* ImageExtension.swift */; };
 		3C1A3F592A73B17E00898FC6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1A3F582A73B17E00898FC6 /* LoginView.swift */; };
@@ -91,9 +98,9 @@
 		3C3E76002B22726900F25F7D /* ReportPostResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3E75FF2B22726900F25F7D /* ReportPostResponseModel.swift */; };
 		3C3E76022B2392D500F25F7D /* RealmConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3E76012B2392D500F25F7D /* RealmConverter.swift */; };
 		3C41EEC82AFECEF200F47931 /* CheckBiometricType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C41EEC72AFECEF200F47931 /* CheckBiometricType.swift */; };
-		3C42AD1A2A8038300056AFBC /* KbinCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42AD192A8038300056AFBC /* KbinCommentsView.swift */; };
-		3C42AD1C2A803AE50056AFBC /* KbinCommentsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42AD1B2A803AE50056AFBC /* KbinCommentsFetcher.swift */; };
-		3C432F5C2A819E54000D5321 /* KbinThreadBodyFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C432F5B2A819E54000D5321 /* KbinThreadBodyFetcher.swift */; };
+		3C42AD1A2A8038300056AFBC /* LegacyKbinCommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42AD192A8038300056AFBC /* LegacyKbinCommentsView.swift */; };
+		3C42AD1C2A803AE50056AFBC /* LegacyKbinCommentsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42AD1B2A803AE50056AFBC /* LegacyKbinCommentsFetcher.swift */; };
+		3C432F5C2A819E54000D5321 /* LegacyKbinThreadBodyFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C432F5B2A819E54000D5321 /* LegacyKbinThreadBodyFetcher.swift */; };
 		3C4B7DD82A58A741003C8192 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4B7DD72A58A741003C8192 /* CommentModel.swift */; };
 		3C4B7DDB2A58AD23003C8192 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 3C4B7DDA2A58AD23003C8192 /* Alamofire */; };
 		3C4D42A82A8D0FD1003B6F1D /* VoteSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4D42A72A8D0FD1003B6F1D /* VoteSender.swift */; };
@@ -103,7 +110,7 @@
 		3C4DB8C62AB72145000137CF /* SettingsAppResetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4DB8C52AB72145000137CF /* SettingsAppResetView.swift */; };
 		3C4DB8C82AB725FB000137CF /* DataCacheHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4DB8C72AB725FB000137CF /* DataCacheHolder.swift */; };
 		3C4EBFF92B00F735004B7665 /* SupportedFamiliesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4EBFF82B00F735004B7665 /* SupportedFamiliesExtension.swift */; };
-		3C4EE4B92A8006D0009EE4A8 /* KbinPostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4EE4B82A8006D0009EE4A8 /* KbinPostRowView.swift */; };
+		3C4EE4B92A8006D0009EE4A8 /* LegacyKbinPostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4EE4B82A8006D0009EE4A8 /* LegacyKbinPostRowView.swift */; };
 		3C4F0A002A54399F009DF8AB /* LunarAppEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F09FF2A54399F009DF8AB /* LunarAppEntryView.swift */; };
 		3C54C0962AB8E62C00F1BADE /* InAppSafariModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C54C0952AB8E62C00F1BADE /* InAppSafariModifier.swift */; };
 		3C54C09B2ABA1CCA00F1BADE /* SortPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C54C09A2ABA1CCA00F1BADE /* SortPicker.swift */; };
@@ -225,7 +232,7 @@
 		3CC734AA2A6D697C007523B5 /* InsertSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC734A92A6D697C007523B5 /* InsertSorter.swift */; };
 		3CCAA8BF2A65309E007CCEC2 /* NoInternetConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCAA8BE2A65309E007CCEC2 /* NoInternetConnectionView.swift */; };
 		3CCE1D1D2AB6050E00357DFA /* RecursiveComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCE1D1C2AB6050E00357DFA /* RecursiveComment.swift */; };
-		3CD3F5672A8014B900D284D0 /* KbinMagazinesSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD3F5662A8014B900D284D0 /* KbinMagazinesSectionView.swift */; };
+		3CD3F5672A8014B900D284D0 /* LegacyKbinMagazinesSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD3F5662A8014B900D284D0 /* LegacyKbinMagazinesSectionView.swift */; };
 		3CD4DA212A7EF3AE00BC374A /* SearchCommunitiesRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD4DA202A7EF3AE00BC374A /* SearchCommunitiesRowView.swift */; };
 		3CD4DA232A7EF3C200BC374A /* SearchUsersRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD4DA222A7EF3C200BC374A /* SearchUsersRowView.swift */; };
 		3CDA82C62B1F7E420078AB36 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 3CDA82C52B1F7E420078AB36 /* Collections */; };
@@ -265,7 +272,6 @@
 		3CEF4CD02A69B738002B83C0 /* InPostMetadataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CCF2A69B738002B83C0 /* InPostMetadataView.swift */; };
 		3CEF4CD32A69B770002B83C0 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CD22A69B770002B83C0 /* StringExtension.swift */; };
 		3CEF4CD52A69B798002B83C0 /* URLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEF4CD42A69B798002B83C0 /* URLParser.swift */; };
-		3CF3B8F32A8FF7D4001C08B5 /* KbinSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3B8F22A8FF7D4001C08B5 /* KbinSelectorView.swift */; };
 		3CF3B8FD2A90188D001C08B5 /* CommentMetadataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3B8FC2A90188D001C08B5 /* CommentMetadataView.swift */; };
 		3CF3F9C02A6EE0390051E725 /* SettingsClearCacheView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheView.swift */; };
 		3CF3F9C22A6EE20C0051E725 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF3F9C12A6EE20C0051E725 /* ViewExtension.swift */; };
@@ -275,9 +281,9 @@
 		3CFA769B2B127E76002B88B2 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFA769A2B127E76002B88B2 /* MockData.swift */; };
 		3CFB89E82AF19DC3001BB9EB /* CreateCommentPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFB89E72AF19DC3001BB9EB /* CreateCommentPopover.swift */; };
 		3CFE04BF2A7FEA71007BAD81 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 3CFE04BE2A7FEA71007BAD81 /* SwiftSoup */; };
-		3CFE04C32A7FF0EB007BAD81 /* KbinThreadsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE04C22A7FF0EB007BAD81 /* KbinThreadsModel.swift */; };
-		3CFE04C72A7FF270007BAD81 /* KbinThreadsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE04C62A7FF270007BAD81 /* KbinThreadsFetcher.swift */; };
-		3CFE04C92A7FF375007BAD81 /* KbinThreadsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE04C82A7FF375007BAD81 /* KbinThreadsView.swift */; };
+		3CFE04C32A7FF0EB007BAD81 /* LegacyKbinThreadsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE04C22A7FF0EB007BAD81 /* LegacyKbinThreadsModel.swift */; };
+		3CFE04C72A7FF270007BAD81 /* LegacyKbinThreadsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE04C62A7FF270007BAD81 /* LegacyKbinThreadsFetcher.swift */; };
+		3CFE04C92A7FF375007BAD81 /* LegacyKbinThreadsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CFE04C82A7FF375007BAD81 /* LegacyKbinThreadsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -330,7 +336,7 @@
 		3C06CBE72B249593000767CC /* MarkdownUIImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownUIImageProvider.swift; sourceTree = "<group>"; };
 		3C06CBE92B24C1C6000767CC /* KbinPostsFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KbinPostsFetcher.swift; sourceTree = "<group>"; };
 		3C06CBEB2B24C508000767CC /* EndpointBuilderKbin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndpointBuilderKbin.swift; sourceTree = "<group>"; };
-		3C06CBEE2B24CEF2000767CC /* KbinPostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinPostModel.swift; sourceTree = "<group>"; };
+		3C06CBEE2B24CEF2000767CC /* KbinPostsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinPostsModel.swift; sourceTree = "<group>"; };
 		3C06CBF02B24DAC8000767CC /* UUIDToInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUIDToInt.swift; sourceTree = "<group>"; };
 		3C06CBF32B25157F000767CC /* RealmPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmPage.swift; sourceTree = "<group>"; };
 		3C10A76E2A72A6FC0040F1A9 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
@@ -339,6 +345,13 @@
 		3C11B28A2B1CB44600244838 /* SettingsAppearanceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsAppearanceView.swift; sourceTree = "<group>"; };
 		3C130F742A8C0A520060B6E4 /* ExpandableTextBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableTextBox.swift; sourceTree = "<group>"; };
 		3C130F762A8C0CB90060B6E4 /* ReactionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionButton.swift; sourceTree = "<group>"; };
+		3C1414752B277C9500043E01 /* KbinPostObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KbinPostObject.swift; sourceTree = "<group>"; };
+		3C1414772B277CB900043E01 /* KbinPagination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KbinPagination.swift; sourceTree = "<group>"; };
+		3C1414792B277D1700043E01 /* KbinUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KbinUser.swift; sourceTree = "<group>"; };
+		3C14147B2B277DA100043E01 /* KbinMagazine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KbinMagazine.swift; sourceTree = "<group>"; };
+		3C14147D2B277DC000043E01 /* KbinImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KbinImage.swift; sourceTree = "<group>"; };
+		3C14147F2B277E4900043E01 /* KbinErrorResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinErrorResponseModel.swift; sourceTree = "<group>"; };
+		3C1414812B27898500043E01 /* KbinNavLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinNavLink.swift; sourceTree = "<group>"; };
 		3C17DE032A92D4D6008EEB10 /* IntExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
 		3C1A3F542A731C3F00898FC6 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		3C1A3F582A73B17E00898FC6 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -376,9 +389,9 @@
 		3C3E75FF2B22726900F25F7D /* ReportPostResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportPostResponseModel.swift; sourceTree = "<group>"; };
 		3C3E76012B2392D500F25F7D /* RealmConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmConverter.swift; sourceTree = "<group>"; };
 		3C41EEC72AFECEF200F47931 /* CheckBiometricType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBiometricType.swift; sourceTree = "<group>"; };
-		3C42AD192A8038300056AFBC /* KbinCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinCommentsView.swift; sourceTree = "<group>"; };
-		3C42AD1B2A803AE50056AFBC /* KbinCommentsFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KbinCommentsFetcher.swift; sourceTree = "<group>"; };
-		3C432F5B2A819E54000D5321 /* KbinThreadBodyFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KbinThreadBodyFetcher.swift; sourceTree = "<group>"; };
+		3C42AD192A8038300056AFBC /* LegacyKbinCommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyKbinCommentsView.swift; sourceTree = "<group>"; };
+		3C42AD1B2A803AE50056AFBC /* LegacyKbinCommentsFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyKbinCommentsFetcher.swift; sourceTree = "<group>"; };
+		3C432F5B2A819E54000D5321 /* LegacyKbinThreadBodyFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyKbinThreadBodyFetcher.swift; sourceTree = "<group>"; };
 		3C4B7DD72A58A741003C8192 /* CommentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
 		3C4D42A72A8D0FD1003B6F1D /* VoteSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteSender.swift; sourceTree = "<group>"; };
 		3C4D42A92A8D12B8003B6F1D /* VoteResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VoteResponseModel.swift; sourceTree = "<group>"; };
@@ -387,7 +400,7 @@
 		3C4DB8C72AB725FB000137CF /* DataCacheHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCacheHolder.swift; sourceTree = "<group>"; };
 		3C4EBFF82B00F735004B7665 /* SupportedFamiliesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedFamiliesExtension.swift; sourceTree = "<group>"; };
 		3C4EBFFA2B010FC5004B7665 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		3C4EE4B82A8006D0009EE4A8 /* KbinPostRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KbinPostRowView.swift; sourceTree = "<group>"; };
+		3C4EE4B82A8006D0009EE4A8 /* LegacyKbinPostRowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyKbinPostRowView.swift; sourceTree = "<group>"; };
 		3C4F09FC2A54399F009DF8AB /* Lunar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lunar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4F09FF2A54399F009DF8AB /* LunarAppEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunarAppEntryView.swift; sourceTree = "<group>"; };
 		3C54C0952AB8E62C00F1BADE /* InAppSafariModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppSafariModifier.swift; sourceTree = "<group>"; };
@@ -511,7 +524,7 @@
 		3CC734A92A6D697C007523B5 /* InsertSorter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertSorter.swift; sourceTree = "<group>"; };
 		3CCAA8BE2A65309E007CCEC2 /* NoInternetConnectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoInternetConnectionView.swift; sourceTree = "<group>"; };
 		3CCE1D1C2AB6050E00357DFA /* RecursiveComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecursiveComment.swift; sourceTree = "<group>"; };
-		3CD3F5662A8014B900D284D0 /* KbinMagazinesSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinMagazinesSectionView.swift; sourceTree = "<group>"; };
+		3CD3F5662A8014B900D284D0 /* LegacyKbinMagazinesSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyKbinMagazinesSectionView.swift; sourceTree = "<group>"; };
 		3CD4DA202A7EF3AE00BC374A /* SearchCommunitiesRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCommunitiesRowView.swift; sourceTree = "<group>"; };
 		3CD4DA222A7EF3C200BC374A /* SearchUsersRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsersRowView.swift; sourceTree = "<group>"; };
 		3CDAFF602B12547300C83BE3 /* OfflineDownloaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfflineDownloaderView.swift; sourceTree = "<group>"; };
@@ -544,7 +557,6 @@
 		3CEF4CCF2A69B738002B83C0 /* InPostMetadataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InPostMetadataView.swift; sourceTree = "<group>"; };
 		3CEF4CD22A69B770002B83C0 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		3CEF4CD42A69B798002B83C0 /* URLParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParser.swift; sourceTree = "<group>"; };
-		3CF3B8F22A8FF7D4001C08B5 /* KbinSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinSelectorView.swift; sourceTree = "<group>"; };
 		3CF3B8FC2A90188D001C08B5 /* CommentMetadataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentMetadataView.swift; sourceTree = "<group>"; };
 		3CF3F9BF2A6EE0390051E725 /* SettingsClearCacheView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsClearCacheView.swift; sourceTree = "<group>"; };
 		3CF3F9C12A6EE20C0051E725 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
@@ -553,9 +565,9 @@
 		3CF717FC2AF437D3005030D8 /* LegacyCommunitiesFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyCommunitiesFetcher.swift; sourceTree = "<group>"; };
 		3CFA769A2B127E76002B88B2 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		3CFB89E72AF19DC3001BB9EB /* CreateCommentPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCommentPopover.swift; sourceTree = "<group>"; };
-		3CFE04C22A7FF0EB007BAD81 /* KbinThreadsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinThreadsModel.swift; sourceTree = "<group>"; };
-		3CFE04C62A7FF270007BAD81 /* KbinThreadsFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinThreadsFetcher.swift; sourceTree = "<group>"; };
-		3CFE04C82A7FF375007BAD81 /* KbinThreadsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KbinThreadsView.swift; sourceTree = "<group>"; };
+		3CFE04C22A7FF0EB007BAD81 /* LegacyKbinThreadsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyKbinThreadsModel.swift; sourceTree = "<group>"; };
+		3CFE04C62A7FF270007BAD81 /* LegacyKbinThreadsFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyKbinThreadsFetcher.swift; sourceTree = "<group>"; };
+		3CFE04C82A7FF375007BAD81 /* LegacyKbinThreadsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyKbinThreadsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -607,7 +619,13 @@
 		3C06CBED2B24CEE4000767CC /* Kbin */ = {
 			isa = PBXGroup;
 			children = (
-				3C06CBEE2B24CEF2000767CC /* KbinPostModel.swift */,
+				3C06CBEE2B24CEF2000767CC /* KbinPostsModel.swift */,
+				3C1414792B277D1700043E01 /* KbinUser.swift */,
+				3C14147B2B277DA100043E01 /* KbinMagazine.swift */,
+				3C14147D2B277DC000043E01 /* KbinImage.swift */,
+				3C1414772B277CB900043E01 /* KbinPagination.swift */,
+				3C1414752B277C9500043E01 /* KbinPostObject.swift */,
+				3C14147F2B277E4900043E01 /* KbinErrorResponseModel.swift */,
 			);
 			name = Kbin;
 			sourceTree = "<group>";
@@ -1063,7 +1081,6 @@
 				3C6D29682A797D6E007AFD99 /* AccountItemView.swift */,
 				3C113C422A6EA92600FDE5CE /* InstanceSelectorView.swift */,
 				3CAEDDE42A9E58DB001469AA /* ManageInstancesView.swift */,
-				3CF3B8F22A8FF7D4001C08B5 /* KbinSelectorView.swift */,
 				3C87A3692A9F9C4E0029C18F /* ForceAppearance.swift */,
 				3C2B14742AABC7CB0028E05A /* SettingsQuicklinksView.swift */,
 				3CECCE1D2AADDBBA0017A605 /* CircleFillIcons.swift */,
@@ -1107,15 +1124,16 @@
 		3CFE04C42A7FF1E7007BAD81 /* Kbin */ = {
 			isa = PBXGroup;
 			children = (
+				3C1414812B27898500043E01 /* KbinNavLink.swift */,
 				3C06CBE92B24C1C6000767CC /* KbinPostsFetcher.swift */,
-				3CFE04C22A7FF0EB007BAD81 /* KbinThreadsModel.swift */,
-				3CFE04C62A7FF270007BAD81 /* KbinThreadsFetcher.swift */,
-				3C432F5B2A819E54000D5321 /* KbinThreadBodyFetcher.swift */,
-				3C42AD1B2A803AE50056AFBC /* KbinCommentsFetcher.swift */,
-				3CFE04C82A7FF375007BAD81 /* KbinThreadsView.swift */,
-				3C4EE4B82A8006D0009EE4A8 /* KbinPostRowView.swift */,
-				3CD3F5662A8014B900D284D0 /* KbinMagazinesSectionView.swift */,
-				3C42AD192A8038300056AFBC /* KbinCommentsView.swift */,
+				3CFE04C22A7FF0EB007BAD81 /* LegacyKbinThreadsModel.swift */,
+				3CFE04C62A7FF270007BAD81 /* LegacyKbinThreadsFetcher.swift */,
+				3C432F5B2A819E54000D5321 /* LegacyKbinThreadBodyFetcher.swift */,
+				3C42AD1B2A803AE50056AFBC /* LegacyKbinCommentsFetcher.swift */,
+				3CFE04C82A7FF375007BAD81 /* LegacyKbinThreadsView.swift */,
+				3C4EE4B82A8006D0009EE4A8 /* LegacyKbinPostRowView.swift */,
+				3CD3F5662A8014B900D284D0 /* LegacyKbinMagazinesSectionView.swift */,
+				3C42AD192A8038300056AFBC /* LegacyKbinCommentsView.swift */,
 			);
 			path = Kbin;
 			sourceTree = "<group>";
@@ -1242,17 +1260,17 @@
 			);
 			mainGroup = 3C4F09F32A54399F009DF8AB;
 			packageReferences = (
-				3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire.git" */,
-				3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */,
+				3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */,
 				3CFE04BD2A7FEA71007BAD81 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				3C23F03C2AAA66E000AACA46 /* XCRemoteSwiftPackageReference "Pulse" */,
 				3CEB2C082AB2F3A50013609E /* XCRemoteSwiftPackageReference "Defaults" */,
-				3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols.git" */,
+				3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
 				3CC420082AB37BCB00BE1612 /* XCRemoteSwiftPackageReference "WhatsNewKit" */,
 				3CC4200B2AB37DDA00BE1612 /* XCRemoteSwiftPackageReference "BetterSafariView" */,
-				3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift.git" */,
+				3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */,
 				3CEBF46A2B09426E00469008 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
-				3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections.git" */,
+				3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
 			productRefGroup = 3C4F09FD2A54399F009DF8AB /* Products */;
 			projectDirPath = "";
@@ -1397,8 +1415,10 @@
 				3CF3F9C22A6EE20C0051E725 /* ViewExtension.swift in Sources */,
 				3CF717FD2AF437D4005030D8 /* LegacyCommunitiesFetcher.swift in Sources */,
 				3CC09CE32B0E95A60036422F /* RealmPrivateMessage.swift in Sources */,
+				3C1414782B277CB900043E01 /* KbinPagination.swift in Sources */,
 				3CB046FA2ADB2B6E0011BFEC /* Moderates.swift in Sources */,
 				3CECCE252AAE68E80017A605 /* LocalUserProperties.swift in Sources */,
+				3C1414822B27898500043E01 /* KbinNavLink.swift in Sources */,
 				3C87A36A2A9F9C4E0029C18F /* ForceAppearance.swift in Sources */,
 				3C5ECB2C2A7676B5002BA561 /* PasswordFieldView.swift in Sources */,
 				3C3E75FA2B21239400F25F7D /* BlockSender.swift in Sources */,
@@ -1419,11 +1439,12 @@
 				3CB9C71C2AA23EF000FB5A10 /* Community.swift in Sources */,
 				3CB9C73C2AA24A5B00FB5A10 /* Site.swift in Sources */,
 				3CC09CDB2B0E92840036422F /* PrivateMessageFetcher.swift in Sources */,
-				3CFE04C92A7FF375007BAD81 /* KbinThreadsView.swift in Sources */,
+				3CFE04C92A7FF375007BAD81 /* LegacyKbinThreadsView.swift in Sources */,
 				3CE35B1A2AE3D03C00263E13 /* RealmThawFunctions.swift in Sources */,
 				3CB9C7242AA23FF400FB5A10 /* Comment.swift in Sources */,
 				3CECCE232AAE1B1B0017A605 /* JWT.swift in Sources */,
 				3CB9C71E2AA23F2600FB5A10 /* Counts.swift in Sources */,
+				3C1414802B277E4900043E01 /* KbinErrorResponseModel.swift in Sources */,
 				3CCAA8BF2A65309E007CCEC2 /* NoInternetConnectionView.swift in Sources */,
 				3CE35B1C2AE3D7D600263E13 /* AttributionsView.swift in Sources */,
 				3CAEDDE52A9E58DB001469AA /* ManageInstancesView.swift in Sources */,
@@ -1434,7 +1455,7 @@
 				3CC178952A7DAAE300C208D0 /* SearchFetcher.swift in Sources */,
 				3C3E75FE2B22713400F25F7D /* ReportSender.swift in Sources */,
 				3CF3F9C02A6EE0390051E725 /* SettingsClearCacheView.swift in Sources */,
-				3CFE04C72A7FF270007BAD81 /* KbinThreadsFetcher.swift in Sources */,
+				3CFE04C72A7FF270007BAD81 /* LegacyKbinThreadsFetcher.swift in Sources */,
 				3C96EA502A7843EC00753199 /* AddNewUserButtonView.swift in Sources */,
 				3C96EA3E2A76FC1200753199 /* LoginButtonView.swift in Sources */,
 				3CC3E4212ADC3FD600F7F9A9 /* CreatePostPopoverView.swift in Sources */,
@@ -1448,6 +1469,7 @@
 				3C6D29672A795141007AFD99 /* DebugSettingsPropertiesView.swift in Sources */,
 				3C4F0A002A54399F009DF8AB /* LunarAppEntryView.swift in Sources */,
 				3CC178932A7DA9FE00C208D0 /* SearchModel.swift in Sources */,
+				3C1414762B277C9500043E01 /* KbinPostObject.swift in Sources */,
 				3CB9C71A2AA23EB700FB5A10 /* SubscribedState.swift in Sources */,
 				3C2B14732AABC6AD0028E05A /* GeneralCommunityButtonView.swift in Sources */,
 				3C96EA552A7857D900753199 /* AccountModel.swift in Sources */,
@@ -1460,7 +1482,8 @@
 				3C06CBEC2B24C508000767CC /* EndpointBuilderKbin.swift in Sources */,
 				3CED897B2A71A5CF00BD9086 /* ImagePopoverView.swift in Sources */,
 				3C87A3682A9F999D0029C18F /* SettingsThemeView.swift in Sources */,
-				3CFE04C32A7FF0EB007BAD81 /* KbinThreadsModel.swift in Sources */,
+				3C14147C2B277DA100043E01 /* KbinMagazine.swift in Sources */,
+				3CFE04C32A7FF0EB007BAD81 /* LegacyKbinThreadsModel.swift in Sources */,
 				3CECCE202AADEB1E0017A605 /* DefaultQuicklinks.swift in Sources */,
 				3CB8D2682A55F45900EE615A /* FeedView.swift in Sources */,
 				3C6ACC202AE52FD20073288E /* RichLinks.swift in Sources */,
@@ -1468,10 +1491,11 @@
 				3C5ECB1F2A75ABFE002BA561 /* SiteInfoFetcher.swift in Sources */,
 				3C9E548C2A94A3DC0093DDC7 /* CommentSender.swift in Sources */,
 				3CF43AA92AE1A42A006C8E84 /* PostsView.swift in Sources */,
+				3C14147A2B277D1700043E01 /* KbinUser.swift in Sources */,
 				3CC09CE12B0E95490036422F /* PrivateMessage.swift in Sources */,
 				3CE35B1F2AE3DAF000263E13 /* AttributionInfo.swift in Sources */,
 				3CE237352AA4D171000F1D20 /* LargeNavButton.swift in Sources */,
-				3C06CBEF2B24CEF2000767CC /* KbinPostModel.swift in Sources */,
+				3C06CBEF2B24CEF2000767CC /* KbinPostsModel.swift in Sources */,
 				3CE35B142AE2AFD600263E13 /* MailtoUtil.swift in Sources */,
 				3C3E76002B22726900F25F7D /* ReportPostResponseModel.swift in Sources */,
 				3C62C2552A72F4BC003BAC5B /* SplashScreenView.swift in Sources */,
@@ -1480,7 +1504,7 @@
 				3CC3E4232ADC4A2600F7F9A9 /* ImageSender.swift in Sources */,
 				3C808E242A9B6DAD008FA62E /* SettingsDevOptionsView.swift in Sources */,
 				3C3E75FC2B212F2600F25F7D /* BlockResponseModel.swift in Sources */,
-				3C42AD1A2A8038300056AFBC /* KbinCommentsView.swift in Sources */,
+				3C42AD1A2A8038300056AFBC /* LegacyKbinCommentsView.swift in Sources */,
 				3C6299D12A751A5900BE2A9F /* TextExtension.swift in Sources */,
 				3CF3B8FD2A90188D001C08B5 /* CommentMetadataView.swift in Sources */,
 				3C130F772A8C0CB90060B6E4 /* ReactionButton.swift in Sources */,
@@ -1490,18 +1514,18 @@
 				3CED897D2A71DCFF00BD9086 /* SettingsHiddenOptionsView.swift in Sources */,
 				3C6ACC222AE5481F0073288E /* SettingsClearRealmView.swift in Sources */,
 				3C96EA4A2A78390F00753199 /* LogoutAllUsersButtonView.swift in Sources */,
-				3CD3F5672A8014B900D284D0 /* KbinMagazinesSectionView.swift in Sources */,
+				3CD3F5672A8014B900D284D0 /* LegacyKbinMagazinesSectionView.swift in Sources */,
 				3C4D42A82A8D0FD1003B6F1D /* VoteSender.swift in Sources */,
 				3C6D29692A797D6E007AFD99 /* AccountItemView.swift in Sources */,
 				3C64E7CC2AF7057B003BB42E /* WhatsNew_2023_11.swift in Sources */,
 				3C72E21B2A71735E00C794C6 /* InPostThumbnailImageView.swift in Sources */,
 				3CE35B182AE2FF1B00263E13 /* PostButtonItem.swift in Sources */,
 				3CA8A0C32AE570E200EEABD3 /* PostsFetcher.swift in Sources */,
-				3C4EE4B92A8006D0009EE4A8 /* KbinPostRowView.swift in Sources */,
+				3C4EE4B92A8006D0009EE4A8 /* LegacyKbinPostRowView.swift in Sources */,
 				3C066B632B017B0A00220A59 /* WhatsNewKitData.swift in Sources */,
 				3CC3E42D2ADD6EBA00F7F9A9 /* PostSender.swift in Sources */,
 				3CECCE1E2AADDBBA0017A605 /* CircleFillIcons.swift in Sources */,
-				3C42AD1C2A803AE50056AFBC /* KbinCommentsFetcher.swift in Sources */,
+				3C42AD1C2A803AE50056AFBC /* LegacyKbinCommentsFetcher.swift in Sources */,
 				3CEF4CC82A69B3C3002B83C0 /* GeneralCommunitiesView.swift in Sources */,
 				3C2A805B2AFD893A0077B7D7 /* Biometrics.swift in Sources */,
 				3C1A3F5B2A73B2B800898FC6 /* KeychainInterface.swift in Sources */,
@@ -1514,7 +1538,6 @@
 				3CC3E4292ADC7B7A00F7F9A9 /* LocalImagePopoverView.swift in Sources */,
 				3CB9C7222AA23F7400FB5A10 /* CommunityObject.swift in Sources */,
 				3CA92E3B2A543BF000688DEB /* CommunityModel.swift in Sources */,
-				3CF3B8F32A8FF7D4001C08B5 /* KbinSelectorView.swift in Sources */,
 				3C06CBEA2B24C1C6000767CC /* KbinPostsFetcher.swift in Sources */,
 				3C3E75F82B21158100F25F7D /* GenerateHeaders.swift in Sources */,
 				3CC3E41F2ADC36D900F7F9A9 /* DismissButtonView.swift in Sources */,
@@ -1532,7 +1555,7 @@
 				3CB046F62ADB28850011BFEC /* PersonFetcher.swift in Sources */,
 				3C96EA422A77225E00753199 /* ValidationUtils.swift in Sources */,
 				3CC3E4332ADDCF7E00F7F9A9 /* ErrorResponseModel.swift in Sources */,
-				3C432F5C2A819E54000D5321 /* KbinThreadBodyFetcher.swift in Sources */,
+				3C432F5C2A819E54000D5321 /* LegacyKbinThreadBodyFetcher.swift in Sources */,
 				3CFB89E82AF19DC3001BB9EB /* CreateCommentPopover.swift in Sources */,
 				3CAD16E82AF6EC7B00A18BBA /* PhaseChangeActions.swift in Sources */,
 				3C113C432A6EA92600FDE5CE /* InstanceSelectorView.swift in Sources */,
@@ -1545,6 +1568,7 @@
 				3CB9C7372AA2461C00FB5A10 /* Person.swift in Sources */,
 				3C5ECB2E2A767957002BA561 /* TwoFactorFieldView.swift in Sources */,
 				3C7B7DC92A89485000A02A43 /* TimestampParser.swift in Sources */,
+				3C14147E2B277DC000043E01 /* KbinImage.swift in Sources */,
 				3CA92E432A549A7F00688DEB /* CommunityItem.swift in Sources */,
 				3CDBBC872AEDBB51005EFF2B /* CompactPostItem.swift in Sources */,
 				3CEF4CC42A69B39B002B83C0 /* TrendingCommunitiesSectionView.swift in Sources */,
@@ -2082,7 +2106,7 @@
 				minimumVersion = 4.0.3;
 			};
 		};
-		3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
+		3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -2090,7 +2114,7 @@
 				minimumVersion = 5.7.1;
 			};
 		};
-		3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */ = {
+		3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kean/Nuke.git";
 			requirement = {
@@ -2114,7 +2138,7 @@
 				kind = branch;
 			};
 		};
-		3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections.git" */ = {
+		3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-collections.git";
 			requirement = {
@@ -2122,7 +2146,7 @@
 				minimumVersion = 1.0.5;
 			};
 		};
-		3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift.git" */ = {
+		3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
 			requirement = {
@@ -2138,7 +2162,7 @@
 				kind = branch;
 			};
 		};
-		3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols.git" */ = {
+		3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SFSafeSymbols/SFSafeSymbols.git";
 			requirement = {
@@ -2185,12 +2209,12 @@
 		};
 		3C2EA6C82B002322007AC12D /* SFSafeSymbols */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols.git" */;
+			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
 			productName = SFSafeSymbols;
 		};
 		3C4B7DDA2A58AD23003C8192 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire.git" */;
+			package = 3C4B7DD92A58AD23003C8192 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 		3C4DB8C12AB70856000137CF /* NukeExtensions */ = {
@@ -2199,12 +2223,12 @@
 		};
 		3CA95F072A7ACF3B00626353 /* Nuke */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */;
+			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = Nuke;
 		};
 		3CA95F092A7ACF3B00626353 /* NukeUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke.git" */;
+			package = 3CA95F062A7ACF3B00626353 /* XCRemoteSwiftPackageReference "Nuke" */;
 			productName = NukeUI;
 		};
 		3CC420092AB37BCB00BE1612 /* WhatsNewKit */ = {
@@ -2219,22 +2243,22 @@
 		};
 		3CDA82C52B1F7E420078AB36 /* Collections */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections.git" */;
+			package = 3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = Collections;
 		};
 		3CDA82C72B1F7E420078AB36 /* OrderedCollections */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections.git" */;
+			package = 3CDA82C42B1F7E420078AB36 /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = OrderedCollections;
 		};
 		3CE69E952ABDCA8A00E2821E /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift.git" */;
+			package = 3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = Realm;
 		};
 		3CE69E972ABDCA8A00E2821E /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift.git" */;
+			package = 3CE69E942ABDCA8A00E2821E /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
 		};
 		3CEB2C092AB2F3A50013609E /* Defaults */ = {
@@ -2244,7 +2268,7 @@
 		};
 		3CEB2C122AB2F45F0013609E /* SFSafeSymbols */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols.git" */;
+			package = 3CEB2C112AB2F45F0013609E /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
 			productName = SFSafeSymbols;
 		};
 		3CEBF46B2B09426E00469008 /* MarkdownUI */ = {

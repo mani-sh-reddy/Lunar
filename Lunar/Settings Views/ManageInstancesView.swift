@@ -12,8 +12,10 @@ import SwiftUI
 struct ManageInstancesView: View {
   @Default(.lemmyInstances) var lemmyInstances
   @Default(.selectedInstance) var selectedInstance
+  @Default(.kbinSelectedInstance) var kbinSelectedInstance
   @Default(.debugModeEnabled) var debugModeEnabled
   @Default(.kbinActive) var kbinActive
+  @Default(.legacyKbinActive) var legacyKbinActive
   @Default(.accentColor) var accentColor
   @Default(.accentColorString) var accentColorString
 
@@ -30,10 +32,14 @@ struct ManageInstancesView: View {
       }
 
       Section {
-        Toggle("kbin.social", isOn: $kbinActive)
+        Toggle("kbin.social", isOn: $legacyKbinActive)
           .tint(accentColorString == "Default" ? .purple : accentColor)
+        Toggle("karab.in", isOn: $kbinActive)
+          .tint(accentColorString == "Default" ? .pink : accentColor)
       } header: {
         Text("Kbin")
+      } footer: {
+        Text("The Kbin API is still in the testing phase and currently only works with karab.in. kbin.social uses HTML parsing to fetch posts.")
       }
 
       Section {

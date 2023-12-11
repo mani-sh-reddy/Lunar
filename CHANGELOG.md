@@ -12,10 +12,15 @@ All notable changes to this project will be documented in this file.
 ### Changed
 
 - Links inside comments now open with in-app safari
+- Rearranged Kbin options in manage-instance settings
 
 ### Fixed
 
 - Fixed posts pagination logic
+
+### Misc
+
+- Added inital kbin api models and posts fetcher
 
 ## [2023.12.8]
 

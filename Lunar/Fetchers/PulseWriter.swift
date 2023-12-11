@@ -14,6 +14,7 @@ import SwiftUI
 class PulseWriter {
   @Default(.networkInspectorEnabled) var networkInspectorEnabled
   @Default(.selectedInstance) var selectedInstance
+  @Default(.kbinSelectedInstance) var kbinSelectedInstance
 
   let pulse = Pulse.LoggerStore.shared
 
@@ -49,7 +50,7 @@ class PulseWriter {
 
   func writeKbin(
     _ response: DataResponse<some Any, AFError>,
-    _ parameters: EndpointParametersKbin,
+    _ parameters: KbinEndpointParameters,
     _ method: HTTPMethod
   ) {
     guard networkInspectorEnabled else { return }
@@ -57,7 +58,7 @@ class PulseWriter {
     if method == .get {
       pulse.storeRequest(
         try! URLRequest(
-          url: EndpointBuilderKbin(parameters: parameters).build(redact: true),
+          url: KbinEndpointBuilder(parameters: parameters).build(redact: true),
           method: method
         ),
         response: response.response,
@@ -67,7 +68,7 @@ class PulseWriter {
     } else if method == .post {
       pulse.storeRequest(
         try! URLRequest(
-          url: URL(string: "https://\(selectedInstance)\(parameters.endpointPath)")!,
+          url: URL(string: "https://\(kbinSelectedInstance)\(parameters.endpointPath)")!,
           method: method
         ),
         response: response.response,

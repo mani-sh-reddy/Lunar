@@ -1,5 +1,5 @@
 //
-//  KbinThreadsModel.swift
+//  LegacyKbinThreadsModel.swift
 //  Lunar
 //
 //  Created by Mani on 06/08/2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct KbinPost {
+struct LegacyKbinPost {
   var id: String
   var title: String
   var user: String
@@ -18,12 +18,12 @@ struct KbinPost {
   var commentsCount: Int
   var imageUrl: String
   var magazine: String
-  var userObject: KbinUser?
+  var userObject: LegacyKbinUser?
   var instanceLink: String?
   var postURL: String
 }
 
-struct KbinUser {
+struct LegacyKbinUser {
   var username: String
   var avatarUrl: String
   var joined: String
@@ -32,11 +32,11 @@ struct KbinUser {
   var followCount: Int
 }
 
-struct KbinComment {
+struct LegacyKbinComment {
   let id: String
   let indentLevel: String
   let author: String
   let date: String
   let content: String
-  var replies: [KbinComment]
+  var replies: [LegacyKbinComment]
 }

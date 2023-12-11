@@ -1,5 +1,5 @@
 //
-//  KbinThreadBodyFetcher.swift
+//  LegacyKbinThreadBodyFetcher.swift
 //  Lunar
 //
 //  Created by Mani on 06/08/2023.
@@ -9,7 +9,7 @@ import Alamofire
 import SwiftSoup
 import SwiftUI
 
-class KbinThreadBodyFetcher: ObservableObject {
+class LegacyKbinThreadBodyFetcher: ObservableObject {
   @Published var postBody: String = ""
   @Published var isLoading = false
 

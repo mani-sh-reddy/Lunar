@@ -1,5 +1,5 @@
 //
-//  KbinCommentsView.swift
+//  LegacyKbinCommentsView.swift
 //  Lunar
 //
 //  Created by Mani on 06/08/2023.
@@ -7,18 +7,18 @@
 
 import SwiftUI
 
-struct KbinCommentsView: View {
-  @StateObject private var kbinCommentsFetcher: KbinCommentsFetcher
-  @StateObject private var kbinThreadBodyFetcher: KbinThreadBodyFetcher
+struct LegacyKbinCommentsView: View {
+  @StateObject private var kbinCommentsFetcher: LegacyKbinCommentsFetcher
+  @StateObject private var kbinThreadBodyFetcher: LegacyKbinThreadBodyFetcher
 
-  var post: KbinPost
+  var post: LegacyKbinPost
 
-  init(post: KbinPost, postURL: String) {
+  init(post: LegacyKbinPost, postURL: String) {
     _kbinCommentsFetcher = StateObject(
-      wrappedValue: KbinCommentsFetcher(postURL: postURL)
+      wrappedValue: LegacyKbinCommentsFetcher(postURL: postURL)
     )
     _kbinThreadBodyFetcher = StateObject(
-      wrappedValue: KbinThreadBodyFetcher(postURL: postURL)
+      wrappedValue: LegacyKbinThreadBodyFetcher(postURL: postURL)
     )
     self.post = post
   }
@@ -27,7 +27,7 @@ struct KbinCommentsView: View {
     if kbinCommentsFetcher.isLoading {
       ProgressView()
     } else {
-      KbinCommentSectionView(
+      LegacyKbinCommentSectionView(
         post: post,
         postBody: kbinThreadBodyFetcher.postBody,
         comments: kbinCommentsFetcher.comments
@@ -36,15 +36,15 @@ struct KbinCommentsView: View {
   }
 }
 
-struct KbinCommentSectionView: View {
-  var post: KbinPost
+struct LegacyKbinCommentSectionView: View {
+  var post: LegacyKbinPost
   var postBody: String
-  var comments: [KbinComment]
+  var comments: [LegacyKbinComment]
 
   init(
-    post: KbinPost,
+    post: LegacyKbinPost,
     postBody: String,
-    comments: [KbinComment]
+    comments: [LegacyKbinComment]
   ) {
     self.post = post
     self.comments = comments
@@ -54,22 +54,22 @@ struct KbinCommentSectionView: View {
   var body: some View {
     List {
       Section {
-        KbinPostRowView(post: post)
+        LegacyKbinPostRowView(post: post)
         if !postBody.isEmpty {
           Text(postBody)
         }
       }
       Section {
         ForEach(comments, id: \.id) { comment in
-          KbinCommentRowView(comment: comment)
+          LegacyKbinCommentRowView(comment: comment)
         }
       }
     }.listStyle(.grouped)
   }
 }
 
-struct KbinCommentRowView: View {
-  let comment: KbinComment
+struct LegacyKbinCommentRowView: View {
+  let comment: LegacyKbinComment
   let commentHierarchyColors: [Color] = [
     .red,
     .orange,

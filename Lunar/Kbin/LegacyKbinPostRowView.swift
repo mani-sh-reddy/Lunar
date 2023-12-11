@@ -1,5 +1,5 @@
 //
-//  KbinPostRowView.swift
+//  LegacyKbinPostRowView.swift
 //  Lunar
 //
 //  Created by Mani on 04/07/2023.
@@ -8,17 +8,24 @@
 import SFSafeSymbols
 import SwiftUI
 
-struct KbinPostRowView: View {
-  var post: KbinPost
+struct LegacyKbinPostRowView: View {
+  var post: LegacyKbinPost
   @State var showingPlaceholderAlert: Bool = false
   @State var goInto: Bool = false
 
   @State var upvoted: Bool = false
   @State var downvoted: Bool = false
 
+  var instanceDomain: String {
+    if let url = URL(string: post.instanceLink ?? ""), let host = url.host {
+      return host
+    }
+    return ""
+  }
+
   var magazine: String {
-    if post.instanceLink != nil, post.instanceLink != "" { // skipcq: SW-P1006
-      "\(post.magazine)@\(post.instanceLink ?? "")"
+    if !instanceDomain.isEmpty {
+      "\(post.magazine)@\(instanceDomain)"
     } else {
       "\(post.magazine)"
     }

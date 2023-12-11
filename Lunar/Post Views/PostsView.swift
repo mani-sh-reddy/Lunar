@@ -45,6 +45,8 @@ struct PostsView: View {
   var personBio: String?
   var personAvatar: String?
 
+  var isKbin: Bool? = false
+
   @State var runOnce: Bool = false
   @State var showingCreatePostPopover: Bool = false
 
@@ -166,8 +168,8 @@ struct PostsView: View {
   func resetRealmPages() {
     guard !realmPages.filter({
       $0.sort == sort
-      && $0.type == type
-      && $0.filterKey == filterKey
+        && $0.type == type
+        && $0.filterKey == filterKey
     }).isEmpty else { return }
     for page in realmPages.filter({
       $0.sort == sort
@@ -311,17 +313,27 @@ struct PostsView: View {
   func loadMorePostsOnAppearAction() {
     showingProgressView = true
     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-      PostsFetcher(
-        sort: sort,
-        type: type,
-        communityID: communityID,
-        personID: personID,
+      if let isKbin, isKbin == true {
+        KbinPostsFetcher(
+          sort: sort,
+          time: type,
+          page: realmPage.pageNumber ?? 1,
+          filterKey: filterKey
+        ).loadContent()
+        showingProgressView = false
+      } else {
+        PostsFetcher(
+          sort: sort,
+          type: type,
+          communityID: communityID,
+          personID: personID,
           pageNumber: realmPage.pageNumber ?? 1,
-        pageCursor: realmPage.pageCursor,
-        filterKey: filterKey
-      ).loadContent()
-      /// Setting the page number for the batch.
-      showingProgressView = false
+          pageCursor: realmPage.pageCursor,
+          filterKey: filterKey
+        ).loadContent()
+        /// Setting the page number for the batch.
+        showingProgressView = false
+      }
     }
     runOnce = true
   }
@@ -332,16 +344,25 @@ struct PostsView: View {
     showingProgressView = true
     hapticsRigid.impactOccurred(intensity: 0.5)
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-      PostsFetcher(
-        sort: sort,
-        type: type,
-        communityID: communityID,
-        personID: personID,
+      if let isKbin, isKbin == true {
+        KbinPostsFetcher(
+          sort: sort,
+          time: type,
+          page: realmPage.pageNumber ?? 1,
+          filterKey: filterKey
+        ).loadContent()
+        showingProgressView = false
+      } else {
+        PostsFetcher(
+          sort: sort,
+          type: type,
+          communityID: communityID,
+          personID: personID,
           pageNumber: realmPage.pageNumber ?? 1,
-        pageCursor: realmPage.pageCursor,
-        filterKey: filterKey
-      ).loadContent()
-      showingProgressView = false
+          pageCursor: realmPage.pageCursor,
+          filterKey: filterKey
+        ).loadContent()
+        showingProgressView = false
       }
     }
   }

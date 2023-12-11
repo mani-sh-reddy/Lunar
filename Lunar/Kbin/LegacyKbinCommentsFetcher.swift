@@ -1,5 +1,5 @@
 //
-//  KbinCommentsFetcher.swift
+//  LegacyKbinCommentsFetcher.swift
 //  Lunar
 //
 //  Created by Mani on 06/08/2023.
@@ -9,10 +9,10 @@ import Alamofire
 import SwiftSoup
 import SwiftUI
 
-class KbinCommentsFetcher: ObservableObject {
-  typealias FetchCompletion = ([KbinComment]) -> Void
+class LegacyKbinCommentsFetcher: ObservableObject {
+  typealias FetchCompletion = ([LegacyKbinComment]) -> Void
 
-  @Published var comments = [KbinComment]()
+  @Published var comments = [LegacyKbinComment]()
   @Published var isLoading = false
 
   @State var postURL: String
@@ -74,7 +74,7 @@ class KbinCommentsFetcher: ObservableObject {
         let timeAgo = try timeElement?.text()
 
         // Create a KbinComment object
-        let comment = KbinComment(
+        let comment = LegacyKbinComment(
           id: commentId,
           indentLevel: commentIndentLevel,
           author: username ?? "",
