@@ -7,7 +7,16 @@
 
 import Foundation
 
-// Function to convert UUID to Int
+func djb2Hash(_ input: String) -> UInt32 {
+  var hash: UInt32 = 5381
+
+  for char in input.utf8 {
+    hash = ((hash << 5) &+ hash) &+ UInt32(char)
+  }
+
+  return hash
+}
+
 func UUIDToInt(uuid: UUID) -> Int {
   // Get the uuid's uuidString property
   let uuidString = uuid.uuidString
@@ -15,17 +24,8 @@ func UUIDToInt(uuid: UUID) -> Int {
   // Use a hash function (e.g., DJB2) to generate a hash value
   let hashValue = djb2Hash(uuidString)
 
-  // Convert the hash value to an Int
-  let intValue = Int(hashValue)
+  // Convert the hash value to a 32-bit Int
+  let intValue = Int(hashValue & 0xFFFF_FFFF)
 
   return intValue
-}
-
-// DJB2 Hash Function
-func djb2Hash(_ input: String) -> UInt64 {
-  var hash: UInt64 = 5381
-  for byte in input.utf8 {
-    hash = (hash &* 33) ^ UInt64(byte)
-  }
-  return hash
 }

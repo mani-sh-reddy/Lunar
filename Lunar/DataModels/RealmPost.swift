@@ -117,7 +117,7 @@ class RealmPost: Object, ObjectKeyIdentifiable {
     filterKey: String
   ) {
     self.init()
-    self.primaryKey = "\(postID)\(sort ?? "")\(type ?? "")\(personID ?? 0)\(communityID ?? 0)\(filterKey)"
+    primaryKey = "\(postID)\(sort ?? "")\(type ?? "")\(personID ?? 0)\(communityID ?? 0)\(filterKey)"
     self.postID = postID
     self.postName = postName
     self.postPublished = postPublished

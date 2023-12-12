@@ -22,6 +22,29 @@ class RealmThawFunctions {
     }
   }
 
+  func deleteMultiplePosts(posts: [RealmPost]) {
+    guard !posts.isEmpty else { return }
+    for post in posts {
+      deletePost(post: post)
+    }
+  }
+
+  func resetAllPages() {
+    let realm = try! Realm()
+    try! realm.write {
+      let pages = realm.objects(RealmPage.self)
+      realm.delete(pages)
+    }
+  }
+
+  func resetAllPosts() {
+    let realm = try! Realm()
+    try! realm.write {
+      let posts = realm.objects(RealmPost.self)
+      realm.delete(posts)
+    }
+  }
+
   func deletePost(post: RealmPost) {
     let thawedPost = post.thaw()
     if thawedPost?.isInvalidated == false {
@@ -32,7 +55,6 @@ class RealmThawFunctions {
         }
       }
     }
-//    hapticsSoft.impactOccurred(intensity: 0.5)
   }
 
   func resetRealmPage(page: RealmPage) {

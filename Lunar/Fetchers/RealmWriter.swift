@@ -12,23 +12,38 @@ class RealmWriter {
   let realm = try! Realm()
 
   func writePage(
-    pageCursor: String,
+    pageCursor: String?,
+    pageNumber: Int?,
     sort: String? = nil,
     type: String? = nil,
     personID: Int? = nil,
     communityID: Int? = nil,
     filterKey: String
   ) {
-    try! realm.write {
-      let realmPage = RealmPage(
-        pageCursor: pageCursor,
-        sort: sort,
-        type: type,
-        communityID: communityID,
-        personID: personID,
-        filterKey: filterKey
-      )
-      realm.add(realmPage, update: .modified)
+    if pageNumber == nil || pageNumber == 0 {
+      try! realm.write {
+        let realmPage = RealmPage(
+          pageCursor: pageCursor ?? "",
+          sort: sort,
+          type: type,
+          communityID: communityID,
+          personID: personID,
+          filterKey: filterKey
+        )
+        realm.add(realmPage, update: .modified)
+      }
+    } else {
+      try! realm.write {
+        let realmPage = RealmPage(
+          pageNumber: pageNumber,
+          sort: sort,
+          type: type,
+          communityID: communityID,
+          personID: personID,
+          filterKey: filterKey
+        )
+        realm.add(realmPage, update: .modified)
+      }
     }
   }
 
@@ -142,54 +157,56 @@ class RealmWriter {
     }
   }
 
-//  func writeKbinPost(
-//    kbinPostModel: KbinPostModel,
-//    sort: String? = "",
-//    type: String? = "",
-//    filterKey: String
-//  ) {
-//    try! realm.write {
-//      for member in kbinPostModel.hydraMember {
-//        let realmPost = RealmPost(
-//          postID: UUIDToInt(uuid: UUID()), // TODO: -
-//          postName: member.,
-//          postPublished: post.post.published,
-//          postURL: post.post.url,
-//          postBody: post.post.body,
-//          postThumbnailURL: post.post.thumbnailURL,
-//          postFeatured: post.post.featuredCommunity || post.post.featuredLocal,
-//          personID: post.creator.id,
-//          personName: post.creator.name,
-//          personPublished: post.creator.published,
-//          personActorID: post.creator.actorID,
-//          personInstanceID: post.creator.instanceID,
-//          personAvatar: post.creator.avatar,
-//          personDisplayName: post.creator.displayName,
-//          personBio: post.creator.bio,
-//          personBanner: post.creator.banner,
-//          communityID: post.community.id,
-//          communityName: post.community.name,
-//          communityTitle: post.community.title,
-//          communityActorID: post.community.actorID,
-//          communityInstanceID: post.community.instanceID,
-//          communityDescription: post.community.description,
-//          communityIcon: post.community.icon,
-//          communityBanner: post.community.banner,
-//          communityUpdated: post.community.updated,
-//          communitySubscribed: post.subscribed,
-//          postScore: post.counts.postScore,
-//          postCommentCount: post.counts.comments,
-//          upvotes: post.counts.upvotes,
-//          downvotes: post.counts.downvotes,
-//          postMyVote: post.myVote ?? 0,
-//          postHidden: false,
-//          postMinimised: post.post.featuredCommunity || post.post.featuredLocal,
-//          sort: sort,
-//          type: type,
-//          filterKey: filterKey
-//        )
-//        realm.add(realmPost, update: .modified)
-//      }
-//    }
-//  }
+  func writeKbinPosts(
+    kbinPostObjects: [KbinPostObject],
+    sort: String? = "",
+    time: String? = "",
+    filterKey: String
+  ) {
+    let realm = try! Realm()
+
+    try! realm.write {
+      for post in kbinPostObjects {
+        let realmPost = RealmPost(
+          postID: UUIDToInt(uuid: UUID()), // TODO: -
+          postName: post.body ?? "",
+          postPublished: post.createdAt ?? "",
+          postURL: post.apID,
+          postBody: post.body,
+          postThumbnailURL: post.image?.storageURL ?? "",
+          postFeatured: post.isPinned ?? false,
+          personID: post.user?.userID,
+          personName: post.user?.username ?? "",
+          personPublished: post.user?.createdAt,
+          personActorID: post.user?.apID ?? "",
+          personInstanceID: 0,
+          personAvatar: post.user?.avatar?.storageURL ?? "",
+          personDisplayName: post.user?.username,
+          personBio: "",
+          personBanner: "",
+          communityID: post.magazine?.magazineID,
+          communityName: post.magazine?.name ?? "",
+          communityTitle: post.magazine?.name ?? "",
+          communityActorID: post.magazine?.apProfileID ?? "",
+          communityInstanceID: 0,
+          communityDescription: "",
+          communityIcon: post.magazine?.icon?.storageURL ?? "",
+          communityBanner: "",
+          communityUpdated: "",
+          communitySubscribed: post.magazine?.isUserSubscribed ?? false ? .subscribed : .notSubscribed,
+          postScore: (post.uv ?? 0) - (post.dv ?? 0),
+          postCommentCount: post.comments,
+          upvotes: post.uv,
+          downvotes: post.dv,
+          postMyVote: post.userVote ?? 0,
+          postHidden: post.visibility == "visible" ? false : true,
+          postMinimised: false,
+          sort: sort,
+          type: time,
+          filterKey: filterKey
+        )
+        realm.add(realmPost, update: .modified)
+      }
+    }
+  }
 }

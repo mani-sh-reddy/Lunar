@@ -21,6 +21,7 @@ struct PostsView: View {
   @Default(.fontSize) var fontSize
 
   @ObservedRealmObject var realmPage: RealmPage
+
   @ObservedResults(RealmPage.self) var realmPages
 
   var filteredPosts: [RealmPost]
@@ -44,9 +45,9 @@ struct PostsView: View {
   var personBio: String?
   var personAvatar: String?
 
+  var isKbin: Bool? = false
+
   @State var runOnce: Bool = false
-  @State var page: Int = 1
-  @State var pageCursor: String = ""
   @State var showingCreatePostPopover: Bool = false
 
   @State var showingProgressView: Bool = false
@@ -75,19 +76,24 @@ struct PostsView: View {
       if !runOnce {
         Rectangle()
           .foregroundStyle(.gray.opacity(0.1))
-          .onAppear { loadMorePostsOnAppearAction() }
+          .onAppear {
+            loadMorePostsOnAppearAction()
+          }
       } else {
         HStack {
           Spacer()
           if showingProgressView {
             ProgressView()
+              .foregroundStyle(.blue)
               .frame(width: 20)
           } else {
             Image(systemSymbol: .handTapFill)
+              .foregroundStyle(.blue)
               .imageScale(.small)
               .frame(width: 20)
           }
-          Text("Load More Posts")
+          Text("Load Posts")
+            .foregroundStyle(.blue)
           Spacer()
         }
         .listRowBackground(Color("postListBackground"))
@@ -100,17 +106,19 @@ struct PostsView: View {
     }
     .background(Color("postListBackground"))
     .listStyle(.plain)
-    .navigationTitle(heading)
+    .navigationTitle(debugModeEnabled ? "" : heading)
     .navigationBarTitleDisplayMode(.inline)
     .refreshable {
+      print("__REFRESHED_POSTS_VIEW__")
       showingProgressView = true
       try? await Task.sleep(nanoseconds: 1 * 1_000_000_000)
+      print("__REFRESHED_POSTS_VIEW_AFTER_WAIT__")
       resetRealmPages()
       resetRealmPosts()
+      showingProgressView = false
     }
     .onChange(of: selectedInstance) { _ in
       /// Resetting realm post action within InstanceSelectorView
-      page = 1
       runOnce = false
     }
     .toolbar {
@@ -135,20 +143,33 @@ struct PostsView: View {
 
   // MARK: - resetRealmPosts
 
+//  func resetRealmPosts() {
+//    guard !filteredPosts.isEmpty else { return }
+//    for post in filteredPosts {
+//      print("__DELETE_POST_\(post.postID)__")
+//      RealmThawFunctions().deletePost(post: post)
+//    }
+  ////    RealmThawFunctions().deleteMultiplePosts(posts: filteredPosts)
+//    runOnce = false
+//  }
+
   func resetRealmPosts() {
-    guard !filteredPosts.isEmpty else { return }
-    for post in filteredPosts {
-      RealmThawFunctions().deletePost(post: post)
+    let realm = try! Realm()
+    try! realm.write {
+      let posts = realm.objects(RealmPost.self).where { post in
+        post.sort == sort
+          && post.type == type
+          && post.filterKey == filterKey
+      }
+      realm.delete(posts)
     }
-    page = 1
-    runOnce = false
   }
 
   func resetRealmPages() {
     guard !realmPages.filter({
       $0.sort == sort
-      && $0.type == type
-      && $0.filterKey == filterKey
+        && $0.type == type
+        && $0.filterKey == filterKey
     }).isEmpty else { return }
     for page in realmPages.filter({
       $0.sort == sort
@@ -278,10 +299,11 @@ struct PostsView: View {
       }
       .padding(.trailing, 3)
       VStack {
-        Image(systemSymbol: .doc)
-        Text(String(page))
+        Image(systemSymbol: .arrowRightDocOnClipboard)
+        Text(String(realmPage.pageNumber ?? 99999))
           .fixedSize()
       }
+      Text(realmPage.pageCursor ?? "")
     }
     .font(.caption)
   }
@@ -291,18 +313,27 @@ struct PostsView: View {
   func loadMorePostsOnAppearAction() {
     showingProgressView = true
     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-      PostsFetcher(
-        sort: sort,
-        type: type,
-        communityID: communityID,
-        personID: personID,
-        page: page,
-        pageCursor: realmPage.pageCursor,
-        filterKey: filterKey
-      ).loadContent()
-      /// Setting the page number for the batch.
-      page += 1
-      showingProgressView = false
+      if let isKbin, isKbin == true {
+        KbinPostsFetcher(
+          sort: sort,
+          time: type,
+          page: realmPage.pageNumber ?? 1,
+          filterKey: filterKey
+        ).loadContent()
+        showingProgressView = false
+      } else {
+        PostsFetcher(
+          sort: sort,
+          type: type,
+          communityID: communityID,
+          personID: personID,
+          pageNumber: realmPage.pageNumber ?? 1,
+          pageCursor: realmPage.pageCursor,
+          filterKey: filterKey
+        ).loadContent()
+        /// Setting the page number for the batch.
+        showingProgressView = false
+      }
     }
     runOnce = true
   }
@@ -313,17 +344,26 @@ struct PostsView: View {
     showingProgressView = true
     hapticsRigid.impactOccurred(intensity: 0.5)
     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-      PostsFetcher(
-        sort: sort,
-        type: type,
-        communityID: communityID,
-        personID: personID,
-        page: page,
-        pageCursor: realmPage.pageCursor,
-        filterKey: filterKey
-      ).loadContent()
-      showingProgressView = false
-      page += 1
+      if let isKbin, isKbin == true {
+        KbinPostsFetcher(
+          sort: sort,
+          time: type,
+          page: realmPage.pageNumber ?? 1,
+          filterKey: filterKey
+        ).loadContent()
+        showingProgressView = false
+      } else {
+        PostsFetcher(
+          sort: sort,
+          type: type,
+          communityID: communityID,
+          personID: personID,
+          pageNumber: realmPage.pageNumber ?? 1,
+          pageCursor: realmPage.pageCursor,
+          filterKey: filterKey
+        ).loadContent()
+        showingProgressView = false
+      }
     }
   }
 }

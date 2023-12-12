@@ -22,6 +22,7 @@ extension Defaults.Keys {
 
   static let selectedAppIcon = Key<String>("selectedAppIcon", default: "AppIconDefault")
   static let kbinActive = Key<Bool>("kbinActive", default: false)
+  static let legacyKbinActive = Key<Bool>("legacyKbinActive", default: false)
   static let forcedPostSort = Key<SortType>("forcedPostSort", default: .active)
   static let searchSortType = Key<SortType>("searchSortType", default: .topYear)
   static let showLaunchSplashScreen = Key<Bool>("showLaunchSplashScreen", default: true)
@@ -63,6 +64,6 @@ extension Defaults.Keys {
 
   // MARK: - Kbin Specific
 
-  static let kbinHostURL = Key<String>("kbinHostURL", default: "kbin.social")
-  static let selectedInstanceKbin = Key<String>("selectedInstanceKbin", default: "dev.karab.in")
+  static let kbinSelectedInstance = Key<String>("kbinSelectedInstance", default: "karab.in")
+  static let legacyKbinSelectedInstance = Key<String>("legacyKbinSelectedInstance", default: "kbin.social")
 }

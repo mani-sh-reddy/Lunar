@@ -12,10 +12,16 @@ import Pulse
 import SwiftUI
 
 class GenerateHeaders {
-  func generate(jwt: String? = JWT().getJWTForActiveAccount()) -> HTTPHeaders? {
+  func generate(
+    jwt: String? = JWT().getJWTForActiveAccount(),
+    acceptHeader: String? = ""
+  ) -> HTTPHeaders? {
     var headers: HTTPHeaders = []
     if let jwt {
       headers.add(.authorization(bearerToken: jwt))
+    }
+    if let acceptHeader, !acceptHeader.isEmpty {
+      headers.add(.accept(acceptHeader))
     }
     return headers
   }

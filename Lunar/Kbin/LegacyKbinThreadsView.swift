@@ -1,5 +1,5 @@
 //
-//  KbinThreadsView.swift
+//  LegacyKbinThreadsView.swift
 //  Lunar
 //
 //  Created by Mani on 06/08/2023.
@@ -8,19 +8,19 @@
 import Defaults
 import SwiftUI
 
-struct KbinThreadsView: View {
-  @Default(.kbinHostURL) var kbinHostURL
+struct LegacyKbinThreadsView: View {
+  @Default(.legacyKbinSelectedInstance) var legacyKbinSelectedInstance
 
-  @StateObject var kbinThreadsFetcher: KbinThreadsFetcher
+  @StateObject var kbinThreadsFetcher: LegacyKbinThreadsFetcher
 
   var body: some View {
     List {
       ForEach(kbinThreadsFetcher.posts, id: \.id) { post in
         Section {
           ZStack {
-            KbinPostRowView(post: post)
+            LegacyKbinPostRowView(post: post)
             NavigationLink {
-              KbinCommentsView(post: post, postURL: "https://\(kbinHostURL)\(post.postURL)")
+              LegacyKbinCommentsView(post: post, postURL: "https://\(legacyKbinSelectedInstance)\(post.postURL)")
             } label: {
               EmptyView()
             }
@@ -39,12 +39,12 @@ struct KbinThreadsView: View {
       try? await Task.sleep(nanoseconds: 1 * 1_000_000_000)
       await kbinThreadsFetcher.refreshContent()
     }
-    .navigationTitle("Kbin")
+    .navigationTitle("kbin.social")
     .navigationBarTitleDisplayMode(.inline)
     .listStyle(.insetGrouped)
   }
 }
 
 #Preview {
-  KbinThreadsView(kbinThreadsFetcher: KbinThreadsFetcher())
+  LegacyKbinThreadsView(kbinThreadsFetcher: LegacyKbinThreadsFetcher())
 }

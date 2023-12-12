@@ -27,7 +27,7 @@ class PostsFetcher: ObservableObject {
   var endpointPath: String
   //  var page: Int
 
-  var page: Int?
+  var pageNumber: Int?
   var pageCursor: String?
 
   private var parameters: EndpointParameters {
@@ -35,7 +35,7 @@ class PostsFetcher: ObservableObject {
       endpointPath: endpointPath,
       sortParameter: sort,
       typeParameter: type,
-      currentPage: page,
+      currentPage: pageNumber ?? 1,
       pageCursor: pageCursor,
       limitParameter: 50,
       communityID: communityID,
@@ -51,11 +51,16 @@ class PostsFetcher: ObservableObject {
     communityID: Int? = 0,
     personID: Int? = 0,
     instance: String? = nil,
-    page: Int? = nil,
-    pageCursor: String? = "",
+    pageNumber: Int? = 1,
+    pageCursor: String?,
     filterKey: String
   ) {
-    self.page = page
+    if pageNumber == nil {
+      self.pageNumber = 1
+    } else {
+      self.pageNumber = pageNumber
+    }
+
     self.pageCursor = pageCursor
 
     ///    When getting user specific posts, need to use a different endpoint path.
@@ -79,7 +84,7 @@ class PostsFetcher: ObservableObject {
     self.filterKey = filterKey
   }
 
-  func loadContent(isRefreshing : Bool = false) {
+  func loadContent(isRefreshing: Bool = false) {
     guard !isLoading else { return }
 
     isLoading = true
@@ -111,7 +116,7 @@ class PostsFetcher: ObservableObject {
         }
         self.imagePrefetcher.startPrefetching(with: imageRequestList)
 
-        print(result.nextPage as Any)
+        print(result.nextPageCursor as Any)
 
         RealmWriter().writePost(
           posts: result.posts,
@@ -120,9 +125,21 @@ class PostsFetcher: ObservableObject {
           filterKey: self.filterKey
         )
 
-        if let nextPage = result.nextPage {
+        if let nextPageCursor = result.nextPageCursor {
           RealmWriter().writePage(
-            pageCursor: nextPage,
+            pageCursor: nextPageCursor,
+            pageNumber: nil,
+            sort: self.sort,
+            type: self.type,
+            personID: self.personID,
+            communityID: self.communityID,
+            filterKey: self.filterKey
+          )
+        } else {
+          let nextPageNumber = (self.pageNumber ?? 1) + 1
+          RealmWriter().writePage(
+            pageCursor: nil,
+            pageNumber: nextPageNumber,
             sort: self.sort,
             type: self.type,
             personID: self.personID,

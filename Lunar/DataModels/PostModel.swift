@@ -9,11 +9,11 @@ import Foundation
 
 struct PostModel: Codable {
   let posts: [PostObject]
-  let nextPage: String?
+  let nextPageCursor: String?
 
   enum CodingKeys: String, CodingKey {
     case posts
-    case nextPage = "next_page"
+    case nextPageCursor = "next_page"
   }
 
   var thumbnailURLs: [String] {
