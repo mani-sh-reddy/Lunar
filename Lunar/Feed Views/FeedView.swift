@@ -117,6 +117,7 @@ struct FeedView: View {
         }
         if kbinActive {
           KbinNavLink()
+//          KbinNavLinkTemp()
         }
       } header: {
         Text("Kbin")

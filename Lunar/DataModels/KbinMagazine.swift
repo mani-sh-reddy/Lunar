@@ -10,9 +10,10 @@ import Foundation
 struct KbinMagazine: Codable {
   let name: String
   let magazineID: Int
-  let icon: KbinImage
-  let isUserSubscribed, isBlockedByUser: Bool
-  let apID, apProfileID: String
+  let icon: KbinImage?
+  let isUserSubscribed, isBlockedByUser: Bool?
+  let apID: String?
+  let apProfileID: String?
 
   enum CodingKeys: String, CodingKey {
     case name

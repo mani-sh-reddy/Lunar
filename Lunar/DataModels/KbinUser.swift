@@ -9,10 +9,12 @@ import Foundation
 
 struct KbinUser: Codable {
   let userID: Int
-  let username: String
-  let isBot, isFollowedByUser, isFollowerOfUser, isBlockedByUser: Bool
-  let avatar: KbinImage
-  let apID, apProfileID, createdAt: String
+  let username: String?
+  let isBot, isFollowedByUser, isFollowerOfUser, isBlockedByUser: Bool?
+  let avatar: KbinImage?
+  let apID: String?
+  let apProfileID: String?
+  let createdAt: String?
 
   enum CodingKeys: String, CodingKey {
     case userID = "userId"

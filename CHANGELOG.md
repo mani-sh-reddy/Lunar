@@ -9,6 +9,9 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+- Initial kbin api models and posts fetcher
+
 ### Changed
 
 - Links inside comments now open with in-app safari
@@ -17,10 +20,6 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 
 - Fixed posts pagination logic
-
-### Misc
-
-- Added inital kbin api models and posts fetcher
 
 ## [2023.12.8]
 

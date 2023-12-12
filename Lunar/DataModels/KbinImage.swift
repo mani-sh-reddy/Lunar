@@ -8,8 +8,11 @@
 import Foundation
 
 struct KbinImage: Codable {
-  let filePath, sourceURL, storageURL, altText: String
-  let width, height: Int
+  let filePath: String?
+  let sourceURL: String?
+  let storageURL: String?
+  let altText: String?
+  let width, height: Int?
 
   enum CodingKeys: String, CodingKey {
     case filePath

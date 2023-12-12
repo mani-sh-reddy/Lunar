@@ -10,4 +10,9 @@ import Foundation
 struct KbinPostsModel: Codable {
   let posts: [KbinPostObject]
   let pagination: KbinPagination
+
+  enum CodingKeys: String, CodingKey {
+    case posts = "items"
+    case pagination
+  }
 }
